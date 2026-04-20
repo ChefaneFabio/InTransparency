@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -38,6 +39,7 @@ interface Stats {
 }
 
 export default function ParentalConsentPage() {
+  const t = useTranslations('parentalConsent')
   const [consents, setConsents] = useState<ConsentRecord[]>([])
   const [stats, setStats] = useState<Stats>({ total: 0, pending: 0, granted: 0, denied: 0, expired: 0 })
   const [students, setStudents] = useState<Student[]>([])
@@ -100,16 +102,16 @@ export default function ParentalConsentPage() {
   }
 
   const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
-    PENDING: { label: 'In Attesa', variant: 'secondary' },
-    GRANTED: { label: 'Autorizzato', variant: 'default' },
-    DENIED: { label: 'Negato', variant: 'destructive' },
-    EXPIRED: { label: 'Scaduto', variant: 'outline' },
+    PENDING: { label: t('status.pending'), variant: 'secondary' },
+    GRANTED: { label: t('status.granted'), variant: 'default' },
+    DENIED: { label: t('status.denied'), variant: 'destructive' },
+    EXPIRED: { label: t('status.expired'), variant: 'outline' },
   }
 
   const consentTypeLabels: Record<string, string> = {
-    data_sharing: 'Condivisione Dati',
-    pcto_participation: 'Partecipazione PCTO',
-    platform_usage: 'Utilizzo Piattaforma',
+    data_sharing: t('consentTypes.dataSharing'),
+    pcto_participation: t('consentTypes.pctoParticipation'),
+    platform_usage: t('consentTypes.platformUsage'),
   }
 
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('it-IT')
@@ -130,13 +132,13 @@ export default function ParentalConsentPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Consenso Genitoriale</h1>
+          <h1 className="text-2xl font-bold">{t('title')}</h1>
           <p className="text-muted-foreground mt-1">
-            Gestisci le richieste di consenso per studenti minorenni
+            {t('subtitle')}
           </p>
         </div>
         <Button onClick={() => setShowForm(!showForm)}>
-          <Send className="h-4 w-4 mr-2" /> Richiedi Consenso
+          <Send className="h-4 w-4 mr-2" /> {t('actions.requestConsent')}
         </Button>
       </div>
 
@@ -148,7 +150,7 @@ export default function ParentalConsentPage() {
               <div className="rounded-lg bg-blue-100 p-2"><Users className="h-5 w-5 text-blue-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-muted-foreground">Totali</p>
+                <p className="text-sm text-muted-foreground">{t('stats.total')}</p>
               </div>
             </div>
           </CardContent>
@@ -159,7 +161,7 @@ export default function ParentalConsentPage() {
               <div className="rounded-lg bg-amber-100 p-2"><Clock className="h-5 w-5 text-amber-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.pending}</p>
-                <p className="text-sm text-muted-foreground">In Attesa</p>
+                <p className="text-sm text-muted-foreground">{t('stats.pending')}</p>
               </div>
             </div>
           </CardContent>
@@ -170,7 +172,7 @@ export default function ParentalConsentPage() {
               <div className="rounded-lg bg-green-100 p-2"><ShieldCheck className="h-5 w-5 text-green-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.granted}</p>
-                <p className="text-sm text-muted-foreground">Autorizzati</p>
+                <p className="text-sm text-muted-foreground">{t('stats.granted')}</p>
               </div>
             </div>
           </CardContent>
@@ -181,7 +183,7 @@ export default function ParentalConsentPage() {
               <div className="rounded-lg bg-red-100 p-2"><XCircle className="h-5 w-5 text-red-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.denied + stats.expired}</p>
-                <p className="text-sm text-muted-foreground">Negati / Scaduti</p>
+                <p className="text-sm text-muted-foreground">{t('stats.deniedOrExpired')}</p>
               </div>
             </div>
           </CardContent>
@@ -192,16 +194,16 @@ export default function ParentalConsentPage() {
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>Nuova Richiesta di Consenso</CardTitle>
-            <CardDescription>Invia una richiesta di consenso ai genitori di uno studente</CardDescription>
+            <CardTitle>{t('form.title')}</CardTitle>
+            <CardDescription>{t('form.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <label className="text-sm font-medium mb-1 block">Studente</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.studentLabel')}</label>
                 <Select value={formStudentId} onValueChange={setFormStudentId}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleziona studente..." />
+                    <SelectValue placeholder={t('form.studentPlaceholder')} />
                   </SelectTrigger>
                   <SelectContent>
                     {students.map((s) => (
@@ -213,40 +215,40 @@ export default function ParentalConsentPage() {
                 </Select>
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Tipo Consenso</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.consentTypeLabel')}</label>
                 <Select value={formConsentType} onValueChange={setFormConsentType}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="platform_usage">Utilizzo Piattaforma</SelectItem>
-                    <SelectItem value="data_sharing">Condivisione Dati</SelectItem>
-                    <SelectItem value="pcto_participation">Partecipazione PCTO</SelectItem>
+                    <SelectItem value="platform_usage">{t('consentTypes.platformUsage')}</SelectItem>
+                    <SelectItem value="data_sharing">{t('consentTypes.dataSharing')}</SelectItem>
+                    <SelectItem value="pcto_participation">{t('consentTypes.pctoParticipation')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Email Genitore</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.parentEmailLabel')}</label>
                 <Input
                   type="email"
-                  placeholder="genitore@email.com"
+                  placeholder={t('form.parentEmailPlaceholder')}
                   value={formParentEmail}
                   onChange={(e) => setFormParentEmail(e.target.value)}
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Nome Genitore (opzionale)</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.parentNameLabel')}</label>
                 <Input
-                  placeholder="Nome e Cognome"
+                  placeholder={t('form.parentNamePlaceholder')}
                   value={formParentName}
                   onChange={(e) => setFormParentName(e.target.value)}
                 />
               </div>
             </div>
             <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setShowForm(false)}>Annulla</Button>
+              <Button variant="outline" onClick={() => setShowForm(false)}>{t('actions.cancel')}</Button>
               <Button onClick={handleSubmit} disabled={submitting || !formStudentId || !formParentEmail}>
-                {submitting ? 'Invio...' : 'Invia Richiesta'}
+                {submitting ? t('actions.sending') : t('actions.sendRequest')}
               </Button>
             </div>
           </CardContent>
@@ -256,22 +258,22 @@ export default function ParentalConsentPage() {
       {/* Consent Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Richieste di Consenso</CardTitle>
+          <CardTitle>{t('table.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           {consents.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">Nessuna richiesta di consenso.</p>
+            <p className="text-muted-foreground text-center py-8">{t('table.empty')}</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-2 font-medium">Studente</th>
-                    <th className="text-left py-3 px-2 font-medium">Email Genitore</th>
-                    <th className="text-left py-3 px-2 font-medium">Tipo</th>
-                    <th className="text-left py-3 px-2 font-medium">Stato</th>
-                    <th className="text-left py-3 px-2 font-medium">Richiesto</th>
-                    <th className="text-left py-3 px-2 font-medium">Scadenza</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.student')}</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.parentEmail')}</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.type')}</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.status')}</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.requested')}</th>
+                    <th className="text-left py-3 px-2 font-medium">{t('table.columns.expires')}</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useParams, useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -38,6 +39,7 @@ interface Message {
 }
 
 export default function MessageThreadPage() {
+  const t = useTranslations('messagesThread')
   const { data: session } = useSession()
   const params = useParams()
   const router = useRouter()
@@ -86,8 +88,8 @@ export default function MessageThreadPage() {
 
     if (!replyContent.trim()) {
       toast({
-        title: 'Validation error',
-        description: 'Message content cannot be empty',
+        title: t('toastValidationTitle'),
+        description: t('toastValidationDesc'),
         variant: 'destructive'
       })
       return
@@ -95,8 +97,8 @@ export default function MessageThreadPage() {
 
     if (!session) {
       toast({
-        title: 'Authentication required',
-        description: 'Please sign in to send messages',
+        title: t('toastAuthTitle'),
+        description: t('toastAuthDesc'),
         variant: 'destructive'
       })
       return
@@ -106,8 +108,8 @@ export default function MessageThreadPage() {
     const firstMessage = messages[0]
     if (!firstMessage) {
       toast({
-        title: 'Error',
-        description: 'Cannot determine recipient',
+        title: t('toastErrorTitle'),
+        description: t('toastNoRecipient'),
         variant: 'destructive'
       })
       return
@@ -145,21 +147,21 @@ export default function MessageThreadPage() {
         setReplyContent('')
         fetchMessages()
         toast({
-          title: 'Message sent!',
-          description: 'Your reply has been sent'
+          title: t('toastSentTitle'),
+          description: t('toastSentDesc')
         })
       } else {
         toast({
-          title: 'Send failed',
-          description: data.error || 'Failed to send message',
+          title: t('toastSendFailed'),
+          description: data.error || t('toastSendFailedDesc'),
           variant: 'destructive'
         })
       }
     } catch (error) {
       console.error('Error sending message:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to send message',
+        title: t('toastErrorTitle'),
+        description: t('toastSendFailedDesc'),
         variant: 'destructive'
       })
     } finally {
@@ -175,9 +177,9 @@ export default function MessageThreadPage() {
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60))
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
-    if (diffInMinutes < 1) return 'Just now'
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`
-    if (diffInHours < 24) return `${diffInHours}h ago`
+    if (diffInMinutes < 1) return t('timeJustNow')
+    if (diffInMinutes < 60) return t('timeMinutes', { n: diffInMinutes })
+    if (diffInHours < 24) return t('timeHours', { n: diffInHours })
 
     // For older messages, show full date
     const timeStr = messageDate.toLocaleTimeString('en-US', {
@@ -186,9 +188,9 @@ export default function MessageThreadPage() {
       hour12: true
     })
 
-    if (diffInDays === 0) return `Today at ${timeStr}`
-    if (diffInDays === 1) return `Yesterday at ${timeStr}`
-    if (diffInDays < 7) return `${diffInDays} days ago`
+    if (diffInDays === 0) return t('timeToday', { time: timeStr })
+    if (diffInDays === 1) return t('timeYesterday', { time: timeStr })
+    if (diffInDays < 7) return t('timeDaysAgo', { n: diffInDays })
 
     return messageDate.toLocaleDateString('en-US', {
       month: 'short',
@@ -222,10 +224,10 @@ export default function MessageThreadPage() {
   if (!session) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-5xl text-center">
-        <h1 className="text-2xl font-bold mb-4">Please sign in</h1>
-        <p className="text-muted-foreground mb-4">You need to be signed in to view messages</p>
+        <h1 className="text-2xl font-bold mb-4">{t('signInRequired')}</h1>
+        <p className="text-muted-foreground mb-4">{t('signInDesc')}</p>
         <Link href="/auth/signin">
-          <Button>Sign In</Button>
+          <Button>{t('signInButton')}</Button>
         </Link>
       </div>
     )
@@ -258,14 +260,14 @@ export default function MessageThreadPage() {
         <Link href="/messages">
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Messages
+            {t('backToMessages')}
           </Button>
         </Link>
 
         <Card>
           <CardContent className="py-12 text-center">
-            <h3 className="text-xl font-semibold mb-2">No messages found</h3>
-            <p className="text-muted-foreground">This conversation does not exist or you don't have access to it</p>
+            <h3 className="text-xl font-semibold mb-2">{t('noMessagesFound')}</h3>
+            <p className="text-muted-foreground">{t('noMessagesDesc')}</p>
           </CardContent>
         </Card>
       </div>
@@ -307,7 +309,7 @@ export default function MessageThreadPage() {
               <h2 className="text-xl font-semibold">
                 {otherParticipant?.firstName && otherParticipant?.lastName
                   ? `${otherParticipant.firstName} ${otherParticipant.lastName}`
-                  : otherParticipant?.email || 'Unknown'}
+                  : otherParticipant?.email || t('unknown')}
               </h2>
               {otherParticipant?.company && (
                 <p className="text-sm text-muted-foreground">{otherParticipant.company}</p>
@@ -317,7 +319,7 @@ export default function MessageThreadPage() {
 
           {messages[0]?.subject && (
             <div className="mt-3 pt-3 border-t">
-              <p className="text-sm text-muted-foreground">Subject:</p>
+              <p className="text-sm text-muted-foreground">{t('subjectLabel')}</p>
               <p className="font-medium">{messages[0].subject}</p>
             </div>
           )}
@@ -372,7 +374,7 @@ export default function MessageThreadPage() {
                     <div className={`flex-1 max-w-[75%] ${isCurrentUser ? 'items-end' : ''}`}>
                       <div className="flex items-baseline gap-2 mb-1">
                         <span className={`text-sm font-medium ${isCurrentUser ? 'text-right' : ''}`}>
-                          {isCurrentUser ? 'You' : `${message.sender.firstName} ${message.sender.lastName}`}
+                          {isCurrentUser ? t('you') : `${message.sender.firstName} ${message.sender.lastName}`}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           {formatTime(message.createdAt)}
@@ -393,7 +395,7 @@ export default function MessageThreadPage() {
 
                       {message.read && isCurrentUser && message.readAt && (
                         <p className="text-xs text-muted-foreground mt-1 text-right">
-                          Read
+                          {t('read')}
                         </p>
                       )}
                     </div>
@@ -413,7 +415,7 @@ export default function MessageThreadPage() {
             <Textarea
               value={replyContent}
               onChange={(e) => setReplyContent(e.target.value)}
-              placeholder="Type your message..."
+              placeholder={t('typeMessage')}
               rows={3}
               disabled={sending}
             />
@@ -421,7 +423,7 @@ export default function MessageThreadPage() {
             <div className="flex justify-end">
               <Button type="submit" disabled={sending || !replyContent.trim()}>
                 <Send className="w-4 h-4 mr-2" />
-                {sending ? 'Sending...' : 'Send'}
+                {sending ? t('sending') : t('send')}
               </Button>
             </div>
           </form>

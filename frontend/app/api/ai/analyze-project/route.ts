@@ -4,6 +4,10 @@ import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
 import { aiLimiter, getClientIp } from '@/lib/rate-limit'
 import prisma from '@/lib/prisma'
+import { extractDocuments } from '@/lib/storage/document-extract'
+
+export const maxDuration = 60
+export const dynamic = 'force-dynamic'
 
 /**
  * Search the web for company/organization context
@@ -157,7 +161,8 @@ RULES:
 - Ask 1-3 follow-up questions at a time, grouped by topic
 - Don't ask about fields that are irrelevant to this student/project
 - If a company/organization is mentioned, acknowledge what you know about it
-- If the student uploaded documents/images, acknowledge them
+- If the student uploaded files, their contents are included inline (PDFs, DOCX, XLSX, PPTX, ZIP, Jupyter notebooks, code, text, etc.). READ them and extract skills, tools, context, outcomes, and results directly — don't just say "I see your document". Cite specifics you found in the files.
+- MANUAL FALLBACK: For files that couldn't be auto-parsed, you'll see a note like "[Attached: filename — cannot auto-analyze contents. Ask the student: ...]". Ask EXACTLY the questions suggested in that note. Treat the student's answer as the authoritative description of that file and extract skills/tools/context from what they say.
 - When mentioning skills, note if they're in high demand ("React — very sought after right now!")
 - Extract information progressively
 
@@ -198,6 +203,39 @@ Always end your response with:
 
 Conversational text goes BEFORE the tags.`
 
+    // Extract content from uploaded documents ONCE (first user message).
+    // PDFs go in as Claude document blocks; DOCX/XLSX/ipynb/text files are
+    // parsed to text; unknown binaries get a short filename note.
+    let extractedBlocks: Array<any> = []
+    let docSummary = ''
+    if (documentUrls.length > 0) {
+      const normalized = (documentUrls as any[]).map(d =>
+        typeof d === 'string' ? { url: d, name: d.split('/').pop() || 'file' } : d
+      )
+      const extracted = await extractDocuments(normalized)
+
+      for (const block of extracted) {
+        if (block.kind === 'pdf') {
+          extractedBlocks.push({
+            type: 'document',
+            source: { type: 'base64', media_type: block.mediaType, data: block.base64 },
+            title: block.filename,
+          })
+        } else if (block.kind === 'text') {
+          extractedBlocks.push({
+            type: 'text',
+            text: `--- Attached file: ${block.filename} (${block.source}) ---\n${block.text}\n--- end of ${block.filename} ---`,
+          })
+        } else {
+          extractedBlocks.push({
+            type: 'text',
+            text: `[Attached: ${block.filename} — ${block.note}]`,
+          })
+        }
+      }
+      docSummary = normalized.map(d => d.name).join(', ')
+    }
+
     // Build Claude messages
     const claudeMessages: Array<{ role: 'user' | 'assistant'; content: any }> = []
 
@@ -223,10 +261,17 @@ Conversational text goes BEFORE the tags.`
           }
         }
 
-        // Add document context
-        if (msg === messages[0] && documentUrls.length > 0) {
-          const docNames = documentUrls.map((d: any) => d.name || d).join(', ')
-          content.push({ type: 'text', text: `[Student attached documents: ${docNames}]\n\n${msg.content}` })
+        // Add extracted document blocks on first user message
+        if (msg === messages[0] && extractedBlocks.length > 0) {
+          for (const block of extractedBlocks) content.push(block)
+        }
+
+        // User's typed message
+        if (msg === messages[0] && docSummary) {
+          content.push({
+            type: 'text',
+            text: `[Student attached: ${docSummary}. Their contents are included above where parseable.]\n\n${msg.content}`,
+          })
         } else {
           content.push({ type: 'text', text: msg.content })
         }

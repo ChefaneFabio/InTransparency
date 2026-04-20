@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -75,6 +76,7 @@ interface Application {
 }
 
 export default function ApplicationsPage() {
+  const t = useTranslations('applicationsPage')
   const { data: session } = useSession()
   const router = useRouter()
   const { toast } = useToast()
@@ -110,8 +112,8 @@ export default function ApplicationsPage() {
     } catch (error) {
       console.error('Error fetching applications:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to fetch applications',
+        title: t('toastErrorTitle'),
+        description: t('toastFetchFailed'),
         variant: 'destructive'
       })
     } finally {
@@ -135,8 +137,8 @@ export default function ApplicationsPage() {
     } catch (error) {
       console.error('Error fetching application:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to load application details',
+        title: t('toastErrorTitle'),
+        description: t('toastLoadFailed'),
         variant: 'destructive'
       })
     }
@@ -173,23 +175,23 @@ export default function ApplicationsPage() {
 
       if (response.ok) {
         toast({
-          title: 'Application updated',
-          description: 'The application status has been updated'
+          title: t('toastUpdatedTitle'),
+          description: t('toastUpdatedDesc')
         })
         setShowDetailDialog(false)
         fetchApplications()
       } else {
         toast({
-          title: 'Update failed',
-          description: data.error || 'Failed to update application',
+          title: t('toastUpdateFailed'),
+          description: data.error || t('toastUpdateFailedDesc'),
           variant: 'destructive'
         })
       }
     } catch (error) {
       console.error('Error updating application:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to update application',
+        title: t('toastErrorTitle'),
+        description: t('toastUpdateFailedDesc'),
         variant: 'destructive'
       })
     } finally {
@@ -198,7 +200,7 @@ export default function ApplicationsPage() {
   }
 
   const handleWithdraw = async (applicationId: string) => {
-    if (!confirm('Are you sure you want to withdraw this application?')) return
+    if (!confirm(t('confirmWithdraw'))) return
 
     try {
       const response = await fetch(`/api/applications/${applicationId}`, {
@@ -207,23 +209,23 @@ export default function ApplicationsPage() {
 
       if (response.ok) {
         toast({
-          title: 'Application withdrawn',
-          description: 'Your application has been withdrawn'
+          title: t('toastWithdrawnTitle'),
+          description: t('toastWithdrawnDesc')
         })
         fetchApplications()
       } else {
         const data = await response.json()
         toast({
-          title: 'Withdrawal failed',
-          description: data.error || 'Failed to withdraw application',
+          title: t('toastWithdrawFailed'),
+          description: data.error || t('toastWithdrawFailedDesc'),
           variant: 'destructive'
         })
       }
     } catch (error) {
       console.error('Error withdrawing application:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to withdraw application',
+        title: t('toastErrorTitle'),
+        description: t('toastWithdrawFailedDesc'),
         variant: 'destructive'
       })
     }
@@ -231,14 +233,14 @@ export default function ApplicationsPage() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
-      PENDING: { label: 'Pending', variant: 'secondary' },
-      REVIEWING: { label: 'Reviewing', variant: 'default' },
-      SHORTLISTED: { label: 'Shortlisted', variant: 'default' },
-      INTERVIEW: { label: 'Interview', variant: 'default' },
-      OFFER: { label: 'Offer', variant: 'default' },
-      ACCEPTED: { label: 'Accepted', variant: 'default' },
-      REJECTED: { label: 'Rejected', variant: 'destructive' },
-      WITHDRAWN: { label: 'Withdrawn', variant: 'outline' },
+      PENDING: { label: t('statusPending'), variant: 'secondary' },
+      REVIEWING: { label: t('statusReviewing'), variant: 'default' },
+      SHORTLISTED: { label: t('statusShortlisted'), variant: 'default' },
+      INTERVIEW: { label: t('statusInterview'), variant: 'default' },
+      OFFER: { label: t('statusOffer'), variant: 'default' },
+      ACCEPTED: { label: t('statusAccepted'), variant: 'default' },
+      REJECTED: { label: t('statusRejected'), variant: 'destructive' },
+      WITHDRAWN: { label: t('statusWithdrawn'), variant: 'outline' },
     }
 
     const config = statusConfig[status] || { label: status, variant: 'outline' }
@@ -250,11 +252,11 @@ export default function ApplicationsPage() {
     const past = new Date(date)
     const diffInDays = Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24))
 
-    if (diffInDays === 0) return 'Today'
-    if (diffInDays === 1) return 'Yesterday'
-    if (diffInDays < 7) return `${diffInDays} days ago`
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`
-    return `${Math.floor(diffInDays / 30)} months ago`
+    if (diffInDays === 0) return t('timeToday')
+    if (diffInDays === 1) return t('timeYesterday')
+    if (diffInDays < 7) return t('timeDaysAgo', { n: diffInDays })
+    if (diffInDays < 30) return t('timeWeeksAgo', { n: Math.floor(diffInDays / 7) })
+    return t('timeMonthsAgo', { n: Math.floor(diffInDays / 30) })
   }
 
   const isRecruiter = session?.user?.role === 'RECRUITER'
@@ -282,18 +284,18 @@ export default function ApplicationsPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
           <h1 className="text-4xl font-bold mb-2">
-            {isRecruiter ? 'Job Applications' : 'My Applications'}
+            {isRecruiter ? t('titleRecruiter') : t('titleStudent')}
           </h1>
           <p className="text-muted-foreground">
             {isRecruiter
-              ? 'Manage applications to your job postings'
-              : 'Track the status of your job applications'}
+              ? t('subtitleRecruiter')
+              : t('subtitleStudent')}
           </p>
         </div>
 
         <Link href="/explore">
           <Button size="lg" className="mt-4 md:mt-0">
-            Browse Jobs
+            {t('browseJobs')}
           </Button>
         </Link>
       </div>
@@ -302,21 +304,21 @@ export default function ApplicationsPage() {
       <Card className="mb-8">
         <CardContent className="pt-6">
           <div className="flex items-center gap-4">
-            <Label>Filter by status:</Label>
+            <Label>{t('filterByStatus')}</Label>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-48">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Statuses</SelectItem>
-                <SelectItem value="PENDING">Pending</SelectItem>
-                <SelectItem value="REVIEWING">Reviewing</SelectItem>
-                <SelectItem value="SHORTLISTED">Shortlisted</SelectItem>
-                <SelectItem value="INTERVIEW">Interview</SelectItem>
-                <SelectItem value="OFFER">Offer</SelectItem>
-                <SelectItem value="ACCEPTED">Accepted</SelectItem>
-                <SelectItem value="REJECTED">Rejected</SelectItem>
-                <SelectItem value="WITHDRAWN">Withdrawn</SelectItem>
+                <SelectItem value="all">{t('allStatuses')}</SelectItem>
+                <SelectItem value="PENDING">{t('statusPending')}</SelectItem>
+                <SelectItem value="REVIEWING">{t('statusReviewing')}</SelectItem>
+                <SelectItem value="SHORTLISTED">{t('statusShortlisted')}</SelectItem>
+                <SelectItem value="INTERVIEW">{t('statusInterview')}</SelectItem>
+                <SelectItem value="OFFER">{t('statusOffer')}</SelectItem>
+                <SelectItem value="ACCEPTED">{t('statusAccepted')}</SelectItem>
+                <SelectItem value="REJECTED">{t('statusRejected')}</SelectItem>
+                <SelectItem value="WITHDRAWN">{t('statusWithdrawn')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -328,14 +330,14 @@ export default function ApplicationsPage() {
         <Card>
           <CardContent className="py-12 text-center">
             <Briefcase className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-            <h3 className="text-xl font-semibold mb-2">No applications found</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('emptyTitle')}</h3>
             <p className="text-muted-foreground mb-4">
               {isRecruiter
-                ? 'No applications have been submitted to your jobs yet'
-                : "You haven't applied to any jobs yet"}
+                ? t('emptyDescRecruiter')
+                : t('emptyDescStudent')}
             </p>
             <Link href="/explore">
-              <Button>Browse Jobs</Button>
+              <Button>{t('browseJobs')}</Button>
             </Link>
           </CardContent>
         </Card>
@@ -344,13 +346,13 @@ export default function ApplicationsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                {isRecruiter && <TableHead>Applicant</TableHead>}
-                <TableHead>Job Title</TableHead>
-                <TableHead>Company</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Applied</TableHead>
-                {isRecruiter && <TableHead>Rating</TableHead>}
-                <TableHead className="text-right">Actions</TableHead>
+                {isRecruiter && <TableHead>{t('colApplicant')}</TableHead>}
+                <TableHead>{t('colJobTitle')}</TableHead>
+                <TableHead>{t('colCompany')}</TableHead>
+                <TableHead>{t('colStatus')}</TableHead>
+                <TableHead>{t('colApplied')}</TableHead>
+                {isRecruiter && <TableHead>{t('colRating')}</TableHead>}
+                <TableHead className="text-right">{t('colActions')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -432,7 +434,7 @@ export default function ApplicationsPage() {
                         onClick={() => viewApplication(application)}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        View
+                        {t('view')}
                       </Button>
 
                       {!isRecruiter && application.status === 'PENDING' && (
@@ -442,7 +444,7 @@ export default function ApplicationsPage() {
                           onClick={() => handleWithdraw(application.id)}
                         >
                           <XCircle className="w-4 h-4 mr-1" />
-                          Withdraw
+                          {t('withdraw')}
                         </Button>
                       )}
                     </div>
@@ -458,9 +460,9 @@ export default function ApplicationsPage() {
       <Dialog open={showDetailDialog} onOpenChange={setShowDetailDialog}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Application Details</DialogTitle>
+            <DialogTitle>{t('detailsTitle')}</DialogTitle>
             <DialogDescription>
-              {isRecruiter ? 'Review and manage this application' : 'Your application details'}
+              {isRecruiter ? t('detailsDescRecruiter') : t('detailsDescStudent')}
             </DialogDescription>
           </DialogHeader>
 
@@ -468,7 +470,7 @@ export default function ApplicationsPage() {
             <div className="space-y-6">
               {/* Job Info */}
               <div>
-                <h3 className="font-semibold mb-2">Position</h3>
+                <h3 className="font-semibold mb-2">{t('positionHeading')}</h3>
                 <div className="flex items-start gap-4">
                   {selectedApplication.job.companyLogo ? (
                     <img
@@ -494,18 +496,18 @@ export default function ApplicationsPage() {
               {/* Applicant Info (for recruiters) */}
               {isRecruiter && selectedApplication.applicant && (
                 <div>
-                  <h3 className="font-semibold mb-2">Applicant</h3>
+                  <h3 className="font-semibold mb-2">{t('applicantHeading')}</h3>
                   <div className="space-y-2">
-                    <p><strong>Name:</strong> {selectedApplication.applicant.firstName} {selectedApplication.applicant.lastName}</p>
-                    <p><strong>Email:</strong> {selectedApplication.applicant.email}</p>
+                    <p><strong>{t('nameLabel')}</strong> {selectedApplication.applicant.firstName} {selectedApplication.applicant.lastName}</p>
+                    <p><strong>{t('emailLabel')}</strong> {selectedApplication.applicant.email}</p>
                     {selectedApplication.applicant.university && (
-                      <p><strong>University:</strong> {selectedApplication.applicant.university}</p>
+                      <p><strong>{t('universityLabel')}</strong> {selectedApplication.applicant.university}</p>
                     )}
                     {selectedApplication.applicant.degree && (
-                      <p><strong>Degree:</strong> {selectedApplication.applicant.degree}</p>
+                      <p><strong>{t('degreeLabel')}</strong> {selectedApplication.applicant.degree}</p>
                     )}
                     {selectedApplication.applicant.gpa && (
-                      <p><strong>GPA:</strong> {selectedApplication.applicant.gpa}</p>
+                      <p><strong>{t('gpaLabel')}</strong> {selectedApplication.applicant.gpa}</p>
                     )}
                   </div>
                 </div>
@@ -513,11 +515,11 @@ export default function ApplicationsPage() {
 
               {/* Application Materials */}
               <div>
-                <h3 className="font-semibold mb-2">Application Materials</h3>
+                <h3 className="font-semibold mb-2">{t('materialsHeading')}</h3>
 
                 {selectedApplication.coverLetter && (
                   <div className="mb-4">
-                    <Label>Cover Letter</Label>
+                    <Label>{t('coverLetterLabel')}</Label>
                     <div className="mt-2 p-4 bg-muted rounded-lg whitespace-pre-wrap">
                       {selectedApplication.coverLetter}
                     </div>
@@ -527,28 +529,28 @@ export default function ApplicationsPage() {
                 <div className="space-y-2">
                   {selectedApplication.cvUrl && (
                     <div>
-                      <Label>CV</Label>
+                      <Label>{t('cvLabel')}</Label>
                       <a
                         href={selectedApplication.cvUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline block"
                       >
-                        View CV
+                        {t('viewCv')}
                       </a>
                     </div>
                   )}
 
                   {selectedApplication.portfolioUrl && (
                     <div>
-                      <Label>Portfolio</Label>
+                      <Label>{t('portfolioLabel')}</Label>
                       <a
                         href={selectedApplication.portfolioUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline block"
                       >
-                        View Portfolio
+                        {t('viewPortfolio')}
                       </a>
                     </div>
                   )}
@@ -559,25 +561,25 @@ export default function ApplicationsPage() {
               {isRecruiter && (
                 <div className="space-y-4 pt-4 border-t">
                   <div>
-                    <Label htmlFor="status">Application Status</Label>
+                    <Label htmlFor="status">{t('applicationStatusLabel')}</Label>
                     <Select value={updateStatus} onValueChange={setUpdateStatus}>
                       <SelectTrigger id="status" className="mt-2">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="PENDING">Pending</SelectItem>
-                        <SelectItem value="REVIEWING">Reviewing</SelectItem>
-                        <SelectItem value="SHORTLISTED">Shortlisted</SelectItem>
-                        <SelectItem value="INTERVIEW">Interview</SelectItem>
-                        <SelectItem value="OFFER">Offer</SelectItem>
-                        <SelectItem value="ACCEPTED">Accepted</SelectItem>
-                        <SelectItem value="REJECTED">Rejected</SelectItem>
+                        <SelectItem value="PENDING">{t('statusPending')}</SelectItem>
+                        <SelectItem value="REVIEWING">{t('statusReviewing')}</SelectItem>
+                        <SelectItem value="SHORTLISTED">{t('statusShortlisted')}</SelectItem>
+                        <SelectItem value="INTERVIEW">{t('statusInterview')}</SelectItem>
+                        <SelectItem value="OFFER">{t('statusOffer')}</SelectItem>
+                        <SelectItem value="ACCEPTED">{t('statusAccepted')}</SelectItem>
+                        <SelectItem value="REJECTED">{t('statusRejected')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <Label htmlFor="rating">Rating (1-5)</Label>
+                    <Label htmlFor="rating">{t('ratingLabel')}</Label>
                     <Input
                       id="rating"
                       type="number"
@@ -590,35 +592,35 @@ export default function ApplicationsPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="notes">Recruiter Notes</Label>
+                    <Label htmlFor="notes">{t('recruiterNotesLabel')}</Label>
                     <Textarea
                       id="notes"
                       value={recruiterNotes}
                       onChange={(e) => setRecruiterNotes(e.target.value)}
                       rows={4}
-                      placeholder="Add notes about this candidate..."
+                      placeholder={t('recruiterNotesPlaceholder')}
                       className="mt-2"
                     />
                   </div>
 
                   <Button onClick={handleUpdateApplication} disabled={updating} className="w-full">
-                    {updating ? 'Updating...' : 'Update Application'}
+                    {updating ? t('updating') : t('updateApplication')}
                   </Button>
                 </div>
               )}
 
               {/* Application Timeline */}
               <div className="pt-4 border-t">
-                <h3 className="font-semibold mb-3">Timeline</h3>
+                <h3 className="font-semibold mb-3">{t('timelineHeading')}</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Clock className="w-4 h-4" />
-                    <span>Applied {getTimeSince(selectedApplication.createdAt)}</span>
+                    <span>{t('appliedOn', { time: getTimeSince(selectedApplication.createdAt) })}</span>
                   </div>
                   {selectedApplication.respondedAt && (
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4" />
-                      <span>Updated {getTimeSince(selectedApplication.respondedAt)}</span>
+                      <span>{t('updatedOn', { time: getTimeSince(selectedApplication.respondedAt) })}</span>
                     </div>
                   )}
                 </div>

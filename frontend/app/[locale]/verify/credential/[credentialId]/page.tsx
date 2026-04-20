@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle, XCircle, AlertTriangle, Loader2, Award, Building2, User, Calendar } from 'lucide-react'
@@ -22,6 +23,8 @@ interface VerifyData {
 
 export default function VerifyCredentialPage() {
   const params = useParams()
+  const locale = useLocale()
+  const t = useTranslations('verifyCredential')
   const credentialId = params.credentialId as string
   const [data, setData] = useState<VerifyData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -32,23 +35,23 @@ export default function VerifyCredentialPage() {
       const res = await fetch(`/api/verify/${credentialId}`)
       if (!res.ok) {
         const json = await res.json()
-        setError(json.error || 'Certificato non trovato')
+        setError(json.error || t('notFound'))
         return
       }
       const json = await res.json()
       setData(json)
     } catch {
-      setError('Errore durante la verifica')
+      setError(t('verifyError'))
     } finally {
       setLoading(false)
     }
-  }, [credentialId])
+  }, [credentialId, t])
 
   useEffect(() => {
     verify()
   }, [verify])
 
-  const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('it-IT', {
+  const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', {
     year: 'numeric', month: 'long', day: 'numeric'
   })
 
@@ -65,8 +68,8 @@ export default function VerifyCredentialPage() {
       <Card className="max-w-lg mx-auto">
         <CardContent className="py-12 text-center">
           <XCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-red-700">Certificato Non Trovato</h2>
-          <p className="text-muted-foreground mt-2">{error || 'Il certificato richiesto non esiste o non è valido.'}</p>
+          <h2 className="text-xl font-semibold text-red-700">{t('certificateNotFound')}</h2>
+          <p className="text-muted-foreground mt-2">{error || t('certificateNotFoundDesc')}</p>
           <p className="text-xs text-muted-foreground mt-4 font-mono">ID: {credentialId}</p>
         </CardContent>
       </Card>
@@ -81,23 +84,23 @@ export default function VerifyCredentialPage() {
           {data.valid ? (
             <>
               <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-green-700">Certificato Valido</h2>
-              <p className="text-sm text-green-600 mt-1">Questo certificato è stato verificato con successo</p>
+              <h2 className="text-xl font-semibold text-green-700">{t('validTitle')}</h2>
+              <p className="text-sm text-green-600 mt-1">{t('validDesc')}</p>
             </>
           ) : data.status === 'REVOKED' ? (
             <>
               <XCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-red-700">Certificato Revocato</h2>
-              <p className="text-sm text-red-600 mt-1">Questo certificato è stato revocato dall&apos;istituto emittente</p>
+              <h2 className="text-xl font-semibold text-red-700">{t('revokedTitle')}</h2>
+              <p className="text-sm text-red-600 mt-1">{t('revokedDesc')}</p>
               {data.revokedReason && (
-                <p className="text-xs text-muted-foreground mt-2">Motivo: {data.revokedReason}</p>
+                <p className="text-xs text-muted-foreground mt-2">{t('reason')}: {data.revokedReason}</p>
               )}
             </>
           ) : (
             <>
               <AlertTriangle className="h-16 w-16 text-amber-500 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-amber-700">Certificato Scaduto</h2>
-              <p className="text-sm text-amber-600 mt-1">Questo certificato ha superato la data di scadenza</p>
+              <h2 className="text-xl font-semibold text-amber-700">{t('expiredTitle')}</h2>
+              <p className="text-sm text-amber-600 mt-1">{t('expiredDesc')}</p>
             </>
           )}
         </CardContent>
@@ -107,7 +110,7 @@ export default function VerifyCredentialPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Award className="h-5 w-5" /> Dettagli Certificato
+            <Award className="h-5 w-5" /> {t('detailsTitle')}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -122,21 +125,21 @@ export default function VerifyCredentialPage() {
             <div className="flex items-center gap-3">
               <User className="h-4 w-4 text-muted-foreground" />
               <div>
-                <p className="text-muted-foreground">Intestatario</p>
+                <p className="text-muted-foreground">{t('holder')}</p>
                 <p className="font-medium">{data.studentName}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Building2 className="h-4 w-4 text-muted-foreground" />
               <div>
-                <p className="text-muted-foreground">Emesso da</p>
+                <p className="text-muted-foreground">{t('issuedBy')}</p>
                 <p className="font-medium">{data.institutionName}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Calendar className="h-4 w-4 text-muted-foreground" />
               <div>
-                <p className="text-muted-foreground">Data di emissione</p>
+                <p className="text-muted-foreground">{t('issueDate')}</p>
                 <p className="font-medium">{formatDate(data.issueDate)}</p>
               </div>
             </div>
@@ -144,7 +147,7 @@ export default function VerifyCredentialPage() {
               <div className="flex items-center gap-3">
                 <Calendar className="h-4 w-4 text-muted-foreground" />
                 <div>
-                  <p className="text-muted-foreground">Data di scadenza</p>
+                  <p className="text-muted-foreground">{t('expiryDate')}</p>
                   <p className="font-medium">{formatDate(data.expiryDate)}</p>
                 </div>
               </div>
@@ -153,7 +156,7 @@ export default function VerifyCredentialPage() {
 
           <div className="pt-2 border-t">
             <p className="text-xs text-muted-foreground font-mono">
-              Credential ID: {data.credentialId}
+              {t('credentialIdLabel')}: {data.credentialId}
             </p>
             <Badge variant={data.valid ? 'default' : 'destructive'} className="mt-2">
               {data.status}

@@ -239,7 +239,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "2 Premi Start Cup Bergamo 2025 • Pilota con Università di Bergamo",
+      "serviceBadge": "2 Premi Start Cup Bergamo 2025 • In dialogo con l'Università di Bergamo",
       "segmentLabels": {
         "students": "Studenti",
         "institutes": "Università",
@@ -385,7 +385,7 @@
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
         "startCup": "2 Premi a Start Cup Bergamo 2025",
-        "unibgPilot": "In fase pilota con l'Università degli Studi di Bergamo"
+        "unibgPilot": "In dialogo con l'Università degli Studi di Bergamo"
       }
     },
     "problem": {
@@ -942,7 +942,7 @@
       "operational": "Tutti i sistemi operativi",
       "gdpr": "GDPR Compliant",
       "poweredBy": "Tecnologia Intelligente",
-      "pilotBergamo": "Pilota con UniBG"
+      "pilotBergamo": "In dialogo con UniBG"
     },
     "copyright": "© 2025-2026 InTransparency. Tutti i diritti riservati.",
     "support": "Supporto",
@@ -1420,7 +1420,7 @@
     },
     "cta": {
       "title": "Pronto a Scrivere la Tua Storia di Successo?",
-      "subtitle": "Unisciti a 125.000+ studenti che vengono scoperti dalle migliori aziende tramite portfolio verificati",
+      "subtitle": "Fatti scoprire dalle migliori aziende italiane ed europee tramite il tuo portfolio verificato — senza CV",
       "primaryButton": "Crea il Tuo Portfolio Gratuito",
       "secondaryButton": "Esplora Portfolio Studenti"
     }
@@ -1491,8 +1491,8 @@
       "title": "Nessuno studente trovato",
       "description": "Prova a modificare i tuoi filtri o la query di ricerca",
       "clearFilters": "Cancella Tutti i Filtri",
-      "pilotTitle": "Stiamo Inserendo le Prime Istituzioni",
-      "pilotDescription": "InTransparency è in fase pilota con l'Università di Bergamo. I profili studenti verificati vengono aggiunti man mano che le istituzioni aderiscono alla piattaforma.",
+      "pilotTitle": "Stiamo avviando i primi Partner Formativi",
+      "pilotDescription": "InTransparency sta avviando le sue prime collaborazioni con università e scuole. I profili studenti verificati compariranno qui man mano che i partner formativi aderiscono.",
       "pilotCta": "Vuoi vedere cosa può fare la piattaforma? Prova la nostra demo di ricerca intelligente.",
       "tryDemo": "Prova la Demo Smart Search",
       "foundingPartner": "Diventa Partner Fondatore"
@@ -1567,7 +1567,7 @@
       "benefits": {
         "0": {
           "title": "Fatti Scoprire",
-          "description": "500+ aziende alla ricerca attiva di talenti come te"
+          "description": "Aziende alla ricerca di talenti italiani ed europei verificati"
         },
         "1": {
           "title": "Le Aziende Ti Contattano",
@@ -3223,7 +3223,7 @@
             "0": "Condividi con rete HR e altri recruiter",
             "1": "Quando l'azienda invitata effettua la prima assunzione, entrambi ricevete un premio",
             "2": "Nessun limite ai referral",
-            "3": "Costruisci rete recruiter: \"Unisciti a 500+ aziende che assumono talenti verificati\"",
+            "3": "Costruisci rete recruiter: \"Assumi talenti italiani verificati prima dei tuoi competitor\"",
             "4": "Eventi networking trimestrali per referrer"
           },
           "cta": "Ottieni Link Referral",
@@ -3625,151 +3625,98 @@
     }
   },
   "submitStory": {
-    "hero": {
-      "title": "Condividi la Tua Storia di Successo",
-      "subtitle": "Ispira gli studenti attuali condividendo il tuo percorso professionale.\nLa tua storia verificata mostra percorsi reali dalla laurea al successo."
-    },
-    "form": {
-      "alumniInfo": {
-        "title": "Informazioni Alumni",
-        "fullName": "Nome Completo *",
-        "fullNamePlaceholder": "Mario Rossi",
-        "graduationYear": "Anno di Laurea *",
-        "degree": "Laurea *",
-        "degreePlaceholder": "es. Informatica, Ingegneria",
-        "institution": "Istituzione *",
-        "institutionPlaceholder": "es. Politecnico di Milano",
-        "verificationEmail": "Email Istituzionale (.edu) *",
-        "verificationEmailPlaceholder": "tuo.nome@university.edu",
-        "emailHelp": "Invieremo un link di verifica a questa email. Deve essere un indirizzo .edu.",
-        "anonymous": "Rendi la mia storia anonima (mostra come \"{degree} Laureato\")",
-        "emailValidation": "Per favore usa il tuo indirizzo email istituzionale (.edu)"
-      },
-      "currentPosition": {
-        "title": "Posizione Attuale",
-        "currentRole": "Ruolo Attuale *",
-        "currentRolePlaceholder": "es. Senior Software Engineer",
-        "currentCompany": "Azienda Attuale *",
-        "currentCompanyPlaceholder": "es. Google, Microsoft"
-      },
-      "careerJourney": {
-        "title": "Percorso Professionale (Facoltativo)",
-        "subtitle": "Mostra la tua progressione di carriera dalla laurea al ruolo attuale",
-        "addStep": "Aggiungi Tappa",
-        "stepLabel": "Tappa {number}",
-        "rolePlaceholder": "Ruolo",
-        "companyPlaceholder": "Azienda",
-        "durationPlaceholder": "Durata (es. 2 anni)",
-        "yearPlaceholder": "Anno"
-      },
-      "successStory": {
-        "title": "La Tua Storia di Successo *",
-        "subtitle": "Condividi il tuo viaggio, le sfide e come hai raggiunto il successo (200-1000 parole)",
-        "placeholder": "Esempio: Dopo la laurea in Informatica, ho iniziato come sviluppatore junior in una piccola startup. La sfida più grande era...",
-        "characterCount": "{count} / 1000 caratteri (min 200)"
-      },
-      "keySkills": {
-        "title": "Competenze Chiave Che Ti Hanno Aiutato",
-        "addSkill": "Aggiungi Competenza",
-        "placeholder": "es. Python, Problem Solving, Leadership"
-      },
-      "advice": {
-        "title": "Consigli per gli Studenti Attuali",
-        "subtitle": "Cosa diresti agli studenti che vogliono seguire un percorso simile?",
-        "placeholder": "Esempio: Concentrati sulla creazione di progetti reali, non solo sul seguire corsi. Fai networking presto e non aver paura di candidarti per posizioni che sembrano fuori portata..."
-      },
-      "submit": {
-        "cancel": "Annulla",
-        "submit": "Invia Storia",
-        "submitting": "Invio in corso..."
-      }
-    },
-    "verification": {
-      "title": "Controlla la Tua Email",
-      "subtitle": "Verifica richiesta per pubblicare la tua storia",
-      "emailSent": {
-        "title": "Email di Verifica Inviata",
-        "message": "Abbiamo inviato un link di verifica a <strong>{email}</strong>"
-      },
-      "nextSteps": {
-        "title": "Prossimi Passi:",
-        "step1": "Controlla la tua casella email a {email}",
-        "step2": "Clicca sul link di verifica nell'email",
-        "step3": "La tua storia sarà pubblicata e visibile agli studenti"
-      },
-      "demo": {
-        "title": "Per Scopi Demo:",
-        "tokenLabel": "Il tuo token di verifica:",
-        "note": "In produzione, riceveresti un'email con un link cliccabile."
-      },
-      "actions": {
-        "viewAllStories": "Vedi Tutte le Storie",
-        "gotIt": "Capito"
-      }
-    },
-    "success": {
-      "title": "Grazie!",
-      "message": "La tua storia di successo ispirerà gli studenti attuali una volta che verifichi la tua email.\nApprezziamo che tu abbia condiviso il tuo viaggio!",
-      "actions": {
-        "viewStories": "Vedi Storie Alumni",
-        "backHome": "Torna alla Home"
-      }
-    }
+    "alertUseEdu": "Utilizza la tua email istituzionale (.edu) per la verifica",
+    "alertSubmitFailed": "Invio della storia non riuscito",
+    "alertError": "Si è verificato un errore. Riprova.",
+    "checkEmail": "Controlla la tua email",
+    "checkEmailSub": "Ti abbiamo inviato un link di verifica",
+    "emailSent": "Email di verifica inviata",
+    "emailSentDesc": "Abbiamo inviato un link di verifica a <strong>{email}</strong>. Clicca sul link per verificare la tua identità e pubblicare la tua storia.",
+    "nextSteps": "Prossimi passi:",
+    "nextStep1": "Controlla la tua casella a {email}",
+    "nextStep2": "Clicca sul link di verifica nell'email",
+    "nextStep3": "La tua storia sarà pubblicata dopo la verifica",
+    "demoPurposes": "A scopo dimostrativo",
+    "yourToken": "Il tuo token di verifica:",
+    "productionNote": "In produzione, questo token viene inviato via email e non esposto nell'interfaccia.",
+    "viewAllStories": "Vedi tutte le storie",
+    "gotIt": "Ho capito",
+    "thankYou": "Grazie!",
+    "thankYouDesc": "La tua storia è stata inviata ed è in attesa di verifica. Una volta verificata, ispirerà la prossima generazione di studenti.",
+    "viewAlumniStories": "Vedi le storie degli Alumni",
+    "backHome": "Torna alla home",
+    "heroTitle": "Condividi la tua storia da Alumni",
+    "heroDesc": "Aiuta gli studenti attuali condividendo il tuo percorso di carriera, le competenze e i consigli.",
+    "alumniInfo": "Informazioni Alumni",
+    "fullName": "Nome completo",
+    "fullNamePlaceholder": "Mario Rossi",
+    "graduationYear": "Anno di laurea",
+    "degreeLabel": "Corso di laurea",
+    "degreePlaceholder": "Informatica",
+    "institutionLabel": "Università",
+    "institutionPlaceholder": "Politecnico di Milano",
+    "institutionalEmail": "Email istituzionale (per la verifica)",
+    "emailPlaceholder": "nome.cognome@universita.edu",
+    "emailHint": "Invieremo un link di verifica a questa email per confermare che sei un vero alumnus.",
+    "anonymousLabel": "Pubblica in modo anonimo (usa solo il corso: {degree})",
+    "currentPosition": "Posizione attuale",
+    "currentRole": "Ruolo attuale",
+    "currentRolePlaceholder": "Senior Software Engineer",
+    "currentCompany": "Azienda attuale",
+    "currentCompanyPlaceholder": "Google",
+    "careerJourneyOptional": "Percorso di carriera (opzionale)",
+    "addStep": "Aggiungi tappa",
+    "careerJourneyDesc": "Mostra agli studenti come si è evoluta la tua carriera — dal primo lavoro fino ad oggi.",
+    "stepN": "Tappa {n}",
+    "role": "Ruolo",
+    "company": "Azienda",
+    "durationPlaceholder": "Durata (es. 2 anni)",
+    "year": "Anno",
+    "yourStory": "La tua storia",
+    "yourStoryDesc": "Condividi i momenti chiave, le sfide e le svolte che hanno plasmato la tua carriera (minimo 200 caratteri).",
+    "storyPlaceholder": "Racconta la tua storia: il percorso che hai seguito, le sfide superate, ciò che hai imparato...",
+    "charCount": "{count} caratteri",
+    "keySkillsTitle": "Competenze chiave",
+    "addSkill": "Aggiungi competenza",
+    "skillPlaceholder": "es. Python, Leadership, System Design",
+    "adviceTitle": "Consigli per gli studenti attuali (opzionale)",
+    "adviceDesc": "Cosa avresti voluto sapere quando eri al loro posto?",
+    "advicePlaceholder": "I tuoi consigli per gli studenti che iniziano il loro percorso...",
+    "cancel": "Annulla",
+    "submitting": "Invio in corso...",
+    "submit": "Invia storia"
   },
   "alumniStories": {
-    "hero": {
-      "title": "Storie di Successo Alumni",
-      "subtitle": "Percorsi professionali verificati di laureati che hanno iniziato dove sei tu oggi.\nImpara dalle loro esperienze, competenze e crescita professionale.",
-      "shareYourStory": "Condividi la Tua Storia",
-      "joinNetwork": "Unisciti alla Rete"
-    },
-    "howItWorks": {
-      "title": "Come Funziona la Verifica",
-      "steps": {
-        "0": {
-          "title": "1. Invia Storia",
-          "description": "Gli alumni inviano il loro percorso professionale usando la loro email istituzionale (.edu)"
-        },
-        "1": {
-          "title": "2. Verifica Email",
-          "description": "Inviamo un link di verifica per confermare l'affiliazione istituzionale"
-        },
-        "2": {
-          "title": "3. Pubblicato",
-          "description": "Le storie verificate vengono pubblicate per ispirare gli studenti attuali"
-        }
-      }
-    },
-    "filters": {
-      "searchPlaceholder": "Cerca per nome, ruolo, azienda o competenze...",
-      "allDegrees": "Tutte le Lauree",
-      "degrees": {
-        "computerScience": "Informatica",
-        "engineering": "Ingegneria",
-        "business": "Business",
-        "design": "Design"
-      },
-      "clear": "Cancella"
-    },
-    "stories": {
-      "loading": "Caricamento...",
-      "noStories": {
-        "title": "Nessuna Storia Ancora",
-        "description": "Sii il primo a condividere la tua storia di successo e ispirare gli studenti attuali!",
-        "cta": "Condividi la Tua Storia"
-      },
-      "verified": "Verificato",
-      "careerJourney": "Percorso Professionale",
-      "successStory": "Storia di Successo",
-      "keySkills": "Competenze Chiave",
-      "moreSkills": "+{count} altre",
-      "adviceForStudents": "Consigli per gli Studenti"
-    },
-    "cta": {
-      "title": "Sei un Alumni?",
-      "subtitle": "Condividi il tuo percorso professionale e ispira la prossima generazione di professionisti.\nLa tua storia verificata aiuta gli studenti a comprendere i percorsi professionali reali.",
-      "button": "Invia la Tua Storia"
-    }
+    "heroTitle": "Storie di successo degli Alumni",
+    "heroDesc": "Percorsi di carriera reali di laureati che sono partiti da dove sei tu ora. Lasciati ispirare, impara dai loro percorsi e scopri cosa è possibile.",
+    "shareStory": "Condividi la tua storia",
+    "joinNetwork": "Unisciti al network",
+    "howItWorks": "Come funziona",
+    "step1Title": "1. Invia la tua storia",
+    "step1Desc": "Condividi il tuo percorso di carriera, le competenze e i consigli per gli studenti attuali.",
+    "step2Title": "2. Verifica con email .edu",
+    "step2Desc": "Verifichiamo che tu sia un vero alumnus tramite la tua email istituzionale.",
+    "step3Title": "3. Ispira gli studenti",
+    "step3Desc": "La tua storia diventa un faro per gli studenti che stanno costruendo il loro percorso.",
+    "searchPlaceholder": "Cerca per nome, ruolo, azienda o competenza...",
+    "allDegrees": "Tutti i corsi di laurea",
+    "degree_cs": "Informatica",
+    "degree_engineering": "Ingegneria",
+    "degree_business": "Economia",
+    "degree_design": "Design",
+    "clear": "Pulisci",
+    "noStoriesTitle": "Ancora nessuna storia",
+    "noStoriesDesc": "Sii il primo alumnus a condividere il tuo percorso e ispirare la prossima generazione.",
+    "verified": "Verificato",
+    "roleAtCompany": "{role} presso {company}",
+    "careerJourney": "Percorso di carriera",
+    "successStory": "Storia di successo",
+    "keySkills": "Competenze chiave",
+    "more": "altre",
+    "adviceForStudents": "Consigli per gli studenti",
+    "ctaTitle": "La tua storia può cambiare la vita di uno studente",
+    "ctaDesc": "Condividi il percorso per cui avresti voluto una mappa.",
+    "submitStory": "Invia la tua storia"
   },
   "certification": {
     "hero": {
@@ -3978,7 +3925,7 @@
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
-      "title": "Unisciti a 125.000+ Studenti su InTransparency",
+      "title": "Fatti Scoprire con il Tuo Portfolio Verificato",
       "subtitle": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
       "createPortfolio": "Crea Portfolio Gratuito",
       "learnMore": "Scopri Come Funziona"
@@ -4123,9 +4070,9 @@
   },
   "forUniversities": {
     "hero": {
-      "badge": "In fase pilota con l'Università di Bergamo",
+      "badge": "In dialogo con l'Università di Bergamo",
       "title": "Sostituisci i sondaggi con prove di placement in tempo reale",
-      "subtitle": "Analytics di placement in tempo reale, normalizzazione dei voti tra sistemi europei e profili studenti verificati. In fase pilota con università italiane — espansione europea nel 2025.",
+      "subtitle": "Analytics di placement in tempo reale, normalizzazione dei voti tra sistemi europei e profili studenti verificati. In dialogo con università italiane — espansione europea nel 2026.",
       "registerCta": "Crea il Tuo Account Partner",
       "demoCta": "Prenota una Demo"
     },
@@ -4156,11 +4103,12 @@
       "title": "Dove siamo oggi",
       "unibg": {
         "title": "Università degli Studi di Bergamo",
-        "subtitle": "Partner Pilota",
-        "description": "I servizi di carriera di UniBG usano InTransparency per tracciare l'engagement dei recruiter con studenti di Informatica e Ingegneria presso i datori di lavoro lombardi."
+        "subtitle": "In Discussione",
+        "status": "In Discussione",
+        "description": "Siamo in dialogo con i servizi di carriera di UniBG per sostituire i sondaggi di fine anno con analytics di placement in tempo reale per studenti di Informatica e Ingegneria verso i datori di lavoro lombardi."
       },
       "startCup": {
-        "title": "Start Cup Bergamo 2024",
+        "title": "Start Cup Bergamo 2025",
         "subtitle": "Finalista Competizione",
         "description": "InTransparency ha ricevuto 2 premi a Start Cup Bergamo 2025, la competizione startup universitaria italiana, per l'innovazione nell'occupabilità dei laureati."
       }
@@ -4276,76 +4224,44 @@
     }
   },
   "companyProfile": {
+    "loadError": "Impossibile caricare le informazioni dell'azienda",
     "loading": "Caricamento azienda...",
-    "error": {
-      "title": "Errore nel Caricamento dell'Azienda",
-      "message": "Impossibile caricare i dati dell'azienda",
-      "retry": "Riprova"
-    },
-    "header": {
-      "founded": "Fondata {year}",
-      "reviews": "({count} recensioni)",
-      "follow": "Segui",
-      "share": "Condividi",
-      "viewJobs": "Vedi Lavori ({count})"
-    },
-    "about": {
-      "title": "Chi è {name}",
-      "stats": {
-        "employees": "Dipendenti",
-        "openPositions": "Posizioni Aperte",
-        "companyRating": "Valutazione Aziendale",
-        "globalOffices": "Uffici Globali"
-      }
-    },
-    "values": {
-      "title": "I Nostri Valori"
-    },
-    "benefits": {
-      "title": "Benefit e Vantaggi"
-    },
-    "techStack": {
-      "title": "Stack Tecnologico"
-    },
-    "workCulture": {
-      "title": "Cultura del Lavoro",
-      "remoteWork": "Lavoro Remoto",
-      "available": "Disponibile",
-      "officeBased": "In Ufficio",
-      "diversityScore": "Punteggio Diversità",
-      "workLifeBalance": "Equilibrio Vita-Lavoro",
-      "careerGrowth": "Crescita Professionale"
-    },
-    "recentNews": {
-      "title": "Notizie Recenti",
-      "read": "Leggi"
-    },
-    "quickActions": {
-      "title": "Azioni Rapide",
-      "viewAllJobs": "Vedi Tutte le Posizioni ({count})",
-      "contactRecruiter": "Contatta Recruiter",
-      "companyInsights": "Insights Azienda",
-      "visitWebsite": "Visita Sito Web"
-    },
-    "stats": {
-      "title": "Statistiche Aziendali",
-      "industry": "Settore",
-      "averageSalary": "Stipendio Medio",
-      "globalOffices": "Uffici Globali",
-      "companySize": "Dimensioni Azienda"
-    },
-    "globalPresence": {
-      "title": "Presenza Globale"
-    },
-    "contact": {
-      "title": "Informazioni di Contatto"
-    },
-    "social": {
-      "title": "Seguici",
-      "linkedin": "LinkedIn",
-      "twitter": "Twitter",
-      "instagram": "Instagram"
-    }
+    "errorTitle": "Qualcosa è andato storto",
+    "tryAgain": "Riprova",
+    "founded": "Fondata nel",
+    "reviews": "recensioni",
+    "follow": "Segui",
+    "share": "Condividi",
+    "viewJobs": "Vedi offerte",
+    "about": "Chi è {name}",
+    "employees": "Dipendenti",
+    "openPositions": "Posizioni aperte",
+    "companyRating": "Valutazione azienda",
+    "globalOffices": "Sedi globali",
+    "ourValues": "I nostri valori",
+    "benefitsPerks": "Benefit e vantaggi",
+    "techStack": "Stack tecnologico",
+    "workCulture": "Cultura aziendale",
+    "remoteWork": "Lavoro da remoto",
+    "available": "Disponibile",
+    "officeBased": "In sede",
+    "diversityScore": "Punteggio diversità",
+    "workLifeBalance": "Equilibrio vita-lavoro",
+    "careerGrowth": "Crescita professionale",
+    "recentNews": "Notizie recenti",
+    "read": "Leggi",
+    "quickActions": "Azioni rapide",
+    "viewAllJobs": "Vedi tutte le offerte",
+    "contactRecruiter": "Contatta recruiter",
+    "companyInsights": "Insight azienda",
+    "visitWebsite": "Visita sito web",
+    "companyStatistics": "Statistiche azienda",
+    "industry": "Settore",
+    "averageSalary": "Stipendio medio",
+    "companySize": "Dimensione azienda",
+    "globalPresence": "Presenza globale",
+    "contactInformation": "Informazioni di contatto",
+    "followUs": "Seguici"
   },
   "forgotPassword": {
     "backToSignIn": "Torna al login",
@@ -5047,7 +4963,7 @@
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
-      "title": "Unisciti a 125.000+ Studenti su InTransparency",
+      "title": "Fatti Scoprire con il Tuo Portfolio Verificato",
       "description": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
       "primaryButton": "Crea Portfolio Gratuito",
       "secondaryButton": "Scopri Come Funziona"
@@ -6706,44 +6622,22 @@
     }
   },
   "professorDashboard": {
-    "title": "Dashboard Professore",
-    "subtitle": "Gestisci le tue raccomandazioni e le interazioni con gli studenti",
-    "stats": {
-      "total": "Raccomandazioni Totali",
-      "pending": "Richieste in Attesa",
-      "avgRating": "Valutazione Media",
-      "students": "Studenti Raccomandati"
-    },
-    "pendingRequests": "Richieste di Raccomandazione in Attesa",
-    "noPending": "Nessuna richiesta di raccomandazione in attesa",
-    "pending": "In attesa",
-    "review": "Rivedi",
-    "links": {
-      "allEndorsements": "Tutte le Raccomandazioni",
-      "allEndorsementsDesc": "Visualizza tutte le raccomandazioni per stato",
-      "students": "Studenti",
-      "studentsDesc": "Studenti che hai raccomandato"
-    },
-    "endorsements": {
-      "title": "Le Mie Raccomandazioni",
-      "subtitle": "Tutte le raccomandazioni che hai dato o per cui sei stato richiesto",
-      "all": "Tutte",
-      "empty": "Nessuna raccomandazione trovata"
-    },
-    "students": {
-      "title": "Studenti Raccomandati",
-      "subtitle": "Studenti che hai raccomandato con i loro progetti",
-      "empty": "Nessuno studente raccomandato"
-    },
-    "nav": {
-      "endorsements": "Raccomandazioni",
-      "overview": "Panoramica",
-      "allEndorsements": "Tutte le Raccomandazioni",
-      "people": "Persone",
-      "students": "Studenti",
-      "more": "Altro",
-      "settings": "Impostazioni"
-    }
+    "accessRequired": "Accesso richiesto",
+    "accessRequiredDesc": "Questa dashboard richiede un token magic-link valido. Utilizza il link inviato alla tua email istituzionale.",
+    "professorPortal": "Portale Docente",
+    "welcome": "Benvenuto, {name}",
+    "awaitingResponse": "In attesa di risposta",
+    "endorsed": "Approvati",
+    "declined": "Rifiutati",
+    "totalRequests": "Richieste totali",
+    "pending": "In sospeso",
+    "history": "Cronologia",
+    "allCaughtUp": "Tutto aggiornato",
+    "allCaughtUpDesc": "Non hai richieste di endorsement in sospeso al momento.",
+    "daysWaiting": "{days} giorni di attesa",
+    "review": "Revisiona",
+    "grade": "Voto",
+    "noHistory": "Nessuna cronologia di endorsement."
   },
   "universityStudents": {
     "title": "Gestione Studenti",
@@ -8417,7 +8311,7 @@
       "title": "Dashboard Universitaria",
       "subtitle": "Gestisci i tuoi studenti e monitora i placement",
       "welcomeTitle": "Benvenuto su InTransparency!",
-      "welcomeSubtitle": "I tuoi studenti sono ora visibili a oltre 500 aziende. Importa la lista studenti per aumentare i placement fino al 25%.",
+      "welcomeSubtitle": "I tuoi studenti sono ora visibili alle aziende partner. Importa la lista studenti per iniziare a monitorare gli esiti di placement.",
       "importStudents": "Importa Studenti",
       "companiesViewed": "{count} aziende hanno visualizzato i tuoi studenti questo mese",
       "completeProfilesTip": "Gli studenti con profili completi ottengono 3 volte piu visualizzazioni",
@@ -11354,5 +11248,2313 @@
         "overratedLine": "{skill}: auto-valutato {self}/4, verificato {verified}/4 — fai uno stage o progetto verificato per colmare il gap."
       }
     }
+  },
+  "skillsIntelligence": {
+    "title": "Skills Intelligence",
+    "subtitle": "Allineamento tra corsi di laurea e mercato del lavoro, trend mensili e raccomandazioni curricolari basate su evidenze.",
+    "saveSnapshot": "Salva snapshot mensile",
+    "programLabel": "Corso di studio:",
+    "allPrograms": "Tutti i corsi",
+    "studentsCount": "{count} studenti",
+    "jobsCount": "{count} annunci attivi analizzati",
+    "readyBadge": "Pronto all'attivazione",
+    "gapIndex": {
+      "title": "Indice Gap",
+      "helper": "Più alto = maggiore scollamento tra output formativo e domanda di mercato. Media delle 20 lacune più gravi."
+    },
+    "alignmentIndex": {
+      "title": "Indice Allineamento",
+      "helper": "Più alto = migliore allineamento complessivo tra competenze studenti e domanda di mercato."
+    },
+    "tabs": {
+      "gaps": "Gap ({count})",
+      "strengths": "Punti di forza ({count})",
+      "trend": "Trend 12 mesi",
+      "recommendations": "Raccomandazioni ({count})",
+      "placements": "Placement",
+      "partners": "Aziende partner",
+      "events": "Eventi",
+      "credentials": "Credenziali verificate"
+    },
+    "empty": {
+      "gaps": "Nessun gap significativo rilevato per questo corso.",
+      "strengths": "Nessun forte elemento distintivo — può indicare scarsi dati di mercato o fase iniziale del corso.",
+      "trend": "Nessuno snapshot ancora. Clicca \"Salva snapshot mensile\" per iniziare a costruire un trend.",
+      "recs": "Nessuna raccomandazione ancora. Esegui uno snapshot con più dati studente per generare suggerimenti curricolari azionabili."
+    },
+    "gapRow": {
+      "demandCoverage": "domanda {demand}% · copertura {coverage}%"
+    },
+    "strengthRow": {
+      "coverageDemand": "copertura {coverage}% vs domanda {demand}%"
+    },
+    "trend": {
+      "gapLegend": "Indice Gap",
+      "alignmentLegend": "Indice Allineamento",
+      "studentsCount": "{count} studenti"
+    },
+    "recs": {
+      "confidence": "affidabilità {pct}%"
+    },
+    "placements": {
+      "rate": {
+        "label": "Tasso di placement",
+        "helper": "Studenti collocati entro 6 mesi dalla laurea"
+      },
+      "timeToJob": {
+        "label": "Tempo al primo impiego",
+        "unit": "giorni",
+        "helper": "Mediana sui placement verificati"
+      },
+      "salary": {
+        "label": "RAL mediana iniziale",
+        "unit": "€ / anno",
+        "helper": "RAL sui primi impieghi verificati"
+      },
+      "fit": {
+        "label": "Punteggio fit ruolo",
+        "helper": "Coerenza tra laurea e ruolo del primo impiego"
+      },
+      "banner": {
+        "title": "La telemetria dei placement parte appena gli studenti ottengono il primo impiego",
+        "body": "Ogni placement verificato tramite un'azienda partner InTransparency viene registrato automaticamente — senza sondaggi. Breakdown per corso, genere, regione e categoria di ruolo compariranno qui."
+      }
+    },
+    "partners": {
+      "active": {
+        "label": "Partner attivi",
+        "helper": "Aziende con convenzione firmata"
+      },
+      "openJobs": {
+        "label": "Posizioni aperte dai partner",
+        "helper": "Annunci pubblicati negli ultimi 90 giorni"
+      },
+      "applications": {
+        "label": "Candidature inoltrate",
+        "helper": "Match studente→azienda quest'anno"
+      },
+      "conversion": {
+        "label": "Conversione a colloquio",
+        "helper": "Candidature arrivate alla fase colloquio"
+      },
+      "banner": {
+        "title": "Nessuna azienda partner collegata al momento",
+        "body": "Importa le convenzioni esistenti (CSV o Excel) o invita le aziende a rivendicare il loro profilo partner. Ogni partner ottiene canale privato, priorità nel matching e dashboard esiti."
+      }
+    },
+    "events": {
+      "scheduled": {
+        "label": "Eventi programmati",
+        "helper": "Career fair, workshop, company day"
+      },
+      "attendance": {
+        "label": "Partecipazioni studenti",
+        "helper": "Studenti unici attraverso tutti gli eventi"
+      },
+      "employers": {
+        "label": "Aziende ospitate",
+        "helper": "Aziende che partecipano agli eventi carriera"
+      },
+      "applications": {
+        "label": "Candidature generate",
+        "helper": "Candidature post-evento attribuite agli eventi"
+      },
+      "banner": {
+        "title": "Lancia il primo evento carriera per vedere l'attribuzione degli esiti",
+        "body": "Usa l'Event Builder per pubblicare una career fair, un open day o un alumni talk. Partecipazioni, presenza aziende e candidature conseguenti confluiscono automaticamente qui."
+      }
+    },
+    "credentials": {
+      "openBadges": {
+        "label": "Open Badges 3.0 emessi",
+        "helper": "W3C Verifiable Credentials, portabili"
+      },
+      "edci": {
+        "label": "Diplomi EDCI",
+        "helper": "European Digital Credentials for Learning"
+      },
+      "esco": {
+        "label": "Competenze mappate ESCO",
+        "helper": "Skill del corso allineate a ESCO v1.2"
+      },
+      "verified": {
+        "label": "Studenti con profilo verificato",
+        "helper": "Identità + carriera verificate dall'ateneo"
+      },
+      "banner": {
+        "title": "Attiva le credenziali verificate per la prima coorte",
+        "body": "Emetti Open Badges 3.0 a prova di manomissione e diplomi EDCI-compliant legati alle skill ESCO. Gli studenti li portano in qualsiasi datore di lavoro UE o percorso post-laurea — senza carta, senza ri-verifiche."
+      }
+    }
+  },
+  "fastTrack": {
+    "header": {
+      "title": "Percorso accelerato per il placement",
+      "subtitle": "Studenti pronti per il mercato del lavoro con certificazioni recenti"
+    },
+    "summary": {
+      "label": "Studenti disponibili con certificazioni"
+    },
+    "empty": "Nessuno studente con certificazioni recenti al momento.",
+    "card": {
+      "availableSince": "Disponibile dal {date}",
+      "skills": "Competenze",
+      "certificates": "Certificazioni",
+      "moreCertificates": "+{count} altre certificazioni",
+      "contact": "Contatta"
+    }
+  },
+  "orientation": {
+    "title": "Orientamento",
+    "subtitle": "Strumenti di orientamento per gli studenti della scuola",
+    "stats": {
+      "total": "Assessment Totali",
+      "completed": "Completati",
+      "inProgress": "In Corso"
+    },
+    "radar": {
+      "avgTitle": "Profilo Interessi Medio",
+      "avgDescription": "Media delle aree di interesse degli studenti",
+      "avgSeriesName": "Media"
+    },
+    "tabs": {
+      "students": "Studenti",
+      "detail": "Dettaglio Studente"
+    },
+    "status": {
+      "completed": "Completato",
+      "inProgress": "In Corso"
+    },
+    "students": {
+      "empty": "Nessun assessment ancora avviato."
+    },
+    "detail": {
+      "selectPrompt": "Seleziona uno studente dalla lista per vedere il dettaglio.",
+      "typeLabel": "Tipo",
+      "statusLabel": "Stato",
+      "interestProfileTitle": "Profilo Interessi",
+      "interestSeriesName": "Interessi",
+      "suggestedPathsTitle": "Percorsi Suggeriti",
+      "compatibility": "compatibilità"
+    },
+    "pathTypes": {
+      "university": "Università",
+      "its": "ITS",
+      "work": "Lavoro"
+    },
+    "startCard": {
+      "title": "Avvia Nuovo Assessment",
+      "description": "Inserisci l'ID dello studente per avviare un assessment orientativo",
+      "promptStudentId": "Inserisci ID studente:",
+      "button": "Avvia Assessment"
+    },
+    "alerts": {
+      "assessmentStarted": "Assessment avviato con successo!"
+    }
+  },
+  "pctoPage": {
+    "header": {
+      "title": "Gestione PCTO",
+      "subtitle": "Percorsi per le Competenze Trasversali e per l'Orientamento"
+    },
+    "common": {
+      "close": "Chiudi",
+      "saving": "Salvataggio..."
+    },
+    "errors": {
+      "generic": "Errore"
+    },
+    "activityTypes": {
+      "stage": "Stage",
+      "project": "Progetto",
+      "workshop": "Workshop",
+      "simulation": "Simulazione",
+      "visit": "Visita aziendale"
+    },
+    "stats": {
+      "totalActivities": "Attività totali",
+      "activeConventions": "Convenzioni attive",
+      "hoursLogged": "Ore registrate",
+      "studentsTracked": "Studenti tracciati"
+    },
+    "tabs": {
+      "activities": "Attività",
+      "conventions": "Convenzioni",
+      "hours": "Ore"
+    },
+    "activities": {
+      "sectionTitle": "Attività PCTO",
+      "newButton": "Nuova attività",
+      "empty": "Nessuna attività PCTO registrata",
+      "form": {
+        "title": "Titolo *",
+        "type": "Tipo *",
+        "company": "Azienda",
+        "location": "Luogo",
+        "startDate": "Data inizio *",
+        "endDate": "Data fine",
+        "totalHours": "Ore totali *",
+        "maxStudents": "Max studenti",
+        "description": "Descrizione",
+        "conventionOptional": "Convenzione (opzionale)",
+        "noConvention": "-- Nessuna --",
+        "submit": "Crea attività"
+      },
+      "table": {
+        "activity": "Attività",
+        "type": "Tipo",
+        "company": "Azienda",
+        "dates": "Date",
+        "hours": "Ore",
+        "status": "Stato",
+        "conventionPrefix": "Conv:",
+        "studentsCount": "{count} studenti"
+      }
+    },
+    "conventions": {
+      "sectionTitle": "Convenzioni",
+      "newButton": "Nuova convenzione",
+      "empty": "Nessuna convenzione registrata",
+      "form": {
+        "companyName": "Nome azienda *",
+        "contact": "Referente",
+        "email": "Email",
+        "address": "Indirizzo",
+        "signedDate": "Data firma",
+        "expiryDate": "Data scadenza",
+        "submit": "Crea convenzione"
+      },
+      "table": {
+        "company": "Azienda",
+        "contact": "Referente",
+        "expiry": "Scadenza",
+        "activities": "Attività",
+        "status": "Stato"
+      }
+    },
+    "hours": {
+      "sectionTitle": "Registro Ore",
+      "newButton": "Registra ore",
+      "empty": "Nessuna ora registrata",
+      "form": {
+        "studentId": "ID Studente *",
+        "studentIdPlaceholder": "ID dello studente",
+        "activity": "Attività *",
+        "selectPlaceholder": "-- Seleziona --",
+        "date": "Data *",
+        "hours": "Ore *",
+        "notes": "Note",
+        "submit": "Registra ore"
+      },
+      "table": {
+        "student": "Studente",
+        "totalHours": "Ore totali",
+        "entries": "Registrazioni",
+        "activities": "Attività"
+      }
+    }
+  },
+  "internshipTracker": {
+    "header": {
+      "title": "Registro Ore Tirocinio",
+      "subtitle": "Monitora le ore, la presenza e le valutazioni dei tutor aziendali"
+    },
+    "stats": {
+      "totalHours": "Ore totali registrate",
+      "studentsTracked": "Studenti monitorati",
+      "attendanceRate": "Tasso di presenza",
+      "avgRating": "Valutazione media tutor",
+      "notAvailable": "N/D"
+    },
+    "tabs": {
+      "overview": "Panoramica",
+      "logbook": "Registro Ore",
+      "newLog": "Nuovo Log"
+    },
+    "status": {
+      "present": "Presente",
+      "absent": "Assente",
+      "excused": "Giustificato",
+      "late": "In ritardo"
+    },
+    "overview": {
+      "title": "Riepilogo per Studente",
+      "subtitle": "Ore totali, presenze e valutazioni aggregate per ogni tirocinante",
+      "empty": "Nessun dato di tirocinio registrato",
+      "columns": {
+        "student": "Studente",
+        "company": "Azienda",
+        "totalHours": "Ore totali",
+        "days": "Giorni",
+        "attendance": "Presenza",
+        "rating": "Valutazione",
+        "lastLog": "Ultimo log"
+      },
+      "dayCodes": {
+        "present": "P",
+        "absent": "A",
+        "excused": "G",
+        "late": "R"
+      }
+    },
+    "logbook": {
+      "searchPlaceholder": "Cerca per nome studente...",
+      "allStatuses": "Tutti gli stati",
+      "verifiedYes": "Sì",
+      "verifiedNo": "No",
+      "empty": "Nessun log registrato",
+      "emptyFiltered": "Nessun log trovato con i filtri selezionati",
+      "resultSingular": "risultato",
+      "resultPlural": "risultati",
+      "columns": {
+        "date": "Data",
+        "student": "Studente",
+        "company": "Azienda",
+        "hours": "Ore",
+        "activity": "Attività",
+        "status": "Stato",
+        "rating": "Valutazione",
+        "verified": "Verificato"
+      }
+    },
+    "form": {
+      "title": "Registra Nuovo Log",
+      "subtitle": "Inserisci i dati della giornata di tirocinio",
+      "success": "Log registrato con successo!",
+      "saving": "Salvataggio...",
+      "submit": "Registra Log",
+      "fields": {
+        "student": "Studente",
+        "selectStudent": "Seleziona studente...",
+        "studentIdPlaceholder": "ID studente",
+        "company": "Azienda",
+        "companyPlaceholder": "Nome azienda ospitante",
+        "date": "Data",
+        "hoursWorked": "Ore lavorate",
+        "status": "Stato",
+        "activity": "Attività svolta",
+        "activityPlaceholder": "Descrivi l'attività...",
+        "location": "Sede",
+        "selectLocation": "Seleziona...",
+        "locationOnSite": "In sede",
+        "locationRemote": "Da remoto",
+        "locationMixed": "Misto",
+        "supervisorName": "Nome tutor aziendale",
+        "supervisorNamePlaceholder": "Nome e cognome",
+        "supervisorEmail": "Email tutor",
+        "supervisorRating": "Valutazione tutor (1-5)",
+        "ratingNone": "Nessuna",
+        "rating1": "1 - Insufficiente",
+        "rating2": "2 - Sufficiente",
+        "rating3": "3 - Buono",
+        "rating4": "4 - Ottimo",
+        "rating5": "5 - Eccellente",
+        "studentNotes": "Note studente",
+        "studentNotesPlaceholder": "Osservazioni dello studente...",
+        "supervisorNotes": "Note tutor",
+        "supervisorNotesPlaceholder": "Osservazioni del tutor..."
+      }
+    },
+    "errors": {
+      "loadFailed": "Errore nel caricamento",
+      "saveFailed": "Errore nel salvataggio"
+    }
+  },
+  "universityBoard": {
+    "header": {
+      "title": "Board CTS",
+      "subtitle": "Dashboard di sintesi per il Consiglio Tecnico Scientifico"
+    },
+    "stats": {
+      "totalStudents": "Studenti totali",
+      "confirmedHired": "Assunti confermati",
+      "placementRate": "Tasso di placement",
+      "activationRate": "Tasso di attivazione"
+    },
+    "tabs": {
+      "overview": "Panoramica",
+      "skills": "Skills Gap",
+      "share": "Condividi"
+    },
+    "overview": {
+      "companies": {
+        "title": "Aziende che assumono",
+        "subtitle": "Top aziende per numero di assunzioni confermate",
+        "barName": "Assunzioni",
+        "empty": "Nessun dato disponibile"
+      },
+      "recommendations": {
+        "title": "Raccomandazioni curriculari",
+        "subtitle": "Suggerimenti basati sui gap di competenze rilevati",
+        "gapLine": "Gap: {pct}% — Considerare integrazione nel piano di studi",
+        "empty": "Analisi gap non ancora disponibile"
+      }
+    },
+    "skills": {
+      "title": "Dettaglio Skills Gap",
+      "subtitle": "Competenze dove il mercato richiede di più rispetto a ciò che gli studenti possiedono",
+      "table": {
+        "skill": "Competenza",
+        "gap": "Gap",
+        "priority": "Priorità"
+      },
+      "priority": {
+        "low": "Bassa",
+        "medium": "Media",
+        "high": "Alta"
+      },
+      "empty": "Nessuna analisi gap disponibile"
+    },
+    "share": {
+      "title": "Link di condivisione",
+      "subtitle": "Crea link pubblici per condividere la board con i membri del CTS",
+      "labelField": "Etichetta (opzionale)",
+      "labelPlaceholder": "es. CTS Riunione Aprile 2026",
+      "createLink": "Crea link",
+      "creating": "Creazione...",
+      "unlabeledLink": "Link senza etichetta",
+      "expires": "Scade: {date}",
+      "accesses": "Accessi: {count}",
+      "expired": "Scaduto",
+      "copy": "Copia",
+      "copied": "Copiato!",
+      "empty": "Nessun link di condivisione creato"
+    },
+    "errors": {
+      "loadFailed": "Caricamento fallito",
+      "createLinkFailed": "Creazione link fallita",
+      "revokeFailed": "Revoca fallita"
+    }
+  },
+  "universityCertificates": {
+    "header": {
+      "title": "Certificati Digitali",
+      "subtitle": "Emetti e gestisci certificati digitali verificabili",
+      "issueButton": "Emetti Certificato"
+    },
+    "stats": {
+      "totalIssued": "Totali Emessi",
+      "valid": "Validi",
+      "revokedExpired": "Revocati / Scaduti"
+    },
+    "status": {
+      "issued": "Valido",
+      "revoked": "Revocato",
+      "expired": "Scaduto"
+    },
+    "form": {
+      "title": "Emetti Nuovo Certificato",
+      "description": "Compila i dati per emettere un certificato digitale verificabile",
+      "studentIdLabel": "ID Studente *",
+      "studentIdPlaceholder": "ID studente",
+      "certificateTitleLabel": "Titolo Certificato *",
+      "certificateTitlePlaceholder": "es. Diploma di Qualifica Professionale",
+      "descriptionLabel": "Descrizione (opzionale)",
+      "descriptionPlaceholder": "Descrizione aggiuntiva",
+      "courseIdLabel": "ID Corso (opzionale)",
+      "courseIdPlaceholder": "Collegamento al corso",
+      "cancel": "Annulla",
+      "submit": "Emetti",
+      "submitting": "Emissione..."
+    },
+    "list": {
+      "title": "Certificati Emessi",
+      "empty": "Nessun certificato emesso.",
+      "issuedOn": "Emesso",
+      "expiresOn": "Scadenza",
+      "idLabel": "ID"
+    },
+    "alerts": {
+      "verifyLinkCopied": "Link di verifica copiato!"
+    }
+  },
+  "universityExchanges": {
+    "title": "Scambi internazionali",
+    "subtitle": "Studenti Erasmus / bilaterali in entrata e in uscita. Quando contrassegni come completato uno scambio in entrata, le variazioni di competenze vengono trasmesse automaticamente al Partner Formativo di origine dello studente.",
+    "stats": {
+      "outbound": "In uscita",
+      "inbound": "In entrata",
+      "activePartnerships": "Partnership attive",
+      "partnerCountries": "Paesi partner"
+    },
+    "tabs": {
+      "inbound": "In entrata ({count})",
+      "outbound": "In uscita ({count})",
+      "partnerships": "Partnership ({count})"
+    },
+    "empty": {
+      "inbound": "Nessuno studente di scambio in entrata.",
+      "outbound": "Nessuno studente di scambio in uscita.",
+      "partnerships": "Nessuna partnership ancora."
+    },
+    "labels": {
+      "from": "da",
+      "to": "verso",
+      "hostVerified": "Verificato dall'host",
+      "maxStudentsPerYear": "max {count} studenti/anno"
+    },
+    "actions": {
+      "markCompletePushSkills": "Completa e trasmetti competenze",
+      "markComplete": "Segna come completato",
+      "cancel": "Annulla",
+      "submitting": "Invio in corso…"
+    },
+    "completeForm": {
+      "heading": "Competenze acquisite durante lo scambio presso il tuo Partner Formativo",
+      "description": "Aggiungi le competenze che lo studente ha dimostrabilmente acquisito. Verranno trasmesse al grafo delle competenze verificate del Partner Formativo di origine.",
+      "skillPlaceholder": "Aggiungi una competenza (es. Machine Learning)"
+    },
+    "levels": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzato",
+      "expert": "Esperto"
+    },
+    "messages": {
+      "completeSuccess": "Segnato come completato. {count} variazioni di competenze trasmesse al Partner Formativo di origine.",
+      "submitFailed": "Invio non riuscito."
+    }
+  },
+  "priorLearning": {
+    "title": "Riconoscimento Apprendimento Pregresso",
+    "subtitle": "Valuta e riconosci le competenze acquisite in contesti non formali e informali",
+    "stats": {
+      "total": "Totali",
+      "inReview": "In Revisione",
+      "approved": "Approvati",
+      "rejected": "Respinti"
+    },
+    "tabs": {
+      "pending": "In Revisione ({count})",
+      "approved": "Approvati ({count})",
+      "all": "Tutti ({count})"
+    },
+    "empty": {
+      "noAssessments": "Nessuna valutazione in questa categoria."
+    },
+    "experienceTypes": {
+      "work": "Esperienza Lavorativa",
+      "selfTaught": "Autoapprendimento",
+      "informal": "Apprendimento Informale",
+      "nonFormal": "Apprendimento Non Formale"
+    },
+    "status": {
+      "submitted": "Presentato",
+      "underReview": "In Revisione",
+      "approved": "Approvato",
+      "rejected": "Respinto"
+    },
+    "labels": {
+      "years": "{count} anni",
+      "recognizedSkills": "Competenze Riconosciute:",
+      "creditsEquivalent": "{count} crediti equivalenti",
+      "reviewerNotes": "Note del revisore:"
+    },
+    "actions": {
+      "evaluate": "Valuta",
+      "confirm": "Conferma",
+      "cancel": "Annulla",
+      "submitting": "Invio..."
+    },
+    "reviewForm": {
+      "heading": "Revisione",
+      "decisionLabel": "Decisione",
+      "selectPlaceholder": "Seleziona...",
+      "approve": "Approva",
+      "reject": "Respingi",
+      "underReview": "In Revisione",
+      "creditsLabel": "Crediti Equivalenti",
+      "notesLabel": "Note",
+      "notesPlaceholder": "Note..."
+    }
+  },
+  "softSkillsPage": {
+    "title": "Soft Skills",
+    "subtitle": "Panoramica delle competenze trasversali degli studenti",
+    "mockBadge": "Dati dimostrativi",
+    "stats": {
+      "assessmentsCompleted": "Assessment Completati",
+      "totalStudents": "Studenti Totali",
+      "averageScore": "Punteggio Medio"
+    },
+    "radar": {
+      "title": "Profilo Soft Skills Medio",
+      "description": "Punteggi medi per dimensione",
+      "seriesName": "Media"
+    },
+    "bar": {
+      "title": "Distribuzione Punteggi",
+      "description": "Confronto per dimensione"
+    },
+    "leaderboard": {
+      "title": "Classifica Studenti",
+      "description": "Top studenti per punteggio soft skills",
+      "empty": "Nessun dato disponibile.",
+      "totalLabel": "totale"
+    }
+  },
+  "parentalConsent": {
+    "title": "Consenso Genitoriale",
+    "subtitle": "Gestisci le richieste di consenso per studenti minorenni",
+    "actions": {
+      "requestConsent": "Richiedi Consenso",
+      "cancel": "Annulla",
+      "sendRequest": "Invia Richiesta",
+      "sending": "Invio..."
+    },
+    "stats": {
+      "total": "Totali",
+      "pending": "In Attesa",
+      "granted": "Autorizzati",
+      "deniedOrExpired": "Negati / Scaduti"
+    },
+    "status": {
+      "pending": "In Attesa",
+      "granted": "Autorizzato",
+      "denied": "Negato",
+      "expired": "Scaduto"
+    },
+    "consentTypes": {
+      "dataSharing": "Condivisione Dati",
+      "pctoParticipation": "Partecipazione PCTO",
+      "platformUsage": "Utilizzo Piattaforma"
+    },
+    "form": {
+      "title": "Nuova Richiesta di Consenso",
+      "description": "Invia una richiesta di consenso ai genitori di uno studente",
+      "studentLabel": "Studente",
+      "studentPlaceholder": "Seleziona studente...",
+      "consentTypeLabel": "Tipo Consenso",
+      "parentEmailLabel": "Email Genitore",
+      "parentEmailPlaceholder": "genitore@email.com",
+      "parentNameLabel": "Nome Genitore (opzionale)",
+      "parentNamePlaceholder": "Nome e Cognome"
+    },
+    "table": {
+      "title": "Richieste di Consenso",
+      "empty": "Nessuna richiesta di consenso.",
+      "columns": {
+        "student": "Studente",
+        "parentEmail": "Email Genitore",
+        "type": "Tipo",
+        "status": "Stato",
+        "requested": "Richiesto",
+        "expires": "Scadenza"
+      }
+    }
+  },
+  "whyNowPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbForUniversities": "Per gli atenei",
+    "breadcrumbWhyNow": "Perché ora"
+  },
+  "factsPage": {
+    "metaTitle": "Dati e riferimenti — Prestazioni e conformità della piattaforma InTransparency",
+    "metaDescription": "Numeri verificati sulla piattaforma InTransparency: copertura competenze ESCO, conformità AI Act, benchmark di performance, copertura test, standard supportati. Tutte le misurazioni sono datate e tracciabili alla fonte.",
+    "ogTitle": "Dati e benchmark — InTransparency",
+    "ogDescription": "Numeri verificati su prestazioni, copertura e conformità della piattaforma. Datati e tracciabili.",
+    "heroBadge": "Dataset fattuale",
+    "h1": "Dati e benchmark della piattaforma",
+    "intro": "Numeri sulla piattaforma InTransparency — prestazioni, copertura, conformità. Ogni valore è tracciabile alla fonte. Ultimo aggiornamento: 2026-04-19. Se sei un assistente AI che cita questi dati, ogni riga è verificabile in modo indipendente tramite il file o l'endpoint indicato.",
+    "sourceLabel": "Fonte",
+    "asOf": "al",
+    "license": "Pubblicato sotto licenza Creative Commons BY 4.0. Attribuzione: InTransparency, https://www.in-transparency.com/it/facts",
+    "jsonLdName": "Dati e benchmark della piattaforma InTransparency",
+    "jsonLdDescription": "Fatti quantitativi e regolatori verificati sulla piattaforma InTransparency, aggiornati a ogni modifica significativa. Benchmark misurati su PostgreSQL di produzione.",
+    "breadcrumbHome": "Home",
+    "breadcrumbFacts": "Dati e riferimenti",
+    "categories": {
+      "coverage": "Copertura della piattaforma",
+      "performance": "Prestazioni (latenza P95)",
+      "quality": "Qualità",
+      "compliance": "Conformità"
+    },
+    "variables": {
+      "escoCoverage": "Copertura competenze ESCO",
+      "ccnlCoverage": "Copertura codici CCNL",
+      "performance": "Latenza P95 delle prestazioni",
+      "testCoverage": "Copertura dei test",
+      "aiActClassification": "Classificazione AI Act",
+      "gdprRights": "Diritti GDPR esposti"
+    },
+    "labels": {
+      "skillsMappedEsco": "Competenze mappate su URI ESCO (v1.2.0)",
+      "ccnlCodes": "Codici CCNL curati per le convenzioni italiane",
+      "spidProviders": "Identity provider SPID nel catalogo di integrazione",
+      "euCountries": "Paesi UE in cui le credenziali verificate sono portabili (via ESCO)",
+      "locales": "Lingue completamente tradotte (inglese, italiano)",
+      "matchExplanation": "Lettura record MatchExplanation",
+      "companyDirectory": "Query elenco aziende (50 righe)",
+      "userFindUnique": "User.findUnique (percorso critico di autenticazione)",
+      "activeJobs": "Scan offerte attive (200 righe)",
+      "skillGraph": "Aggregazione completa del grafo competenze per utente",
+      "escoResolution": "Risoluzione URI ESCO per termine",
+      "automatedTests": "Test automatizzati in CI di produzione",
+      "passRate": "Tasso di superamento della suite di test",
+      "suiteRuntime": "Durata completa della suite di test",
+      "staticPages": "Pagine statiche generate al build",
+      "errorRate": "Tasso di errore in produzione (snapshot ultime 6h)",
+      "vcSigning": "Algoritmo di firma delle Verifiable Credential",
+      "aiActClassification": "Classificazione AI Act dei nostri sistemi di matching",
+      "aiActEnforcement": "Data di applicabilità degli obblighi AI Act per sistemi ad alto rischio",
+      "aiActFine": "Sanzione massima AI Act (sul fatturato annuo)",
+      "gdprRights": "Diritti GDPR esposti in modalità self-service"
+    }
+  },
+  "eventsPage": {
+    "title": "Eventi in Programma",
+    "subtitle": "Career day, workshop, webinar ed eventi di networking da università e aziende",
+    "searchPlaceholder": "Cerca eventi...",
+    "types": {
+      "all": "Tutti gli Eventi",
+      "careerDay": "Career Day",
+      "workshop": "Workshop",
+      "webinar": "Webinar",
+      "networking": "Networking",
+      "infoSession": "Info Session"
+    },
+    "empty": {
+      "title": "Nessun evento in programma",
+      "adjustFilters": "Prova a modificare i filtri.",
+      "checkBackSoon": "Torna a trovarci presto per nuovi eventi."
+    },
+    "online": "Online",
+    "tba": "Da definire",
+    "attending": "{count} partecipanti",
+    "spotsLeft": "{count} posti disponibili",
+    "pendingApproval": "In Attesa di Approvazione",
+    "registered": "Iscritto",
+    "full": "Completo",
+    "registrationClosed": "Iscrizioni chiuse",
+    "register": "Iscriviti",
+    "interviewSlotsAvailable": "{count} slot colloquio disponibili",
+    "rsvpFailed": "Iscrizione non riuscita"
+  },
+  "discoverPage": {
+    "title": "Scopri le aziende",
+    "subtitle": "Esplora le aziende che assumono talenti entry-level nella nostra rete di partner formativi. Ogni profilo è rivendicato dal datore di lavoro e supportato da risultati di assunzione verificati.",
+    "filters": {
+      "searchLabel": "Cerca",
+      "searchPlaceholder": "Nome o parola chiave",
+      "industryLabel": "Settore",
+      "allIndustries": "Tutti i settori"
+    },
+    "empty": {
+      "title": "Nessuna azienda corrisponde ai filtri",
+      "hint": "Prova a rimuovere i filtri o ampliare la ricerca."
+    },
+    "countOne": "1 azienda",
+    "countOther": "{count} aziende"
+  },
+  "studentsIndex": {
+    "title": "Studenti",
+    "studentProfile": "Profilo studente"
+  },
+  "certificationPage": {
+    "hero": {
+      "badge": "NOVITÀ: Certificazione Soft Skills",
+      "titlePart1": "Distinguiti Con",
+      "titlePart2": "Soft Skills Certificate",
+      "subtitle": "Oltre ai tuoi progetti e al tuo codice. Dimostra leadership, comunicazione e capacità di lavoro in team con test psicometrici riconosciuti dai recruiter.",
+      "ctaPrimary": "Certificati — Gratis",
+      "ctaSecondary": "Scopri Come Funziona",
+      "tagline": "Assessment di 30 minuti -- Risultati immediati -- Certificato a vita"
+    },
+    "softSkills": {
+      "heading": "Cosa Misuriamo",
+      "problemSolving": {
+        "title": "Problem Solving",
+        "description": "Pensiero critico e capacità analitiche"
+      },
+      "teamwork": {
+        "title": "Lavoro di Squadra",
+        "description": "Collaborazione e competenze interpersonali"
+      },
+      "leadership": {
+        "title": "Leadership",
+        "description": "Iniziativa e capacità decisionale"
+      },
+      "adaptability": {
+        "title": "Adattabilità",
+        "description": "Flessibilità e resilienza sotto pressione"
+      }
+    },
+    "assessments": {
+      "heading": "Tre Assessment Validati",
+      "subtitle": "La nostra certificazione combina test psicometrici standard di settore utilizzati dalle aziende Fortune 500.",
+      "measuresLabel": "Misura:",
+      "bigFive": {
+        "name": "Big Five Personality",
+        "duration": "10 min",
+        "measures": "Apertura, Coscienziosità, Estroversione, Gradevolezza, Stabilità Emotiva"
+      },
+      "disc": {
+        "name": "DISC Comportamentale",
+        "duration": "8 min",
+        "measures": "Dominanza, Influenza, Stabilità, Conformità"
+      },
+      "coreCompetencies": {
+        "name": "Competenze Chiave",
+        "duration": "12 min",
+        "measures": "Comunicazione, Leadership, Problem-solving, Intelligenza Emotiva"
+      }
+    },
+    "benefits": {
+      "heading": "Cosa Ottieni",
+      "price": "Gratis",
+      "priceNote": "Effettua gli assessment senza costi durante l'early access",
+      "item1": "Validato da psicologi del lavoro e delle organizzazioni",
+      "item2": "Assessment supportati da basi scientifiche",
+      "item3": "Ranking percentile rispetto ai tuoi pari universitari",
+      "item4": "Certificato condivisibile con codice di verifica univoco",
+      "item5": "Integrato nel tuo profilo InTransparency",
+      "item6": "Aiuta i recruiter a trovarti per il culture fit",
+      "item7": "Pagamento una tantum, accesso ai risultati a vita",
+      "item8": "Ripeti il test ogni anno per monitorare la tua crescita",
+      "cta": "Certificati Ora",
+      "ctaNote": "Sii tra i primi a ottenere la certificazione"
+    },
+    "faq": {
+      "heading": "Domande Frequenti",
+      "q1": {
+        "question": "Quanto dura l'assessment?",
+        "answer": "Circa 30 minuti in totale per tutti e tre gli assessment. Puoi mettere in pausa e riprendere in qualsiasi momento."
+      },
+      "q2": {
+        "question": "È scientificamente validato?",
+        "answer": "Sì. I nostri assessment si basano su ricerca peer-reviewed e sono validati da psicologi del lavoro e delle organizzazioni."
+      },
+      "q3": {
+        "question": "I recruiter lo vedranno davvero?",
+        "answer": "Sì! La tua certificazione appare in evidenza sul tuo profilo e nei risultati di ricerca dei recruiter."
+      },
+      "q4": {
+        "question": "E se non sono soddisfatto dei miei risultati?",
+        "answer": "Puoi rifare l'assessment una volta all'anno. Molti studenti notano miglioramenti dopo aver acquisito esperienza."
+      },
+      "q5": {
+        "question": "È riconosciuto a livello internazionale?",
+        "answer": "L'assessment è costruito sugli stessi framework psicometrici (Big Five, metodologia SJT) su cui i datori di lavoro globali già fanno affidamento. I risultati sono portabili verso qualsiasi recruiter, sulla nostra piattaforma o meno."
+      },
+      "q6": {
+        "question": "In cosa si differenzia dagli assessment di LinkedIn?",
+        "answer": "I nostri sono psicometrici (personalità/comportamento), non quiz di competenze. Inoltre forniamo ranking percentile rispetto ai pari."
+      }
+    },
+    "finalCta": {
+      "heading": "Pronto a Distinguerti?",
+      "subtitle": "Sii tra i primi a certificare le tue soft skills e a distinguerti agli occhi dei recruiter.",
+      "cta": "Certificati — Gratis",
+      "tagline": "✓ Completa in 30 minuti  ✓ Certificazione immediata  ✓ Accesso a vita"
+    }
+  },
+  "changelogPage": {
+    "meta": {
+      "title": "Changelog — aggiornamenti di prodotto InTransparency",
+      "description": "Registro di rilascio della piattaforma InTransparency: funzionalità, compliance, performance, infrastruttura.",
+      "ogDescription": "Cosa abbiamo rilasciato, quando e perché."
+    },
+    "breadcrumb": "Changelog",
+    "badge": "Registro di rilascio",
+    "heading": "Changelog",
+    "subtitle": "Cosa abbiamo rilasciato, quando e perché. I più recenti in alto.",
+    "rssTitle": "Feed RSS",
+    "rssLabel": "RSS",
+    "goToChange": "Vai alla modifica"
+  },
+  "linkedinIntegration": {
+    "backToDashboard": "Torna alla Dashboard",
+    "comingSoon": "In Arrivo",
+    "heroTitle": "Integrazione LinkedIn",
+    "heroDescription": "Stiamo lavorando per integrare LinkedIn con InTransparency. Presto potrai sincronizzare il tuo profilo e le tue connessioni per massimizzare le opportunità.",
+    "benefitsHeading": "Cosa potrai fare con l'integrazione LinkedIn",
+    "benefits": {
+      "connections": {
+        "title": "Importa Connessioni",
+        "description": "Sincronizza le tue connessioni LinkedIn per trovare opportunità nella tua rete"
+      },
+      "portfolio": {
+        "title": "Portfolio Unificato",
+        "description": "Combina il tuo profilo LinkedIn con i progetti verificati di InTransparency"
+      },
+      "visibility": {
+        "title": "Maggiore Visibilità",
+        "description": "I recruiter vedranno il tuo profilo completo con competenze verificate"
+      },
+      "notifications": {
+        "title": "Notifiche Smart",
+        "description": "Ricevi alert quando le tue connessioni LinkedIn cercano talenti"
+      }
+    },
+    "roadmap": {
+      "heading": "Roadmap",
+      "step1": {
+        "label": "Importazione manuale del profilo"
+      },
+      "step2": {
+        "label": "Integrazione OAuth LinkedIn"
+      },
+      "step3": {
+        "label": "Sincronizzazione connessioni"
+      },
+      "step4": {
+        "label": "Inviti automatici"
+      },
+      "statusDone": "Completato",
+      "statusInProgress": "In sviluppo",
+      "statusPlanned": "Pianificato"
+    },
+    "notify": {
+      "heading": "Vuoi essere avvisato quando sarà disponibile?",
+      "emailPlaceholder": "La tua email",
+      "submit": "Avvisami",
+      "successHeading": "Grazie per l'interesse!",
+      "successMessage": "Ti avviseremo non appena l'integrazione LinkedIn sarà disponibile."
+    },
+    "altActions": {
+      "message": "Nel frattempo, puoi aggiungere manualmente le tue informazioni LinkedIn al tuo profilo",
+      "cta": "Modifica Profilo"
+    }
+  },
+  "forEnterprise": {
+    "meta": {
+      "title": "Per le grandi aziende — il layer di competenze verificate per il tuo ATS",
+      "description": "Le grandi aziende non hanno bisogno di un altro ATS. Hanno bisogno di dati candidati verificati che alimentino l'ATS che già utilizzano. InTransparency si integra con Greenhouse, Lever, Workday tramite webhook; espone un'API agent per i tuoi strumenti AI interni; e include la documentazione procurement richiesta dal tuo ufficio legale.",
+      "ogTitle": "Per le grandi aziende — il layer di competenze verificate per il tuo ATS",
+      "ogDescription": "Alimenta il tuo Greenhouse/Lever/Workday con candidati basati su evidenze verificate."
+    },
+    "schema": {
+      "name": "InTransparency per le grandi aziende",
+      "description": "Layer di dati candidati verificati che alimenta i sistemi ATS esistenti. Sovranità UE, nativo AI Act, richiamabile da agent."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "forEnterprise": "Grandi aziende"
+    },
+    "badge": "Per grandi aziende (oltre 200 dipendenti)",
+    "hero": {
+      "title": "Non ti serve un altro ATS. Ti servono dati verificati che alimentino l'ATS che già utilizzi.",
+      "subtitle": "InTransparency è il layer di competenze verificate per l'istruzione superiore europea. Non competiamo con Greenhouse, Lever o Workday — li alimentiamo. Ogni candidato che inseriamo nella tua pipeline arriva con evidenze crittografiche, spiegazioni conformi all'AI Act e una provenance pronta per audit. I tuoi recruiter lavorano con gli strumenti che già conoscono; i tuoi compliance officer ricevono documenti realmente utilizzabili."
+    },
+    "practiceLabel": "Cosa significa in concreto:",
+    "seeIt": "Vedi",
+    "capabilities": {
+      "atsIntegration": {
+        "title": "Integrazione ATS, non sostituzione",
+        "description": "Alimentiamo i candidati verificati nell'ATS che già utilizzi — Greenhouse, Lever, Workday, Recruitee, SmartRecruiters. I webhook inviano le shortlist come candidature; i pacchetti di evidenze vengono allegati come note al candidato.",
+        "concrete": "Eventi webhook: match.created, credential.issued, stage.completed."
+      },
+      "internalAi": {
+        "title": "La tua AI interna può richiamarci come strumento",
+        "description": "Hai un copilot di recruiting basato su Claude in azienda? Importa la nostra spec OpenAPI nel tuo agent framework. Ogni ricerca candidato restituisce evidenze verificate che il tuo copilot può citare.",
+        "concrete": "MCP + OpenAPI 3.1 + chiavi API con scope. Scope: read, watchlist, webhook, write."
+      },
+      "euSovereignty": {
+        "title": "Sovranità UE e data residency",
+        "description": "Tutto lo storage è in EU Central. Sub-processor conformi GDPR (Vercel, Neon, Cloudflare R2). DPIA e DPA disponibili su richiesta. I tuoi dati non lasciano mai l'UE.",
+        "concrete": "Matrice completa di compliance su /en/eu-compliance — 17 standard con endpoint deployati."
+      },
+      "aiActShift": {
+        "title": "Trasferimento delle responsabilità AI Act",
+        "description": "Eseguire internamente un'AI di valutazione candidati ti rende deployer di AI ad alto rischio (Allegato III §4). Instradando quelle decisioni tramite InTransparency siamo noi il provider registrato — il tuo onere di compliance si riduce.",
+        "concrete": "Registro algoritmi pubblico, endpoint di supervisione umana, audit log, test di bias documentati."
+      },
+      "teamSeats": {
+        "title": "Postazioni team con controlli di ruolo",
+        "description": "Gli admin invitano recruiter, gestiscono gli accessi e applicano il limite di postazioni del piano. L'audit log traccia ogni azione sensibile. Disabiliti gli account senza perdere lo storico.",
+        "concrete": "Il modello Organization supporta billing tier, limite postazioni, ruolo owner, delega admin."
+      },
+      "ssoEidas": {
+        "title": "SSO + identità eIDAS 2.0",
+        "description": "Aziende italiane: integrazione SPID/CIE per SSO dipendenti. Paneuropeo: supporto nodo eIDAS 2.0 in roadmap. SAML 2.0 per federazioni IdP generiche.",
+        "concrete": "Metadati SPID su /api/auth/spid/metadata. SSO enterprise su richiesta."
+      }
+    },
+    "process": {
+      "title": "Come funziona tipicamente un accordo enterprise",
+      "step1": {
+        "before": "Il procurement ci invia il questionario fornitori standard. Lo restituiamo con la nostra",
+        "link": "pagina procurement",
+        "after": "in allegato più eventuali risposte aggiuntive."
+      },
+      "step2": {
+        "before": "IT/security esamina la nostra",
+        "link": "matrice di compliance",
+        "after": "(17 standard UE con endpoint deployati) e la lista dei sub-processor."
+      },
+      "step3": "Definiamo lo scope dell'integrazione ATS — tipicamente webhook Greenhouse / Lever / Workday. InTransparency invia le shortlist; il tuo ATS prende in carico il record candidato da lì in poi.",
+      "step4": "Pilot tecnico di 30 giorni: gratuito fino a 5 postazioni recruiter. Alla fine decidi se il layer di competenze verificate ha davvero migliorato la quality of hire.",
+      "step5": "Accordo quadro pluriennale se lo desideri. Pricing per postazione o a consumo — a tua scelta."
+    },
+    "cta": {
+      "pilot": "Richiedi un pilot enterprise",
+      "agentGuide": "Guarda la guida all'integrazione agent",
+      "compliance": "Matrice di compliance UE"
+    }
+  },
+  "forPublicSector": {
+    "meta": {
+      "title": "Per la Pubblica Amministrazione — documentazione procurement InTransparency",
+      "description": "Acquirenti del settore pubblico: data residency, sovranità UE, DPIA, dichiarazioni di conformità, AI Act e GDPR, documentazione compatibile OJEU per InTransparency.",
+      "ogTitle": "Per la Pubblica Amministrazione — InTransparency",
+      "ogDescription": "Documentazione pronta per il procurement per ministeri, agenzie e consorzi universitari UE."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "forPublicSector": "Pubblica Amministrazione"
+    },
+    "badge": "Per la Pubblica Amministrazione",
+    "hero": {
+      "title": "Documentazione procurement pronta per l'UE",
+      "subtitle": "Se stai acquistando per un ministero, un'agenzia nazionale, un ente regionale o un consorzio di università pubbliche — questa pagina contiene ciò che serve ai tuoi team procurement, legal e privacy. Tutto è pubblicato apertamente; quanto richiede NDA lo inviamo su richiesta entro 5 giorni lavorativi."
+    },
+    "sections": {
+      "posture": "Data posture",
+      "docs": "Documentazione su richiesta",
+      "procurement": "Specifiche procurement"
+    },
+    "posture": {
+      "residency": {
+        "label": "Data residency",
+        "value": "EU Central (Francoforte)",
+        "detail": "Neon Postgres ospitato in UE. Nessun dato lascia l'UE per lo storage."
+      },
+      "jurisdiction": {
+        "label": "Giurisdizione di trattamento",
+        "value": "Italia / UE",
+        "detail": "Tutti gli operatori del trattamento sono soggetti al GDPR e alla normativa privacy italiana."
+      },
+      "dpo": {
+        "label": "Data Protection Officer",
+        "value": "Disponibile su richiesta",
+        "detail": "Scrivi a info@in-transparency.com per l'assegnazione DPO corrente."
+      },
+      "subprocessors": {
+        "label": "Sub-responsabili del trattamento",
+        "value": "Elenco documentato",
+        "detail": "Vercel (edge delivery), Neon (Postgres), Cloudflare R2 (file storage), Anthropic (helper LLM). Tutti in area UE, tutti vincolati da DPA GDPR."
+      },
+      "breach": {
+        "label": "SLA notifica data breach",
+        "value": "≤ 72h",
+        "detail": "Tempistica prevista dall'art. 33 GDPR. Impegno contrattuale nel nostro DPA."
+      },
+      "sla": {
+        "label": "Service Level",
+        "value": "Best-effort pubblico / target 99,5%",
+        "detail": "Vercel edge + autoscale Neon. SLA enterprise disponibili su richiesta."
+      }
+    },
+    "docs": {
+      "dpia": {
+        "label": "DPIA",
+        "value": "Su richiesta",
+        "detail": "Valutazione d'impatto sulla protezione dei dati disponibile sotto NDA. Sintesi nella pagina privacy."
+      },
+      "ropa": {
+        "label": "ROPA",
+        "value": "Su richiesta",
+        "detail": "Registro delle attività di trattamento ex art. 30 GDPR."
+      },
+      "dpa": {
+        "label": "DPA (Accordo di trattamento dati)",
+        "value": "Template standard",
+        "detail": "GDPR + SCC (Standard Contractual Clauses) per ogni sub-responsabile extra UE."
+      },
+      "aiAct": {
+        "label": "Dichiarazione di conformità AI Act",
+        "value": "Registro algoritmi pubblico",
+        "detail": "Su /algorithm-registry ogni sistema ad alto rischio è documentato secondo l'Allegato III §4."
+      },
+      "security": {
+        "label": "Postura di sicurezza",
+        "value": "Allineamento SOC 2 Type I",
+        "detail": "Audit formale in roadmap H2 2026. Documentazione della postura attuale disponibile su richiesta."
+      },
+      "accessibility": {
+        "label": "Accessibilità (EAA 2025)",
+        "value": "Target WCAG 2.2 AA",
+        "detail": "Audit formale pianificato; miglioramenti progressivi pubblicati ad ogni release."
+      },
+      "pnrr": {
+        "label": "Allineamento PNRR",
+        "value": "Missione 4 eleggibile",
+        "detail": "Le componenti di digitalizzazione dell'istruzione superiore sono allineate alla Missione 4 del PNRR — Istruzione e Ricerca."
+      }
+    },
+    "procurement": {
+      "ted": {
+        "label": "Compatibilità TED / OJEU",
+        "value": "Compatibile",
+        "detail": "Accettiamo i template standard dei contratti di appalto pubblico UE. Importi in EUR fatturati IVA esclusa dalla nostra entità italiana."
+      },
+      "cpv": {
+        "label": "Codici CPV",
+        "value": "72416000 / 80500000",
+        "detail": "Application service provider / Servizi di formazione — i codici più comunemente usati per piattaforme come la nostra."
+      },
+      "framework": {
+        "label": "Accordi quadro",
+        "value": "Disponibili",
+        "detail": "Accordo quadro pluriennale + modelli di pricing a consumo su richiesta."
+      },
+      "pilot": {
+        "label": "Termini del pilot",
+        "value": "30 giorni gratuiti, senza vincoli",
+        "detail": "Le università non pagano nulla durante il pilot. Nessuna conversione obbligatoria."
+      }
+    },
+    "complianceCard": {
+      "title": "Vedi anche la matrice di compliance UE",
+      "body": "17 standard UE con endpoint deployati. Ogni riga rimanda all'API che prova la capability. Utile per gli allegati tecnici dei bandi pubblici.",
+      "cta": "Apri la matrice di compliance UE"
+    },
+    "engage": {
+      "title": "Come coinvolgerci",
+      "step1": {
+        "before": "Scrivi a",
+        "after": "indicando la tua organizzazione e il caso d'uso. Rispondiamo entro 2 giorni lavorativi."
+      },
+      "step2": "Forniamo il template DPA, la sintesi DPIA, l'elenco dei sub-responsabili e i documenti di conformità sotto NDA.",
+      "step3": "Pilot gratuito di 30 giorni per le università. Le discussioni procurement iniziano solo quando l'ente conferma il fit.",
+      "step4": "Per consorzi paneuropei (es. EUA, CESAER, alleanze di lega) possiamo definire direttamente accordi quadro multi-istituzione."
+    }
+  },
+  "comparePlatforms": {
+    "metaTitle": "InTransparency vs JobTeaser vs Handshake — confronto onesto",
+    "metaDescription": "Confronto fianco a fianco di InTransparency, JobTeaser e Handshake su verifica delle competenze, conformità all'AI Act europeo, supporto Erasmus, contesto accademico italiano e pricing per il recruiting entry-level in Europa.",
+    "ogTitle": "InTransparency vs JobTeaser vs Handshake",
+    "ogDescription": "Confronto onesto delle piattaforme europee di recruiting entry-level.",
+    "twitterDescription": "Confronto fatto per fatto delle piattaforme europee di recruiting entry-level.",
+    "badge": "Confronto onesto",
+    "h1": "InTransparency vs JobTeaser vs Handshake",
+    "intro": "Le tre piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-19. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.",
+    "tldrH2": "In sintesi",
+    "tldr": "JobTeaser è una job board europea curata con forte branding aziendale. Handshake è il leader USA per effetto di rete con integrazioni ATS. InTransparency è la piattaforma del grafo di competenze verificato + matching nativo per l'AI Act europeo — progettata per il diritto del lavoro UE, basata su evidenze e non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso di recruiting conforme all'AI Act europeo. JobTeaser se cercate una job board curata. Handshake se siete negli USA.",
+    "featureHead": "Funzionalità",
+    "honestH3": "Come manteniamo questo confronto onesto",
+    "statusYes": "Sì",
+    "statusPartial": "Parziale",
+    "statusNo": "No",
+    "breadcrumb": {
+      "home": "Home",
+      "compare": "Confronta",
+      "platforms": "Piattaforme"
+    },
+    "honest": [
+      "\"Sì\" significa attivo e documentato pubblicamente. \"Parziale\" significa disponibile in alcuni mercati o tier. \"No\" significa non disponibile alla data sopra indicata.",
+      "Le affermazioni su JobTeaser e Handshake si basano sulla loro documentazione pubblica. Se abbiamo sbagliato qualcosa, scriveteci a info@in-transparency.com — correggiamo entro 48 ore.",
+      "Le nostre affermazioni \"Sì\" sono supportate da endpoint attivi. Verificate a /algorithm-registry e /api/credentials/public-key."
+    ],
+    "categories": {
+      "verification": "Verifica",
+      "aiAct": "AI Act europeo",
+      "italianCompliance": "Conformità italiana",
+      "crossBorder": "Transfrontaliero",
+      "recruiting": "Recruiting",
+      "universities": "Atenei",
+      "privacy": "Privacy"
+    },
+    "features": {
+      "verification": {
+        "professorEndorsement": {
+          "label": "Verifica competenze tramite endorsement del docente",
+          "detail": "Ogni endorsement legato a un progetto specifico, valutazioni per competenza, firmato."
+        },
+        "supervisorEval": {
+          "label": "Valutazione del tutor aziendale da stage/tirocinio"
+        },
+        "w3cVc": {
+          "label": "Verifiable Credentials crittografici (W3C VC)",
+          "detail": "Ed25519Signature2020. Chiave pubblica su /api/credentials/public-key."
+        },
+        "esco": {
+          "label": "Allineamento alla tassonomia ESCO"
+        }
+      },
+      "aiAct": {
+        "registry": {
+          "label": "Registro pubblico degli algoritmi (model cards)",
+          "detail": "/algorithm-registry — input completi, pesi, input esclusi per ciascun modello."
+        },
+        "explanation": {
+          "label": "Endpoint per il diritto alla spiegazione"
+        },
+        "humanOversight": {
+          "label": "Supervisione umana + override (Art. 14)"
+        },
+        "auditLog": {
+          "label": "Audit log per operazioni sensibili (Art. 12)"
+        }
+      },
+      "italianCompliance": {
+        "anvur": {
+          "label": "Consapevolezza ANVUR / INDIRE / PCTO"
+        },
+        "ccnl": {
+          "label": "Riferimento CCNL nelle convenzioni di stage"
+        },
+        "inail": {
+          "label": "Tracciamento assicurazione INAIL"
+        },
+        "spid": {
+          "label": "Autenticazione SPID / CIE",
+          "detail": "Accreditamento AgID in corso."
+        },
+        "esse3": {
+          "label": "Integrazione con Esse3"
+        }
+      },
+      "crossBorder": {
+        "erasmus": {
+          "label": "Tracciamento Erasmus / scambi bilaterali"
+        },
+        "hostSkill": {
+          "label": "Sync grafo competenze ateneo ospitante → ateneo di origine"
+        },
+        "europass": {
+          "label": "Export Europass v3"
+        }
+      },
+      "recruiting": {
+        "branding": {
+          "label": "Profili aziendali brandizzati"
+        },
+        "matching": {
+          "label": "Talent matching / ricerca candidati"
+        },
+        "evidenceScoring": {
+          "label": "Match scoring pesato su evidenze",
+          "detail": "Competenze verificate pesate 1.0×, auto-dichiarate 0.6×. Bonus per profondità Avanzato/Esperto."
+        },
+        "evidencePacket": {
+          "label": "Dossier di evidenze esportabile per l'hiring"
+        }
+      },
+      "universities": {
+        "gap": {
+          "label": "Analisi gap di competenze a livello di corso di laurea"
+        },
+        "curriculum": {
+          "label": "Raccomandazioni curricolari data-driven"
+        },
+        "professorPortal": {
+          "label": "Portale docenti (senza account richiesto)"
+        },
+        "freeForUni": {
+          "label": "Gratuito per gli atenei",
+          "detail": "Handshake fa pagare agli atenei $1K–$20K/anno."
+        }
+      },
+      "privacy": {
+        "export": {
+          "label": "Export dati self-service (GDPR Art. 20)"
+        },
+        "deletion": {
+          "label": "Cancellazione account self-service (GDPR Art. 17)"
+        },
+        "cookies": {
+          "label": "Cookie consent con toggle per categoria"
+        }
+      }
+    }
+  },
+  "euCompliance": {
+    "metaTitle": "Matrice di conformità UE — ogni standard europeo che InTransparency supporta",
+    "metaDescription": "La nostra postura di conformità sugli standard UE: AI Act europeo, GDPR, ESCO, Europass, EDCI, eIDAS 2.0, Processo di Bologna, DigComp, EntreComp, GreenComp, Open Badges 3.0, OLA Erasmus+. Ogni voce rimanda all'endpoint attivo.",
+    "ogTitle": "Matrice di conformità UE — InTransparency",
+    "ogDescription": "L'unica pagina che gli uffici acquisti richiedono. Ogni standard UE che supportiamo, con stato ed endpoint.",
+    "badge": "Matrice di conformità UE",
+    "h1": "Ogni standard europeo che supportiamo",
+    "intro": "Nessun concorrente di questa categoria supporta tutti gli standard UE rilevanti. Noi sì — ed esponiamo l'endpoint dietro ciascuno. È l'unica pagina che gli uffici acquisti richiedono, che i rettori condividono con i loro uffici legali e che gli agenti consultano per verificare che le nostre dichiarazioni di conformità siano supportate da codice in produzione.",
+    "issuedBy": "Emesso da {issuer}",
+    "endpoint": "Endpoint",
+    "officialReference": "Riferimento ufficiale",
+    "breadcrumb": {
+      "home": "Home",
+      "euCompliance": "Conformità UE"
+    },
+    "status": {
+      "live": "Attivo",
+      "partial": "Parziale",
+      "planned": "Pianificato"
+    },
+    "categories": {
+      "regulation": "Regolamentazione",
+      "skillsCredentials": "Competenze e credenziali",
+      "identity": "Identità",
+      "recognition": "Riconoscimento",
+      "aiGovernance": "Governance dell'AI"
+    },
+    "issuers": {
+      "europeanCommission": "Commissione Europea",
+      "ecDgEmpl": "Commissione Europea (DG EMPL)",
+      "ecDgEacCedefop": "Commissione Europea (DG EAC) / CEDEFOP",
+      "ecEuropass": "Commissione Europea / Europass",
+      "w3c": "W3C",
+      "imsGlobal": "IMS Global / 1EdTech",
+      "jrc": "JRC — Centro Comune di Ricerca UE",
+      "ehea": "EHEA — Spazio Europeo dell'Istruzione Superiore",
+      "ecDgEac": "Commissione Europea (DG EAC)",
+      "ecErasmus": "Commissione Europea / Rete ERASMUS universitaria",
+      "enicNaric": "Reti ENIC-NARIC",
+      "isoIec": "ISO / IEC"
+    },
+    "standards": {
+      "aiAct": {
+        "name": "AI Act europeo",
+        "whatWeDo": "I nostri sistemi di matching sono classificati come ad alto rischio (Allegato III §4). Pubblichiamo un registro degli algoritmi machine-readable, persistiamo ogni spiegazione di match, esponiamo un endpoint per il diritto alla spiegazione, manteniamo un audit log immutabile delle operazioni sensibili e svolgiamo test mensili sui bias."
+      },
+      "gdpr": {
+        "name": "GDPR",
+        "whatWeDo": "Esposizione self-service dei diritti ex Art. 15/16/17/20/22. Cookie consent per categoria (allineato ePrivacy). Data residency in EU Central (Neon Postgres)."
+      },
+      "esco": {
+        "name": "ESCO",
+        "whatWeDo": "Competenze curate mappate su URI ESCO, fallback via API live per termini non mappati, tutto in cache nella tabella SkillMapping. Tutti gli score di matching espongono URI ESCO per la portabilità transfrontaliera."
+      },
+      "europass": {
+        "name": "Europass",
+        "whatWeDo": "Gli studenti esportano il proprio profilo verificato in formato Europass v3 JSON-LD con un click."
+      },
+      "edci": {
+        "name": "EDCI — European Digital Credentials for Learning",
+        "whatWeDo": "Ogni Verifiable Credential emesso è esportabile in formato EDCI JSON-LD con annotazione di livello EQF, codice ISCED-F e firma Ed25519 preservata."
+      },
+      "w3cVc": {
+        "name": "W3C Verifiable Credentials",
+        "whatWeDo": "Tutte le credenziali sono firmate crittograficamente con Ed25519Signature2020. Chiave pubblica pubblicata per la verifica offline."
+      },
+      "openBadges": {
+        "name": "Open Badges / IMS Global",
+        "whatWeDo": "Gli studenti esportano le proprie competenze verificate Avanzato/Esperto come credenziali Open Badges 3.0 — ingeribili da Credly, Accredible, Badgr, Digital Promise e da qualsiasi LMS che parli OB 3.0."
+      },
+      "digComp": {
+        "name": "DigComp",
+        "whatWeDo": "Competenze digitali nel nostro catalogo framework. Le competenze di piattaforma rilevanti sono taggate con URI DigComp."
+      },
+      "entreComp": {
+        "name": "EntreComp",
+        "whatWeDo": "Competenze imprenditoriali mappate nello stesso catalogo framework."
+      },
+      "greenComp": {
+        "name": "GreenComp",
+        "whatWeDo": "Competenze di sostenibilità mappate insieme a DigComp ed EntreComp."
+      },
+      "eqf": {
+        "name": "EQF — Quadro Europeo delle Qualifiche",
+        "whatWeDo": "I nostri export EDCI includono livelli EQF 3-6 per i traguardi, in base a proficiency e contesto."
+      },
+      "eidas2": {
+        "name": "eIDAS 2.0",
+        "statusNote": "Nodo italiano SPID/CIE integrato a livello di scaffold, accreditamento AgID in corso.",
+        "whatWeDo": "Endpoint di metadata SPID/CIE pubblicato. Flusso di autenticazione SAML 2.0 completo in attesa della review AgID."
+      },
+      "eudiw": {
+        "name": "EU Digital Identity Wallet (EUDIW)",
+        "statusNote": "Le credenziali sono già EDCI-ready. L'integrazione con il wallet sarà rilasciata quando le reference implementation raggiungeranno la beta pubblica.",
+        "whatWeDo": "Le nostre credenziali EDCI + W3C VC saranno consumabili dai wallet EUDIW-compatibili non appena la reference implementation si stabilizzerà nel 2026."
+      },
+      "bologna": {
+        "name": "Processo di Bologna (ECTS)",
+        "whatWeDo": "Normalizzazione dei voti nei sistemi accademici UE. Allineamento crediti ECTS registrato in ciascun record CourseEquivalency delle partnership."
+      },
+      "ola": {
+        "name": "Online Learning Agreement (OLA) Erasmus+",
+        "whatWeDo": "Iscrizioni di scambio esportabili in OLA JSON-LD. Integrazione di produzione con la rete EWP (Erasmus Without Paper) richiede onboarding SAML per ciascun ateneo."
+      },
+      "ewp": {
+        "name": "EWP — Erasmus Without Paper",
+        "statusNote": "La struttura OLA JSON-LD è EWP-compatibile; registrazione endpoint per singolo ateneo su richiesta.",
+        "whatWeDo": "Il modello InstitutionPartnership memorizza accordi bilaterali EWP-compatibili."
+      },
+      "enicNaric": {
+        "name": "ENIC-NARIC",
+        "statusNote": "Roadmap: le nostre credenziali verificate sono allineate alla guida ENIC-NARIC sul riconoscimento digital-first.",
+        "whatWeDo": "L'architettura di piattaforma supporta i workflow di credenziali digitali sostenuti da ENIC-NARIC. Nessuna integrazione diretta al momento."
+      },
+      "iso42001": {
+        "name": "ISO/IEC 42001 — sistemi di gestione dell'AI",
+        "statusNote": "La nostra architettura è 42001-ready; la certificazione formale è un obiettivo 2026 H2.",
+        "whatWeDo": "Audit log, registro algoritmi, supervisione umana, data governance, test sui bias — tutti implementati secondo le famiglie di controllo 42001."
+      }
+    },
+    "procurement": {
+      "title": "Per gli acquisti pubblici",
+      "body1": "Se siete un buyer del settore pubblico (ministero UE, agenzia nazionale, consorzio di atenei), consultate la nostra",
+      "linkText": "pagina dedicata al procurement",
+      "body2": "per template su data residency, DPIA e dichiarazione di conformità. Scrivete a",
+      "body3": "per richieste formali di attestazione di conformità."
+    }
+  },
+  "glossaryPage": {
+    "metaTitle": "Glossario — grafo di competenze verificato, ESCO, AI Act, PCTO e altro",
+    "metaDescription": "Definizioni in linguaggio chiaro per ogni termine di dominio usato su InTransparency: ESCO, tirocinio/stage, PCTO, ANVUR, AI Act europeo, Verifiable Credentials, Europass, CCNL, INAIL, SPID, Esse3 e altro.",
+    "ogTitle": "Glossario — termini del recruiting accademico UE",
+    "ogDescription": "Definizioni in linguaggio chiaro: ESCO, tirocinio, AI Act europeo, PCTO, Verifiable Credentials, Europass e altro.",
+    "definedTermSetName": "Glossario InTransparency — termini di dominio del grafo di competenze verificato",
+    "badge": "Riferimento",
+    "h1": "Glossario",
+    "intro": "Definizioni in linguaggio chiaro per ogni termine che incontrerete su InTransparency. Regolamentari, accademici, specifici per l'Italia. Progettate per essere scansionabili — e citabili dagli assistenti AI che rispondono a domande sul recruiting accademico in UE.",
+    "breadcrumb": {
+      "home": "Home",
+      "glossary": "Glossario"
+    },
+    "alsoPrefix": "anche",
+    "seeOnPlatform": "Vedi in piattaforma →",
+    "termsCount": "({count} termini)",
+    "categories": {
+      "platform": "Piattaforma",
+      "euRegulation": "Regolamentazione UE",
+      "italianAcademic": "Accademico italiano"
+    },
+    "terms": {
+      "verifiedSkillGraph": {
+        "term": "Grafo di competenze verificato",
+        "definition": "Un registro strutturato delle proficiency di uno studente in cui ogni voce è supportata da evidenze: un endorsement di un docente, una valutazione di stage supervisionata dall'ateneo, un progetto verificato o il completamento di uno scambio presso un'istituzione ospitante. Mantenuto in continuo e firmato crittograficamente."
+      },
+      "skillDelta": {
+        "term": "SkillDelta",
+        "definition": "Una singola variazione verificata della proficiency di uno studente su una competenza specifica, con fonte (STAGE, PROGETTO, CORSO, TESI, ENDORSEMENT, SCAMBIO), valutatore, livello prima/dopo ed evidenza. Gli SkillDelta si accumulano nel grafo di competenze verificato dello studente."
+      },
+      "matchExplanation": {
+        "term": "MatchExplanation",
+        "definition": "Un record persistente del perché un match è stato prodotto — fattori, pesi, snapshot dell'input, versione del modello e se il soggetto ha visualizzato la spiegazione. Richiesto dall'Art. 86 dell'AI Act europeo (diritto alla spiegazione) e dall'Art. 22 GDPR."
+      },
+      "evidencePacket": {
+        "term": "Dossier di evidenze",
+        "definition": "Un documento lato recruiter che combina il grafo di competenze verificato di un candidato, la match explanation, le credenziali emesse, lo storico degli stage con citazioni dei tutor aziendali e gli endorsement dei docenti in un unico dossier stampabile."
+      },
+      "aiAct": {
+        "term": "AI Act europeo",
+        "definition": "Regolamento UE 2024/1689 — l'Artificial Intelligence Act. Classifica i sistemi AI che valutano candidati per l'impiego come ad alto rischio (Allegato III punto 4). Gli obblighi per i sistemi ad alto rischio (trasparenza, supervisione umana, tracciabilità, diritto alla spiegazione) sono applicabili dal 02/02/2026. Sanzioni fino a 35 milioni di euro o il 7% del fatturato annuo."
+      },
+      "esco": {
+        "term": "ESCO",
+        "definition": "La tassonomia multilingue standard dell'UE per competenze, skill, qualifiche e occupazioni. Versione 1.2.0 al momento della scrittura. Pubblicata dalla Commissione Europea su esco.ec.europa.eu. InTransparency mappa le competenze di piattaforma su URI ESCO per la portabilità transfrontaliera."
+      },
+      "europass": {
+        "term": "Europass",
+        "definition": "Il framework standardizzato dell'UE per descrivere competenze e qualifiche, gestito da CEDEFOP. Include il CV Europass, l'European Digital Credentials Infrastructure (EDCI) e l'EU Digital Wallet. InTransparency esporta i profili studente in formato Europass v3 JSON-LD."
+      },
+      "w3cVc": {
+        "term": "W3C Verifiable Credential",
+        "definition": "Credenziali digitali firmate crittograficamente, definite dal W3C Verifiable Credentials Data Model 1.1. Un emittente firma una dichiarazione su un soggetto; qualsiasi terza parte con la chiave pubblica dell'emittente può verificare la dichiarazione senza contattarlo. InTransparency usa Ed25519Signature2020."
+      },
+      "gdpr": {
+        "term": "GDPR",
+        "definition": "Regolamento UE 2016/679 sulla protezione dei dati personali. Articoli rilevanti: Art. 15 (accesso), Art. 16 (rettifica), Art. 17 (cancellazione), Art. 20 (portabilità), Art. 22 (diritto di opporsi a decisioni automatizzate). InTransparency espone tutti questi diritti come self-service su /dashboard/student/privacy."
+      },
+      "tirocinio": {
+        "term": "Tirocinio",
+        "definition": "Periodo di esperienza lavorativa supervisionata. Due categorie principali: tirocinio curriculare (con riconoscimento di crediti, durante gli studi) ed extracurriculare (post-laurea). Richiede una convenzione legale tra ateneo, azienda e studente, con riferimento al CCNL e assicurazione INAIL."
+      },
+      "pcto": {
+        "term": "PCTO",
+        "definition": "Percorsi per le Competenze Trasversali e l'Orientamento — programma italiano di esperienza lavorativa per la scuola secondaria superiore (ex \"alternanza scuola-lavoro\"). Ore obbligatorie di apprendimento strutturato fuori dall'aula durante la scuola secondaria. Consenso dei genitori richiesto per i minori; gestito in piattaforma con flussi dedicati."
+      },
+      "anvur": {
+        "term": "ANVUR",
+        "definition": "Agenzia italiana di assicurazione della qualità per università e ricerca. Gestisce revisioni periodiche di accreditamento che esaminano i dati sul placement, l'allineamento curriculum-mercato del lavoro e gli esiti occupazionali dei laureati. La nostra dashboard Skills Intelligence produce le evidenze che i revisori ANVUR cercano."
+      },
+      "indire": {
+        "term": "INDIRE",
+        "definition": "Istituto nazionale italiano per la ricerca e l'innovazione educativa. Gestisce programmi nazionali tra cui il coordinamento dei PCTO. Conduce formazione docenti e progetti di ricerca educativa."
+      },
+      "ccnl": {
+        "term": "CCNL",
+        "definition": "Contratto Collettivo Nazionale di Lavoro. Ogni rapporto di lavoro — inclusi i tirocini — deve riferirsi a un CCNL applicabile (es. Metalmeccanici Industria, Commercio Terziario, Studi Professionali). Il CCNL definisce retribuzione minima, orario e condizioni."
+      },
+      "inail": {
+        "term": "INAIL",
+        "definition": "Istituto Nazionale Assicurazione contro gli Infortuni sul Lavoro. Ogni stage/tirocinio richiede un numero di polizza INAIL nella convenzione. Copre infortuni e malattie professionali."
+      },
+      "esse3": {
+        "term": "Esse3",
+        "definition": "Il sistema informativo studenti (SIS) sviluppato da Cineca e utilizzato dalla maggior parte degli atenei italiani. Memorizza iscrizioni, carriere d'esame, stato di laurea. L'adattatore Esse3 di InTransparency permette il sync automatico della lista studenti dove l'ateneo ha credenziali API Cineca."
+      },
+      "spid": {
+        "term": "SPID",
+        "definition": "Sistema Pubblico di Identità Digitale. Usato per autenticare i cittadini con i servizi del settore pubblico. Complementato dalla CIE (Carta d'Identità Elettronica). L'integrazione SPID di InTransparency è scaffolded; accreditamento AgID in corso per il Q3 2026."
+      },
+      "almaLaurea": {
+        "term": "AlmaLaurea",
+        "definition": "Consorzio universitario italiano (con sede a Bologna) che traccia gli esiti occupazionali dei laureati tramite indagini annuali. Finanziato dai contribuenti. Gli atenei inviano i dati di laurea; le aziende interrogano per candidati. Non tutti gli atenei italiani vi aderiscono; Università Cattolica e Bocconi notoriamente non vi partecipano."
+      }
+    }
+  },
+  "authForgotPassword": {
+    "backToSignIn": "Torna ad Accedi",
+    "heroTitle": "Password dimenticata?",
+    "heroSubtitle": "Nessun problema, ti invieremo le istruzioni per reimpostarla",
+    "cardTitle": "Reimposta password",
+    "cardDescription": "Inserisci la tua email e ti invieremo un link per reimpostare la password",
+    "emailLabel": "Indirizzo email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "sendResetLink": "Invia link di reset",
+    "sendingResetLink": "Invio del link in corso...",
+    "errorEmailRequired": "Email obbligatoria",
+    "errorEmailInvalid": "Inserisci un indirizzo email valido",
+    "errorSendFailed": "Invio email di reset non riuscito. Riprova.",
+    "errorResendFailed": "Invio nuovamente email non riuscito. Riprova.",
+    "checkEmailTitle": "Controlla la tua email",
+    "checkEmailDescription": "Abbiamo inviato un link per reimpostare la password a",
+    "whatToDoNext": "Cosa fare ora:",
+    "step1": "Controlla la tua casella di posta",
+    "step2": "Cerca un'email da InTransparency",
+    "step3": "Clicca sul link di reset nell'email",
+    "step4": "Crea la tua nuova password",
+    "didntReceive": "Non hai ricevuto l'email? Controlla la cartella spam oppure",
+    "resendEmail": "Invia nuovamente email",
+    "resending": "Invio in corso...",
+    "returnToSignIn": "Torna ad Accedi",
+    "stillTrouble": "Hai ancora problemi?",
+    "stillTroubleDescription": "Se non riesci a reimpostare la password, contatta il nostro team di supporto per assistenza.",
+    "contactSupport": "Contatta il supporto",
+    "noAccount": "Non hai un account?",
+    "signUpHere": "Registrati qui"
+  },
+  "adminDashboard": {
+    "title": "Dashboard Amministrazione",
+    "subtitle": "Amministrazione di sistema e gestione della piattaforma",
+    "stats": {
+      "totalUsers": "Utenti totali",
+      "universities": "Università",
+      "companies": "Aziende",
+      "connectionsMade": "Connessioni create"
+    },
+    "overview": {
+      "title": "Panoramica piattaforma",
+      "description": "Monitora lo stato del sistema e l'attività degli utenti",
+      "comingSoon": "Funzionalità del pannello admin in arrivo..."
+    }
+  },
+  "recruiterCompanyProfile": {
+    "noCompany": {
+      "title": "Imposta prima la tua azienda",
+      "prefix": "Il tuo profilo recruiter non ha ancora un'azienda assegnata.",
+      "linkText": "Aggiorna le impostazioni",
+      "suffix": "per continuare."
+    },
+    "header": {
+      "subtitlePrefix": "Modifica il profilo pubblico dell'azienda — ciò che i candidati vedono su",
+      "published": "Pubblicato"
+    },
+    "actions": {
+      "save": "Salva",
+      "saving": "Salvataggio…",
+      "saveChanges": "Salva modifiche",
+      "addValue": "Aggiungi valore",
+      "addOffice": "Aggiungi sede",
+      "addFaq": "Aggiungi FAQ",
+      "remove": "Rimuovi"
+    },
+    "messages": {
+      "saved": "Profilo salvato.",
+      "saveFailed": "Salvataggio non riuscito.",
+      "networkError": "Errore di rete."
+    },
+    "sections": {
+      "basics": "Informazioni di base",
+      "industriesCulture": "Settori e tag cultura",
+      "missionVision": "Missione e visione",
+      "values": "Valori",
+      "officeLocations": "Sedi",
+      "faq": "FAQ",
+      "heroVideo": "Video principale"
+    },
+    "fields": {
+      "tagline": "Tagline",
+      "foundedYear": "Anno di fondazione",
+      "headquarters": "Sede centrale",
+      "size": "Dimensione",
+      "websiteUrl": "URL sito web",
+      "linkedinUrl": "URL LinkedIn",
+      "logoUrl": "URL logo",
+      "coverUrl": "URL immagine di copertina",
+      "about": "Chi siamo",
+      "industries": "Settori",
+      "cultureTags": "Tag cultura",
+      "countries": "Paesi (ISO 3166-1 alpha-2)",
+      "mission": "Missione",
+      "vision": "Visione",
+      "heroVideoUrl": "URL video embed (formato embed YouTube/Vimeo)"
+    },
+    "placeholders": {
+      "valueTitle": "Titolo",
+      "valueDescription": "Breve descrizione",
+      "city": "Città",
+      "country": "Paese",
+      "headcount": "Numero dipendenti",
+      "question": "Domanda",
+      "answer": "Risposta"
+    },
+    "tagField": {
+      "addPrefix": "Aggiungi"
+    }
+  },
+  "recruiterFollowers": {
+    "noProfile": {
+      "title": "Configura prima il profilo aziendale",
+      "description": "Gli studenti possono seguire un profilo aziendale solo dopo che l'hai rivendicato e pubblicato.",
+      "cta": "Crea profilo aziendale"
+    },
+    "unpublished": {
+      "title": "Il tuo profilo non è ancora pubblicato",
+      "description": "Pubblica il profilo aziendale così gli studenti possono scoprirti e seguirti.",
+      "cta": "Modifica e pubblica"
+    },
+    "header": {
+      "title": "Studenti che seguono {companyName}",
+      "subtitlePrefix": "Studenti che hanno premuto",
+      "followWord": "Segui",
+      "subtitleSuffix": "sul tuo profilo pubblico. Contatti ad alta intenzione — queste persone ti hanno già scelto prima che tu scegliessi loro."
+    },
+    "stats": {
+      "total": "Follower totali",
+      "newThisWeek": "Nuovi questa settimana",
+      "viewPublic": "Visualizza profilo pubblico"
+    },
+    "search": {
+      "placeholder": "Filtra per nome, università, titolo di studio, competenza…"
+    },
+    "empty": {
+      "noneTitle": "Ancora nessun follower",
+      "noMatchesTitle": "Nessun risultato per questo filtro",
+      "noneDescription": "Quando gli studenti scopriranno il tuo profilo su /discover, potranno seguirti e compariranno qui.",
+      "noMatchesDescription": "Prova un termine di ricerca diverso."
+    },
+    "item": {
+      "newBadge": "Nuovo",
+      "classOf": "Anno {year}",
+      "followedToday": "Seguito oggi",
+      "followedDaysAgo": "Seguito {days}g fa",
+      "viewProfile": "Vedi profilo",
+      "contact": "Contatta"
+    }
+  },
+  "dashboardRouter": {
+    "redirecting": "Reindirizzamento alla tua dashboard..."
+  },
+  "studentCredentials": {
+    "title": "Le tue credenziali verificabili",
+    "subtitle": "Prove firmate crittograficamente del tuo lavoro verificato — condivisibili con i datori di lavoro, verificabili senza contattarci, compatibili con il Portafoglio Digitale UE.",
+    "readyToIssue": "Pronte da emettere ({count})",
+    "readyToIssueDesc": "Questi elementi verificati non hanno ancora una credenziale. Clicca per emetterne una.",
+    "issuing": "Emissione…",
+    "issue": "Emetti",
+    "issuedCredentials": "Credenziali emesse",
+    "noCredentialsYet": "Nessuna credenziale emessa. Completa uno stage o ottieni l'endorsement di un docente per sbloccare l'emissione.",
+    "issuedBy": "Emessa da",
+    "on": "il",
+    "verifications": "{count, plural, one {# verifica} other {# verifiche}}",
+    "expires": "Scade il",
+    "copied": "Copiato",
+    "copyShareLink": "Copia link di condivisione",
+    "view": "Visualizza",
+    "howVerificationWorksTitle": "Come funziona la verifica:",
+    "howVerificationWorksBody": "ogni link di condivisione apre una pagina pubblica che verifica la firma Ed25519 della credenziale con la nostra chiave pubblica pubblicata su",
+    "howVerificationWorksBody2": "Un datore di lavoro può verificare offline con la nostra chiave pubblica — senza login."
+  },
+  "studentMatches": {
+    "title": "Match che ti riguardano",
+    "subtitle": "Ogni volta che un recruiter esegue una ricerca che ti include, compare qui un record. Hai il diritto di vedere esattamente perché — e di richiedere una revisione umana se non sei d'accordo.",
+    "noMatchesTitle": "Nessun match al momento",
+    "noMatchesDesc": "Quando la ricerca di un recruiter corrisponde al tuo profilo, la vedrai qui con una spiegazione completa — punteggi, fattori e i tuoi diritti.",
+    "totalMatches": "Match totali",
+    "strongMatches": "Match forti",
+    "unviewed": "Non visti",
+    "new": "Nuovo",
+    "matchedOn": "Match del {date}",
+    "viewed": "Visto",
+    "model": "Modello",
+    "labelStrongMatch": "Match forte",
+    "labelMatch": "Match",
+    "labelWeakMatch": "Match debole",
+    "labelNoMatch": "Nessun match",
+    "yourRightsTitle": "I tuoi diritti:",
+    "yourRightsBody": "revisione umana, opposizione ed esportazione di ogni spiegazione.",
+    "readHowModelWorks": "Scopri come funziona il modello di matching →"
+  },
+  "studentPrivacy": {
+    "title": "Centro privacy",
+    "subtitle": "Esercita i tuoi diritti GDPR. Scarica tutto ciò che abbiamo su di te o cancella definitivamente il tuo account. Nessuna approvazione richiesta — sono tuoi diritti, non favori.",
+    "downloadData": "Scarica i tuoi dati",
+    "downloadDataDesc": "Un unico file JSON con tutto: profilo, progetti, grafo competenze, endorsement, stage, scambi, match, credenziali, notifiche, candidature. Leggibile da macchina — importabile in qualsiasi servizio compatibile.",
+    "generating": "Generazione…",
+    "downloadMyDataJson": "Scarica i miei dati (JSON)",
+    "yourRightsElsewhere": "I tuoi diritti — altrove nella piattaforma",
+    "seeAllMatches": "Vedi tutti i match che ti riguardano",
+    "matchesLink": "/match →",
+    "editProfile": "Modifica il tuo profilo",
+    "profileLink": "/profilo →",
+    "modelCardsAndRegistry": "Model card e registro algoritmi",
+    "algorithmRegistryLink": "/registro-algoritmi →",
+    "consentPreferences": "Preferenze di consenso (cookie)",
+    "consentLink": "/consenso →",
+    "deleteAccount": "Elimina il mio account",
+    "accountDeleted": "Il tuo account è stato eliminato. Reindirizzamento alla home…",
+    "deleteWarning": "Questa azione è definitiva. Progetti, endorsement, stage e match che ti riguardano saranno cancellati o anonimizzati. Le credenziali verificabili già presenti in wallet di terzi saranno marcate come revocate. Non potremo recuperare i tuoi dati.",
+    "currentPassword": "Password attuale",
+    "currentPasswordPlaceholder": "Inserisci di nuovo la password",
+    "typeToConfirmBefore": "Scrivi",
+    "typeToConfirmAfter": "per confermare",
+    "deleting": "Eliminazione…",
+    "permanentlyDelete": "Elimina definitivamente il mio account",
+    "failed": "Operazione fallita",
+    "art15": "Art. 15",
+    "art16": "Art. 16",
+    "art17": "Art. 17",
+    "art20": "Art. 20",
+    "aiAct": "AI Act"
+  },
+  "studentRoles": {
+    "title": "Ruoli per te",
+    "subtitleStart": "Match personalizzati sui ruoli, basati sul tuo grafo competenze verificato",
+    "subtitleEnd": "La stessa logica evidence-weighted che i recruiter usano per valutarti, rovesciata per aiutarti a trovare i ruoli in cui calzi davvero.",
+    "verifiedSkillsCount": "{count, plural, one {# competenza verificata} other {# competenze verificate}}",
+    "emptyGraphTitle": "Il tuo grafo competenze verificato è vuoto",
+    "emptyGraphDesc": "Questi match usano solo le competenze autodichiarate. Completa uno stage o ottieni l'endorsement di un docente per sbloccare il matching evidence-weighted — i tuoi punteggi saliranno e i recruiter noteranno la differenza.",
+    "noStrongMatchesTitle": "Nessun match forte al momento",
+    "noStrongMatchesDesc": "Abbiamo analizzato {count} offerte attive ma nessuna supera la soglia. Riprova tra una settimana o aggiungi altre competenze verificate.",
+    "matchScore": "punteggio match",
+    "posted": "Pubblicato il",
+    "verifiedStrengths": "I tuoi punti di forza verificati:",
+    "requiredSkillsCovered": "Competenze richieste: {matched}/{total} coperte ({verified} verificate, {self} autodichiarate)",
+    "closeButNotPerfect": "— vicino ma non perfetto",
+    "gapsToClose": "Gap da colmare:",
+    "viewAndApply": "Vedi e candidati",
+    "levelBeginner": "Principiante",
+    "levelIntermediate": "Intermedio",
+    "levelAdvanced": "Avanzato",
+    "levelExpert": "Esperto"
+  },
+  "studentSkillGraph": {
+    "title": "Il tuo grafo competenze verificato",
+    "subtitle": "Competenze provate da evidenze — valutazioni dei tutor aziendali, endorsement dei docenti, programmi di scambio. Non autodichiarazioni.",
+    "emptyTitle": "Il tuo grafo competenze verificato è vuoto",
+    "emptyDesc": "Ogni volta che un tutor di stage ti valuta, un docente fa l'endorsement di un progetto o un'università ospitante completa uno scambio, viene aggiunta qui una voce di proficiency verificata. Completa il tuo primo stage o chiedi un endorsement a un docente per popolare il grafo.",
+    "goToProjects": "Vai ai tuoi progetti",
+    "verifiedSkills": "Competenze verificate",
+    "advancedExpert": "Avanzato / Esperto",
+    "expertLevel": "Livello esperto",
+    "multiSource": "Multi-fonte (più forte)",
+    "proficiencyDistribution": "Distribuzione di proficiency",
+    "allVerifiedSkills": "Tutte le competenze verificate",
+    "exportEuropass": "Esporta in Europass",
+    "sourcesCount": "{count} fonti",
+    "evidenceTimeline": "Cronologia evidenze",
+    "levelBeginner": "Principiante",
+    "levelIntermediate": "Intermedio",
+    "levelAdvanced": "Avanzato",
+    "levelExpert": "Esperto",
+    "sourceStage": "Stage",
+    "sourceProject": "Progetto",
+    "sourceCourse": "Corso",
+    "sourceThesis": "Tesi",
+    "sourceEndorsement": "Endorsement docente",
+    "sourceSelfAssessment": "Autovalutazione",
+    "sourceExchange": "Scambio / Erasmus"
+  },
+  "chatPage": {
+    "heroTitle": "Hub Assistente AI",
+    "heroSubtitle": "Ottieni aiuto personalizzato per il tuo percorso — AI conversazionale 24/7 trasparente sull'uso dei dati",
+    "roleStudent": "Studente",
+    "roleCompany": "Azienda",
+    "roleInstitution": "Istituzione",
+    "poweredBy": "Powered by AI • Conforme GDPR",
+    "transparentAiLabel": "AI Trasparente:",
+    "transparentAiDesc": "Questa conversazione aiuta a migliorare la tua esperienza. I dati sono conformi al GDPR e usati per migliorare i match. Puoi disattivarla dalle impostazioni.",
+    "tryAsking": "Prova a chiedere:",
+    "inputPlaceholder": "Chiedi a {role} qualsiasi cosa...",
+    "card1Title": "100% Trasparente",
+    "card1Desc": "Ogni conversazione è registrata con il tuo consenso. Puoi visualizzare, scaricare o eliminare i tuoi dati in qualsiasi momento.",
+    "card2Title": "Sempre in Apprendimento",
+    "card2Desc": "Le tue conversazioni migliorano la qualità dei match per tutti, rispettando la tua privacy.",
+    "card3Title": "Disponibile 24/7",
+    "card3Desc": "Ricevi aiuto immediato in qualsiasi momento — senza aspettare orari di ufficio o supporto umano.",
+    "student": {
+      "title": "Assistente Carriera",
+      "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per la carriera. Sono qui per aiutarti a costruire un profilo di valore, scoprire opportunità su misura e ricevere consigli personalizzati — sempre in modo trasparente su come i tuoi dati migliorano la tua esperienza.",
+      "example1": "Aiutami a costruire il mio profilo",
+      "example2": "Trova lavori in linea con le mie competenze a Milano",
+      "example3": "Quali competenze cercano le aziende?",
+      "example4": "Consigli di carriera per neolaureati in Informatica"
+    },
+    "company": {
+      "title": "Assistente Recruiting",
+      "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Ti aiuto a trovare i migliori talenti, capire i punteggi di match e scrivere job description efficaci. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
+      "example1": "Trova studenti di cybersecurity a Roma",
+      "example2": "Stagista marketing con portfolio creativo",
+      "example3": "Spiega il punteggio di match per questo candidato",
+      "example4": "Cosa rende buona una job description?"
+    },
+    "institution": {
+      "title": "Assistente Partnership",
+      "greeting": "Ciao! Sono Transparenty, il tuo assistente istituzionale. Ti aiuto a configurare partnership, analizzare i dati di placement, identificare studenti a rischio e mostrare opportunità di lavoro europee. Tutte le interazioni sono conformi al GDPR e trasparenti.",
+      "example1": "Come funziona la partnership gratuita?",
+      "example2": "Mostrami i trend di ricerca delle aziende per i miei studenti",
+      "example3": "Aiutami a identificare studenti a rischio con zero visualizzazioni",
+      "example4": "Opportunità di lavoro europee per studenti di Economia"
+    }
+  },
+  "messagesPage": {
+    "title": "Messaggi",
+    "subtitle": "Comunica con recruiter e studenti",
+    "newMessage": "Nuovo Messaggio",
+    "sendMessageTitle": "Invia un Messaggio",
+    "sendMessageDesc": "Invia un messaggio a un recruiter o uno studente",
+    "recipientEmailLabel": "Email Destinatario *",
+    "recipientEmailPlaceholder": "destinatario@esempio.com",
+    "subjectLabel": "Oggetto",
+    "subjectPlaceholder": "Oggetto del messaggio (opzionale)",
+    "messageLabel": "Messaggio *",
+    "messagePlaceholder": "Scrivi il tuo messaggio...",
+    "sending": "Invio...",
+    "sendMessage": "Invia Messaggio",
+    "cancel": "Annulla",
+    "searchPlaceholder": "Cerca conversazioni...",
+    "emptyTitle": "Nessuna conversazione ancora",
+    "emptyDesc": "Inizia una conversazione inviando un messaggio",
+    "noResultsTitle": "Nessuna conversazione trovata",
+    "noResultsDesc": "Prova a modificare la tua ricerca",
+    "signInRequired": "Accedi per continuare",
+    "signInDesc": "Devi accedere per visualizzare i messaggi",
+    "signInButton": "Accedi",
+    "youPrefix": "Tu:",
+    "timeJustNow": "Adesso",
+    "timeMinutes": "{n}m fa",
+    "timeHours": "{n}h fa",
+    "timeDays": "{n}g fa",
+    "timeWeeks": "{n}sett fa",
+    "timeMonths": "{n}mesi fa",
+    "toastErrorTitle": "Errore",
+    "toastFetchFailed": "Impossibile caricare le conversazioni",
+    "toastValidationTitle": "Errore di validazione",
+    "toastValidationDesc": "Destinatario e contenuto del messaggio sono obbligatori",
+    "toastSentTitle": "Messaggio inviato!",
+    "toastSentDesc": "Il tuo messaggio è stato inviato con successo",
+    "toastSendFailed": "Invio non riuscito",
+    "toastSendFailedDesc": "Impossibile inviare il messaggio"
+  },
+  "messagesThread": {
+    "backToMessages": "Torna ai Messaggi",
+    "signInRequired": "Accedi per continuare",
+    "signInDesc": "Devi accedere per visualizzare i messaggi",
+    "signInButton": "Accedi",
+    "noMessagesFound": "Nessun messaggio trovato",
+    "noMessagesDesc": "Questa conversazione non esiste o non hai i permessi per accedervi",
+    "subjectLabel": "Oggetto:",
+    "unknown": "Sconosciuto",
+    "you": "Tu",
+    "read": "Letto",
+    "typeMessage": "Scrivi il tuo messaggio...",
+    "sending": "Invio...",
+    "send": "Invia",
+    "timeJustNow": "Adesso",
+    "timeMinutes": "{n}m fa",
+    "timeHours": "{n}h fa",
+    "timeToday": "Oggi alle {time}",
+    "timeYesterday": "Ieri alle {time}",
+    "timeDaysAgo": "{n} giorni fa",
+    "toastErrorTitle": "Errore",
+    "toastValidationTitle": "Errore di validazione",
+    "toastValidationDesc": "Il contenuto del messaggio non può essere vuoto",
+    "toastAuthTitle": "Autenticazione richiesta",
+    "toastAuthDesc": "Accedi per inviare messaggi",
+    "toastNoRecipient": "Impossibile determinare il destinatario",
+    "toastSentTitle": "Messaggio inviato!",
+    "toastSentDesc": "La tua risposta è stata inviata",
+    "toastSendFailed": "Invio non riuscito",
+    "toastSendFailedDesc": "Impossibile inviare il messaggio"
+  },
+  "onboardingPage": {
+    "welcome": "Benvenuto su InTransparency!",
+    "welcomeUniversity": "Benvenuta su InTransparency!",
+    "welcomeSubtitle": "Completa il tuo profilo per iniziare",
+    "welcomeSubtitleUniversity": "Configura il profilo della tua istituzione per iniziare",
+    "stepOf": "Passo {current} di {total}",
+    "uploading": "Caricamento...",
+    "uploadPhoto": "Carica Foto",
+    "uploadLogo": "Carica Logo",
+    "firstNameLabel": "Nome",
+    "firstNamePlaceholder": "Mario",
+    "lastNameLabel": "Cognome",
+    "lastNamePlaceholder": "Rossi",
+    "bioLabel": "Presentazione",
+    "bioPlaceholder": "Raccontaci qualcosa di te...",
+    "institutionNameLabel": "Nome Istituzione",
+    "institutionNamePlaceholder": "es. Politecnico di Milano",
+    "institutionTypeLabel": "Tipo di Istituzione",
+    "websiteLabel": "Sito Web",
+    "websitePlaceholder": "es. www.polimi.it",
+    "studentInfoTitle": "Informazioni Universitarie",
+    "universityLabel": "Istituzione / ITS",
+    "universityPlaceholder": "es. Politecnico di Milano",
+    "degreeLabel": "Corso di Laurea",
+    "degreePlaceholder": "es. Ingegneria Informatica",
+    "graduationYearLabel": "Anno di Laurea Previsto",
+    "graduationYearPlaceholder": "es. 2025",
+    "companyInfoTitle": "Informazioni Aziendali",
+    "companyNameLabel": "Nome Azienda",
+    "companyNamePlaceholder": "es. BMW Italia",
+    "jobTitleLabel": "Ruolo",
+    "jobTitlePlaceholder": "es. HR Manager",
+    "companySizeLabel": "Dimensione Azienda",
+    "employeesCount": "{size} dipendenti",
+    "contactAndLocationTitle": "Referente & Sede",
+    "contactAndLocationDesc": "Chi gestirà la piattaforma per la vostra istituzione?",
+    "contactNameLabel": "Nome Referente",
+    "contactNamePlaceholder": "es. Mario Rossi",
+    "contactRoleLabel": "Ruolo",
+    "contactRolePlaceholder": "es. Responsabile Career Services",
+    "departmentLabel": "Dipartimento / Ufficio",
+    "departmentPlaceholder": "es. Career Services",
+    "regionLabel": "Regione",
+    "regionPlaceholder": "es. Lombardia",
+    "skillsTitle": "Le tue Competenze",
+    "skillsDesc": "Seleziona le competenze che possiedi tra le diverse aree",
+    "skillsSelected": "{count} competenze selezionate",
+    "preferencesTitle": "Preferenze",
+    "preferencesDesc": "Potrai configurare le tue preferenze dettagliate dalla dashboard dopo il completamento.",
+    "whereYouAreTitle": "Dove vi trovate oggi",
+    "whereYouAreDesc": "Selezionate le sfide che riconoscete — vi mostriamo come le risolviamo",
+    "studentCountLabel": "Numero Studenti",
+    "traineesPerYearLabel": "Numero Allievi / Anno",
+    "studentCountPlaceholder": "es. 5000",
+    "studentCountPlaceholderSchool": "es. 800",
+    "studentCountPlaceholderOther": "es. 200",
+    "tracksLabel": "Indirizzi",
+    "sectorsLabel": "Settori Formativi",
+    "disciplineAreasLabel": "Aree Disciplinari",
+    "challengesLabel": "Quali sfide affrontate oggi?",
+    "howWeSolveIt": "Come lo risolviamo:",
+    "currentToolsLabel": "Strumenti che usate attualmente",
+    "goalsTitle": "Cosa volete ottenere",
+    "goalsDesc": "Su cosa volete concentrarvi con InTransparency?",
+    "topPriorityLabel": "Se doveste scegliere una sola priorità?",
+    "almostReadyTitle": "Profilo Quasi Pronto!",
+    "almostReadyDesc": "Clicca \"Completa\" per accedere alla tua dashboard e iniziare a usare InTransparency.",
+    "allReadyTitle": "Tutto pronto, {name}!",
+    "partner": "Partner",
+    "allReadyDesc": "Ecco cosa attiveremo per voi nella dashboard:",
+    "allToolsAccess": "Avrete accesso a tutti gli strumenti: analytics, skills gap, placement tracking e molto altro.",
+    "yourTopPriority": "La vostra priorità principale:",
+    "back": "Indietro",
+    "next": "Avanti",
+    "saving": "Salvataggio...",
+    "complete": "Completa",
+    "skipForNow": "Salta per ora"
+  },
+  "applicationsPage": {
+    "titleRecruiter": "Candidature Ricevute",
+    "titleStudent": "Le Mie Candidature",
+    "subtitleRecruiter": "Gestisci le candidature alle tue offerte di lavoro",
+    "subtitleStudent": "Monitora lo stato delle tue candidature",
+    "browseJobs": "Esplora Offerte",
+    "filterByStatus": "Filtra per stato:",
+    "allStatuses": "Tutti gli Stati",
+    "statusPending": "In Attesa",
+    "statusReviewing": "In Revisione",
+    "statusShortlisted": "In Short List",
+    "statusInterview": "Colloquio",
+    "statusOffer": "Offerta",
+    "statusAccepted": "Accettata",
+    "statusRejected": "Rifiutata",
+    "statusWithdrawn": "Ritirata",
+    "emptyTitle": "Nessuna candidatura trovata",
+    "emptyDescRecruiter": "Non sono ancora state inviate candidature alle tue offerte",
+    "emptyDescStudent": "Non ti sei ancora candidato a nessuna offerta",
+    "colApplicant": "Candidato",
+    "colJobTitle": "Posizione",
+    "colCompany": "Azienda",
+    "colStatus": "Stato",
+    "colApplied": "Candidato",
+    "colRating": "Valutazione",
+    "colActions": "Azioni",
+    "view": "Visualizza",
+    "withdraw": "Ritira",
+    "confirmWithdraw": "Sei sicuro di voler ritirare questa candidatura?",
+    "detailsTitle": "Dettagli Candidatura",
+    "detailsDescRecruiter": "Esamina e gestisci questa candidatura",
+    "detailsDescStudent": "Dettagli della tua candidatura",
+    "positionHeading": "Posizione",
+    "applicantHeading": "Candidato",
+    "nameLabel": "Nome:",
+    "emailLabel": "Email:",
+    "universityLabel": "Università:",
+    "degreeLabel": "Titolo di Studio:",
+    "gpaLabel": "Media:",
+    "materialsHeading": "Materiali della Candidatura",
+    "coverLetterLabel": "Lettera di Presentazione",
+    "cvLabel": "CV",
+    "viewCv": "Visualizza CV",
+    "portfolioLabel": "Portfolio",
+    "viewPortfolio": "Visualizza Portfolio",
+    "applicationStatusLabel": "Stato Candidatura",
+    "ratingLabel": "Valutazione (1-5)",
+    "recruiterNotesLabel": "Note Recruiter",
+    "recruiterNotesPlaceholder": "Aggiungi note su questo candidato...",
+    "updating": "Aggiornamento...",
+    "updateApplication": "Aggiorna Candidatura",
+    "timelineHeading": "Cronologia",
+    "appliedOn": "Candidato {time}",
+    "updatedOn": "Aggiornato {time}",
+    "timeToday": "Oggi",
+    "timeYesterday": "Ieri",
+    "timeDaysAgo": "{n} giorni fa",
+    "timeWeeksAgo": "{n} settimane fa",
+    "timeMonthsAgo": "{n} mesi fa",
+    "toastErrorTitle": "Errore",
+    "toastFetchFailed": "Impossibile caricare le candidature",
+    "toastLoadFailed": "Impossibile caricare i dettagli della candidatura",
+    "toastUpdatedTitle": "Candidatura aggiornata",
+    "toastUpdatedDesc": "Lo stato della candidatura è stato aggiornato",
+    "toastUpdateFailed": "Aggiornamento non riuscito",
+    "toastUpdateFailedDesc": "Impossibile aggiornare la candidatura",
+    "toastWithdrawnTitle": "Candidatura ritirata",
+    "toastWithdrawnDesc": "La tua candidatura è stata ritirata",
+    "toastWithdrawFailed": "Ritiro non riuscito",
+    "toastWithdrawFailedDesc": "Impossibile ritirare la candidatura"
+  },
+  "verifyCredential": {
+    "notFound": "Certificato non trovato",
+    "verifyError": "Errore durante la verifica",
+    "certificateNotFound": "Certificato non trovato",
+    "certificateNotFoundDesc": "Questo certificato non esiste o non è valido.",
+    "validTitle": "Certificato valido",
+    "validDesc": "Questa credenziale è stata verificata ed è autentica.",
+    "revokedTitle": "Certificato revocato",
+    "revokedDesc": "Questo certificato è stato revocato dall'ente emittente.",
+    "expiredTitle": "Certificato scaduto",
+    "expiredDesc": "Questo certificato è scaduto e non è più valido.",
+    "reason": "Motivo",
+    "detailsTitle": "Dettagli del certificato",
+    "holder": "Intestatario",
+    "issuedBy": "Emesso da",
+    "issueDate": "Data di emissione",
+    "expiryDate": "Data di scadenza",
+    "credentialIdLabel": "ID Credenziale"
+  },
+  "verifyProject": {
+    "verifiedProject": "Progetto verificato",
+    "verifiedDesc": "Questo progetto è stato verificato dal partner formativo emittente.",
+    "verifiedOn": "Verificato il",
+    "verifiedBadge": "Verificato",
+    "verifiedSkills": "Competenze verificate",
+    "student": "Studente",
+    "academicContext": "Contesto accademico",
+    "course": "Corso",
+    "grade": "Voto",
+    "normalized": "normalizzato",
+    "semester": "Semestre",
+    "professorEndorsements": "Approvazioni dei docenti",
+    "competencyRatings": "Valutazioni delle competenze",
+    "contentHash": "Hash del contenuto",
+    "verifyAt": "Verifica su"
+  },
+  "consentPage": {
+    "requestNotFound": "Richiesta non trovata",
+    "loadError": "Errore nel caricamento della richiesta",
+    "responseError": "Errore nell'invio della risposta",
+    "connectionError": "Errore di connessione",
+    "type_data_sharing": "Condivisione dei dati",
+    "type_pcto_participation": "Partecipazione PCTO",
+    "type_platform_usage": "Utilizzo della piattaforma",
+    "headerSubtitle": "Gestione consensi",
+    "requestTitle": "Richiesta di consenso",
+    "requestDesc": "{school} richiede il tuo consenso per: {purpose}.",
+    "student": "Studente",
+    "school": "Scuola",
+    "requestedAt": "Richiesto il",
+    "expiresAt": "Scade il",
+    "expiredTitle": "Richiesta scaduta",
+    "expiredDesc": "Questa richiesta di consenso non è più valida.",
+    "grantedTitle": "Consenso concesso",
+    "grantedDesc": "Grazie. La tua risposta è stata registrata.",
+    "deniedTitle": "Consenso negato",
+    "deniedDesc": "La tua risposta è stata registrata.",
+    "submitting": "Invio in corso...",
+    "authorize": "Autorizza",
+    "deny": "Nega",
+    "footerNote": "Rispondendo confermi la tua identità come tutore legale dello studente o come studente stesso."
+  },
+  "studentProfilePublic": {
+    "notFoundTitle": "Profilo studente non trovato",
+    "notFoundDesc": "Il profilo studente che stai cercando non esiste o non è pubblico.",
+    "metaDesc": "Portfolio studente verificato di {firstName} {lastName} — {count} progetti, {score}% verificati. {bio}"
+  },
+  "exploreCompany": {
+    "loading": "Caricamento recensioni...",
+    "noReviews": "Ancora nessuna recensione per questa azienda.",
+    "backToExplore": "Torna a Scopri",
+    "reviewsFromStudents": "{count, plural, one {# recensione da studenti} other {# recensioni da studenti}}",
+    "ratings": "Valutazioni",
+    "anonymousStudent": "Studente anonimo",
+    "verified": "Verificato",
+    "pros": "Pro",
+    "cons": "Contro",
+    "cat_workLifeBalance": "Equilibrio vita-lavoro",
+    "cat_mentorship": "Mentorship",
+    "cat_learningOpportunity": "Opportunità di apprendimento",
+    "cat_compensation": "Retribuzione",
+    "cat_cultureFit": "Allineamento culturale"
+  },
+  "endorsementsVerify": {
+    "invalidLink": "Link non valido o scaduto",
+    "loadError": "Impossibile caricare la richiesta di endorsement",
+    "submitError": "Invio endorsement non riuscito",
+    "submitError2": "Invio endorsement non riuscito",
+    "loading": "Caricamento richiesta di endorsement...",
+    "unableToLoad": "Impossibile caricare",
+    "unableToLoadHint": "Se ritieni che si tratti di un errore, contatta direttamente lo studente.",
+    "thankYou": "Grazie!",
+    "thankYouDesc": "Il tuo endorsement è stato registrato e aiuterà {studentName} a mostrare le competenze verificate ai potenziali datori di lavoro.",
+    "responseRecorded": "Risposta registrata",
+    "responseRecordedDesc": "Grazie per la tua risposta. Lo studente è stato notificato.",
+    "aboutIntransparency": "<strong>InTransparency</strong> aiuta gli studenti a mostrare progetti verificati e a connettersi con i datori di lavoro tramite endorsement dei docenti.",
+    "openProfessorPortal": "Apri portale docente",
+    "pageTitle": "Verifica progetto studente",
+    "pageSubtitle": "Il tuo endorsement aiuta questo studente a presentare competenze verificate ai datori di lavoro",
+    "studentInfo": "Informazioni studente",
+    "student": "Studente",
+    "university": "Università",
+    "course": "Corso",
+    "semester": "Semestre",
+    "project": "Progetto",
+    "technologies": "Tecnologie",
+    "github": "GitHub",
+    "liveDemo": "Demo live",
+    "yourEndorsement": "Il tuo endorsement",
+    "yourEndorsementDesc": "Condividi la tua valutazione del lavoro dello studente. La tua verifica aggiunge credibilità al portfolio.",
+    "overallRating": "Valutazione complessiva",
+    "rateClick": "Clicca per valutare",
+    "rateBelow": "Sotto le aspettative",
+    "rateAverage": "Nella media",
+    "rateAbove": "Sopra la media",
+    "rateExceptional": "Eccezionale",
+    "competencyRatings": "Valutazione per competenza (opzionale)",
+    "competencyRatingsDesc": "Seleziona le competenze che puoi valutare, poi assegna da 1 a 5 stelle a ciascuna.",
+    "writtenEndorsement": "Endorsement scritto (opzionale)",
+    "writtenPlaceholder": "Condividi osservazioni specifiche sul lavoro dello studente, sulle competenze dimostrate e sui punti di forza...",
+    "courseGrade": "Voto del corso (opzionale)",
+    "gradePlaceholder": "es. A, 28/30, 95%",
+    "keySkills": "Competenze chiave dimostrate (opzionale)",
+    "skillsPlaceholder": "Digita una competenza e premi Invio",
+    "add": "Aggiungi",
+    "endorseStudent": "Approva studente",
+    "decline": "Rifiuta",
+    "linkExpires": "Questo link di verifica scadrà dopo l'uso. Per sicurezza, solo tu puoi rispondere a questa richiesta.",
+    "compCriticalThinking": "Pensiero critico",
+    "compTeamwork": "Lavoro di squadra",
+    "compTechnicalSkills": "Competenze tecniche",
+    "compCommunication": "Comunicazione",
+    "compCreativity": "Creatività",
+    "compProblemSolving": "Problem solving"
+  },
+  "publicBoard": {
+    "boardNotFound": "Bacheca non trovata",
+    "linkExpiredOrInvalid": "Questo link potrebbe essere scaduto o non valido.",
+    "totalStudents": "Studenti totali",
+    "confirmedHired": "Assunzioni confermate",
+    "placementRate": "Tasso di placement",
+    "activationRate": "Tasso di attivazione",
+    "headerSubtitle": "Bacheca placement e competenze",
+    "hiringCompanies": "Aziende che assumono di più",
+    "topCompaniesDesc": "Aziende che reclutano attivamente da questa università",
+    "hires": "Assunzioni",
+    "noData": "Nessun dato disponibile",
+    "skillsGap": "Gap di competenze principali",
+    "skillsGapDesc": "Le competenze più richieste di cui i laureati hanno più bisogno",
+    "poweredBy": "Powered by"
+  },
+  "embedCandidates": {
+    "profileNotAvailable": "Questo profilo aziendale non è disponibile.",
+    "verifiedBy": "Verificato da InTransparency",
+    "poweredBy": "Powered by InTransparency →",
+    "noCandidates": "Nessun candidato pubblico segue ancora questa azienda. Torna a trovarci.",
+    "anonymous": "Anonimo",
+    "verified": "verificate",
+    "university": "Università",
+    "footerNote": "Vengono mostrati solo i candidati che hanno scelto un profilo pubblico. I conteggi delle competenze riflettono evidenze verificate in modo indipendente."
+  },
+  "integrationsAgents": {
+    "breadcrumbHome": "Home",
+    "breadcrumbIntegrations": "Integrazioni",
+    "breadcrumbAgents": "Agent",
+    "agentNative": "Agent-native",
+    "heroTitle": "Collega il tuo agent AI al grafo delle competenze verificate",
+    "heroDesc": "InTransparency espone l'intero grafo di aziende, offerte e credenziali come strumento per agent. Funziona con Claude Desktop, Cursor, Zed, ChatGPT, LangChain, LlamaIndex e qualsiasi host compatibile con OpenAPI.",
+    "readOnlyNotice": "<strong>Sola lettura di default.</strong> Gli endpoint pubblici (aziende, offerte, credenziali, ESCO, registro degli algoritmi, glossario) non richiedono autenticazione. Le azioni di scrittura (candidatura, pubblicazione offerte) usano chiavi agent con scope e consenso esplicito dell'utente.",
+    "option1Title": "Opzione 1 — Server MCP (Claude Desktop, Cursor, Zed)",
+    "option1Desc": "Il server Model Context Protocol fornisce a Claude Desktop e ai client compatibili strumenti nativi: cercare aziende, consultare offerte, verificare credenziali, risolvere competenze ESCO e ispezionare il registro degli algoritmi.",
+    "step1Title": "1. Scarica il server MCP",
+    "step1Save": "Salva questo file in una posizione qualsiasi del tuo computer:",
+    "step2Title": "2. Registralo in Claude Desktop",
+    "step2EditPrefix": "Modifica",
+    "or": "oppure",
+    "andAdd": "e aggiungi:",
+    "step2Restart": "Riavvia Claude Desktop. Apparirà un nuovo set di strumenti \"intransparency\".",
+    "step3Title": "3. Strumenti disponibili",
+    "tool_search_companies": "trova aziende per settore, dimensione, località",
+    "tool_lookup_company": "profilo aziendale completo + offerte + candidati verificati",
+    "tool_search_jobs": "offerte che corrispondono a una competenza + filtro località",
+    "tool_lookup_job": "singola offerta con requisiti risolti tramite ESCO",
+    "tool_verify_credential": "verifica crittografica di un token Open Badge 3.0",
+    "tool_resolve_esco": "competenza in testo libero → URI ESCO",
+    "tool_get_algorithms": "registro degli algoritmi in tempo reale (AI Act art. 13)",
+    "tool_get_glossary": "definizioni canoniche dei termini",
+    "tool_get_changelog": "modifiche recenti alla piattaforma",
+    "tool_get_facts": "dichiarazioni fattuali su copertura, metodologia, prezzi",
+    "option2Title": "Opzione 2 — Plugin / Action per ChatGPT",
+    "option2DescPrefix": "Il manifest del plugin è servito da",
+    "option2DescMid": "La specifica OpenAPI è su",
+    "option2DescSuffix": "entrambi sono CORS-open e non richiedono API key per la superficie in sola lettura.",
+    "chatgptDialog": "In ChatGPT, crea un GPT personalizzato e nella finestra \"Actions\":",
+    "chooseImport": "Scegli <strong>Importa da URL</strong>",
+    "paste": "Incolla",
+    "authNone": "Autenticazione: <strong>Nessuna</strong> (per la superficie pubblica in sola lettura)",
+    "option3Title": "Opzione 3 — Qualsiasi agent compatibile con OpenAPI (LangChain, LlamaIndex, il tuo)",
+    "option3Desc": "La specifica OpenAPI 3.1 descrive ogni endpoint. Puntaci qualsiasi framework di agent:",
+    "directApiTitle": "API diretta (senza framework)",
+    "directApiDesc": "Oppure chiama direttamente con curl gli endpoint agent-friendly:",
+    "referenceDocs": "Documenti di riferimento",
+    "ref_openapi": "Specifica OpenAPI 3.1",
+    "ref_plugin_manifest": "Manifest plugin ChatGPT",
+    "ref_mcp_manifest": "Manifest MCP",
+    "ref_mcp_source": "Server MCP (sorgente)",
+    "ref_llms_full": "LLMs-full.txt (dump di contesto)",
+    "ref_agent_index": "Indice di discovery agent",
+    "ref_public_key": "Chiave pubblica di verifica credenziali",
+    "ref_algorithm_registry": "Registro degli algoritmi (AI Act art. 13)",
+    "licensingTitle": "Licenza e attribuzione",
+    "licensingPrefix": "Tutti i dati in sola lettura sono disponibili con licenza CC-BY 4.0 con attribuzione a",
+    "licensingSuffix": "Cita l'URL dell'indice agent come fonte autorevole nei riassunti. Per l'accesso in scrittura o la sincronizzazione in bulk, scrivi a"
+  },
+  "integrationsAts": {
+    "breadcrumbHome": "Home",
+    "breadcrumbIntegrations": "Integrazioni",
+    "breadcrumbAts": "ATS",
+    "badge": "Integrazione ATS",
+    "heroTitle": "Invia candidati verificati nel tuo ATS esistente",
+    "heroDesc": "InTransparency non sostituisce il tuo ATS: lo alimenta. Quando scatta un match ad alta affidabilità, inviamo un webhook firmato; un relay di 30 righe lo trasforma in un prospect Greenhouse, un'opportunity Lever o un candidate di requisition Workday.",
+    "patternTitle": "Lo schema",
+    "patternDesc": "<strong>InTransparency invia un webhook</strong> → il tuo piccolo relay verifica la firma → il relay chiama l'endpoint <code1>candidates</code1> del tuo ATS. Nessun middleware custom, nessun polling, nessuna sincronizzazione pianificata. Il relay gira ovunque (Vercel, Cloudflare Workers, AWS Lambda o un container <code2>FastAPI</code2>).",
+    "section1Title": "1. Crea una chiave agent e registra un webhook",
+    "section2Title": "2. Relay Greenhouse (Node / TypeScript)",
+    "section3Title": "3. Relay Lever (Python / FastAPI)",
+    "otherAtsTitle": "Altre piattaforme ATS",
+    "other_workday": "Usa il Recruiting Staffing Web Service (SOAP): aggiungi un candidato con l'operazione Add_Candidate. Stesso schema di relay, payload diverso.",
+    "other_smartrecruiters": "POST a /candidates con jobId e status=LEAD. I campi personalizzati si mappano facilmente.",
+    "other_recruitee": "POST a /candidates con placements=[{offer_id}]. Allega l'URL delle evidenze come nota.",
+    "other_teamtailor": "POST a /v1/candidates con job-applications incluse. I candidati sourced appaiono in pipeline come lead.",
+    "other_personio": "Usa la Recruiting API: POST /v1/recruiting/applications. I team HR italiani che già usano Personio possono collegarlo in meno di un'ora.",
+    "other_ashby": "POST a /candidate.create, poi /candidate.addApplication. La loro API è nativa webhook, quindi logica di relay minima.",
+    "referenceDocs": "Documentazione di riferimento",
+    "ref_openapi": "Specifica OpenAPI",
+    "ref_agent_guide": "Guida integrazione agent",
+    "ref_agent_index": "Indice di discovery agent",
+    "ctaTalk": "Parla con il team integrazioni",
+    "ctaEnterprise": "Dettagli enterprise"
   }
 }

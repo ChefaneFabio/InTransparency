@@ -123,8 +123,8 @@ export default function ForUniversitiesPage() {
                 </div>
                 <p className="text-sm text-gray-700 mb-4">{t('socialProof.unibg.description')}</p>
                 <div className="flex gap-2">
-                  <Badge variant="secondary">Pilot Partner</Badge>
-                  <Badge variant="secondary">2024–2025</Badge>
+                  <Badge variant="secondary">{t('socialProof.unibg.status')}</Badge>
+                  <Badge variant="secondary">2026</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -138,7 +138,7 @@ export default function ForUniversitiesPage() {
                 <p className="text-sm text-gray-700 mb-4">{t('socialProof.startCup.description')}</p>
                 <div className="flex gap-2">
                   <Badge variant="secondary">Start Cup Bergamo</Badge>
-                  <Badge variant="secondary">2024</Badge>
+                  <Badge variant="secondary">2025</Badge>
                 </div>
               </CardContent>
             </Card>

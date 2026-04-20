@@ -1,5 +1,6 @@
 import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Award, Shield, BookOpen, Calendar, CheckCircle, User } from 'lucide-react'
@@ -14,7 +15,8 @@ interface Props {
  * Shows verified project details, endorsements, institution info.
  */
 export default async function VerifyProjectPage({ params }: Props) {
-  const { projectId } = await params
+  const { projectId, locale } = await params
+  const t = await getTranslations('verifyProject')
 
   const project = await prisma.project.findUnique({
     where: { id: projectId },
@@ -77,15 +79,14 @@ export default async function VerifyProjectPage({ params }: Props) {
               <Shield className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-green-900">Verified Project</h1>
+              <h1 className="text-xl font-bold text-green-900">{t('verifiedProject')}</h1>
               <p className="text-green-700 text-sm mt-1">
-                This project has been verified by the student&apos;s institution.
-                All information has been authenticated.
+                {t('verifiedDesc')}
               </p>
               {project.verifiedAt && (
                 <p className="text-primary text-xs mt-2 flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
-                  Verified on {new Date(project.verifiedAt).toLocaleDateString('en-GB', {
+                  {t('verifiedOn')} {new Date(project.verifiedAt).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
@@ -111,7 +112,7 @@ export default async function VerifyProjectPage({ params }: Props) {
             </div>
             <Badge className="bg-primary/10 text-green-700 border-green-300">
               <CheckCircle className="mr-1 h-3 w-3" />
-              Verified
+              {t('verifiedBadge')}
             </Badge>
           </div>
         </CardHeader>
@@ -121,7 +122,7 @@ export default async function VerifyProjectPage({ params }: Props) {
           {/* Skills */}
           {(project.skills.length > 0 || project.technologies.length > 0) && (
             <div className="mt-4">
-              <p className="text-sm font-medium text-gray-500 mb-2">Verified Skills</p>
+              <p className="text-sm font-medium text-gray-500 mb-2">{t('verifiedSkills')}</p>
               <div className="flex flex-wrap gap-2">
                 {project.skills.map((skill) => (
                   <Badge key={skill} variant="secondary">{skill}</Badge>
@@ -141,7 +142,7 @@ export default async function VerifyProjectPage({ params }: Props) {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <User className="h-5 w-5 text-primary" />
-              Student
+              {t('student')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -161,13 +162,13 @@ export default async function VerifyProjectPage({ params }: Props) {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
-              Academic Context
+              {t('academicContext')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {project.courseName && (
               <div>
-                <p className="text-sm text-gray-500">Course</p>
+                <p className="text-sm text-gray-500">{t('course')}</p>
                 <p className="text-gray-900">
                   {project.courseName}
                   {project.courseCode && ` (${project.courseCode})`}
@@ -176,12 +177,12 @@ export default async function VerifyProjectPage({ params }: Props) {
             )}
             {project.grade && (
               <div>
-                <p className="text-sm text-gray-500">Grade</p>
+                <p className="text-sm text-gray-500">{t('grade')}</p>
                 <p className="text-gray-900">
                   {project.grade}
                   {normalizedDisplay && (
                     <span className="text-sm text-gray-500 ml-2">
-                      (normalized: {normalizedDisplay})
+                      ({t('normalized')}: {normalizedDisplay})
                     </span>
                   )}
                 </p>
@@ -189,7 +190,7 @@ export default async function VerifyProjectPage({ params }: Props) {
             )}
             {project.semester && (
               <div>
-                <p className="text-sm text-gray-500">Semester</p>
+                <p className="text-sm text-gray-500">{t('semester')}</p>
                 <p className="text-gray-900">{project.semester}</p>
               </div>
             )}
@@ -203,7 +204,7 @@ export default async function VerifyProjectPage({ params }: Props) {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Award className="h-5 w-5 text-primary" />
-              Professor Endorsements ({project.endorsements.length})
+              {t('professorEndorsements')} ({project.endorsements.length})
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -229,7 +230,7 @@ export default async function VerifyProjectPage({ params }: Props) {
                 )}
                 {e.competencyRatings && typeof e.competencyRatings === 'object' && Object.keys(e.competencyRatings as Record<string, number>).length > 0 && (
                   <div className="mt-3 pt-3 border-t">
-                    <p className="text-xs font-medium text-gray-500 mb-2">Competency Ratings</p>
+                    <p className="text-xs font-medium text-gray-500 mb-2">{t('competencyRatings')}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {Array.from(Object.entries(e.competencyRatings as Record<string, number>)).map(([comp, val]) => (
                         <div key={comp} className="flex items-center gap-2">
@@ -265,13 +266,13 @@ export default async function VerifyProjectPage({ params }: Props) {
           <CardContent className="p-4">
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="h-4 w-4" />
-              <span>Content hash: </span>
+              <span>{t('contentHash')}: </span>
               <code className="text-xs bg-gray-200 px-2 py-0.5 rounded font-mono">
                 {badge.contentHash.substring(0, 16)}...
               </code>
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              Verify at: {verifyUrl}
+              {t('verifyAt')}: {verifyUrl}
             </p>
           </CardContent>
         </Card>

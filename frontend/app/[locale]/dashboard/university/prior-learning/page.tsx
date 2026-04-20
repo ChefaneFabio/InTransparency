@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -35,6 +36,7 @@ interface Stats {
 }
 
 export default function PriorLearningPage() {
+  const t = useTranslations('priorLearning')
   const [assessments, setAssessments] = useState<PriorLearningAssessment[]>([])
   const [stats, setStats] = useState<Stats>({ total: 0, submitted: 0, underReview: 0, approved: 0, rejected: 0 })
   const [loading, setLoading] = useState(true)
@@ -94,17 +96,17 @@ export default function PriorLearningPage() {
   }
 
   const experienceTypeLabels: Record<string, string> = {
-    work: 'Esperienza Lavorativa',
-    self_taught: 'Autoapprendimento',
-    informal: 'Apprendimento Informale',
-    non_formal: 'Apprendimento Non Formale',
+    work: t('experienceTypes.work'),
+    self_taught: t('experienceTypes.selfTaught'),
+    informal: t('experienceTypes.informal'),
+    non_formal: t('experienceTypes.nonFormal'),
   }
 
   const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
-    SUBMITTED: { label: 'Presentato', variant: 'secondary' },
-    UNDER_REVIEW: { label: 'In Revisione', variant: 'outline' },
-    APPROVED: { label: 'Approvato', variant: 'default' },
-    REJECTED: { label: 'Respinto', variant: 'destructive' },
+    SUBMITTED: { label: t('status.submitted'), variant: 'secondary' },
+    UNDER_REVIEW: { label: t('status.underReview'), variant: 'outline' },
+    APPROVED: { label: t('status.approved'), variant: 'default' },
+    REJECTED: { label: t('status.rejected'), variant: 'destructive' },
   }
 
   const filterAssessments = (tab: string) => {
@@ -130,9 +132,9 @@ export default function PriorLearningPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Riconoscimento Apprendimento Pregresso</h1>
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
-          Valuta e riconosci le competenze acquisite in contesti non formali e informali
+          {t('subtitle')}
         </p>
       </div>
 
@@ -144,7 +146,7 @@ export default function PriorLearningPage() {
               <div className="rounded-lg bg-blue-100 p-2"><FileText className="h-5 w-5 text-blue-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-muted-foreground">Totali</p>
+                <p className="text-sm text-muted-foreground">{t('stats.total')}</p>
               </div>
             </div>
           </CardContent>
@@ -155,7 +157,7 @@ export default function PriorLearningPage() {
               <div className="rounded-lg bg-amber-100 p-2"><Clock className="h-5 w-5 text-amber-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.submitted + stats.underReview}</p>
-                <p className="text-sm text-muted-foreground">In Revisione</p>
+                <p className="text-sm text-muted-foreground">{t('stats.inReview')}</p>
               </div>
             </div>
           </CardContent>
@@ -166,7 +168,7 @@ export default function PriorLearningPage() {
               <div className="rounded-lg bg-green-100 p-2"><CheckCircle className="h-5 w-5 text-green-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.approved}</p>
-                <p className="text-sm text-muted-foreground">Approvati</p>
+                <p className="text-sm text-muted-foreground">{t('stats.approved')}</p>
               </div>
             </div>
           </CardContent>
@@ -177,7 +179,7 @@ export default function PriorLearningPage() {
               <div className="rounded-lg bg-red-100 p-2"><XCircle className="h-5 w-5 text-red-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.rejected}</p>
-                <p className="text-sm text-muted-foreground">Respinti</p>
+                <p className="text-sm text-muted-foreground">{t('stats.rejected')}</p>
               </div>
             </div>
           </CardContent>
@@ -187,9 +189,9 @@ export default function PriorLearningPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList>
-          <TabsTrigger value="pending">In Revisione ({stats.submitted + stats.underReview})</TabsTrigger>
-          <TabsTrigger value="approved">Approvati ({stats.approved})</TabsTrigger>
-          <TabsTrigger value="all">Tutti ({stats.total})</TabsTrigger>
+          <TabsTrigger value="pending">{t('tabs.pending', { count: stats.submitted + stats.underReview })}</TabsTrigger>
+          <TabsTrigger value="approved">{t('tabs.approved', { count: stats.approved })}</TabsTrigger>
+          <TabsTrigger value="all">{t('tabs.all', { count: stats.total })}</TabsTrigger>
         </TabsList>
 
         {['pending', 'approved', 'all'].map((tab) => (
@@ -197,7 +199,7 @@ export default function PriorLearningPage() {
             {filterAssessments(tab).length === 0 ? (
               <Card>
                 <CardContent className="py-12 text-center">
-                  <p className="text-muted-foreground">Nessuna valutazione in questa categoria.</p>
+                  <p className="text-muted-foreground">{t('empty.noAssessments')}</p>
                 </CardContent>
               </Card>
             ) : (
@@ -213,7 +215,7 @@ export default function PriorLearningPage() {
                             <Badge variant="outline">{experienceTypeLabels[a.experienceType] || a.experienceType}</Badge>
                             <Badge variant={cfg.variant}>{cfg.label}</Badge>
                             {a.yearsExperience && (
-                              <span className="text-xs text-muted-foreground">{a.yearsExperience} anni</span>
+                              <span className="text-xs text-muted-foreground">{t('labels.years', { count: a.yearsExperience })}</span>
                             )}
                           </div>
                         </div>
@@ -224,7 +226,7 @@ export default function PriorLearningPage() {
 
                       {a.recognizedSkills && Array.isArray(a.recognizedSkills) && a.recognizedSkills.length > 0 && (
                         <div>
-                          <p className="text-xs font-medium mb-1">Competenze Riconosciute:</p>
+                          <p className="text-xs font-medium mb-1">{t('labels.recognizedSkills')}</p>
                           <div className="flex flex-wrap gap-1">
                             {a.recognizedSkills.map((s, i) => (
                               <Badge key={i} variant="secondary" className="text-xs">
@@ -238,13 +240,13 @@ export default function PriorLearningPage() {
                       {a.creditEquivalent && (
                         <div className="flex items-center gap-2">
                           <Award className="h-4 w-4 text-primary" />
-                          <span className="text-sm font-medium">{a.creditEquivalent} crediti equivalenti</span>
+                          <span className="text-sm font-medium">{t('labels.creditsEquivalent', { count: a.creditEquivalent })}</span>
                         </div>
                       )}
 
                       {a.reviewerNotes && (
                         <div className="bg-muted/50 rounded p-3">
-                          <p className="text-xs font-medium mb-1">Note del revisore:</p>
+                          <p className="text-xs font-medium mb-1">{t('labels.reviewerNotes')}</p>
                           <p className="text-sm">{a.reviewerNotes}</p>
                         </div>
                       )}
@@ -252,29 +254,29 @@ export default function PriorLearningPage() {
                       {/* Review form */}
                       {(a.status === 'SUBMITTED' || a.status === 'UNDER_REVIEW') && reviewingId !== a.id && (
                         <Button variant="outline" size="sm" onClick={() => { setReviewingId(a.id); setReviewStatus(''); setReviewNotes(''); setReviewCredits('') }}>
-                          Valuta
+                          {t('actions.evaluate')}
                         </Button>
                       )}
 
                       {reviewingId === a.id && (
                         <div className="border rounded-lg p-4 space-y-3">
-                          <p className="text-sm font-medium">Revisione</p>
+                          <p className="text-sm font-medium">{t('reviewForm.heading')}</p>
                           <div className="grid gap-3 md:grid-cols-3">
                             <div>
-                              <label className="text-xs font-medium mb-1 block">Decisione</label>
+                              <label className="text-xs font-medium mb-1 block">{t('reviewForm.decisionLabel')}</label>
                               <Select value={reviewStatus} onValueChange={setReviewStatus}>
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Seleziona..." />
+                                  <SelectValue placeholder={t('reviewForm.selectPlaceholder')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="APPROVED">Approva</SelectItem>
-                                  <SelectItem value="REJECTED">Respingi</SelectItem>
-                                  <SelectItem value="UNDER_REVIEW">In Revisione</SelectItem>
+                                  <SelectItem value="APPROVED">{t('reviewForm.approve')}</SelectItem>
+                                  <SelectItem value="REJECTED">{t('reviewForm.reject')}</SelectItem>
+                                  <SelectItem value="UNDER_REVIEW">{t('reviewForm.underReview')}</SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
                             <div>
-                              <label className="text-xs font-medium mb-1 block">Crediti Equivalenti</label>
+                              <label className="text-xs font-medium mb-1 block">{t('reviewForm.creditsLabel')}</label>
                               <Input
                                 type="number"
                                 placeholder="0"
@@ -283,9 +285,9 @@ export default function PriorLearningPage() {
                               />
                             </div>
                             <div>
-                              <label className="text-xs font-medium mb-1 block">Note</label>
+                              <label className="text-xs font-medium mb-1 block">{t('reviewForm.notesLabel')}</label>
                               <Input
-                                placeholder="Note..."
+                                placeholder={t('reviewForm.notesPlaceholder')}
                                 value={reviewNotes}
                                 onChange={(e) => setReviewNotes(e.target.value)}
                               />
@@ -293,10 +295,10 @@ export default function PriorLearningPage() {
                           </div>
                           <div className="flex gap-2">
                             <Button size="sm" onClick={() => handleReview(a.id)} disabled={submitting || !reviewStatus}>
-                              {submitting ? 'Invio...' : 'Conferma'}
+                              {submitting ? t('actions.submitting') : t('actions.confirm')}
                             </Button>
                             <Button size="sm" variant="outline" onClick={() => setReviewingId(null)}>
-                              Annulla
+                              {t('actions.cancel')}
                             </Button>
                           </div>
                         </div>

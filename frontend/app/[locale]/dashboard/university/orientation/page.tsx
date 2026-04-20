@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -34,6 +35,7 @@ interface Stats {
 }
 
 export default function OrientationPage() {
+  const t = useTranslations('orientation')
   const [assessments, setAssessments] = useState<Assessment[]>([])
   const [stats, setStats] = useState<Stats>({ total: 0, completed: 0, inProgress: 0, avgInterestAreas: {} })
   const [loading, setLoading] = useState(true)
@@ -68,7 +70,7 @@ export default function OrientationPage() {
       })
       if (res.ok) {
         await fetchData()
-        alert('Assessment avviato con successo!')
+        alert(t('alerts.assessmentStarted'))
       }
     } catch (err) {
       console.error('Failed to start assessment:', err)
@@ -94,9 +96,9 @@ export default function OrientationPage() {
     : []
 
   const pathTypeLabels: Record<string, string> = {
-    university: 'Universit\u00e0',
-    its: 'ITS',
-    work: 'Lavoro',
+    university: t('pathTypes.university'),
+    its: t('pathTypes.its'),
+    work: t('pathTypes.work'),
   }
 
   if (loading) {
@@ -114,9 +116,9 @@ export default function OrientationPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Orientamento</h1>
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
-          Strumenti di orientamento per gli studenti della scuola
+          {t('subtitle')}
         </p>
       </div>
 
@@ -128,7 +130,7 @@ export default function OrientationPage() {
               <div className="rounded-lg bg-blue-100 p-2"><ClipboardList className="h-5 w-5 text-blue-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-muted-foreground">Assessment Totali</p>
+                <p className="text-sm text-muted-foreground">{t('stats.total')}</p>
               </div>
             </div>
           </CardContent>
@@ -139,7 +141,7 @@ export default function OrientationPage() {
               <div className="rounded-lg bg-green-100 p-2"><CheckCircle className="h-5 w-5 text-green-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.completed}</p>
-                <p className="text-sm text-muted-foreground">Completati</p>
+                <p className="text-sm text-muted-foreground">{t('stats.completed')}</p>
               </div>
             </div>
           </CardContent>
@@ -150,7 +152,7 @@ export default function OrientationPage() {
               <div className="rounded-lg bg-amber-100 p-2"><Clock className="h-5 w-5 text-amber-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.inProgress}</p>
-                <p className="text-sm text-muted-foreground">In Corso</p>
+                <p className="text-sm text-muted-foreground">{t('stats.inProgress')}</p>
               </div>
             </div>
           </CardContent>
@@ -162,9 +164,9 @@ export default function OrientationPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BarChart3 className="h-5 w-5" /> Profilo Interessi Medio
+              <BarChart3 className="h-5 w-5" /> {t('radar.avgTitle')}
             </CardTitle>
-            <CardDescription>Media delle aree di interesse degli studenti</CardDescription>
+            <CardDescription>{t('radar.avgDescription')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-[350px]">
@@ -173,7 +175,7 @@ export default function OrientationPage() {
                   <PolarGrid />
                   <PolarAngleAxis dataKey="area" tick={{ fontSize: 12 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} />
-                  <Radar name="Media" dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
+                  <Radar name={t('radar.avgSeriesName')} dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
                   <Tooltip />
                 </RadarChart>
               </ResponsiveContainer>
@@ -184,15 +186,15 @@ export default function OrientationPage() {
 
       <Tabs defaultValue="students">
         <TabsList>
-          <TabsTrigger value="students">Studenti</TabsTrigger>
-          <TabsTrigger value="detail">Dettaglio Studente</TabsTrigger>
+          <TabsTrigger value="students">{t('tabs.students')}</TabsTrigger>
+          <TabsTrigger value="detail">{t('tabs.detail')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="students" className="space-y-3 mt-4">
           {assessments.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
-                <p className="text-muted-foreground">Nessun assessment ancora avviato.</p>
+                <p className="text-muted-foreground">{t('students.empty')}</p>
               </CardContent>
             </Card>
           ) : (
@@ -206,7 +208,7 @@ export default function OrientationPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge variant={a.status === 'COMPLETED' ? 'default' : 'secondary'}>
-                        {a.status === 'COMPLETED' ? 'Completato' : 'In Corso'}
+                        {a.status === 'COMPLETED' ? t('status.completed') : t('status.inProgress')}
                       </Badge>
                       <Badge variant="outline">{a.assessmentType}</Badge>
                     </div>
@@ -221,7 +223,7 @@ export default function OrientationPage() {
           {!selectedStudent ? (
             <Card>
               <CardContent className="py-12 text-center">
-                <p className="text-muted-foreground">Seleziona uno studente dalla lista per vedere il dettaglio.</p>
+                <p className="text-muted-foreground">{t('detail.selectPrompt')}</p>
               </CardContent>
             </Card>
           ) : (
@@ -230,7 +232,7 @@ export default function OrientationPage() {
                 <CardHeader>
                   <CardTitle>{selectedStudent.studentName}</CardTitle>
                   <CardDescription>
-                    Tipo: {selectedStudent.assessmentType} | Stato: {selectedStudent.status === 'COMPLETED' ? 'Completato' : 'In Corso'}
+                    {t('detail.typeLabel')}: {selectedStudent.assessmentType} | {t('detail.statusLabel')}: {selectedStudent.status === 'COMPLETED' ? t('status.completed') : t('status.inProgress')}
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -238,7 +240,7 @@ export default function OrientationPage() {
               {studentRadarData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle>Profilo Interessi</CardTitle>
+                    <CardTitle>{t('detail.interestProfileTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[350px]">
@@ -247,7 +249,7 @@ export default function OrientationPage() {
                           <PolarGrid />
                           <PolarAngleAxis dataKey="area" tick={{ fontSize: 12 }} />
                           <PolarRadiusAxis angle={30} domain={[0, 100]} />
-                          <Radar name="Interessi" dataKey="score" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} />
+                          <Radar name={t('detail.interestSeriesName')} dataKey="score" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} />
                           <Tooltip />
                         </RadarChart>
                       </ResponsiveContainer>
@@ -259,7 +261,7 @@ export default function OrientationPage() {
               {selectedStudent.result?.suggestedPaths && selectedStudent.result.suggestedPaths.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle>Percorsi Suggeriti</CardTitle>
+                    <CardTitle>{t('detail.suggestedPathsTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {selectedStudent.result.suggestedPaths.map((path, i) => (
@@ -275,7 +277,7 @@ export default function OrientationPage() {
                         </div>
                         <div className="text-right">
                           <p className="text-2xl font-bold text-primary">{path.matchScore}%</p>
-                          <p className="text-xs text-muted-foreground">compatibilità</p>
+                          <p className="text-xs text-muted-foreground">{t('detail.compatibility')}</p>
                         </div>
                       </div>
                     ))}
@@ -292,14 +294,14 @@ export default function OrientationPage() {
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium">Avvia Nuovo Assessment</p>
-              <p className="text-sm text-muted-foreground">Inserisci l&apos;ID dello studente per avviare un assessment orientativo</p>
+              <p className="font-medium">{t('startCard.title')}</p>
+              <p className="text-sm text-muted-foreground">{t('startCard.description')}</p>
             </div>
             <Button onClick={() => {
-              const studentId = prompt('Inserisci ID studente:')
+              const studentId = prompt(t('startCard.promptStudentId'))
               if (studentId) handleStartAssessment(studentId)
             }} disabled={starting}>
-              <Play className="h-4 w-4 mr-2" /> Avvia Assessment
+              <Play className="h-4 w-4 mr-2" /> {t('startCard.button')}
             </Button>
           </div>
         </CardContent>

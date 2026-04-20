@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -57,14 +58,6 @@ interface StudentSummary {
   activitiesCount: number
 }
 
-const ACTIVITY_TYPES = [
-  { value: 'stage', label: 'Stage' },
-  { value: 'project', label: 'Progetto' },
-  { value: 'workshop', label: 'Workshop' },
-  { value: 'simulation', label: 'Simulazione' },
-  { value: 'visit', label: 'Visita aziendale' },
-]
-
 const STATUS_COLORS: Record<string, string> = {
   PLANNED: 'bg-blue-50 text-blue-700 border-blue-200',
   ACTIVE: 'bg-green-50 text-green-700 border-green-200',
@@ -76,6 +69,16 @@ const STATUS_COLORS: Record<string, string> = {
 }
 
 export default function UniversityPCTOPage() {
+  const t = useTranslations('pctoPage')
+
+  const ACTIVITY_TYPES = [
+    { value: 'stage', label: t('activityTypes.stage') },
+    { value: 'project', label: t('activityTypes.project') },
+    { value: 'workshop', label: t('activityTypes.workshop') },
+    { value: 'simulation', label: t('activityTypes.simulation') },
+    { value: 'visit', label: t('activityTypes.visit') },
+  ]
+
   const [activities, setActivities] = useState<PCTOActivity[]>([])
   const [conventions, setConventions] = useState<PCTOConvention[]>([])
   const [studentSummaries, setStudentSummaries] = useState<StudentSummary[]>([])
@@ -162,7 +165,7 @@ export default function UniversityPCTOPage() {
       })
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'Errore')
+        throw new Error(err.error || t('errors.generic'))
       }
       setActForm({
         title: '', description: '', activityType: 'stage', companyName: '',
@@ -187,7 +190,7 @@ export default function UniversityPCTOPage() {
       })
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'Errore')
+        throw new Error(err.error || t('errors.generic'))
       }
       setConvForm({
         companyName: '', companyContact: '', companyEmail: '', companyAddress: '',
@@ -212,7 +215,7 @@ export default function UniversityPCTOPage() {
       })
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'Errore')
+        throw new Error(err.error || t('errors.generic'))
       }
       setHoursForm({ studentId: '', activityId: '', date: '', hours: '', notes: '' })
       setShowHoursForm(false)
@@ -261,28 +264,28 @@ export default function UniversityPCTOPage() {
   const statCards = [
     {
       icon: Briefcase,
-      label: 'Attivita totali',
+      label: t('stats.totalActivities'),
       value: totalActivities,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
     },
     {
       icon: FileText,
-      label: 'Convenzioni attive',
+      label: t('stats.activeConventions'),
       value: activeConventions,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
     },
     {
       icon: Clock,
-      label: 'Ore registrate',
+      label: t('stats.hoursLogged'),
       value: Math.round(totalHoursLogged),
       color: 'text-primary',
       bg: 'bg-primary/5',
     },
     {
       icon: Users,
-      label: 'Studenti tracciati',
+      label: t('stats.studentsTracked'),
       value: studentsTracked,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
@@ -296,9 +299,9 @@ export default function UniversityPCTOPage() {
         <div className="flex items-center gap-3">
           <Briefcase className="h-7 w-7 text-primary" />
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Gestione PCTO</h1>
+            <h1 className="text-2xl font-bold text-foreground">{t('header.title')}</h1>
             <p className="text-sm text-muted-foreground">
-              Percorsi per le Competenze Trasversali e per l&apos;Orientamento
+              {t('header.subtitle')}
             </p>
           </div>
         </div>
@@ -326,9 +329,9 @@ export default function UniversityPCTOPage() {
       {/* Tabs */}
       <Tabs defaultValue="activities" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="activities">Attivita</TabsTrigger>
-          <TabsTrigger value="conventions">Convenzioni</TabsTrigger>
-          <TabsTrigger value="hours">Ore</TabsTrigger>
+          <TabsTrigger value="activities">{t('tabs.activities')}</TabsTrigger>
+          <TabsTrigger value="conventions">{t('tabs.conventions')}</TabsTrigger>
+          <TabsTrigger value="hours">{t('tabs.hours')}</TabsTrigger>
         </TabsList>
 
         {/* Activities Tab */}
@@ -336,15 +339,15 @@ export default function UniversityPCTOPage() {
           <GlassCard delay={0.1}>
             <div className="p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Attivita PCTO</h3>
+                <h3 className="text-lg font-semibold">{t('activities.sectionTitle')}</h3>
                 <Button
                   size="sm"
                   onClick={() => setShowActivityForm(!showActivityForm)}
                 >
                   {showActivityForm ? (
-                    <><ChevronUp className="h-4 w-4 mr-1" /> Chiudi</>
+                    <><ChevronUp className="h-4 w-4 mr-1" /> {t('common.close')}</>
                   ) : (
-                    <><Plus className="h-4 w-4 mr-1" /> Nuova attivita</>
+                    <><Plus className="h-4 w-4 mr-1" /> {t('activities.newButton')}</>
                   )}
                 </Button>
               </div>
@@ -354,7 +357,7 @@ export default function UniversityPCTOPage() {
                 <div className="mb-6 p-4 bg-muted/30 rounded-lg border space-y-3">
                   <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium block mb-1">Titolo *</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.title')}</label>
                       <input
                         type="text"
                         value={actForm.title}
@@ -363,19 +366,19 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Tipo *</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.type')}</label>
                       <select
                         value={actForm.activityType}
                         onChange={(e) => setActForm({ ...actForm, activityType: e.target.value })}
                         className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                       >
-                        {ACTIVITY_TYPES.map((t) => (
-                          <option key={t.value} value={t.value}>{t.label}</option>
+                        {ACTIVITY_TYPES.map((tp) => (
+                          <option key={tp.value} value={tp.value}>{tp.label}</option>
                         ))}
                       </select>
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Azienda</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.company')}</label>
                       <input
                         type="text"
                         value={actForm.companyName}
@@ -384,7 +387,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Luogo</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.location')}</label>
                       <input
                         type="text"
                         value={actForm.location}
@@ -393,7 +396,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Data inizio *</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.startDate')}</label>
                       <input
                         type="date"
                         value={actForm.startDate}
@@ -402,7 +405,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Data fine</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.endDate')}</label>
                       <input
                         type="date"
                         value={actForm.endDate}
@@ -411,7 +414,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Ore totali *</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.totalHours')}</label>
                       <input
                         type="number"
                         value={actForm.totalHours}
@@ -420,7 +423,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Max studenti</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.maxStudents')}</label>
                       <input
                         type="number"
                         value={actForm.maxStudents}
@@ -430,7 +433,7 @@ export default function UniversityPCTOPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium block mb-1">Descrizione</label>
+                    <label className="text-sm font-medium block mb-1">{t('activities.form.description')}</label>
                     <textarea
                       value={actForm.description}
                       onChange={(e) => setActForm({ ...actForm, description: e.target.value })}
@@ -440,13 +443,13 @@ export default function UniversityPCTOPage() {
                   </div>
                   {conventions.length > 0 && (
                     <div>
-                      <label className="text-sm font-medium block mb-1">Convenzione (opzionale)</label>
+                      <label className="text-sm font-medium block mb-1">{t('activities.form.conventionOptional')}</label>
                       <select
                         value={actForm.conventionId}
                         onChange={(e) => setActForm({ ...actForm, conventionId: e.target.value })}
                         className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                       >
-                        <option value="">-- Nessuna --</option>
+                        <option value="">{t('activities.form.noConvention')}</option>
                         {conventions.map((c) => (
                           <option key={c.id} value={c.id}>{c.companyName}</option>
                         ))}
@@ -454,7 +457,7 @@ export default function UniversityPCTOPage() {
                     </div>
                   )}
                   <Button onClick={createActivity} disabled={submitting} size="sm">
-                    {submitting ? 'Salvataggio...' : 'Crea attivita'}
+                    {submitting ? t('common.saving') : t('activities.form.submit')}
                   </Button>
                 </div>
               )}
@@ -465,12 +468,12 @@ export default function UniversityPCTOPage() {
                   <table className="w-full">
                     <thead className="bg-muted/50 border-b">
                       <tr>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Attivita</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Tipo</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Azienda</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Date</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Ore</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Stato</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.activity')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.type')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.company')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.dates')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.hours')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('activities.table.status')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -480,13 +483,13 @@ export default function UniversityPCTOPage() {
                             <p className="font-medium text-foreground">{a.title}</p>
                             {a.convention && (
                               <p className="text-xs text-muted-foreground">
-                                Conv: {a.convention.companyName}
+                                {t('activities.table.conventionPrefix')} {a.convention.companyName}
                               </p>
                             )}
                           </td>
                           <td className="p-4">
                             <Badge variant="outline">
-                              {ACTIVITY_TYPES.find((t) => t.value === a.activityType)?.label || a.activityType}
+                              {ACTIVITY_TYPES.find((tp) => tp.value === a.activityType)?.label || a.activityType}
                             </Badge>
                           </td>
                           <td className="p-4">
@@ -509,7 +512,7 @@ export default function UniversityPCTOPage() {
                             <span className="font-semibold">{a.hoursSummary.totalHoursLogged}</span>
                             <span className="text-muted-foreground">/{a.totalHours}h</span>
                             <p className="text-xs text-muted-foreground">
-                              {a.hoursSummary.uniqueStudents} studenti
+                              {t('activities.table.studentsCount', { count: a.hoursSummary.uniqueStudents })}
                             </p>
                           </td>
                           <td className="p-4">
@@ -525,7 +528,7 @@ export default function UniversityPCTOPage() {
               ) : (
                 <div className="py-12 text-center text-muted-foreground">
                   <Briefcase className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                  <p>Nessuna attivita PCTO registrata</p>
+                  <p>{t('activities.empty')}</p>
                 </div>
               )}
             </div>
@@ -537,15 +540,15 @@ export default function UniversityPCTOPage() {
           <GlassCard delay={0.1}>
             <div className="p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Convenzioni</h3>
+                <h3 className="text-lg font-semibold">{t('conventions.sectionTitle')}</h3>
                 <Button
                   size="sm"
                   onClick={() => setShowConventionForm(!showConventionForm)}
                 >
                   {showConventionForm ? (
-                    <><ChevronUp className="h-4 w-4 mr-1" /> Chiudi</>
+                    <><ChevronUp className="h-4 w-4 mr-1" /> {t('common.close')}</>
                   ) : (
-                    <><Plus className="h-4 w-4 mr-1" /> Nuova convenzione</>
+                    <><Plus className="h-4 w-4 mr-1" /> {t('conventions.newButton')}</>
                   )}
                 </Button>
               </div>
@@ -555,7 +558,7 @@ export default function UniversityPCTOPage() {
                 <div className="mb-6 p-4 bg-muted/30 rounded-lg border space-y-3">
                   <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium block mb-1">Nome azienda *</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.companyName')}</label>
                       <input
                         type="text"
                         value={convForm.companyName}
@@ -564,7 +567,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Referente</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.contact')}</label>
                       <input
                         type="text"
                         value={convForm.companyContact}
@@ -573,7 +576,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Email</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.email')}</label>
                       <input
                         type="email"
                         value={convForm.companyEmail}
@@ -582,7 +585,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Indirizzo</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.address')}</label>
                       <input
                         type="text"
                         value={convForm.companyAddress}
@@ -591,7 +594,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Data firma</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.signedDate')}</label>
                       <input
                         type="date"
                         value={convForm.signedDate}
@@ -600,7 +603,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Data scadenza</label>
+                      <label className="text-sm font-medium block mb-1">{t('conventions.form.expiryDate')}</label>
                       <input
                         type="date"
                         value={convForm.expiryDate}
@@ -610,7 +613,7 @@ export default function UniversityPCTOPage() {
                     </div>
                   </div>
                   <Button onClick={createConvention} disabled={submitting} size="sm">
-                    {submitting ? 'Salvataggio...' : 'Crea convenzione'}
+                    {submitting ? t('common.saving') : t('conventions.form.submit')}
                   </Button>
                 </div>
               )}
@@ -621,11 +624,11 @@ export default function UniversityPCTOPage() {
                   <table className="w-full">
                     <thead className="bg-muted/50 border-b">
                       <tr>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Azienda</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Referente</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Scadenza</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Attivita</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Stato</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('conventions.table.company')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('conventions.table.contact')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('conventions.table.expiry')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('conventions.table.activities')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('conventions.table.status')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -664,7 +667,7 @@ export default function UniversityPCTOPage() {
               ) : (
                 <div className="py-12 text-center text-muted-foreground">
                   <FileText className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                  <p>Nessuna convenzione registrata</p>
+                  <p>{t('conventions.empty')}</p>
                 </div>
               )}
             </div>
@@ -676,15 +679,15 @@ export default function UniversityPCTOPage() {
           <GlassCard delay={0.1}>
             <div className="p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Registro Ore</h3>
+                <h3 className="text-lg font-semibold">{t('hours.sectionTitle')}</h3>
                 <Button
                   size="sm"
                   onClick={() => setShowHoursForm(!showHoursForm)}
                 >
                   {showHoursForm ? (
-                    <><ChevronUp className="h-4 w-4 mr-1" /> Chiudi</>
+                    <><ChevronUp className="h-4 w-4 mr-1" /> {t('common.close')}</>
                   ) : (
-                    <><Plus className="h-4 w-4 mr-1" /> Registra ore</>
+                    <><Plus className="h-4 w-4 mr-1" /> {t('hours.newButton')}</>
                   )}
                 </Button>
               </div>
@@ -694,30 +697,30 @@ export default function UniversityPCTOPage() {
                 <div className="mb-6 p-4 bg-muted/30 rounded-lg border space-y-3">
                   <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium block mb-1">ID Studente *</label>
+                      <label className="text-sm font-medium block mb-1">{t('hours.form.studentId')}</label>
                       <input
                         type="text"
                         value={hoursForm.studentId}
                         onChange={(e) => setHoursForm({ ...hoursForm, studentId: e.target.value })}
-                        placeholder="ID dello studente"
+                        placeholder={t('hours.form.studentIdPlaceholder')}
                         className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Attivita *</label>
+                      <label className="text-sm font-medium block mb-1">{t('hours.form.activity')}</label>
                       <select
                         value={hoursForm.activityId}
                         onChange={(e) => setHoursForm({ ...hoursForm, activityId: e.target.value })}
                         className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                       >
-                        <option value="">-- Seleziona --</option>
+                        <option value="">{t('hours.form.selectPlaceholder')}</option>
                         {activities.map((a) => (
                           <option key={a.id} value={a.id}>{a.title}</option>
                         ))}
                       </select>
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Data *</label>
+                      <label className="text-sm font-medium block mb-1">{t('hours.form.date')}</label>
                       <input
                         type="date"
                         value={hoursForm.date}
@@ -726,7 +729,7 @@ export default function UniversityPCTOPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium block mb-1">Ore *</label>
+                      <label className="text-sm font-medium block mb-1">{t('hours.form.hours')}</label>
                       <input
                         type="number"
                         step="0.5"
@@ -737,7 +740,7 @@ export default function UniversityPCTOPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium block mb-1">Note</label>
+                    <label className="text-sm font-medium block mb-1">{t('hours.form.notes')}</label>
                     <input
                       type="text"
                       value={hoursForm.notes}
@@ -746,7 +749,7 @@ export default function UniversityPCTOPage() {
                     />
                   </div>
                   <Button onClick={logHours} disabled={submitting} size="sm">
-                    {submitting ? 'Salvataggio...' : 'Registra ore'}
+                    {submitting ? t('common.saving') : t('hours.form.submit')}
                   </Button>
                 </div>
               )}
@@ -757,10 +760,10 @@ export default function UniversityPCTOPage() {
                   <table className="w-full">
                     <thead className="bg-muted/50 border-b">
                       <tr>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Studente</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Ore totali</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Registrazioni</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Attivita</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('hours.table.student')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('hours.table.totalHours')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('hours.table.entries')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('hours.table.activities')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -784,7 +787,7 @@ export default function UniversityPCTOPage() {
               ) : (
                 <div className="py-12 text-center text-muted-foreground">
                   <Clock className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                  <p>Nessuna ora registrata</p>
+                  <p>{t('hours.empty')}</p>
                 </div>
               )}
             </div>

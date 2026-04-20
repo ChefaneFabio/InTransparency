@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -15,6 +16,7 @@ interface CareerStep {
 }
 
 export default function SubmitAlumniStoryPage() {
+  const t = useTranslations('submitStory')
   const [step, setStep] = useState<'form' | 'verification' | 'success'>('form')
   const [submitting, setSubmitting] = useState(false)
   const [verificationToken, setVerificationToken] = useState('')
@@ -74,7 +76,7 @@ export default function SubmitAlumniStoryPage() {
     try {
       // Validate email
       if (!formData.verificationEmail.endsWith('.edu')) {
-        alert('Please use your institutional (.edu) email address')
+        alert(t('alertUseEdu'))
         setSubmitting(false)
         return
       }
@@ -99,11 +101,11 @@ export default function SubmitAlumniStoryPage() {
         setVerificationToken(data.verificationToken)
         setStep('verification')
       } else {
-        alert(data.error || 'Failed to submit story. Please try again.')
+        alert(data.error || t('alertSubmitFailed'))
       }
     } catch (error) {
       console.error('Error submitting story:', error)
-      alert('An error occurred. Please try again.')
+      alert(t('alertError'))
     } finally {
       setSubmitting(false)
     }
@@ -120,8 +122,8 @@ export default function SubmitAlumniStoryPage() {
                   <Mail className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-2xl">Check Your Email</CardTitle>
-                  <p className="text-sm text-gray-600 mt-1">Verification required to publish your story</p>
+                  <CardTitle className="text-2xl">{t('checkEmail')}</CardTitle>
+                  <p className="text-sm text-gray-600 mt-1">{t('checkEmailSub')}</p>
                 </div>
               </div>
             </CardHeader>
@@ -131,23 +133,23 @@ export default function SubmitAlumniStoryPage() {
                   <div className="flex items-start gap-3">
                     <AlertCircle className="h-5 w-5 text-primary mt-0.5" />
                     <div>
-                      <h3 className="font-semibold text-blue-900 mb-1">Verification Email Sent</h3>
+                      <h3 className="font-semibold text-blue-900 mb-1">{t('emailSent')}</h3>
                       <p className="text-sm text-blue-800">
-                        We've sent a verification link to <strong>{formData.verificationEmail}</strong>
+                        {t.rich('emailSentDesc', { email: formData.verificationEmail, strong: (chunks) => <strong>{chunks}</strong> })}
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-semibold">Next Steps:</h3>
+                  <h3 className="font-semibold">{t('nextSteps')}</h3>
                   <ol className="space-y-2">
                     <li className="flex items-start gap-3">
                       <div className="bg-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">
                         <span className="text-xs font-bold text-white">1</span>
                       </div>
                       <div>
-                        <p className="text-sm">Check your email inbox at {formData.verificationEmail}</p>
+                        <p className="text-sm">{t('nextStep1', { email: formData.verificationEmail })}</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
@@ -155,7 +157,7 @@ export default function SubmitAlumniStoryPage() {
                         <span className="text-xs font-bold text-white">2</span>
                       </div>
                       <div>
-                        <p className="text-sm">Click the verification link in the email</p>
+                        <p className="text-sm">{t('nextStep2')}</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
@@ -163,34 +165,34 @@ export default function SubmitAlumniStoryPage() {
                         <span className="text-xs font-bold text-white">3</span>
                       </div>
                       <div>
-                        <p className="text-sm">Your story will be published and visible to students</p>
+                        <p className="text-sm">{t('nextStep3')}</p>
                       </div>
                     </li>
                   </ol>
                 </div>
 
                 <div className="bg-gray-50 border rounded-lg p-4">
-                  <h4 className="font-semibold text-sm mb-2">For Demo Purposes:</h4>
-                  <p className="text-xs text-gray-600 mb-2">Your verification token:</p>
+                  <h4 className="font-semibold text-sm mb-2">{t('demoPurposes')}</h4>
+                  <p className="text-xs text-gray-600 mb-2">{t('yourToken')}</p>
                   <code className="block bg-white border px-3 py-2 rounded text-xs break-all">
                     {verificationToken}
                   </code>
                   <p className="text-xs text-gray-500 mt-2">
-                    In production, you would receive an email with a clickable link.
+                    {t('productionNote')}
                   </p>
                 </div>
 
                 <div className="flex gap-3">
                   <Link href="/advocacy/alumni-stories" className="flex-1">
                     <Button variant="outline" className="w-full">
-                      View All Stories
+                      {t('viewAllStories')}
                     </Button>
                   </Link>
                   <Button
                     onClick={() => setStep('success')}
                     className="flex-1 bg-primary"
                   >
-                    Got It
+                    {t('gotIt')}
                   </Button>
                 </div>
               </div>
@@ -210,20 +212,19 @@ export default function SubmitAlumniStoryPage() {
               <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="h-12 w-12 text-primary" />
               </div>
-              <h2 className="text-3xl font-bold mb-3">Thank You!</h2>
+              <h2 className="text-3xl font-bold mb-3">{t('thankYou')}</h2>
               <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                Your success story will inspire current students once you verify your email.
-                We appreciate you sharing your journey!
+                {t('thankYouDesc')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/advocacy/alumni-stories">
                   <Button size="lg">
-                    View Alumni Stories
+                    {t('viewAlumniStories')}
                   </Button>
                 </Link>
                 <Link href="/">
                   <Button size="lg" variant="outline">
-                    Back to Home
+                    {t('backHome')}
                   </Button>
                 </Link>
               </div>
@@ -241,11 +242,10 @@ export default function SubmitAlumniStoryPage() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <GraduationCap className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-4xl font-bold mb-4">
-            Share Your Success Story
+            {t('heroTitle')}
           </h1>
           <p className="text-xl text-white/90">
-            Inspire current students by sharing your career journey.
-            Your verified story shows real paths from graduation to success.
+            {t('heroDesc')}
           </p>
         </div>
       </section>
@@ -259,24 +259,24 @@ export default function SubmitAlumniStoryPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <GraduationCap className="h-5 w-5 text-primary" />
-                  Alumni Information
+                  {t('alumniInfo')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Full Name *</label>
+                    <label className="block text-sm font-medium mb-1">{t('fullName')} *</label>
                     <input
                       type="text"
                       required
                       value={formData.alumniName}
                       onChange={(e) => setFormData({ ...formData, alumniName: e.target.value })}
-                      placeholder="John Doe"
+                      placeholder={t('fullNamePlaceholder')}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Graduation Year *</label>
+                    <label className="block text-sm font-medium mb-1">{t('graduationYear')} *</label>
                     <input
                       type="number"
                       required
@@ -291,24 +291,24 @@ export default function SubmitAlumniStoryPage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Degree *</label>
+                    <label className="block text-sm font-medium mb-1">{t('degreeLabel')} *</label>
                     <input
                       type="text"
                       required
                       value={formData.degree}
                       onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
-                      placeholder="e.g., Computer Science, Engineering"
+                      placeholder={t('degreePlaceholder')}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Institution *</label>
+                    <label className="block text-sm font-medium mb-1">{t('institutionLabel')} *</label>
                     <input
                       type="text"
                       required
                       value={formData.institution}
                       onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
-                      placeholder="e.g., Politecnico di Milano"
+                      placeholder={t('institutionPlaceholder')}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -316,18 +316,18 @@ export default function SubmitAlumniStoryPage() {
 
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Institutional Email (.edu) *
+                    {t('institutionalEmail')} *
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.verificationEmail}
                     onChange={(e) => setFormData({ ...formData, verificationEmail: e.target.value })}
-                    placeholder="your.name@university.edu"
+                    placeholder={t('emailPlaceholder')}
                     className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    We'll send a verification link to this email. Must be a .edu address.
+                    {t('emailHint')}
                   </p>
                 </div>
 
@@ -340,7 +340,7 @@ export default function SubmitAlumniStoryPage() {
                     className="rounded"
                   />
                   <label htmlFor="anonymous" className="text-sm">
-                    Make my story anonymous (show as "{formData.degree} Graduate")
+                    {t('anonymousLabel', { degree: formData.degree })}
                   </label>
                 </div>
               </CardContent>
@@ -351,30 +351,30 @@ export default function SubmitAlumniStoryPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Building2 className="h-5 w-5 text-primary" />
-                  Current Position
+                  {t('currentPosition')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Current Role *</label>
+                    <label className="block text-sm font-medium mb-1">{t('currentRole')} *</label>
                     <input
                       type="text"
                       required
                       value={formData.currentRole}
                       onChange={(e) => setFormData({ ...formData, currentRole: e.target.value })}
-                      placeholder="e.g., Senior Software Engineer"
+                      placeholder={t('currentRolePlaceholder')}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Current Company *</label>
+                    <label className="block text-sm font-medium mb-1">{t('currentCompany')} *</label>
                     <input
                       type="text"
                       required
                       value={formData.currentCompany}
                       onChange={(e) => setFormData({ ...formData, currentCompany: e.target.value })}
-                      placeholder="e.g., Google, Microsoft"
+                      placeholder={t('currentCompanyPlaceholder')}
                       className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -386,21 +386,21 @@ export default function SubmitAlumniStoryPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Career Journey (Optional)</CardTitle>
+                  <CardTitle>{t('careerJourneyOptional')}</CardTitle>
                   <Button type="button" size="sm" onClick={handleAddCareerStep}>
                     <Plus className="h-4 w-4 mr-1" />
-                    Add Step
+                    {t('addStep')}
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">
-                  Show your career progression from graduation to current role
+                  {t('careerJourneyDesc')}
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 {careerPath.map((step, index) => (
                   <div key={index} className="border rounded-lg p-4 bg-gray-50">
                     <div className="flex items-start justify-between mb-3">
-                      <span className="text-sm font-semibold text-gray-700">Step {index + 1}</span>
+                      <span className="text-sm font-semibold text-gray-700">{t('stepN', { n: index + 1 })}</span>
                       {careerPath.length > 1 && (
                         <Button
                           type="button"
@@ -415,28 +415,28 @@ export default function SubmitAlumniStoryPage() {
                     <div className="grid md:grid-cols-2 gap-3">
                       <input
                         type="text"
-                        placeholder="Role"
+                        placeholder={t('role')}
                         value={step.role}
                         onChange={(e) => handleUpdateCareerStep(index, 'role', e.target.value)}
                         className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                       />
                       <input
                         type="text"
-                        placeholder="Company"
+                        placeholder={t('company')}
                         value={step.company}
                         onChange={(e) => handleUpdateCareerStep(index, 'company', e.target.value)}
                         className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                       />
                       <input
                         type="text"
-                        placeholder="Duration (e.g., 2 years)"
+                        placeholder={t('durationPlaceholder')}
                         value={step.duration}
                         onChange={(e) => handleUpdateCareerStep(index, 'duration', e.target.value)}
                         className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                       />
                       <input
                         type="number"
-                        placeholder="Year"
+                        placeholder={t('year')}
                         value={step.year}
                         onChange={(e) => handleUpdateCareerStep(index, 'year', parseInt(e.target.value))}
                         className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -450,9 +450,9 @@ export default function SubmitAlumniStoryPage() {
             {/* Success Story */}
             <Card>
               <CardHeader>
-                <CardTitle>Your Success Story *</CardTitle>
+                <CardTitle>{t('yourStory')} *</CardTitle>
                 <p className="text-sm text-gray-600 mt-1">
-                  Share your journey, challenges, and how you achieved success (200-1000 words)
+                  {t('yourStoryDesc')}
                 </p>
               </CardHeader>
               <CardContent>
@@ -461,11 +461,11 @@ export default function SubmitAlumniStoryPage() {
                   minLength={200}
                   value={formData.story}
                   onChange={(e) => setFormData({ ...formData, story: e.target.value })}
-                  placeholder="Example: After graduating with a degree in Computer Science, I started as a junior developer at a small startup. The biggest challenge was..."
+                  placeholder={t('storyPlaceholder')}
                   className="w-full h-48 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  {formData.story.length} / 1000 characters (min 200)
+                  {t('charCount', { count: formData.story.length })}
                 </p>
               </CardContent>
             </Card>
@@ -474,10 +474,10 @@ export default function SubmitAlumniStoryPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Key Skills That Helped You</CardTitle>
+                  <CardTitle>{t('keySkillsTitle')}</CardTitle>
                   <Button type="button" size="sm" onClick={handleAddSkill}>
                     <Plus className="h-4 w-4 mr-1" />
-                    Add Skill
+                    {t('addSkill')}
                   </Button>
                 </div>
               </CardHeader>
@@ -487,7 +487,7 @@ export default function SubmitAlumniStoryPage() {
                     <div key={index} className="flex gap-2">
                       <input
                         type="text"
-                        placeholder="e.g., Python, Problem Solving, Leadership"
+                        placeholder={t('skillPlaceholder')}
                         value={skill}
                         onChange={(e) => handleUpdateSkill(index, e.target.value)}
                         className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -511,16 +511,16 @@ export default function SubmitAlumniStoryPage() {
             {/* Advice */}
             <Card>
               <CardHeader>
-                <CardTitle>Advice for Current Students</CardTitle>
+                <CardTitle>{t('adviceTitle')}</CardTitle>
                 <p className="text-sm text-gray-600 mt-1">
-                  What would you tell students who want to follow a similar path?
+                  {t('adviceDesc')}
                 </p>
               </CardHeader>
               <CardContent>
                 <textarea
                   value={formData.adviceForStudents}
                   onChange={(e) => setFormData({ ...formData, adviceForStudents: e.target.value })}
-                  placeholder="Example: Focus on building real projects, not just taking courses. Network early and don't be afraid to apply for positions that seem out of reach..."
+                  placeholder={t('advicePlaceholder')}
                   className="w-full h-32 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
               </CardContent>
@@ -530,7 +530,7 @@ export default function SubmitAlumniStoryPage() {
             <div className="flex gap-3">
               <Link href="/advocacy/alumni-stories" className="flex-1">
                 <Button type="button" variant="outline" className="w-full">
-                  Cancel
+                  {t('cancel')}
                 </Button>
               </Link>
               <Button
@@ -538,7 +538,7 @@ export default function SubmitAlumniStoryPage() {
                 disabled={submitting}
                 className="flex-1 bg-primary"
               >
-                {submitting ? 'Submitting...' : 'Submit Story'}
+                {submitting ? t('submitting') : t('submit')}
               </Button>
             </div>
           </form>

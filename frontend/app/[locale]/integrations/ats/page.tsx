@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbList } from '@/lib/schema-org'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { Workflow, Code2, ArrowRight, Zap, ExternalLink } from 'lucide-react'
 import { Link } from '@/navigation'
 
@@ -140,14 +141,23 @@ curl -X POST https://www.in-transparency.com/api/agents/webhooks \\
   }'
 # Response includes { "secret": "..." } — store as INTRANSPARENCY_WEBHOOK_SECRET`
 
-export default function AtsIntegrationPage() {
+export default async function AtsIntegrationPage() {
+  const t = await getTranslations('integrationsAts')
+  const otherAts = [
+    { name: 'Workday Recruiting', note: t('other_workday') },
+    { name: 'SmartRecruiters', note: t('other_smartrecruiters') },
+    { name: 'Recruitee', note: t('other_recruitee') },
+    { name: 'Teamtailor', note: t('other_teamtailor') },
+    { name: 'Personio', note: t('other_personio') },
+    { name: 'Ashby', note: t('other_ashby') },
+  ]
   return (
     <div className="min-h-screen bg-background">
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', url: '/' },
-          { name: 'Integrations', url: '/integrations' },
-          { name: 'ATS', url: '/integrations/ats' },
+          { name: t('breadcrumbHome'), url: '/' },
+          { name: t('breadcrumbIntegrations'), url: '/integrations' },
+          { name: t('breadcrumbAts'), url: '/integrations/ats' },
         ])}
       />
       <Header />
@@ -155,14 +165,11 @@ export default function AtsIntegrationPage() {
         <div className="mb-8">
           <Badge variant="outline" className="mb-3">
             <Workflow className="h-3 w-3 mr-1" />
-            ATS integration
+            {t('badge')}
           </Badge>
-          <h1 className="text-4xl font-bold mb-3">Feed your ATS with verified candidates</h1>
+          <h1 className="text-4xl font-bold mb-3">{t('heroTitle')}</h1>
           <p className="text-lg text-muted-foreground max-w-3xl">
-            Every major ATS accepts inbound candidate POSTs. We fire webhook events when a
-            matching candidate appears. Connect the two with a tiny relay function — ~40 lines of
-            code — and your recruiters see InTransparency candidates in Greenhouse, Lever, or
-            Workday without leaving their usual workflow.
+            {t('heroDesc')}
           </p>
         </div>
 
@@ -170,25 +177,26 @@ export default function AtsIntegrationPage() {
           <CardContent className="pt-5 pb-5 flex items-start gap-3">
             <Zap className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
-              <h2 className="font-semibold mb-1">The integration pattern</h2>
+              <h2 className="font-semibold mb-1">{t('patternTitle')}</h2>
               <p className="text-sm text-muted-foreground">
-                <strong>1.</strong> Create an agent API key with <code className="bg-background px-1 border rounded">agent:webhook</code>{' '}
-                scope.{' '}
-                <strong>2.</strong> Register your relay URL with a <code className="bg-background px-1 border rounded">match.created</code> subscription — you get back an HMAC secret.{' '}
-                <strong>3.</strong> In your relay, verify the signature and translate our event into your ATS&apos;s native &quot;create candidate&quot; API call.
+                {t.rich('patternDesc', {
+                  strong: (chunks) => <strong>{chunks}</strong>,
+                  code1: (chunks) => <code className="bg-background px-1 border rounded">{chunks}</code>,
+                  code2: (chunks) => <code className="bg-background px-1 border rounded">{chunks}</code>,
+                })}
               </p>
             </div>
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-bold mb-3">1. Set up the webhook</h2>
+        <h2 className="text-2xl font-bold mb-3">{t('section1Title')}</h2>
         <Card className="mb-8">
           <CardContent className="pt-4 pb-4">
             <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">{CURL_EXAMPLE}</pre>
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-bold mb-3">2. Relay to Greenhouse (Node/Deno)</h2>
+        <h2 className="text-2xl font-bold mb-3">{t('section2Title')}</h2>
         <Card className="mb-4">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Greenhouse Harvest API</CardTitle>
@@ -198,7 +206,7 @@ export default function AtsIntegrationPage() {
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-bold mb-3 mt-8">3. Relay to Lever (Python)</h2>
+        <h2 className="text-2xl font-bold mb-3 mt-8">{t('section3Title')}</h2>
         <Card className="mb-8">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Lever Opportunities API</CardTitle>
@@ -208,16 +216,9 @@ export default function AtsIntegrationPage() {
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-bold mb-4">Other ATS products</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('otherAtsTitle')}</h2>
         <div className="grid md:grid-cols-2 gap-3 mb-8">
-          {[
-            { name: 'Workday Recruiting', note: 'Use Workday REST API + the same webhook pattern. Map match score into a Custom Field.' },
-            { name: 'SmartRecruiters', note: 'Candidates API + sourced-origin tag.' },
-            { name: 'Recruitee', note: 'Candidates API + source tag.' },
-            { name: 'Teamtailor', note: 'Candidates API v3. Supports attachments for evidence packet.' },
-            { name: 'Personio', note: 'Applications API — candidate + application in one call.' },
-            { name: 'Ashby', note: 'Candidates API with source attribution. Matching pattern identical.' },
-          ].map(a => (
+          {otherAts.map(a => (
             <Card key={a.name}>
               <CardContent className="pt-4 pb-4">
                 <h3 className="font-semibold text-sm">{a.name}</h3>
@@ -231,19 +232,19 @@ export default function AtsIntegrationPage() {
           <CardContent className="pt-5 pb-5 text-sm">
             <h3 className="font-semibold mb-2 flex items-center gap-2">
               <Code2 className="h-4 w-4" />
-              Reference documents
+              {t('referenceDocs')}
             </h3>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
               <a href="/openapi.yaml" className="text-primary hover:underline inline-flex items-center gap-1">
-                OpenAPI spec
+                {t('ref_openapi')}
                 <ExternalLink className="h-3 w-3" />
               </a>
               <a href="/en/integrations/agents" className="text-primary hover:underline inline-flex items-center gap-1">
-                Agent integration guide
+                {t('ref_agent_guide')}
                 <ExternalLink className="h-3 w-3" />
               </a>
               <a href="/api/agents/index" className="text-primary hover:underline inline-flex items-center gap-1">
-                Agent API index
+                {t('ref_agent_index')}
                 <ExternalLink className="h-3 w-3" />
               </a>
             </div>
@@ -253,12 +254,12 @@ export default function AtsIntegrationPage() {
         <div className="flex flex-wrap gap-3">
           <Button asChild>
             <Link href="/contact?subject=ats-integration">
-              Talk to us about your ATS
+              {t('ctaTalk')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/for-enterprise">Enterprise page</Link>
+            <Link href="/for-enterprise">{t('ctaEnterprise')}</Link>
           </Button>
         </div>
       </main>

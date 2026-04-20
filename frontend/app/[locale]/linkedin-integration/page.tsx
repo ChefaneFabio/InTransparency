@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -20,6 +21,7 @@ import {
 
 export default function LinkedInIntegrationPage() {
   const router = useRouter()
+  const t = useTranslations('linkedinIntegration')
   const [email, setEmail] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
 
@@ -34,23 +36,23 @@ export default function LinkedInIntegrationPage() {
   const benefits = [
     {
       icon: Users,
-      title: 'Importa Connessioni',
-      description: 'Sincronizza le tue connessioni LinkedIn per trovare opportunità nella tua rete'
+      title: t('benefits.connections.title'),
+      description: t('benefits.connections.description')
     },
     {
       icon: Briefcase,
-      title: 'Portfolio Unificato',
-      description: 'Combina il tuo profilo LinkedIn con i progetti verificati di InTransparency'
+      title: t('benefits.portfolio.title'),
+      description: t('benefits.portfolio.description')
     },
     {
       icon: TrendingUp,
-      title: 'Maggiore Visibilità',
-      description: 'I recruiter vedranno il tuo profilo completo con competenze verificate'
+      title: t('benefits.visibility.title'),
+      description: t('benefits.visibility.description')
     },
     {
       icon: Bell,
-      title: 'Notifiche Smart',
-      description: 'Ricevi alert quando le tue connessioni LinkedIn cercano talenti'
+      title: t('benefits.notifications.title'),
+      description: t('benefits.notifications.description')
     }
   ]
 
@@ -64,7 +66,7 @@ export default function LinkedInIntegrationPage() {
           className="mb-8"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Torna alla Dashboard
+          {t('backToDashboard')}
         </Button>
 
         {/* Main Card */}
@@ -75,20 +77,19 @@ export default function LinkedInIntegrationPage() {
                 <Linkedin className="h-10 w-10 text-primary" />
               </div>
               <div>
-                <Badge className="bg-white/20 text-white mb-2">Coming Soon</Badge>
-                <h1 className="text-3xl font-bold">Integrazione LinkedIn</h1>
+                <Badge className="bg-white/20 text-white mb-2">{t('comingSoon')}</Badge>
+                <h1 className="text-3xl font-bold">{t('heroTitle')}</h1>
               </div>
             </div>
             <p className="text-blue-100 text-lg max-w-2xl">
-              Stiamo lavorando per integrare LinkedIn con InTransparency. Presto potrai
-              sincronizzare il tuo profilo e le tue connessioni per massimizzare le opportunità.
+              {t('heroDescription')}
             </p>
           </div>
 
           <CardContent className="p-8">
             {/* Benefits */}
             <h2 className="text-xl font-semibold text-gray-900 mb-6">
-              Cosa potrai fare con l'integrazione LinkedIn
+              {t('benefitsHeading')}
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4 mb-8">
@@ -112,28 +113,28 @@ export default function LinkedInIntegrationPage() {
             <div className="bg-primary/5 rounded-lg p-6 mb-8">
               <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <Clock className="h-5 w-5 text-primary" />
-                Roadmap
+                {t('roadmap.heading')}
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-gray-700">Importazione manuale del profilo</span>
-                  <Badge variant="outline" className="bg-primary/5 text-green-700">Completato</Badge>
+                  <span className="text-gray-700">{t('roadmap.step1.label')}</span>
+                  <Badge variant="outline" className="bg-primary/5 text-green-700">{t('roadmap.statusDone')}</Badge>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 border-2 border-blue-400 rounded-full animate-pulse" />
-                  <span className="text-gray-700">OAuth LinkedIn integration</span>
-                  <Badge variant="outline" className="bg-primary/5 text-blue-700">In sviluppo</Badge>
+                  <span className="text-gray-700">{t('roadmap.step2.label')}</span>
+                  <Badge variant="outline" className="bg-primary/5 text-blue-700">{t('roadmap.statusInProgress')}</Badge>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 border-2 border-gray-300 rounded-full" />
-                  <span className="text-gray-500">Sincronizzazione connessioni</span>
-                  <Badge variant="outline">Pianificato</Badge>
+                  <span className="text-gray-500">{t('roadmap.step3.label')}</span>
+                  <Badge variant="outline">{t('roadmap.statusPlanned')}</Badge>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 border-2 border-gray-300 rounded-full" />
-                  <span className="text-gray-500">Inviti automatici</span>
-                  <Badge variant="outline">Pianificato</Badge>
+                  <span className="text-gray-500">{t('roadmap.step4.label')}</span>
+                  <Badge variant="outline">{t('roadmap.statusPlanned')}</Badge>
                 </div>
               </div>
             </div>
@@ -146,28 +147,28 @@ export default function LinkedInIntegrationPage() {
                     <CheckCircle className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Grazie per l'interesse!
+                    {t('notify.successHeading')}
                   </h3>
                   <p className="text-gray-600">
-                    Ti avviseremo non appena l'integrazione LinkedIn sarà disponibile.
+                    {t('notify.successMessage')}
                   </p>
                 </div>
               ) : (
                 <>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
-                    Vuoi essere avvisato quando sarà disponibile?
+                    {t('notify.heading')}
                   </h3>
                   <div className="flex gap-3 max-w-md mx-auto">
                     <Input
                       type="email"
-                      placeholder="La tua email"
+                      placeholder={t('notify.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="flex-1"
                     />
                     <Button onClick={handleNotifyMe}>
                       <Mail className="h-4 w-4 mr-2" />
-                      Avvisami
+                      {t('notify.submit')}
                     </Button>
                   </div>
                 </>
@@ -179,10 +180,10 @@ export default function LinkedInIntegrationPage() {
         {/* Alternative Actions */}
         <div className="mt-8 text-center">
           <p className="text-gray-600 mb-4">
-            Nel frattempo, puoi aggiungere manualmente le tue informazioni LinkedIn al tuo profilo
+            {t('altActions.message')}
           </p>
           <Button variant="outline" onClick={() => router.push('/dashboard/student/profile/edit')}>
-            Modifica Profilo
+            {t('altActions.cta')}
           </Button>
         </div>
       </div>

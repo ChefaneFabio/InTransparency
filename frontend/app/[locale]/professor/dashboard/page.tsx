@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -64,6 +65,8 @@ export default function ProfessorDashboardPage() {
 
 function ProfessorDashboard() {
   const searchParams = useSearchParams()
+  const t = useTranslations('professorDashboard')
+  const locale = useLocale()
   const token = searchParams.get('token')
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -99,10 +102,9 @@ function ProfessorDashboard() {
             <CardContent className="pt-6 flex gap-3">
               <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold mb-1">Access link required</h3>
+                <h3 className="font-semibold mb-1">{t('accessRequired')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Professor dashboards open via the endorsement-request link from your email. If
-                  your link expired, ask the student to send a fresh one.
+                  {t('accessRequiredDesc')}
                 </p>
               </div>
             </CardContent>
@@ -120,9 +122,9 @@ function ProfessorDashboard() {
         <div className="mb-6">
           <Badge variant="outline" className="mb-2">
             <GraduationCap className="h-3 w-3 mr-1" />
-            Professor portal
+            {t('professorPortal')}
           </Badge>
-          <h1 className="text-3xl font-bold mb-1">Welcome, {data.professor.name}</h1>
+          <h1 className="text-3xl font-bold mb-1">{t('welcome', { name: data.professor.name })}</h1>
           <p className="text-muted-foreground">
             {data.professor.university} · {data.professor.email}
           </p>
@@ -132,25 +134,25 @@ function ProfessorDashboard() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-3xl font-bold text-amber-600">{data.stats.pending}</div>
-              <div className="text-xs text-muted-foreground">Awaiting your response</div>
+              <div className="text-xs text-muted-foreground">{t('awaitingResponse')}</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-3xl font-bold text-emerald-600">{data.stats.verified}</div>
-              <div className="text-xs text-muted-foreground">Endorsed</div>
+              <div className="text-xs text-muted-foreground">{t('endorsed')}</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-3xl font-bold text-muted-foreground">{data.stats.declined}</div>
-              <div className="text-xs text-muted-foreground">Declined</div>
+              <div className="text-xs text-muted-foreground">{t('declined')}</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-3xl font-bold">{data.stats.total}</div>
-              <div className="text-xs text-muted-foreground">Total requests</div>
+              <div className="text-xs text-muted-foreground">{t('totalRequests')}</div>
             </CardContent>
           </Card>
         </div>
@@ -159,11 +161,11 @@ function ProfessorDashboard() {
           <TabsList>
             <TabsTrigger value="pending">
               <Clock className="h-3 w-3 mr-1" />
-              Pending ({data.stats.pending})
+              {t('pending')} ({data.stats.pending})
             </TabsTrigger>
             <TabsTrigger value="history">
               <History className="h-3 w-3 mr-1" />
-              History ({data.history.length})
+              {t('history')} ({data.history.length})
             </TabsTrigger>
           </TabsList>
 
@@ -172,9 +174,9 @@ function ProfessorDashboard() {
               <Card>
                 <CardContent className="pt-6 text-center py-12">
                   <CheckCircle className="h-10 w-10 mx-auto text-emerald-500 mb-3" />
-                  <h3 className="font-semibold mb-1">All caught up</h3>
+                  <h3 className="font-semibold mb-1">{t('allCaughtUp')}</h3>
                   <p className="text-sm text-muted-foreground">
-                    No pending endorsements. Students will notify you when they request one.
+                    {t('allCaughtUpDesc')}
                   </p>
                 </CardContent>
               </Card>
@@ -195,7 +197,7 @@ function ProfessorDashboard() {
                           <h3 className="font-semibold">{e.studentName}</h3>
                           {e.daysWaiting > 5 && (
                             <Badge variant="destructive" className="text-xs">
-                              {e.daysWaiting}d waiting
+                              {t('daysWaiting', { days: e.daysWaiting })}
                             </Badge>
                           )}
                         </div>
@@ -221,7 +223,7 @@ function ProfessorDashboard() {
                       </div>
                       <Button size="sm" asChild>
                         <a href={`/endorsements/verify/${e.verificationToken}`}>
-                          Review
+                          {t('review')}
                           <ExternalLink className="h-3 w-3 ml-1" />
                         </a>
                       </Button>
@@ -237,7 +239,7 @@ function ProfessorDashboard() {
               <Card>
                 <CardContent className="pt-6 text-center py-8">
                   <History className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
-                  <p className="text-sm text-muted-foreground">No history yet.</p>
+                  <p className="text-sm text-muted-foreground">{t('noHistory')}</p>
                 </CardContent>
               </Card>
             ) : (
@@ -260,7 +262,7 @@ function ProfessorDashboard() {
                             {h.status}
                           </Badge>
                           {h.rating && <Badge variant="outline" className="text-xs">{h.rating}/5</Badge>}
-                          {h.grade && <Badge variant="outline" className="text-xs">Grade {h.grade}</Badge>}
+                          {h.grade && <Badge variant="outline" className="text-xs">{t('grade')} {h.grade}</Badge>}
                         </div>
                         <div className="text-sm text-muted-foreground">{h.projectTitle}</div>
                         {h.skills.length > 0 && (
@@ -274,7 +276,7 @@ function ProfessorDashboard() {
                         )}
                         {h.verifiedAt && (
                           <div className="text-xs text-muted-foreground mt-1">
-                            {new Date(h.verifiedAt).toLocaleDateString()}
+                            {new Date(h.verifiedAt).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB')}
                           </div>
                         )}
                       </div>

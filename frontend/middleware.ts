@@ -106,11 +106,12 @@ export async function middleware(request: NextRequest) {
     // Production CSP - includes Google Maps support
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com",
+      "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.net https://*.hsleadflows.net https://*.hubspot.com",
+      "script-src-elem 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.net https://*.hsleadflows.net https://*.hubspot.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "img-src 'self' data: blob: https: https://*.vercel.app https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com",
-      "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com",
+      "img-src 'self' data: blob: https: https://*.vercel.app https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.hubspot.com https://track.hubspot.com",
+      "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.hubspot.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.com https://api-eu1.hubapi.com https://forms-eu1.hubspot.com https://track-eu1.hubspot.com",
       "frame-src 'none'",
       "object-src 'none'",
       "base-uri 'self'",

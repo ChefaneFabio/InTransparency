@@ -3,11 +3,13 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
 
 export default function DashboardPage() {
   const router = useRouter()
   const { data: session, status } = useSession()
+  const t = useTranslations('dashboardRouter')
 
   useEffect(() => {
     if (status === 'loading') return
@@ -49,7 +51,7 @@ export default function DashboardPage() {
     <div className="min-h-screen flex items-center justify-center bg-muted/50">
       <div className="text-center">
         <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-        <p className="text-muted-foreground">Redirecting to your dashboard...</p>
+        <p className="text-muted-foreground">{t('redirecting')}</p>
       </div>
     </div>
   )

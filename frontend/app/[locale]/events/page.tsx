@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -40,15 +41,6 @@ interface PublicEvent {
   spotsLeft: number | null
 }
 
-const EVENT_TYPES = [
-  { value: '', label: 'All Events' },
-  { value: 'CAREER_DAY', label: 'Career Days' },
-  { value: 'WORKSHOP', label: 'Workshops' },
-  { value: 'WEBINAR', label: 'Webinars' },
-  { value: 'NETWORKING', label: 'Networking' },
-  { value: 'INFO_SESSION', label: 'Info Sessions' },
-]
-
 const EVENT_TYPE_COLORS: Record<string, string> = {
   CAREER_DAY: 'bg-primary/10 text-blue-700',
   WORKSHOP: 'bg-primary/10 text-purple-700',
@@ -58,6 +50,7 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
 }
 
 export default function EventsPage() {
+  const t = useTranslations('eventsPage')
   const { data: session } = useSession()
   const [events, setEvents] = useState<PublicEvent[]>([])
   const [loading, setLoading] = useState(true)
@@ -65,6 +58,15 @@ export default function EventsPage() {
   const [typeFilter, setTypeFilter] = useState('')
   const [rsvpStates, setRsvpStates] = useState<Record<string, string>>({})
   const [rsvpLoading, setRsvpLoading] = useState<string | null>(null)
+
+  const EVENT_TYPES = [
+    { value: '', label: t('types.all') },
+    { value: 'CAREER_DAY', label: t('types.careerDay') },
+    { value: 'WORKSHOP', label: t('types.workshop') },
+    { value: 'WEBINAR', label: t('types.webinar') },
+    { value: 'NETWORKING', label: t('types.networking') },
+    { value: 'INFO_SESSION', label: t('types.infoSession') },
+  ]
 
   useEffect(() => {
     fetchEvents()
@@ -112,7 +114,7 @@ export default function EventsPage() {
         setRsvpStates((prev) => ({ ...prev, [eventId]: data.rsvp.status }))
       } else {
         const data = await res.json()
-        alert(data.error || 'Failed to RSVP')
+        alert(data.error || t('rsvpFailed'))
       }
     } catch (err) {
       console.error('RSVP failed:', err)
@@ -145,15 +147,15 @@ export default function EventsPage() {
       {/* Hero */}
       <section className="bg-white border-b py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">Upcoming Events</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">{t('title')}</h1>
           <p className="text-gray-600 mb-6">
-            Career days, workshops, webinars, and networking events from universities and companies
+            {t('subtitle')}
           </p>
 
           {/* Search */}
           <div className="flex gap-2 max-w-lg mx-auto">
             <Input
-              placeholder="Search events..."
+              placeholder={t('searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -169,17 +171,17 @@ export default function EventsPage() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Type filter tabs */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-1">
-          {EVENT_TYPES.map((t) => (
+          {EVENT_TYPES.map((tp) => (
             <button
-              key={t.value}
-              onClick={() => setTypeFilter(t.value)}
+              key={tp.value}
+              onClick={() => setTypeFilter(tp.value)}
               className={`px-3 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors ${
-                typeFilter === t.value
+                typeFilter === tp.value
                   ? 'bg-gray-900 text-white'
                   : 'bg-white text-gray-600 border hover:bg-gray-50'
               }`}
             >
-              {t.label}
+              {tp.label}
             </button>
           ))}
         </div>
@@ -193,11 +195,11 @@ export default function EventsPage() {
           <Card>
             <CardContent className="p-12 text-center">
               <Calendar className="h-10 w-10 mx-auto text-gray-300 mb-3" />
-              <p className="font-medium text-gray-700">No upcoming events</p>
+              <p className="font-medium text-gray-700">{t('empty.title')}</p>
               <p className="text-sm text-gray-500 mt-1">
                 {search || typeFilter
-                  ? 'Try adjusting your filters.'
-                  : 'Check back soon for new events.'}
+                  ? t('empty.adjustFilters')
+                  : t('empty.checkBackSoon')}
               </p>
             </CardContent>
           </Card>
@@ -252,9 +254,9 @@ export default function EventsPage() {
                           </span>
                           <span className="flex items-center gap-1">
                             {event.isOnline ? (
-                              <><Video className="h-3.5 w-3.5" /> Online</>
+                              <><Video className="h-3.5 w-3.5" /> {t('online')}</>
                             ) : (
-                              <><MapPin className="h-3.5 w-3.5" /> {event.location || 'TBA'}</>
+                              <><MapPin className="h-3.5 w-3.5" /> {event.location || t('tba')}</>
                             )}
                           </span>
                           <span className="flex items-center gap-1">
@@ -263,8 +265,8 @@ export default function EventsPage() {
                           </span>
                           <span className="flex items-center gap-1">
                             <Users className="h-3.5 w-3.5" />
-                            {event.attendeeCount} attending
-                            {event.spotsLeft !== null && ` · ${event.spotsLeft} spots left`}
+                            {t('attending', { count: event.attendeeCount })}
+                            {event.spotsLeft !== null && ` · ${t('spotsLeft', { count: event.spotsLeft })}`}
                           </span>
                         </div>
 
@@ -273,7 +275,7 @@ export default function EventsPage() {
                           {isRsvpd ? (
                             <Badge className="bg-primary/10 text-green-700 text-xs">
                               <CheckCircle2 className="h-3 w-3 mr-1" />
-                              {rsvpStatus === 'PENDING' ? 'Pending Approval' : 'Registered'}
+                              {rsvpStatus === 'PENDING' ? t('pendingApproval') : t('registered')}
                             </Badge>
                           ) : (
                             <Button
@@ -284,12 +286,12 @@ export default function EventsPage() {
                               {rsvpLoading === event.id ? (
                                 <Loader2 className="h-3 w-3 animate-spin mr-1" />
                               ) : null}
-                              {isFull ? 'Full' : deadlinePassed ? 'Registration closed' : 'Register'}
+                              {isFull ? t('full') : deadlinePassed ? t('registrationClosed') : t('register')}
                             </Button>
                           )}
                           {event.slotCount > 0 && (
                             <span className="text-xs text-primary">
-                              {event.slotCount} interview slots available
+                              {t('interviewSlotsAvailable', { count: event.slotCount })}
                             </span>
                           )}
                         </div>

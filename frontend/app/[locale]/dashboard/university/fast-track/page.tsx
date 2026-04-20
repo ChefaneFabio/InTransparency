@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -23,6 +24,7 @@ interface FastTrackStudent {
 }
 
 export default function FastTrackPage() {
+  const t = useTranslations('fastTrack')
   const [students, setStudents] = useState<FastTrackStudent[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -62,10 +64,10 @@ export default function FastTrackPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Zap className="h-6 w-6 text-amber-500" /> Fast Track Placement
+          <Zap className="h-6 w-6 text-amber-500" /> {t('header.title')}
         </h1>
         <p className="text-muted-foreground mt-1">
-          Studenti pronti per il mercato del lavoro con certificazioni recenti
+          {t('header.subtitle')}
         </p>
       </div>
 
@@ -76,7 +78,7 @@ export default function FastTrackPage() {
             <div className="rounded-lg bg-amber-100 p-2"><Briefcase className="h-5 w-5 text-amber-600" /></div>
             <div>
               <p className="text-2xl font-bold">{total}</p>
-              <p className="text-sm text-muted-foreground">Studenti disponibili con certificazioni</p>
+              <p className="text-sm text-muted-foreground">{t('summary.label')}</p>
             </div>
           </div>
         </CardContent>
@@ -86,7 +88,7 @@ export default function FastTrackPage() {
       {students.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">Nessuno studente con certificazioni recenti al momento.</p>
+            <p className="text-muted-foreground">{t('empty')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -99,7 +101,7 @@ export default function FastTrackPage() {
                     <CardTitle className="text-lg">{student.name}</CardTitle>
                     <CardDescription className="flex items-center gap-1 mt-1">
                       <Calendar className="h-3.5 w-3.5" />
-                      Disponibile dal {formatDate(student.availableSince)}
+                      {t('card.availableSince', { date: formatDate(student.availableSince) })}
                     </CardDescription>
                   </div>
                   <Badge variant="secondary" className="flex items-center gap-1">
@@ -111,7 +113,7 @@ export default function FastTrackPage() {
                 {/* Skills */}
                 {student.skills.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-1">Competenze</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-1">{t('card.skills')}</p>
                     <div className="flex flex-wrap gap-1">
                       {student.skills.slice(0, 8).map((skill, i) => (
                         <Badge key={i} variant="outline" className="text-xs">{String(skill)}</Badge>
@@ -125,7 +127,7 @@ export default function FastTrackPage() {
 
                 {/* Certificates */}
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">Certificazioni</p>
+                  <p className="text-xs font-medium text-muted-foreground mb-1">{t('card.certificates')}</p>
                   <div className="space-y-1">
                     {student.certificates.slice(0, 3).map((cert) => (
                       <div key={cert.id} className="flex items-center gap-2 text-sm">
@@ -136,7 +138,7 @@ export default function FastTrackPage() {
                     ))}
                     {student.certificates.length > 3 && (
                       <p className="text-xs text-muted-foreground">
-                        +{student.certificates.length - 3} altri certificati
+                        {t('card.moreCertificates', { count: student.certificates.length - 3 })}
                       </p>
                     )}
                   </div>
@@ -148,7 +150,7 @@ export default function FastTrackPage() {
                   className="w-full"
                   onClick={() => window.location.href = `mailto:${student.email}`}
                 >
-                  <Mail className="h-4 w-4 mr-2" /> Contatta
+                  <Mail className="h-4 w-4 mr-2" /> {t('card.contact')}
                 </Button>
               </CardContent>
             </Card>

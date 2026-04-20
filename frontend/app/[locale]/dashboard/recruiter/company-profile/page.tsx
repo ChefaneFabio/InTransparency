@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -77,6 +78,7 @@ const EMPTY: CompanyProfileState = {
 const SIZE_CATEGORIES = ['1-10', '11-50', '51-200', '201-1000', '1000+']
 
 export default function CompanyProfileEditor() {
+  const t = useTranslations('recruiterCompanyProfile')
   const [profile, setProfile] = useState<CompanyProfileState>(EMPTY)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -143,13 +145,13 @@ export default function CompanyProfileEditor() {
         body: JSON.stringify(profile),
       })
       if (res.ok) {
-        setMessage({ type: 'success', text: 'Profile saved.' })
+        setMessage({ type: 'success', text: t('messages.saved') })
       } else {
         const err = await res.json()
-        setMessage({ type: 'error', text: err.error || 'Failed to save.' })
+        setMessage({ type: 'error', text: err.error || t('messages.saveFailed') })
       }
     } catch {
-      setMessage({ type: 'error', text: 'Network error.' })
+      setMessage({ type: 'error', text: t('messages.networkError') })
     } finally {
       setSaving(false)
     }
@@ -182,13 +184,13 @@ export default function CompanyProfileEditor() {
           <CardContent className="pt-6 flex gap-3">
             <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold mb-1">Set your company first</h3>
+              <h3 className="font-semibold mb-1">{t('noCompany.title')}</h3>
               <p className="text-sm text-muted-foreground">
-                Your recruiter profile doesn&apos;t have a company assigned yet.
+                {t('noCompany.prefix')}
                 <Link href="/dashboard/recruiter/settings" className="text-primary underline ml-1">
-                  Update your settings
+                  {t('noCompany.linkText')}
                 </Link>{' '}
-                to continue.
+                {t('noCompany.suffix')}
               </p>
             </div>
           </CardContent>
@@ -206,7 +208,7 @@ export default function CompanyProfileEditor() {
             {profile.verified && <BadgeCheck className="h-6 w-6 text-primary" />}
           </h1>
           <p className="text-muted-foreground">
-            Edit your public company profile — what candidates see at{' '}
+            {t('header.subtitlePrefix')}{' '}
             <Link href={`/c/${profile.slug}` as any} className="text-primary hover:underline inline-flex items-center gap-1">
               /c/{profile.slug}
               <ExternalLink className="h-3 w-3" />
@@ -220,11 +222,11 @@ export default function CompanyProfileEditor() {
               checked={profile.published}
               onChange={e => setProfile({ ...profile, published: e.target.checked })}
             />
-            Published
+            {t('header.published')}
           </label>
           <Button onClick={save} disabled={saving}>
             <Save className="h-4 w-4 mr-2" />
-            {saving ? 'Saving…' : 'Save'}
+            {saving ? t('actions.saving') : t('actions.save')}
           </Button>
         </div>
       </div>
@@ -242,14 +244,14 @@ export default function CompanyProfileEditor() {
       <div className="space-y-4">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Basics</CardTitle>
+            <CardTitle className="text-base">{t('sections.basics')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <Field label="Tagline">
+              <Field label={t('fields.tagline')}>
                 <Input value={profile.tagline} onChange={e => setProfile({ ...profile, tagline: e.target.value })} />
               </Field>
-              <Field label="Founded year">
+              <Field label={t('fields.foundedYear')}>
                 <Input
                   type="number"
                   value={profile.foundedYear ?? ''}
@@ -258,10 +260,10 @@ export default function CompanyProfileEditor() {
                   }
                 />
               </Field>
-              <Field label="Headquarters">
+              <Field label={t('fields.headquarters')}>
                 <Input value={profile.headquarters} onChange={e => setProfile({ ...profile, headquarters: e.target.value })} />
               </Field>
-              <Field label="Size">
+              <Field label={t('fields.size')}>
                 <select
                   value={profile.sizeCategory}
                   onChange={e => setProfile({ ...profile, sizeCategory: e.target.value })}
@@ -275,20 +277,20 @@ export default function CompanyProfileEditor() {
                   ))}
                 </select>
               </Field>
-              <Field label="Website URL">
+              <Field label={t('fields.websiteUrl')}>
                 <Input value={profile.websiteUrl} onChange={e => setProfile({ ...profile, websiteUrl: e.target.value })} />
               </Field>
-              <Field label="LinkedIn URL">
+              <Field label={t('fields.linkedinUrl')}>
                 <Input value={profile.linkedinUrl} onChange={e => setProfile({ ...profile, linkedinUrl: e.target.value })} />
               </Field>
-              <Field label="Logo URL">
+              <Field label={t('fields.logoUrl')}>
                 <Input value={profile.logoUrl} onChange={e => setProfile({ ...profile, logoUrl: e.target.value })} />
               </Field>
-              <Field label="Cover image URL">
+              <Field label={t('fields.coverUrl')}>
                 <Input value={profile.coverUrl} onChange={e => setProfile({ ...profile, coverUrl: e.target.value })} />
               </Field>
             </div>
-            <Field label="About">
+            <Field label={t('fields.about')}>
               <Textarea
                 rows={4}
                 value={profile.description}
@@ -300,11 +302,11 @@ export default function CompanyProfileEditor() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Industries & culture tags</CardTitle>
+            <CardTitle className="text-base">{t('sections.industriesCulture')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <TagField
-              label="Industries"
+              label={t('fields.industries')}
               list={profile.industries}
               input={industryInput}
               setInput={setIndustryInput}
@@ -312,9 +314,10 @@ export default function CompanyProfileEditor() {
               onAdd={() =>
                 addTag(profile.industries, industryInput, l => setProfile({ ...profile, industries: l }), setIndustryInput)
               }
+              addPrefix={t('tagField.addPrefix')}
             />
             <TagField
-              label="Culture tags"
+              label={t('fields.cultureTags')}
               list={profile.cultureTags}
               input={cultureInput}
               setInput={setCultureInput}
@@ -322,9 +325,10 @@ export default function CompanyProfileEditor() {
               onAdd={() =>
                 addTag(profile.cultureTags, cultureInput, l => setProfile({ ...profile, cultureTags: l }), setCultureInput)
               }
+              addPrefix={t('tagField.addPrefix')}
             />
             <TagField
-              label="Countries (ISO 3166-1 alpha-2)"
+              label={t('fields.countries')}
               list={profile.countries}
               input={countryInput}
               setInput={setCountryInput}
@@ -332,19 +336,20 @@ export default function CompanyProfileEditor() {
               onAdd={() =>
                 addTag(profile.countries, countryInput.toUpperCase(), l => setProfile({ ...profile, countries: l }), setCountryInput)
               }
+              addPrefix={t('tagField.addPrefix')}
             />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Mission & vision</CardTitle>
+            <CardTitle className="text-base">{t('sections.missionVision')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Field label="Mission">
+            <Field label={t('fields.mission')}>
               <Textarea rows={3} value={profile.mission} onChange={e => setProfile({ ...profile, mission: e.target.value })} />
             </Field>
-            <Field label="Vision">
+            <Field label={t('fields.vision')}>
               <Textarea rows={3} value={profile.vision} onChange={e => setProfile({ ...profile, vision: e.target.value })} />
             </Field>
           </CardContent>
@@ -352,7 +357,7 @@ export default function CompanyProfileEditor() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Values</CardTitle>
+            <CardTitle className="text-base">{t('sections.values')}</CardTitle>
           </CardHeader>
           <CardContent>
             {profile.values.map((v, idx) => (
@@ -360,7 +365,7 @@ export default function CompanyProfileEditor() {
                 <Input
                   className="w-1/3"
                   value={v.title}
-                  placeholder="Title"
+                  placeholder={t('placeholders.valueTitle')}
                   onChange={e => {
                     const next = [...profile.values]
                     next[idx] = { ...v, title: e.target.value }
@@ -369,7 +374,7 @@ export default function CompanyProfileEditor() {
                 />
                 <Input
                   value={v.description ?? ''}
-                  placeholder="Short description"
+                  placeholder={t('placeholders.valueDescription')}
                   onChange={e => {
                     const next = [...profile.values]
                     next[idx] = { ...v, description: e.target.value }
@@ -391,20 +396,20 @@ export default function CompanyProfileEditor() {
               onClick={() => setProfile({ ...profile, values: [...profile.values, { title: '', description: '' }] })}
             >
               <Plus className="h-4 w-4 mr-1" />
-              Add value
+              {t('actions.addValue')}
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Office locations</CardTitle>
+            <CardTitle className="text-base">{t('sections.officeLocations')}</CardTitle>
           </CardHeader>
           <CardContent>
             {profile.officeLocations.map((o, idx) => (
               <div key={idx} className="flex gap-2 mb-2">
                 <Input
-                  placeholder="City"
+                  placeholder={t('placeholders.city')}
                   value={o.city}
                   onChange={e => {
                     const next = [...profile.officeLocations]
@@ -413,7 +418,7 @@ export default function CompanyProfileEditor() {
                   }}
                 />
                 <Input
-                  placeholder="Country"
+                  placeholder={t('placeholders.country')}
                   value={o.country}
                   onChange={e => {
                     const next = [...profile.officeLocations]
@@ -423,7 +428,7 @@ export default function CompanyProfileEditor() {
                 />
                 <Input
                   type="number"
-                  placeholder="Headcount"
+                  placeholder={t('placeholders.headcount')}
                   value={o.headcount ?? ''}
                   onChange={e => {
                     const next = [...profile.officeLocations]
@@ -456,20 +461,20 @@ export default function CompanyProfileEditor() {
               }
             >
               <Plus className="h-4 w-4 mr-1" />
-              Add office
+              {t('actions.addOffice')}
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">FAQ</CardTitle>
+            <CardTitle className="text-base">{t('sections.faq')}</CardTitle>
           </CardHeader>
           <CardContent>
             {profile.faqs.map((f, idx) => (
               <div key={idx} className="space-y-2 mb-3 p-3 border rounded">
                 <Input
-                  placeholder="Question"
+                  placeholder={t('placeholders.question')}
                   value={f.question}
                   onChange={e => {
                     const next = [...profile.faqs]
@@ -478,7 +483,7 @@ export default function CompanyProfileEditor() {
                   }}
                 />
                 <Textarea
-                  placeholder="Answer"
+                  placeholder={t('placeholders.answer')}
                   rows={2}
                   value={f.answer}
                   onChange={e => {
@@ -493,7 +498,7 @@ export default function CompanyProfileEditor() {
                   onClick={() => setProfile({ ...profile, faqs: profile.faqs.filter((_, i) => i !== idx) })}
                 >
                   <X className="h-4 w-4 mr-1" />
-                  Remove
+                  {t('actions.remove')}
                 </Button>
               </div>
             ))}
@@ -503,17 +508,17 @@ export default function CompanyProfileEditor() {
               onClick={() => setProfile({ ...profile, faqs: [...profile.faqs, { question: '', answer: '' }] })}
             >
               <Plus className="h-4 w-4 mr-1" />
-              Add FAQ
+              {t('actions.addFaq')}
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Hero video</CardTitle>
+            <CardTitle className="text-base">{t('sections.heroVideo')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <Field label="Video embed URL (YouTube/Vimeo embed format)">
+            <Field label={t('fields.heroVideoUrl')}>
               <Input
                 value={profile.heroVideoUrl}
                 onChange={e => setProfile({ ...profile, heroVideoUrl: e.target.value })}
@@ -526,7 +531,7 @@ export default function CompanyProfileEditor() {
         <div className="flex justify-end">
           <Button onClick={save} disabled={saving} size="lg">
             <Save className="h-4 w-4 mr-2" />
-            {saving ? 'Saving…' : 'Save changes'}
+            {saving ? t('actions.saving') : t('actions.saveChanges')}
           </Button>
         </div>
       </div>
@@ -550,6 +555,7 @@ function TagField({
   setInput,
   setList,
   onAdd,
+  addPrefix,
 }: {
   label: string
   list: string[]
@@ -557,6 +563,7 @@ function TagField({
   setInput: (s: string) => void
   setList: (l: string[]) => void
   onAdd: () => void
+  addPrefix: string
 }) {
   return (
     <div>
@@ -576,7 +583,7 @@ function TagField({
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), onAdd())}
-          placeholder={`Add ${label.toLowerCase()}`}
+          placeholder={`${addPrefix} ${label.toLowerCase()}`}
         />
         <Button variant="outline" onClick={onAdd}>
           <Plus className="h-4 w-4" />

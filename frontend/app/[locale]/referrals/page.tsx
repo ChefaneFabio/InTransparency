@@ -150,7 +150,7 @@ const referralPrograms = {
           'Share with HR network and fellow recruiters',
           'When referred company makes first contact (€10), you both get €20 credit',
           'No limit on referrals',
-          'Build recruiter network: "Join 500+ companies hiring verified talent"',
+          'Build recruiter network: "Hire verified Italian talent before your competitors"',
           'Quarterly networking events for referrers'
         ],
         cta: 'Get Referral Link',

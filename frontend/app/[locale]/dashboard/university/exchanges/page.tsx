@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -61,6 +62,7 @@ interface SkillInput {
 }
 
 export default function UniversityExchangesPage() {
+  const t = useTranslations('universityExchanges')
   const [data, setData] = useState<ExchangeData | null>(null)
   const [loading, setLoading] = useState(true)
   const [completingId, setCompletingId] = useState<string | null>(null)
@@ -105,12 +107,12 @@ export default function UniversityExchangesPage() {
     })
     if (res.ok) {
       const json = await res.json()
-      setMessage(`Marked complete. ${json.deltasCreated ?? 0} skill deltas pushed to home institution.`)
+      setMessage(t('messages.completeSuccess', { count: json.deltasCreated ?? 0 }))
       setCompletingId(null)
       await load()
     } else {
       const err = await res.json()
-      setMessage(err.error || 'Failed to submit.')
+      setMessage(err.error || t('messages.submitFailed'))
     }
     setSubmitting(false)
   }
@@ -130,11 +132,10 @@ export default function UniversityExchangesPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1 flex items-center gap-2">
           <Globe className="h-7 w-7 text-primary" />
-          Cross-border exchanges
+          {t('title')}
         </h1>
         <p className="text-muted-foreground">
-          Inbound and outbound Erasmus / bilateral students. When you mark an inbound exchange
-          complete, skill deltas automatically push back to the student&apos;s home institution.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -148,11 +149,11 @@ export default function UniversityExchangesPage() {
       )}
 
       <div className="grid md:grid-cols-4 gap-4 mb-6">
-        <StatCard label="Outbound" value={data.stats.totalOutbound} icon={<PlaneTakeoff className="h-5 w-5" />} />
-        <StatCard label="Inbound" value={data.stats.totalInbound} icon={<PlaneLanding className="h-5 w-5" />} />
-        <StatCard label="Active partnerships" value={data.stats.activePartnerships} icon={<Users className="h-5 w-5" />} />
+        <StatCard label={t('stats.outbound')} value={data.stats.totalOutbound} icon={<PlaneTakeoff className="h-5 w-5" />} />
+        <StatCard label={t('stats.inbound')} value={data.stats.totalInbound} icon={<PlaneLanding className="h-5 w-5" />} />
+        <StatCard label={t('stats.activePartnerships')} value={data.stats.activePartnerships} icon={<Users className="h-5 w-5" />} />
         <StatCard
-          label="Partner countries"
+          label={t('stats.partnerCountries')}
           value={new Set([...Object.keys(data.stats.byCountryOut), ...Object.keys(data.stats.byCountryIn)]).size}
           icon={<Globe className="h-5 w-5" />}
         />
@@ -160,14 +161,14 @@ export default function UniversityExchangesPage() {
 
       <Tabs defaultValue="inbound">
         <TabsList>
-          <TabsTrigger value="inbound">Inbound ({data.inbound.length})</TabsTrigger>
-          <TabsTrigger value="outbound">Outbound ({data.outbound.length})</TabsTrigger>
-          <TabsTrigger value="partnerships">Partnerships ({data.partnerships.length})</TabsTrigger>
+          <TabsTrigger value="inbound">{t('tabs.inbound', { count: data.inbound.length })}</TabsTrigger>
+          <TabsTrigger value="outbound">{t('tabs.outbound', { count: data.outbound.length })}</TabsTrigger>
+          <TabsTrigger value="partnerships">{t('tabs.partnerships', { count: data.partnerships.length })}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="inbound" className="mt-4 space-y-3">
           {data.inbound.length === 0 ? (
-            <EmptyState text="No inbound exchange students." />
+            <EmptyState text={t('empty.inbound')} />
           ) : (
             data.inbound.map(e => (
               <Card key={e.id}>
@@ -177,7 +178,7 @@ export default function UniversityExchangesPage() {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold">{e.student.name}</h3>
                         <Badge variant="outline" className="text-xs">
-                          from {e.homeUniversityName} · {e.homeCountry}
+                          {t('labels.from')} {e.homeUniversityName} · {e.homeCountry}
                         </Badge>
                         <Badge className="text-xs">{e.status}</Badge>
                       </div>
@@ -188,7 +189,7 @@ export default function UniversityExchangesPage() {
                     </div>
                     {e.status !== 'COMPLETED' && (
                       <Button size="sm" onClick={() => openComplete(e.id)}>
-                        Mark complete & push skills
+                        {t('actions.markCompletePushSkills')}
                       </Button>
                     )}
                   </div>
@@ -196,11 +197,10 @@ export default function UniversityExchangesPage() {
                   {completingId === e.id && (
                     <div className="mt-4 pt-4 border-t space-y-3">
                       <h4 className="font-semibold text-sm">
-                        Skills acquired during exchange at your institution
+                        {t('completeForm.heading')}
                       </h4>
                       <p className="text-xs text-muted-foreground">
-                        Add skills the student demonstrably gained. These will flow back to their
-                        home institution&apos;s verified skill graph.
+                        {t('completeForm.description')}
                       </p>
 
                       <div className="flex gap-2">
@@ -208,7 +208,7 @@ export default function UniversityExchangesPage() {
                           value={newSkill}
                           onChange={ev => setNewSkill(ev.target.value)}
                           onKeyDown={ev => ev.key === 'Enter' && (ev.preventDefault(), addSkill())}
-                          placeholder="Add a skill (e.g., Machine Learning)"
+                          placeholder={t('completeForm.skillPlaceholder')}
                         />
                         <Button variant="outline" onClick={addSkill}>
                           <Plus className="h-4 w-4" />
@@ -228,10 +228,10 @@ export default function UniversityExchangesPage() {
                               }}
                               className="px-2 py-1 text-sm border rounded"
                             >
-                              <option value={1}>Beginner</option>
-                              <option value={2}>Intermediate</option>
-                              <option value={3}>Advanced</option>
-                              <option value={4}>Expert</option>
+                              <option value={1}>{t('levels.beginner')}</option>
+                              <option value={2}>{t('levels.intermediate')}</option>
+                              <option value={3}>{t('levels.advanced')}</option>
+                              <option value={4}>{t('levels.expert')}</option>
                             </select>
                             <Button
                               variant="ghost"
@@ -246,10 +246,10 @@ export default function UniversityExchangesPage() {
 
                       <div className="flex gap-2 justify-end">
                         <Button variant="outline" onClick={() => setCompletingId(null)}>
-                          Cancel
+                          {t('actions.cancel')}
                         </Button>
                         <Button onClick={submit} disabled={submitting || skills.length === 0}>
-                          {submitting ? 'Submitting…' : 'Mark complete'}
+                          {submitting ? t('actions.submitting') : t('actions.markComplete')}
                         </Button>
                       </div>
                     </div>
@@ -262,7 +262,7 @@ export default function UniversityExchangesPage() {
 
         <TabsContent value="outbound" className="mt-4 space-y-3">
           {data.outbound.length === 0 ? (
-            <EmptyState text="No outbound exchange students." />
+            <EmptyState text={t('empty.outbound')} />
           ) : (
             data.outbound.map(e => (
               <Card key={e.id}>
@@ -272,7 +272,7 @@ export default function UniversityExchangesPage() {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold">{e.student.name}</h3>
                         <Badge variant="outline" className="text-xs">
-                          to {e.hostUniversityName} · {e.hostCountry}
+                          {t('labels.to')} {e.hostUniversityName} · {e.hostCountry}
                         </Badge>
                         <Badge className="text-xs">{e.status}</Badge>
                       </div>
@@ -284,7 +284,7 @@ export default function UniversityExchangesPage() {
                     {e.verifiedByHost && (
                       <Badge variant="default" className="text-xs">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        Host verified
+                        {t('labels.hostVerified')}
                       </Badge>
                     )}
                   </div>
@@ -296,7 +296,7 @@ export default function UniversityExchangesPage() {
 
         <TabsContent value="partnerships" className="mt-4 space-y-3">
           {data.partnerships.length === 0 ? (
-            <EmptyState text="No partnerships yet." />
+            <EmptyState text={t('empty.partnerships')} />
           ) : (
             data.partnerships.map(p => (
               <Card key={p.id}>
@@ -305,7 +305,7 @@ export default function UniversityExchangesPage() {
                     <h3 className="font-semibold">{p.partnerName}</h3>
                     <div className="text-sm text-muted-foreground">
                       {p.exchangeType} · {p.status}
-                      {p.maxStudents && ` · max ${p.maxStudents} students/year`}
+                      {p.maxStudents && ` · ${t('labels.maxStudentsPerYear', { count: p.maxStudents })}`}
                     </div>
                   </div>
                   <Badge>{p.status}</Badge>

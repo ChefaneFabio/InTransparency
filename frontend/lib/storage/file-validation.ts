@@ -58,6 +58,15 @@ const FILE_SIGNATURES = {
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [
     [0x50, 0x4B, 0x03, 0x04], // XLSX (ZIP format)
   ],
+  'application/vnd.ms-powerpoint': [
+    [0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1], // PPT (OLE compound)
+  ],
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation': [
+    [0x50, 0x4B, 0x03, 0x04], // PPTX (ZIP format)
+  ],
+  'application/rtf': [
+    [0x7B, 0x5C, 0x72, 0x74, 0x66], // {\rtf
+  ],
 
   // Archives
   'application/zip': [
@@ -66,11 +75,110 @@ const FILE_SIGNATURES = {
     [0x50, 0x4B, 0x07, 0x08], // Spanned ZIP
   ],
   'application/x-rar-compressed': [
-    [0x52, 0x61, 0x72, 0x21, 0x1A, 0x07], // RAR
+    [0x52, 0x61, 0x72, 0x21, 0x1A, 0x07], // RAR v1.5+
+    [0x52, 0x61, 0x72, 0x21, 0x1A, 0x07, 0x01, 0x00], // RAR v5.0+
   ],
   'application/x-7z-compressed': [
     [0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C], // 7Z
   ],
+  'application/gzip': [
+    [0x1F, 0x8B], // gzip
+  ],
+  'application/x-tar': [
+    // No reliable leading magic — usually detected via extension
+  ],
+}
+
+// File extensions that are plain text (no binary signature) and should
+// pass validation when magic bytes are absent. Students commonly submit
+// code, notebooks, configs, and data files with these extensions.
+const TEXT_EXTENSIONS: Record<string, string> = {
+  txt: 'text/plain',
+  md: 'text/markdown',
+  csv: 'text/csv',
+  tsv: 'text/tab-separated-values',
+  json: 'application/json',
+  jsonl: 'application/json',
+  ipynb: 'application/x-ipynb+json',
+  xml: 'application/xml',
+  yaml: 'application/yaml',
+  yml: 'application/yaml',
+  toml: 'application/toml',
+  tex: 'application/x-tex',
+  bib: 'application/x-bibtex',
+  log: 'text/plain',
+  // Code
+  py: 'text/x-python',
+  r: 'text/x-r',
+  rmd: 'text/x-r-markdown',
+  js: 'application/javascript',
+  ts: 'application/typescript',
+  tsx: 'application/typescript',
+  jsx: 'application/javascript',
+  java: 'text/x-java',
+  c: 'text/x-c',
+  h: 'text/x-c',
+  cpp: 'text/x-c++',
+  cc: 'text/x-c++',
+  hpp: 'text/x-c++',
+  cs: 'text/x-csharp',
+  go: 'text/x-go',
+  rs: 'text/x-rust',
+  swift: 'text/x-swift',
+  kt: 'text/x-kotlin',
+  php: 'application/x-php',
+  rb: 'text/x-ruby',
+  sql: 'application/sql',
+  sh: 'application/x-sh',
+  // Web
+  html: 'text/html',
+  htm: 'text/html',
+  css: 'text/css',
+  scss: 'text/x-scss',
+  // Config/data
+  ini: 'text/plain',
+  cfg: 'text/plain',
+  conf: 'text/plain',
+  env: 'text/plain',
+}
+
+// Binary formats trusted by extension (no reliable magic-byte signature,
+// but we're willing to accept them from authenticated users).
+const BINARY_EXTENSIONS: Record<string, string> = {
+  // 3D / CAD
+  stl: 'model/stl',
+  dxf: 'application/dxf',
+  dwg: 'application/acad',
+  step: 'application/step',
+  stp: 'application/step',
+  iges: 'model/iges',
+  igs: 'model/iges',
+  obj: 'model/obj',
+  gltf: 'model/gltf+json',
+  glb: 'model/gltf-binary',
+  dae: 'model/vnd.collada+xml',
+  fbx: 'application/octet-stream',
+  // Design
+  sketch: 'application/x-sketch',
+  fig: 'application/x-figma',
+  psd: 'image/vnd.adobe.photoshop',
+  ai: 'application/postscript',
+  indd: 'application/x-indesign',
+  // Audio / media (for media-project students — not content-parsed yet)
+  mp3: 'audio/mpeg',
+  wav: 'audio/wav',
+  flac: 'audio/flac',
+  m4a: 'audio/mp4',
+  ogg: 'audio/ogg',
+}
+
+export function getExtension(filename: string): string {
+  const parts = filename.toLowerCase().split('.')
+  return parts.length > 1 ? parts[parts.length - 1] : ''
+}
+
+export function isTextExtension(filename: string): boolean {
+  return getExtension(filename) in TEXT_EXTENSIONS
 }
 
 /**
@@ -268,11 +376,34 @@ export async function validateFile(
 
   // 2. Validate file type with magic bytes
   if (options.checkMagicBytes !== false) {
-    const typeValidation = validateFileType(buffer, expectedMimeType, options.allowedTypes)
-    if (!typeValidation.valid) {
-      errors.push(typeValidation.error!)
+    // Plain-text files (code, notebooks, configs) have no magic signature.
+    // Allow them when (a) the extension is whitelisted AND (b) the preset
+    // explicitly allows text-based types.
+    const ext = getExtension(filename)
+    const textMime = TEXT_EXTENSIONS[ext]
+    const textAllowed =
+      textMime !== undefined &&
+      (options.allowedTypes.includes(textMime) ||
+        options.allowedTypes.includes('text/*') ||
+        options.allowedTypes.includes('text/plain'))
+
+    // Binary formats with no reliable magic bytes (STL etc.) — trust extension
+    // when explicitly allowlisted.
+    const binaryMime = BINARY_EXTENSIONS[ext]
+    const binaryAllowed =
+      binaryMime !== undefined && options.allowedTypes.includes(binaryMime)
+
+    if (textAllowed) {
+      detectedType = textMime
+    } else if (binaryAllowed) {
+      detectedType = binaryMime
+    } else {
+      const typeValidation = validateFileType(buffer, expectedMimeType, options.allowedTypes)
+      if (!typeValidation.valid) {
+        errors.push(typeValidation.error!)
+      }
+      detectedType = typeValidation.detectedType
     }
-    detectedType = typeValidation.detectedType
   }
 
   // 3. Validate image dimensions (if image and limits specified)
@@ -336,11 +467,87 @@ export const VALIDATION_PRESETS = {
   },
   document: {
     allowedTypes: [
+      // Office documents
       'application/pdf',
       'application/msword',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/rtf',
+      // OpenDocument (LibreOffice / OpenOffice)
+      'application/vnd.oasis.opendocument.text',
+      'application/vnd.oasis.opendocument.spreadsheet',
+      'application/vnd.oasis.opendocument.presentation',
+      // EPUB
+      'application/epub+zip',
+      // 3D / CAD
+      'model/stl',
+      'application/vnd.ms-pki.stl',
+      'application/dxf',
+      'image/vnd.dxf',
+      'application/acad',
+      'application/step',
+      'model/step+zip',
+      'model/iges',
+      'model/obj',
+      'model/gltf+json',
+      'model/gltf-binary',
+      'model/vnd.collada+xml',
+      'application/octet-stream', // FBX and other generic binaries
+      // Design
+      'application/x-sketch',
+      'application/x-figma',
+      'image/vnd.adobe.photoshop',
+      'application/postscript', // AI
+      'application/x-indesign',
+      // Audio
+      'audio/mpeg',
+      'audio/wav',
+      'audio/flac',
+      'audio/mp4',
+      'audio/ogg',
+      // Archives (for source code bundles, CAD exports, etc.)
+      'application/zip',
+      'application/x-rar-compressed',
+      'application/x-7z-compressed',
+      'application/gzip',
+      'application/x-tar',
+      // Text-based project files (code, notebooks, data)
+      'text/plain',
+      'text/markdown',
+      'text/csv',
+      'text/tab-separated-values',
+      'application/json',
+      'application/x-ipynb+json',
+      'application/xml',
+      'application/yaml',
+      'application/toml',
+      'application/x-tex',
+      'application/x-bibtex',
+      'text/x-python',
+      'text/x-r',
+      'text/x-r-markdown',
+      'application/javascript',
+      'application/typescript',
+      'text/x-java',
+      'text/x-c',
+      'text/x-c++',
+      'text/x-csharp',
+      'text/x-go',
+      'text/x-rust',
+      'text/x-swift',
+      'text/x-kotlin',
+      'application/x-php',
+      'text/x-ruby',
+      'application/sql',
+      'application/x-sh',
+      'text/html',
+      'text/css',
+      'text/x-scss',
     ],
-    maxSize: 25 * 1024 * 1024, // 25MB
+    maxSize: 50 * 1024 * 1024, // 50MB (up from 25 — projects with data files run large)
     checkMagicBytes: true,
   },
 }

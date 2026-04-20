@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -40,6 +41,7 @@ interface EndorsementData {
 
 export default function EndorsementVerifyPage() {
   const params = useParams()
+  const t = useTranslations('endorsementsVerify')
   const token = params.token as string
 
   const [endorsement, setEndorsement] = useState<EndorsementData | null>(null)
@@ -58,8 +60,12 @@ export default function EndorsementVerifyPage() {
 
   // Per-competency ratings
   const predefinedCompetencies = [
-    'Critical Thinking', 'Teamwork', 'Technical Skills',
-    'Communication', 'Creativity', 'Problem Solving'
+    { key: 'criticalThinking', label: t('compCriticalThinking') },
+    { key: 'teamwork', label: t('compTeamwork') },
+    { key: 'technicalSkills', label: t('compTechnicalSkills') },
+    { key: 'communication', label: t('compCommunication') },
+    { key: 'creativity', label: t('compCreativity') },
+    { key: 'problemSolving', label: t('compProblemSolving') },
   ]
   const [competencyRatings, setCompetencyRatings] = useState<Record<string, number>>({})
 
@@ -88,10 +94,10 @@ export default function EndorsementVerifyPage() {
           setEndorsement(data.endorsement)
         } else {
           const data = await res.json()
-          setError(data.error || 'Invalid or expired link')
+          setError(data.error || t('invalidLink'))
         }
       } catch {
-        setError('Failed to load endorsement request')
+        setError(t('loadError'))
       } finally {
         setLoading(false)
       }
@@ -99,7 +105,7 @@ export default function EndorsementVerifyPage() {
     if (token) {
       fetchEndorsement()
     }
-  }, [token])
+  }, [token, t])
 
   const handleSubmit = async (submitAction: 'verify' | 'decline') => {
     setSubmitting(true)
@@ -122,10 +128,10 @@ export default function EndorsementVerifyPage() {
         setSubmitted(true)
       } else {
         const data = await res.json()
-        setError(data.error || 'Failed to submit')
+        setError(data.error || t('submitError'))
       }
     } catch {
-      setError('Failed to submit endorsement')
+      setError(t('submitError2'))
     } finally {
       setSubmitting(false)
     }
@@ -148,7 +154,7 @@ export default function EndorsementVerifyPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-gray-600">Loading endorsement request...</p>
+          <p className="text-gray-600">{t('loading')}</p>
         </div>
       </div>
     )
@@ -160,10 +166,10 @@ export default function EndorsementVerifyPage() {
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center">
             <AlertTriangle className="h-12 w-12 text-amber-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Unable to Load</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">{t('unableToLoad')}</h2>
             <p className="text-gray-600">{error}</p>
             <p className="text-sm text-gray-500 mt-4">
-              If you believe this is an error, please contact the student directly.
+              {t('unableToLoadHint')}
             </p>
           </CardContent>
         </Card>
@@ -179,27 +185,27 @@ export default function EndorsementVerifyPage() {
             {action === 'verify' ? (
               <>
                 <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">{t('thankYou')}</h2>
                 <p className="text-gray-600">
-                  Your endorsement has been submitted successfully. The student will be notified.
+                  {t('thankYouDesc')}
                 </p>
               </>
             ) : (
               <>
                 <XCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Response Recorded</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">{t('responseRecorded')}</h2>
                 <p className="text-gray-600">
-                  Thank you for your response. The student will be notified.
+                  {t('responseRecordedDesc')}
                 </p>
               </>
             )}
             <div className="mt-6 p-4 bg-primary/5 rounded-lg">
               <p className="text-sm text-blue-800 mb-3">
-                <strong>InTransparency</strong> is a verified talent marketplace connecting students with recruiters through transparent, verified credentials.
+                {t.rich('aboutIntransparency', { strong: (chunks) => <strong>{chunks}</strong> })}
               </p>
               <Button variant="outline" size="sm" asChild className="w-full">
                 <a href={`/professor/dashboard?token=${token}`}>
-                  Open professor portal (see all your endorsements)
+                  {t('openProfessorPortal')}
                   <ExternalLink className="h-3 w-3 ml-1" />
                 </a>
               </Button>
@@ -221,8 +227,8 @@ export default function EndorsementVerifyPage() {
             <Award className="h-5 w-5 text-primary" />
             <span className="font-semibold text-gray-900">InTransparency</span>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Professor Endorsement Request</h1>
-          <p className="text-gray-600 mt-1">A student is requesting your endorsement for their project</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t('pageTitle')}</h1>
+          <p className="text-gray-600 mt-1">{t('pageSubtitle')}</p>
         </div>
 
         {/* Student & Project Info */}
@@ -230,25 +236,25 @@ export default function EndorsementVerifyPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <GraduationCap className="h-5 w-5 text-primary" />
-              Student Information
+              {t('studentInfo')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-gray-500">Student</p>
+                <p className="text-sm text-gray-500">{t('student')}</p>
                 <p className="font-medium">{endorsement.studentName}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">University</p>
+                <p className="text-sm text-gray-500">{t('university')}</p>
                 <p className="font-medium">{endorsement.studentUniversity}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Course</p>
+                <p className="text-sm text-gray-500">{t('course')}</p>
                 <p className="font-medium">{endorsement.courseName} ({endorsement.courseCode})</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Semester</p>
+                <p className="text-sm text-gray-500">{t('semester')}</p>
                 <p className="font-medium">{endorsement.semester}</p>
               </div>
             </div>
@@ -259,14 +265,14 @@ export default function EndorsementVerifyPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
-              Project: {endorsement.project.title}
+              {t('project')}: {endorsement.project.title}
             </CardTitle>
             <CardDescription>{endorsement.project.description}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {endorsement.project.technologies && endorsement.project.technologies.length > 0 && (
               <div>
-                <p className="text-sm text-gray-500 mb-2">Technologies</p>
+                <p className="text-sm text-gray-500 mb-2">{t('technologies')}</p>
                 <div className="flex flex-wrap gap-1">
                   {endorsement.project.technologies.map((tech) => (
                     <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
@@ -278,13 +284,13 @@ export default function EndorsementVerifyPage() {
               {endorsement.project.githubUrl && (
                 <a href={endorsement.project.githubUrl} target="_blank" rel="noopener noreferrer"
                    className="text-sm text-primary hover:underline flex items-center gap-1">
-                  <ExternalLink className="h-3 w-3" /> GitHub
+                  <ExternalLink className="h-3 w-3" /> {t('github')}
                 </a>
               )}
               {endorsement.project.liveUrl && (
                 <a href={endorsement.project.liveUrl} target="_blank" rel="noopener noreferrer"
                    className="text-sm text-primary hover:underline flex items-center gap-1">
-                  <ExternalLink className="h-3 w-3" /> Live Demo
+                  <ExternalLink className="h-3 w-3" /> {t('liveDemo')}
                 </a>
               )}
             </div>
@@ -294,15 +300,15 @@ export default function EndorsementVerifyPage() {
         {/* Endorsement Form */}
         <Card>
           <CardHeader>
-            <CardTitle>Your Endorsement</CardTitle>
+            <CardTitle>{t('yourEndorsement')}</CardTitle>
             <CardDescription>
-              Please provide your assessment of the student&apos;s work. All fields are optional but help recruiters evaluate the student.
+              {t('yourEndorsementDesc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             {/* Rating */}
             <div>
-              <Label>Overall Rating</Label>
+              <Label>{t('overallRating')}</Label>
               <div className="flex gap-1 mt-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -320,41 +326,44 @@ export default function EndorsementVerifyPage() {
                 ))}
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                {rating === 0 ? 'Click to rate' :
-                 rating <= 2 ? 'Below average' :
-                 rating === 3 ? 'Average' :
-                 rating === 4 ? 'Above average' : 'Exceptional'}
+                {rating === 0 ? t('rateClick') :
+                 rating <= 2 ? t('rateBelow') :
+                 rating === 3 ? t('rateAverage') :
+                 rating === 4 ? t('rateAbove') : t('rateExceptional')}
               </p>
             </div>
 
             {/* Per-Competency Ratings */}
             <div>
-              <Label>Competency Ratings</Label>
+              <Label>{t('competencyRatings')}</Label>
               <p className="text-xs text-gray-500 mt-1 mb-3">
-                Select competencies to rate. Click a chip to add it, then set a 1-5 rating.
+                {t('competencyRatingsDesc')}
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
                 {predefinedCompetencies.map((comp) => {
-                  const isActive = comp in competencyRatings
+                  const isActive = comp.key in competencyRatings
                   return (
                     <Badge
-                      key={comp}
+                      key={comp.key}
                       variant={isActive ? 'default' : 'outline'}
                       className={`cursor-pointer transition-colors ${
                         isActive ? 'bg-primary hover:bg-blue-700' : 'hover:bg-gray-100'
                       }`}
-                      onClick={() => toggleCompetency(comp)}
+                      onClick={() => toggleCompetency(comp.key)}
                     >
-                      {comp}
+                      {comp.label}
                     </Badge>
                   )
                 })}
               </div>
               {Object.keys(competencyRatings).length > 0 && (
                 <div className="space-y-3 bg-gray-50 rounded-lg p-4">
-                  {Array.from(Object.entries(competencyRatings)).map(([comp, val]) => (
+                  {Array.from(Object.entries(competencyRatings)).map(([comp, val]) => {
+                    const labelObj = predefinedCompetencies.find(c => c.key === comp)
+                    const displayLabel = labelObj ? labelObj.label : comp
+                    return (
                     <div key={comp} className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">{comp}</span>
+                      <span className="text-sm font-medium text-gray-700">{displayLabel}</span>
                       <div className="flex gap-0.5">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <button
@@ -372,17 +381,18 @@ export default function EndorsementVerifyPage() {
                         ))}
                       </div>
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>
 
             {/* Written endorsement */}
             <div>
-              <Label htmlFor="endorsementText">Written Endorsement</Label>
+              <Label htmlFor="endorsementText">{t('writtenEndorsement')}</Label>
               <Textarea
                 id="endorsementText"
-                placeholder="Share your thoughts on the student's work, attitude, and capabilities..."
+                placeholder={t('writtenPlaceholder')}
                 value={endorsementText}
                 onChange={(e) => setEndorsementText(e.target.value)}
                 rows={4}
@@ -392,10 +402,10 @@ export default function EndorsementVerifyPage() {
 
             {/* Grade */}
             <div>
-              <Label htmlFor="grade">Course Grade (if applicable)</Label>
+              <Label htmlFor="grade">{t('courseGrade')}</Label>
               <Input
                 id="grade"
-                placeholder="e.g. 28/30, A, Excellent"
+                placeholder={t('gradePlaceholder')}
                 value={grade}
                 onChange={(e) => setGrade(e.target.value)}
                 className="mt-1 max-w-xs"
@@ -404,15 +414,15 @@ export default function EndorsementVerifyPage() {
 
             {/* Skills */}
             <div>
-              <Label>Key Skills Demonstrated</Label>
+              <Label>{t('keySkills')}</Label>
               <div className="flex gap-2 mt-1">
                 <Input
-                  placeholder="e.g. Critical Thinking, Teamwork"
+                  placeholder={t('skillsPlaceholder')}
                   value={skillInput}
                   onChange={(e) => setSkillInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addSkill() } }}
                 />
-                <Button type="button" variant="outline" onClick={addSkill}>Add</Button>
+                <Button type="button" variant="outline" onClick={addSkill}>{t('add')}</Button>
               </div>
               {skills.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-2">
@@ -437,7 +447,7 @@ export default function EndorsementVerifyPage() {
                 ) : (
                   <CheckCircle className="mr-2 h-4 w-4" />
                 )}
-                Endorse Student
+                {t('endorseStudent')}
               </Button>
               <Button
                 variant="outline"
@@ -450,14 +460,14 @@ export default function EndorsementVerifyPage() {
                 ) : (
                   <XCircle className="mr-2 h-4 w-4" />
                 )}
-                Decline
+                {t('decline')}
               </Button>
             </div>
           </CardContent>
         </Card>
 
         <p className="text-center text-xs text-gray-400">
-          This link expires 7 days after the request was sent.
+          {t('linkExpires')}
         </p>
       </div>
     </div>

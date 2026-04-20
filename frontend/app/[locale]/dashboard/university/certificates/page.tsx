@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -32,6 +33,7 @@ interface Stats {
 }
 
 export default function CertificatesPage() {
+  const t = useTranslations('universityCertificates')
   const [certificates, setCertificates] = useState<Certificate[]>([])
   const [stats, setStats] = useState<Stats>({ total: 0, issued: 0, revoked: 0, expired: 0 })
   const [loading, setLoading] = useState(true)
@@ -92,15 +94,15 @@ export default function CertificatesPage() {
   }
 
   const statusConfig: Record<string, { label: string; variant: 'default' | 'destructive' | 'outline'; icon: any }> = {
-    ISSUED: { label: 'Valido', variant: 'default', icon: ShieldCheck },
-    REVOKED: { label: 'Revocato', variant: 'destructive', icon: XCircle },
-    EXPIRED: { label: 'Scaduto', variant: 'outline', icon: Clock },
+    ISSUED: { label: t('status.issued'), variant: 'default', icon: ShieldCheck },
+    REVOKED: { label: t('status.revoked'), variant: 'destructive', icon: XCircle },
+    EXPIRED: { label: t('status.expired'), variant: 'outline', icon: Clock },
   }
 
   const copyVerifyUrl = (credentialId: string) => {
     const url = `${window.location.origin}/verify/credential/${credentialId}`
     navigator.clipboard.writeText(url).catch(() => {})
-    alert('Link di verifica copiato!')
+    alert(t('alerts.verifyLinkCopied'))
   }
 
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('it-IT')
@@ -121,13 +123,13 @@ export default function CertificatesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Certificati Digitali</h1>
+          <h1 className="text-2xl font-bold">{t('header.title')}</h1>
           <p className="text-muted-foreground mt-1">
-            Emetti e gestisci certificati digitali verificabili
+            {t('header.subtitle')}
           </p>
         </div>
         <Button onClick={() => setShowForm(!showForm)}>
-          <Plus className="h-4 w-4 mr-2" /> Emetti Certificato
+          <Plus className="h-4 w-4 mr-2" /> {t('header.issueButton')}
         </Button>
       </div>
 
@@ -139,7 +141,7 @@ export default function CertificatesPage() {
               <div className="rounded-lg bg-blue-100 p-2"><Award className="h-5 w-5 text-blue-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-muted-foreground">Totali Emessi</p>
+                <p className="text-sm text-muted-foreground">{t('stats.totalIssued')}</p>
               </div>
             </div>
           </CardContent>
@@ -150,7 +152,7 @@ export default function CertificatesPage() {
               <div className="rounded-lg bg-green-100 p-2"><ShieldCheck className="h-5 w-5 text-green-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.issued}</p>
-                <p className="text-sm text-muted-foreground">Validi</p>
+                <p className="text-sm text-muted-foreground">{t('stats.valid')}</p>
               </div>
             </div>
           </CardContent>
@@ -161,7 +163,7 @@ export default function CertificatesPage() {
               <div className="rounded-lg bg-red-100 p-2"><XCircle className="h-5 w-5 text-red-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{stats.revoked + stats.expired}</p>
-                <p className="text-sm text-muted-foreground">Revocati / Scaduti</p>
+                <p className="text-sm text-muted-foreground">{t('stats.revokedExpired')}</p>
               </div>
             </div>
           </CardContent>
@@ -172,48 +174,48 @@ export default function CertificatesPage() {
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>Emetti Nuovo Certificato</CardTitle>
-            <CardDescription>Compila i dati per emettere un certificato digitale verificabile</CardDescription>
+            <CardTitle>{t('form.title')}</CardTitle>
+            <CardDescription>{t('form.description')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <label className="text-sm font-medium mb-1 block">ID Studente *</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.studentIdLabel')}</label>
                 <Input
-                  placeholder="ID studente"
+                  placeholder={t('form.studentIdPlaceholder')}
                   value={formStudentId}
                   onChange={(e) => setFormStudentId(e.target.value)}
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Titolo Certificato *</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.certificateTitleLabel')}</label>
                 <Input
-                  placeholder="es. Diploma di Qualifica Professionale"
+                  placeholder={t('form.certificateTitlePlaceholder')}
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Descrizione (opzionale)</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.descriptionLabel')}</label>
                 <Input
-                  placeholder="Descrizione aggiuntiva"
+                  placeholder={t('form.descriptionPlaceholder')}
                   value={formDescription}
                   onChange={(e) => setFormDescription(e.target.value)}
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">ID Corso (opzionale)</label>
+                <label className="text-sm font-medium mb-1 block">{t('form.courseIdLabel')}</label>
                 <Input
-                  placeholder="Collegamento al corso"
+                  placeholder={t('form.courseIdPlaceholder')}
                   value={formCourseId}
                   onChange={(e) => setFormCourseId(e.target.value)}
                 />
               </div>
             </div>
             <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setShowForm(false)}>Annulla</Button>
+              <Button variant="outline" onClick={() => setShowForm(false)}>{t('form.cancel')}</Button>
               <Button onClick={handleIssue} disabled={submitting || !formStudentId || !formTitle}>
-                {submitting ? 'Emissione...' : 'Emetti'}
+                {submitting ? t('form.submitting') : t('form.submit')}
               </Button>
             </div>
           </CardContent>
@@ -223,11 +225,11 @@ export default function CertificatesPage() {
       {/* Certificates List */}
       <Card>
         <CardHeader>
-          <CardTitle>Certificati Emessi</CardTitle>
+          <CardTitle>{t('list.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           {certificates.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">Nessun certificato emesso.</p>
+            <p className="text-muted-foreground text-center py-8">{t('list.empty')}</p>
           ) : (
             <div className="space-y-3">
               {certificates.map((cert) => {
@@ -243,10 +245,10 @@ export default function CertificatesPage() {
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {cert.studentName} | Emesso: {formatDate(cert.issueDate)}
-                        {cert.expiryDate && ` | Scadenza: ${formatDate(cert.expiryDate)}`}
+                        {cert.studentName} | {t('list.issuedOn')}: {formatDate(cert.issueDate)}
+                        {cert.expiryDate && ` | ${t('list.expiresOn')}: ${formatDate(cert.expiryDate)}`}
                       </p>
-                      <p className="text-xs text-muted-foreground font-mono">ID: {cert.credentialId}</p>
+                      <p className="text-xs text-muted-foreground font-mono">{t('list.idLabel')}: {cert.credentialId}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Button variant="ghost" size="sm" onClick={() => copyVerifyUrl(cert.credentialId)}>

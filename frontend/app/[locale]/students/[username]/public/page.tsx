@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { PublicPortfolio } from '@/components/portfolio/PublicPortfolio'
 import prisma from '@/lib/prisma'
+import { getTranslations } from 'next-intl/server'
 
 interface PageProps {
   params: Promise<{
@@ -121,16 +122,23 @@ export default async function PublicPortfolioPage(props: PageProps) {
 export async function generateMetadata(props: PageProps) {
   const { username } = await props.params
   const userData = await getPublicPortfolio(username)
+  const t = await getTranslations('studentProfilePublic')
 
   if (!userData) {
     return {
-      title: 'Portfolio Not Found | InTransparency',
-      description: 'This portfolio is not available'
+      title: t('notFoundTitle'),
+      description: t('notFoundDesc')
     }
   }
 
   const title = `${userData.firstName} ${userData.lastName} - ${userData.degree} @ ${userData.university}`
-  const description = `Verified portfolio of ${userData.firstName} ${userData.lastName}. ${userData.stats.projectsCount} verified projects with ${userData.stats.verificationScore}% verification score. ${userData.bio || ''}`
+  const description = t('metaDesc', {
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+    count: userData.stats.projectsCount,
+    score: userData.stats.verificationScore,
+    bio: userData.bio || ''
+  })
 
   return {
     title,

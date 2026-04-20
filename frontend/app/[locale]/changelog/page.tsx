@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent } from '@/components/ui/card'
@@ -16,26 +17,29 @@ import { Link } from '@/navigation'
  * Google shows freshness signals. RSS feed lives at /feed.xml.
  */
 
-export const metadata: Metadata = {
-  title: 'Changelog — InTransparency product updates',
-  description: 'Shipping log for the InTransparency platform: features, compliance, performance, infrastructure.',
-  alternates: {
-    canonical: 'https://www.in-transparency.com/en/changelog',
-    languages: {
-      en: 'https://www.in-transparency.com/en/changelog',
-      it: 'https://www.in-transparency.com/it/changelog',
-      'x-default': 'https://www.in-transparency.com/en/changelog',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('changelogPage')
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    alternates: {
+      canonical: 'https://www.in-transparency.com/en/changelog',
+      languages: {
+        en: 'https://www.in-transparency.com/en/changelog',
+        it: 'https://www.in-transparency.com/it/changelog',
+        'x-default': 'https://www.in-transparency.com/en/changelog',
+      },
+      types: {
+        'application/rss+xml': 'https://www.in-transparency.com/feed.xml',
+      },
     },
-    types: {
-      'application/rss+xml': 'https://www.in-transparency.com/feed.xml',
+    openGraph: {
+      title: t('meta.title'),
+      description: t('meta.ogDescription'),
+      type: 'article',
+      siteName: 'InTransparency',
     },
-  },
-  openGraph: {
-    title: 'Changelog — InTransparency product updates',
-    description: 'What we shipped, when, and why.',
-    type: 'article',
-    siteName: 'InTransparency',
-  },
+  }
 }
 
 const CATEGORY_STYLE: Record<ChangelogEntry['category'], string> = {
@@ -48,7 +52,9 @@ const CATEGORY_STYLE: Record<ChangelogEntry['category'], string> = {
 
 const BASE = 'https://www.in-transparency.com'
 
-export default function ChangelogPage() {
+export default async function ChangelogPage() {
+  const t = await getTranslations('changelogPage')
+
   // Emit one BlogPosting per entry, wrapped in an ItemList
   const itemList = {
     '@context': 'https://schema.org',
@@ -80,7 +86,7 @@ export default function ChangelogPage() {
       <JsonLd
         data={breadcrumbList([
           { name: 'Home', url: '/' },
-          { name: 'Changelog', url: '/changelog' },
+          { name: t('breadcrumb'), url: '/changelog' },
         ])}
       />
       <Header />
@@ -89,20 +95,20 @@ export default function ChangelogPage() {
           <div>
             <Badge variant="outline" className="mb-3">
               <Sparkles className="h-3 w-3 mr-1" />
-              Shipping log
+              {t('badge')}
             </Badge>
-            <h1 className="text-4xl font-bold mb-2">Changelog</h1>
+            <h1 className="text-4xl font-bold mb-2">{t('heading')}</h1>
             <p className="text-lg text-muted-foreground">
-              What we shipped, when, and why. Freshest at the top.
+              {t('subtitle')}
             </p>
           </div>
           <a
             href="/feed.xml"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
-            title="RSS feed"
+            title={t('rssTitle')}
           >
             <Rss className="h-4 w-4" />
-            RSS
+            {t('rssLabel')}
           </a>
         </div>
 
@@ -131,7 +137,7 @@ export default function ChangelogPage() {
                       href={entry.link as any}
                       className="text-sm text-primary hover:underline inline-flex items-center gap-1"
                     >
-                      Go to the change
+                      {t('goToChange')}
                       <ArrowRight className="h-3 w-3" />
                     </Link>
                   )}

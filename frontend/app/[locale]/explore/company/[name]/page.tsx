@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -45,14 +46,6 @@ interface CompanyData {
   reviews: ReviewItem[]
 }
 
-const categoryLabels: Record<string, string> = {
-  workLifeBalance: 'Work-Life Balance',
-  mentorship: 'Mentorship',
-  learningOpportunity: 'Learning Opportunity',
-  compensation: 'Compensation',
-  cultureFit: 'Culture Fit',
-}
-
 function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
@@ -68,7 +61,16 @@ function Stars({ rating }: { rating: number }) {
 
 export default function CompanyReviewPage() {
   const params = useParams()
+  const t = useTranslations('exploreCompany')
+  const locale = useLocale()
   const companyName = decodeURIComponent(params.name as string)
+  const categoryLabels: Record<string, string> = {
+    workLifeBalance: t('cat_workLifeBalance'),
+    mentorship: t('cat_mentorship'),
+    learningOpportunity: t('cat_learningOpportunity'),
+    compensation: t('cat_compensation'),
+    cultureFit: t('cat_cultureFit'),
+  }
   const [data, setData] = useState<CompanyData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -93,7 +95,7 @@ export default function CompanyReviewPage() {
       <div className="max-w-4xl mx-auto flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="text-3xl text-blue-300 animate-pulse mb-4">...</div>
-          <p className="text-gray-500">Loading company reviews...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -104,9 +106,9 @@ export default function CompanyReviewPage() {
       <div className="max-w-4xl mx-auto py-12 text-center">
         <div className="text-4xl text-gray-300 mb-4">--</div>
         <h1 className="text-2xl font-bold text-gray-900 mb-2">{companyName}</h1>
-        <p className="text-gray-600 mb-6">No reviews yet for this company.</p>
+        <p className="text-gray-600 mb-6">{t('noReviews')}</p>
         <Link href="/explore" className="text-primary hover:underline flex items-center justify-center gap-1">
-          <ArrowLeft className="h-4 w-4" /> Back to Explore
+          <ArrowLeft className="h-4 w-4" /> {t('backToExplore')}
         </Link>
       </div>
     )
@@ -116,7 +118,7 @@ export default function CompanyReviewPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Back link */}
       <Link href="/explore" className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
-        <ArrowLeft className="h-3.5 w-3.5" /> Back to Explore
+        <ArrowLeft className="h-3.5 w-3.5" /> {t('backToExplore')}
       </Link>
 
       {/* Company Header */}
@@ -134,7 +136,7 @@ export default function CompanyReviewPage() {
                   <span className="text-xl font-bold">{data.averageRating.toFixed(1)}</span>
                 </div>
                 <span className="text-gray-500">
-                  {data.reviewCount} review{data.reviewCount !== 1 ? 's' : ''} from students
+                  {t('reviewsFromStudents', { count: data.reviewCount })}
                 </span>
               </div>
             </div>
@@ -146,7 +148,7 @@ export default function CompanyReviewPage() {
         {/* Ratings Breakdown */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Ratings</CardTitle>
+            <CardTitle className="text-lg">{t('ratings')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {Object.entries(categoryLabels).map(([key, label]) => {
@@ -184,12 +186,12 @@ export default function CompanyReviewPage() {
                       <div className="flex items-center gap-2">
                         <span className="font-medium text-sm">
                           {review.isAnonymous
-                            ? 'Anonymous Student'
+                            ? t('anonymousStudent')
                             : `${review.reviewer.firstName || ''} ${review.reviewer.lastName || ''}`}
                         </span>
                         {review.isVerified && (
                           <Badge className="bg-primary/10 text-green-700 text-xs">
-                            <CheckCircle className="mr-0.5 h-2.5 w-2.5" /> Verified
+                            <CheckCircle className="mr-0.5 h-2.5 w-2.5" /> {t('verified')}
                           </Badge>
                         )}
                       </div>
@@ -214,7 +216,7 @@ export default function CompanyReviewPage() {
                     {review.pros && (
                       <div className="text-sm">
                         <div className="flex items-center gap-1 text-green-700 font-medium mb-1">
-                          <span>+</span> Pros
+                          <span>+</span> {t('pros')}
                         </div>
                         <p className="text-gray-600 text-xs">{review.pros}</p>
                       </div>
@@ -222,7 +224,7 @@ export default function CompanyReviewPage() {
                     {review.cons && (
                       <div className="text-sm">
                         <div className="flex items-center gap-1 text-red-600 font-medium mb-1">
-                          <span>-</span> Cons
+                          <span>-</span> {t('cons')}
                         </div>
                         <p className="text-gray-600 text-xs">{review.cons}</p>
                       </div>
@@ -232,7 +234,7 @@ export default function CompanyReviewPage() {
 
                 {/* Date */}
                 <p className="text-xs text-gray-400 mt-3">
-                  {new Date(review.createdAt).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+                  {new Date(review.createdAt).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { month: 'long', year: 'numeric' })}
                 </p>
               </CardContent>
             </Card>

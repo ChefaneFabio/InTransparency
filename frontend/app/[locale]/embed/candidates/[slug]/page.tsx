@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import prisma from '@/lib/prisma'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { ShieldCheck, GraduationCap } from 'lucide-react'
 
 /**
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function EmbedCandidatesPage({ params }: PageProps) {
   const { slug } = await params
+  const t = await getTranslations('embedCandidates')
 
   const profile = await prisma.companyProfile.findUnique({
     where: { slug },
@@ -49,7 +51,7 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
     return (
       <div className="p-6 bg-white">
         <p className="text-sm text-muted-foreground">
-          This company profile is not available for embedding.
+          {t('profileNotAvailable')}
         </p>
       </div>
     )
@@ -99,7 +101,7 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-primary" />
             <span className="font-semibold text-sm">
-              Candidates verified by InTransparency
+              {t('verifiedBy')}
             </span>
           </div>
           <a
@@ -108,18 +110,18 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
             rel="noreferrer"
             className="text-xs text-muted-foreground hover:text-primary"
           >
-            Powered by InTransparency →
+            {t('poweredBy')}
           </a>
         </div>
 
         {students.length === 0 ? (
           <p className="text-sm text-muted-foreground py-8 text-center">
-            No public candidates to display yet.
+            {t('noCandidates')}
           </p>
         ) : (
           <div className="grid sm:grid-cols-2 gap-2">
             {students.map(s => {
-              const name = [s.firstName, s.lastName].filter(Boolean).join(' ') || s.username || 'Anonymous'
+              const name = [s.firstName, s.lastName].filter(Boolean).join(' ') || s.username || t('anonymous')
               const skillCount = countByStudent.get(s.id) ?? 0
               const profileHref = s.username
                 ? `https://www.in-transparency.com/en/students/${s.username}/public`
@@ -145,7 +147,7 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
                             <p className="font-medium text-sm text-foreground truncate">{name}</p>
                             {skillCount > 0 && (
                               <Badge variant="outline" className="text-[10px] px-1 h-4">
-                                {skillCount} verified
+                                {skillCount} {t('verified')}
                               </Badge>
                             )}
                           </div>
@@ -153,7 +155,7 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
                             <GraduationCap className="h-3 w-3" />
                             <span className="truncate">
                               {s.degree ? `${s.degree} · ` : ''}
-                              {s.university ?? 'University'}
+                              {s.university ?? t('university')}
                             </span>
                           </div>
                           {s.skills && s.skills.length > 0 && (
@@ -179,7 +181,7 @@ export default async function EmbedCandidatesPage({ params }: PageProps) {
         )}
 
         <p className="mt-4 text-[11px] text-muted-foreground text-center">
-          Candidates self-selected to follow this company. Full verified skill graph available on each profile.
+          {t('footerNote')}
         </p>
       </div>
     </div>

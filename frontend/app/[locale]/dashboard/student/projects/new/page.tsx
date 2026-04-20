@@ -125,7 +125,7 @@ export default function NewProjectPage() {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (file.size > 25 * 1024 * 1024) { alert('Max 25MB'); return }
+    if (file.size > 50 * 1024 * 1024) { alert('Max 50MB'); return }
     setUploading(true)
     try {
       const formData = new FormData()
@@ -448,7 +448,7 @@ export default function NewProjectPage() {
               </div>
               <div className="flex flex-col gap-1.5">
                 <input ref={imageInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-                <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip" onChange={handleFileUpload} className="hidden" />
+                <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.rtf,.odt,.ods,.odp,.epub,.stl,.dxf,.dwg,.step,.stp,.iges,.igs,.obj,.gltf,.glb,.dae,.fbx,.sketch,.fig,.psd,.ai,.indd,.mp3,.wav,.flac,.m4a,.ogg,.zip,.rar,.7z,.tar,.gz,.txt,.md,.csv,.tsv,.json,.jsonl,.ipynb,.xml,.yaml,.yml,.toml,.tex,.bib,.log,.py,.r,.rmd,.js,.ts,.tsx,.jsx,.java,.c,.h,.cpp,.cc,.hpp,.cs,.go,.rs,.swift,.kt,.php,.rb,.sql,.sh,.html,.htm,.css,.scss" onChange={handleFileUpload} className="hidden" />
                 <div className="flex gap-1">
                   <Button variant="outline" size="sm" className="h-8 w-8 p-0" onClick={() => imageInputRef.current?.click()} disabled={uploading || analyzing}>
                     {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImageIcon className="h-3.5 w-3.5" />}

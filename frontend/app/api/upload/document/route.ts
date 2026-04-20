@@ -83,13 +83,30 @@ export async function POST(req: NextRequest) {
  */
 export async function GET() {
   return NextResponse.json({
-    maxFileSize: 25 * 1024 * 1024,
-    allowedTypes: [
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.ms-excel',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    maxFileSize: 50 * 1024 * 1024,
+    allowedExtensions: [
+      // Office
+      'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'rtf',
+      // OpenDocument / EPUB
+      'odt', 'ods', 'odp', 'epub',
+      // 3D / CAD
+      'stl', 'dxf', 'dwg', 'step', 'stp', 'iges', 'igs',
+      'obj', 'gltf', 'glb', 'dae', 'fbx',
+      // Design
+      'sketch', 'fig', 'psd', 'ai', 'indd',
+      // Audio
+      'mp3', 'wav', 'flac', 'm4a', 'ogg',
+      // Archives
+      'zip', 'rar', '7z', 'tar', 'gz',
+      // Text / data / notebooks
+      'txt', 'md', 'csv', 'tsv', 'json', 'jsonl', 'ipynb',
+      'xml', 'yaml', 'yml', 'toml', 'tex', 'bib', 'log',
+      // Code
+      'py', 'r', 'rmd', 'js', 'ts', 'tsx', 'jsx',
+      'java', 'c', 'h', 'cpp', 'cc', 'hpp',
+      'cs', 'go', 'rs', 'swift', 'kt',
+      'php', 'rb', 'sql', 'sh',
+      'html', 'htm', 'css', 'scss',
     ],
   })
 }

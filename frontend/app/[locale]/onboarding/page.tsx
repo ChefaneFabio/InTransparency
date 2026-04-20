@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useRouter } from '@/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -537,6 +538,7 @@ const skillGroups: { name: string; icon: string; skills: string[] }[] = [
 ]
 
 export default function OnboardingPage() {
+  const t = useTranslations('onboardingPage')
   const { data: session, status } = useSession()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
@@ -796,12 +798,12 @@ export default function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {userRole === 'UNIVERSITY' ? 'Benvenuta su InTransparency!' : 'Benvenuto su InTransparency!'}
+            {userRole === 'UNIVERSITY' ? t('welcomeUniversity') : t('welcome')}
           </h1>
           <p className="text-gray-600">
             {userRole === 'UNIVERSITY'
-              ? 'Configura il profilo della tua istituzione per iniziare'
-              : 'Completa il tuo profilo per iniziare'}
+              ? t('welcomeSubtitleUniversity')
+              : t('welcomeSubtitle')}
           </p>
         </div>
 
@@ -828,7 +830,7 @@ export default function OnboardingPage() {
           </div>
           <Progress value={progress} className="h-2" />
           <p className="text-sm text-gray-600 text-center mt-2">
-            Passo {currentStep + 1} di {currentSteps.length}: {currentSteps[currentStep]}
+            {t('stepOf', { current: currentStep + 1, total: currentSteps.length })}: {currentSteps[currentStep]}
           </p>
         </div>
 
@@ -862,12 +864,12 @@ export default function OnboardingPage() {
                     {photoUploading ? (
                       <>
                         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Caricamento...
+                        {t('uploading')}
                       </>
                     ) : (
                       <>
                         <Upload className="h-4 w-4 mr-2" />
-                        Carica Foto
+                        {t('uploadPhoto')}
                       </>
                     )}
                   </Button>
@@ -875,32 +877,32 @@ export default function OnboardingPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName">Nome</Label>
+                    <Label htmlFor="firstName">{t('firstNameLabel')}</Label>
                     <Input
                       id="firstName"
                       value={data.firstName}
                       onChange={(e) => setData(prev => ({ ...prev, firstName: e.target.value }))}
-                      placeholder="Mario"
+                      placeholder={t('firstNamePlaceholder')}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Cognome</Label>
+                    <Label htmlFor="lastName">{t('lastNameLabel')}</Label>
                     <Input
                       id="lastName"
                       value={data.lastName}
                       onChange={(e) => setData(prev => ({ ...prev, lastName: e.target.value }))}
-                      placeholder="Rossi"
+                      placeholder={t('lastNamePlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="bio">Presentazione</Label>
+                  <Label htmlFor="bio">{t('bioLabel')}</Label>
                   <Textarea
                     id="bio"
                     value={data.bio}
                     onChange={(e) => setData(prev => ({ ...prev, bio: e.target.value }))}
-                    placeholder="Raccontaci qualcosa di te..."
+                    placeholder={t('bioPlaceholder')}
                     rows={4}
                   />
                 </div>
@@ -934,29 +936,29 @@ export default function OnboardingPage() {
                     {logoUploading ? (
                       <>
                         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Caricamento...
+                        {t('uploading')}
                       </>
                     ) : (
                       <>
                         <Upload className="h-4 w-4 mr-2" />
-                        Carica Logo
+                        {t('uploadLogo')}
                       </>
                     )}
                   </Button>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="institutionName">Nome Istituzione</Label>
+                  <Label htmlFor="institutionName">{t('institutionNameLabel')}</Label>
                   <Input
                     id="institutionName"
                     value={data.institutionName}
                     onChange={(e) => setData(prev => ({ ...prev, institutionName: e.target.value }))}
-                    placeholder="es. Politecnico di Milano"
+                    placeholder={t('institutionNamePlaceholder')}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Tipo di Istituzione</Label>
+                  <Label>{t('institutionTypeLabel')}</Label>
                   <div className="grid grid-cols-2 gap-2">
                     {institutionTypes.map(type => (
                       <Button
@@ -980,12 +982,12 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="website">Sito Web</Label>
+                  <Label htmlFor="website">{t('websiteLabel')}</Label>
                   <Input
                     id="website"
                     value={data.website}
                     onChange={(e) => setData(prev => ({ ...prev, website: e.target.value }))}
-                    placeholder="es. www.polimi.it"
+                    placeholder={t('websitePlaceholder')}
                   />
                 </div>
               </div>
@@ -996,37 +998,37 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <GraduationCap className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Informazioni Universitarie</h2>
+                  <h2 className="text-xl font-semibold">{t('studentInfoTitle')}</h2>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="university">Istituzione / ITS</Label>
+                    <Label htmlFor="university">{t('universityLabel')}</Label>
                     <Input
                       id="university"
                       value={data.university}
                       onChange={(e) => setData(prev => ({ ...prev, university: e.target.value }))}
-                      placeholder="es. Politecnico di Milano"
+                      placeholder={t('universityPlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="degree">Corso di Laurea</Label>
+                    <Label htmlFor="degree">{t('degreeLabel')}</Label>
                     <Input
                       id="degree"
                       value={data.degree}
                       onChange={(e) => setData(prev => ({ ...prev, degree: e.target.value }))}
-                      placeholder="es. Ingegneria Informatica"
+                      placeholder={t('degreePlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="graduationYear">Anno di Laurea Previsto</Label>
+                    <Label htmlFor="graduationYear">{t('graduationYearLabel')}</Label>
                     <Input
                       id="graduationYear"
                       value={data.graduationYear}
                       onChange={(e) => setData(prev => ({ ...prev, graduationYear: e.target.value }))}
-                      placeholder="es. 2025"
+                      placeholder={t('graduationYearPlaceholder')}
                     />
                   </div>
                 </div>
@@ -1037,32 +1039,32 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <Building2 className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Informazioni Aziendali</h2>
+                  <h2 className="text-xl font-semibold">{t('companyInfoTitle')}</h2>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="company">Nome Azienda</Label>
+                    <Label htmlFor="company">{t('companyNameLabel')}</Label>
                     <Input
                       id="company"
                       value={data.company}
                       onChange={(e) => setData(prev => ({ ...prev, company: e.target.value }))}
-                      placeholder="es. BMW Italia"
+                      placeholder={t('companyNamePlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="jobTitle">Ruolo</Label>
+                    <Label htmlFor="jobTitle">{t('jobTitleLabel')}</Label>
                     <Input
                       id="jobTitle"
                       value={data.jobTitle}
                       onChange={(e) => setData(prev => ({ ...prev, jobTitle: e.target.value }))}
-                      placeholder="es. HR Manager"
+                      placeholder={t('jobTitlePlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Dimensione Azienda</Label>
+                    <Label>{t('companySizeLabel')}</Label>
                     <div className="grid grid-cols-2 gap-2">
                       {['1-10', '11-50', '51-200', '201-500', '500+'].map(size => (
                         <Button
@@ -1071,7 +1073,7 @@ export default function OnboardingPage() {
                           onClick={() => setData(prev => ({ ...prev, companySize: size }))}
                           className="w-full"
                         >
-                          {size} dipendenti
+                          {t('employeesCount', { size })}
                         </Button>
                       ))}
                     </div>
@@ -1084,49 +1086,49 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <User className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Referente & Sede</h2>
-                  <p className="text-gray-600 text-sm">Chi gestirà la piattaforma per la vostra istituzione?</p>
+                  <h2 className="text-xl font-semibold">{t('contactAndLocationTitle')}</h2>
+                  <p className="text-gray-600 text-sm">{t('contactAndLocationDesc')}</p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="contactName">Nome Referente</Label>
+                      <Label htmlFor="contactName">{t('contactNameLabel')}</Label>
                       <Input
                         id="contactName"
                         value={data.contactName}
                         onChange={(e) => setData(prev => ({ ...prev, contactName: e.target.value }))}
-                        placeholder="es. Mario Rossi"
+                        placeholder={t('contactNamePlaceholder')}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="contactRole">Ruolo</Label>
+                      <Label htmlFor="contactRole">{t('contactRoleLabel')}</Label>
                       <Input
                         id="contactRole"
                         value={data.contactRole}
                         onChange={(e) => setData(prev => ({ ...prev, contactRole: e.target.value }))}
-                        placeholder="es. Responsabile Career Services"
+                        placeholder={t('contactRolePlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="department">Dipartimento / Ufficio</Label>
+                    <Label htmlFor="department">{t('departmentLabel')}</Label>
                     <Input
                       id="department"
                       value={data.department}
                       onChange={(e) => setData(prev => ({ ...prev, department: e.target.value }))}
-                      placeholder="es. Career Services"
+                      placeholder={t('departmentPlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="region">Regione</Label>
+                    <Label htmlFor="region">{t('regionLabel')}</Label>
                     <Input
                       id="region"
                       value={data.region}
                       onChange={(e) => setData(prev => ({ ...prev, region: e.target.value }))}
-                      placeholder="es. Lombardia"
+                      placeholder={t('regionPlaceholder')}
                     />
                   </div>
                 </div>
@@ -1138,8 +1140,8 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Le tue Competenze</h2>
-                  <p className="text-gray-600 text-sm">Seleziona le competenze che possiedi tra le diverse aree</p>
+                  <h2 className="text-xl font-semibold">{t('skillsTitle')}</h2>
+                  <p className="text-gray-600 text-sm">{t('skillsDesc')}</p>
                 </div>
 
                 <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
@@ -1177,7 +1179,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <p className="text-sm text-gray-500 text-center font-medium">
-                  {data.skills.length} competenze selezionate
+                  {t('skillsSelected', { count: data.skills.length })}
                 </p>
               </div>
             )}
@@ -1186,11 +1188,11 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Preferenze</h2>
+                  <h2 className="text-xl font-semibold">{t('preferencesTitle')}</h2>
                 </div>
 
                 <p className="text-gray-600 text-center">
-                  Potrai configurare le tue preferenze dettagliate dalla dashboard dopo il completamento.
+                  {t('preferencesDesc')}
                 </p>
               </div>
             )}
@@ -1203,30 +1205,30 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <MapPin className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Dove vi trovate oggi</h2>
-                  <p className="text-gray-600 text-sm">Selezionate le sfide che riconoscete — vi mostriamo come le risolviamo</p>
+                  <h2 className="text-xl font-semibold">{t('whereYouAreTitle')}</h2>
+                  <p className="text-gray-600 text-sm">{t('whereYouAreDesc')}</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="studentCount">
-                      {data.institutionType === 'school' ? 'Numero Studenti' :
-                       data.institutionType === 'other' ? 'Numero Allievi / Anno' :
-                       'Numero Studenti'}
+                      {data.institutionType === 'school' ? t('studentCountLabel') :
+                       data.institutionType === 'other' ? t('traineesPerYearLabel') :
+                       t('studentCountLabel')}
                     </Label>
                     <Input
                       id="studentCount"
                       value={data.studentCount}
                       onChange={(e) => setData(prev => ({ ...prev, studentCount: e.target.value }))}
-                      placeholder={data.institutionType === 'school' ? 'es. 800' :
-                                   data.institutionType === 'other' ? 'es. 200' : 'es. 5000'}
+                      placeholder={data.institutionType === 'school' ? t('studentCountPlaceholderSchool') :
+                                   data.institutionType === 'other' ? t('studentCountPlaceholderOther') : t('studentCountPlaceholder')}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label>
-                      {data.institutionType === 'school' ? 'Indirizzi' :
-                       data.institutionType === 'other' ? 'Settori Formativi' :
-                       'Aree Disciplinari'}
+                      {data.institutionType === 'school' ? t('tracksLabel') :
+                       data.institutionType === 'other' ? t('sectorsLabel') :
+                       t('disciplineAreasLabel')}
                     </Label>
                     <div className="flex flex-wrap gap-1.5">
                       {focusAreaOptions.map(area => (
@@ -1245,7 +1247,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <Label>Quali sfide affrontate oggi?</Label>
+                  <Label>{t('challengesLabel')}</Label>
                   <div className="grid grid-cols-1 gap-2 max-h-[420px] overflow-y-auto pr-1">
                     {typePainPoints.map(point => {
                       const isSelected = data.painPoints.includes(point.value)
@@ -1268,7 +1270,7 @@ export default function OnboardingPage() {
                               {isSelected && (
                                 <div className="mt-2 bg-emerald-50 border border-emerald-200 rounded-md p-2">
                                   <p className="text-xs text-emerald-700 font-medium">
-                                    Come lo risolviamo: <span className="font-normal">{point.solution}</span>
+                                    {t('howWeSolveIt')} <span className="font-normal">{point.solution}</span>
                                   </p>
                                 </div>
                               )}
@@ -1284,7 +1286,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <Label>Strumenti che usate attualmente</Label>
+                  <Label>{t('currentToolsLabel')}</Label>
                   <div className="flex flex-wrap gap-2">
                     {typeTools.map(tool => (
                       <Badge
@@ -1310,8 +1312,8 @@ export default function OnboardingPage() {
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <GraduationCap className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Cosa volete ottenere</h2>
-                  <p className="text-gray-600 text-sm">Su cosa volete concentrarvi con InTransparency?</p>
+                  <h2 className="text-xl font-semibold">{t('goalsTitle')}</h2>
+                  <p className="text-gray-600 text-sm">{t('goalsDesc')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-3">
@@ -1340,7 +1342,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-2 pt-2 border-t">
-                  <Label>Se doveste scegliere una sola priorità?</Label>
+                  <Label>{t('topPriorityLabel')}</Label>
                   <div className="grid grid-cols-1 gap-2">
                     {typeGoals.map(goal => (
                       <Button
@@ -1367,10 +1369,10 @@ export default function OnboardingPage() {
                   <Check className="h-10 w-10 text-primary" />
                 </div>
                 <h2 className="text-2xl font-semibold text-gray-900">
-                  Profilo Quasi Pronto!
+                  {t('almostReadyTitle')}
                 </h2>
                 <p className="text-gray-600">
-                  Clicca &ldquo;Completa&rdquo; per accedere alla tua dashboard e iniziare a usare InTransparency.
+                  {t('almostReadyDesc')}
                 </p>
               </div>
             )}
@@ -1382,10 +1384,10 @@ export default function OnboardingPage() {
                     <Check className="h-10 w-10 text-primary" />
                   </div>
                   <h2 className="text-2xl font-semibold text-gray-900">
-                    Tutto pronto, {data.institutionName || 'Partner'}!
+                    {t('allReadyTitle', { name: data.institutionName || t('partner') })}
                   </h2>
                   <p className="text-gray-600">
-                    Ecco cosa attiveremo per voi nella dashboard:
+                    {t('allReadyDesc')}
                   </p>
                 </div>
 
@@ -1402,14 +1404,14 @@ export default function OnboardingPage() {
                   })}
                   {data.painPoints.length === 0 && (
                     <p className="text-sm text-gray-500 text-center">
-                      Avrete accesso a tutti gli strumenti: analytics, skills gap, placement tracking e molto altro.
+                      {t('allToolsAccess')}
                     </p>
                   )}
                 </div>
 
                 {data.topPriority && (
                   <div className="text-center pt-2">
-                    <p className="text-xs text-gray-400">La vostra priorità principale:</p>
+                    <p className="text-xs text-gray-400">{t('yourTopPriority')}</p>
                     <p className="text-sm font-semibold text-primary">
                       {allGoalOptions.find(g => g.value === data.topPriority)?.label}
                     </p>
@@ -1426,12 +1428,12 @@ export default function OnboardingPage() {
                 disabled={currentStep === 0}
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Indietro
+                {t('back')}
               </Button>
 
               {currentStep < currentSteps.length - 1 ? (
                 <Button onClick={handleNext}>
-                  Avanti
+                  {t('next')}
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               ) : (
@@ -1439,11 +1441,11 @@ export default function OnboardingPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Salvataggio...
+                      {t('saving')}
                     </>
                   ) : (
                     <>
-                      Completa
+                      {t('complete')}
                       <Check className="h-4 w-4 ml-2" />
                     </>
                   )}
@@ -1467,7 +1469,7 @@ export default function OnboardingPage() {
             }}
             className="text-gray-500"
           >
-            Salta per ora
+            {t('skipForNow')}
           </Button>
         </div>
       </div>

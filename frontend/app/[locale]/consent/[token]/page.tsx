@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -20,6 +21,8 @@ interface ConsentInfo {
 
 export default function PublicConsentPage() {
   const params = useParams()
+  const locale = useLocale()
+  const t = useTranslations('consentPage')
   const token = params.token as string
   const [consent, setConsent] = useState<ConsentInfo | null>(null)
   const [loading, setLoading] = useState(true)
@@ -33,7 +36,7 @@ export default function PublicConsentPage() {
       const res = await fetch(`/api/consent/${token}`)
       if (!res.ok) {
         const data = await res.json()
-        setError(data.error || 'Richiesta non trovata')
+        setError(data.error || t('requestNotFound'))
         return
       }
       const data = await res.json()
@@ -43,11 +46,11 @@ export default function PublicConsentPage() {
         setResponseStatus(data.status)
       }
     } catch {
-      setError('Errore nel caricamento della richiesta')
+      setError(t('loadError'))
     } finally {
       setLoading(false)
     }
-  }, [token])
+  }, [token, t])
 
   useEffect(() => {
     fetchConsent()
@@ -66,19 +69,19 @@ export default function PublicConsentPage() {
         setResponded(true)
         setResponseStatus(data.status)
       } else {
-        setError(data.error || 'Errore durante la risposta')
+        setError(data.error || t('responseError'))
       }
     } catch {
-      setError('Errore di connessione')
+      setError(t('connectionError'))
     } finally {
       setSubmitting(false)
     }
   }
 
   const consentTypeLabels: Record<string, string> = {
-    data_sharing: 'la condivisione dei dati personali',
-    pcto_participation: 'la partecipazione alle attività PCTO',
-    platform_usage: "l'utilizzo della piattaforma InTransparency",
+    data_sharing: t('type_data_sharing'),
+    pcto_participation: t('type_pcto_participation'),
+    platform_usage: t('type_platform_usage'),
   }
 
   if (loading) {
@@ -113,58 +116,58 @@ export default function PublicConsentPage() {
             <span className="text-white font-bold">IT</span>
           </div>
           <h1 className="text-xl font-semibold">InTransparency</h1>
-          <p className="text-sm text-muted-foreground">Richiesta di Consenso Genitoriale</p>
+          <p className="text-sm text-muted-foreground">{t('headerSubtitle')}</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Richiesta di Autorizzazione</CardTitle>
+            <CardTitle>{t('requestTitle')}</CardTitle>
             <CardDescription>
-              {consent.schoolName} richiede il consenso per {consentTypeLabels[consent.consentType] || consent.consentType} per lo/la studente/essa:
+              {t('requestDesc', { school: consent.schoolName, purpose: consentTypeLabels[consent.consentType] || consent.consentType })}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="bg-muted/50 rounded-lg p-4 space-y-2">
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Studente</span>
+                <span className="text-sm text-muted-foreground">{t('student')}</span>
                 <span className="font-medium">{consent.studentName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Scuola</span>
+                <span className="text-sm text-muted-foreground">{t('school')}</span>
                 <span className="font-medium">{consent.schoolName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Richiesto il</span>
-                <span>{new Date(consent.requestedAt).toLocaleDateString('it-IT')}</span>
+                <span className="text-sm text-muted-foreground">{t('requestedAt')}</span>
+                <span>{new Date(consent.requestedAt).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB')}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Scade il</span>
-                <span>{new Date(consent.expiresAt).toLocaleDateString('it-IT')}</span>
+                <span className="text-sm text-muted-foreground">{t('expiresAt')}</span>
+                <span>{new Date(consent.expiresAt).toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB')}</span>
               </div>
             </div>
 
             {consent.isExpired && !responded ? (
               <div className="text-center py-4">
                 <AlertTriangle className="h-10 w-10 text-amber-500 mx-auto mb-2" />
-                <p className="font-medium">Questa richiesta è scaduta</p>
-                <p className="text-sm text-muted-foreground">Contattare la scuola per una nuova richiesta.</p>
+                <p className="font-medium">{t('expiredTitle')}</p>
+                <p className="text-sm text-muted-foreground">{t('expiredDesc')}</p>
               </div>
             ) : responded ? (
               <div className="text-center py-6">
                 {responseStatus === 'GRANTED' ? (
                   <>
                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-3" />
-                    <p className="text-lg font-medium text-green-700">Consenso Autorizzato</p>
+                    <p className="text-lg font-medium text-green-700">{t('grantedTitle')}</p>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Grazie. Il consenso è stato registrato con successo.
+                      {t('grantedDesc')}
                     </p>
                   </>
                 ) : (
                   <>
                     <XCircle className="h-12 w-12 text-red-500 mx-auto mb-3" />
-                    <p className="text-lg font-medium text-red-700">Consenso Negato</p>
+                    <p className="text-lg font-medium text-red-700">{t('deniedTitle')}</p>
                     <p className="text-sm text-muted-foreground mt-1">
-                      La risposta è stata registrata. Lo studente non sarà autorizzato.
+                      {t('deniedDesc')}
                     </p>
                   </>
                 )}
@@ -179,7 +182,7 @@ export default function PublicConsentPage() {
                   disabled={submitting}
                 >
                   <ShieldCheck className="h-5 w-5 mr-2" />
-                  {submitting ? 'Invio...' : 'Autorizzo'}
+                  {submitting ? t('submitting') : t('authorize')}
                 </Button>
                 <Button
                   className="flex-1"
@@ -189,7 +192,7 @@ export default function PublicConsentPage() {
                   disabled={submitting}
                 >
                   <ShieldX className="h-5 w-5 mr-2" />
-                  {submitting ? 'Invio...' : 'Non autorizzo'}
+                  {submitting ? t('submitting') : t('deny')}
                 </Button>
               </div>
             )}
@@ -201,8 +204,7 @@ export default function PublicConsentPage() {
         </Card>
 
         <p className="text-xs text-center text-muted-foreground">
-          Questa pagina è protetta e accessibile solo tramite il link inviato via email.
-          In caso di dubbi, contattare direttamente la scuola.
+          {t('footerNote')}
         </p>
       </div>
     </div>

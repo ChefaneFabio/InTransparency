@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
     template: '%s | InTransparency',
   },
-  description: 'Hire verified graduates with institution-backed skills and evidence-based project portfolios. Pay per contact, no annual commitment. Trusted by Italian universities and ITS academies.',
+  description: 'Hire verified graduates with institution-backed skills and evidence-based project portfolios. Pay per contact, no annual commitment. Built for Italian universities and ITS academies.',
   keywords: ['verified student profiles', 'university recruitment Italy', 'hire graduates Europe', 'pay per contact recruiting', 'ITS Academy platform', 'Bologna Process grades', 'student portfolio', 'institutional verification'],
   authors: [{ name: 'InTransparency' }],
   creator: 'InTransparency',

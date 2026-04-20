@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,47 +12,55 @@ import { motion } from 'framer-motion'
 
 type ChatbotRole = 'student' | 'company' | 'institution'
 
-const chatbotConfig = {
-  student: {
-    title: 'Career Assistant',
-    icon: GraduationCap,
-    color: 'bg-primary',
-    greeting: "Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
-    examples: [
-      "Help me build my profile",
-      "Find jobs matching my skills in Milan",
-      "What skills are companies searching for?",
-      "Career advice for Computer Science graduates"
-    ]
-  },
-  company: {
-    title: 'Recruiting Assistant',
-    icon: Building2,
-    color: 'bg-primary',
-    greeting: "Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
-    examples: [
-      "Find cybersecurity students in Rome",
-      "Marketing intern with creative portfolio",
-      "Explain match scores for this candidate",
-      "What makes a good job description?"
-    ]
-  },
-  institution: {
-    title: 'Partnership Assistant',
-    icon: School,
-    color: 'bg-primary',
-    greeting: "Hi! I'm Transparenty, your institutional assistant. I help you set up partnerships, analyze placement data, identify at-risk students, and showcase European job opportunities. All interactions are GDPR-compliant and transparent.",
-    examples: [
-      "How does the free partnership work?",
-      "Show me company search trends for my students",
-      "Help identify at-risk students with zero profile views",
-      "European job opportunities for Economics students"
-    ]
-  }
+const chatbotIcons = {
+  student: GraduationCap,
+  company: Building2,
+  institution: School,
 }
 
 export default function ChatPage() {
+  const t = useTranslations('chatPage')
   const [selectedRole, setSelectedRole] = useState<ChatbotRole>('student')
+
+  const chatbotConfig: Record<ChatbotRole, { title: string; icon: typeof GraduationCap; color: string; greeting: string; examples: string[] }> = {
+    student: {
+      title: t('student.title'),
+      icon: chatbotIcons.student,
+      color: 'bg-primary',
+      greeting: t('student.greeting'),
+      examples: [
+        t('student.example1'),
+        t('student.example2'),
+        t('student.example3'),
+        t('student.example4'),
+      ]
+    },
+    company: {
+      title: t('company.title'),
+      icon: chatbotIcons.company,
+      color: 'bg-primary',
+      greeting: t('company.greeting'),
+      examples: [
+        t('company.example1'),
+        t('company.example2'),
+        t('company.example3'),
+        t('company.example4'),
+      ]
+    },
+    institution: {
+      title: t('institution.title'),
+      icon: chatbotIcons.institution,
+      color: 'bg-primary',
+      greeting: t('institution.greeting'),
+      examples: [
+        t('institution.example1'),
+        t('institution.example2'),
+        t('institution.example3'),
+        t('institution.example4'),
+      ]
+    }
+  }
+
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant', content: string }>>([
     { role: 'assistant', content: chatbotConfig[selectedRole].greeting }
   ])
@@ -101,11 +110,11 @@ export default function ChatPage() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <Bot className="h-12 w-12 text-primary" />
               <h1 className="text-5xl font-bold text-primary">
-                AI Assistant Hub
+                {t('heroTitle')}
               </h1>
             </div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Get personalized help for your journey - 24/7 conversational AI that's transparent about data usage
+              {t('heroSubtitle')}
             </p>
 
             {/* Role Selector */}
@@ -123,9 +132,9 @@ export default function ChatPage() {
                     }`}
                   >
                     <Icon className="h-4 w-4" />
-                    {role === 'student' && 'Student'}
-                    {role === 'company' && 'Company'}
-                    {role === 'institution' && 'Institution'}
+                    {role === 'student' && t('roleStudent')}
+                    {role === 'company' && t('roleCompany')}
+                    {role === 'institution' && t('roleInstitution')}
                   </button>
                 )
               })}
@@ -149,7 +158,7 @@ export default function ChatPage() {
                     </div>
                     <div>
                       <CardTitle className="text-2xl">Transparenty - {config.title}</CardTitle>
-                      <p className="text-white/90 text-sm mt-1">Powered by AI • GDPR Compliant</p>
+                      <p className="text-white/90 text-sm mt-1">{t('poweredBy')}</p>
                     </div>
                   </div>
                 </CardHeader>
@@ -189,8 +198,7 @@ export default function ChatPage() {
                     <div className="flex items-start gap-3 max-w-4xl mx-auto">
                       <Shield className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                       <div className="text-sm text-gray-700">
-                        <strong className="text-primary">Transparent AI:</strong> This conversation helps refine your experience.
-                        Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings.
+                        <strong className="text-primary">{t('transparentAiLabel')}</strong> {t('transparentAiDesc')}
                       </div>
                     </div>
                   </div>
@@ -205,7 +213,7 @@ export default function ChatPage() {
                     >
                       <p className="text-sm text-gray-600 mb-3 flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-primary" />
-                        Try asking:
+                        {t('tryAsking')}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {config.examples.map((example, idx) => (
@@ -231,7 +239,7 @@ export default function ChatPage() {
                         value={inputMessage}
                         onChange={(e) => setInputMessage(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                        placeholder={`Ask ${config.title.toLowerCase()} anything...`}
+                        placeholder={t('inputPlaceholder', { role: config.title.toLowerCase() })}
                         className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       />
                       <Button
@@ -258,12 +266,12 @@ export default function ChatPage() {
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Shield className="h-5 w-5 text-primary" />
-                    100% Transparent
+                    {t('card1Title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700 text-sm">
-                    Every conversation is logged with your consent. You can view, download, or delete your data anytime.
+                    {t('card1Desc')}
                   </p>
                 </CardContent>
               </Card>
@@ -272,12 +280,12 @@ export default function ChatPage() {
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Bot className="h-5 w-5 text-primary" />
-                    Always Learning
+                    {t('card2Title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700 text-sm">
-                    Your conversations help improve match quality for everyone while respecting your privacy.
+                    {t('card2Desc')}
                   </p>
                 </CardContent>
               </Card>
@@ -286,12 +294,12 @@ export default function ChatPage() {
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-primary" />
-                    24/7 Available
+                    {t('card3Title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-700 text-sm">
-                    Get instant help anytime - no waiting for business hours or human support.
+                    {t('card3Desc')}
                   </p>
                 </CardContent>
               </Card>

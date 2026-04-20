@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -25,6 +26,7 @@ interface LeaderboardEntry {
 }
 
 export default function SoftSkillsPage() {
+  const t = useTranslations('softSkillsPage')
   const [avgScores, setAvgScores] = useState<AvgScore[]>([])
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
   const [totalAssessments, setTotalAssessments] = useState(0)
@@ -79,12 +81,12 @@ export default function SoftSkillsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Soft Skills</h1>
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
-          Panoramica delle competenze trasversali degli studenti
+          {t('subtitle')}
         </p>
         {isMock && (
-          <Badge variant="outline" className="mt-2">Dati dimostrativi</Badge>
+          <Badge variant="outline" className="mt-2">{t('mockBadge')}</Badge>
         )}
       </div>
 
@@ -96,7 +98,7 @@ export default function SoftSkillsPage() {
               <div className="rounded-lg bg-purple-100 p-2"><Brain className="h-5 w-5 text-purple-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{totalAssessments}</p>
-                <p className="text-sm text-muted-foreground">Assessment Completati</p>
+                <p className="text-sm text-muted-foreground">{t('stats.assessmentsCompleted')}</p>
               </div>
             </div>
           </CardContent>
@@ -107,7 +109,7 @@ export default function SoftSkillsPage() {
               <div className="rounded-lg bg-blue-100 p-2"><Users className="h-5 w-5 text-blue-600" /></div>
               <div>
                 <p className="text-2xl font-bold">{totalStudents}</p>
-                <p className="text-sm text-muted-foreground">Studenti Totali</p>
+                <p className="text-sm text-muted-foreground">{t('stats.totalStudents')}</p>
               </div>
             </div>
           </CardContent>
@@ -120,7 +122,7 @@ export default function SoftSkillsPage() {
                 <p className="text-2xl font-bold">
                   {avgScores.length > 0 ? Math.round(avgScores.reduce((s, a) => s + a.avgScore, 0) / avgScores.length) : 0}
                 </p>
-                <p className="text-sm text-muted-foreground">Punteggio Medio</p>
+                <p className="text-sm text-muted-foreground">{t('stats.averageScore')}</p>
               </div>
             </div>
           </CardContent>
@@ -131,8 +133,8 @@ export default function SoftSkillsPage() {
         {/* Radar Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Profilo Soft Skills Medio</CardTitle>
-            <CardDescription>Punteggi medi per dimensione</CardDescription>
+            <CardTitle>{t('radar.title')}</CardTitle>
+            <CardDescription>{t('radar.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-[350px]">
@@ -141,7 +143,7 @@ export default function SoftSkillsPage() {
                   <PolarGrid />
                   <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 11 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} />
-                  <Radar name="Media" dataKey="score" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} />
+                  <Radar name={t('radar.seriesName')} dataKey="score" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} />
                   <Tooltip />
                 </RadarChart>
               </ResponsiveContainer>
@@ -152,8 +154,8 @@ export default function SoftSkillsPage() {
         {/* Bar Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Distribuzione Punteggi</CardTitle>
-            <CardDescription>Confronto per dimensione</CardDescription>
+            <CardTitle>{t('bar.title')}</CardTitle>
+            <CardDescription>{t('bar.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-[350px]">
@@ -175,13 +177,13 @@ export default function SoftSkillsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-amber-500" /> Classifica Studenti
+            <Trophy className="h-5 w-5 text-amber-500" /> {t('leaderboard.title')}
           </CardTitle>
-          <CardDescription>Top studenti per punteggio soft skills</CardDescription>
+          <CardDescription>{t('leaderboard.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           {leaderboard.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">Nessun dato disponibile.</p>
+            <p className="text-muted-foreground text-center py-8">{t('leaderboard.empty')}</p>
           ) : (
             <div className="space-y-2">
               {leaderboard.map((entry, i) => (
@@ -199,7 +201,7 @@ export default function SoftSkillsPage() {
                   </div>
                   <div className="text-right">
                     <p className="font-bold">{entry.avgScore}/100</p>
-                    <p className="text-xs text-muted-foreground">totale: {entry.totalScore}</p>
+                    <p className="text-xs text-muted-foreground">{t('leaderboard.totalLabel')}: {entry.totalScore}</p>
                   </div>
                 </div>
               ))}

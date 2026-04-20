@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -34,6 +35,7 @@ interface ApiResponse {
 }
 
 export default function StudentCredentialsPage() {
+  const t = useTranslations('studentCredentials')
   const [data, setData] = useState<ApiResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [issuing, setIssuing] = useState<string | null>(null)
@@ -84,12 +86,9 @@ export default function StudentCredentialsPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1 flex items-center gap-2">
           <ShieldCheck className="h-7 w-7 text-primary" />
-          Your verifiable credentials
+          {t('title')}
         </h1>
-        <p className="text-muted-foreground">
-          Cryptographically signed proofs of your verified work — shareable with employers,
-          verifiable without contacting us, compatible with the EU Digital Wallet.
-        </p>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {data && data.issuable.length > 0 && (
@@ -97,13 +96,11 @@ export default function StudentCredentialsPage() {
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2">
               <Plus className="h-5 w-5 text-primary" />
-              Ready to issue ({data.issuable.length})
+              {t('readyToIssue', { count: data.issuable.length })}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground mb-4">
-              These verified items don&apos;t have credentials yet. Click to issue one.
-            </p>
+            <p className="text-sm text-muted-foreground mb-4">{t('readyToIssueDesc')}</p>
             <div className="space-y-2">
               {data.issuable.map(item => {
                 const key = `${item.sourceType}:${item.sourceId}`
@@ -116,7 +113,7 @@ export default function StudentCredentialsPage() {
                       <div className="text-xs text-muted-foreground">{item.subLabel}</div>
                     </div>
                     <Button size="sm" onClick={() => issueOne(item)} disabled={isIssuing}>
-                      {isIssuing ? 'Issuing…' : 'Issue'}
+                      {isIssuing ? t('issuing') : t('issue')}
                     </Button>
                   </div>
                 )
@@ -126,15 +123,12 @@ export default function StudentCredentialsPage() {
         </Card>
       )}
 
-      <h2 className="text-xl font-semibold mb-4">Issued credentials</h2>
+      <h2 className="text-xl font-semibold mb-4">{t('issuedCredentials')}</h2>
       {!data || data.issued.length === 0 ? (
         <Card>
           <CardContent className="pt-6 text-center py-8">
             <Award className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
-            <p className="text-muted-foreground">
-              No credentials issued yet. Complete a stage or get a professor endorsement to unlock
-              credential issuance.
-            </p>
+            <p className="text-muted-foreground">{t('noCredentialsYet')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -157,16 +151,16 @@ export default function StudentCredentialsPage() {
                       </Badge>
                     </div>
                     <div className="text-sm text-muted-foreground mb-2">
-                      Issued by <strong>{c.issuerName}</strong> on{' '}
+                      {t('issuedBy')} <strong>{c.issuerName}</strong> {t('on')}{' '}
                       {new Date(c.issuedAt).toLocaleDateString()}
                     </div>
                     <div className="flex items-center gap-4 text-xs text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Eye className="h-3 w-3" />
-                        {c.viewCount} verification{c.viewCount !== 1 ? 's' : ''}
+                        {t('verifications', { count: c.viewCount })}
                       </span>
                       {c.expiresAt && (
-                        <span>Expires {new Date(c.expiresAt).toLocaleDateString()}</span>
+                        <span>{t('expires')} {new Date(c.expiresAt).toLocaleDateString()}</span>
                       )}
                     </div>
                     {c.shareToken && c.status === 'ISSUED' && (
@@ -179,19 +173,19 @@ export default function StudentCredentialsPage() {
                           {copiedId === c.id ? (
                             <>
                               <CheckCircle className="h-3 w-3 mr-1" />
-                              Copied
+                              {t('copied')}
                             </>
                           ) : (
                             <>
                               <Copy className="h-3 w-3 mr-1" />
-                              Copy share link
+                              {t('copyShareLink')}
                             </>
                           )}
                         </Button>
                         <Button size="sm" variant="outline" asChild>
                           <a href={`/credentials/verify/${c.shareToken}`} target="_blank" rel="noreferrer">
                             <ExternalLink className="h-3 w-3 mr-1" />
-                            View
+                            {t('view')}
                           </a>
                         </Button>
                       </div>
@@ -207,10 +201,8 @@ export default function StudentCredentialsPage() {
       <Card className="mt-6 bg-muted/40">
         <CardContent className="pt-4 pb-4 text-sm text-muted-foreground">
           <p>
-            <strong>How verification works:</strong> each share link resolves to a public page that
-            verifies the credential&apos;s Ed25519 signature against our published public key at{' '}
-            <code className="text-xs">/api/credentials/public-key</code>. An employer can verify
-            offline with our public key — no login needed.
+            <strong>{t('howVerificationWorksTitle')}</strong> {t('howVerificationWorksBody')}{' '}
+            <code className="text-xs">/api/credentials/public-key</code>. {t('howVerificationWorksBody2')}
           </p>
         </CardContent>
       </Card>

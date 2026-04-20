@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -52,6 +53,7 @@ interface Conversation {
 }
 
 export default function MessagesPage() {
+  const t = useTranslations('messagesPage')
   const { data: session } = useSession()
   const router = useRouter()
   const { toast } = useToast()
@@ -83,8 +85,8 @@ export default function MessagesPage() {
     } catch (error) {
       console.error('Error fetching conversations:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to fetch conversations',
+        title: t('toastErrorTitle'),
+        description: t('toastFetchFailed'),
         variant: 'destructive'
       })
     } finally {
@@ -97,8 +99,8 @@ export default function MessagesPage() {
 
     if (!recipientEmail.trim() || !content.trim()) {
       toast({
-        title: 'Validation error',
-        description: 'Recipient and message content are required',
+        title: t('toastValidationTitle'),
+        description: t('toastValidationDesc'),
         variant: 'destructive'
       })
       return
@@ -122,8 +124,8 @@ export default function MessagesPage() {
 
       if (response.ok) {
         toast({
-          title: 'Message sent!',
-          description: 'Your message has been sent successfully'
+          title: t('toastSentTitle'),
+          description: t('toastSentDesc')
         })
         setShowNewMessageDialog(false)
         setRecipientEmail('')
@@ -137,16 +139,16 @@ export default function MessagesPage() {
         }
       } else {
         toast({
-          title: 'Send failed',
-          description: data.error || 'Failed to send message',
+          title: t('toastSendFailed'),
+          description: data.error || t('toastSendFailedDesc'),
           variant: 'destructive'
         })
       }
     } catch (error) {
       console.error('Error sending message:', error)
       toast({
-        title: 'Error',
-        description: 'Failed to send message',
+        title: t('toastErrorTitle'),
+        description: t('toastSendFailedDesc'),
         variant: 'destructive'
       })
     } finally {
@@ -162,12 +164,12 @@ export default function MessagesPage() {
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60))
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
-    if (diffInMinutes < 1) return 'Just now'
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`
-    if (diffInHours < 24) return `${diffInHours}h ago`
-    if (diffInDays < 7) return `${diffInDays}d ago`
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)}w ago`
-    return `${Math.floor(diffInDays / 30)}mo ago`
+    if (diffInMinutes < 1) return t('timeJustNow')
+    if (diffInMinutes < 60) return t('timeMinutes', { n: diffInMinutes })
+    if (diffInHours < 24) return t('timeHours', { n: diffInHours })
+    if (diffInDays < 7) return t('timeDays', { n: diffInDays })
+    if (diffInDays < 30) return t('timeWeeks', { n: Math.floor(diffInDays / 7) })
+    return t('timeMonths', { n: Math.floor(diffInDays / 30) })
   }
 
   const filteredConversations = conversations.filter(conv => {
@@ -189,10 +191,10 @@ export default function MessagesPage() {
   if (!session) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-5xl text-center">
-        <h1 className="text-2xl font-bold mb-4">Please sign in</h1>
-        <p className="text-muted-foreground mb-4">You need to be signed in to view messages</p>
+        <h1 className="text-2xl font-bold mb-4">{t('signInRequired')}</h1>
+        <p className="text-muted-foreground mb-4">{t('signInDesc')}</p>
         <Link href="/auth/signin">
-          <Button>Sign In</Button>
+          <Button>{t('signInButton')}</Button>
         </Link>
       </div>
     )
@@ -203,56 +205,56 @@ export default function MessagesPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
-          <h1 className="text-4xl font-bold mb-2">Messages</h1>
-          <p className="text-muted-foreground">Communicate with recruiters and students</p>
+          <h1 className="text-4xl font-bold mb-2">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
 
         <Dialog open={showNewMessageDialog} onOpenChange={setShowNewMessageDialog}>
           <DialogTrigger asChild>
             <Button size="lg" className="mt-4 md:mt-0">
               <Plus className="w-4 h-4 mr-2" />
-              New Message
+              {t('newMessage')}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Send a Message</DialogTitle>
+              <DialogTitle>{t('sendMessageTitle')}</DialogTitle>
               <DialogDescription>
-                Send a message to a recruiter or student
+                {t('sendMessageDesc')}
               </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSendMessage} className="space-y-4">
               <div>
-                <Label htmlFor="recipientEmail">Recipient Email *</Label>
+                <Label htmlFor="recipientEmail">{t('recipientEmailLabel')}</Label>
                 <Input
                   id="recipientEmail"
                   type="email"
                   value={recipientEmail}
                   onChange={(e) => setRecipientEmail(e.target.value)}
-                  placeholder="recipient@example.com"
+                  placeholder={t('recipientEmailPlaceholder')}
                   required
                 />
               </div>
 
               <div>
-                <Label htmlFor="subject">Subject</Label>
+                <Label htmlFor="subject">{t('subjectLabel')}</Label>
                 <Input
                   id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  placeholder="Message subject (optional)"
+                  placeholder={t('subjectPlaceholder')}
                 />
               </div>
 
               <div>
-                <Label htmlFor="content">Message *</Label>
+                <Label htmlFor="content">{t('messageLabel')}</Label>
                 <Textarea
                   id="content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   rows={6}
-                  placeholder="Write your message..."
+                  placeholder={t('messagePlaceholder')}
                   required
                 />
               </div>
@@ -260,7 +262,7 @@ export default function MessagesPage() {
               <div className="flex gap-2">
                 <Button type="submit" disabled={sending} className="flex-1">
                   <Send className="w-4 h-4 mr-2" />
-                  {sending ? 'Sending...' : 'Send Message'}
+                  {sending ? t('sending') : t('sendMessage')}
                 </Button>
                 <Button
                   type="button"
@@ -268,7 +270,7 @@ export default function MessagesPage() {
                   onClick={() => setShowNewMessageDialog(false)}
                   disabled={sending}
                 >
-                  Cancel
+                  {t('cancel')}
                 </Button>
               </div>
             </form>
@@ -282,7 +284,7 @@ export default function MessagesPage() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
-              placeholder="Search conversations..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -313,17 +315,17 @@ export default function MessagesPage() {
           <CardContent className="py-12 text-center">
             <MessageSquare className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
             <h3 className="text-xl font-semibold mb-2">
-              {conversations.length === 0 ? 'No conversations yet' : 'No conversations found'}
+              {conversations.length === 0 ? t('emptyTitle') : t('noResultsTitle')}
             </h3>
             <p className="text-muted-foreground mb-4">
               {conversations.length === 0
-                ? 'Start a conversation by sending a message'
-                : 'Try adjusting your search query'}
+                ? t('emptyDesc')
+                : t('noResultsDesc')}
             </p>
             {conversations.length === 0 && (
               <Button onClick={() => setShowNewMessageDialog(true)}>
                 <Plus className="w-4 h-4 mr-2" />
-                New Message
+                {t('newMessage')}
               </Button>
             )}
           </CardContent>
@@ -396,7 +398,7 @@ export default function MessagesPage() {
                         )}
 
                         <p className={`text-sm line-clamp-2 ${isUnread && !isSender ? 'font-medium' : 'text-muted-foreground'}`}>
-                          {isSender && <span className="text-primary">You: </span>}
+                          {isSender && <span className="text-primary">{t('youPrefix')} </span>}
                           {conversation.latestMessage.content}
                         </p>
                       </div>

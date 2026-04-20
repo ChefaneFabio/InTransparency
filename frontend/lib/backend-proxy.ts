@@ -41,7 +41,9 @@ export async function proxyUpload(
         'X-User-Role': userRole || 'STUDENT',
       },
       body: formData,
-      signal: AbortSignal.timeout(25000), // 25s timeout
+      // 8s — Render cold starts can hang; we'd rather fall back to direct
+      // R2 upload from Vercel than burn the 30s function budget waiting.
+      signal: AbortSignal.timeout(8000),
     })
 
     return response

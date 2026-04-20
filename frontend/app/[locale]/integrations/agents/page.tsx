@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbList } from '@/lib/schema-org'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { Sparkles, Terminal, Zap, Code2, ExternalLink, ShieldCheck } from 'lucide-react'
 import { Link } from '@/navigation'
 
@@ -30,14 +31,15 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AgentIntegrationsPage() {
+export default async function AgentIntegrationsPage() {
+  const t = await getTranslations('integrationsAgents')
   return (
     <div className="min-h-screen bg-background">
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', url: '/' },
-          { name: 'Integrations', url: '/integrations' },
-          { name: 'AI Agents', url: '/integrations/agents' },
+          { name: t('breadcrumbHome'), url: '/' },
+          { name: t('breadcrumbIntegrations'), url: '/integrations' },
+          { name: t('breadcrumbAgents'), url: '/integrations/agents' },
         ])}
       />
       <Header />
@@ -45,17 +47,13 @@ export default function AgentIntegrationsPage() {
         <div className="mb-8">
           <Badge variant="outline" className="mb-3">
             <Sparkles className="h-3 w-3 mr-1" />
-            Agent-native
+            {t('agentNative')}
           </Badge>
           <h1 className="text-4xl font-bold mb-3">
-            Connect InTransparency to your AI agent
+            {t('heroTitle')}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Every recruiter using Claude or ChatGPT for candidate research runs into the same
-            wall: agents can&apos;t trust self-declared CV data. InTransparency solves that by
-            exposing our verified skill graph as an agent tool — queryable from Claude Desktop,
-            Cursor, Zed, ChatGPT, LangChain, LlamaIndex, and any agent framework that speaks
-            OpenAPI or MCP.
+            {t('heroDesc')}
           </p>
         </div>
 
@@ -63,30 +61,25 @@ export default function AgentIntegrationsPage() {
           <CardContent className="pt-5 pb-5 flex gap-3">
             <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
             <div className="text-sm">
-              <strong>Read-only, public, no authentication.</strong> The agent surface exposes only
-              data that&apos;s already publicly accessible on the website — company profiles, job
-              listings, the algorithm registry, credential verification, glossary. Rate-limited
-              per IP. CORS-open for cross-origin use.
+              {t.rich('readOnlyNotice', { strong: (chunks) => <strong>{chunks}</strong> })}
             </div>
           </CardContent>
         </Card>
 
         <h2 className="text-2xl font-bold mt-12 mb-4 flex items-center gap-2">
           <Zap className="h-6 w-6 text-primary" />
-          Option 1 — Claude Desktop / Cursor / Zed (MCP)
+          {t('option1Title')}
         </h2>
         <p className="text-muted-foreground mb-4">
-          The InTransparency MCP server is a single Node.js file with zero dependencies.
-          Download it, reference it in your host&apos;s MCP config, restart the host. The tools
-          appear in your next session.
+          {t('option1Desc')}
         </p>
 
         <Card className="mb-4">
           <CardHeader>
-            <CardTitle className="text-base">1. Download the server</CardTitle>
+            <CardTitle className="text-base">{t('step1Title')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
-            <p>Save it anywhere on your machine:</p>
+            <p>{t('step1Save')}</p>
             <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">
 {`curl -O https://www.in-transparency.com/mcp-server.js`}
             </pre>
@@ -95,17 +88,17 @@ export default function AgentIntegrationsPage() {
 
         <Card className="mb-4">
           <CardHeader>
-            <CardTitle className="text-base">2. Add it to Claude Desktop</CardTitle>
+            <CardTitle className="text-base">{t('step2Title')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <p>
-              Edit{' '}
+              {t('step2EditPrefix')}{' '}
               <code className="bg-muted px-1">
                 ~/Library/Application Support/Claude/claude_desktop_config.json
               </code>{' '}
-              (macOS) or{' '}
+              (macOS) {t('or')}{' '}
               <code className="bg-muted px-1">%APPDATA%\Claude\claude_desktop_config.json</code>{' '}
-              (Windows) and add:
+              (Windows) {t('andAdd')}
             </p>
             <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">
 {`{
@@ -117,55 +110,45 @@ export default function AgentIntegrationsPage() {
   }
 }`}
             </pre>
-            <p>Restart Claude Desktop. The 10 InTransparency tools appear in the tool picker.</p>
+            <p>{t('step2Restart')}</p>
           </CardContent>
         </Card>
 
         <Card className="mb-4">
           <CardHeader>
-            <CardTitle className="text-base">3. Available tools</CardTitle>
+            <CardTitle className="text-base">{t('step3Title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="text-sm space-y-1">
               <li>
-                <code className="bg-muted px-1">intransparency_search_companies</code> — search
-                published employer profiles
+                <code className="bg-muted px-1">intransparency_search_companies</code> — {t('tool_search_companies')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_lookup_company</code> — fetch a
-                specific company by slug
+                <code className="bg-muted px-1">intransparency_lookup_company</code> — {t('tool_lookup_company')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_search_jobs</code> — filter active
-                jobs by skill / location / company
+                <code className="bg-muted px-1">intransparency_search_jobs</code> — {t('tool_search_jobs')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_lookup_job</code> — full job
-                description by ID
+                <code className="bg-muted px-1">intransparency_lookup_job</code> — {t('tool_lookup_job')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_verify_credential</code> —
-                cryptographically validate a W3C VC by share token
+                <code className="bg-muted px-1">intransparency_verify_credential</code> — {t('tool_verify_credential')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_resolve_esco</code> — map a skill
-                to its EU ESCO URI
+                <code className="bg-muted px-1">intransparency_resolve_esco</code> — {t('tool_resolve_esco')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_get_algorithms</code> — public
-                algorithm registry (AI Act Annex III)
+                <code className="bg-muted px-1">intransparency_get_algorithms</code> — {t('tool_get_algorithms')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_get_glossary</code> — domain
-                vocabulary
+                <code className="bg-muted px-1">intransparency_get_glossary</code> — {t('tool_get_glossary')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_get_changelog</code> — product
-                updates
+                <code className="bg-muted px-1">intransparency_get_changelog</code> — {t('tool_get_changelog')}
               </li>
               <li>
-                <code className="bg-muted px-1">intransparency_get_facts</code> — dated,
-                sourced quantitative facts
+                <code className="bg-muted px-1">intransparency_get_facts</code> — {t('tool_get_facts')}
               </li>
             </ul>
           </CardContent>
@@ -173,36 +156,34 @@ export default function AgentIntegrationsPage() {
 
         <h2 className="text-2xl font-bold mt-12 mb-4 flex items-center gap-2">
           <Terminal className="h-6 w-6 text-primary" />
-          Option 2 — ChatGPT plugin / GPT Action
+          {t('option2Title')}
         </h2>
         <p className="text-muted-foreground mb-4">
-          Our OpenAI plugin manifest is at{' '}
-          <code className="bg-muted px-1">/.well-known/ai-plugin.json</code>. For custom GPTs,
-          import the action from{' '}
+          {t('option2DescPrefix')}{' '}
+          <code className="bg-muted px-1">/.well-known/ai-plugin.json</code>. {t('option2DescMid')}{' '}
           <code className="bg-muted px-1">https://www.in-transparency.com/openapi.yaml</code> —
-          all endpoints are auto-discovered, no auth needed.
+          {t('option2DescSuffix')}
         </p>
         <Card className="mb-4">
           <CardContent className="pt-4 pb-4 text-sm">
-            <p className="mb-2">In the ChatGPT &quot;Configure Action&quot; dialog:</p>
+            <p className="mb-2">{t('chatgptDialog')}</p>
             <ol className="list-decimal pl-5 space-y-1">
-              <li>Choose <strong>Import from URL</strong></li>
+              <li>{t.rich('chooseImport', { strong: (chunks) => <strong>{chunks}</strong> })}</li>
               <li>
-                Paste:{' '}
+                {t('paste')}{' '}
                 <code className="bg-muted px-1">https://www.in-transparency.com/openapi.yaml</code>
               </li>
-              <li>Authentication: <strong>None</strong></li>
+              <li>{t.rich('authNone', { strong: (chunks) => <strong>{chunks}</strong> })}</li>
             </ol>
           </CardContent>
         </Card>
 
         <h2 className="text-2xl font-bold mt-12 mb-4 flex items-center gap-2">
           <Code2 className="h-6 w-6 text-primary" />
-          Option 3 — LangChain / LlamaIndex / agentsdk
+          {t('option3Title')}
         </h2>
         <p className="text-muted-foreground mb-4">
-          Any framework that consumes OpenAPI 3.1 will auto-generate tool definitions from our
-          spec. Examples:
+          {t('option3Desc')}
         </p>
         <Card className="mb-4">
           <CardHeader>
@@ -223,10 +204,10 @@ agent = planner.create_openapi_agent(spec, requests_wrapper, llm)`}
 
         <Card className="mb-4">
           <CardHeader>
-            <CardTitle className="text-base">Direct API (any language)</CardTitle>
+            <CardTitle className="text-base">{t('directApiTitle')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground mb-2">No auth. No SDK. Just HTTP GET.</p>
+            <p className="text-sm text-muted-foreground mb-2">{t('directApiDesc')}</p>
             <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">
 {`# Root discovery document
 curl https://www.in-transparency.com/api/agents/index
@@ -240,26 +221,25 @@ curl https://www.in-transparency.com/api/agents/verify-credential/{TOKEN}`}
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-bold mt-12 mb-4">Reference documents</h2>
+        <h2 className="text-2xl font-bold mt-12 mb-4">{t('referenceDocs')}</h2>
         <div className="grid md:grid-cols-2 gap-3">
-          <ReferenceLink href="/openapi.yaml" label="OpenAPI 3.1 spec" />
-          <ReferenceLink href="/.well-known/ai-plugin.json" label="OpenAI plugin manifest" />
-          <ReferenceLink href="/.well-known/mcp.json" label="MCP manifest" />
-          <ReferenceLink href="/mcp-server.js" label="MCP server source" />
-          <ReferenceLink href="/llms-full.txt" label="Full machine-readable reference" />
-          <ReferenceLink href="/api/agents/index" label="Live agent index (JSON)" />
-          <ReferenceLink href="/api/credentials/public-key" label="VC public key (offline verification)" />
-          <ReferenceLink href="/en/algorithm-registry" label="Algorithm registry (human view)" />
+          <ReferenceLink href="/openapi.yaml" label={t('ref_openapi')} />
+          <ReferenceLink href="/.well-known/ai-plugin.json" label={t('ref_plugin_manifest')} />
+          <ReferenceLink href="/.well-known/mcp.json" label={t('ref_mcp_manifest')} />
+          <ReferenceLink href="/mcp-server.js" label={t('ref_mcp_source')} />
+          <ReferenceLink href="/llms-full.txt" label={t('ref_llms_full')} />
+          <ReferenceLink href="/api/agents/index" label={t('ref_agent_index')} />
+          <ReferenceLink href="/api/credentials/public-key" label={t('ref_public_key')} />
+          <ReferenceLink href="/en/algorithm-registry" label={t('ref_algorithm_registry')} />
         </div>
 
-        <h2 className="text-2xl font-bold mt-12 mb-4">Licensing + attribution</h2>
+        <h2 className="text-2xl font-bold mt-12 mb-4">{t('licensingTitle')}</h2>
         <p className="text-muted-foreground text-sm">
-          Content returned by the agent API is published under Creative Commons BY 4.0. Attribute
-          to &quot;InTransparency&quot; with a link to{' '}
+          {t('licensingPrefix')}{' '}
           <Link href="/" className="text-primary hover:underline">
             https://www.in-transparency.com
           </Link>
-          . For any use beyond read-only querying, email{' '}
+          . {t('licensingSuffix')}{' '}
           <a href="mailto:info@in-transparency.com" className="text-primary hover:underline">
             info@in-transparency.com
           </a>

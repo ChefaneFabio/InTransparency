@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -35,7 +36,6 @@ interface GraphData {
   }
 }
 
-const LEVEL_LABELS = ['—', 'Beginner', 'Intermediate', 'Advanced', 'Expert']
 const LEVEL_COLORS = ['', 'bg-slate-300', 'bg-blue-400', 'bg-emerald-500', 'bg-violet-600']
 
 const SOURCE_ICON: Record<string, any> = {
@@ -48,20 +48,30 @@ const SOURCE_ICON: Record<string, any> = {
   EXCHANGE: Globe,
 }
 
-const SOURCE_LABEL: Record<string, string> = {
-  STAGE: 'Stage',
-  PROJECT: 'Project',
-  COURSE: 'Course',
-  THESIS: 'Thesis',
-  ENDORSEMENT: 'Professor endorsement',
-  SELF_ASSESSMENT: 'Self-assessment',
-  EXCHANGE: 'Exchange / Erasmus',
-}
-
 export default function StudentSkillGraph() {
+  const t = useTranslations('studentSkillGraph')
   const [data, setData] = useState<GraphData | null>(null)
   const [loading, setLoading] = useState(true)
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
+
+  const LEVEL_LABELS = ['—', t('levelBeginner'), t('levelIntermediate'), t('levelAdvanced'), t('levelExpert')]
+
+  const SOURCE_LABEL: Record<string, string> = {
+    STAGE: t('sourceStage'),
+    PROJECT: t('sourceProject'),
+    COURSE: t('sourceCourse'),
+    THESIS: t('sourceThesis'),
+    ENDORSEMENT: t('sourceEndorsement'),
+    SELF_ASSESSMENT: t('sourceSelfAssessment'),
+    EXCHANGE: t('sourceExchange'),
+  }
+
+  const LEVEL_KEY_LABEL: Record<string, string> = {
+    beginner: t('levelBeginner'),
+    intermediate: t('levelIntermediate'),
+    advanced: t('levelAdvanced'),
+    expert: t('levelExpert'),
+  }
 
   useEffect(() => {
     fetch('/api/student/skill-graph')
@@ -85,14 +95,10 @@ export default function StudentSkillGraph() {
         <Card>
           <CardContent className="pt-6 text-center py-12">
             <Network className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <h1 className="text-2xl font-bold mb-2">Your verified skill graph is empty</h1>
-            <p className="text-muted-foreground max-w-md mx-auto mb-4">
-              Every time a stage supervisor rates you, a professor endorses a project, or a host
-              university completes an exchange, a verified proficiency entry gets added here.
-              Complete your first stage or ask a professor for an endorsement to see it populate.
-            </p>
+            <h1 className="text-2xl font-bold mb-2">{t('emptyTitle')}</h1>
+            <p className="text-muted-foreground max-w-md mx-auto mb-4">{t('emptyDesc')}</p>
             <Button asChild>
-              <a href="/dashboard/student/projects">Go to your projects</a>
+              <a href="/dashboard/student/projects">{t('goToProjects')}</a>
             </Button>
           </CardContent>
         </Card>
@@ -106,18 +112,15 @@ export default function StudentSkillGraph() {
   return (
     <div className="container max-w-5xl mx-auto py-8 px-4">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-1">Your verified skill graph</h1>
-        <p className="text-muted-foreground">
-          Skills proven by evidence — supervisor evaluations, professor endorsements, exchange
-          programs. Not self-declared claims.
-        </p>
+        <h1 className="text-3xl font-bold mb-1">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       <div className="grid md:grid-cols-4 gap-4 mb-6">
         <Card>
           <CardContent className="pt-6">
             <div className="text-3xl font-bold">{summary.totalSkills}</div>
-            <div className="text-sm text-muted-foreground">Verified skills</div>
+            <div className="text-sm text-muted-foreground">{t('verifiedSkills')}</div>
           </CardContent>
         </Card>
         <Card>
@@ -125,26 +128,26 @@ export default function StudentSkillGraph() {
             <div className="text-3xl font-bold text-emerald-600">
               {summary.byLevel.advanced + summary.byLevel.expert}
             </div>
-            <div className="text-sm text-muted-foreground">Advanced / Expert</div>
+            <div className="text-sm text-muted-foreground">{t('advancedExpert')}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
             <div className="text-3xl font-bold text-violet-600">{summary.byLevel.expert}</div>
-            <div className="text-sm text-muted-foreground">Expert-level</div>
+            <div className="text-sm text-muted-foreground">{t('expertLevel')}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
             <div className="text-3xl font-bold">{summary.multiSource}</div>
-            <div className="text-sm text-muted-foreground">Multi-source (stronger)</div>
+            <div className="text-sm text-muted-foreground">{t('multiSource')}</div>
           </CardContent>
         </Card>
       </div>
 
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle className="text-base">Proficiency distribution</CardTitle>
+          <CardTitle className="text-base">{t('proficiencyDistribution')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -154,7 +157,7 @@ export default function StudentSkillGraph() {
               const levelIdx = 4 - idx
               return (
                 <div key={lvl} className="flex items-center gap-3 text-sm">
-                  <div className="w-28 capitalize">{lvl}</div>
+                  <div className="w-28">{LEVEL_KEY_LABEL[lvl]}</div>
                   <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                     <div
                       className={`h-full ${LEVEL_COLORS[levelIdx]}`}
@@ -170,11 +173,11 @@ export default function StudentSkillGraph() {
       </Card>
 
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-xl font-semibold">All verified skills</h2>
+        <h2 className="text-xl font-semibold">{t('allVerifiedSkills')}</h2>
         <Button variant="outline" size="sm" asChild>
           <a href="/api/student/europass?download=1">
             <Download className="h-4 w-4 mr-2" />
-            Export to Europass
+            {t('exportEuropass')}
           </a>
         </Button>
       </div>
@@ -199,7 +202,7 @@ export default function StudentSkillGraph() {
                       )}
                       {skill.sourceCount >= 2 && (
                         <Badge variant="secondary" className="text-xs">
-                          {skill.sourceCount} sources
+                          {t('sourcesCount', { count: skill.sourceCount })}
                         </Badge>
                       )}
                     </div>
@@ -223,7 +226,7 @@ export default function StudentSkillGraph() {
               {isOpen && (
                 <div className="px-4 pb-4 pt-2 bg-muted/20 border-t">
                   <p className="text-xs font-semibold text-muted-foreground mb-2">
-                    Evidence timeline
+                    {t('evidenceTimeline')}
                   </p>
                   <div className="space-y-2">
                     {skill.sources.map((s, idx) => {

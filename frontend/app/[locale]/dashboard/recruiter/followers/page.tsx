@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -39,6 +40,7 @@ interface ApiResponse {
 }
 
 export default function RecruiterFollowersPage() {
+  const t = useTranslations('recruiterFollowers')
   const [data, setData] = useState<ApiResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -70,12 +72,12 @@ export default function RecruiterFollowersPage() {
           <CardContent className="pt-5 pb-5 flex gap-3">
             <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold mb-1">Set up your company profile first</h3>
+              <h3 className="font-semibold mb-1">{t('noProfile.title')}</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                Students can only follow a company profile once you&apos;ve claimed and published it.
+                {t('noProfile.description')}
               </p>
               <Button size="sm" asChild>
-                <Link href="/dashboard/recruiter/company-profile">Create company profile</Link>
+                <Link href="/dashboard/recruiter/company-profile">{t('noProfile.cta')}</Link>
               </Button>
             </div>
           </CardContent>
@@ -91,12 +93,12 @@ export default function RecruiterFollowersPage() {
           <CardContent className="pt-5 pb-5 flex gap-3">
             <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold mb-1">Your profile isn&apos;t published yet</h3>
+              <h3 className="font-semibold mb-1">{t('unpublished.title')}</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                Publish your company profile so students can discover and follow you.
+                {t('unpublished.description')}
               </p>
               <Button size="sm" asChild>
-                <Link href="/dashboard/recruiter/company-profile">Edit and publish</Link>
+                <Link href="/dashboard/recruiter/company-profile">{t('unpublished.cta')}</Link>
               </Button>
             </div>
           </CardContent>
@@ -122,11 +124,10 @@ export default function RecruiterFollowersPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1 flex items-center gap-2">
           <Heart className="h-7 w-7 text-rose-500 fill-current" />
-          Students following {data.profile.companyName}
+          {t('header.title', { companyName: data.profile.companyName })}
         </h1>
         <p className="text-muted-foreground">
-          Students who tapped <strong>Follow</strong> on your public profile. High-intent leads —
-          these people already chose you before you chose them.
+          {t('header.subtitlePrefix')} <strong>{t('header.followWord')}</strong> {t('header.subtitleSuffix')}
         </p>
       </div>
 
@@ -134,13 +135,13 @@ export default function RecruiterFollowersPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-3xl font-bold">{data.total}</div>
-            <div className="text-sm text-muted-foreground">Total followers</div>
+            <div className="text-sm text-muted-foreground">{t('stats.total')}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
             <div className="text-3xl font-bold text-emerald-600">{data.newThisWeek}</div>
-            <div className="text-sm text-muted-foreground">New this week</div>
+            <div className="text-sm text-muted-foreground">{t('stats.newThisWeek')}</div>
           </CardContent>
         </Card>
         <Card>
@@ -148,7 +149,7 @@ export default function RecruiterFollowersPage() {
             <Button asChild variant="outline" size="sm" className="w-full">
               <a href={`/c/${data.profile.slug}`} target="_blank" rel="noreferrer">
                 <Eye className="h-4 w-4 mr-1" />
-                View public profile
+                {t('stats.viewPublic')}
               </a>
             </Button>
           </CardContent>
@@ -158,7 +159,7 @@ export default function RecruiterFollowersPage() {
       <div className="mb-4 relative max-w-md">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Filter by name, university, degree, skill…"
+          placeholder={t('search.placeholder')}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="pl-9"
@@ -170,12 +171,12 @@ export default function RecruiterFollowersPage() {
           <CardContent className="pt-6 text-center py-12">
             <Sparkles className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
             <h3 className="font-semibold mb-1">
-              {data.followers.length === 0 ? 'No followers yet' : 'No matches for that filter'}
+              {data.followers.length === 0 ? t('empty.noneTitle') : t('empty.noMatchesTitle')}
             </h3>
             <p className="text-sm text-muted-foreground">
               {data.followers.length === 0
-                ? 'Once students discover your profile at /discover, they can follow you and appear here.'
-                : 'Try a different search term.'}
+                ? t('empty.noneDescription')
+                : t('empty.noMatchesDescription')}
             </p>
           </CardContent>
         </Card>
@@ -197,7 +198,7 @@ export default function RecruiterFollowersPage() {
                       <h3 className="font-semibold">{f.name}</h3>
                       {f.daysSinceFollow < 7 && (
                         <Badge variant="outline" className="text-xs bg-emerald-50 text-emerald-700 border-emerald-300">
-                          New
+                          {t('item.newBadge')}
                         </Badge>
                       )}
                     </div>
@@ -209,14 +210,18 @@ export default function RecruiterFollowersPage() {
                         </span>
                       )}
                       {f.university && <span>{f.university}</span>}
-                      {f.graduationYear && <span>Class of {f.graduationYear}</span>}
+                      {f.graduationYear && <span>{t('item.classOf', { year: f.graduationYear })}</span>}
                       {f.location && (
                         <span className="flex items-center gap-1">
                           <MapPin className="h-3 w-3" />
                           {f.location}
                         </span>
                       )}
-                      <span>Followed {f.daysSinceFollow === 0 ? 'today' : `${f.daysSinceFollow}d ago`}</span>
+                      <span>
+                        {f.daysSinceFollow === 0
+                          ? t('item.followedToday')
+                          : t('item.followedDaysAgo', { days: f.daysSinceFollow })}
+                      </span>
                     </div>
                     {f.topSkills.length > 0 && (
                       <div className="flex flex-wrap gap-1">
@@ -232,14 +237,14 @@ export default function RecruiterFollowersPage() {
                     <Button size="sm" variant="outline" asChild>
                       <Link href={`/dashboard/recruiter/candidates?student=${f.userId}` as any}>
                         <Eye className="h-3 w-3 mr-1" />
-                        View profile
+                        {t('item.viewProfile')}
                       </Link>
                     </Button>
                     {f.email && (
                       <Button size="sm" variant="outline" asChild>
                         <a href={`mailto:${f.email}`}>
                           <MessageSquare className="h-3 w-3 mr-1" />
-                          Contact
+                          {t('item.contact')}
                         </a>
                       </Button>
                     )}

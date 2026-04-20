@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { TrendingUp } from 'lucide-react'
 
@@ -11,12 +12,13 @@ const funnelData = [
   { stage: 'Hired', count: 47, fill: '#10b981' },
 ]
 
+// Illustrative — real partner numbers appear here once a university is live.
 const topCompanies = [
-  { company: 'Accenture', views: 89, contacts: 12, hires: 3 },
-  { company: 'Deloitte', views: 76, contacts: 9, hires: 2 },
-  { company: 'Reply', views: 64, contacts: 8, hires: 2 },
-  { company: 'NTT Data', views: 52, contacts: 6, hires: 1 },
-  { company: 'Brembo', views: 41, contacts: 5, hires: 1 },
+  { company: 'Example Company A', views: 89, contacts: 12, hires: 3 },
+  { company: 'Example Company B', views: 76, contacts: 9, hires: 2 },
+  { company: 'Example Company C', views: 64, contacts: 8, hires: 2 },
+  { company: 'Example Company D', views: 52, contacts: 6, hires: 1 },
+  { company: 'Example Company E', views: 41, contacts: 5, hires: 1 },
 ]
 
 export default function AnalyticsPreview() {
@@ -25,12 +27,15 @@ export default function AnalyticsPreview() {
       {/* Placement Funnel */}
       <Card className="border-2 border-emerald-200">
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            Placement Funnel — Your University
-          </CardTitle>
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
+              Placement Funnel — Your University
+            </CardTitle>
+            <Badge variant="outline" className="text-xs shrink-0">Illustrative preview</Badge>
+          </div>
           <p className="text-sm text-gray-600">
-            Real-time data: how recruiters engage with your students
+            Example of the real-time funnel you'll see once your university is onboarded.
           </p>
         </CardHeader>
         <CardContent>
@@ -51,9 +56,12 @@ export default function AnalyticsPreview() {
       {/* Company Leaderboard */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-semibold">
-            Top Recruiting Companies
-          </CardTitle>
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="text-sm font-semibold">
+              Top Recruiting Companies
+            </CardTitle>
+            <Badge variant="outline" className="text-xs shrink-0">Sample</Badge>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">

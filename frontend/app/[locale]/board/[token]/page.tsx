@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -38,6 +39,7 @@ interface PublicBoardData {
 
 export default function PublicBoardPage() {
   const params = useParams()
+  const t = useTranslations('publicBoard')
   const token = params.token as string
   const [data, setData] = useState<PublicBoardData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -49,7 +51,7 @@ export default function PublicBoardPage() {
         const res = await fetch(`/api/board/${token}`)
         if (!res.ok) {
           const err = await res.json()
-          throw new Error(err.error || 'Board non trovata')
+          throw new Error(err.error || t('boardNotFound'))
         }
         setData(await res.json())
       } catch (e: any) {
@@ -59,7 +61,7 @@ export default function PublicBoardPage() {
       }
     }
     if (token) fetchData()
-  }, [token])
+  }, [token, t])
 
   if (loading) {
     return (
@@ -86,7 +88,7 @@ export default function PublicBoardPage() {
             <AlertTriangle className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <p className="text-red-700 font-medium">{error}</p>
             <p className="text-sm text-red-500 mt-1">
-              Il link potrebbe essere scaduto o non valido.
+              {t('linkExpiredOrInvalid')}
             </p>
           </CardContent>
         </Card>
@@ -101,28 +103,28 @@ export default function PublicBoardPage() {
   const statCards = [
     {
       icon: Users,
-      label: 'Studenti totali',
+      label: t('totalStudents'),
       value: placementStats.totalStudents,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
     },
     {
       icon: CheckCircle,
-      label: 'Assunti confermati',
+      label: t('confirmedHired'),
       value: placementStats.confirmedHired,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
     },
     {
       icon: TrendingUp,
-      label: 'Tasso di placement',
+      label: t('placementRate'),
       value: `${placementStats.placementRate}%`,
       color: 'text-indigo-600',
       bg: 'bg-indigo-50',
     },
     {
       icon: Zap,
-      label: 'Tasso di attivazione',
+      label: t('activationRate'),
       value: `${activationRate}%`,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
@@ -138,7 +140,7 @@ export default function PublicBoardPage() {
             <BarChart3 className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-3xl font-bold text-foreground">{universityName}</h1>
-          <p className="text-muted-foreground">Dashboard di outcome per il CTS</p>
+          <p className="text-muted-foreground">{t('headerSubtitle')}</p>
         </div>
 
         {/* Stats */}
@@ -163,9 +165,9 @@ export default function PublicBoardPage() {
         {/* Top Companies Chart */}
         <Card className="border shadow-sm">
           <CardContent className="p-6">
-            <h3 className="text-lg font-semibold mb-1">Aziende che assumono</h3>
+            <h3 className="text-lg font-semibold mb-1">{t('hiringCompanies')}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Top aziende per assunzioni confermate
+              {t('topCompaniesDesc')}
             </p>
             {topCompanies.length > 0 ? (
               <ResponsiveContainer width="100%" height={280}>
@@ -174,14 +176,14 @@ export default function PublicBoardPage() {
                   <XAxis type="number" tick={{ fontSize: 12 }} />
                   <YAxis dataKey="company" type="category" tick={{ fontSize: 11 }} width={120} />
                   <Tooltip />
-                  <Bar dataKey="hires" fill="#10b981" radius={[0, 4, 4, 0]} name="Assunzioni" />
+                  <Bar dataKey="hires" fill="#10b981" radius={[0, 4, 4, 0]} name={t('hires')} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
               <div className="h-[200px] flex items-center justify-center text-muted-foreground/60">
                 <div className="text-center">
                   <Building2 className="h-10 w-10 mx-auto mb-2 text-muted-foreground/40" />
-                  <p>Nessun dato disponibile</p>
+                  <p>{t('noData')}</p>
                 </div>
               </div>
             )}
@@ -192,9 +194,9 @@ export default function PublicBoardPage() {
         {skillsGapSummary.length > 0 && (
           <Card className="border shadow-sm">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-1">Skills Gap</h3>
+              <h3 className="text-lg font-semibold mb-1">{t('skillsGap')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Competenze piu richieste dal mercato vs preparazione studenti
+                {t('skillsGapDesc')}
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {skillsGapSummary.map((item) => {
@@ -223,7 +225,7 @@ export default function PublicBoardPage() {
         {/* Footer */}
         <div className="text-center pt-8 pb-4 border-t border-muted">
           <p className="text-sm text-muted-foreground">
-            Powered by{' '}
+            {t('poweredBy')}{' '}
             <span className="font-semibold text-primary">InTransparency</span>
           </p>
         </div>

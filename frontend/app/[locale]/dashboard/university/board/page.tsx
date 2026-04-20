@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -54,6 +55,7 @@ interface BoardData {
 }
 
 export default function UniversityBoardPage() {
+  const t = useTranslations('universityBoard')
   const [data, setData] = useState<BoardData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -66,7 +68,7 @@ export default function UniversityBoardPage() {
       const res = await fetch('/api/dashboard/university/board')
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'Failed to load')
+        throw new Error(err.error || t('errors.loadFailed'))
       }
       setData(await res.json())
     } catch (e: any) {
@@ -88,7 +90,7 @@ export default function UniversityBoardPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ label: newLinkLabel || null }),
       })
-      if (!res.ok) throw new Error('Failed to create link')
+      if (!res.ok) throw new Error(t('errors.createLinkFailed'))
       setNewLinkLabel('')
       await fetchData()
     } catch (e: any) {
@@ -105,7 +107,7 @@ export default function UniversityBoardPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ linkId }),
       })
-      if (!res.ok) throw new Error('Failed to revoke')
+      if (!res.ok) throw new Error(t('errors.revokeFailed'))
       await fetchData()
     } catch (e: any) {
       setError(e.message)
@@ -154,28 +156,28 @@ export default function UniversityBoardPage() {
   const statCards = [
     {
       icon: Users,
-      label: 'Studenti totali',
+      label: t('stats.totalStudents'),
       value: placementStats.totalStudents,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
     },
     {
       icon: CheckCircle,
-      label: 'Assunti confermati',
+      label: t('stats.confirmedHired'),
       value: placementStats.confirmedHired,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
     },
     {
       icon: TrendingUp,
-      label: 'Tasso di placement',
+      label: t('stats.placementRate'),
       value: `${placementStats.placementRate}%`,
       color: 'text-primary',
       bg: 'bg-primary/5',
     },
     {
       icon: Zap,
-      label: 'Tasso di attivazione',
+      label: t('stats.activationRate'),
       value: `${activationRate}%`,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
@@ -190,9 +192,9 @@ export default function UniversityBoardPage() {
           <div className="flex items-center gap-3">
             <BarChart3 className="h-7 w-7 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Board CTS</h1>
+              <h1 className="text-2xl font-bold text-foreground">{t('header.title')}</h1>
               <p className="text-sm text-muted-foreground">
-                Dashboard di sintesi per il Consiglio Tecnico Scientifico
+                {t('header.subtitle')}
               </p>
             </div>
           </div>
@@ -221,9 +223,9 @@ export default function UniversityBoardPage() {
       {/* Main content tabs */}
       <Tabs defaultValue="overview" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="overview">Panoramica</TabsTrigger>
-          <TabsTrigger value="skills">Skills Gap</TabsTrigger>
-          <TabsTrigger value="share">Condividi</TabsTrigger>
+          <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
+          <TabsTrigger value="skills">{t('tabs.skills')}</TabsTrigger>
+          <TabsTrigger value="share">{t('tabs.share')}</TabsTrigger>
         </TabsList>
 
         {/* Overview Tab */}
@@ -232,9 +234,9 @@ export default function UniversityBoardPage() {
             {/* Top Hiring Companies */}
             <GlassCard delay={0.2}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold mb-1">Aziende che assumono</h3>
+                <h3 className="text-lg font-semibold mb-1">{t('overview.companies.title')}</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Top aziende per numero di assunzioni confermate
+                  {t('overview.companies.subtitle')}
                 </p>
                 {topCompanies.length > 0 ? (
                   <ResponsiveContainer width="100%" height={280}>
@@ -248,14 +250,14 @@ export default function UniversityBoardPage() {
                         width={120}
                       />
                       <Tooltip />
-                      <Bar dataKey="hires" fill="#10b981" radius={[0, 4, 4, 0]} name="Assunzioni" />
+                      <Bar dataKey="hires" fill="#10b981" radius={[0, 4, 4, 0]} name={t('overview.companies.barName')} />
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
                   <div className="h-[280px] flex items-center justify-center text-muted-foreground/60">
                     <div className="text-center">
                       <Building2 className="h-10 w-10 mx-auto mb-2 text-muted-foreground/40" />
-                      <p>Nessun dato disponibile</p>
+                      <p>{t('overview.companies.empty')}</p>
                     </div>
                   </div>
                 )}
@@ -265,9 +267,9 @@ export default function UniversityBoardPage() {
             {/* Curriculum Recommendations */}
             <GlassCard delay={0.25}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold mb-1">Raccomandazioni curriculari</h3>
+                <h3 className="text-lg font-semibold mb-1">{t('overview.recommendations.title')}</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Suggerimenti basati sui gap di competenze rilevati
+                  {t('overview.recommendations.subtitle')}
                 </p>
                 {skillsGapSummary.length > 0 ? (
                   <div className="space-y-3">
@@ -280,7 +282,7 @@ export default function UniversityBoardPage() {
                         <div className="flex-1">
                           <p className="font-medium text-foreground">{item.skill}</p>
                           <p className="text-sm text-muted-foreground">
-                            Gap: {Math.round(item.gap * 100)}% — Considerare integrazione nel piano di studi
+                            {t('overview.recommendations.gapLine', { pct: Math.round(item.gap * 100) })}
                           </p>
                         </div>
                       </div>
@@ -290,7 +292,7 @@ export default function UniversityBoardPage() {
                   <div className="h-[280px] flex items-center justify-center text-muted-foreground/60">
                     <div className="text-center">
                       <AlertTriangle className="h-10 w-10 mx-auto mb-2 text-muted-foreground/40" />
-                      <p>Analisi gap non ancora disponibile</p>
+                      <p>{t('overview.recommendations.empty')}</p>
                     </div>
                   </div>
                 )}
@@ -303,30 +305,30 @@ export default function UniversityBoardPage() {
         <TabsContent value="skills">
           <GlassCard delay={0.1}>
             <div className="p-5">
-              <h3 className="text-lg font-semibold mb-1">Dettaglio Skills Gap</h3>
+              <h3 className="text-lg font-semibold mb-1">{t('skills.title')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Competenze dove il mercato richiede di piu rispetto a cio che gli studenti possiedono
+                {t('skills.subtitle')}
               </p>
               {skillsGapSummary.length > 0 ? (
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-muted/50 border-b">
                       <tr>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Competenza</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Gap</th>
-                        <th className="text-left p-4 font-medium text-muted-foreground">Priorita</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('skills.table.skill')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('skills.table.gap')}</th>
+                        <th className="text-left p-4 font-medium text-muted-foreground">{t('skills.table.priority')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
                       {skillsGapSummary.map((item) => {
                         const gapPct = Math.round(item.gap * 100)
-                        let priority = 'Bassa'
+                        let priority = t('skills.priority.low')
                         let priorityColor = 'bg-green-50 text-green-700 border-green-200'
                         if (gapPct > 50) {
-                          priority = 'Alta'
+                          priority = t('skills.priority.high')
                           priorityColor = 'bg-red-50 text-red-700 border-red-200'
                         } else if (gapPct > 25) {
-                          priority = 'Media'
+                          priority = t('skills.priority.medium')
                           priorityColor = 'bg-amber-50 text-amber-700 border-amber-200'
                         }
                         return (
@@ -355,7 +357,7 @@ export default function UniversityBoardPage() {
               ) : (
                 <div className="py-12 text-center text-muted-foreground">
                   <AlertTriangle className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                  <p>Nessuna analisi gap disponibile</p>
+                  <p>{t('skills.empty')}</p>
                 </div>
               )}
             </div>
@@ -367,9 +369,9 @@ export default function UniversityBoardPage() {
           <GlassCard delay={0.1}>
             <div className="p-5 space-y-6">
               <div>
-                <h3 className="text-lg font-semibold mb-1">Link di condivisione</h3>
+                <h3 className="text-lg font-semibold mb-1">{t('share.title')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Crea link pubblici per condividere la board con i membri del CTS
+                  {t('share.subtitle')}
                 </p>
               </div>
 
@@ -377,19 +379,19 @@ export default function UniversityBoardPage() {
               <div className="flex items-end gap-3 p-4 bg-muted/30 rounded-lg border">
                 <div className="flex-1">
                   <label className="text-sm font-medium text-foreground mb-1 block">
-                    Etichetta (opzionale)
+                    {t('share.labelField')}
                   </label>
                   <input
                     type="text"
                     value={newLinkLabel}
                     onChange={(e) => setNewLinkLabel(e.target.value)}
-                    placeholder="es. CTS Riunione Aprile 2026"
+                    placeholder={t('share.labelPlaceholder')}
                     className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                   />
                 </div>
                 <Button onClick={createLink} disabled={creating} size="sm">
                   <Plus className="h-4 w-4 mr-1" />
-                  {creating ? 'Creazione...' : 'Crea link'}
+                  {creating ? t('share.creating') : t('share.createLink')}
                 </Button>
               </div>
 
@@ -409,15 +411,15 @@ export default function UniversityBoardPage() {
                           <Share2 className={`h-5 w-5 shrink-0 ${isExpired ? 'text-red-400' : 'text-primary'}`} />
                           <div className="min-w-0">
                             <p className="font-medium text-foreground truncate">
-                              {link.label || 'Link senza etichetta'}
+                              {link.label || t('share.unlabeledLink')}
                             </p>
                             <div className="flex items-center gap-3 text-xs text-muted-foreground">
                               <span>
-                                Scade: {new Date(link.expiresAt).toLocaleDateString('it-IT')}
+                                {t('share.expires', { date: new Date(link.expiresAt).toLocaleDateString('it-IT') })}
                               </span>
-                              <span>Accessi: {link.accessCount}</span>
+                              <span>{t('share.accesses', { count: link.accessCount })}</span>
                               {isExpired && (
-                                <Badge className="bg-red-50 text-red-700 border-red-200">Scaduto</Badge>
+                                <Badge className="bg-red-50 text-red-700 border-red-200">{t('share.expired')}</Badge>
                               )}
                             </div>
                           </div>
@@ -430,7 +432,7 @@ export default function UniversityBoardPage() {
                               onClick={() => copyLink(link.token)}
                             >
                               <Copy className="h-4 w-4 mr-1" />
-                              {copied === link.token ? 'Copiato!' : 'Copia'}
+                              {copied === link.token ? t('share.copied') : t('share.copy')}
                             </Button>
                           )}
                           <Button
@@ -449,7 +451,7 @@ export default function UniversityBoardPage() {
               ) : (
                 <div className="py-8 text-center text-muted-foreground">
                   <Share2 className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                  <p>Nessun link di condivisione creato</p>
+                  <p>{t('share.empty')}</p>
                 </div>
               )}
             </div>

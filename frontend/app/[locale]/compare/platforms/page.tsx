@@ -6,6 +6,7 @@ import { CheckCircle, XCircle, MinusCircle, ShieldCheck, Sparkles } from 'lucide
 import { JsonLd } from '@/components/seo/JsonLd'
 import type { Metadata } from 'next'
 import { breadcrumbList } from '@/lib/schema-org'
+import { getTranslations } from 'next-intl/server'
 
 /**
  * Competitor comparison — InTransparency vs JobTeaser vs Handshake.
@@ -13,165 +14,107 @@ import { breadcrumbList } from '@/lib/schema-org'
  * parse the full content without executing JS. Generative Engine Optimization.
  */
 
-export const metadata: Metadata = {
-  title: 'InTransparency vs JobTeaser vs Handshake — honest comparison',
-  description:
-    'Side-by-side comparison of InTransparency, JobTeaser, and Handshake across verification, AI Act compliance, cross-border Erasmus support, Italian academic context, and pricing for entry-level recruiting in Europe.',
-  alternates: {
-    canonical: 'https://www.in-transparency.com/en/compare/platforms',
-    languages: {
-      en: 'https://www.in-transparency.com/en/compare/platforms',
-      it: 'https://www.in-transparency.com/it/compare/platforms',
-      'x-default': 'https://www.in-transparency.com/en/compare/platforms',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'comparePlatforms' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: {
+      canonical: 'https://www.in-transparency.com/en/compare/platforms',
+      languages: {
+        en: 'https://www.in-transparency.com/en/compare/platforms',
+        it: 'https://www.in-transparency.com/it/compare/platforms',
+        'x-default': 'https://www.in-transparency.com/en/compare/platforms',
+      },
     },
-  },
-  openGraph: {
-    title: 'InTransparency vs JobTeaser vs Handshake',
-    description: 'Honest comparison of EU entry-level recruiting platforms.',
-    type: 'article',
-    locale: 'en_US',
-    alternateLocale: 'it_IT',
-    siteName: 'InTransparency',
-    images: [{ url: 'https://www.in-transparency.com/logo.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'InTransparency vs JobTeaser vs Handshake',
-    description: 'Fact-by-fact comparison of EU entry-level recruiting platforms.',
-    images: ['https://www.in-transparency.com/logo.png'],
-  },
+    openGraph: {
+      title: t('ogTitle'),
+      description: t('ogDescription'),
+      type: 'article',
+      locale: 'en_US',
+      alternateLocale: 'it_IT',
+      siteName: 'InTransparency',
+      images: [{ url: 'https://www.in-transparency.com/logo.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('ogTitle'),
+      description: t('twitterDescription'),
+      images: ['https://www.in-transparency.com/logo.png'],
+    },
+  }
 }
 
 interface ComparisonRow {
-  category: string
-  feature: string
+  categoryKey: string
+  featureKey: string
   it: 'yes' | 'partial' | 'no'
   jt: 'yes' | 'partial' | 'no'
   hs: 'yes' | 'partial' | 'no'
-  detail?: string
+  hasDetail?: boolean
 }
 
 const COMPARISON: ComparisonRow[] = [
-  { category: 'Verification', feature: 'Skill verification via professor endorsement', it: 'yes', jt: 'no', hs: 'no', detail: 'Each endorsement tied to a specific project, per-competency ratings, signed.' },
-  { category: 'Verification', feature: 'Supervisor evaluation from stage/tirocinio', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Verification', feature: 'Cryptographic Verifiable Credentials (W3C VC)', it: 'yes', jt: 'no', hs: 'no', detail: 'Ed25519Signature2020. Public key at /api/credentials/public-key.' },
-  { category: 'Verification', feature: 'ESCO taxonomy alignment', it: 'yes', jt: 'partial', hs: 'no' },
+  { categoryKey: 'verification', featureKey: 'verification.professorEndorsement', it: 'yes', jt: 'no', hs: 'no', hasDetail: true },
+  { categoryKey: 'verification', featureKey: 'verification.supervisorEval', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'verification', featureKey: 'verification.w3cVc', it: 'yes', jt: 'no', hs: 'no', hasDetail: true },
+  { categoryKey: 'verification', featureKey: 'verification.esco', it: 'yes', jt: 'partial', hs: 'no' },
 
-  { category: 'EU AI Act', feature: 'Public algorithm registry (model cards)', it: 'yes', jt: 'no', hs: 'no', detail: '/algorithm-registry — full inputs, weights, excluded inputs per model.' },
-  { category: 'EU AI Act', feature: 'Right to explanation endpoint', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'EU AI Act', feature: 'Human oversight + override (Art. 14)', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'EU AI Act', feature: 'Audit log for sensitive operations (Art. 12)', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'aiAct', featureKey: 'aiAct.registry', it: 'yes', jt: 'no', hs: 'no', hasDetail: true },
+  { categoryKey: 'aiAct', featureKey: 'aiAct.explanation', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'aiAct', featureKey: 'aiAct.humanOversight', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'aiAct', featureKey: 'aiAct.auditLog', it: 'yes', jt: 'no', hs: 'no' },
 
-  { category: 'Italian compliance', feature: 'ANVUR / INDIRE / PCTO awareness', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Italian compliance', feature: 'CCNL reference in stage conventions', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Italian compliance', feature: 'INAIL insurance tracking', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Italian compliance', feature: 'SPID / CIE authentication', it: 'partial', jt: 'no', hs: 'no', detail: 'AgID accreditation in progress.' },
-  { category: 'Italian compliance', feature: 'Esse3 student record integration', it: 'partial', jt: 'no', hs: 'no' },
+  { categoryKey: 'italianCompliance', featureKey: 'italianCompliance.anvur', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'italianCompliance', featureKey: 'italianCompliance.ccnl', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'italianCompliance', featureKey: 'italianCompliance.inail', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'italianCompliance', featureKey: 'italianCompliance.spid', it: 'partial', jt: 'no', hs: 'no', hasDetail: true },
+  { categoryKey: 'italianCompliance', featureKey: 'italianCompliance.esse3', it: 'partial', jt: 'no', hs: 'no' },
 
-  { category: 'Cross-border', feature: 'Erasmus / bilateral exchange tracking', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Cross-border', feature: 'Host institution → home skill graph sync', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Cross-border', feature: 'Europass v3 export', it: 'yes', jt: 'partial', hs: 'no' },
+  { categoryKey: 'crossBorder', featureKey: 'crossBorder.erasmus', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'crossBorder', featureKey: 'crossBorder.hostSkill', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'crossBorder', featureKey: 'crossBorder.europass', it: 'yes', jt: 'partial', hs: 'no' },
 
-  { category: 'Recruiting', feature: 'Company branded profiles', it: 'yes', jt: 'yes', hs: 'yes' },
-  { category: 'Recruiting', feature: 'Talent matching / candidate search', it: 'yes', jt: 'yes', hs: 'yes' },
-  { category: 'Recruiting', feature: 'Evidence-weighted match scoring', it: 'yes', jt: 'no', hs: 'no', detail: 'Verified skills weighted 1.0×, self-declared 0.6×. Advanced/Expert depth bonus.' },
-  { category: 'Recruiting', feature: 'Exportable hiring evidence packet', it: 'yes', jt: 'partial', hs: 'partial' },
+  { categoryKey: 'recruiting', featureKey: 'recruiting.branding', it: 'yes', jt: 'yes', hs: 'yes' },
+  { categoryKey: 'recruiting', featureKey: 'recruiting.matching', it: 'yes', jt: 'yes', hs: 'yes' },
+  { categoryKey: 'recruiting', featureKey: 'recruiting.evidenceScoring', it: 'yes', jt: 'no', hs: 'no', hasDetail: true },
+  { categoryKey: 'recruiting', featureKey: 'recruiting.evidencePacket', it: 'yes', jt: 'partial', hs: 'partial' },
 
-  { category: 'Universities', feature: 'Program-level skills gap analytics', it: 'yes', jt: 'no', hs: 'partial' },
-  { category: 'Universities', feature: 'Data-driven curriculum recommendations', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Universities', feature: 'Professor portal (no account required)', it: 'yes', jt: 'no', hs: 'no' },
-  { category: 'Universities', feature: 'Free for universities', it: 'yes', jt: 'yes', hs: 'no', detail: 'Handshake charges universities $1K–$20K/year.' },
+  { categoryKey: 'universities', featureKey: 'universities.gap', it: 'yes', jt: 'no', hs: 'partial' },
+  { categoryKey: 'universities', featureKey: 'universities.curriculum', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'universities', featureKey: 'universities.professorPortal', it: 'yes', jt: 'no', hs: 'no' },
+  { categoryKey: 'universities', featureKey: 'universities.freeForUni', it: 'yes', jt: 'yes', hs: 'no', hasDetail: true },
 
-  { category: 'Privacy', feature: 'Self-service data export (GDPR Art. 20)', it: 'yes', jt: 'partial', hs: 'partial' },
-  { category: 'Privacy', feature: 'Self-service account deletion (GDPR Art. 17)', it: 'yes', jt: 'partial', hs: 'partial' },
-  { category: 'Privacy', feature: 'Cookie consent with per-category toggle', it: 'yes', jt: 'yes', hs: 'partial' },
+  { categoryKey: 'privacy', featureKey: 'privacy.export', it: 'yes', jt: 'partial', hs: 'partial' },
+  { categoryKey: 'privacy', featureKey: 'privacy.deletion', it: 'yes', jt: 'partial', hs: 'partial' },
+  { categoryKey: 'privacy', featureKey: 'privacy.cookies', it: 'yes', jt: 'yes', hs: 'partial' },
 ]
 
-function StatusIcon({ v }: { v: 'yes' | 'partial' | 'no' }) {
-  if (v === 'yes') return <CheckCircle className="h-5 w-5 text-emerald-600" aria-label="Yes" />
-  if (v === 'partial') return <MinusCircle className="h-5 w-5 text-amber-600" aria-label="Partial" />
-  return <XCircle className="h-5 w-5 text-red-500" aria-label="No" />
+function StatusIcon({ v, labels }: { v: 'yes' | 'partial' | 'no'; labels: { yes: string; partial: string; no: string } }) {
+  if (v === 'yes') return <CheckCircle className="h-5 w-5 text-emerald-600" aria-label={labels.yes} />
+  if (v === 'partial') return <MinusCircle className="h-5 w-5 text-amber-600" aria-label={labels.partial} />
+  return <XCircle className="h-5 w-5 text-red-500" aria-label={labels.no} />
 }
 
 interface PageProps {
   params: Promise<{ locale: string }>
 }
 
-const LABELS = {
-  en: {
-    badge: 'Honest comparison',
-    h1: 'InTransparency vs JobTeaser vs Handshake',
-    intro:
-      'The three platforms universities and employers most often compare for entry-level hiring in Europe. Fact-by-fact, as of 2026-04-19. We mark where we\'re not a fit too — nothing hidden.',
-    tldrH2: 'TL;DR',
-    tldr: (
-      <>
-        <strong>JobTeaser</strong> is a polished EU job board with strong company branding.{' '}
-        <strong>Handshake</strong> is the US network-effect leader with ATS integrations.{' '}
-        <strong>InTransparency</strong> is the verified skill graph + AI Act-native matching
-        platform — built for EU labor law, designed around evidence instead of self-declaration.
-        Choose us if you want skills you can <em>trust</em> and a recruiting flow that&apos;s
-        audit-trail compliant under the AI Act. Choose JobTeaser for a polished job board.
-        Choose Handshake if you&apos;re in the US.
-      </>
-    ),
-    featureHead: 'Feature',
-    honestH3: 'How this comparison is kept honest',
-    honest: [
-      '"Yes" means live and publicly documented. "Partial" means available in some markets or tiers. "No" means not available as of the date above.',
-      'JobTeaser and Handshake claims are based on their public documentation. If we got something wrong, email info@in-transparency.com — we\'ll fix it within 48 hours.',
-      'Our own "Yes" claims are backed by deployed endpoints. Verify at /algorithm-registry and /api/credentials/public-key.',
-    ],
-    categories: {
-      Verification: 'Verification',
-      'EU AI Act': 'EU AI Act',
-      'Italian compliance': 'Italian compliance',
-      'Cross-border': 'Cross-border',
-      Recruiting: 'Recruiting',
-      Universities: 'Universities',
-      Privacy: 'Privacy',
-    } as Record<string, string>,
-  },
-  it: {
-    badge: 'Confronto onesto',
-    h1: 'InTransparency vs JobTeaser vs Handshake',
-    intro:
-      'Le tre piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-19. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.',
-    tldrH2: 'In sintesi',
-    tldr: (
-      <>
-        <strong>JobTeaser</strong> è una job board europea curata con forte branding aziendale.{' '}
-        <strong>Handshake</strong> è il leader USA per effetto di rete con integrazioni ATS.{' '}
-        <strong>InTransparency</strong> è la piattaforma del grafo di competenze verificato +
-        matching AI-Act-native — progettata per il diritto del lavoro UE, basata su evidenze e
-        non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso
-        di recruiting conforme all&apos;AI Act. JobTeaser se cercate una job board polished.
-        Handshake se siete negli USA.
-      </>
-    ),
-    featureHead: 'Funzionalità',
-    honestH3: 'Come manteniamo questo confronto onesto',
-    honest: [
-      '"Sì" significa attivo e documentato pubblicamente. "Parziale" significa disponibile in alcuni mercati o tier. "No" significa non disponibile alla data sopra indicata.',
-      'Le affermazioni su JobTeaser e Handshake si basano sulla loro documentazione pubblica. Se abbiamo sbagliato qualcosa, scriveteci a info@in-transparency.com — correggiamo entro 48 ore.',
-      'Le nostre affermazioni "Sì" sono supportate da endpoint attivi. Verificate a /algorithm-registry e /api/credentials/public-key.',
-    ],
-    categories: {
-      Verification: 'Verifica',
-      'EU AI Act': 'AI Act UE',
-      'Italian compliance': 'Conformità italiana',
-      'Cross-border': 'Transfrontaliero',
-      Recruiting: 'Recruiting',
-      Universities: 'Atenei',
-      Privacy: 'Privacy',
-    } as Record<string, string>,
-  },
-} as const
-
 export default async function PlatformsComparePage({ params }: PageProps) {
   const { locale } = await params
-  const L = LABELS[(locale as 'en' | 'it')] ?? LABELS.en
-  const categories = Array.from(new Set(COMPARISON.map(r => r.category)))
+  const t = await getTranslations({ locale, namespace: 'comparePlatforms' })
+  const categories = Array.from(new Set(COMPARISON.map(r => r.categoryKey)))
+
+  const statusLabels = {
+    yes: t('statusYes'),
+    partial: t('statusPartial'),
+    no: t('statusNo'),
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -187,32 +130,31 @@ export default async function PlatformsComparePage({ params }: PageProps) {
             name: 'InTransparency',
             logo: { '@type': 'ImageObject', url: 'https://www.in-transparency.com/logo.png' },
           },
-          description:
-            'Side-by-side comparison of InTransparency, JobTeaser, and Handshake across verification, AI Act compliance, cross-border Erasmus, Italian academic context, and pricing.',
+          description: t('metaDescription'),
           mainEntityOfPage: 'https://www.in-transparency.com/en/compare/platforms',
         }}
       />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', url: '/' },
-          { name: 'Compare', url: '/compare' },
-          { name: 'Platforms', url: '/compare/platforms' },
+          { name: t('breadcrumb.home'), url: '/' },
+          { name: t('breadcrumb.compare'), url: '/compare' },
+          { name: t('breadcrumb.platforms'), url: '/compare/platforms' },
         ])}
       />
       <Header />
       <main className="container max-w-5xl mx-auto px-4 pt-32 pb-16">
         <div className="mb-8">
-          <Badge variant="outline" className="mb-2">{L.badge}</Badge>
-          <h1 className="text-4xl font-bold mb-3">{L.h1}</h1>
-          <p className="text-lg text-muted-foreground">{L.intro}</p>
+          <Badge variant="outline" className="mb-2">{t('badge')}</Badge>
+          <h1 className="text-4xl font-bold mb-3">{t('h1')}</h1>
+          <p className="text-lg text-muted-foreground">{t('intro')}</p>
         </div>
 
         <Card className="mb-8 bg-primary/5 border-primary/30">
           <CardContent className="pt-5 pb-5 flex items-start gap-3">
             <Sparkles className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-semibold mb-1">{L.tldrH2}</h2>
-              <p className="text-sm text-muted-foreground">{L.tldr}</p>
+              <h2 className="font-semibold mb-1">{t('tldrH2')}</h2>
+              <p className="text-sm text-muted-foreground">{t('tldr')}</p>
             </div>
           </CardContent>
         </Card>
@@ -220,30 +162,30 @@ export default async function PlatformsComparePage({ params }: PageProps) {
         {categories.map(cat => (
           <Card key={cat} className="mb-4">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base">{L.categories[cat] ?? cat}</CardTitle>
+              <CardTitle className="text-base">{t(`categories.${cat}`)}</CardTitle>
             </CardHeader>
             <CardContent>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-xs text-muted-foreground uppercase">
-                    <th className="text-left pb-2 font-semibold">{L.featureHead}</th>
+                    <th className="text-left pb-2 font-semibold">{t('featureHead')}</th>
                     <th className="pb-2 font-semibold">InTransparency</th>
                     <th className="pb-2 font-semibold">JobTeaser</th>
                     <th className="pb-2 font-semibold">Handshake</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {COMPARISON.filter(r => r.category === cat).map((r, idx) => (
+                  {COMPARISON.filter(r => r.categoryKey === cat).map((r, idx) => (
                     <tr key={idx} className="border-t">
                       <td className="py-3 pr-4">
-                        <div className="font-medium">{r.feature}</div>
-                        {r.detail && (
-                          <div className="text-xs text-muted-foreground mt-0.5">{r.detail}</div>
+                        <div className="font-medium">{t(`features.${r.featureKey}.label`)}</div>
+                        {r.hasDetail && (
+                          <div className="text-xs text-muted-foreground mt-0.5">{t(`features.${r.featureKey}.detail`)}</div>
                         )}
                       </td>
-                      <td className="text-center"><StatusIcon v={r.it} /></td>
-                      <td className="text-center"><StatusIcon v={r.jt} /></td>
-                      <td className="text-center"><StatusIcon v={r.hs} /></td>
+                      <td className="text-center"><StatusIcon v={r.it} labels={statusLabels} /></td>
+                      <td className="text-center"><StatusIcon v={r.jt} labels={statusLabels} /></td>
+                      <td className="text-center"><StatusIcon v={r.hs} labels={statusLabels} /></td>
                     </tr>
                   ))}
                 </tbody>
@@ -256,12 +198,12 @@ export default async function PlatformsComparePage({ params }: PageProps) {
           <CardContent className="pt-5 pb-5 text-sm text-muted-foreground">
             <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
               <ShieldCheck className="h-4 w-4" />
-              {L.honestH3}
+              {t('honestH3')}
             </h3>
             <ul className="space-y-1 list-disc pl-5">
-              {L.honest.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
+              <li>{t('honest.0')}</li>
+              <li>{t('honest.1')}</li>
+              <li>{t('honest.2')}</li>
             </ul>
           </CardContent>
         </Card>

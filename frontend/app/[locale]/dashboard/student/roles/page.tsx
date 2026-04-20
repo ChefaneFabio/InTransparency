@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -37,9 +38,8 @@ interface ApiResponse {
   }
 }
 
-const LEVEL_LABELS = ['—', 'Beginner', 'Intermediate', 'Advanced', 'Expert']
-
 export default function RolesForYouPage() {
+  const t = useTranslations('studentRoles')
   const [data, setData] = useState<ApiResponse | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -68,17 +68,16 @@ export default function RolesForYouPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1 flex items-center gap-2">
           <Target className="h-7 w-7 text-primary" />
-          Roles for you
+          {t('title')}
         </h1>
         <p className="text-muted-foreground">
-          Personalized role matches from your verified skill graph{' '}
+          {t('subtitleStart')}{' '}
           {data.graphSize > 0 && (
             <span>
-              ({data.graphSize} verified skill{data.graphSize !== 1 ? 's' : ''})
+              ({t('verifiedSkillsCount', { count: data.graphSize })})
             </span>
           )}
-          . The same evidence-weighted logic recruiters use to rank you, inverted to help you find
-          roles where you actually fit.
+          . {t('subtitleEnd')}
         </p>
       </div>
 
@@ -87,12 +86,8 @@ export default function RolesForYouPage() {
           <CardContent className="pt-5 pb-5 flex gap-3">
             <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold mb-1">Your verified skill graph is empty</h3>
-              <p className="text-sm text-muted-foreground">
-                These matches use your self-declared skills only. Complete a stage or get a
-                professor endorsement to unlock evidence-weighted matching — your scores will jump,
-                and recruiters will see the difference.
-              </p>
+              <h3 className="font-semibold mb-1">{t('emptyGraphTitle')}</h3>
+              <p className="text-sm text-muted-foreground">{t('emptyGraphDesc')}</p>
             </div>
           </CardContent>
         </Card>
@@ -102,10 +97,9 @@ export default function RolesForYouPage() {
         <Card>
           <CardContent className="pt-6 text-center py-12">
             <Briefcase className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
-            <h3 className="font-semibold mb-1">No strong matches right now</h3>
+            <h3 className="font-semibold mb-1">{t('noStrongMatchesTitle')}</h3>
             <p className="text-sm text-muted-foreground">
-              We scanned {data.context.totalJobsScanned} active jobs but none scored above the
-              threshold. Check back in a week, or add more verified skills.
+              {t('noStrongMatchesDesc', { count: data.context.totalJobsScanned })}
             </p>
           </CardContent>
         </Card>
@@ -121,6 +115,8 @@ export default function RolesForYouPage() {
 }
 
 function RoleCard({ role }: { role: RoleMatch }) {
+  const t = useTranslations('studentRoles')
+  const LEVEL_LABELS = ['—', t('levelBeginner'), t('levelIntermediate'), t('levelAdvanced'), t('levelExpert')]
   const coverage =
     role.evidence.requiredTotal > 0
       ? Math.round((role.evidence.requiredMatched / role.evidence.requiredTotal) * 100)
@@ -145,7 +141,7 @@ function RoleCard({ role }: { role: RoleMatch }) {
               </div>
               <div className="text-right flex-shrink-0">
                 <div className="text-2xl font-bold text-primary">{role.matchScore}</div>
-                <div className="text-xs text-muted-foreground">match score</div>
+                <div className="text-xs text-muted-foreground">{t('matchScore')}</div>
               </div>
             </div>
 
@@ -158,7 +154,7 @@ function RoleCard({ role }: { role: RoleMatch }) {
               )}
               {role.workLocation && <span>{role.workLocation}</span>}
               {role.jobType && <span>{role.jobType}</span>}
-              <span>Posted {new Date(role.createdAt).toLocaleDateString()}</span>
+              <span>{t('posted')} {new Date(role.createdAt).toLocaleDateString()}</span>
             </div>
 
             {/* Evidence */}
@@ -166,7 +162,7 @@ function RoleCard({ role }: { role: RoleMatch }) {
               {role.evidence.strongestVerified.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1 text-xs">
                   <CheckCircle2 className="h-3 w-3 text-emerald-600" />
-                  <span className="text-muted-foreground">Your verified strengths:</span>
+                  <span className="text-muted-foreground">{t('verifiedStrengths')}</span>
                   {role.evidence.strongestVerified.map(s => (
                     <Badge key={s.skill} variant="secondary" className="text-xs">
                       {s.skill} · {LEVEL_LABELS[s.level]}
@@ -176,17 +172,21 @@ function RoleCard({ role }: { role: RoleMatch }) {
               )}
 
               <div className="text-xs text-muted-foreground">
-                Required skills: {role.evidence.requiredMatched}/{role.evidence.requiredTotal} covered (
-                {role.evidence.verifiedMatches} verified, {role.evidence.selfMatches} self-declared)
+                {t('requiredSkillsCovered', {
+                  matched: role.evidence.requiredMatched,
+                  total: role.evidence.requiredTotal,
+                  verified: role.evidence.verifiedMatches,
+                  self: role.evidence.selfMatches,
+                })}
                 {coverage < 100 && coverage >= 60 && (
-                  <span className="text-amber-600"> — close but not perfect</span>
+                  <span className="text-amber-600"> {t('closeButNotPerfect')}</span>
                 )}
               </div>
 
               {role.evidence.missingRequired.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1 text-xs">
                   <Sparkles className="h-3 w-3 text-amber-600" />
-                  <span className="text-muted-foreground">Gaps to close:</span>
+                  <span className="text-muted-foreground">{t('gapsToClose')}</span>
                   {role.evidence.missingRequired.map(s => (
                     <Badge key={s} variant="outline" className="text-xs">
                       {s}
@@ -199,7 +199,7 @@ function RoleCard({ role }: { role: RoleMatch }) {
             <div className="flex gap-2">
               <Button size="sm" asChild>
                 <Link href={`/dashboard/student/jobs/${role.id}` as any}>
-                  View & apply
+                  {t('viewAndApply')}
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
               </Button>

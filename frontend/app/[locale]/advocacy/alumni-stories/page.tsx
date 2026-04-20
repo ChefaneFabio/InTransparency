@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -28,6 +29,7 @@ interface AlumniStory {
 }
 
 export default function AlumniStoriesPage() {
+  const t = useTranslations('alumniStories')
   const [stories, setStories] = useState<AlumniStory[]>([])
   const [loading, setLoading] = useState(true)
   const [filterInstitution, setFilterInstitution] = useState('')
@@ -78,12 +80,11 @@ export default function AlumniStoriesPage() {
             <div className="flex items-center justify-center mb-4">
               <GraduationCap className="h-12 w-12 mr-3" />
               <h1 className="text-4xl md:text-5xl font-bold">
-                Alumni Success Stories
+                {t('heroTitle')}
               </h1>
             </div>
             <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-              Verified career journeys from graduates who started where you are today.
-              Learn from their experiences, skills, and professional growth.
+              {t('heroDesc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/advocacy/submit-story">
@@ -92,7 +93,7 @@ export default function AlumniStoriesPage() {
                   className="bg-white text-primary hover:bg-gray-100"
                 >
                   <Mail className="h-5 w-5 mr-2" />
-                  Share Your Story
+                  {t('shareStory')}
                 </Button>
               </Link>
               <Link href="/auth/register">
@@ -101,7 +102,7 @@ export default function AlumniStoriesPage() {
                   variant="outline"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Join the Network
+                  {t('joinNetwork')}
                 </Button>
               </Link>
             </div>
@@ -112,33 +113,33 @@ export default function AlumniStoriesPage() {
       {/* How It Works */}
       <section className="py-12 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-center mb-8">How Verification Works</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">{t('howItWorks')}</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Mail className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">1. Submit Story</h3>
+              <h3 className="font-semibold mb-2">{t('step1Title')}</h3>
               <p className="text-sm text-gray-600">
-                Alumni submit their career journey using their institutional (.edu) email
+                {t('step1Desc')}
               </p>
             </div>
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">2. Email Verification</h3>
+              <h3 className="font-semibold mb-2">{t('step2Title')}</h3>
               <p className="text-sm text-gray-600">
-                We send a verification link to confirm institutional affiliation
+                {t('step2Desc')}
               </p>
             </div>
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <GraduationCap className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">3. Published</h3>
+              <h3 className="font-semibold mb-2">{t('step3Title')}</h3>
               <p className="text-sm text-gray-600">
-                Verified stories are published to inspire current students
+                {t('step3Desc')}
               </p>
             </div>
           </div>
@@ -156,7 +157,7 @@ export default function AlumniStoriesPage() {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Search by name, role, company, or skills..."
+                      placeholder={t('searchPlaceholder')}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -169,11 +170,11 @@ export default function AlumniStoriesPage() {
                     onChange={(e) => setFilterDegree(e.target.value)}
                     className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                   >
-                    <option value="">All Degrees</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Business">Business</option>
-                    <option value="Design">Design</option>
+                    <option value="">{t('allDegrees')}</option>
+                    <option value="Computer Science">{t('degree_cs')}</option>
+                    <option value="Engineering">{t('degree_engineering')}</option>
+                    <option value="Business">{t('degree_business')}</option>
+                    <option value="Design">{t('degree_design')}</option>
                   </select>
                   <Button
                     variant="outline"
@@ -184,7 +185,7 @@ export default function AlumniStoriesPage() {
                     }}
                   >
                     <Filter className="h-4 w-4 mr-2" />
-                    Clear
+                    {t('clear')}
                   </Button>
                 </div>
               </div>
@@ -204,14 +205,14 @@ export default function AlumniStoriesPage() {
             <Card>
               <CardContent className="py-12 text-center">
                 <GraduationCap className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-xl font-semibold mb-2">No Stories Yet</h3>
+                <h3 className="text-xl font-semibold mb-2">{t('noStoriesTitle')}</h3>
                 <p className="text-gray-600 mb-6">
-                  Be the first to share your success story and inspire current students!
+                  {t('noStoriesDesc')}
                 </p>
                 <Link href="/advocacy/submit-story">
                   <Button>
                     <Mail className="h-4 w-4 mr-2" />
-                    Share Your Story
+                    {t('shareStory')}
                   </Button>
                 </Link>
               </CardContent>
@@ -231,13 +232,13 @@ export default function AlumniStoriesPage() {
                           </div>
                           <div className="flex items-center gap-2">
                             <Building2 className="h-4 w-4" />
-                            <span>{story.currentRole} at {story.currentCompany}</span>
+                            <span>{t('roleAtCompany', { role: story.currentRole, company: story.currentCompany })}</span>
                           </div>
                         </div>
                       </div>
                       <Badge className="bg-primary/10 text-green-800">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        Verified
+                        {t('verified')}
                       </Badge>
                     </div>
                   </CardHeader>
@@ -247,7 +248,7 @@ export default function AlumniStoriesPage() {
                     <div>
                       <h4 className="font-semibold mb-2 flex items-center gap-2">
                         <TrendingUp className="h-4 w-4 text-primary" />
-                        Career Journey
+                        {t('careerJourney')}
                       </h4>
                       <div className="space-y-2">
                         {story.careerPath.slice(0, 3).map((step, index) => (
@@ -266,7 +267,7 @@ export default function AlumniStoriesPage() {
 
                     {/* Story Excerpt */}
                     <div>
-                      <h4 className="font-semibold mb-2">Success Story</h4>
+                      <h4 className="font-semibold mb-2">{t('successStory')}</h4>
                       <p className="text-sm text-gray-700 line-clamp-3">
                         {story.story}
                       </p>
@@ -274,7 +275,7 @@ export default function AlumniStoriesPage() {
 
                     {/* Key Skills */}
                     <div>
-                      <h4 className="font-semibold mb-2">Key Skills</h4>
+                      <h4 className="font-semibold mb-2">{t('keySkills')}</h4>
                       <div className="flex flex-wrap gap-1">
                         {story.keySkills.slice(0, 5).map((skill, index) => (
                           <Badge key={index} variant="secondary" className="text-xs">
@@ -283,7 +284,7 @@ export default function AlumniStoriesPage() {
                         ))}
                         {story.keySkills.length > 5 && (
                           <Badge variant="outline" className="text-xs">
-                            +{story.keySkills.length - 5} more
+                            +{story.keySkills.length - 5} {t('more')}
                           </Badge>
                         )}
                       </div>
@@ -293,7 +294,7 @@ export default function AlumniStoriesPage() {
                     {story.adviceForStudents && (
                       <div className="bg-primary/5 border-l-4 border-blue-500 p-3 rounded">
                         <h4 className="font-semibold text-sm mb-1 text-blue-900">
-                          Advice for Students
+                          {t('adviceForStudents')}
                         </h4>
                         <p className="text-sm text-blue-800 line-clamp-2">
                           {story.adviceForStudents}
@@ -312,11 +313,10 @@ export default function AlumniStoriesPage() {
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold mb-4">
-            Are You an Alumni?
+            {t('ctaTitle')}
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Share your career journey and inspire the next generation of professionals.
-            Your verified story helps students understand real career paths.
+            {t('ctaDesc')}
           </p>
           <Link href="/advocacy/submit-story">
             <Button
@@ -324,7 +324,7 @@ export default function AlumniStoriesPage() {
               className="bg-white text-primary hover:bg-gray-100"
             >
               <Mail className="h-5 w-5 mr-2" />
-              Submit Your Story
+              {t('submitStory')}
             </Button>
           </Link>
         </div>

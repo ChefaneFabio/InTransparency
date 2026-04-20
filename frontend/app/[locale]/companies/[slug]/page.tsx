@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -89,6 +90,7 @@ interface CompanyPageProps {
 }
 
 export default function CompanyPage({ params }: CompanyPageProps) {
+  const t = useTranslations('companyProfile')
   const [company, setCompany] = useState<Company | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -104,7 +106,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
         if (err.response?.status === 404) {
           notFound()
         } else {
-          setError('Failed to load company data')
+          setError(t('loadError'))
         }
       } finally {
         setLoading(false)
@@ -112,14 +114,14 @@ export default function CompanyPage({ params }: CompanyPageProps) {
     }
 
     fetchCompany()
-  }, [params.slug])
+  }, [params.slug, t])
 
   if (loading) {
     return (
       <div className="min-h-screen bg-muted flex items-center justify-center">
         <div className="flex items-center space-x-2">
           <Loader2 className="h-8 w-8 animate-spin" />
-          <span className="text-lg">Loading company...</span>
+          <span className="text-lg">{t('loading')}</span>
         </div>
       </div>
     )
@@ -129,9 +131,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
     return (
       <div className="min-h-screen bg-muted flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Error Loading Company</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">{t('errorTitle')}</h2>
           <p className="text-muted-foreground mb-4">{error}</p>
-          <Button onClick={() => window.location.reload()}>Try Again</Button>
+          <Button onClick={() => window.location.reload()}>{t('tryAgain')}</Button>
         </div>
       </div>
     )
@@ -161,7 +163,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   </div>
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-1" />
-                    Founded {company.founded}
+                    {t('founded')} {company.founded}
                   </div>
                   <div className="flex items-center">
                     <Users className="h-4 w-4 mr-1" />
@@ -169,7 +171,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   </div>
                   <div className="flex items-center">
                     <Star className="h-4 w-4 mr-1 text-primary" />
-                    {company.stats.rating} ({company.stats.reviews} reviews)
+                    {company.stats.rating} ({company.stats.reviews} {t('reviews')})
                   </div>
                 </div>
               </div>
@@ -177,15 +179,15 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             <div className="flex items-center space-x-3">
               <Button variant="outline">
                 <Heart className="h-4 w-4 mr-2" />
-                Follow
+                {t('follow')}
               </Button>
               <Button variant="outline">
                 <Share2 className="h-4 w-4 mr-2" />
-                Share
+                {t('share')}
               </Button>
               <Button>
                 <Briefcase className="h-4 w-4 mr-2" />
-                View Jobs ({company.jobsCount})
+                {t('viewJobs')} ({company.jobsCount})
               </Button>
             </div>
           </div>
@@ -199,7 +201,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Company Overview */}
             <Card>
               <CardHeader>
-                <CardTitle>About {company.name}</CardTitle>
+                <CardTitle>{t('about', { name: company.name })}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-foreground/80 mb-6">{company.description}</p>
@@ -207,19 +209,19 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{company.stats.employees?.toLocaleString() || company.size}</div>
-                    <div className="text-sm text-muted-foreground">Employees</div>
+                    <div className="text-sm text-muted-foreground">{t('employees')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{company.jobsCount}</div>
-                    <div className="text-sm text-muted-foreground">Open Positions</div>
+                    <div className="text-sm text-muted-foreground">{t('openPositions')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-600">{company.stats.rating}</div>
-                    <div className="text-sm text-muted-foreground">Company Rating</div>
+                    <div className="text-sm text-muted-foreground">{t('companyRating')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{company.locations?.length || 0}</div>
-                    <div className="text-sm text-muted-foreground">Global Offices</div>
+                    <div className="text-sm text-muted-foreground">{t('globalOffices')}</div>
                   </div>
                 </div>
               </CardContent>
@@ -230,7 +232,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Target className="h-5 w-5 mr-2" />
-                  Our Values
+                  {t('ourValues')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -250,7 +252,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Award className="h-5 w-5 mr-2" />
-                  Benefits & Perks
+                  {t('benefitsPerks')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -270,7 +272,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Zap className="h-5 w-5 mr-2" />
-                  Technology Stack
+                  {t('techStack')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -289,19 +291,19 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Users className="h-5 w-5 mr-2" />
-                  Work Culture
+                  {t('workCulture')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-foreground/80">Remote Work</span>
+                    <span className="text-foreground/80">{t('remoteWork')}</span>
                     <Badge className={company.workCulture.remote ? 'bg-primary/10 text-green-800' : 'bg-muted text-foreground'}>
-                      {company.workCulture.remote ? 'Available' : 'Office-based'}
+                      {company.workCulture.remote ? t('available') : t('officeBased')}
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-foreground/80">Diversity Score</span>
+                    <span className="text-foreground/80">{t('diversityScore')}</span>
                     <div className="flex items-center">
                       <div className="w-20 bg-muted rounded-full h-2 mr-2">
                         <div
@@ -313,14 +315,14 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-foreground/80">Work-Life Balance</span>
+                    <span className="text-foreground/80">{t('workLifeBalance')}</span>
                     <div className="flex items-center">
                       <Star className="h-4 w-4 text-primary mr-1" />
                       <span className="font-semibold">{company.workCulture.workLifeBalance}/5</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-foreground/80">Career Growth</span>
+                    <span className="text-foreground/80">{t('careerGrowth')}</span>
                     <div className="flex items-center">
                       <TrendingUp className="h-4 w-4 text-primary mr-1" />
                       <span className="font-semibold">{company.workCulture.careerGrowth}/5</span>
@@ -335,7 +337,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <BookOpen className="h-5 w-5 mr-2" />
-                  Recent News
+                  {t('recentNews')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -348,7 +350,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                       </div>
                       <Button variant="outline" size="sm">
                         <ExternalLink className="h-3 w-3 mr-1" />
-                        Read
+                        {t('read')}
                       </Button>
                     </div>
                   ))}
@@ -362,25 +364,25 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
+                <CardTitle>{t('quickActions')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button className="w-full">
                   <Briefcase className="h-4 w-4 mr-2" />
-                  View All Jobs ({company.jobsCount})
+                  {t('viewAllJobs')} ({company.jobsCount})
                 </Button>
                 <Button variant="outline" className="w-full">
                   <MessageSquare className="h-4 w-4 mr-2" />
-                  Contact Recruiter
+                  {t('contactRecruiter')}
                 </Button>
                 <Button variant="outline" className="w-full">
                   <Eye className="h-4 w-4 mr-2" />
-                  Company Insights
+                  {t('companyInsights')}
                 </Button>
                 <Button variant="outline" className="w-full" asChild>
                   <a href={company.website} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="h-4 w-4 mr-2" />
-                    Visit Website
+                    {t('visitWebsite')}
                   </a>
                 </Button>
               </CardContent>
@@ -389,23 +391,23 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Company Stats */}
             <Card>
               <CardHeader>
-                <CardTitle>Company Statistics</CardTitle>
+                <CardTitle>{t('companyStatistics')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Industry</span>
+                  <span className="text-muted-foreground">{t('industry')}</span>
                   <span className="font-semibold">{company.industry}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Average Salary</span>
+                  <span className="text-muted-foreground">{t('averageSalary')}</span>
                   <span className="font-semibold">{company.averageSalary}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Global Offices</span>
+                  <span className="text-muted-foreground">{t('globalOffices')}</span>
                   <span className="font-semibold">{company.locations?.length || 0}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Company Size</span>
+                  <span className="text-muted-foreground">{t('companySize')}</span>
                   <span className="font-semibold">{company.size}</span>
                 </div>
               </CardContent>
@@ -414,7 +416,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Global Locations */}
             <Card>
               <CardHeader>
-                <CardTitle>Global Presence</CardTitle>
+                <CardTitle>{t('globalPresence')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -428,7 +430,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Contact Information */}
             <Card>
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
+                <CardTitle>{t('contactInformation')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center">
@@ -453,7 +455,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Social Media */}
             <Card>
               <CardHeader>
-                <CardTitle>Follow Us</CardTitle>
+                <CardTitle>{t('followUs')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">

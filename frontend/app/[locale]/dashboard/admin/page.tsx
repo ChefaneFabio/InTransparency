@@ -1,18 +1,20 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, Building, GraduationCap, TrendingUp } from 'lucide-react'
 
 export default function AdminDashboard() {
   const { data: session } = useSession()
+  const t = useTranslations('adminDashboard')
 
   return (
     <div className="min-h-screen space-y-6 space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
-          System administration and platform management
+          {t('subtitle')}
         </p>
       </div>
 
@@ -23,7 +25,7 @@ export default function AdminDashboard() {
               <Users className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-foreground">1,234</div>
-                <div className="text-sm text-muted-foreground">Total Users</div>
+                <div className="text-sm text-muted-foreground">{t('stats.totalUsers')}</div>
               </div>
             </div>
           </CardContent>
@@ -35,7 +37,7 @@ export default function AdminDashboard() {
               <GraduationCap className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-foreground">89</div>
-                <div className="text-sm text-muted-foreground">Universities</div>
+                <div className="text-sm text-muted-foreground">{t('stats.universities')}</div>
               </div>
             </div>
           </CardContent>
@@ -47,7 +49,7 @@ export default function AdminDashboard() {
               <Building className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-foreground">456</div>
-                <div className="text-sm text-muted-foreground">Companies</div>
+                <div className="text-sm text-muted-foreground">{t('stats.companies')}</div>
               </div>
             </div>
           </CardContent>
@@ -59,7 +61,7 @@ export default function AdminDashboard() {
               <TrendingUp className="h-8 w-8 text-orange-600" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-foreground">12,345</div>
-                <div className="text-sm text-muted-foreground">Connections Made</div>
+                <div className="text-sm text-muted-foreground">{t('stats.connectionsMade')}</div>
               </div>
             </div>
           </CardContent>
@@ -68,14 +70,14 @@ export default function AdminDashboard() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Platform Overview</CardTitle>
+          <CardTitle>{t('overview.title')}</CardTitle>
           <CardDescription>
-            Monitor system health and user activity
+            {t('overview.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <p className="text-muted-foreground">Admin panel features coming soon...</p>
+            <p className="text-muted-foreground">{t('overview.comingSoon')}</p>
           </div>
         </CardContent>
       </Card>

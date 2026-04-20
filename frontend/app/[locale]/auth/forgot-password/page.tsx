@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react'
 
 export default function ForgotPasswordPage() {
+  const t = useTranslations('authForgotPassword')
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isEmailSent, setIsEmailSent] = useState(false)
@@ -26,12 +28,12 @@ export default function ForgotPasswordPage() {
     e.preventDefault()
 
     if (!email.trim()) {
-      setError('Email is required')
+      setError(t('errorEmailRequired'))
       return
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError('Please enter a valid email address')
+      setError(t('errorEmailInvalid'))
       return
     }
 
@@ -45,7 +47,7 @@ export default function ForgotPasswordPage() {
       // For now, just show success message
       setIsEmailSent(true)
     } catch (error) {
-      setError('Failed to send reset email. Please try again.')
+      setError(t('errorSendFailed'))
     } finally {
       setIsLoading(false)
     }
@@ -59,7 +61,7 @@ export default function ForgotPasswordPage() {
       await new Promise(resolve => setTimeout(resolve, 1000))
       // Show success message or handle as needed
     } catch (error) {
-      setError('Failed to resend email. Please try again.')
+      setError(t('errorResendFailed'))
     } finally {
       setIsLoading(false)
     }
@@ -76,7 +78,7 @@ export default function ForgotPasswordPage() {
               className="flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to sign in
+              {t('backToSignIn')}
             </Link>
           </div>
 
@@ -90,10 +92,10 @@ export default function ForgotPasswordPage() {
 
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                    Check your email
+                    {t('checkEmailTitle')}
                   </h1>
                   <p className="text-gray-600">
-                    We've sent a password reset link to
+                    {t('checkEmailDescription')}
                   </p>
                   <p className="text-sm font-medium text-gray-900 mt-1">
                     {email}
@@ -102,19 +104,19 @@ export default function ForgotPasswordPage() {
 
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                   <h3 className="text-sm font-medium text-foreground mb-2">
-                    What to do next:
+                    {t('whatToDoNext')}
                   </h3>
                   <ol className="text-sm text-foreground/80 space-y-1 list-decimal list-inside">
-                    <li>Check your email inbox</li>
-                    <li>Look for an email from InTransparency</li>
-                    <li>Click the reset link in the email</li>
-                    <li>Create your new password</li>
+                    <li>{t('step1')}</li>
+                    <li>{t('step2')}</li>
+                    <li>{t('step3')}</li>
+                    <li>{t('step4')}</li>
                   </ol>
                 </div>
 
                 <div className="space-y-3">
                   <p className="text-sm text-gray-600">
-                    Didn't receive the email? Check your spam folder or
+                    {t('didntReceive')}
                   </p>
                   <Button
                     variant="outline"
@@ -125,12 +127,12 @@ export default function ForgotPasswordPage() {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Resending...
+                        {t('resending')}
                       </>
                     ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" />
-                        Resend email
+                        {t('resendEmail')}
                       </>
                     )}
                   </Button>
@@ -141,7 +143,7 @@ export default function ForgotPasswordPage() {
                     href="/auth/login"
                     className="text-sm text-primary hover:text-primary font-medium"
                   >
-                    Return to sign in
+                    {t('returnToSignIn')}
                   </Link>
                 </div>
               </div>
@@ -162,24 +164,24 @@ export default function ForgotPasswordPage() {
             className="flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to sign in
+            {t('backToSignIn')}
           </Link>
         </div>
 
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Forgot your password?</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('heroTitle')}</h1>
           <p className="mt-2 text-gray-600">
-            No worries, we'll send you reset instructions
+            {t('heroSubtitle')}
           </p>
         </div>
 
         {/* Form Card */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl text-center">Reset password</CardTitle>
+            <CardTitle className="text-xl text-center">{t('cardTitle')}</CardTitle>
             <CardDescription className="text-center">
-              Enter your email and we'll send you a link to reset your password
+              {t('cardDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -194,13 +196,13 @@ export default function ForgotPasswordPage() {
 
               {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email address</Label>
+                <Label htmlFor="email">{t('emailLabel')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                   <Input
                     id="email"
                     type="email" autoComplete="email"
-                    placeholder="Enter your email"
+                    placeholder={t('emailPlaceholder')}
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value)
@@ -222,12 +224,12 @@ export default function ForgotPasswordPage() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending reset link...
+                    {t('sendingResetLink')}
                   </>
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Send reset link
+                    {t('sendResetLink')}
                   </>
                 )}
               </Button>
@@ -240,14 +242,14 @@ export default function ForgotPasswordPage() {
           <CardContent className="pt-6">
             <div className="text-center space-y-3">
               <h3 className="text-sm font-medium text-gray-900">
-                Still having trouble?
+                {t('stillTrouble')}
               </h3>
               <p className="text-sm text-gray-600">
-                If you're unable to reset your password, please contact our support team for assistance.
+                {t('stillTroubleDescription')}
               </p>
               <Button variant="outline" size="sm" asChild>
                 <Link href="mailto:info@in-transparency.com">
-                  Contact Support
+                  {t('contactSupport')}
                 </Link>
               </Button>
             </div>
@@ -257,12 +259,12 @@ export default function ForgotPasswordPage() {
         {/* Sign Up Link */}
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            {t('noAccount')}{' '}
             <Link
               href="/auth/register"
               className="font-medium text-primary hover:text-primary"
             >
-              Sign up here
+              {t('signUpHere')}
             </Link>
           </p>
         </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -14,6 +15,7 @@ import { useSession } from 'next-auth/react'
 export default function CertificationPage() {
   const router = useRouter()
   const { data: session } = useSession()
+  const t = useTranslations('certificationPage')
 
   const handleGetCertified = () => {
     if (session?.user) {
@@ -28,53 +30,62 @@ export default function CertificationPage() {
   const softSkills = [
     {
       number: '01',
-      title: 'Problem Solving',
-      description: 'Critical thinking and analytical abilities'
+      title: t('softSkills.problemSolving.title'),
+      description: t('softSkills.problemSolving.description')
     },
     {
       number: '02',
-      title: 'Teamwork',
-      description: 'Collaboration and interpersonal skills'
+      title: t('softSkills.teamwork.title'),
+      description: t('softSkills.teamwork.description')
     },
     {
       number: '03',
-      title: 'Leadership',
-      description: 'Initiative and decision-making capacity'
+      title: t('softSkills.leadership.title'),
+      description: t('softSkills.leadership.description')
     },
     {
       number: '04',
-      title: 'Adaptability',
-      description: 'Flexibility and resilience under pressure'
+      title: t('softSkills.adaptability.title'),
+      description: t('softSkills.adaptability.description')
     }
   ]
 
   const assessments = [
     {
-      name: 'Big Five Personality',
-      duration: '10 min',
-      measures: 'Openness, Conscientiousness, Extraversion, Agreeableness, Emotional Stability'
+      name: t('assessments.bigFive.name'),
+      duration: t('assessments.bigFive.duration'),
+      measures: t('assessments.bigFive.measures')
     },
     {
-      name: 'DISC Behavioral',
-      duration: '8 min',
-      measures: 'Dominance, Influence, Steadiness, Compliance'
+      name: t('assessments.disc.name'),
+      duration: t('assessments.disc.duration'),
+      measures: t('assessments.disc.measures')
     },
     {
-      name: 'Core Competencies',
-      duration: '12 min',
-      measures: 'Communication, Leadership, Problem-solving, Emotional Intelligence'
+      name: t('assessments.coreCompetencies.name'),
+      duration: t('assessments.coreCompetencies.duration'),
+      measures: t('assessments.coreCompetencies.measures')
     }
   ]
 
   const benefits = [
-    'Validated by industrial-organizational psychologists',
-    'Scientifically-backed assessments',
-    'Percentile rankings vs. university peer group',
-    'Shareable certificate with unique verification code',
-    'Integrated into your InTransparency profile',
-    'Helps recruiters find you for culture fit',
-    'One-time fee, lifetime access to results',
-    'Re-take annually to track growth'
+    t('benefits.item1'),
+    t('benefits.item2'),
+    t('benefits.item3'),
+    t('benefits.item4'),
+    t('benefits.item5'),
+    t('benefits.item6'),
+    t('benefits.item7'),
+    t('benefits.item8')
+  ]
+
+  const faqs = [
+    { question: t('faq.q1.question'), answer: t('faq.q1.answer') },
+    { question: t('faq.q2.question'), answer: t('faq.q2.answer') },
+    { question: t('faq.q3.question'), answer: t('faq.q3.answer') },
+    { question: t('faq.q4.question'), answer: t('faq.q4.answer') },
+    { question: t('faq.q5.question'), answer: t('faq.q5.answer') },
+    { question: t('faq.q6.question'), answer: t('faq.q6.answer') }
   ]
 
   return (
@@ -93,19 +104,18 @@ export default function CertificationPage() {
               transition={{ duration: 0.6 }}
             >
               <Badge className="mb-4 bg-white/10 text-white text-sm px-6 py-2 border-white/20">
-                NEW: Soft Skills Certification
+                {t('hero.badge')}
               </Badge>
 
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                Stand Out With{' '}
+                {t('hero.titlePart1')}{' '}
                 <span className="text-blue-200">
-                  Certified Soft Skills
+                  {t('hero.titlePart2')}
                 </span>
               </h1>
 
               <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-                Beyond your projects and code. Prove your leadership, communication, and teamwork
-                skills with psychometric testing trusted by recruiters.
+                {t('hero.subtitle')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -114,18 +124,18 @@ export default function CertificationPage() {
                   onClick={handleGetCertified}
                   className="bg-white text-blue-900 hover:bg-blue-50 shadow-lg text-lg px-8 py-6"
                 >
-                  Get Certified — Free
+                  {t('hero.ctaPrimary')}
                 </Button>
 
                 <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
                   <Link href="#how-it-works">
-                    See How It Works
+                    {t('hero.ctaSecondary')}
                   </Link>
                 </Button>
               </div>
 
               <p className="text-sm text-blue-200">
-                30-minute assessment -- Instant results -- Lifetime certificate
+                {t('hero.tagline')}
               </p>
             </motion.div>
           </div>
@@ -142,7 +152,7 @@ export default function CertificationPage() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              What We Measure
+              {t('softSkills.heading')}
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -179,10 +189,10 @@ export default function CertificationPage() {
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Three Validated Assessments
+                {t('assessments.heading')}
               </h2>
               <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                Our certification combines industry-standard psychometric tests used by Fortune 500 companies.
+                {t('assessments.subtitle')}
               </p>
             </div>
 
@@ -206,7 +216,7 @@ export default function CertificationPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-gray-700">
-                        <span className="font-medium">Measures:</span> {assessment.measures}
+                        <span className="font-medium">{t('assessments.measuresLabel')}</span> {assessment.measures}
                       </p>
                     </CardContent>
                   </Card>
@@ -227,9 +237,9 @@ export default function CertificationPage() {
               <Card className="border-2 border-primary/20 shadow-xl">
                 <CardHeader className="bg-primary/5">
                   <div className="text-center">
-                    <CardTitle className="text-3xl mb-4">What You Get</CardTitle>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">Free</div>
-                    <p className="text-gray-600">Take assessments at no cost during early access</p>
+                    <CardTitle className="text-3xl mb-4">{t('benefits.heading')}</CardTitle>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">{t('benefits.price')}</div>
+                    <p className="text-gray-600">{t('benefits.priceNote')}</p>
                   </div>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -255,10 +265,10 @@ export default function CertificationPage() {
                       onClick={handleGetCertified}
                       className="bg-primary text-white shadow-lg text-lg px-8 py-6"
                     >
-                      Get Certified Now
+                      {t('benefits.cta')}
                     </Button>
                     <p className="text-sm text-gray-600 mt-4">
-                      Be among the first to get certified
+                      {t('benefits.ctaNote')}
                     </p>
                   </div>
                 </CardContent>
@@ -276,36 +286,11 @@ export default function CertificationPage() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              Frequently Asked Questions
+              {t('faq.heading')}
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {[
-                {
-                  question: "How long does the assessment take?",
-                  answer: "Approximately 30 minutes total for all three assessments. You can pause and resume anytime."
-                },
-                {
-                  question: "Is this scientifically validated?",
-                  answer: "Yes. Our assessments are based on peer-reviewed research and validated by I-O psychologists."
-                },
-                {
-                  question: "Will recruiters actually see this?",
-                  answer: "Yes! Your certification displays prominently on your profile and in recruiter search results."
-                },
-                {
-                  question: "What if I'm not happy with my results?",
-                  answer: "You can retake the assessment once per year. Many students see improvement after gaining experience."
-                },
-                {
-                  question: "Is this recognized internationally?",
-                  answer: "Yes. We're partnered with 500+ companies across Europe and expanding globally."
-                },
-                {
-                  question: "How is this different from LinkedIn assessments?",
-                  answer: "Ours are psychometric (personality/behavior) not skill quizzes. Plus, we provide percentile rankings vs. peers."
-                }
-              ].map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -336,10 +321,10 @@ export default function CertificationPage() {
             <Card className="bg-primary text-white border-0 shadow-lg">
               <CardContent className="p-12 text-center">
                 <h2 className="text-4xl font-bold mb-4">
-                  Ready to Stand Out?
+                  {t('finalCta.heading')}
                 </h2>
                 <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-                  Be among the first to certify your soft skills and stand out to recruiters.
+                  {t('finalCta.subtitle')}
                 </p>
                 <Button
                   size="lg"
@@ -347,10 +332,10 @@ export default function CertificationPage() {
                   onClick={handleGetCertified}
                   className="text-lg px-8 py-6"
                 >
-                  Get Certified — Free
+                  {t('finalCta.cta')}
                 </Button>
                 <p className="text-sm text-white mt-6">
-                  ✓ Complete in 30 minutes  ✓ Instant certification  ✓ Lifetime access
+                  {t('finalCta.tagline')}
                 </p>
               </CardContent>
             </Card>

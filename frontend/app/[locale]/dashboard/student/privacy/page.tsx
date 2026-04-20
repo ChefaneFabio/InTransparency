@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,6 +17,7 @@ import { Link } from '@/navigation'
  *   Art. 16 (rectification): covered by profile editor
  */
 export default function PrivacyCenter() {
+  const t = useTranslations('studentPrivacy')
   const [downloading, setDownloading] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [password, setPassword] = useState('')
@@ -51,7 +53,7 @@ export default function PrivacyCenter() {
       })
       const body = await res.json()
       if (!res.ok) {
-        setDeleteError(body.error || 'Failed')
+        setDeleteError(body.error || t('failed'))
         return
       }
       setDeleteConfirmed(true)
@@ -69,70 +71,63 @@ export default function PrivacyCenter() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1 flex items-center gap-2">
           <Shield className="h-7 w-7 text-primary" />
-          Privacy center
+          {t('title')}
         </h1>
-        <p className="text-muted-foreground">
-          Exercise your GDPR rights. Download everything we hold about you, or erase your account
-          permanently. No approval needed — these are your rights, not our favors.
-        </p>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       <Card className="mb-4">
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <FileJson className="h-5 w-5" />
-            Download your data <Badge variant="outline" className="text-xs">Art. 20</Badge>
+            {t('downloadData')} <Badge variant="outline" className="text-xs">{t('art20')}</Badge>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground mb-3">
-            A single JSON file with everything: profile, projects, skill graph, endorsements,
-            stages, exchanges, matches, credentials, notifications, applications. Machine-readable
-            — you can import it into any compatible service.
-          </p>
+          <p className="text-sm text-muted-foreground mb-3">{t('downloadDataDesc')}</p>
           <Button onClick={exportData} disabled={downloading}>
             <Download className="h-4 w-4 mr-2" />
-            {downloading ? 'Generating…' : 'Download my data (JSON)'}
+            {downloading ? t('generating') : t('downloadMyDataJson')}
           </Button>
         </CardContent>
       </Card>
 
       <Card className="mb-4">
         <CardHeader>
-          <CardTitle className="text-base">Your rights — elsewhere on the platform</CardTitle>
+          <CardTitle className="text-base">{t('yourRightsElsewhere')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
           <div className="flex items-center justify-between">
             <span>
-              <Badge variant="outline" className="text-xs mr-2">Art. 15</Badge>
-              See all matches about you
+              <Badge variant="outline" className="text-xs mr-2">{t('art15')}</Badge>
+              {t('seeAllMatches')}
             </span>
             <Link href="/dashboard/student/matches" className="text-primary hover:underline">
-              /matches →
+              {t('matchesLink')}
             </Link>
           </div>
           <div className="flex items-center justify-between">
             <span>
-              <Badge variant="outline" className="text-xs mr-2">Art. 16</Badge>
-              Edit your profile
+              <Badge variant="outline" className="text-xs mr-2">{t('art16')}</Badge>
+              {t('editProfile')}
             </span>
             <Link href="/dashboard/student/profile" className="text-primary hover:underline">
-              /profile →
+              {t('profileLink')}
             </Link>
           </div>
           <div className="flex items-center justify-between">
             <span>
-              <Badge variant="outline" className="text-xs mr-2">AI Act</Badge>
-              Model cards and algorithm registry
+              <Badge variant="outline" className="text-xs mr-2">{t('aiAct')}</Badge>
+              {t('modelCardsAndRegistry')}
             </span>
             <Link href="/algorithm-registry" className="text-primary hover:underline">
-              /algorithm-registry →
+              {t('algorithmRegistryLink')}
             </Link>
           </div>
           <div className="flex items-center justify-between">
-            <span>Consent preferences (cookies)</span>
+            <span>{t('consentPreferences')}</span>
             <Link href="/consent" className="text-primary hover:underline">
-              /consent →
+              {t('consentLink')}
             </Link>
           </div>
         </CardContent>
@@ -142,40 +137,36 @@ export default function PrivacyCenter() {
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2 text-red-700">
             <Trash2 className="h-5 w-5" />
-            Delete my account <Badge variant="outline" className="text-xs">Art. 17</Badge>
+            {t('deleteAccount')} <Badge variant="outline" className="text-xs">{t('art17')}</Badge>
           </CardTitle>
         </CardHeader>
         <CardContent>
           {deleteConfirmed ? (
             <div className="flex gap-2 items-center text-sm text-emerald-700">
               <CheckCircle className="h-5 w-5" />
-              Your account has been deleted. Redirecting home…
+              {t('accountDeleted')}
             </div>
           ) : (
             <>
               <div className="flex gap-2 items-start p-3 bg-amber-50 border border-amber-200 rounded mb-4">
                 <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-amber-900">
-                  This is permanent. Projects, endorsements, stages, and matches about you will be
-                  deleted or anonymized. Verifiable credentials already in third-party wallets
-                  will be marked revoked. We can&apos;t recover your data after this.
-                </p>
+                <p className="text-sm text-amber-900">{t('deleteWarning')}</p>
               </div>
               <div className="space-y-3">
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase mb-1 block">
-                    Current password
+                    {t('currentPassword')}
                   </label>
                   <Input
                     type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    placeholder="Re-enter your password"
+                    placeholder={t('currentPasswordPlaceholder')}
                   />
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground uppercase mb-1 block">
-                    Type <code className="bg-muted px-1">DELETE MY ACCOUNT</code> to confirm
+                    {t('typeToConfirmBefore')} <code className="bg-muted px-1">DELETE MY ACCOUNT</code> {t('typeToConfirmAfter')}
                   </label>
                   <Input
                     value={confirmPhrase}
@@ -196,7 +187,7 @@ export default function PrivacyCenter() {
                   }
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {deleting ? 'Deleting…' : 'Permanently delete my account'}
+                  {deleting ? t('deleting') : t('permanentlyDelete')}
                 </Button>
               </div>
             </>
