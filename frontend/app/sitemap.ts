@@ -42,6 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/compare/platforms', priority: 0.8, freq: 'monthly' },
     { path: '/glossary', priority: 0.75, freq: 'monthly' },
     { path: '/facts', priority: 0.75, freq: 'monthly' },
+    { path: '/changelog', priority: 0.85, freq: 'daily' },
     { path: '/demo/ai-search', priority: 0.6, freq: 'weekly' },
 
     // Auth (low priority)

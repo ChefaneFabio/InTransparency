@@ -118,7 +118,7 @@ export default function CompanyDiscoveryPage({
             ? { '@type': 'PostalAddress', addressLocality: profile.headquarters }
             : undefined,
           knowsAbout: profile.industries,
-          aggregateRating: profile.followerCount > 0 ? {
+          interactionStatistic: profile.followerCount > 0 ? {
             '@type': 'InteractionCounter',
             interactionType: { '@type': 'FollowAction' },
             userInteractionCount: profile.followerCount,

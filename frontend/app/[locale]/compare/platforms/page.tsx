@@ -93,7 +93,84 @@ function StatusIcon({ v }: { v: 'yes' | 'partial' | 'no' }) {
   return <XCircle className="h-5 w-5 text-red-500" aria-label="No" />
 }
 
-export default function PlatformsComparePage() {
+interface PageProps {
+  params: Promise<{ locale: string }>
+}
+
+const LABELS = {
+  en: {
+    badge: 'Honest comparison',
+    h1: 'InTransparency vs JobTeaser vs Handshake',
+    intro:
+      'The three platforms universities and employers most often compare for entry-level hiring in Europe. Fact-by-fact, as of 2026-04-19. We mark where we\'re not a fit too — nothing hidden.',
+    tldrH2: 'TL;DR',
+    tldr: (
+      <>
+        <strong>JobTeaser</strong> is a polished EU job board with strong company branding.{' '}
+        <strong>Handshake</strong> is the US network-effect leader with ATS integrations.{' '}
+        <strong>InTransparency</strong> is the verified skill graph + AI Act-native matching
+        platform — built for EU labor law, designed around evidence instead of self-declaration.
+        Choose us if you want skills you can <em>trust</em> and a recruiting flow that&apos;s
+        audit-trail compliant under the AI Act. Choose JobTeaser for a polished job board.
+        Choose Handshake if you&apos;re in the US.
+      </>
+    ),
+    featureHead: 'Feature',
+    honestH3: 'How this comparison is kept honest',
+    honest: [
+      '"Yes" means live and publicly documented. "Partial" means available in some markets or tiers. "No" means not available as of the date above.',
+      'JobTeaser and Handshake claims are based on their public documentation. If we got something wrong, email info@in-transparency.com — we\'ll fix it within 48 hours.',
+      'Our own "Yes" claims are backed by deployed endpoints. Verify at /algorithm-registry and /api/credentials/public-key.',
+    ],
+    categories: {
+      Verification: 'Verification',
+      'EU AI Act': 'EU AI Act',
+      'Italian compliance': 'Italian compliance',
+      'Cross-border': 'Cross-border',
+      Recruiting: 'Recruiting',
+      Universities: 'Universities',
+      Privacy: 'Privacy',
+    } as Record<string, string>,
+  },
+  it: {
+    badge: 'Confronto onesto',
+    h1: 'InTransparency vs JobTeaser vs Handshake',
+    intro:
+      'Le tre piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-19. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.',
+    tldrH2: 'In sintesi',
+    tldr: (
+      <>
+        <strong>JobTeaser</strong> è una job board europea curata con forte branding aziendale.{' '}
+        <strong>Handshake</strong> è il leader USA per effetto di rete con integrazioni ATS.{' '}
+        <strong>InTransparency</strong> è la piattaforma del grafo di competenze verificato +
+        matching AI-Act-native — progettata per il diritto del lavoro UE, basata su evidenze e
+        non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso
+        di recruiting conforme all&apos;AI Act. JobTeaser se cercate una job board polished.
+        Handshake se siete negli USA.
+      </>
+    ),
+    featureHead: 'Funzionalità',
+    honestH3: 'Come manteniamo questo confronto onesto',
+    honest: [
+      '"Sì" significa attivo e documentato pubblicamente. "Parziale" significa disponibile in alcuni mercati o tier. "No" significa non disponibile alla data sopra indicata.',
+      'Le affermazioni su JobTeaser e Handshake si basano sulla loro documentazione pubblica. Se abbiamo sbagliato qualcosa, scriveteci a info@in-transparency.com — correggiamo entro 48 ore.',
+      'Le nostre affermazioni "Sì" sono supportate da endpoint attivi. Verificate a /algorithm-registry e /api/credentials/public-key.',
+    ],
+    categories: {
+      Verification: 'Verifica',
+      'EU AI Act': 'AI Act UE',
+      'Italian compliance': 'Conformità italiana',
+      'Cross-border': 'Transfrontaliero',
+      Recruiting: 'Recruiting',
+      Universities: 'Atenei',
+      Privacy: 'Privacy',
+    } as Record<string, string>,
+  },
+} as const
+
+export default async function PlatformsComparePage({ params }: PageProps) {
+  const { locale } = await params
+  const L = LABELS[(locale as 'en' | 'it')] ?? LABELS.en
   const categories = Array.from(new Set(COMPARISON.map(r => r.category)))
 
   return (
@@ -125,29 +202,17 @@ export default function PlatformsComparePage() {
       <Header />
       <main className="container max-w-5xl mx-auto px-4 pt-32 pb-16">
         <div className="mb-8">
-          <Badge variant="outline" className="mb-2">Honest comparison</Badge>
-          <h1 className="text-4xl font-bold mb-3">InTransparency vs JobTeaser vs Handshake</h1>
-          <p className="text-lg text-muted-foreground">
-            The three platforms universities and employers most often compare for entry-level hiring
-            in Europe. Fact-by-fact, as of 2026-04-19. We mark where we&apos;re not a fit too —
-            nothing hidden.
-          </p>
+          <Badge variant="outline" className="mb-2">{L.badge}</Badge>
+          <h1 className="text-4xl font-bold mb-3">{L.h1}</h1>
+          <p className="text-lg text-muted-foreground">{L.intro}</p>
         </div>
 
         <Card className="mb-8 bg-primary/5 border-primary/30">
           <CardContent className="pt-5 pb-5 flex items-start gap-3">
             <Sparkles className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-semibold mb-1">TL;DR</h2>
-              <p className="text-sm text-muted-foreground">
-                <strong>JobTeaser</strong> is a polished EU job board with strong company branding.{' '}
-                <strong>Handshake</strong> is the US network-effect leader with ATS integrations.{' '}
-                <strong>InTransparency</strong> is the verified skill graph + AI Act-native matching
-                platform — built for EU labor law, designed around evidence instead of self-declaration.
-                Choose us if you want skills you can <em>trust</em> and a recruiting flow that&apos;s
-                audit-trail compliant under the AI Act. Choose JobTeaser for a polished job board.
-                Choose Handshake if you&apos;re in the US.
-              </p>
+              <h2 className="font-semibold mb-1">{L.tldrH2}</h2>
+              <p className="text-sm text-muted-foreground">{L.tldr}</p>
             </div>
           </CardContent>
         </Card>
@@ -155,13 +220,13 @@ export default function PlatformsComparePage() {
         {categories.map(cat => (
           <Card key={cat} className="mb-4">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base">{cat}</CardTitle>
+              <CardTitle className="text-base">{L.categories[cat] ?? cat}</CardTitle>
             </CardHeader>
             <CardContent>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-xs text-muted-foreground uppercase">
-                    <th className="text-left pb-2 font-semibold">Feature</th>
+                    <th className="text-left pb-2 font-semibold">{L.featureHead}</th>
                     <th className="pb-2 font-semibold">InTransparency</th>
                     <th className="pb-2 font-semibold">JobTeaser</th>
                     <th className="pb-2 font-semibold">Handshake</th>
@@ -191,12 +256,12 @@ export default function PlatformsComparePage() {
           <CardContent className="pt-5 pb-5 text-sm text-muted-foreground">
             <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
               <ShieldCheck className="h-4 w-4" />
-              How this comparison is kept honest
+              {L.honestH3}
             </h3>
             <ul className="space-y-1 list-disc pl-5">
-              <li>&quot;Yes&quot; means live and publicly documented. &quot;Partial&quot; means available in some markets or tiers. &quot;No&quot; means not available as of the date above.</li>
-              <li>JobTeaser and Handshake claims are based on their public documentation. If we got something wrong, email info@in-transparency.com — we&apos;ll fix it within 48 hours.</li>
-              <li>Our own &quot;Yes&quot; claims are backed by deployed endpoints. Verify at /algorithm-registry and /api/credentials/public-key.</li>
+              {L.honest.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
             </ul>
           </CardContent>
         </Card>

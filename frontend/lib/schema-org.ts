@@ -92,8 +92,10 @@ export function educationalOrganization(params: {
       : undefined,
     foundingDate: params.founded ? String(params.founded) : undefined,
     numberOfStudents: params.numberOfStudents,
+    // Only include aggregateRating if we have a real ratingCount (≥1) —
+    // Google's rich-results validation rejects a single-value rating as spammy.
     aggregateRating:
-      typeof params.rankingScore === 'number'
+      typeof params.rankingScore === 'number' && params.rankingScore > 0
         ? {
             '@type': 'AggregateRating',
             ratingValue: params.rankingScore,
