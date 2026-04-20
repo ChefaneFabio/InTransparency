@@ -3514,6 +3514,71 @@ enum DocumentCategory {
 }
 
 // ============================================
+// Agent infrastructure — webhooks + watchlists. Supports AI agent workflows
+// where recruiters want long-running queries and push notifications rather
+// than only on-demand reads.
+// ============================================
+
+model WebhookSubscription {
+  id         String   @id @default(cuid())
+  ownerId    String   // User who owns the subscription
+  url        String   // HTTPS delivery target
+  secret     String   // HMAC-SHA256 secret — never returned after creation
+
+  events     String[] @default([]) // e.g. ["match.created", "credential.issued", "stage.completed", "exchange.completed"]
+  active     Boolean  @default(true)
+
+  // Delivery health
+  lastDeliveryAt  DateTime?
+  lastSuccessAt   DateTime?
+  lastFailureAt   DateTime?
+  consecutiveFailures Int @default(0)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([ownerId])
+  @@index([active])
+}
+
+model WebhookDelivery {
+  id             String   @id @default(cuid())
+  subscriptionId String
+  eventType      String
+  eventId        String   // Idempotency key
+  payload        Json
+  attemptCount   Int      @default(0)
+  deliveredAt    DateTime?
+  responseStatus Int?
+  responseBody   String?  @db.Text
+  lastError      String?  @db.Text
+  nextRetryAt    DateTime?
+
+  createdAt      DateTime @default(now())
+
+  @@index([subscriptionId, createdAt])
+  @@index([eventType])
+  @@index([nextRetryAt])
+}
+
+model AgentWatchlist {
+  id        String   @id @default(cuid())
+  ownerId   String   // User (typically a recruiter) who saved this
+  name      String
+  // Serialized query — what the agent is watching for
+  query     Json     // e.g. { type: 'candidate-match', requiredSkills: [...], jobId: '...' }
+  // Optional: the webhook subscription to trigger when matches appear
+  webhookSubscriptionId String?
+  active    Boolean  @default(true)
+  lastRunAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId, active])
+}
+
+// ============================================
 // AuditLog — for GDPR Art. 5(2) accountability + AI Act Art. 12 traceability.
 // Records sensitive reads and any admin / moderation action.
 // ============================================

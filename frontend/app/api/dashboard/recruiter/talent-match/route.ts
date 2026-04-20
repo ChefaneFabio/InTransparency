@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { persistMatchExplanation, legacyReasonsToFactors, MATCH_MODEL_VERSION } from '@/lib/match-explanation'
 import { createNotification } from '@/lib/notifications'
+import { dispatchWebhook } from '@/lib/webhooks'
 
 /**
  * POST /api/dashboard/recruiter/talent-match
@@ -323,6 +324,22 @@ export async function POST(req: NextRequest) {
               groupKey: `match:${expl.id}`,
             }).catch(err => console.error('Match notification failed:', err))
           }
+          // Fan out to webhook subscribers — the recruiter's own agents get
+          // notified when matches land.
+          dispatchWebhook({
+            eventType: 'match.created',
+            eventId: expl.id,
+            ownerIdFilter: session.user.id,
+            payload: {
+              matchId: expl.id,
+              candidateId: r.id,
+              candidateName: r.name,
+              matchScore: r.matchScore,
+              decisionLabel: expl.decisionLabel,
+              jobId: jobId ?? null,
+              url: `https://www.in-transparency.com/en/matches/${expl.id}/why`,
+            },
+          }).catch(() => {})
           return { candidateId: r.id, explanationId: expl.id }
         } catch (e) {
           console.error('Persist explanation failed for', r.id, e)

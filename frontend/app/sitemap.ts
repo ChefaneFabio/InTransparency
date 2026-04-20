@@ -30,6 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/for-high-schools', priority: 0.8, freq: 'weekly' },
     { path: '/for-startups', priority: 0.8, freq: 'weekly' },
     { path: '/for-sme', priority: 0.8, freq: 'weekly' },
+    { path: '/for-enterprise', priority: 0.9, freq: 'weekly' },
     { path: '/for-agencies', priority: 0.8, freq: 'weekly' },
     { path: '/for-techparks', priority: 0.8, freq: 'weekly' },
 
@@ -44,6 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/facts', priority: 0.75, freq: 'monthly' },
     { path: '/changelog', priority: 0.85, freq: 'daily' },
     { path: '/integrations/agents', priority: 0.85, freq: 'weekly' },
+    { path: '/integrations/ats', priority: 0.85, freq: 'weekly' },
     { path: '/eu-compliance', priority: 0.9, freq: 'weekly' },
     { path: '/for-public-sector', priority: 0.85, freq: 'weekly' },
     { path: '/demo/ai-search', priority: 0.6, freq: 'weekly' },
