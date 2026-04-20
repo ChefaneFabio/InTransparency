@@ -7,6 +7,7 @@ import { AlertTriangle, Clock, Euro, Award, ShieldCheck, ArrowRight } from 'luci
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
+import { breadcrumbList } from '@/lib/schema-org'
 
 /**
  * "Why now" — long-form urgency + value piece for academic leaders.
@@ -20,11 +21,28 @@ export const metadata: Metadata = {
   title: 'Why Italian universities need a verified skill graph — 2026 inflection',
   description:
     'The EU AI Act is already enforceable for employment AI. ANVUR cycles demand placement evidence. PCTO compliance has legal weight. Manual tracking costs universities 1+ FTE per 10k students. Here is what changed in 2026 and why verified credentials are no longer optional.',
-  alternates: { canonical: 'https://www.in-transparency.com/en/why-now' },
+  alternates: {
+    canonical: 'https://www.in-transparency.com/en/why-now',
+    languages: {
+      en: 'https://www.in-transparency.com/en/why-now',
+      it: 'https://www.in-transparency.com/it/why-now',
+      'x-default': 'https://www.in-transparency.com/en/why-now',
+    },
+  },
   openGraph: {
     title: 'Why now — the 2026 inflection for university recruiting infrastructure',
     description: 'AI Act enforcement, ANVUR cycles, and the cost of manual placement tracking.',
     type: 'article',
+    locale: 'en_US',
+    alternateLocale: 'it_IT',
+    siteName: 'InTransparency',
+    images: [{ url: 'https://www.in-transparency.com/logo.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Why now — 2026 inflection for university recruiting',
+    description: 'AI Act enforcement, ANVUR cycles, cost of inaction.',
+    images: ['https://www.in-transparency.com/logo.png'],
   },
 }
 
@@ -47,6 +65,13 @@ export default function WhyNowPage() {
           description: metadata.description as string,
           mainEntityOfPage: 'https://www.in-transparency.com/en/why-now',
         }}
+      />
+      <JsonLd
+        data={breadcrumbList([
+          { name: 'Home', url: '/' },
+          { name: 'For universities', url: '/for-universities' },
+          { name: 'Why now', url: '/why-now' },
+        ])}
       />
       <Header />
       <main className="container max-w-3xl mx-auto px-4 pt-32 pb-16 prose-article">

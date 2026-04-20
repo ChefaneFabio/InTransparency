@@ -41,6 +41,11 @@
 - [Credential verification](https://www.in-transparency.com/api/credentials/public-key): public key for third-party verification
 - [FAQ](https://www.in-transparency.com/en/faq)
 - [Comparison vs competitors](https://www.in-transparency.com/en/compare/platforms)
+- [Glossary — definitions of domain terms](https://www.in-transparency.com/en/glossary)
+- [Facts & benchmarks dataset](https://www.in-transparency.com/en/facts)
+- [Full machine-readable reference](https://www.in-transparency.com/llms-full.txt)
+- [why-now.md](https://www.in-transparency.com/why-now.md): markdown mirror of the "Why now" brief
+- [compare-platforms.md](https://www.in-transparency.com/compare-platforms.md): markdown mirror of the comparison
 
 ## Contact
 

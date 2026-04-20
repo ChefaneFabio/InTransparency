@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { CheckCircle, XCircle, MinusCircle, ShieldCheck, Sparkles } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import type { Metadata } from 'next'
+import { breadcrumbList } from '@/lib/schema-org'
 
 /**
  * Competitor comparison — InTransparency vs JobTeaser vs Handshake.
@@ -16,11 +17,28 @@ export const metadata: Metadata = {
   title: 'InTransparency vs JobTeaser vs Handshake — honest comparison',
   description:
     'Side-by-side comparison of InTransparency, JobTeaser, and Handshake across verification, AI Act compliance, cross-border Erasmus support, Italian academic context, and pricing for entry-level recruiting in Europe.',
-  alternates: { canonical: 'https://www.in-transparency.com/en/compare/platforms' },
+  alternates: {
+    canonical: 'https://www.in-transparency.com/en/compare/platforms',
+    languages: {
+      en: 'https://www.in-transparency.com/en/compare/platforms',
+      it: 'https://www.in-transparency.com/it/compare/platforms',
+      'x-default': 'https://www.in-transparency.com/en/compare/platforms',
+    },
+  },
   openGraph: {
     title: 'InTransparency vs JobTeaser vs Handshake',
     description: 'Honest comparison of EU entry-level recruiting platforms.',
     type: 'article',
+    locale: 'en_US',
+    alternateLocale: 'it_IT',
+    siteName: 'InTransparency',
+    images: [{ url: 'https://www.in-transparency.com/logo.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'InTransparency vs JobTeaser vs Handshake',
+    description: 'Fact-by-fact comparison of EU entry-level recruiting platforms.',
+    images: ['https://www.in-transparency.com/logo.png'],
   },
 }
 
@@ -96,6 +114,13 @@ export default function PlatformsComparePage() {
             'Side-by-side comparison of InTransparency, JobTeaser, and Handshake across verification, AI Act compliance, cross-border Erasmus, Italian academic context, and pricing.',
           mainEntityOfPage: 'https://www.in-transparency.com/en/compare/platforms',
         }}
+      />
+      <JsonLd
+        data={breadcrumbList([
+          { name: 'Home', url: '/' },
+          { name: 'Compare', url: '/compare' },
+          { name: 'Platforms', url: '/compare/platforms' },
+        ])}
       />
       <Header />
       <main className="container max-w-5xl mx-auto px-4 pt-32 pb-16">
