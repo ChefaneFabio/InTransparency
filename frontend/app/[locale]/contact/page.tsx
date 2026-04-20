@@ -30,11 +30,33 @@ export default function ContactPage() {
 
   // Detect segment from URL params or session
   const subjectParam = searchParams.get('subject') || ''
+  const roleParam = searchParams.get('role') || ''
+  const companyParam = searchParams.get('company') || ''
+  const nameParam = searchParams.get('name') || ''
+  const emailParam = searchParams.get('email') || ''
+  const messageParam = searchParams.get('message') || ''
+  const priorityParam = searchParams.get('priority') || ''
   const roleFromSession = (session?.user as any)?.role || ''
 
+  // Normalize incoming ?role= to the select's expected values.
+  const normalizedRoleParam = (() => {
+    const r = roleParam.toLowerCase()
+    if (['student', 'studente'].includes(r)) return 'student'
+    if (['recruiter', 'hiring', 'company', 'hr'].includes(r)) return 'recruiter'
+    if (['university', 'university-admin', 'institution', 'admin'].includes(r)) return 'university-admin'
+    if (['professor', 'teacher', 'faculty'].includes(r)) return 'professor'
+    if (r) return 'other'
+    return ''
+  })()
+
   const detectSegment = (): Segment => {
+    if (roleParam) {
+      if (['university', 'university-admin', 'institution', 'professor', 'teacher', 'faculty'].includes(roleParam.toLowerCase())) return 'university'
+      if (['recruiter', 'hiring', 'company', 'hr'].includes(roleParam.toLowerCase())) return 'company'
+      if (['student', 'studente'].includes(roleParam.toLowerCase())) return 'student'
+    }
     if (subjectParam.includes('university') || subjectParam.includes('pilot') || subjectParam.includes('institution')) return 'university'
-    if (subjectParam.includes('company') || subjectParam.includes('recruiter') || subjectParam.includes('hiring')) return 'company'
+    if (subjectParam.includes('company') || subjectParam.includes('recruiter') || subjectParam.includes('hiring') || subjectParam.includes('api')) return 'company'
     if (subjectParam.includes('student')) return 'student'
     if (roleFromSession === 'RECRUITER') return 'company'
     if (roleFromSession === 'UNIVERSITY' || roleFromSession === 'TECHPARK') return 'university'
@@ -46,16 +68,16 @@ export default function ContactPage() {
 
   useEffect(() => {
     setSegment(detectSegment())
-  }, [subjectParam, roleFromSession])
+  }, [subjectParam, roleParam, roleFromSession])
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    role: '',
+    name: nameParam,
+    email: emailParam,
+    company: companyParam,
+    role: normalizedRoleParam,
     subject: subjectParam,
-    message: '',
-    priority: 'medium'
+    message: messageParam,
+    priority: ['low', 'medium', 'high'].includes(priorityParam) ? priorityParam : 'medium'
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)

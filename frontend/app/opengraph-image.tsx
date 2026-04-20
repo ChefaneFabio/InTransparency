@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'InTransparency — Verified Student Profiles'
+export const alt = 'InTransparency — Verified skills. Evidence-based matching. EU-compliant.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -49,7 +49,7 @@ export default async function Image() {
             lineHeight: 1.4,
           }}
         >
-          Verified student portfolios. University-backed skills. AI-powered matching.
+          Verified student portfolios. University-backed skills. Evidence-based matching.
         </div>
 
         {/* Bottom bar with stats */}
@@ -65,9 +65,9 @@ export default async function Image() {
           }}
         >
           {[
-            { value: 'Universities & Schools', label: 'Verified by' },
-            { value: 'AI-Analyzed', label: 'Project Skills' },
-            { value: 'Italy & Europe', label: 'Coverage' },
+            { value: 'ESCO v1.2.0', label: 'EU skill taxonomy' },
+            { value: 'W3C VCs', label: 'Verifiable credentials' },
+            { value: 'AI Act ready', label: 'Annex III §4' },
           ].map((stat) => (
             <div key={stat.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ fontSize: '20px', fontWeight: 700, color: '#60a5fa' }}>{stat.value}</span>

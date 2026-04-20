@@ -161,6 +161,51 @@ export default function ForCompaniesPage() {
           </div>
         </section>
 
+        {/* ── Diversity & Inclusion ── */}
+        <section className="py-16 bg-emerald-50/50">
+          <div className="container max-w-4xl">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+              className="text-center mb-14"
+            >
+              <motion.div variants={fadeUp} custom={0}>
+                <Badge className="mb-4 bg-emerald-100 text-emerald-800 border-emerald-200">
+                  Diversity & Inclusion
+                </Badge>
+              </motion.div>
+              <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-4xl font-bold mb-4">
+                {t('diversity.title')}
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={2} className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('diversity.subtitle')}
+              </motion.p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[0, 1, 2, 3].map((i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-40px' }}
+                  variants={fadeUp}
+                  custom={i}
+                >
+                  <Card className="h-full border-emerald-100">
+                    <CardContent className="pt-6">
+                      <h3 className="text-base font-bold mb-2">{t(`diversity.points.${i}.title`)}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{t(`diversity.points.${i}.desc`)}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Comparison — clean, no icons ── */}
         <section className="py-16 bg-gray-50">
           <div className="container max-w-3xl">

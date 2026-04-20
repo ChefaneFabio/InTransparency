@@ -11,6 +11,8 @@ import { Footer } from '@/components/layout/Footer'
 import { PWAInstallBanner } from '@/components/ui/pwa-install-banner'
 import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
 
+export const revalidate = 3600
+
 export default function Home() {
   return (
     <div className="min-h-screen">

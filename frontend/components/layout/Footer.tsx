@@ -61,39 +61,49 @@ export function Footer() {
       { name: tFooter('productLinks.forStudents'), href: '/for-students' },
       { name: tFooter('productLinks.forCompanies'), href: '/for-companies' },
       { name: tFooter('productLinks.forUniversities'), href: '/for-universities' },
+      { name: 'For Enterprise', href: '/for-enterprise' },
+      { name: 'For Public Sector', href: '/for-public-sector' },
       { name: tFooter('productLinks.pricing'), href: '/pricing' },
       { name: tFooter('productLinks.explore'), href: '/explore' },
-      { name: tFooter('productLinks.aiDemo'), href: '/demo/ai-search' },
+      { name: 'Discover Companies', href: '/discover' },
     ],
     resources: [
       { name: tFooter('resourceLinks.faq'), href: '/faq' },
+      { name: 'Glossary', href: '/glossary' },
+      { name: 'Facts & benchmarks', href: '/facts' },
+      { name: 'Changelog', href: '/changelog' },
+      { name: 'Why now', href: '/why-now' },
+      { name: 'Compare platforms', href: '/compare/platforms' },
       { name: tFooter('resourceLinks.blog'), href: '/blog' },
       { name: tFooter('resourceLinks.contact'), href: '/contact' },
-      { name: tFooter('resourceLinks.vsLinkedIn'), href: '/compare/linkedin' },
-      { name: tFooter('resourceLinks.vsAlmaLaurea'), href: '/compare/almalaurea' },
+    ],
+    compliance: [
+      { name: 'EU compliance matrix', href: '/eu-compliance' },
+      { name: 'Algorithm registry', href: '/algorithm-registry' },
+      { name: tFooter('privacy'), href: '/privacy' },
+      { name: tFooter('terms'), href: '/legal' },
+      { name: tFooter('cookies'), href: '/legal#cookies' },
+    ],
+    developers: [
+      { name: 'Agent integration', href: '/integrations/agents' },
+      { name: 'ATS integration', href: '/integrations/ats' },
+      { name: 'OpenAPI spec', href: '/openapi.yaml' },
+      { name: 'llms-full.txt', href: '/llms-full.txt' },
+      { name: tFooter('developerLinks.apiOverview'), href: '/developers' },
+      { name: tFooter('developerLinks.apiAccess'), href: '/contact?subject=api-access' },
     ],
     company: [
       { name: tFooter('companyLinks.about'), href: '/about' },
       { name: tFooter('companyLinks.certification'), href: '/certification' },
       { name: tFooter('companyLinks.careers'), href: '/contact?subject=careers' },
     ],
-    developers: [
-      { name: tFooter('developerLinks.apiOverview'), href: '/developers' },
-      { name: tFooter('developerLinks.documentation'), href: '/developers#endpoints' },
-      { name: tFooter('developerLinks.apiAccess'), href: '/contact?subject=api-access' },
-    ],
-    legal: [
-      { name: tFooter('privacy'), href: '/privacy' },
-      { name: tFooter('terms'), href: '/legal' },
-      { name: tFooter('cookies'), href: '/legal#cookies' },
-    ]
   }
 
   return (
     <footer className="border-t border-border bg-foreground text-white relative z-30">
       <div className="container max-w-7xl mx-auto px-4 py-12">
         {/* Top: Logo + columns */}
-        <div className="grid grid-cols-2 md:grid-cols-7 gap-8 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-8 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2">
             <Logo size="md" />
@@ -135,11 +145,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Compliance — replaces the old "Legal" column with a broader trust surface */}
           <div>
-            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('company')}</h4>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">Compliance</h4>
             <ul className="space-y-2">
-              {navigation.company.map((item) => (
+              {navigation.compliance.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
                     {item.name}
@@ -163,11 +173,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Company */}
           <div>
-            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('legal')}</h4>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('company')}</h4>
             <ul className="space-y-2">
-              {navigation.legal.map((item) => (
+              {navigation.company.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
                     {item.name}

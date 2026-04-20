@@ -46,12 +46,12 @@ export function Header() {
       { name: t('contact'), href: '/contact' },
     ],
     companies: [
-      { name: 'SMEs', href: '/for-sme' },
-      { name: 'Agencies & HR', href: '/for-agencies' },
       { name: 'Startups', href: '/for-startups' },
+      { name: 'SMEs', href: '/for-sme' },
+      { name: 'Enterprise', href: '/for-enterprise' },
+      { name: 'Agencies & HR', href: '/for-agencies' },
       { name: t('searchTalent'), href: '/explore' },
       { name: t('pricing'), href: '/pricing' },
-      { name: t('contact'), href: '/contact' },
     ],
   }
 
@@ -108,6 +108,15 @@ export function Header() {
             <div className="flex items-center gap-3 text-xs text-white/50">
               <Link href="/about" className="hover:text-white/80 transition-colors hidden sm:inline">
                 {t('about')}
+              </Link>
+              <Link href={'/eu-compliance' as any} className="hover:text-white/80 transition-colors hidden md:inline">
+                Compliance
+              </Link>
+              <Link href={'/integrations/agents' as any} className="hover:text-white/80 transition-colors hidden md:inline">
+                Agents
+              </Link>
+              <Link href={'/glossary' as any} className="hover:text-white/80 transition-colors hidden lg:inline">
+                Glossary
               </Link>
               <LanguageSwitcher />
             </div>
