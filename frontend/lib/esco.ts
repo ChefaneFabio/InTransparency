@@ -95,20 +95,94 @@ function normalizeTerm(term: string): string {
 }
 
 /**
+ * Live ESCO API (https://ec.europa.eu/esco/api) — public, no auth.
+ * We hit it as a FALLBACK when our curated map + persisted SkillMapping
+ * both miss. Results are cached back into SkillMapping so the next lookup
+ * is instant.
+ *
+ * Disabled by default in test environments via DISABLE_LIVE_ESCO=1.
+ */
+const ESCO_LIVE_BASE = 'https://ec.europa.eu/esco/api'
+const ESCO_LIVE_TIMEOUT_MS = 2500
+
+async function queryLiveEsco(
+  term: string
+): Promise<{ uri: string; preferred: string } | null> {
+  if (process.env.DISABLE_LIVE_ESCO === '1') return null
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), ESCO_LIVE_TIMEOUT_MS)
+  try {
+    // The ESCO Suggest endpoint returns closest concept matches.
+    const url = `${ESCO_LIVE_BASE}/suggest2?text=${encodeURIComponent(term)}&type=skill&language=en&limit=1&full=false`
+    const res = await fetch(url, {
+      headers: { Accept: 'application/json' },
+      signal: controller.signal,
+    })
+    if (!res.ok) return null
+    const data = (await res.json()) as {
+      _embedded?: { results?: Array<{ uri?: string; title?: string }> }
+    }
+    const first = data._embedded?.results?.[0]
+    if (first?.uri) {
+      return { uri: first.uri, preferred: first.title ?? term }
+    }
+    return null
+  } catch {
+    return null
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+/**
+ * Persist a live-ESCO result so the next lookup is instant.
+ * Non-blocking — any failure is logged but ignored.
+ */
+async function cacheLiveResult(
+  term: string,
+  locale: string,
+  uri: string,
+  preferred: string
+): Promise<void> {
+  try {
+    await prisma.skillMapping.upsert({
+      where: { academicTerm_locale: { academicTerm: term, locale } },
+      create: {
+        academicTerm: term,
+        locale,
+        industryTerms: [preferred],
+        synonyms: [],
+        demandScore: 0,
+        verified: false,
+        aiGenerated: false,
+        escoUri: uri,
+        escoPreferred: preferred,
+        escoVersion: ESCO_VERSION,
+      },
+      update: {
+        escoUri: uri,
+        escoPreferred: preferred,
+        escoVersion: ESCO_VERSION,
+      },
+    })
+  } catch (err) {
+    console.error('[esco] cache write failed for', term, err)
+  }
+}
+
+/**
  * Resolve a skill term to an ESCO URI.
  *
  * Lookup order:
- * 1. SkillMapping table (persisted cache)
- * 2. Curated static map (most common skills)
- * 3. Return null (caller may fall back to AI-assisted lookup)
- *
- * Does NOT hit the external ESCO API at runtime — production lookups
- * should use the seeded SkillMapping table.
+ *   1. SkillMapping table (persisted cache from seed + prior live calls)
+ *   2. Curated static map (top ~20 most common skills, compiled in)
+ *   3. Live ec.europa.eu ESCO Suggest API (2.5s timeout, cached on hit)
+ *   4. Return null
  */
 export async function resolveEscoUri(
   term: string,
   locale: string = 'en'
-): Promise<{ uri: string; preferred: string; source: 'mapping' | 'curated' } | null> {
+): Promise<{ uri: string; preferred: string; source: 'mapping' | 'curated' | 'live' } | null> {
   const normalized = normalizeTerm(term)
 
   // 1. Check persisted SkillMapping
@@ -137,6 +211,14 @@ export async function resolveEscoUri(
   const curated = ESCO_CURATED[normalized]
   if (curated) {
     return { ...curated, source: 'curated' }
+  }
+
+  // 3. Fall through to the live ESCO API
+  const live = await queryLiveEsco(normalized)
+  if (live) {
+    // Fire-and-forget cache write
+    cacheLiveResult(normalized, locale, live.uri, live.preferred).catch(() => {})
+    return { ...live, source: 'live' }
   }
 
   return null

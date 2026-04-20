@@ -60,6 +60,18 @@ InTransparency exposes itself as an agent tool. Any agent framework (Claude Desk
 - [MCP server (single Node.js file)](https://www.in-transparency.com/mcp-server.js): for Claude Desktop / Cursor / Zed
 - [Integration guide](https://www.in-transparency.com/en/integrations/agents): install walkthrough
 
+## Deep EU-system integration (no competitor speaks this many)
+
+- **EDCI** (European Digital Credentials for Learning): /api/credentials/{id}/edci
+- **ESCO live API fallback** — beyond our 93 curated skills, real-time to ec.europa.eu/esco
+- **DigComp 2.2, EntreComp, GreenComp** — JRC competence frameworks in the skill graph; /api/agents/frameworks
+- **Open Badges 3.0 / IMS Global** — student export at /api/student/open-badges
+- **Erasmus+ OLA (Online Learning Agreement)** — JSON-LD per exchange at /api/dashboard/university/exchanges/{id}/ola
+- **eIDAS 2.0 / SPID / CIE** — Italian identity node, scaffolded, AgID accreditation in progress
+- **Bologna Process / ECTS** — grade normalization, credit alignment
+- Full standards matrix: /en/eu-compliance
+- Public-sector procurement: /en/for-public-sector
+
 ## Contact
 
 info@in-transparency.com
