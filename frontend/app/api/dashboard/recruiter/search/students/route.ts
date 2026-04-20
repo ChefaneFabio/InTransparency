@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { buildExpandedSkillSet, buildStudentDisciplines, computeJobMatch } from '@/lib/job-matching'
+import { decisionLabel, type MatchFactor } from '@/lib/match-explanation'
+import { compileSkillQuery, extractPositiveTerms } from '@/lib/boolean-skill-match'
 
 /**
  * GET /api/dashboard/recruiter/search/students
@@ -27,14 +30,50 @@ export async function GET(req: NextRequest) {
     const graduationYear = searchParams.get('graduationYear') || ''
     const location = searchParams.get('location') || ''
     const major = searchParams.get('major') || ''
+    const jobId = searchParams.get('jobId') || ''
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)))
     const skip = (page - 1) * limit
 
-    // Parse skills into array
+    // If a jobId is provided, load the job to compute evidence-weighted matches per candidate.
+    type MatchContext = {
+      id: string
+      title: string
+      requiredSkills: string[]
+      preferredSkills: string[]
+      targetDisciplines: string[]
+    } | null
+    let matchContext: MatchContext = null
+    if (jobId) {
+      const job = await prisma.job.findUnique({
+        where: { id: jobId },
+        select: {
+          id: true, title: true,
+          requiredSkills: true, preferredSkills: true, targetDisciplines: true,
+        },
+      })
+      if (job) {
+        matchContext = {
+          id: job.id,
+          title: job.title,
+          requiredSkills: job.requiredSkills || [],
+          preferredSkills: job.preferredSkills || [],
+          targetDisciplines: job.targetDisciplines || [],
+        }
+      }
+    }
+
+    // Parse skills: supports boolean expressions ("React AND (Node OR Python) NOT Java"),
+    // comma-separated lists ("react, node"), or a single term.
+    const skillPredicate = skillsParam ? compileSkillQuery(skillsParam) : null
+    // Positive terms are used for the Prisma pre-filter. NOT/OR-excluded skills are
+    // applied post-fetch via the predicate.
     const skills: string[] = skillsParam
-      ? skillsParam.split(',').map(s => s.trim()).filter(Boolean)
+      ? extractPositiveTerms(skillsParam)
       : []
+    const usingBooleanSkills = skillsParam
+      ? /\b(AND|OR|NOT)\b/i.test(skillsParam) || /[()"]/.test(skillsParam)
+      : false
 
     const gpaMin = gpaMinParam ? parseFloat(gpaMinParam) : null
 
@@ -125,7 +164,7 @@ export async function GET(req: NextRequest) {
 
     // For gpaMin, we'll also need to post-filter since gpa is stored as String
     // First, get a larger set if we need post-filtering
-    const needsPostFilter = (gpaMin !== null) || (minProjects !== null && minProjects > 0)
+    const needsPostFilter = (gpaMin !== null) || (minProjects !== null && minProjects > 0) || usingBooleanSkills
 
     // If we need post-filtering, fetch more to compensate for filtered-out results
     const fetchLimit = needsPostFilter ? limit * 5 : limit
@@ -170,10 +209,14 @@ export async function GET(req: NextRequest) {
               title: true,
               technologies: true,
               skills: true,
+              tools: true,
+              competencies: true,
+              discipline: true,
               innovationScore: true,
+              verificationStatus: true,
             },
             orderBy: { innovationScore: 'desc' },
-            take: 3,
+            take: 10,
           },
         },
         orderBy: [
@@ -209,6 +252,25 @@ export async function GET(req: NextRequest) {
       filtered = filtered.filter(s => s._count.projects >= minProjects)
     }
 
+    // Boolean skill predicate: apply the full NOT / OR / AND expression against the
+    // candidate's expanded (ESCO-aware) skill set from all their project skills.
+    if (usingBooleanSkills && skillPredicate) {
+      const checked = await Promise.all(
+        filtered.map(async (s: any) => {
+          const projects = (s.projects || []).map((p: any) => ({
+            technologies: p.technologies || [],
+            skills: p.skills || [],
+            tools: p.tools || [],
+            competencies: p.competencies || [],
+            discipline: p.discipline || '',
+          }))
+          const expanded = await buildExpandedSkillSet(projects)
+          return skillPredicate(expanded) ? s : null
+        })
+      )
+      filtered = checked.filter(Boolean) as typeof filtered
+    }
+
     // Calculate total after post-filtering
     let total = totalRaw
     if (needsPostFilter) {
@@ -223,8 +285,118 @@ export async function GET(req: NextRequest) {
       ? filtered.slice(skip, skip + limit)
       : filtered
 
+    // If matching against a job, compute evidence-weighted match score per candidate.
+    // Verified projects weight 1.0×, unverified 0.6×. Discipline match + verified-depth bonus.
+    let scoredResults = paginatedResults
+    if (matchContext) {
+      const job = matchContext
+      const scored = await Promise.all(
+        paginatedResults.map(async (s: any) => {
+          const projects = (s.projects || []).map((p: any) => ({
+            technologies: p.technologies || [],
+            skills: p.skills || [],
+            tools: p.tools || [],
+            competencies: p.competencies || [],
+            discipline: p.discipline || '',
+          }))
+          const verifiedProjects = (s.projects || []).filter((p: any) => p.verificationStatus === 'VERIFIED')
+          const verifiedCount = verifiedProjects.length
+          const totalProjects = (s.projects || []).length
+
+          // Expanded (ESCO-aware) full set — captures synonyms
+          const expanded = await buildExpandedSkillSet(projects)
+          // Verified-only subset — skills backed by a verified project
+          const verifiedSet = new Set<string>()
+          for (const p of verifiedProjects) {
+            for (const term of [...(p.technologies || []), ...(p.skills || []), ...(p.tools || []), ...(p.competencies || [])]) {
+              verifiedSet.add(String(term).toLowerCase().trim())
+            }
+          }
+
+          const disciplines = buildStudentDisciplines(projects)
+          const base = computeJobMatch(expanded, disciplines, {
+            id: job.id,
+            requiredSkills: job.requiredSkills,
+            preferredSkills: job.preferredSkills,
+            targetDisciplines: job.targetDisciplines,
+          })
+
+          // Evidence weight: fraction of matched required skills that are VERIFIED.
+          const reqMatchedVerified = base.matchedSkills.filter(sk =>
+            verifiedSet.has(sk.toLowerCase().trim())
+          ).length
+          const evidenceRatio = base.matchedSkills.length > 0
+            ? reqMatchedVerified / base.matchedSkills.length
+            : 0
+          // Self-declared (unverified) match counts 0.6×; verified 1.0×. Blend and re-weight.
+          const evidenceMultiplier = 0.6 + 0.4 * evidenceRatio // ranges 0.6 → 1.0
+
+          // Verified-depth bonus: up to +10 points when candidate has 3+ verified projects
+          const depthBonus = Math.min(10, verifiedCount * 3)
+
+          const matchScore = Math.min(100, Math.round(base.matchScore * evidenceMultiplier + depthBonus))
+
+          const factors: MatchFactor[] = [
+            {
+              name: 'requiredSkills',
+              category: 'skills',
+              weight: 60,
+              value: `${base.matchedSkills.length} of ${job.requiredSkills.length}`,
+              contribution: Math.round((base.matchedSkills.length / Math.max(1, job.requiredSkills.length)) * 60),
+              evidence: base.matchedSkills.map(sk => ({ type: 'skill' as const, label: sk })),
+              humanReason: `${base.matchedSkills.length}/${job.requiredSkills.length} required skills matched`,
+            },
+            {
+              name: 'preferredSkills',
+              category: 'skills',
+              weight: 25,
+              value: `${base.matchedPreferred.length} of ${job.preferredSkills.length}`,
+              contribution: Math.round((base.matchedPreferred.length / Math.max(1, job.preferredSkills.length)) * 25),
+              evidence: base.matchedPreferred.map(sk => ({ type: 'skill' as const, label: sk })),
+              humanReason: `${base.matchedPreferred.length}/${job.preferredSkills.length} preferred skills matched`,
+            },
+            {
+              name: 'verifiedEvidence',
+              category: 'verified_evidence',
+              weight: 10,
+              value: `${reqMatchedVerified} verified / ${base.matchedSkills.length} matched · ${verifiedCount} verified projects`,
+              contribution: Math.round(evidenceRatio * 10 + Math.min(5, verifiedCount)),
+              evidence: verifiedProjects.slice(0, 5).map((p: any) => ({ type: 'project' as const, label: p.title })),
+              humanReason: evidenceRatio > 0
+                ? `${Math.round(evidenceRatio * 100)}% of matched skills are backed by verified projects`
+                : 'Skills are self-declared (no verified project evidence yet)',
+            },
+            {
+              name: 'disciplineFit',
+              category: 'skills',
+              weight: 5,
+              value: base.disciplineMatch ? 'match' : 'no match',
+              contribution: base.disciplineMatch ? 5 : 0,
+              humanReason: base.disciplineMatch ? 'Discipline aligns with job target' : 'Discipline differs from job target',
+            },
+          ]
+
+          return {
+            ...s,
+            __match: {
+              matchScore,
+              decisionLabel: decisionLabel(matchScore),
+              matchedSkills: base.matchedSkills,
+              missingSkills: base.missingSkills,
+              matchedPreferred: base.matchedPreferred,
+              verifiedCount,
+              totalProjects,
+              factors,
+            },
+          }
+        })
+      )
+      scored.sort((a: any, b: any) => (b.__match?.matchScore ?? 0) - (a.__match?.matchScore ?? 0))
+      scoredResults = scored
+    }
+
     // Format the response
-    const formattedStudents = paginatedResults.map((s: any) => {
+    const formattedStudents = scoredResults.map((s: any) => {
       const exchange = s.exchangeEnrollments?.[0] || null
       return {
         id: s.id,
@@ -250,17 +422,27 @@ export async function GET(req: NextRequest) {
               hostCountry: exchange.hostCountry,
             }
           : null,
-        topProjects: s.projects.map((p: any) => ({
+        topProjects: (s.projects || []).slice(0, 3).map((p: any) => ({
           id: p.id,
           title: p.title,
           skills: p.skills,
           technologies: p.technologies,
           innovationScore: p.innovationScore,
+          verificationStatus: p.verificationStatus,
         })),
+        projects: (s.projects || []).slice(0, 3).map((p: any) => ({
+          id: p.id,
+          title: p.title,
+          discipline: p.discipline || 'OTHER',
+          innovationScore: p.innovationScore,
+          verificationStatus: p.verificationStatus,
+        })),
+        match: s.__match || null,
       }
     })
 
     return NextResponse.json({
+      jobContext: matchContext ? { id: matchContext.id, title: matchContext.title } : null,
       students: formattedStudents,
       total,
       page,

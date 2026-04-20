@@ -22,5 +22,11 @@
       ]
     }
   ],
-  "rewrites": []
+  "rewrites": [],
+  "crons": [
+    {
+      "path": "/api/cron/outreach-process",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }

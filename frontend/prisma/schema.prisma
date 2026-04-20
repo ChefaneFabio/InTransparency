@@ -304,6 +304,8 @@ model User {
   savedCandidates      SavedCandidate[]       @relation("RecruiterSavedCandidates")
   savedByCandidates    SavedCandidate[]       @relation("SavedCandidateProfile")
   savedSearches        SavedSearch[]
+  outreachSequencesAsRecruiter OutreachSequence[] @relation("RecruiterOutreachSequences")
+  outreachSequencesAsCandidate OutreachSequence[] @relation("CandidateOutreachSequences")
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -2170,9 +2172,44 @@ model OutreachTemplate {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  recruiter User @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  recruiter User                @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  sequences OutreachSequence[]
 
   @@index([recruiterId])
+}
+
+// A running outreach sequence: a template snapshot + a candidate + where we are in it.
+// A cron endpoint walks ACTIVE sequences with nextSendAt <= now() and delivers the next step.
+model OutreachSequence {
+  id             String                 @id @default(cuid())
+  recruiterId    String
+  candidateId    String
+  templateId     String?
+  templateName   String                 // snapshot — template can be deleted
+  steps          Json                   // snapshot of steps at sequence-start time
+  currentStepIdx Int                    @default(0)
+  status         OutreachSequenceStatus @default(ACTIVE)
+  lastSentAt     DateTime?
+  nextSendAt     DateTime?              // when currentStepIdx should be delivered
+  events         Json                   @default("[]") // [{ stepIdx, sentAt, messageId? }]
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+
+  recruiter User              @relation("RecruiterOutreachSequences", fields: [recruiterId], references: [id], onDelete: Cascade)
+  candidate User              @relation("CandidateOutreachSequences", fields: [candidateId], references: [id], onDelete: Cascade)
+  template  OutreachTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+
+  @@index([recruiterId, status])
+  @@index([nextSendAt, status])
+  @@index([candidateId])
+}
+
+enum OutreachSequenceStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  REPLIED
+  BOUNCED
 }
 
 // Tech Park Settings (B2B partner profile)
