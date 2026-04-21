@@ -13,8 +13,8 @@ const ContentSecurityPolicy = `
   script-src-elem 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.net https://*.hsleadflows.net https://*.hubspot.com ${isDev ? "http://localhost:* ws://localhost:*" : ''};
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com data:;
-  img-src 'self' data: blob: https: https://*.vercel.app https://*.amazonaws.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.hubspot.com https://track.hubspot.com;
-  connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.hubspot.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.com https://api-eu1.hubapi.com https://forms-eu1.hubspot.com https://track-eu1.hubspot.com ${isDev ? 'http://localhost:* ws://localhost:* wss://localhost:*' : ''};
+  img-src 'self' data: blob: https: https://*.vercel.app https://*.amazonaws.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.r2.dev https://*.hubspot.com https://track.hubspot.com;
+  connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com https://*.r2.dev https://*.hubspot.com https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hsforms.com https://*.hsforms.net https://*.hsleadflows.net https://api-eu1.hubapi.com https://forms-eu1.hubspot.com https://track-eu1.hubspot.com ${isDev ? 'http://localhost:* ws://localhost:* wss://localhost:*' : ''};
   frame-src 'none';
   object-src 'none';
   base-uri 'self';
