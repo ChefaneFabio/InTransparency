@@ -188,14 +188,16 @@
         "careerPaths": "Career Paths",
         "conventions": "Conventions",
         "skillsIntelligence": "Skills Intelligence",
-        "exchanges": "Exchanges"
+        "exchanges": "Exchanges",
+        "partnerCompanies": "Partner companies"
       },
       "exchange": "Exchange",
       "internships": "Internships",
       "pcto": "PCTO",
       "development": "Development",
       "learners": "Learners",
-      "credentials": "Credentials"
+      "credentials": "Credentials",
+      "companies": "Companies"
     },
     "institution": {
       "features": "Features",

@@ -157,6 +157,13 @@ const itsExtras: NavGroup[] = [
       { labelKey: 'board', href: '/dashboard/university/board' },
     ],
   },
+  {
+    labelKey: 'companies',
+    items: [
+      { labelKey: 'partnerCompanies', href: '/dashboard/university/employer-crm' },
+      { labelKey: 'conventions', href: '/dashboard/university/conventions' },
+    ],
+  },
 ]
 
 const schoolNav: NavConfig = {

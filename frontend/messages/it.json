@@ -188,14 +188,16 @@
         "careerPaths": "Percorsi di Carriera",
         "conventions": "Convenzioni",
         "skillsIntelligence": "Skills Intelligence",
-        "exchanges": "Scambi"
+        "exchanges": "Scambi",
+        "partnerCompanies": "Aziende convenzionate"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
       "pcto": "PCTO",
       "development": "Sviluppo",
       "learners": "Allievi",
-      "credentials": "Credenziali"
+      "credentials": "Credenziali",
+      "companies": "Aziende"
     },
     "institution": {
       "features": "Funzionalità",

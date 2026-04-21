@@ -611,7 +611,7 @@ export default function UniversityStudents() {
                     {perfData.gpaDistribution.map((item, i) => (
                       <div key={item.key} className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm">{t(`performance.gpaRanges.${item.key}`)}</span>
+                          <span className="text-sm">{(item as any).label || t(`performance.gpaRanges.${item.key}`)}</span>
                           <span className="text-sm font-medium tabular-nums">
                             {t('performance.students', { count: item.count, percentage: item.percentage })}
                           </span>

@@ -29,24 +29,37 @@ export async function GET(req: NextRequest) {
       select: { id: true, gpa: true },
     })
 
-    const gpaRanges = [
-      { min: 3.8, max: 4.0, key: '3.8-4.0' },
-      { min: 3.5, max: 3.79, key: '3.5-3.79' },
-      { min: 3.0, max: 3.49, key: '3.0-3.49' },
-      { min: 2.5, max: 2.99, key: '2.5-2.99' },
-      { min: 0, max: 2.49, key: 'below2.5' },
-    ]
-
+    // GPA distribution. Supports both scales:
+    //   - US 4.0 (used by some international/exchange students)
+    //   - IT 30-point (18-30) — the Italian university & ITS standard
+    // If any GPA > 5 we assume the cohort is on the 30-point scale.
     const totalWithGpa = students.filter(s => s.gpa !== null).length
+    const gpaValues = students
+      .map(s => (s.gpa !== null ? parseFloat(s.gpa as any) : NaN))
+      .filter(v => !Number.isNaN(v))
+    const useThirtyScale = gpaValues.some(v => v > 5)
+
+    const gpaRanges = useThirtyScale
+      ? [
+          { min: 28, max: 30, key: 'top', label: '28–30 / 30' },
+          { min: 26, max: 27.99, key: 'high', label: '26–27 / 30' },
+          { min: 24, max: 25.99, key: 'mid', label: '24–25 / 30' },
+          { min: 21, max: 23.99, key: 'low', label: '21–23 / 30' },
+          { min: 18, max: 20.99, key: 'pass', label: '18–20 / 30' },
+        ]
+      : [
+          { min: 3.8, max: 4.0, key: 'top', label: '3.8–4.0' },
+          { min: 3.5, max: 3.79, key: 'high', label: '3.5–3.79' },
+          { min: 3.0, max: 3.49, key: 'mid', label: '3.0–3.49' },
+          { min: 2.5, max: 2.99, key: 'low', label: '2.5–2.99' },
+          { min: 0, max: 2.49, key: 'pass', label: 'Below 2.5' },
+        ]
+
     const gpaDistribution = gpaRanges.map(range => {
-      const count = students.filter(s => {
-        if (s.gpa === null) return false
-        const gpa = parseFloat(s.gpa as any)
-        if (range.key === 'below2.5') return gpa < 2.5
-        return gpa >= range.min && gpa <= range.max
-      }).length
+      const count = gpaValues.filter(gpa => gpa >= range.min && gpa <= range.max).length
       return {
         key: range.key,
+        label: range.label,
         count,
         percentage: totalWithGpa > 0 ? Math.round((count / totalWithGpa) * 100) : 0,
       }
