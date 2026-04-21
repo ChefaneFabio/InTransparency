@@ -820,7 +820,7 @@ export default function CandidatesPage() {
 
                 <div className="flex gap-2">
                   <Button size="sm" className="flex-1" asChild>
-                    <Link href={`/students/${candidate.username || candidate.id}/public`}>
+                    <Link href={`/dashboard/recruiter/candidates/${candidate.id}`}>
                       <Eye className="h-4 w-4 mr-1" />
                       {t('viewProfile')}
                     </Link>
@@ -880,7 +880,7 @@ export default function CandidatesPage() {
                       templates={outreachTemplates}
                     />
                     <Button size="sm" asChild>
-                      <Link href={`/students/${candidate.username || candidate.id}/public`}>
+                      <Link href={`/dashboard/recruiter/candidates/${candidate.id}`}>
                         {t('viewProfile')}
                       </Link>
                     </Button>
