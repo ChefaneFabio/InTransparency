@@ -3305,200 +3305,200 @@
   },
   "about": {
     "hero": {
-      "badge": "Shaping the Future of Work",
-      "title": "Transparency Changes Everything.",
-      "description": "Across every sector — tech, engineering, business, science, design — the way we hire is broken. Skills are claimed, not proven. Talent is hidden behind résumés. We're building the trust layer that fixes this, starting in Europe."
+      "badge": "For students, employers, and academic partners",
+      "title": "A verified trust layer for student-to-work.",
+      "description": "Across disciplines — tech, engineering, business, science, design — matching people to roles is hard when skills are self-reported. We're building a layer where institutions can verify student work, companies see clearer signals, and students carry portable proof across the EU. Starting in Italy."
     },
     "resumeProblem": {
-      "title": "The Resume Problem",
+      "title": "Where a CV alone falls short",
       "items": {
-        "0": "Unverified skills (anyone can lie)",
-        "1": "No proof of ability",
-        "2": "Rewards good writers, not good builders",
-        "3": "Favors pedigree over talent",
-        "4": "Companies waste $4,000+ per bad hire"
+        "0": "Self-reported skills with no evidence attached",
+        "1": "Projects summarised in a line instead of shown",
+        "2": "Favours how people write about themselves",
+        "3": "Hard to compare candidates across institutions",
+        "4": "A mismatched hire costs around €4,000 — industry estimate"
       }
     },
     "intransparencyWay": {
-      "title": "The InTransparency Way",
+      "title": "What we add",
       "items": {
-        "0": "Institution-verified projects (all formats)",
-        "1": "Hard skills + soft skills analysis",
-        "2": "evidence-based complete profile building",
-        "3": "Proof of work beats claims",
-        "4": "Find hidden talent 2x faster"
+        "0": "Institution-verified projects in any format",
+        "1": "Hard and soft skills surfaced from evidence",
+        "2": "A profile that complements — doesn't replace — the CV",
+        "3": "Work you can actually look at, not just claims",
+        "4": "Matches you can explain, with human review available"
       }
     },
     "whyDifferent": {
-      "badge": "Transparency vs Opacity",
-      "title": "Why InTransparency is",
-      "titleHighlight": "Different",
-      "subtitle": "We're building a platform where skills are verified, matches are explained, and requirements are transparent.",
+      "badge": "Transparency over opacity",
+      "title": "What we're trying to do",
+      "titleHighlight": "differently",
+      "subtitle": "A platform where skills are verified, matches are explained, and requirements are clearer.",
       "challenge": {
-        "title": "The Challenge",
+        "title": "The context",
         "items": {
           "0": {
-            "title": "Self-Reported Skills:",
-            "description": "Without institutional verification, skills can be hard to validate. This leads to a 30% mismatch rate in traditional hiring."
+            "title": "Self-reported skills",
+            "description": "Without institutional verification, skills are hard to validate — which leads to mismatched hires on both sides."
           },
           "1": {
-            "title": "Limited Explanations:",
-            "description": "When matching isn't explained, students don't know what to improve. 70% of candidates want more transparency from evidence-based hiring tools."
+            "title": "Unexplained matches",
+            "description": "When matching isn't explained, candidates don't know what to improve and recruiters can't audit decisions."
           },
           "2": {
-            "title": "Unclear Requirements:",
-            "description": "Vague job descriptions make it hard for candidates to know what's really needed. Clear requirements reduce bias by 25%."
+            "title": "Vague requirements",
+            "description": "When job descriptions are vague, candidates can't self-assess fit and apply broadly instead of relevantly."
           },
           "3": {
-            "title": "Information Gaps:",
-            "description": "Without feedback loops, students and institutions lack market insights. Better data improves outcomes for everyone."
+            "title": "Feedback that doesn't come back",
+            "description": "Without data flowing back to universities, curricula drift away from what employers actually need."
           }
         }
       },
       "solution": {
-        "title": "InTransparency",
+        "title": "Our approach",
         "items": {
           "0": {
-            "title": "Institution-Verified Skills:",
-            "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data."
+            "title": "Institution-verified skills",
+            "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) tied to projects, courses, and institutional records."
           },
           "1": {
-            "title": "Explainable Matching:",
-            "description": "Every match explains WHY (\"Your Python project matches 3/4 requirements\"). No black boxes. 85% higher trust in transparent matching per EU studies."
+            "title": "Explainable matching",
+            "description": "Every match surfaces the why (e.g. \"your Python project matches 3 of 4 requirements\"). No black box; students can ask for human review."
           },
           "2": {
-            "title": "Bidirectional Transparency:",
-            "description": "Companies specify clear requirements. Students see exactly what jobs need. Institutions track search trends (e.g., \"Excel searched 89x\"). 25% less hiring bias with transparent criteria."
+            "title": "Two-way transparency",
+            "description": "Companies state requirements clearly. Students see exactly what jobs ask for. Institutions see which skills are being searched for most."
           },
           "3": {
-            "title": "Full Audit Trails:",
-            "description": "Students see which companies viewed their profile. Institutions see hiring patterns. GDPR Article 15 compliant. 20-30% boost in placements via data-driven decisions."
+            "title": "Clear audit trails",
+            "description": "Students see who viewed their work. Institutions see hiring patterns. GDPR Art. 15-ready."
           }
         }
       },
       "result": {
-        "title": "The Result",
+        "title": "What you get today",
         "metrics": {
           "0": {
-            "value": "47 days",
-            "label": "Average time to hire (vs 42+ days traditional)"
+            "value": "ESCO",
+            "label": "Skills mapped to the EU ESCO taxonomy"
           },
           "1": {
-            "value": "100%",
-            "label": "Institution-verified skills data"
+            "value": "EU AI Act",
+            "label": "Matching compliant with Annex III §4"
           },
           "2": {
             "value": "€0",
-            "label": "Free for everyone during launch"
+            "label": "Free for students and academic partners"
           }
         },
-        "tagline": "Transparency builds trust. Trust builds better hires. Better hires build the future."
+        "tagline": "Trust takes time to build. We'd rather earn it step by step than promise it upfront."
       }
     },
     "mission": {
-      "title": "Our Mission",
-      "description": "We're building the European standard for transparent hiring — where every person, in every sector, is seen for what they can actually do. Not for what they claim on a résumé. Not for where they studied. For the work they've done, verified by the institutions that taught them.",
-      "quote": "\"The future of work is transparent. Every skill proven, every hire confident, every career earned.\"",
+      "title": "Our mission",
+      "description": "We'd like to contribute to a European way of hiring where what a person can actually do is visible — verified by the institutions that taught them. Not a replacement for the CV; an honest complement to it.",
+      "quote": "\"Work that speaks for itself, paths that can be explained, hiring decisions you can stand behind.\"",
       "quoteAuthor": "— InTransparency",
       "story": {
-        "title": "Why This Exists",
+        "title": "Why we started",
         "paragraphs": {
-          "0": "Europe has a paradox: companies can't find the right talent, and graduates can't find jobs. Both sides lose because the system between them — résumés, job boards, opaque algorithms — was never designed for trust.",
-          "1": "InTransparency exists because we believe transparency solves this. When a student's work is verified by their university, a recruiter doesn't need to guess. When a company shows clear requirements, a student doesn't need to decode jargon. When outcomes are tracked, universities can prove their impact.",
-          "2": "We started in Bergamo with one university partnership. The vision is European: a continent where hiring is based on proof, not promises. Where a mechanical engineer from Brescia and a data scientist from Berlin compete on the same transparent playing field.",
-          "3": "This is not a job board. This is the trust layer for the future of work."
+          "0": "There's a gap in EU hiring: companies can't easily find the right graduates, and graduates can't easily find roles that fit. The tools in between — CVs, job boards, opaque algorithms — weren't designed for trust.",
+          "1": "We think transparency helps. When a student's work is verified by their university, a recruiter has something to work with beyond claims. When a company states clearer requirements, a student has a fairer chance of finding their fit. When outcomes are tracked, universities can see their impact.",
+          "2": "We started in Bergamo. The scope is European: we'd like a continent where a mechanical engineer from Brescia and a data scientist from Berlin can be evaluated on the same, verifiable grounds.",
+          "3": "That's the layer we're trying to build."
         }
       }
     },
     "values": {
-      "title": "What We Believe",
+      "title": "What we care about",
       "items": {
         "0": {
-          "title": "Skills Over Stories",
-          "description": "What you've built matters more than how you describe it. A verified project is worth a thousand résumé bullet points — in every discipline."
+          "title": "Skills alongside stories",
+          "description": "What you've built adds to how you describe it. A verified project is evidence a reader can examine."
         },
         "1": {
-          "title": "Access Over Gatekeeping",
-          "description": "Every student deserves visibility — not just the top 5% from elite schools. Talent is everywhere. Opportunity shouldn't be."
+          "title": "Access over gatekeeping",
+          "description": "Visibility shouldn't depend on which school is on your letterhead. We'd like every student's work to get a fair look."
         },
         "2": {
-          "title": "Transparency Over Opacity",
-          "description": "Students see who views their work. Companies see verified data. Universities see real outcomes. No hidden algorithms, no black boxes."
+          "title": "Transparency over opacity",
+          "description": "Students see who views their work. Companies see verified data. Institutions see real outcomes. No hidden algorithms, no black boxes."
         },
         "3": {
-          "title": "Proof Over Promises",
-          "description": "We don't ask candidates to prove themselves with words. Their institution-verified work speaks for itself — across tech, engineering, business, and every sector."
+          "title": "Proof alongside words",
+          "description": "Institution-verified work sits next to a candidate's own description — together they're better."
         }
       }
     },
     "businessModel": {
-      "title": "Why Is Everything Free?",
-      "subtitle": "We believe talent should never be locked behind paywalls",
+      "title": "Why it's free today",
+      "subtitle": "We want talent to be discoverable before it's commercial",
       "students": {
-        "title": "Students: Full Access",
+        "title": "Students: full access",
         "description": "Build your verified portfolio with all core features included.",
-        "premiumLabel": "Premium options:",
+        "premiumLabel": "Future options:",
         "premiumDescription": "Priority visibility, advanced analytics"
       },
       "universities": {
-        "title": "Academic Partners: Full Access",
+        "title": "Academic partners: full access",
         "description": "Verify student projects. Track placements. Measure outcomes.",
-        "enterpriseLabel": "Enterprise:",
+        "enterpriseLabel": "Enterprise add-ons:",
         "enterpriseDescription": "API integrations, white-label, custom features"
       },
       "companies": {
-        "title": "Companies: Pay Per Contact",
+        "title": "Companies: pay per contact",
         "description": "Browse verified profiles freely. Pay only when you reach out.",
-        "enterpriseLabel": "Enterprise:",
+        "enterpriseLabel": "Enterprise add-ons:",
         "enterpriseDescription": "API access, ATS integration"
       },
       "philosophy": {
-        "title": "The Philosophy",
+        "title": "How we think about it",
         "studentsBold": "Students create the value.",
-        "studentsText": "Traditional platforms charge students for premium features just to be visible. We believe that's backwards. The people who create value should have full access to the tools that showcase it.",
+        "studentsText": "People who put the work in should have full access to the tools that showcase it. Students aren't charged just to be visible.",
         "universitiesBold": "Universities and schools drive verification.",
-        "universitiesText": "Academic partners want to support their students' career success. Our core platform is free with no hidden costs — not \"year 1 free.\" Save 40+ hours/month on manual matching. Pay only for optional enterprise customizations (API, white-label, custom features).",
-        "companiesBold": "Companies pay only for results.",
-        "companiesText": "No more large annual subscriptions before finding anyone. Browse our entire verified talent database at no cost. Pay only when you find someone worth contacting. Fair, transparent, performance-based."
+        "universitiesText": "The base platform is free for academic partners. Enterprise add-ons (API, white-label, custom features) are available if you need them.",
+        "companiesBold": "Companies pay for outcomes.",
+        "companiesText": "Browse the verified pool at no cost. Pay when you decide to contact a candidate — not upfront."
       }
     },
     "vision": {
-      "title": "Join Us in Early Access",
-      "subtitle": "We're building the future of talent discovery — be among the first to shape it",
+      "title": "Early access",
+      "subtitle": "We're in early development — the best time to shape what we build",
       "stats": {
         "0": {
-          "label": "Launching Now",
-          "sublabel": "Be among the first users"
+          "label": "Launching now",
+          "sublabel": "Early users welcome"
         },
         "1": {
-          "label": "Students First",
+          "label": "Students first",
           "sublabel": "Full access for students"
         },
         "2": {
-          "label": "Build Together",
+          "label": "Build together",
           "sublabel": "Shape features with us"
         }
       },
       "cta": {
-        "title": "Help Us Build the Platform",
-        "description": "We're in early development and looking for students, universities and schools, and companies to help shape the platform. Your feedback will directly influence what we build.",
+        "title": "Help shape the platform",
+        "description": "We're looking for students, academic partners, and companies who want to shape how this works. Feedback at this stage has outsized effect.",
         "primaryButton": "Get Started",
         "secondaryButton": "Partner With Us"
       }
     },
     "killResume": {
-      "title": "It's Time to Move Beyond the Resume",
-      "description": "Resumes were invented in 1482. Today we have verified skill analysis, and academic verification. Why are we still relying on a 500-year-old format to hire for 21st-century roles?",
-      "oldYear": "1482",
-      "oldLabel": "Year resumes were invented",
-      "newYear": "2025",
-      "newLabel": "Time for verified project portfolios",
-      "closing": "Students deserve to be evaluated on what they've built, not how well they write bullet points. Companies deserve to hire based on verified skills, not polished claims.",
+      "title": "A portfolio alongside your CV",
+      "description": "The CV has been useful for a long time, and it still is. What's been missing is a verifiable companion to it — a way for an employer to see the actual work, not just a line describing it.",
+      "oldYear": "CV",
+      "oldLabel": "Still the starting point",
+      "newYear": "Portfolio",
+      "newLabel": "The verifiable companion",
+      "closing": "Students get judged on work that speaks for itself. Companies get signals they can audit. Neither replaces the other — together they just make hiring clearer.",
       "cta": "Get Started — Show Your Work"
     },
     "joinMovement": {
-      "title": "Join the Movement",
-      "description": "We're just getting started. Help us build a world where talent beats pedigree, and proof beats promises.",
+      "title": "Get involved",
+      "description": "We're still early. If this resonates, your feedback has outsized influence on what we build next.",
       "primaryButton": "Get Started",
       "secondaryButton": "See How It Works",
       "companiesPrefix": "For companies:",
