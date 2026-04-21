@@ -28,6 +28,19 @@ export async function GET(req: NextRequest) {
 
     const universityName = universityUser?.company || universityUser?.firstName || ''
 
+    // Scope all profile-view analytics to this institution's students only.
+    // Without this, the "Recruiter attivi" widget leaks views from other
+    // universities' students into every admin's dashboard.
+    const institutionStudents = await prisma.user.findMany({
+      where: {
+        role: 'STUDENT',
+        university: { contains: universityName, mode: 'insensitive' },
+      },
+      select: { id: true },
+    })
+    const institutionStudentIds = institutionStudents.map(s => s.id)
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+
     // Run queries in parallel
     const [
       totalStudents,
@@ -77,16 +90,15 @@ export async function GET(req: NextRequest) {
         }
       }),
 
-      // Total profile views for students from this university (last 30 days)
-      prisma.profileView.count({
-        where: {
-          createdAt: {
-            gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-          },
-          // This assumes we can lookup students by their userId
-          // In a real scenario, you'd need a proper join
-        }
-      }),
+      // Total profile views for students from THIS institution only (30d)
+      institutionStudentIds.length > 0
+        ? prisma.profileView.count({
+            where: {
+              profileUserId: { in: institutionStudentIds },
+              createdAt: { gte: thirtyDaysAgo },
+            },
+          })
+        : Promise.resolve(0),
 
       // Recent students from this university
       prisma.user.findMany({
@@ -113,23 +125,20 @@ export async function GET(req: NextRequest) {
         take: 10
       }),
 
-      // Top recruiters viewing students (based on profile views)
-      prisma.profileView.groupBy({
-        by: ['viewerCompany'],
-        where: {
-          viewerCompany: { not: null },
-          createdAt: {
-            gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-          }
-        },
-        _count: true,
-        orderBy: {
-          _count: {
-            viewerCompany: 'desc'
-          }
-        },
-        take: 5
-      }),
+      // Top recruiters viewing THIS institution's students (30d)
+      institutionStudentIds.length > 0
+        ? prisma.profileView.groupBy({
+            by: ['viewerCompany'],
+            where: {
+              profileUserId: { in: institutionStudentIds },
+              viewerCompany: { not: null },
+              createdAt: { gte: thirtyDaysAgo },
+            },
+            _count: true,
+            orderBy: { _count: { viewerCompany: 'desc' } },
+            take: 5,
+          })
+        : Promise.resolve([] as Array<{ viewerCompany: string | null; _count: number }>),
 
       // Students with 2+ projects (engaged students)
       prisma.user.count({

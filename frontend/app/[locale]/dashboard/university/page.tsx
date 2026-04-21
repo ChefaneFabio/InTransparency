@@ -331,7 +331,11 @@ export default function UniversityDashboard() {
               {recentStudents.length > 0 ? (
                 <div className="space-y-2">
                   {recentStudents.map((student) => (
-                    <div key={student.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all group">
+                    <Link
+                      key={student.id}
+                      href={`/dashboard/recruiter/candidates/${student.id}`}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all group"
+                    >
                       <Avatar className="h-10 w-10 ring-2 ring-primary/10">
                         <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-white text-sm font-semibold">{student.initials}</AvatarFallback>
                       </Avatar>
@@ -343,7 +347,8 @@ export default function UniversityDashboard() {
                         <p className="text-[11px] text-muted-foreground">{student.course} · {student.year}</p>
                       </div>
                       <Badge variant="secondary" className="text-xs rounded-full">{student.projects} {t('projects')}</Badge>
-                    </div>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
                   ))}
                 </div>
               ) : (
@@ -369,13 +374,17 @@ export default function UniversityDashboard() {
                 </div>
                 <div className="space-y-2">
                   {recentStudents.slice(0, 5).map((student) => (
-                    <div key={`pred-${student.id}`} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-sm transition-all">
+                    <Link
+                      key={`pred-${student.id}`}
+                      href={`/dashboard/recruiter/candidates/${student.id}`}
+                      className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-sm hover:border-primary/20 transition-all group"
+                    >
                       <Avatar className="h-8 w-8">
                         <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-white text-xs font-semibold">{student.initials}</AvatarFallback>
                       </Avatar>
-                      <p className="text-sm font-medium text-foreground flex-1 truncate">{student.name}</p>
+                      <p className="text-sm font-medium text-foreground flex-1 truncate group-hover:text-primary transition-colors">{student.name}</p>
                       <PlacementProbabilityBadge studentId={student.id} compact />
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
