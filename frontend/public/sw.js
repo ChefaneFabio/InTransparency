@@ -1,5 +1,5 @@
 // InTransparency Service Worker
-const CACHE_NAME = 'intransparency-v5';
+const CACHE_NAME = 'intransparency-v6';
 
 // Only cache static assets that won't redirect
 const urlsToCache = [
