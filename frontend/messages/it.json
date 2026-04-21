@@ -8065,9 +8065,9 @@
       "sendMessage": "Invia Messaggio",
       "saveCandidate": "Salva Candidato",
       "profileSummary": "Riepilogo Profilo",
-      "summaryUniversity": "Universita",
-      "summaryDegree": "Laurea",
-      "summaryGraduationYear": "Anno di Laurea",
+      "summaryUniversity": "Istituzione",
+      "summaryDegree": "Corso / Percorso",
+      "summaryGraduationYear": "Anno di conseguimento",
       "summaryGpa": "Media Voti",
       "summaryPublicProjects": "Progetti Pubblici",
       "contactForm": {
