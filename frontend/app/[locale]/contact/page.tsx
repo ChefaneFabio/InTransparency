@@ -461,7 +461,7 @@ export default function ContactPage() {
                     </ol>
                   </div>
                   <Button className="w-full bg-primary hover:shadow-lg" asChild>
-                    <a href="/dashboard/student/ai-job-search">
+                    <a href="/dashboard/student/jobs">
                       {t('aiSearch.students.button')}
                     </a>
                   </Button>

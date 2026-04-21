@@ -261,8 +261,8 @@ export default function PricingPage() {
                   <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('universities.subtitle')}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Base Platform */}
+                <div className="max-w-xl mx-auto">
+                  {/* Base Platform — single tier since the platform is free for all academic partners in Phase 1 */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
                     <Card className="h-full flex flex-col border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20">
                       <CardHeader className="text-center pb-2">
@@ -284,32 +284,6 @@ export default function PricingPage() {
                         </ul>
                         <Button variant="outline" className="w-full" asChild>
                           <Link href="/auth/register/academic-partner">{t('universities.tiers.core.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-
-                  {/* Premium */}
-                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                    <Card className="h-full flex flex-col border-2">
-                      <CardHeader className="text-center pb-2">
-                        <CardTitle className="text-lg">{t('universities.tiers.premium.name')}</CardTitle>
-                        <div className="mt-4">
-                          <span className="text-4xl font-bold">{t('universities.tiers.premium.price')}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.premium.description')}</p>
-                      </CardHeader>
-                      <CardContent className="pt-4 flex-1 flex flex-col">
-                        <ul className="space-y-2.5 mb-6 flex-1">
-                          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
-                            <li key={i} className="flex items-start text-sm">
-                              <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                              <span>{t(`universities.tiers.premium.features.${i}`)}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <Button className="w-full" asChild>
-                          <Link href="/contact?subject=university-premium">{t('universities.tiers.premium.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
                         </Button>
                       </CardContent>
                     </Card>
