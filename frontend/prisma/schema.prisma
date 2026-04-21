@@ -318,6 +318,13 @@ model User {
   institutionStaffRoles        InstitutionStaff[]       @relation("InstitutionStaffUser")
   institutionAffiliations      InstitutionAffiliation[] @relation("StudentAffiliations")
   conventionsCreated           Convention[]             @relation("ConventionCreator")
+  ownedCompanyLeads            CompanyLead[]            @relation("LeadOwner")
+  pipelineActivitiesAuthored   PipelineActivity[]       @relation("PipelineActivityAuthor")
+  stageTransitionsAuthored     StageTransition[]        @relation("StageTransitionStaff")
+  academicTutoredPlacements    Placement[]              @relation("AcademicTutorPlacements")
+  companyTutoredPlacements     Placement[]              @relation("CompanyTutorPlacements")
+  evaluationsSubmitted         PlacementEvaluation[]    @relation("EvaluationSubmitter")
+  hoursLogged                  PlacementHoursLog[]      @relation("HoursLogger")
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -1923,11 +1930,16 @@ model Placement {
   universityId   String?
   universityName String
 
+  // Multi-tenant scoping (authoritative going forward)
+  institutionId  String?
+  institution    Institution?    @relation("InstitutionPlacements", fields: [institutionId], references: [id])
+
   // Company Info
   companyName    String
   companyIndustry String?
   jobTitle       String
   jobType        PlacementJobType @default(FULL_TIME)
+  offerType      PlacementOfferType @default(TIROCINIO_CURRICULARE)
 
   // Compensation
   salaryAmount   Int?
@@ -1938,12 +1950,41 @@ model Placement {
   startDate      DateTime
   endDate        DateTime?
 
-  // Status
+  // Status (legacy, kept for backward compat)
   status         PlacementStatus @default(PENDING)
+
+  // Stage-based state (authoritative once institution rolls out)
+  currentStageId String?
+  currentStage   PlacementStage? @relation("PlacementCurrentStage", fields: [currentStageId], references: [id])
+  stageEnteredAt DateTime?
+
+  // Hours tracking
+  plannedHours      Int?
+  completedHours    Int?     @default(0)
+  lastHoursLoggedAt DateTime?
+
+  // Tutors
+  academicTutorId    String?
+  academicTutor      User?    @relation("AcademicTutorPlacements", fields: [academicTutorId], references: [id])
+  companyTutorUserId String?
+  companyTutor       User?    @relation("CompanyTutorPlacements", fields: [companyTutorUserId], references: [id])
+
+  // Convention link (optional)
+  conventionId      String?
+  convention        Convention? @relation(fields: [conventionId], references: [id])
+
+  // Outcome
+  outcome        PlacementOutcome?
+  outcomeNotes   String?  @db.Text
 
   // Source
   applicationId  String?
   source         String?         // "platform", "career_fair", "direct", "referral"
+
+  // Relations
+  evaluations    PlacementEvaluation[]
+  deadlines      PlacementDeadline[]
+  hoursLogs      PlacementHoursLog[]
 
   // Timestamps
   createdAt      DateTime        @default(now())
@@ -1951,9 +1992,12 @@ model Placement {
 
   @@index([studentId])
   @@index([universityName])
+  @@index([institutionId, currentStageId])
   @@index([status])
   @@index([companyName])
   @@index([startDate])
+  @@index([academicTutorId])
+  @@index([companyTutorUserId])
 }
 
 enum PlacementJobType {
@@ -4063,6 +4107,10 @@ model Institution {
   staff             InstitutionStaff[]
   affiliations      InstitutionAffiliation[]
   conventions       Convention[]
+  pipelineStages    PipelineStage[]  @relation("InstitutionPipelineStages")
+  companyLeads      CompanyLead[]    @relation("InstitutionCompanyLeads")
+  placementStages   PlacementStage[] @relation("InstitutionPlacementStages")
+  placements        Placement[]      @relation("InstitutionPlacements")
 
   @@index([type])
   @@index([plan])
@@ -4115,6 +4163,8 @@ model Convention {
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
 
+  placements     Placement[]
+
   @@index([institutionId, status])
   @@index([companyName])
 }
@@ -4133,4 +4183,231 @@ model AuditEvent {
   @@index([entityType, entityId])
   @@index([actorId, createdAt])
   @@index([institutionId, createdAt])
+}
+
+// ============================================================================
+// Module 3 — Company Pipeline (acquisition CRM)
+// ============================================================================
+
+enum PipelineStageType {
+  LEAD
+  CONTACTED
+  MEETING
+  PROPOSAL
+  SIGNED
+  ACTIVE
+  RENEWAL
+  LOST
+}
+
+enum ActivityType {
+  NOTE
+  EMAIL
+  CALL
+  MEETING
+  DOCUMENT
+  STAGE_CHANGE
+}
+
+model PipelineStage {
+  id            String      @id @default(cuid())
+  institutionId String
+  institution   Institution @relation("InstitutionPipelineStages", fields: [institutionId], references: [id], onDelete: Cascade)
+  name          String
+  order         Int
+  type          PipelineStageType
+  archived      Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+
+  leads             CompanyLead[]      @relation("LeadCurrentStage")
+  transitionsFrom   StageTransition[]  @relation("StageTransitionFrom")
+  transitionsTo     StageTransition[]  @relation("StageTransitionTo")
+
+  @@unique([institutionId, order])
+  @@index([institutionId])
+}
+
+model CompanyLead {
+  id              String         @id @default(cuid())
+  institutionId   String
+  institution     Institution    @relation("InstitutionCompanyLeads", fields: [institutionId], references: [id], onDelete: Cascade)
+
+  // Company identity — either linked to a User (on-platform) OR captured externally
+  companyId       String?
+  externalName    String?
+  externalDomain  String?
+  sector          String?
+  sizeRange       String?
+  region          String?
+  city            String?
+
+  ownerStaffId    String?
+  ownerStaff      User?          @relation("LeadOwner", fields: [ownerStaffId], references: [id])
+
+  currentStageId  String
+  currentStage    PipelineStage  @relation("LeadCurrentStage", fields: [currentStageId], references: [id])
+  stageEnteredAt  DateTime       @default(now())
+
+  source          String?
+  lostReason      String?
+  nextActionAt    DateTime?
+
+  // Contact
+  primaryContactName  String?
+  primaryContactEmail String?
+  primaryContactPhone String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  activities   PipelineActivity[]
+  transitions  StageTransition[]
+
+  @@index([institutionId, currentStageId])
+  @@index([ownerStaffId])
+  @@index([nextActionAt])
+}
+
+model PipelineActivity {
+  id          String       @id @default(cuid())
+  leadId      String
+  lead        CompanyLead  @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  staffId     String
+  staff       User         @relation("PipelineActivityAuthor", fields: [staffId], references: [id])
+  type        ActivityType
+  content     String       @db.Text
+  attachments Json?
+  createdAt   DateTime     @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+model StageTransition {
+  id          String        @id @default(cuid())
+  leadId      String
+  lead        CompanyLead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  fromStageId String?
+  fromStage   PipelineStage? @relation("StageTransitionFrom", fields: [fromStageId], references: [id])
+  toStageId   String
+  toStage     PipelineStage @relation("StageTransitionTo", fields: [toStageId], references: [id])
+  staffId     String
+  staff       User          @relation("StageTransitionStaff", fields: [staffId], references: [id])
+  note        String?       @db.Text
+  createdAt   DateTime      @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+// ============================================================================
+// Module 4 — Placement Pipeline (tirocinio / apprendistato lifecycle)
+// Extends existing Placement with institutionId, stages, tutors, hours.
+// Existing `status` (PENDING/CONFIRMED/DECLINED) is kept for backward compat
+// but the new authoritative state is `currentStageId`.
+// ============================================================================
+
+enum PlacementStageType {
+  APPLICATION
+  INTERVIEW
+  MATCHED
+  CONVENTION_SIGNED
+  IN_PROGRESS
+  MID_EVALUATION
+  FINAL_EVALUATION
+  COMPLETED
+  FOLLOW_UP
+  DROPPED
+}
+
+enum PlacementOutcome {
+  COMPLETED
+  HIRED
+  DROPPED
+  EXTENDED
+}
+
+enum PlacementOfferType {
+  TIROCINIO_CURRICULARE
+  TIROCINIO_EXTRA
+  APPRENDISTATO
+  PLACEMENT
+  PART_TIME
+}
+
+enum EvaluationKind {
+  MID
+  FINAL
+  INCIDENT
+}
+
+enum DeadlineType {
+  DOCUMENT
+  EVALUATION
+  HOUR_CHECKPOINT
+  CUSTOM
+}
+
+model PlacementStage {
+  id            String             @id @default(cuid())
+  institutionId String
+  institution   Institution        @relation("InstitutionPlacementStages", fields: [institutionId], references: [id], onDelete: Cascade)
+  name          String
+  order         Int
+  type          PlacementStageType
+  appliesTo     PlacementOfferType[]
+  archived      Boolean            @default(false)
+  createdAt     DateTime           @default(now())
+
+  placements    Placement[]        @relation("PlacementCurrentStage")
+
+  @@unique([institutionId, order])
+  @@index([institutionId])
+}
+
+model PlacementEvaluation {
+  id                String         @id @default(cuid())
+  placementId       String
+  placement         Placement      @relation(fields: [placementId], references: [id], onDelete: Cascade)
+  kind              EvaluationKind
+  submittedByUserId String
+  submittedBy       User           @relation("EvaluationSubmitter", fields: [submittedByUserId], references: [id])
+  submitterRole     String
+  scores            Json?
+  comments          String?        @db.Text
+  submittedAt       DateTime       @default(now())
+
+  @@index([placementId, kind])
+}
+
+model PlacementDeadline {
+  id           String       @id @default(cuid())
+  placementId  String
+  placement    Placement    @relation(fields: [placementId], references: [id], onDelete: Cascade)
+  label        String
+  dueAt        DateTime
+  completedAt  DateTime?
+  type         DeadlineType
+  notifyRoles  String[]
+  createdAt    DateTime     @default(now())
+
+  @@index([placementId, dueAt])
+  @@index([dueAt, completedAt])
+}
+
+model PlacementHoursLog {
+  id               String   @id @default(cuid())
+  placementId      String
+  placement        Placement @relation(fields: [placementId], references: [id], onDelete: Cascade)
+  loggedByUserId   String
+  loggedBy         User     @relation("HoursLogger", fields: [loggedByUserId], references: [id])
+  loggedByRole     String   // STUDENT | COMPANY_TUTOR | ACADEMIC_TUTOR | INSTITUTION_STAFF
+  periodStart      DateTime
+  periodEnd        DateTime
+  hours            Int
+  source           String?  // "one-tap" | "manual" | "tutor-confirm"
+  confirmedByTutor Boolean  @default(false)
+  notes            String?  @db.Text
+  createdAt        DateTime @default(now())
+
+  @@index([placementId, periodStart])
+  @@index([loggedByUserId])
 }
