@@ -41,8 +41,8 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
   return (
     <nav className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container max-w-7xl mx-auto px-4">
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center h-14 gap-1">
+        {/* Desktop nav — xl so university/ITS (5+ groups) never overflow when tab is halved */}
+        <div className="hidden xl:flex items-center h-14 gap-1">
           <Link
             href={homeHref}
             className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
@@ -123,7 +123,7 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
         </div>
 
         {/* Mobile nav bar */}
-        <div className="flex lg:hidden items-center justify-between h-14">
+        <div className="flex xl:hidden items-center justify-between h-14">
           <Link
             href={homeHref}
             className="flex items-center gap-1.5 text-sm font-medium"
@@ -145,7 +145,7 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-14 z-50 bg-background overflow-y-auto">
+        <div className="xl:hidden fixed inset-0 top-14 z-50 bg-background overflow-y-auto">
           <div className="container max-w-7xl mx-auto px-4 py-4 space-y-2">
             {config.groups.map((group) => {
               const isExpanded = expandedGroup === group.labelKey
