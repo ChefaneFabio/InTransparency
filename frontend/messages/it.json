@@ -78,7 +78,7 @@
         "skillsDemand": "Domanda Competenze",
         "settings": "Impostazioni",
         "offerComparison": "Confronta Offerte",
-        "skillGraph": "Grafo Competenze",
+        "skillGraph": "Grafico Competenze",
         "credentials": "Credenziali",
         "matches": "Match",
         "rolesForYou": "Ruoli Per Te",
@@ -11825,7 +11825,7 @@
     },
     "completeForm": {
       "heading": "Competenze acquisite durante lo scambio presso il tuo Partner Formativo",
-      "description": "Aggiungi le competenze che lo studente ha dimostrabilmente acquisito. Verranno trasmesse al grafo delle competenze verificate del Partner Formativo di origine.",
+      "description": "Aggiungi le competenze che lo studente ha dimostrabilmente acquisito. Verranno trasmesse al grafico delle competenze verificate del Partner Formativo di origine.",
       "skillPlaceholder": "Aggiungi una competenza (es. Machine Learning)"
     },
     "levels": {
@@ -12011,7 +12011,7 @@
       "companyDirectory": "Query elenco aziende (50 righe)",
       "userFindUnique": "User.findUnique (percorso critico di autenticazione)",
       "activeJobs": "Scan offerte attive (200 righe)",
-      "skillGraph": "Aggregazione completa del grafo competenze per utente",
+      "skillGraph": "Aggregazione completa del grafico competenze per utente",
       "escoResolution": "Risoluzione URI ESCO per termine",
       "automatedTests": "Test automatizzati in CI di produzione",
       "passRate": "Tasso di superamento della suite di test",
@@ -12454,7 +12454,7 @@
     "h1": "InTransparency vs JobTeaser vs Handshake",
     "intro": "Le tre piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-19. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.",
     "tldrH2": "In sintesi",
-    "tldr": "JobTeaser è una job board europea curata con forte branding aziendale. Handshake è il leader USA per effetto di rete con integrazioni ATS. InTransparency è la piattaforma del grafo di competenze verificato + matching nativo per l'AI Act europeo — progettata per il diritto del lavoro UE, basata su evidenze e non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso di recruiting conforme all'AI Act europeo. JobTeaser se cercate una job board curata. Handshake se siete negli USA.",
+    "tldr": "JobTeaser è una job board europea curata con forte branding aziendale. Handshake è il leader USA per effetto di rete con integrazioni ATS. InTransparency è la piattaforma del grafico di competenze verificato + matching nativo per l'AI Act europeo — progettata per il diritto del lavoro UE, basata su evidenze e non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso di recruiting conforme all'AI Act europeo. JobTeaser se cercate una job board curata. Handshake se siete negli USA.",
     "featureHead": "Funzionalità",
     "honestH3": "Come manteniamo questo confronto onesto",
     "statusYes": "Sì",
@@ -12534,7 +12534,7 @@
           "label": "Tracciamento Erasmus / scambi bilaterali"
         },
         "hostSkill": {
-          "label": "Sync grafo competenze ateneo ospitante → ateneo di origine"
+          "label": "Sync grafico competenze ateneo ospitante → ateneo di origine"
         },
         "europass": {
           "label": "Export Europass v3"
@@ -12712,11 +12712,11 @@
     }
   },
   "glossaryPage": {
-    "metaTitle": "Glossario — grafo di competenze verificato, ESCO, AI Act, PCTO e altro",
+    "metaTitle": "Glossario — grafico di competenze verificato, ESCO, AI Act, PCTO e altro",
     "metaDescription": "Definizioni in linguaggio chiaro per ogni termine di dominio usato su InTransparency: ESCO, tirocinio/stage, PCTO, ANVUR, AI Act europeo, Verifiable Credentials, Europass, CCNL, INAIL, SPID, Esse3 e altro.",
     "ogTitle": "Glossario — termini del recruiting accademico UE",
     "ogDescription": "Definizioni in linguaggio chiaro: ESCO, tirocinio, AI Act europeo, PCTO, Verifiable Credentials, Europass e altro.",
-    "definedTermSetName": "Glossario InTransparency — termini di dominio del grafo di competenze verificato",
+    "definedTermSetName": "Glossario InTransparency — termini di dominio del grafico di competenze verificato",
     "badge": "Riferimento",
     "h1": "Glossario",
     "intro": "Definizioni in linguaggio chiaro per ogni termine che incontrerete su InTransparency. Regolamentari, accademici, specifici per l'Italia. Progettate per essere scansionabili — e citabili dagli assistenti AI che rispondono a domande sul recruiting accademico in UE.",
@@ -12734,12 +12734,12 @@
     },
     "terms": {
       "verifiedSkillGraph": {
-        "term": "Grafo di competenze verificato",
+        "term": "Grafico di competenze verificato",
         "definition": "Un registro strutturato delle proficiency di uno studente in cui ogni voce è supportata da evidenze: un endorsement di un docente, una valutazione di stage supervisionata dall'ateneo, un progetto verificato o il completamento di uno scambio presso un'istituzione ospitante. Mantenuto in continuo e firmato crittograficamente."
       },
       "skillDelta": {
         "term": "SkillDelta",
-        "definition": "Una singola variazione verificata della proficiency di uno studente su una competenza specifica, con fonte (STAGE, PROGETTO, CORSO, TESI, ENDORSEMENT, SCAMBIO), valutatore, livello prima/dopo ed evidenza. Gli SkillDelta si accumulano nel grafo di competenze verificato dello studente."
+        "definition": "Una singola variazione verificata della proficiency di uno studente su una competenza specifica, con fonte (STAGE, PROGETTO, CORSO, TESI, ENDORSEMENT, SCAMBIO), valutatore, livello prima/dopo ed evidenza. Gli SkillDelta si accumulano nel grafico di competenze verificato dello studente."
       },
       "matchExplanation": {
         "term": "MatchExplanation",
@@ -12747,7 +12747,7 @@
       },
       "evidencePacket": {
         "term": "Dossier di evidenze",
-        "definition": "Un documento lato recruiter che combina il grafo di competenze verificato di un candidato, la match explanation, le credenziali emesse, lo storico degli stage con citazioni dei tutor aziendali e gli endorsement dei docenti in un unico dossier stampabile."
+        "definition": "Un documento lato recruiter che combina il grafico di competenze verificato di un candidato, la match explanation, le credenziali emesse, lo storico degli stage con citazioni dei tutor aziendali e gli endorsement dei docenti in un unico dossier stampabile."
       },
       "aiAct": {
         "term": "AI Act europeo",
@@ -13004,7 +13004,7 @@
     "title": "Centro privacy",
     "subtitle": "Esercita i tuoi diritti GDPR. Scarica tutto ciò che abbiamo su di te o cancella definitivamente il tuo account. Nessuna approvazione richiesta — sono tuoi diritti, non favori.",
     "downloadData": "Scarica i tuoi dati",
-    "downloadDataDesc": "Un unico file JSON con tutto: profilo, progetti, grafo competenze, endorsement, stage, scambi, match, credenziali, notifiche, candidature. Leggibile da macchina — importabile in qualsiasi servizio compatibile.",
+    "downloadDataDesc": "Un unico file JSON con tutto: profilo, progetti, grafico competenze, endorsement, stage, scambi, match, credenziali, notifiche, candidature. Leggibile da macchina — importabile in qualsiasi servizio compatibile.",
     "generating": "Generazione…",
     "downloadMyDataJson": "Scarica i miei dati (JSON)",
     "yourRightsElsewhere": "I tuoi diritti — altrove nella piattaforma",
@@ -13034,10 +13034,10 @@
   },
   "studentRoles": {
     "title": "Ruoli per te",
-    "subtitleStart": "Match personalizzati sui ruoli, basati sul tuo grafo competenze verificato",
+    "subtitleStart": "Match personalizzati sui ruoli, basati sul tuo grafico competenze verificato",
     "subtitleEnd": "La stessa logica evidence-weighted che i recruiter usano per valutarti, rovesciata per aiutarti a trovare i ruoli in cui calzi davvero.",
     "verifiedSkillsCount": "{count, plural, one {# competenza verificata} other {# competenze verificate}}",
-    "emptyGraphTitle": "Il tuo grafo competenze verificato è vuoto",
+    "emptyGraphTitle": "Il tuo grafico competenze verificato è vuoto",
     "emptyGraphDesc": "Questi match usano solo le competenze autodichiarate. Completa uno stage o ottieni l'endorsement di un docente per sbloccare il matching evidence-weighted — i tuoi punteggi saliranno e i recruiter noteranno la differenza.",
     "noStrongMatchesTitle": "Nessun match forte al momento",
     "noStrongMatchesDesc": "Abbiamo analizzato {count} offerte attive ma nessuna supera la soglia. Riprova tra una settimana o aggiungi altre competenze verificate.",
@@ -13054,10 +13054,10 @@
     "levelExpert": "Esperto"
   },
   "studentSkillGraph": {
-    "title": "Il tuo grafo competenze verificato",
+    "title": "Il tuo grafico competenze verificato",
     "subtitle": "Competenze provate da evidenze — valutazioni dei tutor aziendali, endorsement dei docenti, programmi di scambio. Non autodichiarazioni.",
-    "emptyTitle": "Il tuo grafo competenze verificato è vuoto",
-    "emptyDesc": "Ogni volta che un tutor di stage ti valuta, un docente fa l'endorsement di un progetto o un'università ospitante completa uno scambio, viene aggiunta qui una voce di proficiency verificata. Completa il tuo primo stage o chiedi un endorsement a un docente per popolare il grafo.",
+    "emptyTitle": "Il tuo grafico competenze verificato è vuoto",
+    "emptyDesc": "Ogni volta che un tutor di stage ti valuta, un docente fa l'endorsement di un progetto o un'università ospitante completa uno scambio, viene aggiunta qui una voce di proficiency verificata. Completa il tuo primo stage o chiedi un endorsement a un docente per popolare il grafico.",
     "goToProjects": "Vai ai tuoi progetti",
     "verifiedSkills": "Competenze verificate",
     "advancedExpert": "Avanzato / Esperto",
@@ -13507,8 +13507,8 @@
     "breadcrumbIntegrations": "Integrazioni",
     "breadcrumbAgents": "Agent",
     "agentNative": "Agent-native",
-    "heroTitle": "Collega il tuo agent AI al grafo delle competenze verificate",
-    "heroDesc": "InTransparency espone l'intero grafo di aziende, offerte e credenziali come strumento per agent. Funziona con Claude Desktop, Cursor, Zed, ChatGPT, LangChain, LlamaIndex e qualsiasi host compatibile con OpenAPI.",
+    "heroTitle": "Collega il tuo agent AI al grafico delle competenze verificate",
+    "heroDesc": "InTransparency espone l'intero grafico di aziende, offerte e credenziali come strumento per agent. Funziona con Claude Desktop, Cursor, Zed, ChatGPT, LangChain, LlamaIndex e qualsiasi host compatibile con OpenAPI.",
     "readOnlyNotice": "<strong>Sola lettura di default.</strong> Gli endpoint pubblici (aziende, offerte, credenziali, ESCO, registro degli algoritmi, glossario) non richiedono autenticazione. Le azioni di scrittura (candidatura, pubblicazione offerte) usano chiavi agent con scope e consenso esplicito dell'utente.",
     "option1Title": "Opzione 1 — Server MCP (Claude Desktop, Cursor, Zed)",
     "option1Desc": "Il server Model Context Protocol fornisce a Claude Desktop e ai client compatibili strumenti nativi: cercare aziende, consultare offerte, verificare credenziali, risolvere competenze ESCO e ispezionare il registro degli algoritmi.",

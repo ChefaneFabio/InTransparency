@@ -116,12 +116,12 @@ const en: WhyNowContent = {
 }
 
 const it: WhyNowContent = {
-  metaTitle: 'Perché gli atenei italiani hanno bisogno di un grafo di competenze verificato — il punto di svolta del 2026',
+  metaTitle: 'Perché gli atenei italiani hanno bisogno di un grafico di competenze verificato — il punto di svolta del 2026',
   metaDescription:
     'L\'AI Act europeo è già in vigore per l\'IA nell\'occupazione. I cicli ANVUR richiedono prove di placement. La conformità PCTO ha peso legale. Il tracciamento manuale costa agli atenei 1+ FTE ogni 10.000 studenti. Ecco cosa è cambiato nel 2026 e perché le credenziali verificate non sono più opzionali.',
   ogTitle: 'Perché ora — il punto di svolta 2026 per l\'infrastruttura di recruiting universitaria',
   heroBadge: 'Il punto di svolta del 2026',
-  h1: 'Perché gli atenei italiani hanno bisogno di un grafo di competenze verificato — ora',
+  h1: 'Perché gli atenei italiani hanno bisogno di un grafico di competenze verificato — ora',
   intro:
     'Questo è un brief in linguaggio semplice per rettori, direttori dei career service e commissioni curriculari. Se c\'è una decisione infrastrutturale da prendere in questo anno accademico, riguarda le credenziali verificate. Ecco il perché, con date e regolamenti alla mano.',
   sections: [
@@ -147,7 +147,7 @@ const it: WhyNowContent = {
       ],
       bullets: [
         'Freschezza dei dati di placement — survey di fine anno con 15% di risposta producono dati vecchi di 6-12 mesi',
-        'Evidenze di allineamento delle competenze — difficili da produrre senza un grafo di competenze verificato e overlay sul mercato',
+        'Evidenze di allineamento delle competenze — difficili da produrre senza un grafico di competenze verificato e overlay sul mercato',
         'Documentazione degli esiti di stage — convenzioni su carta e catene di email non reggono all\'audit',
       ],
       closing:
@@ -188,7 +188,7 @@ const it: WhyNowContent = {
   },
   reviewedFootnote:
     'Ultima revisione: 2026-04-19. Questa pagina è intenzionalmente statica e citabile. Per domande regolatorie: info@in-transparency.com.',
-  jsonLdHeadline: 'Perché gli atenei italiani hanno bisogno di un grafo di competenze verificato — punto di svolta 2026',
+  jsonLdHeadline: 'Perché gli atenei italiani hanno bisogno di un grafico di competenze verificato — punto di svolta 2026',
   jsonLdDescription:
     'L\'AI Act europeo è già applicabile all\'IA nell\'occupazione. I cicli ANVUR richiedono evidenze di placement. La conformità PCTO ha peso legale.',
 }
