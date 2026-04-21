@@ -315,6 +315,9 @@ model User {
   ownedInternshipDeals         InternshipDeal[]   @relation("OwnedInternshipDeals")
   internshipDealsAsStudent     InternshipDeal[]   @relation("InternshipDealStudent")
   savedJobs                    SavedJob[]
+  institutionStaffRoles        InstitutionStaff[]       @relation("InstitutionStaffUser")
+  institutionAffiliations      InstitutionAffiliation[] @relation("StudentAffiliations")
+  conventionsCreated           Convention[]             @relation("ConventionCreator")
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -3999,4 +4002,135 @@ model SelfDiscoveryProfile {
   updatedAt DateTime @updatedAt
 
   @@index([studentId])
+}
+
+// ============================================================================
+// Institutional Workspace (Modules 1-4 foundation)
+// Added 2026-04-21. The Institution entity is the authoritative tenant for
+// mediated flows; existing UniversitySettings rows are migrated into it.
+// ============================================================================
+
+enum InstitutionType {
+  UNIVERSITY_PUBLIC
+  UNIVERSITY_PRIVATE
+  ITS
+  SCHOOL
+}
+
+enum InstitutionPlan {
+  CORE
+  PREMIUM
+}
+
+enum AffiliationStatus {
+  PENDING
+  ACTIVE
+  ENDED
+}
+
+enum StaffRole {
+  INSTITUTION_ADMIN
+  INSTITUTION_STAFF
+  ACADEMIC_TUTOR
+  COMPANY_TUTOR
+}
+
+model Institution {
+  id                String          @id @default(cuid())
+  name              String
+  slug              String          @unique
+  type              InstitutionType @default(UNIVERSITY_PUBLIC)
+  plan              InstitutionPlan @default(CORE)
+  mediationEnabled  Boolean         @default(false)
+  requireOfferApproval Boolean      @default(false)
+
+  // Optional single point-of-contact / admin user (backward-compat with UniversitySettings.userId)
+  primaryAdminId    String?
+
+  // Org metadata
+  description       String? @db.Text
+  website           String?
+  logo              String?
+  city              String?
+  region            String?
+  country           String? @default("IT")
+  legalName         String?
+  vatNumber         String?
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  staff             InstitutionStaff[]
+  affiliations      InstitutionAffiliation[]
+  conventions       Convention[]
+
+  @@index([type])
+  @@index([plan])
+}
+
+model InstitutionStaff {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation("InstitutionStaffUser", fields: [userId], references: [id], onDelete: Cascade)
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  role          StaffRole   @default(INSTITUTION_STAFF)
+  invitedAt     DateTime    @default(now())
+  activatedAt   DateTime?
+
+  @@unique([userId, institutionId])
+  @@index([institutionId, role])
+}
+
+model InstitutionAffiliation {
+  id            String            @id @default(cuid())
+  studentId     String
+  student       User              @relation("StudentAffiliations", fields: [studentId], references: [id], onDelete: Cascade)
+  institutionId String
+  institution   Institution       @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  program       String?
+  status        AffiliationStatus @default(ACTIVE)
+  startDate     DateTime          @default(now())
+  endDate       DateTime?
+  createdAt     DateTime          @default(now())
+
+  @@unique([studentId, institutionId, program])
+  @@index([studentId, status])
+  @@index([institutionId, status])
+}
+
+model Convention {
+  id             String           @id @default(cuid())
+  institutionId  String
+  institution    Institution      @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  companyName    String
+  companyDomain  String?
+  status         ConventionStatus @default(DRAFT)
+  signedAt       DateTime?
+  expiresAt      DateTime?
+  documentUrl    String?
+  notes          String?          @db.Text
+  createdById    String?
+  createdBy      User?            @relation("ConventionCreator", fields: [createdById], references: [id])
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([institutionId, status])
+  @@index([companyName])
+}
+
+model AuditEvent {
+  id          String   @id @default(cuid())
+  actorId     String?
+  actorRole   String?
+  action      String
+  entityType  String
+  entityId    String
+  payload     Json?
+  institutionId String?
+  createdAt   DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@index([institutionId, createdAt])
 }
