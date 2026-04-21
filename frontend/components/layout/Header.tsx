@@ -31,9 +31,9 @@ export function Header() {
   // Navigation links change based on active segment
   const navigationBySegment: Record<Segment, { name: string; href: string }[]> = {
     students: [
-      { name: 'University', href: '/for-university-students' },
-      { name: 'ITS Academy', href: '/for-its-students' },
-      { name: 'High School', href: '/for-high-school-students' },
+      { name: t('forUniversityStudents'), href: '/for-university-students' },
+      { name: t('forItsStudents'), href: '/for-its-students' },
+      { name: t('forHighSchoolStudents'), href: '/for-high-school-students' },
       { name: t('explorePortfolios'), href: '/explore' },
       { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
@@ -46,10 +46,10 @@ export function Header() {
       { name: t('contact'), href: '/contact' },
     ],
     companies: [
-      { name: 'Startups', href: '/for-startups' },
-      { name: 'SMEs', href: '/for-sme' },
-      { name: 'Enterprise', href: '/for-enterprise' },
-      { name: 'Agencies & HR', href: '/for-agencies' },
+      { name: t('forStartups'), href: '/for-startups' },
+      { name: t('forSme'), href: '/for-sme' },
+      { name: t('forEnterprise'), href: '/for-enterprise' },
+      { name: t('forAgencies'), href: '/for-agencies' },
       { name: t('searchTalent'), href: '/explore' },
       { name: t('pricing'), href: '/pricing' },
     ],
@@ -63,7 +63,7 @@ export function Header() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded"
       >
-        Skip to main content
+        {t('skipToMain')}
       </a>
       {/* Secondary segment bar */}
       <div className="bg-foreground/95 backdrop-blur-sm">

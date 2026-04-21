@@ -29,7 +29,15 @@
     "hireCandidates": "Assumi Candidati",
     "highSchoolStudents": "Scuola Superiore",
     "itsStudents": "Studenti ITS",
-    "universityStudents": "Università"
+    "universityStudents": "Università",
+    "skipToMain": "Vai al contenuto principale",
+    "forUniversityStudents": "Università",
+    "forItsStudents": "ITS Academy",
+    "forHighSchoolStudents": "Scuola Superiore",
+    "forStartups": "Startup",
+    "forSme": "PMI",
+    "forEnterprise": "Grandi aziende",
+    "forAgencies": "Agenzie e HR"
   },
   "dashboardNav": {
     "home": "Home",
@@ -953,7 +961,10 @@
       "forUniversities": "Per Università",
       "pricing": "Prezzi",
       "explore": "Esplora Talenti",
-      "aiDemo": "Demo"
+      "aiDemo": "Demo",
+      "forEnterprise": "Grandi aziende",
+      "forPublicSector": "Pubblica Amministrazione",
+      "discoverCompanies": "Scopri aziende"
     },
     "resources": "Risorse",
     "resourceLinks": {
@@ -962,7 +973,12 @@
       "blog": "Blog",
       "contact": "Contatti",
       "vsLinkedIn": "vs LinkedIn",
-      "vsAlmaLaurea": "vs AlmaLaurea"
+      "vsAlmaLaurea": "vs AlmaLaurea",
+      "glossary": "Glossario",
+      "facts": "Dati e benchmark",
+      "changelog": "Changelog",
+      "whyNow": "Perché ora",
+      "comparePlatforms": "Confronta piattaforme"
     },
     "companyLinks": {
       "about": "Chi Siamo",
@@ -973,7 +989,15 @@
     "developerLinks": {
       "apiOverview": "Panoramica API",
       "documentation": "Documentazione",
-      "apiAccess": "Richiedi Accesso API"
+      "apiAccess": "Richiedi Accesso API",
+      "agents": "Integrazione agent",
+      "ats": "Integrazione ATS",
+      "openApi": "Specifica OpenAPI",
+      "llmsFull": "llms-full.txt"
+    },
+    "complianceLinks": {
+      "euMatrix": "Matrice di conformità UE",
+      "algorithmRegistry": "Registro degli algoritmi"
     }
   },
   "developers": {
@@ -13769,6 +13793,42 @@
       "minutesAgo": "{count}m fa",
       "hoursAgo": "{count}h fa",
       "daysAgo": "{count}g fa"
+    }
+  },
+  "trustMetrics": {
+    "aria": "Indicatori di affidabilità della piattaforma",
+    "eyebrow": "Costruita su standard verificabili",
+    "title": "Ogni affermazione su questa piattaforma è verificabile in modo indipendente",
+    "subtitle": "Pubblichiamo gli standard che usiamo, gli algoritmi che eseguiamo, le chiavi che firmano le nostre credenziali e i diritti che puoi esercitare. Controlla la fonte — non fidarti sulla parola.",
+    "recentMatches": "{count, plural, one {# match prodotto negli ultimi 30 giorni — con spiegazione persistita.} other {# match prodotti negli ultimi 30 giorni — ciascuno con spiegazione persistita.}}",
+    "esco": {
+      "label": "Competenze mappate su ESCO UE",
+      "source": "ESCO v1.2.0 — conteggio live dal DB di produzione"
+    },
+    "aiAct": {
+      "label": "Conforme Allegato III §4",
+      "source": "Registro pubblico dei modelli su /algorithm-registry"
+    },
+    "credentials": {
+      "labelIssued": "Credenziali verificabili emesse",
+      "labelScheme": "W3C Verifiable Credentials",
+      "source": "Compatibile con l'EU Digital Wallet — /api/credentials/public-key"
+    },
+    "portability": {
+      "label": "Paesi via portabilità ESCO",
+      "source": "Competenze verificate leggibili in ogni mercato del lavoro UE"
+    },
+    "europass": {
+      "label": "Export JSON-LD con un click",
+      "source": "/api/student/europass"
+    },
+    "universities": {
+      "label": "Università rappresentate",
+      "source": "Studenti registrati presso partner e atenei osservati"
+    },
+    "gdpr": {
+      "label": "Diritti self-service completi",
+      "source": "Art. 15/16/17/20/22 su /dashboard/student/privacy"
     }
   }
 }

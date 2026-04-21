@@ -1,4 +1,5 @@
 import prisma from '@/lib/prisma'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { ShieldCheck, Network, Scale, Globe, FileCheck, Award } from 'lucide-react'
 
 /**
@@ -35,68 +36,62 @@ async function fetchMetrics() {
 }
 
 export async function TrustMetrics() {
+  const locale = await getLocale()
+  const t = await getTranslations({ locale, namespace: 'trustMetrics' })
   const { escoSkillCount, credentialsIssued, universitiesActive, recentMatches } = await fetchMetrics()
 
   const metrics = [
     {
       icon: Network,
       value: String(escoSkillCount),
-      label: 'Skills mapped to EU ESCO',
-      source: 'ESCO v1.2.0 — live count from production DB',
+      label: t('esco.label'),
+      source: t('esco.source'),
     },
     {
       icon: Scale,
       value: 'AI Act',
-      label: 'Annex III §4 compliant',
-      source: 'Public model registry at /algorithm-registry',
+      label: t('aiAct.label'),
+      source: t('aiAct.source'),
     },
     {
       icon: ShieldCheck,
       value: credentialsIssued > 0 ? credentialsIssued.toLocaleString() : 'Ed25519',
-      label: credentialsIssued > 0 ? 'Verifiable credentials issued' : 'W3C Verifiable Credentials',
-      source: 'EU Digital Wallet compatible — /api/credentials/public-key',
+      label: credentialsIssued > 0 ? t('credentials.labelIssued') : t('credentials.labelScheme'),
+      source: t('credentials.source'),
     },
     {
       icon: Globe,
       value: '27 EU',
-      label: 'Countries via ESCO portability',
-      source: 'Verified skills readable across every EU labor market',
+      label: t('portability.label'),
+      source: t('portability.source'),
     },
     {
       icon: FileCheck,
       value: 'Europass v3',
-      label: 'One-click JSON-LD export',
-      source: '/api/student/europass',
+      label: t('europass.label'),
+      source: t('europass.source'),
     },
     {
       icon: Award,
       value: universitiesActive > 0 ? universitiesActive.toLocaleString() : 'GDPR',
-      label: universitiesActive > 0 ? 'Universities represented' : 'Full self-service rights',
-      source:
-        universitiesActive > 0
-          ? 'Students registered across partner + observed institutions'
-          : 'Art. 15/16/17/20/22 at /dashboard/student/privacy',
+      label: universitiesActive > 0 ? t('universities.label') : t('gdpr.label'),
+      source: universitiesActive > 0 ? t('universities.source') : t('gdpr.source'),
     },
   ]
 
   return (
-    <section className="py-16 bg-muted/30 border-y border-border" aria-label="Platform trust signals">
+    <section className="py-16 bg-muted/30 border-y border-border" aria-label={t('aria')}>
       <div className="container max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
           <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">
-            Built on verifiable standards
+            {t('eyebrow')}
           </p>
-          <h2 className="text-2xl font-bold text-foreground">
-            Every claim on this platform is independently verifiable
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">
-            We publish the standards we use, the algorithms we run, the keys that sign our
-            credentials, and the rights you can exercise. Check the source — don&apos;t take our word.
-          </p>
+          <h2 className="text-2xl font-bold text-foreground">{t('title')}</h2>
+          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">{t('subtitle')}</p>
           {recentMatches > 0 && (
             <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              {recentMatches.toLocaleString()} matches produced in the last 30 days — each with a persisted explanation.
+              {t('recentMatches', { count: recentMatches })}
             </p>
           )}
         </div>
