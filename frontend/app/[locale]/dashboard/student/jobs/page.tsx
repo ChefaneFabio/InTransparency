@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Search, Loader2, MapPin, Briefcase, Building2, ArrowRight, Filter } from 'lucide-react'
+import { Search, Loader2, MapPin, Briefcase, Building2, ArrowRight, Filter, Bookmark, BookmarkCheck } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
@@ -30,13 +30,16 @@ export default function StudentJobsPage() {
   const [workMode, setWorkMode] = useState('all')
   const [location, setLocation] = useState('')
   const [profileSkills, setProfileSkills] = useState<string[]>([])
+  const [savedIds, setSavedIds] = useState<Set<string>>(new Set())
+  const [showSavedOnly, setShowSavedOnly] = useState(false)
 
   const fetchData = useCallback(async () => {
     setLoading(true)
     try {
-      const [jobsRes, recsRes] = await Promise.all([
+      const [jobsRes, recsRes, savedRes] = await Promise.all([
         fetch('/api/dashboard/student/jobs'),
         fetch('/api/dashboard/student/recommendations?limit=5'),
+        fetch('/api/dashboard/student/saved-jobs'),
       ])
       if (jobsRes.ok) {
         const data = await jobsRes.json()
@@ -47,9 +50,36 @@ export default function StudentJobsPage() {
         const data = await recsRes.json()
         setRecommendations(data.recommendations || [])
       }
+      if (savedRes.ok) {
+        const data = await savedRes.json()
+        setSavedIds(new Set((data.savedJobs || []).map((s: any) => s.job.id)))
+      }
     } catch { /* silent */ }
     finally { setLoading(false) }
   }, [])
+
+  const toggleSave = async (jobId: string) => {
+    const wasSaved = savedIds.has(jobId)
+    // Optimistic
+    const next = new Set(savedIds)
+    if (wasSaved) next.delete(jobId)
+    else next.add(jobId)
+    setSavedIds(next)
+    try {
+      if (wasSaved) {
+        await fetch(`/api/dashboard/student/saved-jobs?jobId=${encodeURIComponent(jobId)}`, { method: 'DELETE' })
+      } else {
+        await fetch('/api/dashboard/student/saved-jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jobId }),
+        })
+      }
+    } catch {
+      // Roll back
+      setSavedIds(savedIds)
+    }
+  }
 
   useEffect(() => { fetchData() }, [fetchData])
 
@@ -71,6 +101,7 @@ export default function StudentJobsPage() {
   }
 
   const filtered = jobs.filter(job => {
+    if (showSavedOnly && !savedIds.has(job.id)) return false
     if (jobType !== 'all' && job.jobType !== jobType) return false
     if (workMode !== 'all' && job.workLocation !== workMode) return false
     if (location && job.location && !job.location.toLowerCase().includes(location.toLowerCase())) return false
@@ -190,9 +221,21 @@ export default function StudentJobsPage() {
                       </div>
                       <div className="flex flex-col items-end gap-2">
                         {job.matchScore && <span className="text-xs font-semibold text-primary">{job.matchScore}%</span>}
-                        <Button size="sm" asChild>
-                          <Link href={`/dashboard/student/apply/${job.id}`}>{t('apply')}</Link>
-                        </Button>
+                        <div className="flex items-center gap-1.5">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => toggleSave(job.id)}
+                            aria-label={savedIds.has(job.id) ? 'Rimuovi dai salvati' : 'Salva opportunità'}
+                          >
+                            {savedIds.has(job.id)
+                              ? <BookmarkCheck className="h-3.5 w-3.5 text-primary" />
+                              : <Bookmark className="h-3.5 w-3.5" />}
+                          </Button>
+                          <Button size="sm" asChild>
+                            <Link href={`/dashboard/student/apply/${job.id}`}>{t('apply')}</Link>
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -204,6 +247,31 @@ export default function StudentJobsPage() {
 
         {/* Sidebar */}
         <div className="space-y-4">
+          {/* Saved jobs */}
+          <GlassCard delay={0.18}>
+            <button
+              onClick={() => setShowSavedOnly(v => !v)}
+              className="w-full p-4 flex items-center justify-between text-left hover:bg-muted/30 rounded-xl transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <BookmarkCheck className={`h-4 w-4 ${showSavedOnly ? 'text-primary' : 'text-muted-foreground'}`} />
+                <div>
+                  <div className="font-semibold text-sm">Opportunità salvate</div>
+                  <div className="text-xs text-muted-foreground">
+                    {savedIds.size > 0
+                      ? `${savedIds.size} ${savedIds.size === 1 ? 'salvata' : 'salvate'} — ${showSavedOnly ? 'mostra tutto' : 'filtra solo salvate'}`
+                      : 'Clicca il segnalibro per salvare'}
+                  </div>
+                </div>
+              </div>
+              {savedIds.size > 0 && (
+                <Badge variant={showSavedOnly ? 'default' : 'secondary'} className="text-[10px]">
+                  {savedIds.size}
+                </Badge>
+              )}
+            </button>
+          </GlassCard>
+
           {/* Filters */}
           <GlassCard delay={0.2}>
             <div className="p-4 space-y-3">

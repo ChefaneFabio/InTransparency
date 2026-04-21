@@ -16,6 +16,7 @@ import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringC
 import { PendingVerificationsCard } from '@/components/dashboard/student/PendingVerificationsCard'
 import { OnboardingGate } from '@/components/dashboard/student/OnboardingGate'
 import { VisibilityWidget } from '@/components/dashboard/student/VisibilityWidget'
+import { HireStatusWidget } from '@/components/dashboard/student/HireStatusWidget'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DonutChart } from '@/components/dashboard/shared/DonutChart'
 // MiniChart available for future use with real trend data
@@ -183,8 +184,11 @@ export default function StudentDashboard() {
       <OnboardingGate />
       <PendingVerificationsCard />
 
-      {/* Reciprocal visibility — AI Act Art. 86 right-to-know */}
-      <VisibilityWidget />
+      {/* Hire status + reciprocal visibility — student agency signals */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <HireStatusWidget />
+        <VisibilityWidget />
+      </div>
 
       {/* Stat Cards Row */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4">

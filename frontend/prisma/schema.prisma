@@ -268,6 +268,12 @@ model User {
   // Dual-Mode: Available for hiring, projects, or both
   availableFor         AvailableFor @default(BOTH)
 
+  // Active job-seeking signal (distinct from availableFor which is a broad dual-mode flag)
+  // NOT_LOOKING (default), OPEN (passive, receptive), ACTIVELY_LOOKING (active search)
+  jobSearchStatus      JobSearchStatus @default(NOT_LOOKING)
+  availabilityFrom     DateTime?       // When the student can start (e.g., after graduation)
+  jobSearchUpdatedAt   DateTime?       // Last time the student refreshed the signal
+
   // MFA / TOTP (optional)
   totpEnabled    Boolean   @default(false)
   totpSecret     String?   // Encrypted base32 secret
@@ -308,6 +314,7 @@ model User {
   outreachSequencesAsCandidate OutreachSequence[] @relation("CandidateOutreachSequences")
   ownedInternshipDeals         InternshipDeal[]   @relation("OwnedInternshipDeals")
   internshipDealsAsStudent     InternshipDeal[]   @relation("InternshipDealStudent")
+  savedJobs                    SavedJob[]
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -548,6 +555,12 @@ enum AvailableFor {
   PROJECTS
   BOTH
   NONE
+}
+
+enum JobSearchStatus {
+  NOT_LOOKING
+  OPEN
+  ACTIVELY_LOOKING
 }
 
 enum OrgRole {
@@ -1513,6 +1526,7 @@ model Job {
 
   // Relations
   applications Application[]
+  savedBy      SavedJob[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -1525,6 +1539,21 @@ model Job {
   @@index([workLocation])
   @@index([postedAt])
   @@index([slug])
+}
+
+// Student's saved/bookmarked jobs (opportunities they want to come back to)
+model SavedJob {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  notes     String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@unique([userId, jobId])
+  @@index([userId])
+  @@index([jobId])
 }
 
 // Job Application Model
