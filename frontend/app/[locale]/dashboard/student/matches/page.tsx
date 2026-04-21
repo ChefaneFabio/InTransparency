@@ -107,7 +107,7 @@ export default function StudentMatches() {
 
       <div className="space-y-3">
         {matches.map(m => (
-          <Link key={m.id} href={`/matches/${m.id}/why` as any} className="block">
+          <Link key={m.id} href={`/dashboard/student/matches/${m.id}` as any} className="block">
             <Card className="hover:bg-muted/30 transition-colors">
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-center gap-4">

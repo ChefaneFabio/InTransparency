@@ -13567,5 +13567,181 @@
     "hoursAgo": "{count, plural, one {# hour ago} other {# hours ago}}",
     "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
     "monthsAgo": "{count, plural, one {# month ago} other {# months ago}}"
+  },
+  "studentVisibility": {
+    "title": "You're on the radar",
+    "subtitle": "Who's looking at your profile right now",
+    "watching": "Recruiters watching",
+    "activeOutreach": "Active outreach",
+    "recentMatches": "Matches (30d)",
+    "viewDetails": "View details",
+    "empty": "No recruiter activity yet. Complete your profile and publish a project to get on the radar.",
+    "rightsNote": "You have the right to know — AI Act Art. 86 + GDPR Art. 22"
+  },
+  "studentMatchDetail": {
+    "backToMatches": "Back to matches",
+    "badge": "Right to explanation",
+    "title": "Why you were matched",
+    "introWithJob": "For the role {job} at {company}",
+    "introWithCompany": "Match created by {company}",
+    "anonymousRecruiter": "Anonymous recruiter",
+    "overallScore": "Overall match score",
+    "computedOn": "Computed on {date}",
+    "modelVersion": "Model {version}",
+    "modelType": "Type: {type}",
+    "contributingFactors": "Contributing factors",
+    "noFactors": "No factor breakdown was recorded for this match.",
+    "pointsContribution": "+{points} pts",
+    "weight": "Weight {percent}%",
+    "evidence": "Evidence",
+    "decisionLabels": {
+      "STRONG_MATCH": "Strong match",
+      "MATCH": "Match",
+      "WEAK_MATCH": "Weak match",
+      "NO_MATCH": "No match"
+    },
+    "factorLabels": {
+      "requiredSkills": "Required skills",
+      "preferredSkills": "Preferred skills",
+      "verifiedProjects": "Verified projects",
+      "verifiedDepth": "Depth of evidence",
+      "internshipExperience": "Internship experience",
+      "academicPerformance": "Academic performance"
+    },
+    "categories": {
+      "skills": "Skills",
+      "verified_evidence": "Verified evidence",
+      "experience": "Experience",
+      "academic": "Academic",
+      "preferences": "Preferences",
+      "availability": "Availability"
+    },
+    "rights": {
+      "title": "Your rights",
+      "body": "This match was computed by an automated system. Under the EU AI Act (Art. 86) and GDPR (Art. 22), you have the right to request human review if you disagree with this decision.",
+      "humanReview": "Request human review of this match",
+      "object": "Object to automated decision-making about you",
+      "exportRight": "Export the full reasoning record",
+      "requestReviewButton": "Request human review",
+      "requestReviewSubject": "Human review request — match {id}",
+      "readModelCardButton": "Read the model card"
+    }
+  },
+  "recruiterPipelineAnalytics": {
+    "eyebrow": "Outreach intelligence",
+    "title": "Pipeline analytics",
+    "subtitle": "See what's working across your sequences, templates, and response times.",
+    "error": "Couldn't load pipeline analytics. Please try again.",
+    "notAvailable": "N/A",
+    "minutesShort": "min",
+    "hoursShort": "h",
+    "daysShort": "d",
+    "metrics": {
+      "totalSequences": "Total sequences",
+      "replyRate": "Reply rate",
+      "medianResponse": "Median response time",
+      "activeInPipeline": "Active in pipeline"
+    },
+    "empty": {
+      "title": "No outreach activity yet",
+      "description": "Start an outreach sequence with a candidate and your analytics will appear here."
+    },
+    "tabs": {
+      "status": "Status",
+      "templates": "Templates",
+      "responseTime": "Response time",
+      "scoreDistribution": "Match scores"
+    },
+    "statuses": {
+      "ACTIVE": "Active",
+      "PAUSED": "Paused",
+      "COMPLETED": "Completed",
+      "REPLIED": "Replied",
+      "BOUNCED": "Bounced"
+    },
+    "status": {
+      "title": "Status distribution",
+      "description": "Where your sequences currently stand.",
+      "avgStepsSent": "Avg. steps sent",
+      "totalLabel": "Total"
+    },
+    "templates": {
+      "title": "Template performance",
+      "description": "Reply rate and average steps sent per template.",
+      "untitled": "Untitled template",
+      "emptyTitle": "No templates used yet",
+      "emptyDescription": "Once you send sequences, their templates will show up here.",
+      "col": {
+        "name": "Template",
+        "total": "Sequences",
+        "replied": "Replied",
+        "replyRate": "Reply rate",
+        "avgSteps": "Avg. steps"
+      }
+    },
+    "response": {
+      "title": "Response time",
+      "description": "Time from sequence start to first candidate reply (last 90 days).",
+      "median": "Median",
+      "fastest": "Fastest",
+      "slowest": "Slowest",
+      "noData": "No replies in the last 90 days yet."
+    },
+    "scores": {
+      "title": "Match score distribution",
+      "description": "Score buckets of match explanations you've received in the last 90 days.",
+      "emptyTitle": "No match scores yet",
+      "emptyDescription": "Run a talent search and match explanations will be bucketed here."
+    }
+  },
+  "universityRecruiterEngagement": {
+    "title": "Recruiter engagement",
+    "subtitle": "See which companies are actively engaging with your students — saves, outreach, matches, and replies.",
+    "error": "Couldn't load recruiter engagement data. Please try again.",
+    "retry": "Retry",
+    "metrics": {
+      "activeRecruiters": "Active recruiters (90d)",
+      "studentsEngaged": "Students engaged",
+      "sequencesStarted": "Sequences started (90d)",
+      "conversionToReply": "Reply rate (90d)"
+    },
+    "funnel": {
+      "title": "Engagement funnel",
+      "subtitle": "From match to hire — how recruiters move through your pipeline.",
+      "matched": "Matched",
+      "saved": "Saved",
+      "contacted": "Contacted",
+      "replied": "Replied",
+      "hired": "Paid contact"
+    },
+    "topCompanies": {
+      "title": "Top companies",
+      "subtitle": "Recruiters ranked by engagement with your students (last 20).",
+      "empty": "No company activity yet.",
+      "recruiter": "Recruiter",
+      "company": "Company",
+      "saved": "Saved",
+      "outreach": "Outreach",
+      "replies": "Replies",
+      "rate": "Reply rate"
+    },
+    "activity": {
+      "title": "Recent activity",
+      "subtitle": "The 30 most recent recruiter actions targeting your students.",
+      "empty": "No recent activity.",
+      "saved": "Saved",
+      "outreachStarted": "Outreach",
+      "matchGenerated": "Matched"
+    },
+    "empty": {
+      "title": "No recruiter activity yet",
+      "description": "Once companies start engaging with your students, you'll see it here."
+    },
+    "time": {
+      "justNow": "just now",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago"
+    }
   }
 }

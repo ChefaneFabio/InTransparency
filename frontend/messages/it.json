@@ -13594,5 +13594,181 @@
     "hoursAgo": "{count, plural, one {# ora fa} other {# ore fa}}",
     "daysAgo": "{count, plural, one {# giorno fa} other {# giorni fa}}",
     "monthsAgo": "{count, plural, one {# mese fa} other {# mesi fa}}"
+  },
+  "studentVisibility": {
+    "title": "Sei nel radar",
+    "subtitle": "Chi sta guardando il tuo profilo ora",
+    "watching": "Recruiter che ti seguono",
+    "activeOutreach": "Contatti attivi",
+    "recentMatches": "Match (30g)",
+    "viewDetails": "Vedi dettagli",
+    "empty": "Nessuna attività dei recruiter per ora. Completa il profilo e pubblica un progetto per entrare nel radar.",
+    "rightsNote": "Hai il diritto di sapere — AI Act Art. 86 + GDPR Art. 22"
+  },
+  "studentMatchDetail": {
+    "backToMatches": "Torna ai match",
+    "badge": "Diritto di spiegazione",
+    "title": "Perché sei stato abbinato",
+    "introWithJob": "Per il ruolo {job} presso {company}",
+    "introWithCompany": "Match creato da {company}",
+    "anonymousRecruiter": "Recruiter anonimo",
+    "overallScore": "Punteggio complessivo",
+    "computedOn": "Calcolato il {date}",
+    "modelVersion": "Modello {version}",
+    "modelType": "Tipo: {type}",
+    "contributingFactors": "Fattori che hanno contribuito",
+    "noFactors": "Non è stato registrato alcun dettaglio dei fattori per questo match.",
+    "pointsContribution": "+{points} pt",
+    "weight": "Peso {percent}%",
+    "evidence": "Evidenze",
+    "decisionLabels": {
+      "STRONG_MATCH": "Match forte",
+      "MATCH": "Match",
+      "WEAK_MATCH": "Match debole",
+      "NO_MATCH": "Nessun match"
+    },
+    "factorLabels": {
+      "requiredSkills": "Competenze richieste",
+      "preferredSkills": "Competenze preferite",
+      "verifiedProjects": "Progetti verificati",
+      "verifiedDepth": "Profondità delle evidenze",
+      "internshipExperience": "Esperienza di stage",
+      "academicPerformance": "Performance accademica"
+    },
+    "categories": {
+      "skills": "Competenze",
+      "verified_evidence": "Evidenze verificate",
+      "experience": "Esperienza",
+      "academic": "Accademico",
+      "preferences": "Preferenze",
+      "availability": "Disponibilità"
+    },
+    "rights": {
+      "title": "I tuoi diritti",
+      "body": "Questo match è stato calcolato da un sistema automatizzato. Ai sensi del Regolamento UE sull'IA (Art. 86) e del GDPR (Art. 22) hai il diritto di richiedere una revisione umana se non sei d'accordo con la decisione.",
+      "humanReview": "Richiedi una revisione umana del match",
+      "object": "Opporti alle decisioni automatizzate che ti riguardano",
+      "exportRight": "Esporta il registro completo del ragionamento",
+      "requestReviewButton": "Richiedi revisione umana",
+      "requestReviewSubject": "Richiesta revisione umana — match {id}",
+      "readModelCardButton": "Leggi la scheda del modello"
+    }
+  },
+  "recruiterPipelineAnalytics": {
+    "eyebrow": "Intelligence outreach",
+    "title": "Analytics pipeline",
+    "subtitle": "Scopri cosa funziona nelle tue sequenze, template e tempi di risposta.",
+    "error": "Impossibile caricare le analytics della pipeline. Riprova.",
+    "notAvailable": "N/D",
+    "minutesShort": "min",
+    "hoursShort": "h",
+    "daysShort": "g",
+    "metrics": {
+      "totalSequences": "Sequenze totali",
+      "replyRate": "Tasso di risposta",
+      "medianResponse": "Tempo di risposta mediano",
+      "activeInPipeline": "Attive in pipeline"
+    },
+    "empty": {
+      "title": "Nessuna attività di outreach",
+      "description": "Avvia una sequenza di outreach con un candidato e qui compariranno le tue analytics."
+    },
+    "tabs": {
+      "status": "Stato",
+      "templates": "Template",
+      "responseTime": "Tempo di risposta",
+      "scoreDistribution": "Score di match"
+    },
+    "statuses": {
+      "ACTIVE": "Attiva",
+      "PAUSED": "In pausa",
+      "COMPLETED": "Completata",
+      "REPLIED": "Risposta ricevuta",
+      "BOUNCED": "Non recapitata"
+    },
+    "status": {
+      "title": "Distribuzione per stato",
+      "description": "Stato attuale delle tue sequenze.",
+      "avgStepsSent": "Step medi inviati",
+      "totalLabel": "Totale"
+    },
+    "templates": {
+      "title": "Performance dei template",
+      "description": "Tasso di risposta e step medi inviati per ogni template.",
+      "untitled": "Template senza nome",
+      "emptyTitle": "Nessun template utilizzato",
+      "emptyDescription": "Quando invierai delle sequenze, i relativi template appariranno qui.",
+      "col": {
+        "name": "Template",
+        "total": "Sequenze",
+        "replied": "Risposte",
+        "replyRate": "Tasso di risposta",
+        "avgSteps": "Step medi"
+      }
+    },
+    "response": {
+      "title": "Tempo di risposta",
+      "description": "Tempo dall'inizio della sequenza alla prima risposta del candidato (ultimi 90 giorni).",
+      "median": "Mediano",
+      "fastest": "Più veloce",
+      "slowest": "Più lento",
+      "noData": "Nessuna risposta ricevuta negli ultimi 90 giorni."
+    },
+    "scores": {
+      "title": "Distribuzione degli score di match",
+      "description": "Fasce di punteggio delle match explanation ricevute negli ultimi 90 giorni.",
+      "emptyTitle": "Nessuno score di match",
+      "emptyDescription": "Esegui una ricerca talenti e le match explanation verranno raggruppate qui."
+    }
+  },
+  "universityRecruiterEngagement": {
+    "title": "Coinvolgimento recruiter",
+    "subtitle": "Scopri quali aziende stanno interagendo con i tuoi studenti — salvataggi, outreach, match e risposte.",
+    "error": "Impossibile caricare i dati di coinvolgimento. Riprova.",
+    "retry": "Riprova",
+    "metrics": {
+      "activeRecruiters": "Recruiter attivi (90g)",
+      "studentsEngaged": "Studenti coinvolti",
+      "sequencesStarted": "Sequenze avviate (90g)",
+      "conversionToReply": "Tasso di risposta (90g)"
+    },
+    "funnel": {
+      "title": "Funnel di coinvolgimento",
+      "subtitle": "Dal match all'assunzione — come i recruiter si muovono nella tua pipeline.",
+      "matched": "Match",
+      "saved": "Salvati",
+      "contacted": "Contattati",
+      "replied": "Risposte",
+      "hired": "Contatto a pagamento"
+    },
+    "topCompanies": {
+      "title": "Aziende più attive",
+      "subtitle": "Recruiter classificati per coinvolgimento con i tuoi studenti (top 20).",
+      "empty": "Nessuna attività aziendale al momento.",
+      "recruiter": "Recruiter",
+      "company": "Azienda",
+      "saved": "Salvati",
+      "outreach": "Outreach",
+      "replies": "Risposte",
+      "rate": "Tasso di risposta"
+    },
+    "activity": {
+      "title": "Attività recente",
+      "subtitle": "Le 30 azioni più recenti dei recruiter sui tuoi studenti.",
+      "empty": "Nessuna attività recente.",
+      "saved": "Salvato",
+      "outreachStarted": "Outreach",
+      "matchGenerated": "Match"
+    },
+    "empty": {
+      "title": "Ancora nessuna attività",
+      "description": "Quando le aziende inizieranno a interagire con i tuoi studenti, lo vedrai qui."
+    },
+    "time": {
+      "justNow": "ora",
+      "minutesAgo": "{count}m fa",
+      "hoursAgo": "{count}h fa",
+      "daysAgo": "{count}g fa"
+    }
   }
 }

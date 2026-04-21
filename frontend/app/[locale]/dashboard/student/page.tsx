@@ -15,6 +15,7 @@ import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPa
 import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringConfirmationBanner'
 import { PendingVerificationsCard } from '@/components/dashboard/student/PendingVerificationsCard'
 import { OnboardingGate } from '@/components/dashboard/student/OnboardingGate'
+import { VisibilityWidget } from '@/components/dashboard/student/VisibilityWidget'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DonutChart } from '@/components/dashboard/shared/DonutChart'
 // MiniChart available for future use with real trend data
@@ -181,6 +182,9 @@ export default function StudentDashboard() {
       <HiringConfirmationBanner />
       <OnboardingGate />
       <PendingVerificationsCard />
+
+      {/* Reciprocal visibility — AI Act Art. 86 right-to-know */}
+      <VisibilityWidget />
 
       {/* Stat Cards Row */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4">
