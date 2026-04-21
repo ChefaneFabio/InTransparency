@@ -325,6 +325,10 @@ model User {
   companyTutoredPlacements     Placement[]              @relation("CompanyTutorPlacements")
   evaluationsSubmitted         PlacementEvaluation[]    @relation("EvaluationSubmitter")
   hoursLogged                  PlacementHoursLog[]      @relation("HoursLogger")
+  mediationThreadsAsStudent    MediationThread[]        @relation("MediationThreadStudent")
+  mediationThreadsAsCompany    MediationThread[]        @relation("MediationThreadCompany")
+  mediationMessagesAuthored    MediationMessage[]       @relation("MediationMessageAuthor")
+  mediationStaffNotes          MediationStaffNote[]     @relation("MediationStaffNoteAuthor")
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -1524,6 +1528,17 @@ model Job {
   isPublic   Boolean   @default(false)
   isFeatured Boolean   @default(false)
 
+  // Institution scoping (Module 2): when set, the job is tied to an institution
+  // and visible primarily to its affiliated students. If the institution
+  // requireOfferApproval=true, the job sits in PENDING_APPROVAL until staff approve.
+  institutionId      String?
+  institution        Institution? @relation("InstitutionJobs", fields: [institutionId], references: [id])
+  conventionId       String?
+  convention         Convention?  @relation("ConventionJobs", fields: [conventionId], references: [id])
+  approvedByStaffId  String?
+  approvedAt         DateTime?
+  offerType          PlacementOfferType?
+
   // SEO & Discoverability
   slug  String   @unique
   tags  String[] @default([])
@@ -1637,6 +1652,7 @@ enum WorkLocation {
 // Job Status Enum
 enum JobStatus {
   DRAFT // Not yet published
+  PENDING_APPROVAL // Waiting for institution staff to approve (Module 2)
   ACTIVE // Currently accepting applications
   PAUSED // Temporarily not accepting applications
   CLOSED // No longer accepting applications
@@ -4111,6 +4127,7 @@ model Institution {
   companyLeads      CompanyLead[]    @relation("InstitutionCompanyLeads")
   placementStages   PlacementStage[] @relation("InstitutionPlacementStages")
   placements        Placement[]      @relation("InstitutionPlacements")
+  jobs              Job[]            @relation("InstitutionJobs")
 
   @@index([type])
   @@index([plan])
@@ -4164,6 +4181,7 @@ model Convention {
   updatedAt      DateTime         @updatedAt
 
   placements     Placement[]
+  jobs           Job[] @relation("ConventionJobs")
 
   @@index([institutionId, status])
   @@index([companyName])
@@ -4411,3 +4429,94 @@ model PlacementHoursLog {
   @@index([placementId, periodStart])
   @@index([loggedByUserId])
 }
+
+// ============================================================================
+// Module 1 — Mediation Inbox (institution-moderated company→student messaging)
+// Distinct from direct Message model. Used only when contactMode=MEDIATED,
+// which is derived from active InstitutionAffiliation + Institution.mediationEnabled.
+// ============================================================================
+
+enum MediationThreadStatus {
+  OPEN
+  CLOSED
+}
+
+enum MediationDirection {
+  COMPANY_TO_STUDENT
+  STUDENT_TO_COMPANY
+}
+
+enum MediationMessageStatus {
+  PENDING_REVIEW
+  APPROVED
+  EDITED
+  REJECTED
+  DELIVERED
+  READ
+  REPLIED
+}
+
+model MediationThread {
+  id            String                @id @default(cuid())
+  institutionId String
+  companyUserId String                // recruiter user
+  studentId     String
+  subject       String
+  status        MediationThreadStatus @default(OPEN)
+  applicationId String?               // link if created from a job application
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+
+  student  User @relation("MediationThreadStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  company  User @relation("MediationThreadCompany", fields: [companyUserId], references: [id])
+
+  messages MediationMessage[]
+
+  @@index([institutionId, status])
+  @@index([studentId])
+  @@index([companyUserId])
+}
+
+model MediationMessage {
+  id                String                 @id @default(cuid())
+  threadId          String
+  thread            MediationThread        @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  direction         MediationDirection
+  authorUserId      String
+  author            User                   @relation("MediationMessageAuthor", fields: [authorUserId], references: [id])
+  bodyOriginal      String                 @db.Text
+  bodyApproved      String?                @db.Text
+  status            MediationMessageStatus @default(PENDING_REVIEW)
+  reviewedByStaffId String?
+  reviewedAt        DateTime?
+  rejectionReason   String?                @db.Text
+  deliveredAt       DateTime?
+  readAt            DateTime?
+  createdAt         DateTime               @default(now())
+
+  staffNotes        MediationStaffNote[]
+
+  @@index([threadId])
+  @@index([status])
+}
+
+model MediationStaffNote {
+  id        String           @id @default(cuid())
+  messageId String
+  message   MediationMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  staffId   String
+  staff     User             @relation("MediationStaffNoteAuthor", fields: [staffId], references: [id])
+  note      String           @db.Text
+  createdAt DateTime         @default(now())
+
+  @@index([messageId])
+}
+
+// ============================================================================
+// Module 2 — Job Board (convention-gating + offer moderation)
+// Extends existing Job with institutionId + conventionId + approval state.
+// Uses existing Application (extended with offerSnapshot + institutionScopeId).
+// ============================================================================
+
+// (Job model extended below — see migration for ALTER TABLE; Prisma fields added
+// directly on the existing Job model via next edit.)
