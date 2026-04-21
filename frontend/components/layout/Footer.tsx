@@ -87,8 +87,9 @@ export function Footer() {
     developers: [
       { name: tFooter('developerLinks.agents'), href: '/integrations/agents' },
       { name: tFooter('developerLinks.ats'), href: '/integrations/ats' },
-      { name: tFooter('developerLinks.openApi'), href: '/openapi.yaml' },
-      { name: tFooter('developerLinks.llmsFull'), href: '/llms-full.txt' },
+      // Static files at site root — bypass locale-prefixed routing.
+      { name: tFooter('developerLinks.openApi'), href: '/openapi.yaml', external: true },
+      { name: tFooter('developerLinks.llmsFull'), href: '/llms-full.txt', external: true },
       { name: tFooter('developerLinks.apiOverview'), href: '/developers' },
       { name: tFooter('developerLinks.apiAccess'), href: '/contact?subject=api-access' },
     ],
@@ -165,9 +166,18 @@ export function Footer() {
             <ul className="space-y-2">
               {navigation.developers.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
-                    {item.name}
-                  </Link>
+                  {(item as any).external ? (
+                    <a
+                      href={item.href}
+                      className="text-sm text-white/50 hover:text-white transition-colors"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                      {item.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

@@ -26,20 +26,26 @@ export async function GET() {
     const studentId = session.user.id
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
 
+    // Each count is wrapped individually so a missing table (e.g. OutreachSequence
+    // before its migration has been applied in production) degrades to 0 rather
+    // than taking down the whole widget.
+    const safeCount = async (fn: () => Promise<number>) => {
+      try { return await fn() } catch (err: any) {
+        console.warn('visibility: count failed, returning 0:', err?.message)
+        return 0
+      }
+    }
+
     const [watchingCount, activeOutreachCount, recentMatchCount] = await Promise.all([
-      prisma.savedCandidate.count({
-        where: { candidateId: studentId },
-      }),
-      prisma.outreachSequence.count({
-        where: { candidateId: studentId, status: 'ACTIVE' },
-      }),
-      prisma.matchExplanation.count({
+      safeCount(() => prisma.savedCandidate.count({ where: { candidateId: studentId } })),
+      safeCount(() => prisma.outreachSequence.count({ where: { candidateId: studentId, status: 'ACTIVE' } })),
+      safeCount(() => prisma.matchExplanation.count({
         where: {
           subjectId: studentId,
           subjectType: 'STUDENT',
           createdAt: { gte: thirtyDaysAgo },
         },
-      }),
+      })),
     ])
 
     return NextResponse.json({
