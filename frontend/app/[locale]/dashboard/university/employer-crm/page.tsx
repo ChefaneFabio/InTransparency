@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
@@ -172,7 +173,8 @@ export default function EmployerCRMPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.03 }}
               >
-                <Card className="hover:shadow-md transition-shadow">
+                <Link href={`/dashboard/university/employer-crm/${encodeURIComponent(company.name)}`} className="block">
+                <Card className="hover:shadow-md transition-shadow cursor-pointer">
                   <CardContent className="pt-5 pb-5">
                     <div className="flex items-start gap-4">
                       {/* Company icon */}
@@ -247,6 +249,7 @@ export default function EmployerCRMPage() {
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
               </motion.div>
             )
           })}

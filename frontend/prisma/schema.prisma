@@ -306,6 +306,8 @@ model User {
   savedSearches        SavedSearch[]
   outreachSequencesAsRecruiter OutreachSequence[] @relation("RecruiterOutreachSequences")
   outreachSequencesAsCandidate OutreachSequence[] @relation("CandidateOutreachSequences")
+  ownedInternshipDeals         InternshipDeal[]   @relation("OwnedInternshipDeals")
+  internshipDealsAsStudent     InternshipDeal[]   @relation("InternshipDealStudent")
   recruiterSettings    RecruiterSettings?
   techParkSettings     TechParkSettings?
   campuses             Campus[]
@@ -2210,6 +2212,61 @@ enum OutreachSequenceStatus {
   COMPLETED
   REPLIED
   BOUNCED
+}
+
+// Tirocinio pipeline "deal" — HubSpot-style card that moves across stages.
+// One card per (company, student, opportunity). Can exist without a student
+// (LEAD/CONVENZIONE with company interest but no match yet).
+model InternshipDeal {
+  id             String              @id @default(cuid())
+  universityName String              // denormalised — admin's institution
+  ownerId        String              // who created / owns the deal (university admin)
+  companyName    String
+  contactName    String?
+  contactEmail   String?
+  role           String?
+  industry       String?
+
+  // Student (nullable — can assign later)
+  studentId      String?
+
+  // Stage + timeline
+  stage          InternshipDealStage @default(LEAD)
+  stageChangedAt DateTime            @default(now())
+  startDate      DateTime?
+  endDate        DateTime?
+
+  // Tutor aziendale + terms
+  tutorName      String?
+  tutorEmail     String?
+  salaryAmount   Int?
+  salaryCurrency String?             @default("EUR")
+  notes          String?             @db.Text
+
+  // Lineage — for cards backfilled from legacy records
+  sourceType     String?             // 'PLACEMENT' | 'APPLICATION' | 'CONTACT' | 'HIRING' | 'MANUAL'
+  sourceId       String?
+
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  owner   User  @relation("OwnedInternshipDeals", fields: [ownerId], references: [id], onDelete: Cascade)
+  student User? @relation("InternshipDealStudent", fields: [studentId], references: [id], onDelete: SetNull)
+
+  @@index([universityName, stage])
+  @@index([ownerId, stage])
+  @@index([studentId])
+  @@index([companyName])
+}
+
+enum InternshipDealStage {
+  LEAD
+  CONVENZIONE
+  MATCHING
+  ATTIVO
+  COMPLETATO
+  ASSUNTO
+  LOST
 }
 
 // Tech Park Settings (B2B partner profile)

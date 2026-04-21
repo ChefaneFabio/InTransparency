@@ -204,8 +204,14 @@ async function main() {
     await prisma.alumniRecord.deleteMany({ where: { userId: { in: staleIds } } })
     await prisma.profileView.deleteMany({ where: { profileUserId: { in: staleIds } } })
     await prisma.contactUsage.deleteMany({ where: { recipientId: { in: staleIds } } })
+    await prisma.internshipDeal.deleteMany({ where: { studentId: { in: staleIds } } })
     await prisma.user.deleteMany({ where: { id: { in: staleIds } } })
     console.log(`🧹 Cleaned up ${staleIds.length} stale AMMI students + related records`)
+  }
+  // Also wipe deals owned by the AMMI admin so re-seed is clean
+  const existingAdmin = await prisma.user.findUnique({ where: { email: 'monza@ammi-monza.it' }, select: { id: true } })
+  if (existingAdmin) {
+    await prisma.internshipDeal.deleteMany({ where: { ownerId: existingAdmin.id } })
   }
 
   // ── 1. Admin (Francesca Anedda — Responsabile tirocini) ───────────────
@@ -493,6 +499,104 @@ async function main() {
   }
   console.log(`✅ ${contactCount} recruiter→student contacts`)
 
+  // ── 8. Internship deals — HubSpot-style pipeline for Francesca ─────────
+  // 20 deals distributed across the 6 active stages so the kanban is full
+  // on day one without requiring the backfill path.
+  const DEAL_DISTRIBUTION: Array<{ stage: 'LEAD' | 'CONVENZIONE' | 'MATCHING' | 'ATTIVO' | 'COMPLETATO' | 'ASSUNTO'; count: number }> = [
+    { stage: 'LEAD', count: 4 },
+    { stage: 'CONVENZIONE', count: 4 },
+    { stage: 'MATCHING', count: 3 },
+    { stage: 'ATTIVO', count: 5 },
+    { stage: 'COMPLETATO', count: 2 },
+    { stage: 'ASSUNTO', count: 2 },
+  ]
+
+  const roleByDomain = (company: string): { role: string; industry: string } => {
+    if (COMPANIES_SPORT.includes(company)) {
+      return {
+        role: pick(['Sponsorship Junior', 'Match-day Operations', 'Fan Engagement Intern', 'Ticketing Specialist', 'Event Coordinator']),
+        industry: 'Sport & Entertainment',
+      }
+    }
+    if (COMPANIES_MARKETING.includes(company)) {
+      return {
+        role: pick(['Junior Content Creator', 'Social Media Intern', 'Digital PR Junior', 'Copywriter Junior']),
+        industry: 'Marketing & Communication',
+      }
+    }
+    return {
+      role: pick(['Junior Web Developer', 'UX/UI Intern', 'Junior Data Analyst', 'Frontend Developer']),
+      industry: 'Tech',
+    }
+  }
+
+  const tutors = ['Prof. Marco Ferri', 'Prof.ssa Giulia Conti', 'Prof. Luca Mariani', 'Prof.ssa Sara Ricci']
+  const ALL_PARTNER_POOL = [...COMPANIES_SPORT, ...COMPANIES_MARKETING, ...COMPANIES_TECH]
+  const usedPairs = new Set<string>()
+  let dealCount = 0
+
+  for (const { stage, count } of DEAL_DISTRIBUTION) {
+    for (let i = 0; i < count; i++) {
+      // Pick a unique (student, company) pair
+      let sid: string | null = null
+      let company: string | null = null
+      for (let attempt = 0; attempt < 30; attempt++) {
+        const s = pick(studentIds)
+        const c = pick(ALL_PARTNER_POOL)
+        const key = `${s}::${c}`
+        if (!usedPairs.has(key)) {
+          usedPairs.add(key)
+          sid = s
+          company = c
+          break
+        }
+      }
+      if (!sid || !company) continue
+
+      const { role, industry } = roleByDomain(company)
+      // Realistic stageChangedAt: older for deeper stages
+      const stageAge: Record<string, number> = {
+        LEAD: 5, CONVENZIONE: 15, MATCHING: 30, ATTIVO: 90, COMPLETATO: 200, ASSUNTO: 240,
+      }
+      const daysBack = randomInt(1, stageAge[stage])
+
+      // Some ATTIVO deals should be "at risk" (>150 days) to demo that signal
+      const atRiskAttivo = stage === 'ATTIVO' && i === 0 ? 165 : daysBack
+
+      const now = new Date()
+      const startDate = stage === 'ATTIVO' || stage === 'COMPLETATO' || stage === 'ASSUNTO'
+        ? new Date(now.getTime() - atRiskAttivo * 86_400_000)
+        : stage === 'MATCHING'
+          ? new Date(now.getTime() + randomInt(7, 45) * 86_400_000)
+          : null
+
+      await prisma.internshipDeal.create({
+        data: {
+          universityName: INSTITUTION_FULL,
+          ownerId: admin.id,
+          companyName: company,
+          contactName: `${pick(FIRST_NAMES)} ${pick(LAST_NAMES)}`,
+          contactEmail: `hr@${company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.demo`,
+          role,
+          industry,
+          studentId: stage === 'LEAD' && Math.random() > 0.5 ? null : sid,
+          stage: stage as any,
+          stageChangedAt: new Date(now.getTime() - atRiskAttivo * 86_400_000),
+          startDate,
+          tutorName: stage !== 'LEAD' ? pick(tutors) : null,
+          salaryAmount: stage !== 'LEAD' ? randomInt(600, 1000) : null,
+          salaryCurrency: 'EUR',
+          notes: stage === 'ASSUNTO'
+            ? 'Studente assunto con contratto di apprendistato al termine dello stage.'
+            : null,
+          sourceType: 'DEMO',
+        },
+      })
+      dealCount++
+    }
+  }
+  console.log(`✅ ${dealCount} internship deals seeded across kanban pipeline`)
+
   console.log(`
 🎉 AMMI Monza demo seed complete (real domain: sport + marketing + digital).
 
@@ -514,6 +618,7 @@ Data:
    ${placed.length} confirmed placements (75%)
    ${alumni.length} alumni records (~85% employed)
    ${contactCount} recruiter→student contacts
+   ${dealCount} tirocinio deals in kanban pipeline (LEAD→ASSUNTO)
 
 Positioning: "L'alternativa all'università" — 2 campus (Milano + Monza),
 Regione Lombardia + MIM funded.
