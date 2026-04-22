@@ -10,7 +10,14 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import {
+  ArrowRight,
+  Inbox,
+  FileSignature,
+  Building2,
+  GraduationCap,
+  Sparkles,
+} from 'lucide-react'
 import { FAQ } from '@/components/engagement/FAQ'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
@@ -142,6 +149,130 @@ export default function ForUniversitiesPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional Workspace — M1-M4 modules showcase (shipped 2026-04) */}
+      <section className="py-16 bg-gradient-to-br from-amber-50/40 via-white to-blue-50/40">
+        <div className="container max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10 max-w-3xl mx-auto"
+          >
+            <Badge className="mb-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
+              <Sparkles className="h-3 w-3 mr-1" />
+              Institutional Workspace
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              {t('workspaceModules.title', {
+                defaultValue: 'Built for the career office — not just another job board',
+              })}
+            </h2>
+            <p className="text-gray-600 text-lg">
+              {t('workspaceModules.subtitle', {
+                defaultValue:
+                  'Four modules that turn placement from spreadsheets into an auditable workflow. Preview on the free CORE tier; unlock writes with PREMIUM.',
+              })}
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Inbox,
+                code: 'M1',
+                title: t('workspaceModules.m1.title', { defaultValue: 'Mediation Inbox' }),
+                desc: t('workspaceModules.m1.desc', {
+                  defaultValue:
+                    'Every recruiter message to your students is reviewed by your staff first. Approve, edit, or reject. Full audit trail.',
+                }),
+                color: 'text-blue-600',
+                bg: 'bg-blue-100',
+              },
+              {
+                icon: FileSignature,
+                code: 'M2',
+                title: t('workspaceModules.m2.title', { defaultValue: 'Offer Moderation' }),
+                desc: t('workspaceModules.m2.desc', {
+                  defaultValue:
+                    'Job offers tied to your institution go to PENDING_APPROVAL. Block offers that violate stage rules before students see them.',
+                }),
+                color: 'text-purple-600',
+                bg: 'bg-purple-100',
+              },
+              {
+                icon: Building2,
+                code: 'M3',
+                title: t('workspaceModules.m3.title', { defaultValue: 'Company CRM' }),
+                desc: t('workspaceModules.m3.desc', {
+                  defaultValue:
+                    'Drag-and-drop kanban from first contact to signed convention. Track every company relationship your career office manages.',
+                }),
+                color: 'text-emerald-600',
+                bg: 'bg-emerald-100',
+              },
+              {
+                icon: GraduationCap,
+                code: 'M4',
+                title: t('workspaceModules.m4.title', { defaultValue: 'Placement Pipeline' }),
+                desc: t('workspaceModules.m4.desc', {
+                  defaultValue:
+                    'Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation. Replaces your career office spreadsheets.',
+                }),
+                color: 'text-amber-600',
+                bg: 'bg-amber-100',
+              },
+            ].map((m, i) => {
+              const Icon = m.icon
+              return (
+                <motion.div
+                  key={m.code}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                >
+                  <Card className="h-full hover:shadow-lg hover:border-primary/30 transition-all">
+                    <CardContent className="p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className={`w-10 h-10 rounded-lg ${m.bg} flex items-center justify-center`}>
+                          <Icon className={`h-5 w-5 ${m.color}`} />
+                        </div>
+                        <span className="text-xs font-mono text-muted-foreground">{m.code}</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-1.5">{m.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{m.desc}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-sm text-gray-600 mb-4 max-w-xl mx-auto">
+              {t('workspaceModules.compliance', {
+                defaultValue:
+                  'Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.',
+              })}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/pricing?for=institutions">
+                <Button variant="default" size="lg">
+                  {t('workspaceModules.pricingCta', { defaultValue: 'See pricing' })}
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/contact?subject=institutional-demo">
+                <Button variant="outline" size="lg">
+                  {t('workspaceModules.demoCta', { defaultValue: 'Request a demo' })}
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
