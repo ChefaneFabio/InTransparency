@@ -33,6 +33,7 @@ const student: NavConfig = {
         { labelKey: 'rolesForYou', href: '/dashboard/student/roles' },
         { labelKey: 'matches', href: '/dashboard/student/matches' },
         { labelKey: 'applications', href: '/dashboard/student/applications' },
+        { labelKey: 'tirocinio', href: '/dashboard/student/tirocinio' },
         { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
         { labelKey: 'selfDiscovery', href: '/self-discovery' },
         { labelKey: 'discoverCompanies', href: '/discover' },
