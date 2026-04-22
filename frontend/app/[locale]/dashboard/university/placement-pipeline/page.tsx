@@ -16,6 +16,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { useMyInstitution } from '@/lib/hooks/use-my-institution'
 
 interface Stage {
@@ -243,14 +244,12 @@ export default function PlacementPipelinePage() {
           {[0, 1, 2, 3].map(i => <Skeleton key={i} className="h-24 rounded-lg" />)}
         </div>
       ) : filtered.length === 0 ? (
-        <GlassCard>
-          <div className="p-12 text-center">
-            <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Nessun placement corrispondente</h3>
-            <p className="text-sm text-muted-foreground">
-              Prova a modificare i filtri o crea un nuovo placement da un'applicazione accettata.
-            </p>
-          </div>
+        <GlassCard hover={false}>
+          <EmptyState
+            icon={Briefcase}
+            title="Nessun placement corrispondente"
+            description="Prova a modificare i filtri, oppure crea un nuovo placement da un'applicazione accettata."
+          />
         </GlassCard>
       ) : (
         <div className="space-y-2">

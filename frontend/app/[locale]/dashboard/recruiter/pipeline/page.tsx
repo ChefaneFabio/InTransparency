@@ -27,6 +27,8 @@ import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 const STAGES = ['discovered', 'contacted', 'interviewing', 'offered', 'hired'] as const
 type Stage = (typeof STAGES)[number]
 
+// User.gpa is stored as String? in the schema (free-form: "3.8", "A-",
+// "110/110 L"), so we keep it as string in the UI and don't try to format.
 interface PipelineCandidate {
   id: string
   candidateId: string
@@ -43,7 +45,7 @@ interface PipelineCandidate {
     degree: string | null
     graduationYear: number | null
     photo: string | null
-    gpa: number | null
+    gpa: string | null
     projectCount: number
   }
 }
@@ -64,7 +66,7 @@ interface SavedCandidateResponse {
     degree: string | null
     graduationYear: number | null
     photo: string | null
-    gpa: number | null
+    gpa: string | null
     projectCount: number
   }
 }
@@ -428,10 +430,10 @@ export default function RecruiterPipelinePage() {
                                   <span className="font-medium">{candidate.projectCount}</span>
                                 </span>
                               )}
-                              {candidate.gpa != null && (
+                              {candidate.gpa && (
                                 <span className="inline-flex items-center gap-1 text-[11px] text-gray-700 bg-gray-100 px-1.5 py-0.5 rounded">
                                   <Award className="h-3 w-3" />
-                                  <span className="font-medium">{candidate.gpa.toFixed(1)}</span>
+                                  <span className="font-medium">{candidate.gpa}</span>
                                 </span>
                               )}
                               {row.rating != null && row.rating > 0 && (

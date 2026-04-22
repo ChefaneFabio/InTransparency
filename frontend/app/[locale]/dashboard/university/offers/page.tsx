@@ -20,6 +20,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Offer {
   id: string
@@ -221,12 +222,12 @@ export default function OfferModerationPage() {
         </div>
       ) : filtered.length === 0 ? (
         <Card>
-          <CardContent className="p-12 text-center">
-            <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Nessuna offerta in questo stato</h3>
-            <p className="text-sm text-muted-foreground">
-              Le offerte legate alla tua istituzione che richiedono approvazione appariranno qui.
-            </p>
+          <CardContent className="p-2">
+            <EmptyState
+              icon={Briefcase}
+              title="Nessuna offerta in questo stato"
+              description="Le offerte legate alla tua istituzione che richiedono approvazione appariranno qui. Puoi anche filtrare per 'Tutte' per vedere l'intero storico."
+            />
           </CardContent>
         </Card>
       ) : (

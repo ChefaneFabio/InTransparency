@@ -23,6 +23,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Message {
   id: string
@@ -254,14 +255,16 @@ export default function InstitutionInboxPage() {
         </div>
       ) : filtered.length === 0 ? (
         <Card>
-          <CardContent className="p-12 text-center">
-            <Inbox className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">
-              {statusFilter === 'PENDING_REVIEW' ? 'Nessun messaggio in attesa' : 'Nessun messaggio'}
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Quando un'azienda contatterà uno studente mediato, apparirà qui.
-            </p>
+          <CardContent className="p-2">
+            <EmptyState
+              icon={Inbox}
+              title={
+                statusFilter === 'PENDING_REVIEW'
+                  ? 'Nessun messaggio in attesa'
+                  : 'Nessun messaggio'
+              }
+              description="Quando un'azienda contatterà uno studente mediato, il messaggio apparirà qui per la tua revisione."
+            />
           </CardContent>
         </Card>
       ) : (

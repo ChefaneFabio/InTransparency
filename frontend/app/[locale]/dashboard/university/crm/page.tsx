@@ -427,8 +427,14 @@ export default function InstitutionCrmPage() {
 
                 <div className={`rounded-b-md border border-t-0 p-2 space-y-2 min-h-[300px] transition-colors ${colors.bg} ${isTarget ? 'ring-2 ring-primary ring-offset-1' : ''}`}>
                   {filteredLeads.length === 0 ? (
-                    <div className="text-center text-[11px] text-muted-foreground py-6 italic">
-                      {filter ? 'Nessun match' : isTarget ? 'Rilascia qui' : 'Vuoto'}
+                    <div className="flex items-center justify-center h-[240px]">
+                      <p className="text-center text-xs text-muted-foreground px-3">
+                        {filter
+                          ? 'Nessun lead corrisponde al filtro'
+                          : isTarget
+                            ? 'Rilascia qui per spostare'
+                            : 'Nessun lead in questa fase'}
+                      </p>
                     </div>
                   ) : (
                     filteredLeads.map(l => {
