@@ -273,6 +273,43 @@ async function main() {
   })
   console.log(`✅ UniversitySettings (institutionType=its, Sport + Marketing focus)`)
 
+  // Flip the matching Institution to PREMIUM with mediation + offer approval
+  // enabled so the full workspace (M1-M4) works end-to-end for this demo.
+  await prisma.institution.upsert({
+    where: { id: admin.id },
+    update: {
+      plan: 'PREMIUM',
+      mediationEnabled: true,
+      requireOfferApproval: true,
+    },
+    create: {
+      id: admin.id,
+      name: INSTITUTION_FULL,
+      slug: `ammi-monza-${admin.id.slice(-8)}`,
+      type: 'ITS',
+      plan: 'PREMIUM',
+      mediationEnabled: true,
+      requireOfferApproval: true,
+      city: 'Monza',
+      region: 'Lombardia',
+      country: 'IT',
+      primaryAdminId: admin.id,
+    },
+  })
+  console.log(`✅ Institution: PREMIUM plan, mediationEnabled=true, requireOfferApproval=true`)
+
+  // Ensure admin is staff of this institution
+  await prisma.institutionStaff.upsert({
+    where: { userId_institutionId: { userId: admin.id, institutionId: admin.id } },
+    update: { role: 'INSTITUTION_ADMIN' },
+    create: {
+      userId: admin.id,
+      institutionId: admin.id,
+      role: 'INSTITUTION_ADMIN',
+      activatedAt: new Date(),
+    },
+  })
+
   // ── 2. Students — 35 across 7 real tracks ──────────────────────────────
   const studentIds: string[] = []
   for (let i = 0; i < 35; i++) {
@@ -310,8 +347,25 @@ async function main() {
       },
     })
     studentIds.push(student.id)
+
+    // Active institutional affiliation — required for contactMode=MEDIATED.
+    // Use deleteMany+create because the compound unique uses COALESCE at
+    // the SQL layer (for nullable program support) which Prisma's upsert
+    // can't match on.
+    await prisma.institutionAffiliation.deleteMany({
+      where: { studentId: student.id, institutionId: admin.id, program: track.name },
+    })
+    await prisma.institutionAffiliation.create({
+      data: {
+        studentId: student.id,
+        institutionId: admin.id,
+        program: track.name,
+        status: 'ACTIVE',
+        startDate: new Date(Date.now() - 180 * 86_400_000),
+      },
+    })
   }
-  console.log(`✅ ${studentIds.length} students across ${TRACKS.length} real AMMI tracks`)
+  console.log(`✅ ${studentIds.length} students across ${TRACKS.length} real AMMI tracks (all affiliated ACTIVE)`)
 
   // ── 3. Projects (track-appropriate titles + skills) ────────────────────
   let projectCount = 0

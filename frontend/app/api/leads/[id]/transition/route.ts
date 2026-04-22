@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/leads/[id]/transition
@@ -33,6 +34,11 @@ export async function POST(
     const targetStage = await prisma.pipelineStage.findUnique({ where: { id: toStageId } })
     if (!targetStage || targetStage.institutionId !== lead.institutionId) {
       return NextResponse.json({ error: 'Stage not in this institution' }, { status: 400 })
+    }
+
+    if (!scope.isPlatformAdmin) {
+      const gate = await checkPremium(lead.institutionId, 'lead.stage_change')
+      if (gate) return gate
     }
 
     const fromStageId = lead.currentStageId

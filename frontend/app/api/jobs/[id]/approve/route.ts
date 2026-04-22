@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/jobs/[id]/approve
@@ -31,6 +32,11 @@ export async function POST(
     }
     if (job.status !== 'PENDING_APPROVAL') {
       return NextResponse.json({ error: 'Job not in PENDING_APPROVAL' }, { status: 400 })
+    }
+
+    if (!scope.isPlatformAdmin) {
+      const gate = await checkPremium(job.institutionId, 'job.approve')
+      if (gate) return gate
     }
 
     const now = new Date()

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/mediation/messages/[id]/reject
@@ -33,6 +34,11 @@ export async function POST(
 
     if (message.status !== 'PENDING_REVIEW') {
       return NextResponse.json({ error: 'Message not in PENDING_REVIEW' }, { status: 400 })
+    }
+
+    if (!scope.isPlatformAdmin) {
+      const gate = await checkPremium(message.thread.institutionId, 'mediation.message.reject')
+      if (gate) return gate
     }
 
     const body = await req.json().catch(() => ({}))

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/leads — create a new company lead in the pipeline.
@@ -29,6 +30,11 @@ export async function POST(req: NextRequest) {
     const scope = await getUserScope(session.user.id)
     if (!scope || (!scope.isPlatformAdmin && !scope.staffInstitutionIds.includes(institutionId))) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    if (!scope.isPlatformAdmin) {
+      const gate = await checkPremium(institutionId, 'lead.create')
+      if (gate) return gate
     }
 
     // Default to first stage (LEAD type) if not specified

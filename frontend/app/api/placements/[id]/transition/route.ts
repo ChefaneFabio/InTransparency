@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { checkPlacementAccess, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/placements/[id]/transition
@@ -33,6 +34,11 @@ export async function POST(
     const stage = await prisma.placementStage.findUnique({ where: { id: toStageId } })
     if (!stage || stage.institutionId !== placement.institutionId) {
       return NextResponse.json({ error: 'Stage not in this institution' }, { status: 400 })
+    }
+
+    if (placement.institutionId) {
+      const gate = await checkPremium(placement.institutionId, 'placement.stage_change')
+      if (gate) return gate
     }
 
     const updated = await prisma.placement.update({

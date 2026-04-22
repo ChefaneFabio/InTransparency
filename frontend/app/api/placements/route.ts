@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope, placementWhereForUser, audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 export const maxDuration = 15
 
@@ -126,6 +127,12 @@ export async function POST(req: NextRequest) {
     if (!scope) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     const allowed = scope.isPlatformAdmin || scope.staffInstitutionIds.includes(institutionId)
     if (!allowed) return NextResponse.json({ error: 'Not a staff member of this institution' }, { status: 403 })
+
+    // Premium gate — CORE institutions can read but not create placements
+    if (!scope.isPlatformAdmin) {
+      const gate = await checkPremium(institutionId, 'placement.create')
+      if (gate) return gate
+    }
 
     // Default to the first stage of that institution
     const firstStage = await prisma.placementStage.findFirst({

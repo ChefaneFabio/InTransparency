@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { deriveContactMode } from '@/lib/mediation/contact-mode'
 import { audit } from '@/lib/rbac/institution-scope'
+import { checkPremium } from '@/lib/rbac/plan-check'
 
 /**
  * POST /api/mediation/threads
@@ -39,6 +40,11 @@ export async function POST(req: NextRequest) {
         detail: 'Use the direct-unlock flow instead',
       }, { status: 400 })
     }
+
+    // deriveContactMode only returns MEDIATED for PREMIUM institutions with
+    // mediationEnabled=true, so this check is defence-in-depth.
+    const gate = await checkPremium(cm.institutionId, 'mediation.message.submit')
+    if (gate) return gate
 
     // Check for existing open thread between same company user + student — reuse if found
     let thread = await prisma.mediationThread.findFirst({

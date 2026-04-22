@@ -16,11 +16,14 @@ export async function deriveContactMode(studentId: string): Promise<{
   institutionId: string | null
   institutionName: string | null
 }> {
+  // MEDIATED requires BOTH mediationEnabled=true AND plan=PREMIUM —
+  // CORE institutions can never put students into mediated mode, even
+  // if the flag is flipped by mistake.
   const affiliation = await prisma.institutionAffiliation.findFirst({
     where: {
       studentId,
       status: 'ACTIVE',
-      institution: { mediationEnabled: true },
+      institution: { mediationEnabled: true, plan: 'PREMIUM' },
     },
     include: { institution: { select: { id: true, name: true } } },
     orderBy: { startDate: 'desc' },
@@ -51,7 +54,7 @@ export async function deriveContactModesForMany(studentIds: string[]): Promise<M
     where: {
       studentId: { in: studentIds },
       status: 'ACTIVE',
-      institution: { mediationEnabled: true },
+      institution: { mediationEnabled: true, plan: 'PREMIUM' },
     },
     include: { institution: { select: { id: true, name: true } } },
     orderBy: { startDate: 'desc' },
