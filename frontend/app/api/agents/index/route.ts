@@ -29,6 +29,8 @@ export async function GET(req: NextRequest) {
       glossary: '/api/agents/glossary',
       changelog: '/api/agents/changelog',
       facts: '/api/agents/facts',
+      whatsNew: '/api/agents/whats-new',
+      frameworks: '/api/agents/frameworks',
     },
     humanSurfaces: {
       homepage: 'https://www.in-transparency.com',

@@ -38,6 +38,7 @@ export const PREMIUM_FEATURES = [
   'placement.stage_change',
   'placement.evaluation.submit',
   'placement.hours.log',
+  'convention.generate',
   'reminder.send',
   'reminder.rule.edit',
 ] as const

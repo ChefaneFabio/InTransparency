@@ -21,7 +21,7 @@ import {
 import {
   ArrowLeft, Building2, Briefcase, GraduationCap, Clock, Target, Calendar,
   Users, CheckCircle2, AlertTriangle, Plus, MessageCircle, TrendingUp,
-  FileText, Loader2,
+  FileText, Loader2, Download,
 } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
@@ -252,6 +252,16 @@ export default function PlacementDetailPage() {
           </div>
           {data.canEdit && (
             <div className="flex gap-2 flex-wrap">
+              <Button
+                size="sm"
+                variant="outline"
+                asChild
+                title="Scarica la bozza di convenzione di tirocinio (PDF)"
+              >
+                <a href={`/api/placements/${p.id}/convention`} target="_blank" rel="noopener">
+                  <Download className="h-3.5 w-3.5 mr-1.5" /> Convenzione PDF
+                </a>
+              </Button>
               <Dialog open={stageOpen} onOpenChange={setStageOpen}>
                 <DialogTrigger asChild>
                   <Button size="sm" variant="outline">
