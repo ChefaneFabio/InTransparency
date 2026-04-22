@@ -15,6 +15,8 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
+import { useMyInstitution } from '@/lib/hooks/use-my-institution'
 
 interface Stage {
   id: string; name: string; order: number; type: string
@@ -70,6 +72,7 @@ function daysSince(date: string | null): number | null {
 
 export default function PlacementPipelinePage() {
   const router = useRouter()
+  const { institution } = useMyInstitution()
   const [placements, setPlacements] = useState<Placement[]>([])
   const [stages, setStages] = useState<Stage[]>([])
   const [loading, setLoading] = useState(true)
@@ -130,6 +133,11 @@ export default function PlacementPipelinePage() {
 
   return (
     <div className="space-y-6 pb-12">
+      <PremiumUpgradeBanner
+        institutionName={institution?.name}
+        plan={institution?.plan}
+        feature="placement"
+      />
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

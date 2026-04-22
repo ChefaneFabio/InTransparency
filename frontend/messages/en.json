@@ -13817,5 +13817,24 @@
       "label": "Full self-service rights",
       "source": "Art. 15/16/17/20/22 at /dashboard/student/privacy"
     }
+  },
+  "premiumBanner": {
+    "coreLabel": "Currently on CORE",
+    "cta": "Upgrade to PREMIUM",
+    "forInstitution": "For",
+    "title": {
+      "inbox": "Unlock the Mediation Inbox",
+      "offers": "Unlock Offer Moderation",
+      "crm": "Unlock Company CRM",
+      "placement": "Unlock Placement Pipeline",
+      "generic": "Unlock the Institutional Workspace"
+    },
+    "desc": {
+      "inbox": "Preview messages from recruiters, but approving, editing, or sending replies on behalf of students requires PREMIUM.",
+      "offers": "You can view pending offers, but approving or rejecting them before they reach your students requires PREMIUM.",
+      "crm": "You can browse the company pipeline, but adding leads or moving them between stages requires PREMIUM.",
+      "placement": "You can view tirocini, but creating new placements, logging hours, or transitioning stages requires PREMIUM.",
+      "generic": "Reads are free — writes, approvals, and automations require a PREMIUM plan."
+    }
   }
 }

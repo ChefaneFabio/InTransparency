@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 
 interface Message {
   id: string
@@ -51,6 +52,8 @@ function ageLabel(hours: number): string {
 
 export default function InstitutionInboxPage() {
   const [institutionId, setInstitutionId] = useState<string | null>(null)
+  const [institutionName, setInstitutionName] = useState<string | null>(null)
+  const [institutionPlan, setInstitutionPlan] = useState<'CORE' | 'PREMIUM' | null>(null)
   const [data, setData] = useState<InboxData | null>(null)
   const [loading, setLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState('PENDING_REVIEW')
@@ -71,7 +74,10 @@ export default function InstitutionInboxPage() {
         const staffInst = data.institutions.find((i: any) =>
           ['INSTITUTION_ADMIN', 'INSTITUTION_STAFF'].includes(i.role)
         )
-        setInstitutionId(staffInst?.id || data.institutions[0].id)
+        const picked = staffInst || data.institutions[0]
+        setInstitutionId(picked.id)
+        setInstitutionName(picked.name || null)
+        setInstitutionPlan(picked.plan || null)
       })
       .catch(() => setLoading(false))
   }, [])
@@ -168,6 +174,11 @@ export default function InstitutionInboxPage() {
 
   return (
     <div className="space-y-5 pb-12">
+      <PremiumUpgradeBanner
+        institutionName={institutionName}
+        plan={institutionPlan}
+        feature="inbox"
+      />
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

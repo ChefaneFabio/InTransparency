@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 
 interface Offer {
   id: string
@@ -46,6 +47,8 @@ interface OffersData {
 
 export default function OfferModerationPage() {
   const [institutionId, setInstitutionId] = useState<string | null>(null)
+  const [institutionName, setInstitutionName] = useState<string | null>(null)
+  const [institutionPlan, setInstitutionPlan] = useState<'CORE' | 'PREMIUM' | null>(null)
   const [data, setData] = useState<OffersData | null>(null)
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('PENDING_APPROVAL')
@@ -64,7 +67,10 @@ export default function OfferModerationPage() {
         const staffInst = d.institutions.find((i: any) =>
           ['INSTITUTION_ADMIN', 'INSTITUTION_STAFF'].includes(i.role)
         )
-        setInstitutionId(staffInst?.id || d.institutions[0].id)
+        const picked = staffInst || d.institutions[0]
+        setInstitutionId(picked.id)
+        setInstitutionName(picked.name || null)
+        setInstitutionPlan(picked.plan || null)
       })
       .catch(() => setLoading(false))
   }, [])
@@ -148,6 +154,11 @@ export default function OfferModerationPage() {
 
   return (
     <div className="space-y-5 pb-12">
+      <PremiumUpgradeBanner
+        institutionName={institutionName}
+        plan={institutionPlan}
+        feature="offers"
+      />
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

@@ -13844,5 +13844,24 @@
       "label": "Diritti self-service completi",
       "source": "Art. 15/16/17/20/22 su /dashboard/student/privacy"
     }
+  },
+  "premiumBanner": {
+    "coreLabel": "Piano CORE attivo",
+    "cta": "Passa a PREMIUM",
+    "forInstitution": "Per",
+    "title": {
+      "inbox": "Sblocca la Mediation Inbox",
+      "offers": "Sblocca la Moderazione Offerte",
+      "crm": "Sblocca il CRM Aziende",
+      "placement": "Sblocca la Pipeline Tirocini",
+      "generic": "Sblocca la Workspace Istituzionale"
+    },
+    "desc": {
+      "inbox": "Puoi vedere i messaggi dai recruiter, ma approvare, modificare o rispondere a nome degli studenti richiede PREMIUM.",
+      "offers": "Puoi vedere le offerte in attesa, ma approvarle o rifiutarle prima che raggiungano gli studenti richiede PREMIUM.",
+      "crm": "Puoi navigare la pipeline aziende, ma aggiungere lead o spostarli tra fasi richiede PREMIUM.",
+      "placement": "Puoi vedere i tirocini, ma creare nuovi stage, registrare ore o cambiare fase richiede PREMIUM.",
+      "generic": "Le letture sono gratuite — scritture, approvazioni e automazioni richiedono il piano PREMIUM."
+    }
   }
 }
