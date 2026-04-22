@@ -9331,7 +9331,9 @@
     "view": "View",
     "contact": "Contact",
     "addedThisWeek": "Added this week",
-    "staleWarning": "Over 2 weeks in this stage"
+    "staleWarning": "Over 2 weeks in this stage",
+    "collapseColumn": "Collapse column",
+    "expandColumn": "Expand column"
   },
   "recruiterScheduling": {
     "title": "Interview Scheduling",

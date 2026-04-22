@@ -45,9 +45,9 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
         <div className="hidden xl:flex items-center h-14 gap-1">
           <Link
             href={homeHref}
-            className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+            className={`relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-md transition-all ${
               pathname === homeHref
-                ? 'bg-primary/10 text-primary'
+                ? 'text-primary after:absolute after:bottom-[-13px] after:left-2 after:right-2 after:h-0.5 after:bg-primary after:rounded-t'
                 : 'text-muted-foreground hover:text-foreground hover:bg-muted'
             }`}
           >
@@ -59,13 +59,14 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
             // Single-item group: render as direct link
             if (group.items.length === 1) {
               const item = group.items[0]
+              const active = isActive(item.href)
               return (
                 <Link
                   key={group.labelKey}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(item.href)
-                      ? 'bg-primary/10 text-primary'
+                  className={`relative px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                    active
+                      ? 'text-primary after:absolute after:bottom-[-13px] after:left-2 after:right-2 after:h-0.5 after:bg-primary after:rounded-t'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
@@ -75,33 +76,39 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
             }
 
             // Multi-item group: render as dropdown
+            const groupActive = isGroupActive(group)
             return (
               <DropdownMenu key={group.labelKey}>
                 <DropdownMenuTrigger asChild>
                   <button
-                    className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                      isGroupActive(group)
-                        ? 'bg-primary/10 text-primary'
+                    className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                      groupActive
+                        ? 'text-primary after:absolute after:bottom-[-13px] after:left-2 after:right-2 after:h-0.5 after:bg-primary after:rounded-t'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     {t(`${role}.${group.labelKey}`)}
-                    <ChevronDown className="h-3.5 w-3.5" />
+                    <ChevronDown className="h-3.5 w-3.5 opacity-60" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56">
-                  {group.items.map((item) => (
-                    <DropdownMenuItem key={item.href} asChild>
-                      <Link
-                        href={item.href}
-                        className={
-                          isActive(item.href) ? 'bg-accent font-medium' : ''
-                        }
-                      >
-                        {t(`${role}.items.${item.labelKey}`)}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                <DropdownMenuContent align="start" className="w-60">
+                  {group.items.map((item) => {
+                    const active = isActive(item.href)
+                    return (
+                      <DropdownMenuItem key={item.href} asChild>
+                        <Link
+                          href={item.href}
+                          className={`relative pl-4 ${
+                            active
+                              ? 'bg-primary/5 font-medium text-primary before:absolute before:left-0 before:top-1 before:bottom-1 before:w-0.5 before:bg-primary before:rounded-r'
+                              : ''
+                          }`}
+                        >
+                          {t(`${role}.items.${item.labelKey}`)}
+                        </Link>
+                      </DropdownMenuItem>
+                    )
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
             )
@@ -170,6 +177,7 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
               }
 
               // Multi-item group: collapsible
+              const groupActive = isGroupActive(group)
               return (
                 <div key={group.labelKey}>
                   <button
@@ -177,12 +185,15 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
                       setExpandedGroup(isExpanded ? null : group.labelKey)
                     }
                     className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                      isGroupActive(group)
+                      groupActive
                         ? 'bg-primary/10 text-primary'
                         : 'text-foreground hover:bg-muted'
                     }`}
                   >
-                    {t(`${role}.${group.labelKey}`)}
+                    <span className="flex items-center gap-2">
+                      {groupActive && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
+                      {t(`${role}.${group.labelKey}`)}
+                    </span>
                     <ChevronRight
                       className={`h-4 w-4 transition-transform ${
                         isExpanded ? 'rotate-90' : ''
@@ -190,13 +201,13 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
                     />
                   </button>
                   {isExpanded && (
-                    <div className="ml-4 mt-1 space-y-1">
+                    <div className="ml-4 mt-1 space-y-1 border-l pl-3">
                       {group.items.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
-                          className={`block px-4 py-2.5 rounded-lg text-sm transition-colors ${
+                          className={`block px-3 py-2.5 rounded-lg text-sm transition-colors ${
                             isActive(item.href)
                               ? 'bg-primary/10 text-primary font-medium'
                               : 'text-muted-foreground hover:text-foreground hover:bg-muted'

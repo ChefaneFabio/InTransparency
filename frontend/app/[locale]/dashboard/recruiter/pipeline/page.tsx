@@ -20,6 +20,8 @@ import {
   FolderGit2,
   Award,
   Clock,
+  ChevronRight,
+  ChevronDown,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
@@ -103,6 +105,8 @@ const stageAccent: Record<Stage, { border: string; tint: string; dot: string; ch
   hired:        { border: 'border-t-green-600',  tint: 'bg-green-50/70',  dot: 'bg-green-600',  chip: 'bg-green-100 text-green-700' },
 }
 
+const COLLAPSE_STORAGE_KEY = 'recruiterPipeline.collapsedStages'
+
 export default function RecruiterPipelinePage() {
   const t = useTranslations('recruiterPipeline')
   const [candidates, setCandidates] = useState<PipelineCandidate[]>([])
@@ -110,7 +114,32 @@ export default function RecruiterPipelinePage() {
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [dragOver, setDragOver] = useState<Stage | null>(null)
+  const [collapsed, setCollapsed] = useState<Set<Stage>>(new Set())
   const draggedId = useRef<string | null>(null)
+
+  // Hydrate collapsed-stages preference from localStorage on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const raw = window.localStorage.getItem(COLLAPSE_STORAGE_KEY)
+      if (raw) {
+        const arr = JSON.parse(raw) as string[]
+        setCollapsed(new Set(arr.filter((s): s is Stage => (STAGES as readonly string[]).includes(s))))
+      }
+    } catch { /* ignore */ }
+  }, [])
+
+  const toggleCollapse = (stage: Stage) => {
+    setCollapsed(prev => {
+      const next = new Set(Array.from(prev))
+      if (next.has(stage)) next.delete(stage)
+      else next.add(stage)
+      try {
+        window.localStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(Array.from(next)))
+      } catch { /* ignore */ }
+      return next
+    })
+  }
 
   const fetchCandidates = useCallback(() => {
     setLoading(true)
@@ -328,12 +357,13 @@ export default function RecruiterPipelinePage() {
       </div>
 
       {/* Kanban board */}
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4 items-start">
         {STAGES.map(stage => {
           const stageCandidates = getCandidatesForStage(stage)
           const accent = stageAccent[stage]
           const isDropTarget = dragOver === stage
           const addedThisWeek = stageCandidates.filter(c => daysAgo(c.savedAt) <= 7).length
+          const isCollapsed = collapsed.has(stage)
 
           return (
             <div
@@ -346,8 +376,22 @@ export default function RecruiterPipelinePage() {
               }`}
             >
               {/* Column header */}
-              <div className="flex items-center justify-between px-3 py-2.5 border-b bg-white/70 backdrop-blur-sm rounded-t-lg">
+              <button
+                type="button"
+                onClick={() => toggleCollapse(stage)}
+                className="flex items-center justify-between w-full px-3 py-2.5 border-b bg-white/70 backdrop-blur-sm rounded-t-lg hover:bg-white transition-colors"
+                aria-expanded={!isCollapsed}
+                title={
+                  isCollapsed
+                    ? t('expandColumn', { defaultValue: 'Expand column' })
+                    : t('collapseColumn', { defaultValue: 'Collapse column' })
+                }
+              >
                 <div className="flex items-center gap-2 min-w-0">
+                  {isCollapsed
+                    ? <ChevronRight className="h-3.5 w-3.5 text-gray-500 shrink-0" />
+                    : <ChevronDown className="h-3.5 w-3.5 text-gray-500 shrink-0" />
+                  }
                   <span className={`h-2 w-2 rounded-full ${accent.dot} shrink-0`} />
                   <h3 className="font-semibold text-sm uppercase tracking-wide text-gray-700 truncate">
                     {t(`stages.${stage}`)}
@@ -366,9 +410,10 @@ export default function RecruiterPipelinePage() {
                     {stageCandidates.length}
                   </Badge>
                 </div>
-              </div>
+              </button>
 
-              {/* Cards */}
+              {/* Cards — hidden when column is collapsed */}
+              {!isCollapsed && (
               <div className="p-2 space-y-2 min-h-[260px]">
                 {stageCandidates.length === 0 ? (
                   <div className="h-[220px] flex items-center justify-center">
@@ -504,6 +549,7 @@ export default function RecruiterPipelinePage() {
                   })
                 )}
               </div>
+              )}
             </div>
           )
         })}
