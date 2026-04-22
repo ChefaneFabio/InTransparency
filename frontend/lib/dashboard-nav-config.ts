@@ -153,6 +153,7 @@ const itsExtras: NavGroup[] = [
   {
     labelKey: 'internships',
     items: [
+      { labelKey: 'placementPipeline', href: '/dashboard/university/placement-pipeline' },
       { labelKey: 'internshipPipeline', href: '/dashboard/university/internship-pipeline' },
       { labelKey: 'internshipTracker', href: '/dashboard/university/internship-tracker' },
       { labelKey: 'board', href: '/dashboard/university/board' },
@@ -161,6 +162,7 @@ const itsExtras: NavGroup[] = [
   {
     labelKey: 'companies',
     items: [
+      { labelKey: 'crm', href: '/dashboard/university/crm' },
       { labelKey: 'partnerCompanies', href: '/dashboard/university/employer-crm' },
       { labelKey: 'conventions', href: '/dashboard/university/conventions' },
     ],
