@@ -5285,6 +5285,7 @@
       "partTime": "Part-time",
       "internship": "Stage",
       "contract": "Contratto",
+      "freelance": "Freelance",
       "workMode": "Modalità",
       "remote": "Remoto",
       "hybrid": "Ibrido",
@@ -5292,6 +5293,8 @@
       "location": "Città",
       "clear": "Cancella"
     },
+    "available": "disponibili",
+    "recommended": "Consigliati per te",
     "match": "{score}% compatibilità",
     "apply": "Candidati",
     "results": "{count} opportunità trovate",

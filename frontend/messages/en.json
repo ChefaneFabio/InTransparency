@@ -5312,6 +5312,7 @@
       "partTime": "Part-time",
       "internship": "Internship",
       "contract": "Contract",
+      "freelance": "Freelance",
       "workMode": "Work Mode",
       "remote": "Remote",
       "hybrid": "Hybrid",
@@ -5319,6 +5320,8 @@
       "location": "Location",
       "clear": "Clear"
     },
+    "available": "available",
+    "recommended": "Recommended for you",
     "match": "{score}% match",
     "apply": "Apply",
     "results": "{count} opportunities found",

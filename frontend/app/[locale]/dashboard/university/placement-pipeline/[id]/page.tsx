@@ -9,9 +9,10 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger,
 } from '@/components/ui/dialog'
@@ -20,10 +21,9 @@ import {
 } from '@/components/ui/select'
 import {
   ArrowLeft, Building2, Briefcase, GraduationCap, Clock, Target, Calendar,
-  Users, CheckCircle2, AlertTriangle, Plus, MessageCircle, TrendingUp,
-  FileText, Loader2, Download,
+  Users, CheckCircle2, AlertTriangle, TrendingUp,
+  FileText, Loader2, Download, Mail, MapPin,
 } from 'lucide-react'
-import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Stage { id: string; name: string; order: number; type: string }
 interface Evaluation {
@@ -69,13 +69,25 @@ interface Detail {
   stages: Stage[]
 }
 
-function name(u: { firstName: string | null; lastName: string | null } | null, fallback = 'N/A'): string {
+function fullName(u: { firstName: string | null; lastName: string | null } | null, fallback = '—'): string {
   if (!u) return fallback
   return [u.firstName, u.lastName].filter(Boolean).join(' ') || fallback
 }
 
 function initials(s: string): string {
-  return s.split(' ').map(x => x[0]).slice(0, 2).join('').toUpperCase()
+  return s.split(' ').map(x => x[0]).slice(0, 2).join('').toUpperCase() || '?'
+}
+
+function fmtDate(d: string): string {
+  return new Date(d).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+
+const OFFER_TYPE_LABEL: Record<string, string> = {
+  TIROCINIO_CURRICULARE: 'Tirocinio curriculare',
+  TIROCINIO_EXTRA: 'Tirocinio extracurriculare',
+  APPRENDISTATO: 'Apprendistato',
+  PLACEMENT: 'Placement',
+  PART_TIME: 'Part-time',
 }
 
 export default function PlacementDetailPage() {
@@ -84,8 +96,8 @@ export default function PlacementDetailPage() {
 
   const [data, setData] = useState<Detail | null>(null)
   const [loading, setLoading] = useState(true)
+  const [tab, setTab] = useState('overview')
 
-  // Forms
   const [hoursOpen, setHoursOpen] = useState(false)
   const [hoursForm, setHoursForm] = useState({ periodStart: '', periodEnd: '', hours: '', notes: '' })
   const [hoursSaving, setHoursSaving] = useState(false)
@@ -141,10 +153,7 @@ export default function PlacementDetailPage() {
       const res = await fetch(`/api/placements/${placementId}/evaluations`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          kind: evalForm.kind,
-          comments: evalForm.comments || undefined,
-        }),
+        body: JSON.stringify({ kind: evalForm.kind, comments: evalForm.comments || undefined }),
       })
       if (res.ok) {
         setEvalOpen(false)
@@ -178,9 +187,12 @@ export default function PlacementDetailPage() {
 
   if (loading) {
     return (
-      <div className="space-y-4 p-4 max-w-5xl mx-auto">
-        <Skeleton className="h-32 w-full rounded-xl" />
-        <Skeleton className="h-64 w-full rounded-xl" />
+      <div className="max-w-6xl mx-auto p-4 lg:p-6">
+        <Skeleton className="h-8 w-24 mb-4" />
+        <div className="grid lg:grid-cols-[320px_1fr] gap-5">
+          <Skeleton className="h-96 w-full rounded-xl" />
+          <Skeleton className="h-96 w-full rounded-xl" />
+        </div>
       </div>
     )
   }
@@ -188,9 +200,15 @@ export default function PlacementDetailPage() {
   if (!data?.placement) {
     return (
       <div className="max-w-5xl mx-auto p-12 text-center">
-        <p className="text-muted-foreground">Placement non trovato o non autorizzato.</p>
-        <Button asChild variant="outline" className="mt-4">
-          <Link href="/dashboard/university/placement-pipeline"><ArrowLeft className="h-4 w-4 mr-2" /> Torna alla pipeline</Link>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+          <AlertTriangle className="h-8 w-8 text-muted-foreground" />
+        </div>
+        <h2 className="text-lg font-semibold mb-1">Placement non trovato</h2>
+        <p className="text-muted-foreground mb-4">Il tirocinio non esiste o non hai i permessi per visualizzarlo.</p>
+        <Button asChild variant="outline">
+          <Link href="/dashboard/university/placement-pipeline">
+            <ArrowLeft className="h-4 w-4 mr-2" /> Torna alla pipeline
+          </Link>
         </Button>
       </div>
     )
@@ -203,195 +221,51 @@ export default function PlacementDetailPage() {
     : null
   const overdueDeadlines = p.deadlines.filter(d => !d.completedAt && new Date(d.dueAt) < new Date())
   const upcomingDeadlines = p.deadlines.filter(d => !d.completedAt && new Date(d.dueAt) >= new Date())
-
-  const studentName = name(p.student, 'Studente non assegnato')
-
-  // Pipeline timeline — find position of current stage in the configured stages
+  const studentName = fullName(p.student, 'Studente non assegnato')
   const currentOrder = p.currentStage?.order || 0
-  const totalStages = data.stages.length
 
   return (
-    <div className="space-y-5 pb-12 max-w-5xl mx-auto">
-      <Button variant="ghost" size="sm" asChild>
+    <div className="max-w-6xl mx-auto p-4 lg:p-6 space-y-4">
+      {/* Breadcrumb */}
+      <Button variant="ghost" size="sm" asChild className="-ml-2">
         <Link href="/dashboard/university/placement-pipeline">
           <ArrowLeft className="h-4 w-4 mr-1.5" /> Pipeline
         </Link>
       </Button>
 
-      <MetricHero gradient="primary">
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex items-start gap-4 flex-1">
-            {p.student ? (
-              <Avatar className="h-14 w-14">
-                <AvatarImage src={p.student.photo || undefined} />
-                <AvatarFallback className="bg-primary/10 text-primary text-sm font-semibold">
-                  {initials(studentName)}
-                </AvatarFallback>
-              </Avatar>
-            ) : (
-              <div className="h-14 w-14 rounded-full bg-muted flex items-center justify-center">
-                <Users className="h-6 w-6 text-muted-foreground" />
-              </div>
-            )}
-            <div className="min-w-0 flex-1">
-              <h1 className="text-xl md:text-2xl font-bold">{studentName}</h1>
-              <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground flex-wrap">
-                <span className="inline-flex items-center gap-1"><Briefcase className="h-3.5 w-3.5" /> {p.jobTitle}</span>
-                <span>—</span>
-                <span className="inline-flex items-center gap-1"><Building2 className="h-3.5 w-3.5" /> {p.companyName}</span>
-              </div>
-              {p.student?.degree && (
-                <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
-                  <GraduationCap className="h-3.5 w-3.5" /> {p.student.degree}
-                </div>
-              )}
-              {p.currentStage && (
-                <Badge className="mt-2">{p.currentStage.name}</Badge>
-              )}
-            </div>
-          </div>
-          {data.canEdit && (
-            <div className="flex gap-2 flex-wrap">
-              <Button
-                size="sm"
-                variant="outline"
-                asChild
-                title="Scarica la bozza di convenzione di tirocinio (PDF)"
-              >
-                <a href={`/api/placements/${p.id}/convention`} target="_blank" rel="noopener">
-                  <Download className="h-3.5 w-3.5 mr-1.5" /> Convenzione PDF
-                </a>
-              </Button>
-              <Dialog open={stageOpen} onOpenChange={setStageOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm" variant="outline">
-                    <TrendingUp className="h-3.5 w-3.5 mr-1.5" /> Cambia stage
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Sposta a un altro stage</DialogTitle>
-                    <DialogDescription>Il cambio sarà tracciato nell'audit trail.</DialogDescription>
-                  </DialogHeader>
-                  <div className="space-y-3">
-                    <div>
-                      <Label>Nuovo stage</Label>
-                      <Select value={stageTarget} onValueChange={setStageTarget}>
-                        <SelectTrigger><SelectValue placeholder="Seleziona…" /></SelectTrigger>
-                        <SelectContent>
-                          {data.stages.filter(s => s.id !== p.currentStage?.id).map(s => (
-                            <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label>Nota (opzionale)</Label>
-                      <Textarea value={stageNote} onChange={e => setStageNote(e.target.value)} rows={2} />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button variant="outline" onClick={() => setStageOpen(false)} disabled={stageSaving}>Annulla</Button>
-                    <Button onClick={changeStage} disabled={stageSaving || !stageTarget}>
-                      {stageSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Conferma'}
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
-              <Dialog open={hoursOpen} onOpenChange={setHoursOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm">
-                    <Clock className="h-3.5 w-3.5 mr-1.5" /> Log ore
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Registra ore settimanali</DialogTitle>
-                    <DialogDescription>Le ore inserite dai tutor sono auto-confermate.</DialogDescription>
-                  </DialogHeader>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <Label>Dal</Label>
-                      <Input type="date" value={hoursForm.periodStart} onChange={e => setHoursForm(f => ({ ...f, periodStart: e.target.value }))} />
-                    </div>
-                    <div>
-                      <Label>Al</Label>
-                      <Input type="date" value={hoursForm.periodEnd} onChange={e => setHoursForm(f => ({ ...f, periodEnd: e.target.value }))} />
-                    </div>
-                    <div>
-                      <Label>Ore totali</Label>
-                      <Input type="number" min={0} max={168} value={hoursForm.hours} onChange={e => setHoursForm(f => ({ ...f, hours: e.target.value }))} placeholder="40" />
-                    </div>
-                    <div className="col-span-2">
-                      <Label>Note (opzionale)</Label>
-                      <Textarea rows={2} value={hoursForm.notes} onChange={e => setHoursForm(f => ({ ...f, notes: e.target.value }))} />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button variant="outline" onClick={() => setHoursOpen(false)} disabled={hoursSaving}>Annulla</Button>
-                    <Button onClick={logHours} disabled={hoursSaving || !hoursForm.periodStart || !hoursForm.periodEnd || !hoursForm.hours}>
-                      {hoursSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Registra'}
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
-              <Dialog open={evalOpen} onOpenChange={setEvalOpen}>
-                <DialogTrigger asChild>
-                  <Button size="sm" variant="outline">
-                    <FileText className="h-3.5 w-3.5 mr-1.5" /> Valutazione
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Submit valutazione</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-3">
-                    <div>
-                      <Label>Tipo</Label>
-                      <Select value={evalForm.kind} onValueChange={v => setEvalForm(f => ({ ...f, kind: v }))}>
-                        <SelectTrigger><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="MID">Intermedia</SelectItem>
-                          <SelectItem value="FINAL">Finale</SelectItem>
-                          {data.viewerRole !== 'STUDENT' && <SelectItem value="INCIDENT">Incident</SelectItem>}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label>Commenti</Label>
-                      <Textarea rows={4} value={evalForm.comments} onChange={e => setEvalForm(f => ({ ...f, comments: e.target.value }))} placeholder="Punti di forza, aree di miglioramento, raccomandazioni…" />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button variant="outline" onClick={() => setEvalOpen(false)} disabled={evalSaving}>Annulla</Button>
-                    <Button onClick={submitEvaluation} disabled={evalSaving}>
-                      {evalSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Invia'}
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </div>
-          )}
-        </div>
-      </MetricHero>
-
-      {/* Stage timeline strip */}
+      {/* Stage timeline strip — sits above grid for full width */}
       {data.stages.length > 0 && (
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between gap-1 overflow-x-auto pb-1">
+            <div className="flex items-center justify-between gap-1 overflow-x-auto">
               {data.stages.map((s, i) => {
                 const isDone = s.order < currentOrder
                 const isCurrent = s.id === p.currentStage?.id
                 return (
-                  <div key={s.id} className="flex items-center gap-1 flex-shrink-0">
-                    <div className={`h-2 w-2 rounded-full ${isCurrent ? 'bg-primary ring-2 ring-primary/30' : isDone ? 'bg-primary' : 'bg-muted'}`} />
-                    <span className={`text-[11px] whitespace-nowrap ${isCurrent ? 'font-semibold text-foreground' : isDone ? 'text-muted-foreground' : 'text-muted-foreground/60'}`}>
+                  <div key={s.id} className="flex items-center gap-1.5 flex-shrink-0">
+                    <div
+                      className={`h-2.5 w-2.5 rounded-full transition-all ${
+                        isCurrent
+                          ? 'bg-primary ring-4 ring-primary/20'
+                          : isDone
+                            ? 'bg-primary'
+                            : 'bg-muted border border-muted-foreground/30'
+                      }`}
+                    />
+                    <span
+                      className={`text-xs whitespace-nowrap ${
+                        isCurrent
+                          ? 'font-semibold text-foreground'
+                          : isDone
+                            ? 'text-muted-foreground'
+                            : 'text-muted-foreground/60'
+                      }`}
+                    >
                       {s.name}
                     </span>
-                    {i < data.stages.length - 1 && <div className={`h-px w-6 ${isDone ? 'bg-primary' : 'bg-muted'}`} />}
+                    {i < data.stages.length - 1 && (
+                      <div className={`h-px w-6 md:w-10 ${isDone ? 'bg-primary' : 'bg-muted'}`} />
+                    )}
                   </div>
                 )
               })}
@@ -400,148 +274,505 @@ export default function PlacementDetailPage() {
         </Card>
       )}
 
-      <div className="grid md:grid-cols-3 gap-4">
-        {/* Hours card */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <Target className="h-4 w-4" /> Ore
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold">{p.completedHours}</span>
-              {p.plannedHours && <span className="text-sm text-muted-foreground">/ {p.plannedHours}h</span>}
-            </div>
-            {hoursPct !== null && <Progress value={hoursPct} className="h-2" />}
-            {daysSinceHours !== null && (
-              <p className={`text-xs ${daysSinceHours > 7 ? 'text-red-600' : 'text-muted-foreground'}`}>
-                {daysSinceHours > 7 && <AlertTriangle className="inline h-3 w-3 mr-1" />}
-                Ultimo log: {daysSinceHours}g fa
-              </p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Tutors */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <Users className="h-4 w-4" /> Tutor
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2 text-xs">
-            <div>
-              <span className="text-muted-foreground">Accademico:</span>{' '}
-              <span className="font-medium">{name(p.academicTutor, '—')}</span>
-              {p.academicTutor?.email && <div className="text-muted-foreground">{p.academicTutor.email}</div>}
-            </div>
-            <div>
-              <span className="text-muted-foreground">Aziendale:</span>{' '}
-              <span className="font-medium">{name(p.companyTutor, '—')}</span>
-              {p.companyTutor?.email && <div className="text-muted-foreground">{p.companyTutor.email}</div>}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Dates */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" /> Date
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-1 text-xs">
-            <div>Inizio: <span className="font-medium">{new Date(p.startDate).toLocaleDateString('it-IT')}</span></div>
-            {p.endDate && (
-              <div>Fine: <span className="font-medium">{new Date(p.endDate).toLocaleDateString('it-IT')}</span></div>
-            )}
-            {p.convention && (
-              <div className="pt-1 border-t">
-                Convenzione: <Badge variant="outline" className="text-[10px]">{p.convention.status}</Badge>
+      {/* 2-column layout: sticky sidebar + tabbed main */}
+      <div className="grid lg:grid-cols-[320px_1fr] gap-5 items-start">
+        {/* ── Sidebar ── */}
+        <aside className="space-y-4 lg:sticky lg:top-4">
+          {/* Identity + actions */}
+          <Card>
+            <CardContent className="p-5 space-y-4">
+              <div className="flex flex-col items-center text-center">
+                {p.student ? (
+                  <Avatar className="h-16 w-16 mb-3">
+                    <AvatarImage src={p.student.photo || undefined} />
+                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                      {initials(studentName)}
+                    </AvatarFallback>
+                  </Avatar>
+                ) : (
+                  <div className="h-16 w-16 mb-3 rounded-full bg-muted flex items-center justify-center">
+                    <Users className="h-7 w-7 text-muted-foreground" />
+                  </div>
+                )}
+                <h1 className="text-lg font-semibold leading-tight">{studentName}</h1>
+                {p.student?.degree && (
+                  <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+                    <GraduationCap className="h-3 w-3" /> {p.student.degree}
+                  </p>
+                )}
+                {p.student?.email && (
+                  <a
+                    href={`mailto:${p.student.email}`}
+                    className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1 hover:text-primary"
+                  >
+                    <Mail className="h-3 w-3" /> {p.student.email}
+                  </a>
+                )}
               </div>
-            )}
-          </CardContent>
-        </Card>
+
+              {/* Placement */}
+              <div className="space-y-1.5 pt-3 border-t text-sm">
+                <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                  <Briefcase className="h-3 w-3" /> Ruolo
+                </div>
+                <div className="font-medium">{p.jobTitle}</div>
+                <div className="text-xs text-muted-foreground">
+                  {OFFER_TYPE_LABEL[p.offerType] || p.offerType}
+                </div>
+              </div>
+
+              <div className="space-y-1.5 pt-3 border-t text-sm">
+                <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                  <Building2 className="h-3 w-3" /> Azienda
+                </div>
+                <div className="font-medium">{p.companyName}</div>
+              </div>
+
+              {p.currentStage && (
+                <div className="pt-3 border-t">
+                  <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium mb-1">
+                    <Target className="h-3 w-3" /> Stage
+                  </div>
+                  <Badge className="font-medium">{p.currentStage.name}</Badge>
+                </div>
+              )}
+
+              {/* Actions */}
+              {data.canEdit && (
+                <div className="pt-3 border-t space-y-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="w-full justify-start"
+                    asChild
+                    title="Scarica la bozza di convenzione di tirocinio (PDF)"
+                  >
+                    <a href={`/api/placements/${p.id}/convention`} target="_blank" rel="noopener">
+                      <Download className="h-3.5 w-3.5 mr-2" /> Convenzione PDF
+                    </a>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="w-full justify-start"
+                    onClick={() => setStageOpen(true)}
+                  >
+                    <TrendingUp className="h-3.5 w-3.5 mr-2" /> Cambia stage
+                  </Button>
+                  <Button size="sm" className="w-full justify-start" onClick={() => setHoursOpen(true)}>
+                    <Clock className="h-3.5 w-3.5 mr-2" /> Log ore
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="w-full justify-start"
+                    onClick={() => setEvalOpen(true)}
+                  >
+                    <FileText className="h-3.5 w-3.5 mr-2" /> Valutazione
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Tutors */}
+          <Card>
+            <CardContent className="p-4 space-y-3">
+              <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                <Users className="h-3 w-3" /> Tutor
+              </div>
+              <div>
+                <div className="text-xs text-muted-foreground">Accademico</div>
+                <div className="text-sm font-medium">{fullName(p.academicTutor)}</div>
+                {p.academicTutor?.email && (
+                  <a href={`mailto:${p.academicTutor.email}`} className="text-xs text-muted-foreground hover:text-primary">
+                    {p.academicTutor.email}
+                  </a>
+                )}
+              </div>
+              <div className="pt-2 border-t">
+                <div className="text-xs text-muted-foreground">Aziendale</div>
+                <div className="text-sm font-medium">{fullName(p.companyTutor)}</div>
+                {p.companyTutor?.email && (
+                  <a href={`mailto:${p.companyTutor.email}`} className="text-xs text-muted-foreground hover:text-primary">
+                    {p.companyTutor.email}
+                  </a>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Convention */}
+          {p.convention && (
+            <Card>
+              <CardContent className="p-4 space-y-2">
+                <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                  <FileText className="h-3 w-3" /> Convenzione
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="text-[10px]">{p.convention.status}</Badge>
+                  <span className="text-sm font-medium">{p.convention.companyName}</span>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </aside>
+
+        {/* ── Main area ── */}
+        <main>
+          <Tabs value={tab} onValueChange={setTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="overview">
+                <span>Panoramica</span>
+              </TabsTrigger>
+              <TabsTrigger value="hours">
+                <Clock className="h-3.5 w-3.5 mr-1.5" />
+                Ore
+                {p.hoursLogs.length > 0 && (
+                  <span className="ml-1.5 text-[10px] font-mono bg-muted rounded px-1">
+                    {p.hoursLogs.length}
+                  </span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="evaluations">
+                <FileText className="h-3.5 w-3.5 mr-1.5" />
+                Valutazioni
+                {p.evaluations.length > 0 && (
+                  <span className="ml-1.5 text-[10px] font-mono bg-muted rounded px-1">
+                    {p.evaluations.length}
+                  </span>
+                )}
+              </TabsTrigger>
+              <TabsTrigger value="deadlines">
+                <AlertTriangle className="h-3.5 w-3.5 mr-1.5" />
+                Scadenze
+                {overdueDeadlines.length > 0 && (
+                  <span className="ml-1.5 text-[10px] font-mono bg-red-100 text-red-700 rounded px-1">
+                    {overdueDeadlines.length}
+                  </span>
+                )}
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Overview tab — 3 key metrics + quick summary */}
+            <TabsContent value="overview" className="space-y-4 mt-4">
+              <div className="grid md:grid-cols-3 gap-4">
+                {/* Hours */}
+                <Card>
+                  <CardContent className="p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                      <Target className="h-3 w-3" /> Ore
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-2xl font-bold">{p.completedHours}</span>
+                      {p.plannedHours && (
+                        <span className="text-sm text-muted-foreground">/ {p.plannedHours}h</span>
+                      )}
+                    </div>
+                    {hoursPct !== null && <Progress value={hoursPct} className="h-1.5" />}
+                    {daysSinceHours !== null && (
+                      <p
+                        className={`text-xs ${
+                          daysSinceHours > 7 ? 'text-red-600 font-medium' : 'text-muted-foreground'
+                        }`}
+                      >
+                        {daysSinceHours > 7 && <AlertTriangle className="inline h-3 w-3 mr-1" />}
+                        Ultimo log: {daysSinceHours === 0 ? 'oggi' : `${daysSinceHours}g fa`}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Dates */}
+                <Card>
+                  <CardContent className="p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                      <Calendar className="h-3 w-3" /> Date
+                    </div>
+                    <div className="text-sm">
+                      <div className="font-medium">{fmtDate(p.startDate)}</div>
+                      {p.endDate && (
+                        <div className="text-xs text-muted-foreground">→ {fmtDate(p.endDate)}</div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Outcome */}
+                <Card>
+                  <CardContent className="p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
+                      <CheckCircle2 className="h-3 w-3" /> Esito
+                    </div>
+                    {p.outcome ? (
+                      <Badge className="font-medium">{p.outcome}</Badge>
+                    ) : (
+                      <span className="text-sm text-muted-foreground">—</span>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Deadline alerts — only shown if any urgent */}
+              {overdueDeadlines.length > 0 && (
+                <Card className="border-red-200 bg-red-50/50">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-2 mb-2 text-red-700 font-medium text-sm">
+                      <AlertTriangle className="h-4 w-4" />
+                      {overdueDeadlines.length} scadenz{overdueDeadlines.length === 1 ? 'a' : 'e'} scaduta{overdueDeadlines.length === 1 ? '' : 'e'}
+                    </div>
+                    <div className="space-y-1">
+                      {overdueDeadlines.slice(0, 3).map(d => (
+                        <div key={d.id} className="flex items-center gap-2 text-xs">
+                          <span className="flex-1">{d.label}</span>
+                          <span className="text-red-600 font-medium">{fmtDate(d.dueAt)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {p.outcomeNotes && (
+                <Card>
+                  <CardContent className="p-4 space-y-1.5">
+                    <div className="text-xs uppercase tracking-wide font-medium text-muted-foreground">Note esito</div>
+                    <p className="text-sm whitespace-pre-wrap">{p.outcomeNotes}</p>
+                  </CardContent>
+                </Card>
+              )}
+            </TabsContent>
+
+            {/* Hours tab */}
+            <TabsContent value="hours" className="mt-4">
+              <Card>
+                <CardContent className="p-4">
+                  {p.hoursLogs.length === 0 ? (
+                    <div className="py-12 text-center">
+                      <Clock className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
+                      <p className="text-sm text-muted-foreground mb-1">Nessuna registrazione ore</p>
+                      {data.canEdit && (
+                        <p className="text-xs text-muted-foreground">
+                          Usa il pulsante "Log ore" per registrare la prima settimana.
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="divide-y">
+                      {p.hoursLogs.map(h => (
+                        <div key={h.id} className="flex items-center gap-3 py-2.5 text-sm">
+                          <Clock className="h-4 w-4 text-muted-foreground shrink-0" />
+                          <span className="text-muted-foreground tabular-nums">
+                            {fmtDate(h.periodStart)} → {fmtDate(h.periodEnd)}
+                          </span>
+                          <span className="font-semibold tabular-nums">{h.hours}h</span>
+                          {h.confirmedByTutor && (
+                            <span title="Confermato dal tutor">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                            </span>
+                          )}
+                          <span className="text-xs text-muted-foreground ml-auto uppercase tracking-wide">
+                            {h.loggedByRole}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Evaluations tab */}
+            <TabsContent value="evaluations" className="mt-4">
+              <Card>
+                <CardContent className="p-4">
+                  {p.evaluations.length === 0 ? (
+                    <div className="py-12 text-center">
+                      <FileText className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
+                      <p className="text-sm text-muted-foreground mb-1">Nessuna valutazione</p>
+                      {data.canEdit && (
+                        <p className="text-xs text-muted-foreground">
+                          Submit una valutazione intermedia o finale dal pulsante laterale.
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {p.evaluations.map(e => (
+                        <div key={e.id} className="p-3.5 rounded-lg border bg-muted/20">
+                          <div className="flex items-center gap-2 mb-2 flex-wrap">
+                            <Badge variant="outline" className="text-[10px]">{e.kind}</Badge>
+                            <span className="text-sm font-medium">{fullName(e.submittedBy)}</span>
+                            <span className="text-xs text-muted-foreground">({e.submitterRole})</span>
+                            <span className="text-xs text-muted-foreground ml-auto">{fmtDate(e.submittedAt)}</span>
+                          </div>
+                          {e.comments && (
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
+                              {e.comments}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Deadlines tab */}
+            <TabsContent value="deadlines" className="mt-4">
+              <Card>
+                <CardContent className="p-4">
+                  {p.deadlines.length === 0 ? (
+                    <div className="py-12 text-center">
+                      <Calendar className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
+                      <p className="text-sm text-muted-foreground">Nessuna scadenza</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {overdueDeadlines.length > 0 && (
+                        <div>
+                          <div className="text-xs uppercase tracking-wide font-semibold text-red-600 mb-2">
+                            Scadute ({overdueDeadlines.length})
+                          </div>
+                          <div className="space-y-1.5">
+                            {overdueDeadlines.map(d => (
+                              <div
+                                key={d.id}
+                                className="flex items-center gap-2 p-2.5 rounded border border-red-200 bg-red-50 text-sm"
+                              >
+                                <AlertTriangle className="h-4 w-4 text-red-600 shrink-0" />
+                                <span className="flex-1">{d.label}</span>
+                                <span className="text-red-600 font-medium text-xs">{fmtDate(d.dueAt)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {upcomingDeadlines.length > 0 && (
+                        <div>
+                          <div className="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-2">
+                            Prossime ({upcomingDeadlines.length})
+                          </div>
+                          <div className="space-y-1.5">
+                            {upcomingDeadlines.map(d => (
+                              <div
+                                key={d.id}
+                                className="flex items-center gap-2 p-2.5 rounded border bg-muted/30 text-sm"
+                              >
+                                <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
+                                <span className="flex-1">{d.label}</span>
+                                <span className="text-xs text-muted-foreground">{fmtDate(d.dueAt)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </main>
       </div>
 
-      {/* Deadlines */}
-      {(overdueDeadlines.length > 0 || upcomingDeadlines.length > 0) && (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <AlertTriangle className="h-4 w-4" /> Scadenze
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-1.5">
-            {overdueDeadlines.map(d => (
-              <div key={d.id} className="flex items-center gap-2 p-2 rounded border border-red-200 bg-red-50 text-xs">
-                <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
-                <span className="flex-1">{d.label}</span>
-                <span className="text-red-600 font-medium">Scaduta il {new Date(d.dueAt).toLocaleDateString('it-IT')}</span>
-              </div>
-            ))}
-            {upcomingDeadlines.slice(0, 5).map(d => (
-              <div key={d.id} className="flex items-center gap-2 p-2 rounded border bg-muted/30 text-xs">
-                <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="flex-1">{d.label}</span>
-                <span className="text-muted-foreground">{new Date(d.dueAt).toLocaleDateString('it-IT')}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Evaluations */}
-      {p.evaluations.length > 0 && (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <FileText className="h-4 w-4" /> Valutazioni ({p.evaluations.length})
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {p.evaluations.map(e => (
-              <div key={e.id} className="p-3 rounded border bg-muted/20 text-xs">
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="outline" className="text-[10px]">{e.kind}</Badge>
-                  <span className="font-medium">{name(e.submittedBy)}</span>
-                  <span className="text-muted-foreground">({e.submitterRole})</span>
-                  <span className="text-muted-foreground ml-auto">
-                    {new Date(e.submittedAt).toLocaleDateString('it-IT')}
-                  </span>
-                </div>
-                {e.comments && <p className="text-muted-foreground whitespace-pre-wrap">{e.comments}</p>}
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Hours log history */}
-      {p.hoursLogs.length > 0 && (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm flex items-center gap-1.5">
-              <Clock className="h-4 w-4" /> Registrazioni ore
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-1.5">
-              {p.hoursLogs.slice(0, 10).map(h => (
-                <div key={h.id} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded hover:bg-muted/30">
-                  <span className="text-muted-foreground tabular-nums">
-                    {new Date(h.periodStart).toLocaleDateString('it-IT')} → {new Date(h.periodEnd).toLocaleDateString('it-IT')}
-                  </span>
-                  <span className="font-semibold tabular-nums">{h.hours}h</span>
-                  {h.confirmedByTutor && <CheckCircle2 className="h-3 w-3 text-emerald-600" />}
-                  <span className="text-muted-foreground ml-auto">{h.loggedByRole}</span>
-                </div>
-              ))}
+      {/* Dialogs */}
+      <Dialog open={stageOpen} onOpenChange={setStageOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Cambia stage</DialogTitle>
+            <DialogDescription>Sposta il tirocinio a una nuova fase.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div>
+              <Label>Nuovo stage</Label>
+              <Select value={stageTarget} onValueChange={setStageTarget}>
+                <SelectTrigger><SelectValue placeholder="Seleziona…" /></SelectTrigger>
+                <SelectContent>
+                  {data.stages.filter(s => s.id !== p.currentStage?.id).map(s => (
+                    <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-          </CardContent>
-        </Card>
-      )}
+            <div>
+              <Label>Nota (opzionale)</Label>
+              <Textarea value={stageNote} onChange={e => setStageNote(e.target.value)} rows={2} />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setStageOpen(false)} disabled={stageSaving}>Annulla</Button>
+            <Button onClick={changeStage} disabled={stageSaving || !stageTarget}>
+              {stageSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Conferma'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={hoursOpen} onOpenChange={setHoursOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Registra ore settimanali</DialogTitle>
+            <DialogDescription>Le ore inserite dai tutor sono auto-confermate.</DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label>Dal</Label>
+              <Input type="date" value={hoursForm.periodStart} onChange={e => setHoursForm(f => ({ ...f, periodStart: e.target.value }))} />
+            </div>
+            <div>
+              <Label>Al</Label>
+              <Input type="date" value={hoursForm.periodEnd} onChange={e => setHoursForm(f => ({ ...f, periodEnd: e.target.value }))} />
+            </div>
+            <div>
+              <Label>Ore totali</Label>
+              <Input type="number" min={0} max={168} value={hoursForm.hours} onChange={e => setHoursForm(f => ({ ...f, hours: e.target.value }))} placeholder="40" />
+            </div>
+            <div className="col-span-2">
+              <Label>Note (opzionale)</Label>
+              <Textarea rows={2} value={hoursForm.notes} onChange={e => setHoursForm(f => ({ ...f, notes: e.target.value }))} />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setHoursOpen(false)} disabled={hoursSaving}>Annulla</Button>
+            <Button onClick={logHours} disabled={hoursSaving || !hoursForm.periodStart || !hoursForm.periodEnd || !hoursForm.hours}>
+              {hoursSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Registra'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={evalOpen} onOpenChange={setEvalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Submit valutazione</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div>
+              <Label>Tipo</Label>
+              <Select value={evalForm.kind} onValueChange={v => setEvalForm(f => ({ ...f, kind: v }))}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="MID">Intermedia</SelectItem>
+                  <SelectItem value="FINAL">Finale</SelectItem>
+                  {data.viewerRole !== 'STUDENT' && <SelectItem value="INCIDENT">Incident</SelectItem>}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Commenti</Label>
+              <Textarea rows={4} value={evalForm.comments} onChange={e => setEvalForm(f => ({ ...f, comments: e.target.value }))} placeholder="Punti di forza, aree di miglioramento, raccomandazioni…" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEvalOpen(false)} disabled={evalSaving}>Annulla</Button>
+            <Button onClick={submitEvaluation} disabled={evalSaving}>
+              {evalSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Invia'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
