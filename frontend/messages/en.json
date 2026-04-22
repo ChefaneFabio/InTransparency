@@ -3515,7 +3515,7 @@
   "pricingPage": {
     "hero": {
       "title": "Clear pricing. No surprises.",
-      "subtitle": "Students and universities use everything for free. Companies search free, and pay only when they're ready to hire."
+      "subtitle": "Freemium for students and institutions. Companies search free, and pay only when they're ready to hire."
     },
     "segments": {
       "companies": "Companies",
@@ -3609,43 +3609,45 @@
     },
     "universities": {
       "title": "Universities, Schools & Training Centers",
-      "subtitle": "Free platform for all educational institutions. Advanced features available on request.",
+      "subtitle": "Free to start — preview the institutional workspace. Upgrade when your career office needs to moderate, manage, and report.",
+      "premiumBadge": "Institutional Workspace",
+      "reassurance": "Start on CORE — free, no commitment. Upgrade to PREMIUM when your career office needs moderation, CRM, and placement tracking. All writes are logged for AI Act compliance.",
       "tiers": {
         "core": {
-          "name": "Base Platform",
+          "name": "CORE",
           "price": "Free",
-          "period": "full platform included",
-          "description": "Everything you need to verify your students and connect them with companies. No limits on students or features.",
-          "cta": "Get Started",
+          "period": "forever",
+          "description": "Verify students, connect them with companies, and preview the institutional workspace. Writes on workspace modules are locked.",
+          "cta": "Get Started Free",
           "features": {
             "0": "Unlimited students",
-            "1": "project verification (theses, GitHub, portfolios)",
+            "1": "Project verification (theses, GitHub, portfolios)",
             "2": "Professor endorsements",
             "3": "AlmaLaurea sync",
             "4": "Aggregated placement dashboard",
             "5": "Top 20 hiring companies",
             "6": "Analytics per program (last 12 months)",
             "7": "Career center widget (base)",
-            "8": "Data export (12 months)",
-            "9": "2 career days per year"
+            "8": "Preview of M1 / M2 / M3 / M4 workspace (read-only)",
+            "9": "Data export (12 months)"
           }
         },
         "premium": {
-          "name": "Premium",
+          "name": "PREMIUM",
           "price": "On request",
           "period": "",
-          "description": "For institutions requiring integrations, ministry reporting, multi-campus support, and advanced features.",
-          "cta": "Contact us for a quote",
+          "description": "Unlock the full institutional workspace: mediation, offer moderation, company CRM, placement pipeline — all audit-logged.",
+          "cta": "Request a quote",
           "features": {
-            "0": "Everything in Base Platform, plus:",
-            "1": "Esse3 integration",
-            "2": "Automated ANVUR/MUR reports",
-            "3": "Multi-year and per-campus analytics",
-            "4": "White-label and custom domain",
-            "5": "Single Sign-On (SAML/Shibboleth)",
-            "6": "API access and webhooks",
-            "7": "AI Act compliance pack",
-            "8": "Unlimited events with analytics",
+            "0": "Everything in CORE, plus:",
+            "1": "M1 Mediation Inbox — moderate recruiter messages",
+            "2": "M2 Offer Moderation — approve jobs before students see them",
+            "3": "M3 Company CRM — kanban pipeline, convention tracking",
+            "4": "M4 Placement Pipeline — hours log, evaluations, deadlines",
+            "5": "Reminder engine (email + SMS) on deadlines and stage transitions",
+            "6": "AI Act compliance pack + per-action audit trail",
+            "7": "Esse3 / ANVUR / MUR integrations and reports",
+            "8": "Single Sign-On (SAML / Shibboleth)",
             "9": "Dedicated Customer Success Manager"
           }
         }

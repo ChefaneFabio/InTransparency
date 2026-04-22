@@ -157,13 +157,10 @@ router.delete('/delete', async (req, res) => {
 
 /**
  * GET /api/upload/health
+ * Minimal health check — no infrastructure details surfaced.
  */
-router.get('/health', (req, res) => {
-  res.json({
-    status: 'healthy',
-    r2Configured: !!(process.env.R2_ENDPOINT && process.env.R2_ACCESS_KEY_ID),
-    maxFileSize: 500 * 1024 * 1024,
-  })
+router.get('/health', (_req, res) => {
+  res.json({ status: 'healthy' })
 })
 
 module.exports = router

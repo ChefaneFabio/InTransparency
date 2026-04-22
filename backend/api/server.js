@@ -21,6 +21,7 @@ const { authenticate } = require('./middleware/auth')
 const { serviceAuth } = require('./middleware/serviceAuth')
 const { preventSQLInjection, rateLimit } = require('./middleware/validation')
 const { createSecurityStack } = require('./middleware/security')
+const { publicRateLimit } = require('./middleware/advancedRateLimit')
 const uploadRoutes = require('./routes/upload')
 
 const app = express()
@@ -124,11 +125,13 @@ app.get('/api/upload/health', (req, res) => {
   })
 })
 
-// Upload routes (service-to-service auth, before JWT middleware)
-app.use('/api/upload', serviceAuth, uploadRoutes)
+// Upload routes (service-to-service auth + per-IP rate limit, before JWT middleware)
+// publicRateLimit keys on IP so a leaked BACKEND_SERVICE_KEY can't be abused
+// for unbounded uploads — the rate-limit category 'upload' is 10/min.
+app.use('/api/upload', serviceAuth, publicRateLimit, uploadRoutes)
 
-// AI routes (service-to-service auth)
-app.use('/api/ai', serviceAuth, aiRoutes)
+// AI routes (service-to-service auth + per-IP rate limit)
+app.use('/api/ai', serviceAuth, publicRateLimit, aiRoutes)
 
 // Email routes (service-to-service auth + public health check)
 app.get('/api/email/health', (req, res) => {

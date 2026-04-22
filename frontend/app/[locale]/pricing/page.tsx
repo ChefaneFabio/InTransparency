@@ -261,8 +261,8 @@ export default function PricingPage() {
                   <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('universities.subtitle')}</p>
                 </div>
 
-                <div className="max-w-xl mx-auto">
-                  {/* Base Platform — single tier since the platform is free for all academic partners in Phase 1 */}
+                <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  {/* CORE — always free preview tier */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
                     <Card className="h-full flex flex-col border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20">
                       <CardHeader className="text-center pb-2">
@@ -288,7 +288,53 @@ export default function PricingPage() {
                       </CardContent>
                     </Card>
                   </motion.div>
+
+                  {/* PREMIUM — institutional workspace unlocked */}
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                    <Card className="relative h-full flex flex-col border-2 border-amber-300 shadow-xl shadow-amber-200/40 bg-gradient-to-br from-amber-50/70 via-orange-50/40 to-transparent dark:from-amber-950/20">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg border-0">
+                          <Sparkles className="h-3 w-3 mr-1" />
+                          {t('universities.premiumBadge', { defaultValue: 'Institutional Workspace' })}
+                        </Badge>
+                      </div>
+                      <CardHeader className="text-center pb-2 pt-6">
+                        <CardTitle className="text-lg">{t('universities.tiers.premium.name')}</CardTitle>
+                        <div className="mt-4">
+                          <span className="text-4xl font-bold text-amber-600">{t('universities.tiers.premium.price')}</span>
+                          <span className="text-sm text-muted-foreground ml-1">{t('universities.tiers.premium.period')}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.premium.description')}</p>
+                      </CardHeader>
+                      <CardContent className="pt-4 flex-1 flex flex-col">
+                        <ul className="space-y-2.5 mb-6 flex-1">
+                          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+                            <li key={i} className="flex items-start text-sm">
+                              <Check className="h-4 w-4 text-amber-600 mr-2 mt-0.5 flex-shrink-0" />
+                              <span>{t(`universities.tiers.premium.features.${i}`)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white border-0 shadow-lg shadow-amber-500/20" asChild>
+                          <Link href="/contact?subject=premium-institutional">{t('universities.tiers.premium.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </div>
+
+                {/* Reassurance */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto"
+                >
+                  {t('universities.reassurance', {
+                    defaultValue:
+                      'Start on CORE — free, no commitment. Upgrade to PREMIUM when your career office needs moderation, CRM, and placement tracking. All writes are logged for AI Act compliance.',
+                  })}
+                </motion.p>
               </div>
             </section>
           </motion.div>

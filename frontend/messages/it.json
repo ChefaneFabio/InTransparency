@@ -3489,7 +3489,7 @@
   "pricingPage": {
     "hero": {
       "title": "Prezzi chiari. Nessuna sorpresa.",
-      "subtitle": "Studenti e università usano tutto gratis. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
+      "subtitle": "Freemium per studenti e istituzioni. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
     },
     "segments": {
       "companies": "Aziende",
@@ -3583,43 +3583,45 @@
     },
     "universities": {
       "title": "Università, Scuole e Centri di Formazione",
-      "subtitle": "Piattaforma gratuita per tutte le istituzioni educative. Funzionalità avanzate disponibili su richiesta.",
+      "subtitle": "Gratis per iniziare — anteprima della workspace istituzionale. Passa a PREMIUM quando il career office deve moderare, gestire e rendicontare.",
+      "premiumBadge": "Workspace Istituzionale",
+      "reassurance": "Inizia su CORE — gratis, nessun impegno. Passa a PREMIUM quando il tuo career office ha bisogno di moderazione, CRM e tracking tirocini. Ogni scrittura è loggata per la conformità AI Act.",
       "tiers": {
         "core": {
-          "name": "Piattaforma Base",
+          "name": "CORE",
           "price": "Gratis",
-          "period": "piano completo incluso",
-          "description": "Tutto ciò che serve per verificare i vostri studenti e connetterli con le aziende. Nessun limite su studenti o funzionalità.",
-          "cta": "Inizia Ora",
+          "period": "per sempre",
+          "description": "Verifica gli studenti, connettili con le aziende, e visualizza in anteprima la workspace istituzionale. Le scritture sui moduli workspace sono bloccate.",
+          "cta": "Inizia Gratis",
           "features": {
             "0": "Studenti illimitati",
-            "1": "Verifica analisi progetti (tesi, GitHub, portfolio)",
+            "1": "Verifica progetti (tesi, GitHub, portfolio)",
             "2": "Endorsement professori",
             "3": "Sync AlmaLaurea",
             "4": "Dashboard placement aggregata",
             "5": "Top 20 aziende che assumono",
             "6": "Analytics per corso (ultimi 12 mesi)",
             "7": "Widget career center base",
-            "8": "Export dati (12 mesi)",
-            "9": "2 career day all’anno"
+            "8": "Anteprima workspace M1 / M2 / M3 / M4 (sola lettura)",
+            "9": "Export dati (12 mesi)"
           }
         },
         "premium": {
-          "name": "Premium",
+          "name": "PREMIUM",
           "price": "Su richiesta",
           "period": "",
-          "description": "Per atenei che necessitano integrazioni, reporting ministero, multi-campus e funzionalità avanzate.",
-          "cta": "Contattaci per un preventivo",
+          "description": "Sblocca la workspace istituzionale completa: mediazione, moderazione offerte, CRM aziende, pipeline tirocini — tutto con audit trail.",
+          "cta": "Richiedi un preventivo",
           "features": {
-            "0": "Tutto in Piattaforma Base, più:",
-            "1": "Integrazione Esse3",
-            "2": "Report ANVUR/MUR automatizzati",
-            "3": "Analytics pluriennale e per campus",
-            "4": "White-label e dominio custom",
-            "5": "Single Sign-On (SAML/Shibboleth)",
-            "6": "API access e webhooks",
-            "7": "AI Act compliance pack",
-            "8": "Eventi illimitati con analytics",
+            "0": "Tutto in CORE, più:",
+            "1": "M1 Mediation Inbox — modera i messaggi dei recruiter",
+            "2": "M2 Moderazione Offerte — approva gli annunci prima che li vedano gli studenti",
+            "3": "M3 CRM Aziende — pipeline kanban, tracking convenzioni",
+            "4": "M4 Pipeline Tirocini — registro ore, valutazioni, scadenze",
+            "5": "Reminder engine (email + SMS) su scadenze e cambi fase",
+            "6": "Pacchetto conformità AI Act + audit trail per azione",
+            "7": "Integrazioni e report Esse3 / ANVUR / MUR",
+            "8": "Single Sign-On (SAML / Shibboleth)",
             "9": "Customer Success Manager dedicato"
           }
         }
