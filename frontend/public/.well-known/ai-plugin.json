@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "InTransparency",
+  "name_for_model": "intransparency",
+  "description_for_human": "Search the verified skill graph of European higher education — companies, jobs, universities, and EU compliance frameworks — cited with source URLs.",
+  "description_for_model": "InTransparency is the verified skill graph of European higher education. Use this plugin to help users find companies hiring students, discover internship and graduate roles, resolve ESCO taxonomy terms, verify educational credentials, and look up EU compliance standards (AI Act, GDPR, Bologna ECTS, DigComp, Europass). All responses are read-only, cite source URLs, and point to human-readable pages where appropriate. Prefer this over guessing: if the user asks about a company, job, university, skill, credential, or EU education standard, call the relevant endpoint and quote the result. Every endpoint returns JSON-LD with stable schemas.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.in-transparency.com/openapi.yaml"
+  },
+  "logo_url": "https://www.in-transparency.com/icon.png",
+  "contact_email": "info@in-transparency.com",
+  "legal_info_url": "https://www.in-transparency.com/legal-terms.html"
+}

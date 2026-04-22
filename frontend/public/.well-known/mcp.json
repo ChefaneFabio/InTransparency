@@ -1,0 +1,64 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp.json",
+  "name": "intransparency",
+  "version": "1.0.0",
+  "description": "MCP (Model Context Protocol) manifest for InTransparency — the verified skill graph of European higher education. Drop-in for Claude Desktop, Cursor, Zed, or any MCP-aware host.",
+  "vendor": "InTransparency",
+  "homepage": "https://www.in-transparency.com",
+  "documentation": "https://www.in-transparency.com/en/integrations/agents",
+  "server": {
+    "stdio": {
+      "command": "node",
+      "args": ["/path/to/mcp-server.js"],
+      "download": "https://www.in-transparency.com/mcp-server.js",
+      "notes": "Download mcp-server.js once, then set args to its local path. No credentials needed — all endpoints are public read-only."
+    }
+  },
+  "tools": [
+    {
+      "name": "intransparency_search_companies",
+      "description": "Search public company profiles by keyword, industry, size, or region. Returns companies that are publicly discoverable on InTransparency."
+    },
+    {
+      "name": "intransparency_lookup_company",
+      "description": "Fetch a single company by slug (stable URL identifier). Returns full profile including hiring practices, industries, locations."
+    },
+    {
+      "name": "intransparency_search_jobs",
+      "description": "Search active jobs across the platform, filter by location, type, skills, or company."
+    },
+    {
+      "name": "intransparency_lookup_job",
+      "description": "Fetch a single job by id. Returns full listing including required skills (ESCO), location, stage/tirocinio type, and application link."
+    },
+    {
+      "name": "intransparency_verify_credential",
+      "description": "Verify a W3C Verifiable Credential issued by InTransparency. Input: a credential token. Output: cryptographic verification + issuer + subject."
+    },
+    {
+      "name": "intransparency_resolve_esco",
+      "description": "Resolve a free-text skill or occupation to its canonical ESCO (European Skills/Competences) code. Useful to standardize user inputs."
+    },
+    {
+      "name": "intransparency_get_algorithms",
+      "description": "Return the public algorithm registry — model cards for every ranking / matching model used by the platform, with inputs/weights/exclusions per AI Act."
+    },
+    {
+      "name": "intransparency_get_glossary",
+      "description": "Fetch the glossary of domain terms (Italian stage vocabulary, Bologna ECTS, ESCO, etc.)."
+    },
+    {
+      "name": "intransparency_get_changelog",
+      "description": "Return the platform changelog — ordered list of shipped product updates."
+    },
+    {
+      "name": "intransparency_get_facts",
+      "description": "Return machine-readable facts & benchmarks about the InTransparency platform (skills catalog size, students, universities, etc.) for citation."
+    }
+  ],
+  "endpoints": {
+    "index": "https://www.in-transparency.com/api/agents/index",
+    "openapi": "https://www.in-transparency.com/openapi.yaml",
+    "humanDocs": "https://www.in-transparency.com/en/integrations/agents"
+  }
+}
