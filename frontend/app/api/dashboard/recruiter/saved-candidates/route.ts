@@ -58,6 +58,7 @@ export async function GET(req: NextRequest) {
       rating: sc.rating,
       tags: sc.tags,
       savedAt: sc.createdAt,
+      stageEnteredAt: sc.stageEnteredAt || sc.createdAt,
       candidate: {
         id: sc.candidate.id,
         firstName: sc.candidate.firstName,

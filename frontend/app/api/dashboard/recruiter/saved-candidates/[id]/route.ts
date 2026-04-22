@@ -29,7 +29,7 @@ export async function PUT(
     // Verify the saved candidate belongs to this recruiter
     const existing = await prisma.savedCandidate.findUnique({
       where: { id },
-      select: { recruiterId: true },
+      select: { recruiterId: true, folder: true },
     })
 
     if (!existing) {
@@ -45,7 +45,13 @@ export async function PUT(
 
     // Build update data - only include fields that were provided
     const updateData: Record<string, unknown> = {}
-    if (folder !== undefined) updateData.folder = folder
+    if (folder !== undefined) {
+      updateData.folder = folder
+      // Reset time-in-stage when the stage actually changes
+      if (folder !== existing.folder) {
+        updateData.stageEnteredAt = new Date()
+      }
+    }
     if (notes !== undefined) updateData.notes = notes
     if (rating !== undefined) updateData.rating = rating
     if (tags !== undefined) updateData.tags = tags

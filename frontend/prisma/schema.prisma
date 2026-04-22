@@ -2196,6 +2196,11 @@ model SavedCandidate {
   rating    Int?
   tags      String[] @default([])
 
+  // Set whenever `folder` changes; used by the pipeline UI to compute
+  // time-in-stage (aging) per card. Null for pre-migration rows — the
+  // UI falls back to `createdAt`.
+  stageEnteredAt DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

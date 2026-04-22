@@ -32,6 +32,7 @@ interface PipelineCandidate {
   candidateId: string
   stage: Stage
   savedAt: string
+  stageEnteredAt: string
   rating: number | null
   tags: string[]
   candidate: {
@@ -52,6 +53,7 @@ interface SavedCandidateResponse {
   candidateId: string
   folder: string
   savedAt: string
+  stageEnteredAt: string | null
   rating: number | null
   tags: string[] | null
   candidate: {
@@ -124,6 +126,7 @@ export default function RecruiterPipelinePage() {
           candidateId: sc.candidateId,
           stage: folderToStage(sc.folder),
           savedAt: sc.savedAt,
+          stageEnteredAt: sc.stageEnteredAt || sc.savedAt,
           rating: sc.rating,
           tags: sc.tags || [],
           candidate: sc.candidate,
@@ -143,10 +146,10 @@ export default function RecruiterPipelinePage() {
 
   const persistStage = async (rowId: string, newStage: Stage) => {
     try {
-      const res = await fetch('/api/dashboard/recruiter/saved-candidates', {
-        method: 'PATCH',
+      const res = await fetch(`/api/dashboard/recruiter/saved-candidates/${rowId}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: rowId, folder: newStage }),
+        body: JSON.stringify({ folder: newStage }),
       })
       if (!res.ok) throw new Error()
     } catch {
@@ -178,8 +181,9 @@ export default function RecruiterPipelinePage() {
     const row = candidates.find(c => c.id === id)
     if (!row || row.stage === toStage) return
 
+    const now = new Date().toISOString()
     setCandidates(prev =>
-      prev.map(c => (c.id === id ? { ...c, stage: toStage, savedAt: new Date().toISOString() } : c))
+      prev.map(c => (c.id === id ? { ...c, stage: toStage, stageEnteredAt: now } : c))
     )
     persistStage(id, toStage)
   }
@@ -374,7 +378,7 @@ export default function RecruiterPipelinePage() {
                   </div>
                 ) : (
                   stageCandidates.map(row => {
-                    const age = daysAgo(row.savedAt)
+                    const age = daysAgo(row.stageEnteredAt)
                     const isStale = age > 14
                     const { candidate } = row
                     return (
