@@ -9346,7 +9346,14 @@
     "startSearching": "Cerca Candidati",
     "moveTo": "Sposta a",
     "loading": "Caricamento pipeline...",
-    "error": "Impossibile caricare la pipeline"
+    "error": "Impossibile caricare la pipeline",
+    "inPipeline": "in pipeline",
+    "searchPlaceholder": "Cerca nome, università, tag…",
+    "dropHere": "Rilascia qui",
+    "view": "Vedi",
+    "contact": "Contatta",
+    "addedThisWeek": "Aggiunti questa settimana",
+    "staleWarning": "In questa fase da oltre 2 settimane"
   },
   "recruiterScheduling": {
     "title": "Pianificazione Colloqui",

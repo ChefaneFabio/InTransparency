@@ -9319,7 +9319,14 @@
     "startSearching": "Search Candidates",
     "moveTo": "Move to",
     "loading": "Loading pipeline...",
-    "error": "Failed to load pipeline"
+    "error": "Failed to load pipeline",
+    "inPipeline": "in pipeline",
+    "searchPlaceholder": "Search name, university, tag…",
+    "dropHere": "Drop here",
+    "view": "View",
+    "contact": "Contact",
+    "addedThisWeek": "Added this week",
+    "staleWarning": "Over 2 weeks in this stage"
   },
   "recruiterScheduling": {
     "title": "Interview Scheduling",
