@@ -128,19 +128,21 @@ export default function RecruiterMessagesPage() {
 
   // Get the "other" participant (the candidate) from a conversation
   const getOtherParticipant = (conv: Conversation) => {
-    const other = conv.participants.find(p => p.id !== currentUserId)
-    return other || conv.participants[0]
+    const participants = conv?.participants ?? []
+    return participants.find(p => p.id !== currentUserId) ?? participants[0]
   }
 
   const filteredConversations = conversations.filter(conv => {
+    if (!conv) return false
     const other = getOtherParticipant(conv)
     const name = `${other?.firstName || ''} ${other?.lastName || ''}`.toLowerCase()
+    const subject = conv.subject || ''
     const matchesSearch = name.includes(searchQuery.toLowerCase()) ||
-                         conv.subject.toLowerCase().includes(searchQuery.toLowerCase())
+                         subject.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesSearch
   })
 
-  const unreadCount = conversations.reduce((sum, c) => sum + c.unreadCount, 0)
+  const unreadCount = conversations.reduce((sum, c) => sum + (c?.unreadCount ?? 0), 0)
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr)

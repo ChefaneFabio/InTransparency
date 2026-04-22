@@ -1,22 +1,22 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useTranslations } from 'next-intl'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Link } from '@/navigation'
-import { Search, Plus, Loader2 } from 'lucide-react'
+import {
+  Search,
+  Plus,
+  GripVertical,
+  ExternalLink,
+  Mail,
+  GraduationCap,
+} from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
@@ -53,12 +53,19 @@ function getInitials(firstName: string, lastName: string): string {
   return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
 }
 
-const stageBadgeVariants: Record<Stage, string> = {
-  discovered: 'bg-slate-100 text-slate-700',
-  contacted: 'bg-blue-100 text-blue-700',
-  interviewing: 'bg-amber-100 text-amber-700',
-  offered: 'bg-purple-100 text-purple-700',
-  hired: 'bg-green-100 text-green-700',
+function folderToStage(folder: string): Stage {
+  const lower = folder.toLowerCase()
+  if ((STAGES as readonly string[]).includes(lower)) return lower as Stage
+  return 'discovered'
+}
+
+// Per-stage accent: top border + subtle tint — like HubSpot deal stages.
+const stageAccent: Record<Stage, { border: string; tint: string; dot: string }> = {
+  discovered:   { border: 'border-t-slate-400',  tint: 'bg-slate-50/60',  dot: 'bg-slate-400'  },
+  contacted:    { border: 'border-t-blue-500',   tint: 'bg-blue-50/60',   dot: 'bg-blue-500'   },
+  interviewing: { border: 'border-t-amber-500',  tint: 'bg-amber-50/60',  dot: 'bg-amber-500'  },
+  offered:      { border: 'border-t-purple-500', tint: 'bg-purple-50/60', dot: 'bg-purple-500' },
+  hired:        { border: 'border-t-green-600',  tint: 'bg-green-50/60',  dot: 'bg-green-600'  },
 }
 
 export default function RecruiterPipelinePage() {
@@ -67,7 +74,8 @@ export default function RecruiterPipelinePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [movingIds, setMovingIds] = useState<Set<string>>(new Set())
+  const [dragOver, setDragOver] = useState<Stage | null>(null)
+  const draggedId = useRef<string | null>(null)
 
   const fetchCandidates = useCallback(() => {
     setLoading(true)
@@ -83,7 +91,7 @@ export default function RecruiterPipelinePage() {
         const mapped: PipelineCandidate[] = saved.map(sc => ({
           id: sc.id,
           candidateId: sc.candidateId,
-          stage: (folderToStage(sc.folder)),
+          stage: folderToStage(sc.folder),
           candidate: sc.candidate,
         }))
         setCandidates(mapped)
@@ -99,42 +107,46 @@ export default function RecruiterPipelinePage() {
     fetchCandidates()
   }, [fetchCandidates])
 
-  const folderToStage = (folder: string): Stage => {
-    const lower = folder.toLowerCase()
-    if (STAGES.indexOf(lower as Stage) !== -1) return lower as Stage
-    return 'discovered'
+  const persistStage = async (rowId: string, newStage: Stage) => {
+    try {
+      const res = await fetch('/api/dashboard/recruiter/saved-candidates', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: rowId, folder: newStage }),
+      })
+      if (!res.ok) throw new Error()
+    } catch {
+      // Revert on failure by refetching
+      fetchCandidates()
+    }
   }
 
-  const moveCandidate = (candidateId: string, newStage: Stage) => {
-    setMovingIds(prev => {
-      const next = new Set(Array.from(prev))
-      next.add(candidateId)
-      return next
-    })
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    draggedId.current = id
+    e.dataTransfer.effectAllowed = 'move'
+  }
 
-    setCandidates(prev =>
-      prev.map(c =>
-        c.id === candidateId ? { ...c, stage: newStage } : c
-      )
-    )
+  const handleDragOver = (e: React.DragEvent, stage: Stage) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+    if (dragOver !== stage) setDragOver(stage)
+  }
 
-    // Persist stage change via folder update
-    fetch('/api/dashboard/recruiter/saved-candidates', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: candidateId, folder: newStage }),
-    })
-      .catch(() => {
-        // Revert on failure
-        fetchCandidates()
-      })
-      .finally(() => {
-        setMovingIds(prev => {
-          const next = new Set(Array.from(prev))
-          next.delete(candidateId)
-          return next
-        })
-      })
+  const handleDragLeave = () => setDragOver(null)
+
+  const handleDrop = (e: React.DragEvent, toStage: Stage) => {
+    e.preventDefault()
+    setDragOver(null)
+    const id = draggedId.current
+    draggedId.current = null
+    if (!id) return
+
+    const row = candidates.find(c => c.id === id)
+    if (!row || row.stage === toStage) return
+
+    // Optimistic update
+    setCandidates(prev => prev.map(c => (c.id === id ? { ...c, stage: toStage } : c)))
+    persistStage(id, toStage)
   }
 
   const filteredCandidates = candidates.filter(c => {
@@ -143,8 +155,8 @@ export default function RecruiterPipelinePage() {
     const fullName = `${c.candidate.firstName} ${c.candidate.lastName}`.toLowerCase()
     return (
       fullName.includes(q) ||
-      c.candidate.university.toLowerCase().includes(q) ||
-      c.candidate.degree.toLowerCase().includes(q)
+      (c.candidate.university || '').toLowerCase().includes(q) ||
+      (c.candidate.degree || '').toLowerCase().includes(q)
     )
   })
 
@@ -154,16 +166,13 @@ export default function RecruiterPipelinePage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <div>
-          <Skeleton className="h-8 w-64 mb-2" />
-          <Skeleton className="h-5 w-96" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <Skeleton className="h-24 w-full" />
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
           {STAGES.map(stage => (
             <div key={stage} className="space-y-3">
               <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-32 w-full" />
-              <Skeleton className="h-32 w-full" />
+              <Skeleton className="h-28 w-full" />
+              <Skeleton className="h-28 w-full" />
             </div>
           ))}
         </div>
@@ -213,13 +222,17 @@ export default function RecruiterPipelinePage() {
     )
   }
 
+  const totalInPipeline = filteredCandidates.length
+
   return (
     <div className="space-y-6">
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+            <p className="text-muted-foreground">
+              {t('subtitle')} · <span className="font-medium">{totalInPipeline}</span> {t('inPipeline', { defaultValue: 'in pipeline' })}
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -241,94 +254,99 @@ export default function RecruiterPipelinePage() {
         </div>
       </MetricHero>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {/* HubSpot-style kanban: horizontal scroll on small screens, 5 cols on xl */}
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {STAGES.map(stage => {
           const stageCandidates = getCandidatesForStage(stage)
+          const accent = stageAccent[stage]
+          const isDropTarget = dragOver === stage
+
           return (
-            <div key={stage} className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
-                  {t(`stages.${stage}`)}
-                </h3>
-                <Badge variant="secondary" className="text-xs">
+            <div
+              key={stage}
+              onDragOver={e => handleDragOver(e, stage)}
+              onDragLeave={handleDragLeave}
+              onDrop={e => handleDrop(e, stage)}
+              className={`rounded-lg border-t-4 ${accent.border} ${accent.tint} transition-colors ${
+                isDropTarget ? 'ring-2 ring-primary ring-offset-2' : ''
+              }`}
+            >
+              {/* Column header */}
+              <div className="flex items-center justify-between px-3 py-2.5 border-b bg-white/60 backdrop-blur-sm rounded-t-lg">
+                <div className="flex items-center gap-2">
+                  <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
+                  <h3 className="font-semibold text-sm uppercase tracking-wide text-gray-700">
+                    {t(`stages.${stage}`)}
+                  </h3>
+                </div>
+                <Badge variant="secondary" className="text-xs font-mono">
                   {stageCandidates.length}
                 </Badge>
               </div>
 
-              <div className="space-y-3 min-h-[200px] rounded-lg border border-dashed border-muted-foreground/25 p-2">
+              {/* Cards */}
+              <div className="p-2 space-y-2 min-h-[260px]">
                 {stageCandidates.length === 0 ? (
-                  <p className="text-xs text-muted-foreground text-center py-8">
-                    {t('empty')}
-                  </p>
+                  <div className="h-[220px] flex items-center justify-center">
+                    <p className="text-xs text-muted-foreground text-center px-2">
+                      {isDropTarget ? t('dropHere', { defaultValue: 'Drop here' }) : t('empty')}
+                    </p>
+                  </div>
                 ) : (
-                  stageCandidates.map(candidate => {
-                    const isMoving = movingIds.has(candidate.id)
-                    const otherStages = STAGES.filter(s => s !== stage)
-
-                    return (
-                      <Card key={candidate.id} className="relative">
-                        <CardContent className="p-3 space-y-3">
-                          <div className="flex items-start gap-2">
-                            <Avatar className="h-8 w-8 shrink-0">
-                              <AvatarFallback className="text-xs">
-                                {getInitials(
-                                  candidate.candidate.firstName,
-                                  candidate.candidate.lastName
-                                )}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div className="min-w-0">
-                              <p className="font-medium text-sm truncate">
-                                {candidate.candidate.firstName} {candidate.candidate.lastName}
+                  stageCandidates.map(row => (
+                    <Card
+                      key={row.id}
+                      draggable
+                      onDragStart={e => handleDragStart(e, row.id)}
+                      className="group cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow border bg-white"
+                    >
+                      <CardContent className="p-3 space-y-2">
+                        <div className="flex items-start gap-2">
+                          <GripVertical className="h-4 w-4 text-gray-300 shrink-0 mt-0.5 group-hover:text-gray-500 transition-colors" />
+                          <Avatar className="h-8 w-8 shrink-0">
+                            <AvatarFallback className="text-xs bg-gray-100 text-gray-700">
+                              {getInitials(row.candidate.firstName, row.candidate.lastName)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-medium text-sm truncate text-gray-900">
+                              {row.candidate.firstName} {row.candidate.lastName}
+                            </p>
+                            {row.candidate.university && (
+                              <p className="text-xs text-muted-foreground truncate flex items-center gap-1">
+                                <GraduationCap className="h-3 w-3 shrink-0" />
+                                <span className="truncate">{row.candidate.university}</span>
                               </p>
-                              <p className="text-xs text-muted-foreground truncate">
-                                {candidate.candidate.university}
+                            )}
+                            {row.candidate.degree && (
+                              <p className="text-xs text-muted-foreground truncate mt-0.5">
+                                {row.candidate.degree}
                               </p>
-                              <p className="text-xs text-muted-foreground truncate">
-                                {candidate.candidate.degree}
-                              </p>
-                            </div>
+                            )}
                           </div>
+                        </div>
 
-                          <Badge
-                            variant="secondary"
-                            className={`text-xs ${stageBadgeVariants[stage]}`}
+                        <div className="flex items-center justify-end gap-1 pt-1 border-t">
+                          <Link
+                            href={`/dashboard/recruiter/candidates/${row.candidate.id}`}
+                            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary px-2 py-1 rounded hover:bg-gray-50"
+                            onMouseDown={e => e.stopPropagation()}
                           >
-                            {t(`stages.${stage}`)}
-                          </Badge>
-
-                          <Select
-                            value=""
-                            onValueChange={(value: string) =>
-                              moveCandidate(candidate.id, value as Stage)
-                            }
-                            disabled={isMoving}
+                            <ExternalLink className="h-3 w-3" />
+                            <span>{t('view', { defaultValue: 'View' })}</span>
+                          </Link>
+                          <Link
+                            href={`/dashboard/recruiter/messages?candidate=${row.candidate.id}`}
+                            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary px-2 py-1 rounded hover:bg-gray-50"
+                            onMouseDown={e => e.stopPropagation()}
                           >
-                            <SelectTrigger className="h-8 text-xs">
-                              <SelectValue
-                                placeholder={
-                                  isMoving ? (
-                                    <span className="flex items-center gap-1">
-                                      <Loader2 className="h-3 w-3 animate-spin" />
-                                    </span>
-                                  ) : (
-                                    `${t('moveTo')}...`
-                                  )
-                                }
-                              />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {otherStages.map(s => (
-                                <SelectItem key={s} value={s}>
-                                  {t(`stages.${s}`)}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </CardContent>
-                      </Card>
-                    )
-                  })
+                            <Mail className="h-3 w-3" />
+                            <span>{t('contact', { defaultValue: 'Contact' })}</span>
+                          </Link>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))
                 )}
               </div>
             </div>
