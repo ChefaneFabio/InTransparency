@@ -163,6 +163,7 @@ const itsExtras: NavGroup[] = [
     labelKey: 'companies',
     items: [
       { labelKey: 'crm', href: '/dashboard/university/crm' },
+      { labelKey: 'inbox', href: '/dashboard/university/inbox' },
       { labelKey: 'partnerCompanies', href: '/dashboard/university/employer-crm' },
       { labelKey: 'conventions', href: '/dashboard/university/conventions' },
     ],
