@@ -24,6 +24,7 @@ import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
+import { RecruiterActionCenter } from '@/components/dashboard/recruiter/RecruiterActionCenter'
 
 interface ContactUsage { used: number; limit: number; remaining: number }
 
@@ -127,6 +128,9 @@ export default function RecruiterDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-5 pb-12 px-4">
+      {/* Action Center — "what needs my attention today" */}
+      <RecruiterActionCenter />
+
       {/* Hero */}
       <MetricHero gradient="primary">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
