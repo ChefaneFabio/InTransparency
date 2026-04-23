@@ -50,6 +50,24 @@ const updateJobSchema = z.object({
 
   tags: z.array(z.string()).optional(),
   expiresAt: z.string().datetime().optional().nullable(),
+
+  // Role offering — fit-match inputs. Stored as JSON, see lib/fit-profile.ts.
+  roleOffering: z
+    .object({
+      careerTrack: z.string(),
+      positionLevel: z.string(),
+      environment: z.array(z.string()),
+      growthFocus: z.string(),
+      motivations: z.array(z.string()),
+      cultureTags: z.array(z.string()),
+      teamSize: z.string().optional(),
+      companyStage: z.string().optional(),
+      industry: z.string().optional(),
+      nonNegotiables: z.array(z.string()),
+      perks: z.array(z.string()),
+    })
+    .optional()
+    .nullable(),
 })
 
 /**

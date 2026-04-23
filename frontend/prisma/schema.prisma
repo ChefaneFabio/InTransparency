@@ -274,6 +274,13 @@ model User {
   availabilityFrom     DateTime?       // When the student can start (e.g., after graduation)
   jobSearchUpdatedAt   DateTime?       // Last time the student refreshed the signal
 
+  // Fit profile — captured via self-discovery wizard. Used by the fit-score
+  // matcher alongside skills. Shape: see FitProfile in lib/fit-profile.ts.
+  //   { goal, scope, wishes[], dealBreakers[], motivations[], cultureFit[],
+  //     positionTypes[], companySizes[], industries[], geographies[] }
+  fitProfile          Json?
+  fitProfileUpdatedAt DateTime?
+
   // MFA / TOTP (optional)
   totpEnabled    Boolean   @default(false)
   totpSecret     String?   // Encrypted base32 secret
@@ -1519,6 +1526,15 @@ model Job {
   // Target Disciplines (from Project disciplines)
   targetDisciplines ProjectDiscipline[] @default([])
 
+  // Role offering — describes what the role *is* on non-skill axes. Matched
+  // against User.fitProfile by the fit-score engine to produce a motivation
+  // / culture / dimension / intent signal on top of the skills match.
+  //   { careerTrack, positionLevel, environment[], growthFocus, motivations[],
+  //     cultureTags[], teamSize, companyStage, industry, nonNegotiables[],
+  //     perks[] }
+  // Shape: see RoleOffering in lib/fit-profile.ts.
+  roleOffering    Json?
+
   // Application Settings
   applicationUrl     String? // External application URL
   applicationEmail   String?
@@ -1604,6 +1620,15 @@ model Application {
 
   // Selected Projects (student can choose which projects to highlight)
   selectedProjects String[] @default([]) // Array of project IDs
+
+  // Cached fit-score breakdown — computed at apply-time (or lazily on first
+  // recruiter view) so the applicants list doesn't recompute on every load.
+  // Shape: { composite, skills, intent, motivation, cultureFit, position,
+  //          dimension, industry, geography, dealBreakerHit, rationale }
+  // See FitScore in lib/fit-profile.ts. Recomputed if fitProfile or
+  // roleOffering change after application (fitScoreComputedAt < max of those).
+  fitScore            Json?
+  fitScoreComputedAt  DateTime?
 
   // Status & Tracking
   status    ApplicationStatus @default(PENDING)

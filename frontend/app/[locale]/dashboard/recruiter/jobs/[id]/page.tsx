@@ -12,6 +12,8 @@ import { ArrowLeft, MapPin, Clock, Users, Eye, Edit, Trash2, AlertCircle } from 
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import ApplicantEvidenceList from '@/components/dashboard/recruiter/ApplicantEvidenceList'
+import RoleOfferingEditor from '@/components/dashboard/recruiter/RoleOfferingEditor'
+import type { RoleOffering } from '@/lib/fit-profile'
 
 interface Application {
   id: string
@@ -47,6 +49,7 @@ interface JobDetail {
   createdAt: string
   requiredSkills: string[]
   preferredSkills: string[]
+  roleOffering: RoleOffering | null
   companyName: string | null
   applications: Application[]
   _count: { applications: number }
@@ -366,6 +369,9 @@ export default function JobDetailPage() {
           </div>
         </div>
       </GlassCard>
+
+      {/* Role offering — non-skills fit data that drives match scores */}
+      <RoleOfferingEditor jobId={job.id} initial={job.roleOffering} />
 
       {/* Applications — inline evidence pack per applicant */}
       <GlassCard hover={false}>
