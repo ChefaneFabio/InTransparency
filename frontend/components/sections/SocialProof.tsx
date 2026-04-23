@@ -1,4 +1,4 @@
-import { GraduationCap, Rocket, Handshake, Sparkles } from 'lucide-react'
+import { GraduationCap, Rocket, Users, Sparkles } from 'lucide-react'
 
 export function SocialProof() {
   const benefits = [
@@ -17,7 +17,7 @@ export function SocialProof() {
       description: 'Join before public launch in 2025',
     },
     {
-      Icon: Handshake,
+      Icon: Users,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
       label: 'Build Together',

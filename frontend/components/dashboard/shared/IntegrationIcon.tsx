@@ -5,7 +5,6 @@ import {
   SiLinkedin,
   SiGithub,
   SiSlack,
-  SiDocusign,
   SiSalesforce,
   SiHubspot,
   SiGreenhouse,
@@ -17,18 +16,17 @@ import {
   SiKaggle,
   SiOrcid,
   SiIndeed,
-  SiWorkday,
-  SiMicrosoftteams,
-  SiMicrosoft,
   SiGoogle,
   SiCloudflare,
 } from 'react-icons/si'
-import { TbBrandOutlook } from 'react-icons/tb'
+import { FaMicrosoft } from 'react-icons/fa'
+import { TbBrandTeams } from 'react-icons/tb'
 import {
   Award,
   Badge,
   Bot,
   BookOpen,
+  Briefcase,
   Building2,
   CheckSquare,
   Database,
@@ -46,33 +44,32 @@ import {
 } from 'lucide-react'
 
 type IconKey =
-  // Real brands (simple-icons)
-  | 'linkedin' | 'github' | 'slack' | 'docusign'
-  | 'salesforce' | 'hubspot' | 'greenhouse' | 'workday'
+  // Real brands (simple-icons / fa / tb)
+  | 'linkedin' | 'github' | 'slack'
+  | 'salesforce' | 'hubspot' | 'greenhouse'
   | 'zoom' | 'google-meet' | 'google-drive' | 'google-calendar' | 'google'
   | 'outlook' | 'microsoft' | 'teams'
   | 'dropbox' | 'kaggle' | 'orcid' | 'indeed' | 'cloudflare'
-  // Concepts (Lucide)
+  // Concepts (Lucide) — also used as fallbacks for missing brand icons
   | 'eu' | 'italy' | 'ministry' | 'sso' | 'credential' | 'badge'
   | 'wallet' | 'signature' | 'esco' | 'graduation' | 'erasmus'
   | 'ai-bot' | 'compliance' | 'database' | 'workflow' | 'sis'
+  | 'docusign' | 'workday'
 
 const BRAND: Partial<Record<IconKey, { Icon: IconType; color: string }>> = {
   linkedin:         { Icon: SiLinkedin,        color: '#0A66C2' },
   github:           { Icon: SiGithub,          color: '#181717' },
   slack:            { Icon: SiSlack,           color: '#4A154B' },
-  docusign:         { Icon: SiDocusign,        color: '#FFCC22' },
   salesforce:       { Icon: SiSalesforce,      color: '#00A1E0' },
   hubspot:          { Icon: SiHubspot,         color: '#FF7A59' },
   greenhouse:       { Icon: SiGreenhouse,      color: '#2FAC66' },
-  workday:          { Icon: SiWorkday,         color: '#0875E1' },
   zoom:             { Icon: SiZoom,            color: '#2D8CFF' },
   'google-meet':    { Icon: SiGooglemeet,      color: '#00897B' },
   'google-drive':   { Icon: SiGoogledrive,     color: '#4285F4' },
   'google-calendar':{ Icon: SiGooglecalendar,  color: '#4285F4' },
   google:           { Icon: SiGoogle,          color: '#4285F4' },
-  microsoft:        { Icon: SiMicrosoft,       color: '#5E5E5E' },
-  teams:            { Icon: SiMicrosoftteams,  color: '#6264A7' },
+  microsoft:        { Icon: FaMicrosoft,       color: '#5E5E5E' },
+  teams:            { Icon: TbBrandTeams,      color: '#6264A7' },
   dropbox:          { Icon: SiDropbox,         color: '#0061FF' },
   kaggle:           { Icon: SiKaggle,          color: '#20BEFF' },
   orcid:            { Icon: SiOrcid,           color: '#A6CE39' },
@@ -101,6 +98,10 @@ const CONCEPT: Partial<
   database:   { Icon: Database,      color: 'text-teal-700',    bg: 'bg-teal-50' },
   workflow:   { Icon: Workflow,      color: 'text-violet-700',  bg: 'bg-violet-50' },
   sis:        { Icon: BookOpen,      color: 'text-blue-700',    bg: 'bg-blue-50' },
+  // DocuSign + Workday don't have react-icons entries in our installed
+  // version — render as tinted Lucide fallbacks matching their brand tone.
+  docusign:   { Icon: FileSignature, color: 'text-yellow-700',  bg: 'bg-yellow-50' },
+  workday:    { Icon: Briefcase,     color: 'text-blue-700',    bg: 'bg-blue-50' },
 }
 
 interface Props {
