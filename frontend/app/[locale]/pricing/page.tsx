@@ -117,19 +117,24 @@ export default function PricingPage() {
                     >
                       <Card className={`relative h-full flex flex-col ${tier.featured ? 'border-2 border-primary shadow-xl shadow-primary/10' : 'border-2'}`}>
                         {tier.featured && (
-                          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                            <Badge className="bg-primary text-white shadow-lg">
-                              <Sparkles className="h-3 w-3 mr-1" />{t('companies.popular')}
+                          <div className="absolute -top-3 left-5">
+                            <Badge className="bg-primary text-white shadow-lg text-[10px]">
+                              {t('companies.popular')}
                             </Badge>
                           </div>
                         )}
-                        <CardHeader className="text-center pb-2">
-                          <CardTitle className="text-lg">{t(`companies.tiers.${tier.key}.name`)}</CardTitle>
-                          <div className="mt-4">
-                            <span className="text-4xl font-bold">{t(`companies.tiers.${tier.key}.price`)}</span>
-                            <span className="text-sm text-muted-foreground ml-1">{t(`companies.tiers.${tier.key}.period`)}</span>
+                        <CardHeader className="pb-3 pt-5">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`h-2 w-2 rounded-full ${tier.featured ? 'bg-primary' : 'bg-muted-foreground/40'}`} />
+                            <span className={`text-xs font-semibold uppercase tracking-wider ${tier.featured ? 'text-primary' : 'text-muted-foreground'}`}>
+                              {t(`companies.tiers.${tier.key}.name`)}
+                            </span>
                           </div>
-                          <p className="text-sm text-muted-foreground mt-2">{t(`companies.tiers.${tier.key}.description`)}</p>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-4xl font-bold tracking-tight">{t(`companies.tiers.${tier.key}.price`)}</span>
+                            <span className="text-sm text-muted-foreground">{t(`companies.tiers.${tier.key}.period`)}</span>
+                          </div>
+                          <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{t(`companies.tiers.${tier.key}.description`)}</p>
                         </CardHeader>
                         <CardContent className="pt-4 flex-1 flex flex-col">
                           <ul className="space-y-2.5 mb-6 flex-1">
@@ -202,21 +207,23 @@ export default function PricingPage() {
                 <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                   {/* FREE — the always-available core tier */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                    <Card className="h-full flex flex-col border-2 border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50/50 to-transparent dark:from-emerald-950/20">
-                      <CardHeader className="text-center pb-2">
-                        <div className="mx-auto p-3 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 w-fit mb-3">
-                          <GraduationCap className="h-8 w-8 text-emerald-600" />
+                    <Card className="h-full flex flex-col border-2 border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50/40 to-transparent dark:from-emerald-950/20">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                            {t('students.tiers.free.name', { defaultValue: 'Free' })}
+                          </span>
                         </div>
-                        <CardTitle className="text-lg">{t('students.tiers.free.name', { defaultValue: 'Free' })}</CardTitle>
-                        <div className="mt-3">
-                          <span className="text-4xl font-bold text-emerald-600">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold tracking-tight">
                             {t('students.tiers.free.price', { defaultValue: t('students.price') })}
                           </span>
-                          <span className="text-sm text-muted-foreground ml-1">
-                            {t('students.tiers.free.period', { defaultValue: 'forever' })}
+                          <span className="text-sm text-muted-foreground">
+                            · {t('students.tiers.free.period', { defaultValue: 'forever' })}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2">
+                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                           {t('students.tiers.free.description', {
                             defaultValue: 'Tutto ciò che serve per farti notare dalle aziende: portfolio verificato, skills, applicazioni illimitate.',
                           })}
@@ -230,17 +237,6 @@ export default function PricingPage() {
                               <span>{t(`students.features.${i}`)}</span>
                             </li>
                           ))}
-                          {[0, 1, 2].map(i => {
-                            const key = `students.tiers.free.extras.${i}`
-                            const val = t(key, { defaultValue: '' })
-                            if (!val) return null
-                            return (
-                              <li key={`extra-${i}`} className="flex items-start text-sm">
-                                <Check className="h-4 w-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
-                                <span>{val}</span>
-                              </li>
-                            )
-                          })}
                         </ul>
                         <Button className="w-full bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/20" asChild>
                           <Link href="/auth/register/student">
@@ -254,26 +250,25 @@ export default function PricingPage() {
 
                   {/* PREMIUM — optional upgrade for advanced career tooling */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                    <Card className="relative h-full flex flex-col border-2 border-primary/30 shadow-xl shadow-primary/10 bg-gradient-to-br from-primary/5 via-purple-50/40 to-transparent dark:from-primary/10 dark:via-purple-950/20">
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <Badge className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg border-0">
-                          <Sparkles className="h-3 w-3 mr-1" />
+                    <Card className="relative h-full flex flex-col border-2 border-primary/30 shadow-xl shadow-primary/10 bg-gradient-to-br from-primary/5 via-purple-50/30 to-transparent dark:from-primary/10 dark:via-purple-950/20">
+                      <div className="absolute -top-3 left-5">
+                        <Badge className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg border-0 text-[10px]">
                           {t('students.tiers.premium.badge', { defaultValue: 'Premium — Early Access' })}
                         </Badge>
                       </div>
-                      <CardHeader className="text-center pb-2 pt-6">
-                        <div className="mx-auto p-3 rounded-2xl bg-primary/10 w-fit mb-3">
-                          <Sparkles className="h-8 w-8 text-primary" />
+                      <CardHeader className="pb-3 pt-5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="h-2 w-2 rounded-full bg-primary" />
+                          <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                            {t('students.tiers.premium.name', { defaultValue: 'Premium' })}
+                          </span>
                         </div>
-                        <CardTitle className="text-lg">
-                          {t('students.tiers.premium.name', { defaultValue: 'Premium' })}
-                        </CardTitle>
-                        <div className="mt-3">
-                          <span className="text-4xl font-bold text-primary">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold tracking-tight">
                             {t('students.tiers.premium.price', { defaultValue: 'Coming soon' })}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2">
+                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                           {t('students.tiers.premium.description', {
                             defaultValue:
                               'Strumenti avanzati di carriera per chi vuole accelerare: coaching AI, analisi offerte, visibilità prioritaria.',
@@ -347,14 +342,19 @@ export default function PricingPage() {
                 <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                   {/* CORE — always free preview tier */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                    <Card className="h-full flex flex-col border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20">
-                      <CardHeader className="text-center pb-2">
-                        <CardTitle className="text-lg">{t('universities.tiers.core.name')}</CardTitle>
-                        <div className="mt-4">
-                          <span className="text-4xl font-bold text-blue-600">{t('universities.tiers.core.price')}</span>
-                          <span className="text-sm text-muted-foreground ml-1">{t('universities.tiers.core.period')}</span>
+                    <Card className="h-full flex flex-col border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/40 to-transparent dark:from-blue-950/20">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="h-2 w-2 rounded-full bg-blue-500" />
+                          <span className="text-xs font-semibold uppercase tracking-wider text-blue-700">
+                            {t('universities.tiers.core.name')}
+                          </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.core.description')}</p>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold tracking-tight">{t('universities.tiers.core.price')}</span>
+                          <span className="text-sm text-muted-foreground">· {t('universities.tiers.core.period')}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{t('universities.tiers.core.description')}</p>
                       </CardHeader>
                       <CardContent className="pt-4 flex-1 flex flex-col">
                         <ul className="space-y-2.5 mb-6 flex-1">
@@ -374,20 +374,24 @@ export default function PricingPage() {
 
                   {/* PREMIUM — institutional workspace unlocked */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                    <Card className="relative h-full flex flex-col border-2 border-amber-300 shadow-xl shadow-amber-200/40 bg-gradient-to-br from-amber-50/70 via-orange-50/40 to-transparent dark:from-amber-950/20">
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg border-0">
-                          <Sparkles className="h-3 w-3 mr-1" />
+                    <Card className="relative h-full flex flex-col border-2 border-amber-300 shadow-xl shadow-amber-200/40 bg-gradient-to-br from-amber-50/50 via-orange-50/30 to-transparent dark:from-amber-950/20">
+                      <div className="absolute -top-3 left-5">
+                        <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg border-0 text-[10px]">
                           {t('universities.premiumBadge', { defaultValue: 'Institutional Workspace' })}
                         </Badge>
                       </div>
-                      <CardHeader className="text-center pb-2 pt-6">
-                        <CardTitle className="text-lg">{t('universities.tiers.premium.name')}</CardTitle>
-                        <div className="mt-4">
-                          <span className="text-4xl font-bold text-amber-600">{t('universities.tiers.premium.price')}</span>
-                          <span className="text-sm text-muted-foreground ml-1">{t('universities.tiers.premium.period')}</span>
+                      <CardHeader className="pb-3 pt-5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="h-2 w-2 rounded-full bg-amber-500" />
+                          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700">
+                            {t('universities.tiers.premium.name')}
+                          </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.premium.description')}</p>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold tracking-tight">{t('universities.tiers.premium.price')}</span>
+                          <span className="text-sm text-muted-foreground">{t('universities.tiers.premium.period')}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{t('universities.tiers.premium.description')}</p>
                       </CardHeader>
                       <CardContent className="pt-4 flex-1 flex flex-col">
                         <ul className="space-y-2.5 mb-6 flex-1">
