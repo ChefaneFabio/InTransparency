@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
@@ -10,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
+import ScorecardPanel from '@/components/dashboard/university/analytics/ScorecardPanel'
 
 // ---------------------------------------------------------------------------
 // Types matching the API response shapes from /api/dashboard/university/analytics
@@ -166,7 +168,9 @@ function EmptyState({ message }: { message: string }) {
 
 export default function UniversityAnalytics() {
   const t = useTranslations('universityDashboard.analytics')
-  const [activeTab, setActiveTab] = useState('overview')
+  const searchParams = useSearchParams()
+  const initialTab = searchParams?.get('tab') || 'overview'
+  const [activeTab, setActiveTab] = useState(initialTab)
   const [timeRange, setTimeRange] = useState('1year')
   const [data, setData] = useState<AnalyticsData>({})
   const [loading, setLoading] = useState(true)
@@ -234,14 +238,19 @@ export default function UniversityAnalytics() {
       )}
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="placement">Placement</TabsTrigger>
           <TabsTrigger value="skills">Skills Gap</TabsTrigger>
           <TabsTrigger value="employers">Employers</TabsTrigger>
           <TabsTrigger value="salary">Salary</TabsTrigger>
           <TabsTrigger value="benchmark">Benchmark</TabsTrigger>
+          <TabsTrigger value="scorecard">Scorecard</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="scorecard" className="space-y-6">
+          <ScorecardPanel embedded />
+        </TabsContent>
 
         {/* ===================== OVERVIEW TAB ===================== */}
         <TabsContent value="overview" className="space-y-6">

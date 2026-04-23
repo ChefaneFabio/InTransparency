@@ -33,9 +33,7 @@ const student: NavConfig = {
       items: [
         { labelKey: 'projects',    href: '/dashboard/student/projects' },
         { labelKey: 'profile',     href: '/dashboard/student/profile' },
-        { labelKey: 'cv',          href: '/dashboard/student/cv' },
-        { labelKey: 'skillGraph',  href: '/dashboard/student/skill-graph' },
-        { labelKey: 'skillPath',   href: '/dashboard/student/skill-path' },
+        { labelKey: 'skills',      href: '/dashboard/student/skills' },
         { labelKey: 'credentials', href: '/dashboard/student/credentials' },
       ],
     },
@@ -64,13 +62,13 @@ const student: NavConfig = {
         { labelKey: 'challenges', href: '/dashboard/student/challenges' },
       ],
     },
-    // 6. Settings — analytics, privacy, integrations, preferences
+    // 6. Settings — analytics, integrations, preferences. Settings now
+    //    hosts general + privacy as tabs.
     {
       labelKey: 'settings',
       items: [
         { labelKey: 'analytics',    href: '/dashboard/student/analytics' },
         { labelKey: 'integrations', href: '/dashboard/student/integrations' },
-        { labelKey: 'privacy',      href: '/dashboard/student/privacy' },
         { labelKey: 'settings',     href: '/dashboard/student/settings' },
       ],
     },
@@ -88,13 +86,12 @@ const recruiter: NavConfig = {
         { labelKey: 'interviewKit',   href: '/dashboard/recruiter/interview-kit' },
       ],
     },
-    // 2. Talent — finding + evaluating candidates
+    // 2. Talent — finding + evaluating candidates. Compare and Decision Packs
+    //    are actions invoked from the list/detail views, not top-level nav.
     {
       labelKey: 'talent',
       items: [
-        { labelKey: 'candidates',    href: '/dashboard/recruiter/candidates' },
-        { labelKey: 'compare',       href: '/dashboard/recruiter/compare' },
-        { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
+        { labelKey: 'candidates', href: '/dashboard/recruiter/candidates' },
       ],
     },
     // 3. Pipeline — kanban of saved candidates moving through stages
@@ -127,14 +124,13 @@ const recruiter: NavConfig = {
         { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
       ],
     },
-    // 7. Settings — analytics, documents, integrations, preferences
+    // 7. Settings — analytics separate; Settings hosts general + documents
+    //    + integrations as tabs.
     {
       labelKey: 'settings',
       items: [
-        { labelKey: 'analytics',    href: '/dashboard/recruiter/analytics' },
-        { labelKey: 'integrations', href: '/dashboard/recruiter/integrations' },
-        { labelKey: 'documents',    href: '/dashboard/recruiter/documents' },
-        { labelKey: 'settings',     href: '/dashboard/recruiter/settings' },
+        { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
+        { labelKey: 'settings',  href: '/dashboard/recruiter/settings' },
       ],
     },
   ],
@@ -177,33 +173,31 @@ const universityBase: NavConfig = {
         { labelKey: 'auditLog',  href: '/dashboard/university/audit-log' },
       ],
     },
-    // 4. Events & Conventions — transactional activities
+    // 4. Events & Conventions — transactional activities. Events page now
+    //    hosts events + communications as tabs.
     {
       labelKey: 'eventsConventions',
       items: [
-        { labelKey: 'events',         href: '/dashboard/university/events' },
-        { labelKey: 'conventions',    href: '/dashboard/university/conventions' },
-        { labelKey: 'communications', href: '/dashboard/university/communications' },
+        { labelKey: 'events',      href: '/dashboard/university/events' },
+        { labelKey: 'conventions', href: '/dashboard/university/conventions' },
       ],
     },
-    // 5. Analytics — reporting / read-only
+    // 5. Analytics — reporting / read-only. All dashboards live under one
+    //    tabbed surface (Overview / Placement / Skills Gap / Employers /
+    //    Salary / Benchmark / Scorecard).
     {
       labelKey: 'analytics',
       items: [
-        { labelKey: 'placements',    href: '/dashboard/university/placements' },
-        { labelKey: 'skillsGap',     href: '/dashboard/university/skills-gap' },
-        { labelKey: 'scorecard',     href: '/dashboard/university/scorecard' },
         { labelKey: 'analyticsMain', href: '/dashboard/university/analytics' },
       ],
     },
-    // 6. Programmi — academic programs (university-only; filtered out for ITS)
+    // 6. Programmi — academic programs (university-only; filtered out for ITS).
+    //    Unified tabbed page covers curriculum, career paths, skills intelligence
+    //    and exchanges.
     {
       labelKey: 'programs',
       items: [
-        { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
-        { labelKey: 'careerPaths',         href: '/dashboard/university/career-paths' },
-        { labelKey: 'skillsIntelligence',  href: '/dashboard/university/skills-intelligence' },
-        { labelKey: 'exchanges',           href: '/dashboard/university/exchanges' },
+        { labelKey: 'programsMain', href: '/dashboard/university/programs' },
       ],
     },
     // 7. Settings

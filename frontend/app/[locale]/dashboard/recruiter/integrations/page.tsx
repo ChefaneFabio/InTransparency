@@ -1,7 +1,5 @@
-'use client'
+import { redirect } from 'next/navigation'
 
-import { IntegrationsPage } from '@/components/dashboard/shared/IntegrationsPage'
-
-export default function RecruiterIntegrationsPage() {
-  return <IntegrationsPage role="recruiter" />
+export default function Page() {
+  redirect('/dashboard/recruiter/settings?tab=integrations')
 }

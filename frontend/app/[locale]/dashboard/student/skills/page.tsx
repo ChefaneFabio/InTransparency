@@ -4,20 +4,20 @@ import { useState } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Calendar, Megaphone } from 'lucide-react'
+import { Network, TrendingUp, Sparkles } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import EventsPanel from '@/components/dashboard/university/events-tabs/EventsPanel'
-import CommunicationsPanel from '@/components/dashboard/university/events-tabs/CommunicationsPanel'
+import SkillGraphPanel from '@/components/dashboard/student/skills/SkillGraphPanel'
+import SkillPathPanel from '@/components/dashboard/student/skills/SkillPathPanel'
 
-type TabKey = 'events' | 'communications'
-const VALID: TabKey[] = ['events', 'communications']
+type TabKey = 'graph' | 'path'
+const VALID: TabKey[] = ['graph', 'path']
 
-export default function EventsAndCommsPage() {
+export default function SkillsPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
-  const initial = (searchParams?.get('tab') as TabKey) || 'events'
-  const [tab, setTab] = useState<TabKey>(VALID.includes(initial) ? initial : 'events')
+  const initial = (searchParams?.get('tab') as TabKey) || 'graph'
+  const [tab, setTab] = useState<TabKey>(VALID.includes(initial) ? initial : 'graph')
 
   const handleTabChange = (value: string) => {
     const next = value as TabKey
@@ -28,7 +28,7 @@ export default function EventsAndCommsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
       <MetricHero gradient="primary">
         <div className="flex items-center gap-3">
           <motion.div
@@ -36,12 +36,12 @@ export default function EventsAndCommsPage() {
             animate={{ scale: 1 }}
             className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 border border-white/10 flex items-center justify-center"
           >
-            <Calendar className="h-6 w-6 text-primary" />
+            <Sparkles className="h-6 w-6 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-2xl font-bold">Events & Communications</h1>
-            <p className="text-sm text-muted-foreground mt-0.5 max-w-2xl">
-              Career events + outbound communications to students and partner companies.
+            <h1 className="text-2xl font-bold">Skills</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              Your verified skill graph + AI-recommended growth path, in one workspace.
             </p>
           </div>
         </div>
@@ -49,21 +49,21 @@ export default function EventsAndCommsPage() {
 
       <Tabs value={tab} onValueChange={handleTabChange} className="space-y-5">
         <TabsList className="grid w-full grid-cols-2 max-w-md">
-          <TabsTrigger value="events" className="gap-2">
-            <Calendar className="h-4 w-4" />
-            Events
+          <TabsTrigger value="graph" className="gap-2">
+            <Network className="h-4 w-4" />
+            Skill Graph
           </TabsTrigger>
-          <TabsTrigger value="communications" className="gap-2">
-            <Megaphone className="h-4 w-4" />
-            Communications
+          <TabsTrigger value="path" className="gap-2">
+            <TrendingUp className="h-4 w-4" />
+            Growth Path
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="events" className="mt-0">
-          <EventsPanel embedded />
+        <TabsContent value="graph" className="mt-0">
+          <SkillGraphPanel embedded />
         </TabsContent>
-        <TabsContent value="communications" className="mt-0">
-          <CommunicationsPanel embedded />
+        <TabsContent value="path" className="mt-0">
+          <SkillPathPanel embedded />
         </TabsContent>
       </Tabs>
     </div>
