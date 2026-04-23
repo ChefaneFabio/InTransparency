@@ -23,6 +23,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import PendingActionsCard from '@/components/dashboard/student/tirocinio/PendingActionsCard'
 
 interface Stage { id: string; name: string; order: number; type: string }
 interface Placement {
@@ -163,6 +164,8 @@ export default function StudentPlacementPage() {
         </div>
       </MetricHero>
 
+      {active && <PendingActionsCard placementId={active.id} />}
+
       {active && (
         <Card className="border-2 border-primary/20">
           <CardHeader>
@@ -179,6 +182,14 @@ export default function StudentPlacementPage() {
                   <Calendar className="h-3 w-3" />
                   {new Date(active.startDate).toLocaleDateString('it-IT')}
                   {active.endDate && ` — ${new Date(active.endDate).toLocaleDateString('it-IT')}`}
+                  {active.endDate && (() => {
+                    const days = Math.max(0, Math.ceil((new Date(active.endDate).getTime() - Date.now()) / 86_400_000))
+                    return (
+                      <span className={`ml-1 text-[11px] font-medium ${days <= 7 ? 'text-amber-600' : 'text-muted-foreground'}`}>
+                        · {days} days left
+                      </span>
+                    )
+                  })()}
                 </p>
               </div>
               <div className="flex gap-2">
