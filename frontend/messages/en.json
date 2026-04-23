@@ -3548,12 +3548,12 @@
     },
     "students": {
       "title": "Students",
-      "subtitle": "Freemium — everything you need to get hired is free. Premium unlocks advanced career tools for when you're ready to accelerate.",
+      "subtitle": "Freemium — everything you need to get hired is free. Premium features priced per request when you need to accelerate.",
       "price": "Free",
       "period": "forever",
       "cta": "Get Started Free",
       "features": {
-        "0": "Unlimited projects",
+        "0": "3 AI project analyses",
         "1": "University verification",
         "2": "Smart job search",
         "3": "Skill assessments",
@@ -3564,26 +3564,29 @@
           "name": "Free",
           "price": "€0",
           "period": "forever",
-          "description": "Everything you need to get noticed: verified portfolio, skill graph, unlimited applications."
+          "description": "Core portfolio and discovery. Publish up to 3 projects with AI analysis; university verification included."
         },
         "premium": {
-          "badge": "Premium — Early Access",
+          "badge": "Premium — On Request",
           "name": "Premium",
-          "price": "Coming soon",
-          "description": "Advanced career tooling for students ready to accelerate: AI coaching, offer analyzer, priority visibility.",
-          "includes": "Everything in Free, plus:",
+          "price": "Custom quote",
+          "period": "",
+          "description": "Advanced career tooling priced per feature. Request a quote for what you need — no subscription.",
+          "includes": "Everything in Free, plus (quoted per request):",
           "features": {
             "0": "Priority visibility in recruiter search results",
-            "1": "Unlimited AI Career Coach queries",
-            "2": "Interview Prep with audio/video simulations",
-            "3": "Offer analyzer: compare salary, benefits, growth",
-            "4": "Personalized Skill Path with weekly coaching",
-            "5": "Decision Pack PDF export for final interviews"
+            "1": "Additional AI project analyses beyond the 3 free",
+            "2": "Unlimited AI Career Coach queries",
+            "3": "Interview Prep with audio/video simulations",
+            "4": "Offer analyzer: compare salary, benefits, growth",
+            "5": "Personalized Skill Path with weekly coaching",
+            "6": "Decision Pack PDF export for final interviews"
           },
-          "cta": "Join the waitlist"
+          "cta": "Request a quote",
+          "note": "Each premium feature is quoted individually. Pay only for what you use, no subscription."
         }
       },
-      "whyFree": "Core features are free forever because we believe students shouldn't pay to get discovered. Premium is an optional upgrade for students who want advanced AI tools."
+      "whyFree": "Core features are free forever. Students upload up to 3 projects for AI analysis. Premium features are available à la carte — request a quote for the specific tooling you need."
     },
     "companies": {
       "badge": "For Companies",
@@ -3706,7 +3709,7 @@
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes. Portfolio, assessments, job search, contract check — everything is included. No credit card, no hidden costs. Students never pay."
+          "a": "Yes — the Free plan covers portfolio, up to 3 AI project analyses, university verification, job search, skill assessments, and contract check. No credit card, no hidden costs. Premium features (extra AI analyses, priority visibility, coaching, etc.) are quoted individually on request — pay only for what you need."
         },
         "1": {
           "q": "What do companies get for free?",

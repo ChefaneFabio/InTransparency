@@ -276,18 +276,21 @@ export default function PricingPage() {
                         </p>
                       </CardHeader>
                       <CardContent className="pt-4 flex-1 flex flex-col">
-                        <ul className="space-y-2.5 mb-6 flex-1">
+                        <ul className="space-y-2.5 mb-4 flex-1">
                           <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                            {t('students.tiers.premium.includes', { defaultValue: 'Everything in Free, plus:' })}
+                            {t('students.tiers.premium.includes', {
+                              defaultValue: 'Everything in Free, plus (quoted per request):',
+                            })}
                           </li>
-                          {[0, 1, 2, 3, 4, 5].map(i => {
+                          {[0, 1, 2, 3, 4, 5, 6].map(i => {
                             const fallbacks = [
-                              'Visibilità prioritaria nei risultati recruiter',
-                              'AI Career Coach illimitato (unlimited queries)',
-                              'Interview Prep con simulazioni audio/video',
-                              'Analizzatore offerte: confronta stipendio, benefit, crescita',
-                              'Skill path personalizzato con coaching settimanale',
-                              'Export Decision Pack PDF per colloqui finali',
+                              'Priority visibility in recruiter search results',
+                              'Additional AI project analyses beyond the 3 free',
+                              'Unlimited AI Career Coach queries',
+                              'Interview Prep with audio/video simulations',
+                              'Offer analyzer: compare salary, benefits, growth',
+                              'Personalized Skill Path with weekly coaching',
+                              'Decision Pack PDF export for final interviews',
                             ]
                             return (
                               <li key={i} className="flex items-start text-sm">
@@ -297,9 +300,15 @@ export default function PricingPage() {
                             )
                           })}
                         </ul>
+                        <div className="text-[11px] text-muted-foreground mb-4 p-2.5 bg-primary/5 rounded-md border border-primary/10">
+                          {t('students.tiers.premium.note', {
+                            defaultValue:
+                              'Each premium feature is quoted individually. Pay only for what you use, no subscription.',
+                          })}
+                        </div>
                         <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/5" asChild>
-                          <Link href="/auth/register/student?interest=premium">
-                            {t('students.tiers.premium.cta', { defaultValue: 'Join waitlist' })}
+                          <Link href="/contact?subject=student-premium-quote">
+                            {t('students.tiers.premium.cta', { defaultValue: 'Request a quote' })}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </Link>
                         </Button>

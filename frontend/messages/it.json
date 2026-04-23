@@ -3522,12 +3522,12 @@
     },
     "students": {
       "title": "Studenti",
-      "subtitle": "Freemium — tutto ciò che serve per farti assumere è gratis. Premium sblocca strumenti avanzati di carriera quando sei pronto ad accelerare.",
+      "subtitle": "Freemium — tutto ciò che serve per farti assumere è gratis. Le funzionalità Premium hanno un prezzo quotato su richiesta.",
       "price": "Gratis",
       "period": "per sempre",
       "cta": "Inizia Gratis",
       "features": {
-        "0": "Progetti illimitati",
+        "0": "3 analisi AI di progetti",
         "1": "Verifica universitaria",
         "2": "Ricerca lavoro intelligente",
         "3": "Assessment competenze",
@@ -3538,26 +3538,29 @@
           "name": "Free",
           "price": "€0",
           "period": "per sempre",
-          "description": "Tutto ciò che serve per farti notare: portfolio verificato, skill graph, candidature illimitate."
+          "description": "Portfolio e discovery di base. Pubblica fino a 3 progetti con analisi AI; verifica universitaria inclusa."
         },
         "premium": {
-          "badge": "Premium — Early Access",
+          "badge": "Premium — Su Richiesta",
           "name": "Premium",
-          "price": "In arrivo",
-          "description": "Strumenti avanzati di carriera per chi vuole accelerare: coaching AI, analisi offerte, visibilità prioritaria.",
-          "includes": "Tutto in Free, più:",
+          "price": "Preventivo personalizzato",
+          "period": "",
+          "description": "Strumenti avanzati di carriera quotati per funzionalità. Chiedi un preventivo per ciò che ti serve — nessun abbonamento.",
+          "includes": "Tutto in Free, più (quotato su richiesta):",
           "features": {
             "0": "Visibilità prioritaria nei risultati recruiter",
-            "1": "AI Career Coach illimitato",
-            "2": "Interview Prep con simulazioni audio/video",
-            "3": "Analizzatore offerte: confronta stipendio, benefit, crescita",
-            "4": "Skill path personalizzato con coaching settimanale",
-            "5": "Export Decision Pack PDF per colloqui finali"
+            "1": "Analisi AI aggiuntive oltre le 3 gratuite",
+            "2": "AI Career Coach illimitato",
+            "3": "Interview Prep con simulazioni audio/video",
+            "4": "Analizzatore offerte: confronta stipendio, benefit, crescita",
+            "5": "Skill path personalizzato con coaching settimanale",
+            "6": "Export Decision Pack PDF per colloqui finali"
           },
-          "cta": "Entra nella waitlist"
+          "cta": "Richiedi un preventivo",
+          "note": "Ogni funzionalità premium è quotata singolarmente. Paghi solo per ciò che usi, senza abbonamento."
         }
       },
-      "whyFree": "Le funzionalità core sono sempre gratis perché crediamo che gli studenti non debbano pagare per farsi scoprire. Premium è un upgrade opzionale per chi vuole strumenti AI avanzati."
+      "whyFree": "Le funzionalità core sono sempre gratis. Gli studenti caricano fino a 3 progetti con analisi AI. Le funzionalità Premium sono disponibili à la carte — richiedi un preventivo per gli strumenti specifici di cui hai bisogno."
     },
     "companies": {
       "badge": "Per le Aziende",
@@ -3680,7 +3683,7 @@
       "questions": {
         "0": {
           "q": "È davvero gratis per gli studenti?",
-          "a": "Sì, senza limiti. Portfolio, assessment, ricerca lavoro, check contratto — tutto incluso. Gli studenti non pagano mai."
+          "a": "Sì — il piano Free include portfolio, fino a 3 analisi AI di progetti, verifica universitaria, ricerca lavoro, assessment competenze e check contratto. Nessuna carta di credito, nessun costo nascosto. Le funzionalità Premium (analisi AI aggiuntive, visibilità prioritaria, coaching, ecc.) sono quotate singolarmente su richiesta — paghi solo per ciò che ti serve."
         },
         "1": {
           "q": "Cosa ottengono le aziende gratis?",
