@@ -8,7 +8,7 @@
  * Job.extractedSignals.
  */
 
-import anthropic, { AI_MODEL } from './openai-shared'
+import { anthropic, AI_MODEL } from './openai-shared'
 import prisma from './prisma'
 import {
   CULTURE_TAGS,

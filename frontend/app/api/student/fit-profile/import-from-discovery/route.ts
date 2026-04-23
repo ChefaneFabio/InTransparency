@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import anthropic, { AI_MODEL } from '@/lib/openai-shared'
+import { anthropic, AI_MODEL } from '@/lib/openai-shared'
 import {
   type FitProfile,
   MOTIVATIONS,

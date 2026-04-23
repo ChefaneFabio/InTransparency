@@ -12,7 +12,7 @@
  * endpoint) so we don't duplicate that logic here.
  */
 
-import anthropic, { AI_MODEL } from './openai-shared'
+import { anthropic, AI_MODEL } from './openai-shared'
 import {
   type FitProfile,
   type RoleOffering,
