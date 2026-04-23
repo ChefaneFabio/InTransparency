@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 
+export const maxDuration = 60
+export const dynamic = 'force-dynamic'
+
 /**
  * GET /api/dashboard/recruiter/university-insights
  * Shows recruiters which universities produce the best candidates
@@ -46,7 +49,7 @@ export async function GET(req: NextRequest) {
           },
         },
       },
-      take: 500,
+      take: 200,
     })
 
     // Aggregate by university

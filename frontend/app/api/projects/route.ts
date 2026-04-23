@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { normalizeGrade } from '@/lib/grades/ects-normalization'
 import { onProjectCreated } from '@/lib/cross-segment-connections'
+import { writeProjectDeltas } from '@/lib/skill-delta'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -137,6 +138,27 @@ export async function POST(request: NextRequest) {
     // Cross-segment: notify matching recruiters (non-blocking)
     onProjectCreated(project.id, userId)
       .catch(err => console.error('Cross-segment notification failed:', err))
+
+    // Populate the student's skill graph with self-declared entries so the
+    // /skill-graph page isn't empty until a professor endorsement lands.
+    // These are tagged evaluatorType='SELF' with low confidence (0.3) so
+    // the UI and downstream consumers can distinguish them from verified
+    // (PROFESSOR / SUPERVISOR) deltas.
+    const allSkills = Array.from(
+      new Set([...(project.skills || []), ...(project.tools || [])])
+    )
+    if (allSkills.length > 0) {
+      writeProjectDeltas({
+        projectId: project.id,
+        studentId: userId,
+        projectTitle: project.title,
+        competencies: allSkills.map(skill => ({
+          skill,
+          proficiencyLevel: 'Intermediate',
+        })),
+        endorserName: null, // self-declared, not endorsed
+      }).catch(err => console.error('Self-declared skill delta write failed:', err))
+    }
 
     // Invalidate skill path cache so recommendations update with new project
     await prisma.skillPathRecommendation.deleteMany({

@@ -13,16 +13,13 @@ import {
   Star,
   MessageSquare,
   Mail,
-  MapPin,
   School,
   Calendar,
   Eye,
-  Heart,
   Send,
   AlertCircle
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
-import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
@@ -263,98 +260,142 @@ export default function CandidateProfilePage() {
   }, [])
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
-      {/* Header */}
-      <MetricHero gradient="primary">
-        <div className="flex items-center justify-between">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/recruiter/candidates">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {t('backToCandidates')}
-            </Link>
-          </Button>
+    <div className="max-w-6xl mx-auto p-4 lg:p-6 space-y-6">
+      {/* Breadcrumb */}
+      <Button variant="ghost" size="sm" asChild className="-ml-2 text-muted-foreground hover:text-foreground">
+        <Link href="/dashboard/recruiter/candidates">
+          <ArrowLeft className="h-4 w-4 mr-1.5" />
+          {t('backToCandidates')}
+        </Link>
+      </Button>
 
-          <div className="flex items-center space-x-2">
-            {messageSent && (
-              <span className="text-sm text-primary font-medium">{t('messageSent')}</span>
-            )}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleBookmark}
-              disabled={bookmarkLoading}
-              className={isBookmarked ? 'text-primary border-yellow-600' : ''}
-            >
-              <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
-              {isBookmarked ? t('saved') : t('save')}
-            </Button>
-            <Button size="sm" onClick={openContactForm}>
-              <MessageSquare className="mr-2 h-4 w-4" />
-              {t('contact')}
-            </Button>
-          </div>
-        </div>
-      </MetricHero>
+      {/* Hero identity card — gradient + avatar + stats + actions */}
+      <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-slate-50 via-white to-blue-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/20">
+        {/* Subtle decorative blobs */}
+        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-gradient-to-tr from-emerald-400/10 to-blue-400/10 blur-3xl" />
 
-      {/* Profile Header */}
-      <div className="relative">
-        {/* Cover Image */}
-        <div className="h-48 bg-primary rounded-lg relative">
-          <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
-        </div>
-
-        {/* Profile Info */}
-        <div className="relative px-6 pb-6">
-          <div className="flex flex-col lg:flex-row items-start lg:items-end space-y-4 lg:space-y-0 lg:space-x-6 -mt-20">
-            <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
+        <div className="relative p-6 md:p-8">
+          <div className="flex flex-col md:flex-row md:items-start gap-6">
+            <Avatar className="h-24 w-24 md:h-28 md:w-28 shrink-0 ring-4 ring-white dark:ring-slate-800 shadow-lg">
               <AvatarImage src={candidate.photo || undefined} />
-              <AvatarFallback className="text-2xl">
+              <AvatarFallback className="text-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold">
                 {initials}
               </AvatarFallback>
             </Avatar>
 
-            <div className="flex-1 pt-20 lg:pt-0">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                <div className="mb-4 lg:mb-0">
-                  <h1 className="text-3xl font-bold text-foreground">
-                    {candidate.firstName} {candidate.lastName}
-                  </h1>
-                  {candidate.tagline && (
-                    <p className="text-lg text-muted-foreground">{candidate.tagline}</p>
-                  )}
-                  {candidate.degree && (
-                    <p className="text-muted-foreground">{candidate.degree}</p>
-                  )}
-                  {candidate.university && (
-                    <p className="text-foreground/80">
-                      {candidate.university}
-                      {candidate.graduationYear ? ` - ${t('classOf', { year: candidate.graduationYear })}` : ''}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex items-center space-x-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">{candidate.projectCount}</div>
-                    <div className="text-sm text-foreground/80">{t('projects')}</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">{allSkills.length}</div>
-                    <div className="text-sm text-foreground/80">{t('skills')}</div>
-                  </div>
-                </div>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+                {candidate.firstName} {candidate.lastName}
+              </h1>
+              {candidate.tagline && (
+                <p className="text-base text-foreground/70 mt-1">{candidate.tagline}</p>
+              )}
+              <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap mt-2">
+                {candidate.degree && (
+                  <span className="inline-flex items-center gap-1.5">
+                    <School className="h-4 w-4" />
+                    {candidate.degree}
+                  </span>
+                )}
+                {candidate.university && (
+                  <>
+                    <span className="text-muted-foreground/40">·</span>
+                    <span className="font-medium text-foreground/80">{candidate.university}</span>
+                  </>
+                )}
+                {candidate.graduationYear && (
+                  <>
+                    <span className="text-muted-foreground/40">·</span>
+                    <span>{t('classOf', { year: candidate.graduationYear })}</span>
+                  </>
+                )}
               </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row md:flex-col items-stretch gap-2 shrink-0 md:min-w-[180px]">
+              <Button size="lg" onClick={openContactForm} className="shadow-sm">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                {t('contact')}
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={toggleBookmark}
+                disabled={bookmarkLoading}
+                className={isBookmarked ? 'text-amber-600 border-amber-300 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/30 dark:border-amber-700' : ''}
+              >
+                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
+                {isBookmarked ? t('saved') : t('save')}
+              </Button>
+              {messageSent && (
+                <span className="text-xs text-emerald-600 font-medium inline-flex items-center gap-1 justify-center">
+                  ✓ {t('messageSent')}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Stats strip */}
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="rounded-xl border bg-white/60 dark:bg-slate-900/60 backdrop-blur p-4">
+              <div className="text-2xl font-bold tracking-tight">{candidate.projectCount}</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mt-0.5">{t('projects')}</div>
+            </div>
+            <div className="rounded-xl border bg-white/60 dark:bg-slate-900/60 backdrop-blur p-4">
+              <div className="text-2xl font-bold tracking-tight">{allSkills.length}</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mt-0.5">{t('skills')}</div>
+            </div>
+            <div className="rounded-xl border bg-white/60 dark:bg-slate-900/60 backdrop-blur p-4">
+              <div className="text-2xl font-bold tracking-tight">
+                {candidate.projects.filter(p => p.innovationScore !== null).length}
+              </div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mt-0.5">{t('tabs.projects', { count: 0 }).replace(/\s*\(.*\)/, '')} ✓</div>
+            </div>
+            <div className="rounded-xl border bg-white/60 dark:bg-slate-900/60 backdrop-blur p-4">
+              <div className="text-2xl font-bold tracking-tight">
+                {candidate.gpa !== null ? candidate.gpa : '—'}
+              </div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mt-0.5">GPA</div>
             </div>
           </div>
         </div>
       </div>
 
-      <CandidateSummary candidateId={candidateId} />
+      {/* 2-column layout: sticky sidebar + main */}
+      <div className="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
+        {/* Sidebar — scores + profile summary */}
+        <aside className="space-y-4 lg:sticky lg:top-4">
+          <TrustScoreBadge userId={candidate.id} />
+          <PlacementProbabilityBadge studentId={candidate.id} />
+          <DecisionPackCard
+            candidateId={candidate.id}
+            candidateName={`${candidate.firstName || ''} ${candidate.lastName || ''}`.trim()}
+            university={candidate.university || undefined}
+            verifiedProjects={candidate.projects.filter((p: Project) => p.innovationScore !== null).length}
+          />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column - Main Content */}
-        <div className="lg:col-span-2">
-          <Tabs defaultValue="overview" className="space-y-6">
+          {/* Contact quick-info */}
+          {candidate.email && (
+            <GlassCard hover={false}>
+              <div className="p-4">
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                  {t('contactInfo')}
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Mail className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <span className="truncate">{candidate.email}</span>
+                </div>
+              </div>
+            </GlassCard>
+          )}
+        </aside>
+
+        {/* Main — AI summary + tabs */}
+        <main className="space-y-5 min-w-0">
+          <CandidateSummary candidateId={candidateId} />
+
+          <Tabs defaultValue="overview" className="space-y-5">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
               <TabsTrigger value="readiness">{t('tabs.readiness')}</TabsTrigger>
@@ -362,8 +403,7 @@ export default function CandidateProfilePage() {
               <TabsTrigger value="skills">{t('tabs.skills')}</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="overview" className="space-y-6">
-              {/* About */}
+            <TabsContent value="overview" className="space-y-5">
               {candidate.bio && (
                 <GlassCard hover={false}>
                   <div className="p-5">
@@ -373,50 +413,38 @@ export default function CandidateProfilePage() {
                 </GlassCard>
               )}
 
-              {/* Contact Information */}
-              <GlassCard hover={false}>
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold mb-3">{t('contactInfo')}</h3>
-                  <div className="space-y-3">
-                    {candidate.email ? (
-                      <div className="flex items-center space-x-3">
-                        <Mail className="h-4 w-4 text-muted-foreground" />
-                        <span>{candidate.email}</span>
-                        <Button size="sm" variant="outline" onClick={openContactForm}>
-                          <Mail className="h-4 w-4 mr-1" />
-                          {t('email')}
-                        </Button>
-                      </div>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">
-                        {t('emailPrivate')}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </GlassCard>
-
-              {/* Education */}
               {(candidate.university || candidate.degree) && (
                 <GlassCard hover={false}>
                   <div className="p-5">
-                    <h3 className="text-lg font-semibold flex items-center mb-3">
-                      <School className="mr-2 h-5 w-5" />
+                    <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
+                      <School className="h-5 w-5 text-muted-foreground" />
                       {t('education')}
                     </h3>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {candidate.degree && (
-                        <h3 className="font-semibold text-foreground">{candidate.degree}</h3>
+                        <div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-wide">{t('summaryDegree')}</p>
+                          <p className="font-semibold">{candidate.degree}</p>
+                        </div>
                       )}
                       {candidate.university && (
-                        <p className="text-muted-foreground">{candidate.university}</p>
+                        <div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-wide">{t('summaryUniversity')}</p>
+                          <p className="font-semibold">{candidate.university}</p>
+                        </div>
                       )}
-                      <div className="flex items-center space-x-4 text-sm text-foreground/80">
+                      <div className="flex gap-6">
                         {candidate.graduationYear && (
-                          <span>{t('classOf', { year: candidate.graduationYear })}</span>
+                          <div>
+                            <p className="text-xs text-muted-foreground uppercase tracking-wide">{t('summaryGraduationYear')}</p>
+                            <p className="font-semibold">{candidate.graduationYear}</p>
+                          </div>
                         )}
                         {candidate.gpa !== null && (
-                          <span>GPA: {candidate.gpa}</span>
+                          <div>
+                            <p className="text-xs text-muted-foreground uppercase tracking-wide">{t('summaryGpa')}</p>
+                            <p className="font-semibold">{candidate.gpa}</p>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -425,36 +453,38 @@ export default function CandidateProfilePage() {
               )}
             </TabsContent>
 
-            <TabsContent value="readiness" className="space-y-6">
+            <TabsContent value="readiness" className="space-y-5">
               <ReadinessBrief studentId={candidate.id} />
             </TabsContent>
 
-            <TabsContent value="projects" className="space-y-6">
+            <TabsContent value="projects" className="space-y-5">
               {candidate.projects.length === 0 ? (
                 <GlassCard hover={false}>
-                  <div className="p-5 text-center py-12">
+                  <div className="p-12 text-center">
                     <p className="text-muted-foreground">{t('noProjects')}</p>
                   </div>
                 </GlassCard>
               ) : (
                 candidate.projects.map((project) => (
-                  <Card key={project.id}>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <CardTitle className="flex items-center space-x-2 flex-wrap gap-y-1">
-                            <span>{project.title}</span>
+                  <Card key={project.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="min-w-0">
+                          <CardTitle className="flex items-center gap-2 flex-wrap">
+                            <span className="truncate">{project.title}</span>
                             {project.innovationScore !== null && (
-                              <Badge variant="outline">Score: {project.innovationScore}</Badge>
+                              <Badge variant="outline" className="shrink-0 bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800">
+                                Score {project.innovationScore}
+                              </Badge>
                             )}
                           </CardTitle>
                           {project.description && (
-                            <CardDescription className="mt-2">
+                            <CardDescription className="mt-2 line-clamp-2">
                               {project.description}
                             </CardDescription>
                           )}
                         </div>
-                        <div className="flex space-x-2">
+                        <div className="flex gap-2 shrink-0">
                           {project.githubUrl && (
                             <Button variant="outline" size="sm" asChild>
                               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -476,8 +506,8 @@ export default function CandidateProfilePage() {
                       <div className="space-y-4">
                         {project.technologies && project.technologies.length > 0 && (
                           <div>
-                            <h4 className="font-medium text-foreground mb-2">{t('technologies')}</h4>
-                            <div className="flex flex-wrap gap-1">
+                            <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('technologies')}</h4>
+                            <div className="flex flex-wrap gap-1.5">
                               {project.technologies.map((tech) => (
                                 <Badge key={tech} variant="secondary" className="text-xs">
                                   {tech}
@@ -489,8 +519,8 @@ export default function CandidateProfilePage() {
 
                         {project.skills && project.skills.length > 0 && (
                           <div>
-                            <h4 className="font-medium text-foreground mb-2">{t('skills')}</h4>
-                            <div className="flex flex-wrap gap-1">
+                            <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('skills')}</h4>
+                            <div className="flex flex-wrap gap-1.5">
                               {project.skills.map((skill) => (
                                 <Badge key={skill} variant="outline" className="text-xs">
                                   {skill}
@@ -500,25 +530,23 @@ export default function CandidateProfilePage() {
                           </div>
                         )}
 
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2 border-t">
-                          <span className="flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground pt-3 border-t">
+                          <span className="inline-flex items-center gap-1">
+                            <Eye className="h-3.5 w-3.5" />
                             {t('views', { count: project.views })}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
+                          <span className="inline-flex items-center gap-1">
+                            <Calendar className="h-3.5 w-3.5" />
                             {new Date(project.createdAt).toLocaleDateString()}
                           </span>
                         </div>
 
                         {project.imageUrl && (
-                          <div>
-                            <img
-                              src={project.imageUrl}
-                              alt={`${project.title} screenshot`}
-                              className="w-full h-48 object-cover rounded border"
-                            />
-                          </div>
+                          <img
+                            src={project.imageUrl}
+                            alt={`${project.title} screenshot`}
+                            className="w-full h-48 object-cover rounded-lg border"
+                          />
                         )}
                       </div>
                     </CardContent>
@@ -527,10 +555,10 @@ export default function CandidateProfilePage() {
               )}
             </TabsContent>
 
-            <TabsContent value="skills" className="space-y-6">
+            <TabsContent value="skills" className="space-y-5">
               {allSkills.length === 0 ? (
                 <GlassCard hover={false}>
-                  <div className="p-5 text-center py-12">
+                  <div className="p-12 text-center">
                     <p className="text-muted-foreground">{t('noSkills')}</p>
                   </div>
                 </GlassCard>
@@ -538,12 +566,12 @@ export default function CandidateProfilePage() {
                 <GlassCard hover={false}>
                   <div className="p-5">
                     <h3 className="text-lg font-semibold">{t('skillsFromProjects')}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground mt-1 mb-4">
                       {t('skillsDescription', { count: candidate.projectCount })}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {allSkills.map((skill) => (
-                        <Badge key={skill} variant="secondary">
+                        <Badge key={skill} variant="secondary" className="text-xs">
                           {skill}
                         </Badge>
                       ))}
@@ -553,83 +581,7 @@ export default function CandidateProfilePage() {
               )}
             </TabsContent>
           </Tabs>
-        </div>
-
-        {/* Right Column - Sidebar */}
-        <div className="space-y-6">
-          {/* Quick Actions */}
-          <GlassCard hover={false}>
-            <div className="p-5">
-              <h3 className="text-lg font-semibold mb-3">{t('quickActions')}</h3>
-              <div className="space-y-3">
-                <Button className="w-full justify-start" onClick={openContactForm}>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  {t('sendMessage')}
-                </Button>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start"
-                  onClick={toggleBookmark}
-                  disabled={bookmarkLoading}
-                >
-                  <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-primary' : ''}`} />
-                  {isBookmarked ? t('saved') : t('saveCandidate')}
-                </Button>
-              </div>
-            </div>
-          </GlassCard>
-
-          {/* Trust Score */}
-          <TrustScoreBadge userId={candidate.id} />
-
-          {/* Placement Prediction */}
-          <PlacementProbabilityBadge studentId={candidate.id} />
-
-          {/* Decision Pack */}
-          <DecisionPackCard
-            candidateId={candidate.id}
-            candidateName={`${candidate.firstName || ''} ${candidate.lastName || ''}`.trim()}
-            university={candidate.university || undefined}
-            verifiedProjects={candidate.projects.filter((p: Project) => p.innovationScore !== null).length}
-          />
-
-          {/* Profile Summary */}
-          <GlassCard hover={false}>
-            <div className="p-5">
-              <h3 className="text-lg font-semibold mb-3">{t('profileSummary')}</h3>
-              <div className="space-y-3">
-                {candidate.university && (
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('summaryUniversity')}</p>
-                    <p className="font-medium">{candidate.university}</p>
-                  </div>
-                )}
-                {candidate.degree && (
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('summaryDegree')}</p>
-                    <p className="font-medium">{candidate.degree}</p>
-                  </div>
-                )}
-                {candidate.graduationYear && (
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('summaryGraduationYear')}</p>
-                    <p className="font-medium">{candidate.graduationYear}</p>
-                  </div>
-                )}
-                {candidate.gpa !== null && (
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('summaryGpa')}</p>
-                    <p className="font-medium">{candidate.gpa}</p>
-                  </div>
-                )}
-                <div>
-                  <p className="text-sm text-muted-foreground">{t('summaryPublicProjects')}</p>
-                  <p className="font-medium">{candidate.projectCount}</p>
-                </div>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
+        </main>
       </div>
 
       {/* Contact Form Modal */}

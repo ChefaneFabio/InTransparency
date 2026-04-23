@@ -15,14 +15,14 @@ import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface UniversityInsight {
-  university: string
+  name: string
   studentCount: number
   matchingStudents: number
   matchRate: number
   verifiedProjects: number
   verificationRate: number
-  topSkills: string[]
-  topDisciplines: string[]
+  topSkills: Array<{ skill: string; count: number }>
+  topDisciplines: Array<{ discipline: string; count: number }>
 }
 
 export default function UniversityInsightsPage() {
@@ -71,7 +71,7 @@ export default function UniversityInsightsPage() {
 
       {!loading && insights.map((uni, i) => (
         <motion.div
-          key={uni.university}
+          key={uni.name}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.05 }}
@@ -95,7 +95,7 @@ export default function UniversityInsightsPage() {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-bold text-lg">{uni.university}</h3>
+                    <h3 className="font-bold text-lg">{uni.name}</h3>
                     {uni.verificationRate >= 70 && (
                       <Badge className="bg-emerald-100 text-emerald-700 border-0 text-xs">
                         <CheckCircle className="h-3 w-3 mr-0.5" />{t('highVerification')}
@@ -126,7 +126,9 @@ export default function UniversityInsightsPage() {
                       <div className="flex-1">
                         <p className="text-xs text-muted-foreground mb-1">{t('topSkills')}</p>
                         <div className="flex gap-1 flex-wrap">
-                          {uni.topSkills.slice(0, 5).map(s => <Badge key={s} variant="outline" className="text-[10px]">{s}</Badge>)}
+                          {uni.topSkills.slice(0, 5).map(s => (
+                            <Badge key={s.skill} variant="outline" className="text-[10px]">{s.skill}</Badge>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -134,7 +136,9 @@ export default function UniversityInsightsPage() {
                       <div className="flex-1">
                         <p className="text-xs text-muted-foreground mb-1">{t('topDisciplines')}</p>
                         <div className="flex gap-1 flex-wrap">
-                          {uni.topDisciplines.slice(0, 3).map(d => <Badge key={d} variant="secondary" className="text-[10px]">{d}</Badge>)}
+                          {uni.topDisciplines.slice(0, 3).map(d => (
+                            <Badge key={d.discipline} variant="secondary" className="text-[10px]">{d.discipline}</Badge>
+                          ))}
                         </div>
                       </div>
                     )}
