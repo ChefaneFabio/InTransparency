@@ -1,6 +1,11 @@
 'use client'
 
-import { CheckCircle, XCircle, Users, Monitor, GraduationCap, Brain, Target, Trophy, Briefcase, Palette, FileText, BarChart3 } from 'lucide-react'
+import {
+  CheckCircle, XCircle, Users, Monitor, GraduationCap, Brain, Target,
+  Trophy, Briefcase, Palette, FileText, BarChart3,
+  ShieldCheck, Cpu, MessageCircle, Filter, FolderOpen,
+  Atom, TrendingUp, Scale, BookOpen, HelpCircle,
+} from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function CompetitiveAdvantage() {
@@ -321,18 +326,29 @@ export function CompetitiveAdvantage() {
           </h3>
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
             {[
-              { key: 'universityVerified', icon: '' },
-              { key: 'aiAnalysis', icon: '' },
-              { key: 'conversationalAI', icon: '💬' },
-              { key: 'academicFilters', icon: '' },
-              { key: 'portfolioCoverage', icon: '📁' }
-            ].map((feature) => (
-              <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-primary/20 text-center">
-                <div className="text-4xl mb-3">{feature.icon}</div>
-                <h4 className="font-bold text-foreground mb-2">{t(`uniqueFeatures.features.${feature.key}.title`)}</h4>
-                <p className="text-sm text-muted-foreground">{t(`uniqueFeatures.features.${feature.key}.description`)}</p>
-              </div>
-            ))}
+              { key: 'universityVerified', Icon: ShieldCheck,   color: 'text-emerald-600', bg: 'bg-emerald-50' },
+              { key: 'aiAnalysis',         Icon: Cpu,           color: 'text-purple-600',  bg: 'bg-purple-50' },
+              { key: 'conversationalAI',   Icon: MessageCircle, color: 'text-blue-600',    bg: 'bg-blue-50' },
+              { key: 'academicFilters',    Icon: Filter,        color: 'text-amber-600',   bg: 'bg-amber-50' },
+              { key: 'portfolioCoverage',  Icon: FolderOpen,    color: 'text-rose-600',    bg: 'bg-rose-50' },
+            ].map(feature => {
+              const Icon = feature.Icon
+              return (
+                <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-primary/20 text-center">
+                  <div
+                    className={`w-14 h-14 rounded-2xl ${feature.bg} ${feature.color} flex items-center justify-center mx-auto mb-4`}
+                  >
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h4 className="font-bold text-foreground mb-2">
+                    {t(`uniqueFeatures.features.${feature.key}.title`)}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {t(`uniqueFeatures.features.${feature.key}.description`)}
+                  </p>
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -382,19 +398,25 @@ export function CompetitiveAdvantage() {
             {t('disciplines.subtitle')}
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
-            {['stem', 'business', 'creative', 'legal', 'humanities', 'other'].map((category) => (
-              <div key={category} className="bg-primary/5 rounded-lg p-6">
-                <h4 className="font-bold mb-3">
-                  {category === 'stem' && '🔬 '}
-                  {category === 'business' && ''}
-                  {category === 'creative' && ''}
-                  {category === 'legal' && '⚖️ '}
-                  {category === 'humanities' && ''}
-                  {category === 'other' && ''}
-                  {t(`disciplines.categories.${category}.title`)}
-                </h4>
+            {[
+              { key: 'stem',       Icon: Atom,        color: 'text-blue-600',    bg: 'bg-blue-100' },
+              { key: 'business',   Icon: TrendingUp,  color: 'text-emerald-600', bg: 'bg-emerald-100' },
+              { key: 'creative',   Icon: Palette,     color: 'text-pink-600',    bg: 'bg-pink-100' },
+              { key: 'legal',      Icon: Scale,       color: 'text-slate-700',   bg: 'bg-slate-100' },
+              { key: 'humanities', Icon: BookOpen,    color: 'text-amber-600',   bg: 'bg-amber-100' },
+              { key: 'other',      Icon: HelpCircle,  color: 'text-muted-foreground', bg: 'bg-muted' },
+            ].map(({ key, Icon, color, bg }) => (
+              <div key={key} className="bg-primary/5 rounded-lg p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className={`w-8 h-8 rounded-lg ${bg} ${color} flex items-center justify-center`}>
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <h4 className="font-bold">
+                    {t(`disciplines.categories.${key}.title`)}
+                  </h4>
+                </div>
                 <ul className="space-y-1 text-sm text-foreground/80">
-                  {t.raw(`disciplines.categories.${category}.items`).map((item: string) => (
+                  {t.raw(`disciplines.categories.${key}.items`).map((item: string) => (
                     <li key={item}>• {item}</li>
                   ))}
                 </ul>
