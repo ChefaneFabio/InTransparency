@@ -394,6 +394,10 @@ model User {
   matchExplanationsAsSubject    MatchExplanation[] @relation("MatchExplanationSubject")
   matchExplanationsAsCounterparty MatchExplanation[] @relation("MatchExplanationCounterparty")
 
+  // Candidate shares — recruiter creates signed links to one candidate
+  sharesCreated   CandidateShare[] @relation("CandidateShareCreator")
+  sharesReceived  CandidateShare[] @relation("CandidateShareSubject")
+
   @@index([email])
   @@index([username])
   @@index([referralCode])
@@ -4206,6 +4210,39 @@ model AuditEvent {
   @@index([entityType, entityId])
   @@index([actorId, createdAt])
   @@index([institutionId, createdAt])
+}
+
+// Signed link a recruiter generates to share ONE candidate's evidence pack
+// with a hiring manager who has no InTransparency account. Token is unguessable,
+// expires after a TTL (default 7 days), and can be revoked. Views are audited.
+model CandidateShare {
+  id             String    @id @default(cuid())
+  token          String    @unique @db.VarChar(64)
+  candidateId    String
+  candidate      User      @relation("CandidateShareSubject", fields: [candidateId], references: [id], onDelete: Cascade)
+  sharedByUserId String
+  sharedBy       User      @relation("CandidateShareCreator", fields: [sharedByUserId], references: [id], onDelete: Cascade)
+
+  // Optional note shown to the recipient (the hiring manager)
+  note           String?   @db.Text
+  // Recipient email recorded at creation time (not required to view — token is the gate)
+  recipientEmail String?
+
+  // Lifecycle
+  expiresAt      DateTime
+  revokedAt      DateTime?
+
+  // Access telemetry
+  firstViewedAt  DateTime?
+  lastViewedAt   DateTime?
+  viewCount      Int       @default(0)
+
+  createdAt      DateTime  @default(now())
+
+  @@index([token])
+  @@index([sharedByUserId, createdAt])
+  @@index([candidateId])
+  @@index([expiresAt])
 }
 
 // ============================================================================

@@ -17,9 +17,11 @@ import {
   Calendar,
   Eye,
   Send,
-  AlertCircle
+  AlertCircle,
+  Share2
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import ShareCandidateDialog from '@/components/dashboard/recruiter/ShareCandidateDialog'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
@@ -85,6 +87,7 @@ export default function CandidateProfilePage() {
     positionPrice: number
     savings: number
   } | null>(null)
+  const [shareOpen, setShareOpen] = useState(false)
 
   useEffect(() => {
     if (!candidateId) return
@@ -317,6 +320,14 @@ export default function CandidateProfilePage() {
               <Button size="lg" onClick={openContactForm} className="shadow-sm">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 {t('contact')}
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => setShareOpen(true)}
+              >
+                <Share2 className="mr-2 h-4 w-4" />
+                Share
               </Button>
               <Button
                 variant="outline"
@@ -583,6 +594,14 @@ export default function CandidateProfilePage() {
           </Tabs>
         </main>
       </div>
+
+      {/* Share dialog */}
+      <ShareCandidateDialog
+        open={shareOpen}
+        onOpenChange={setShareOpen}
+        candidateId={candidate.id}
+        candidateName={`${candidate.firstName || ''} ${candidate.lastName || ''}`.trim() || 'candidate'}
+      />
 
       {/* Contact Form Modal */}
       {showContactForm && (

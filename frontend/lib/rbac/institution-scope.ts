@@ -117,7 +117,7 @@ export async function checkPlacementAccess(userId: string, placementId: string) 
  * Write an AuditEvent for state changes. Best-effort; failures are logged but do not block.
  */
 export async function audit(params: {
-  actorId: string
+  actorId: string | null
   actorRole: string
   action: string
   entityType: string
@@ -128,7 +128,7 @@ export async function audit(params: {
   try {
     await prisma.auditEvent.create({
       data: {
-        actorId: params.actorId,
+        actorId: params.actorId ?? null,
         actorRole: params.actorRole,
         action: params.action,
         entityType: params.entityType,
