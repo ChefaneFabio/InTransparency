@@ -142,12 +142,20 @@
       "brand": "Brand"
     },
     "university": {
+      "workspace": "Workspace",
       "students": "Students",
+      "aiCompliance": "AI & Compliance",
+      "eventsConventions": "Events & Conventions",
+      "analytics": "Analytics",
+      "programs": "Programs",
+      "settings": "Settings",
       "academics": "Academics",
       "career": "Career",
       "insights": "Insights",
       "more": "More",
       "items": {
+        "analyticsMain": "All analytics",
+        "billing": "Billing & Plan",
         "list": "Student List",
         "addStudent": "Add Student",
         "importStudents": "Import Students",

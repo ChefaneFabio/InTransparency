@@ -117,73 +117,80 @@ const recruiter: NavConfig = {
 // Institution type determines which nav items are visible
 export type InstitutionType = 'university' | 'its' | 'school' | 'other'
 
+// Restructured 2026-04-23: Workspace (paid M1-M4) up front, Students +
+// Analytics cleanly separated, "Career" split into action vs reporting
+// to reduce the 12-item dropdown. Academic-program items live under
+// "Programmi" and are hidden for ITS.
 const universityBase: NavConfig = {
   groups: [
+    // 1. Workspace — the paid institutional modules (M1-M4). Most
+    //    daily staff activity lives here. Always first.
     {
-      labelKey: 'assistant',
+      labelKey: 'workspace',
       items: [
-        { labelKey: 'assistant', href: '/dashboard/university/assistant' },
-        { labelKey: 'auditLog', href: '/dashboard/university/audit-log' },
+        { labelKey: 'inbox',             href: '/dashboard/university/inbox' },
+        { labelKey: 'offers',            href: '/dashboard/university/offers' },
+        { labelKey: 'crm',               href: '/dashboard/university/crm' },
+        { labelKey: 'placementPipeline', href: '/dashboard/university/placement-pipeline' },
       ],
     },
+    // 2. Students roster
     {
       labelKey: 'students',
       items: [
-        { labelKey: 'list', href: '/dashboard/university/students' },
+        { labelKey: 'list',     href: '/dashboard/university/students' },
         { labelKey: 'projects', href: '/dashboard/university/projects' },
-        { labelKey: 'courses', href: '/dashboard/university/courses' },
+        { labelKey: 'courses',  href: '/dashboard/university/courses' },
       ],
     },
+    // 3. AI & Compliance — differentiator surfaces (assistant, audit)
     {
-      labelKey: 'career',
+      labelKey: 'aiCompliance',
       items: [
-        { labelKey: 'placements', href: '/dashboard/university/placements' },
-        { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
-        { labelKey: 'skillsIntelligence', href: '/dashboard/university/skills-intelligence' },
-        { labelKey: 'careerPaths', href: '/dashboard/university/career-paths' },
-        { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
-        { labelKey: 'events', href: '/dashboard/university/events' },
-        { labelKey: 'conventions', href: '/dashboard/university/conventions' },
-        { labelKey: 'stages', href: '/dashboard/university/stages' },
-        { labelKey: 'stageInsights', href: '/dashboard/university/stage-insights' },
-        { labelKey: 'exchanges', href: '/dashboard/university/exchanges' },
-        { labelKey: 'employerCRM', href: '/dashboard/university/employer-crm' },
+        { labelKey: 'assistant', href: '/dashboard/university/assistant' },
+        { labelKey: 'auditLog',  href: '/dashboard/university/audit-log' },
+      ],
+    },
+    // 4. Events & Conventions — transactional activities
+    {
+      labelKey: 'eventsConventions',
+      items: [
+        { labelKey: 'events',         href: '/dashboard/university/events' },
+        { labelKey: 'conventions',    href: '/dashboard/university/conventions' },
         { labelKey: 'communications', href: '/dashboard/university/communications' },
       ],
     },
+    // 5. Analytics — reporting / read-only
     {
-      labelKey: 'insights',
+      labelKey: 'analytics',
       items: [
-        { labelKey: 'scorecard', href: '/dashboard/university/scorecard' },
-        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'placements',    href: '/dashboard/university/placements' },
+        { labelKey: 'skillsGap',     href: '/dashboard/university/skills-gap' },
+        { labelKey: 'scorecard',     href: '/dashboard/university/scorecard' },
+        { labelKey: 'analyticsMain', href: '/dashboard/university/analytics' },
+      ],
+    },
+    // 6. Programmi — academic programs (university-only; filtered out for ITS)
+    {
+      labelKey: 'programs',
+      items: [
+        { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
+        { labelKey: 'careerPaths',         href: '/dashboard/university/career-paths' },
+        { labelKey: 'skillsIntelligence',  href: '/dashboard/university/skills-intelligence' },
+        { labelKey: 'exchanges',           href: '/dashboard/university/exchanges' },
+      ],
+    },
+    // 7. Settings
+    {
+      labelKey: 'settings',
+      items: [
         { labelKey: 'documents', href: '/dashboard/university/documents' },
-        { labelKey: 'settings', href: '/dashboard/university/settings' },
+        { labelKey: 'billing',   href: '/dashboard/university/billing' },
+        { labelKey: 'settings',  href: '/dashboard/university/settings' },
       ],
     },
   ],
 }
-
-const itsExtras: NavGroup[] = [
-  {
-    labelKey: 'internships',
-    items: [
-      { labelKey: 'placementPipeline', href: '/dashboard/university/placement-pipeline' },
-      { labelKey: 'internshipPipeline', href: '/dashboard/university/internship-pipeline' },
-      { labelKey: 'internshipTracker', href: '/dashboard/university/internship-tracker' },
-      { labelKey: 'board', href: '/dashboard/university/board' },
-    ],
-  },
-  {
-    labelKey: 'companies',
-    items: [
-      { labelKey: 'crm', href: '/dashboard/university/crm' },
-      { labelKey: 'inbox', href: '/dashboard/university/inbox' },
-      { labelKey: 'offers', href: '/dashboard/university/offers' },
-      { labelKey: 'partnerCompanies', href: '/dashboard/university/employer-crm' },
-      { labelKey: 'conventions', href: '/dashboard/university/conventions' },
-    ],
-  },
-]
 
 const schoolNav: NavConfig = {
   groups: [
@@ -260,12 +267,11 @@ const otherNav: NavConfig = {
 export const getUniversityNavForType = (institutionType?: string): NavConfig => {
   switch (institutionType) {
     case 'its':
+      // ITS Academies don't have the broader academic-program concepts
+      // (curriculum alignment across faculties, Erasmus exchanges). Keep
+      // the core workspace + analytics; strip "Programmi".
       return {
-        groups: [
-          ...universityBase.groups.slice(0, 2), // students + career
-          ...itsExtras,
-          ...universityBase.groups.slice(2),     // insights
-        ],
+        groups: universityBase.groups.filter(g => g.labelKey !== 'programs'),
       }
     case 'school':
       return schoolNav
