@@ -42,12 +42,14 @@
   "dashboardNav": {
     "home": "Home",
     "student": {
+      "journey": "Journey",
       "portfolio": "Portfolio",
       "career": "Career",
       "community": "Community",
       "insights": "Insights",
       "more": "More",
       "items": {
+        "journey": "My Journey",
         "projects": "Projects",
         "profile": "Profile",
         "profileOptimizer": "Profile Optimizer",
@@ -196,7 +198,8 @@
         "skillsIntelligence": "Skills Intelligence",
         "exchanges": "Exchanges",
         "partnerCompanies": "Partner companies",
-        "assistant": "Staff Assistant"
+        "assistant": "Staff Assistant",
+        "auditLog": "Audit Log"
       },
       "exchange": "Exchange",
       "internships": "Internships",

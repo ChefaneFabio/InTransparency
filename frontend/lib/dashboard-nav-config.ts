@@ -17,6 +17,12 @@ export interface NavConfig {
 const student: NavConfig = {
   groups: [
     {
+      labelKey: 'journey',
+      items: [
+        { labelKey: 'journey', href: '/dashboard/student/journey' },
+      ],
+    },
+    {
       labelKey: 'portfolio',
       items: [
         { labelKey: 'projects', href: '/dashboard/student/projects' },
@@ -117,6 +123,7 @@ const universityBase: NavConfig = {
       labelKey: 'assistant',
       items: [
         { labelKey: 'assistant', href: '/dashboard/university/assistant' },
+        { labelKey: 'auditLog', href: '/dashboard/university/audit-log' },
       ],
     },
     {

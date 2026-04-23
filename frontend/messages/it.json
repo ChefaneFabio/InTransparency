@@ -42,12 +42,14 @@
   "dashboardNav": {
     "home": "Home",
     "student": {
+      "journey": "Percorso",
       "portfolio": "Portfolio",
       "career": "Carriera",
       "community": "Comunità",
       "insights": "Statistiche",
       "more": "Altro",
       "items": {
+        "journey": "Il mio percorso",
         "projects": "Progetti",
         "profile": "Profilo",
         "profileOptimizer": "Ottimizza Profilo",
@@ -196,7 +198,8 @@
         "skillsIntelligence": "Skills Intelligence",
         "exchanges": "Scambi",
         "partnerCompanies": "Aziende convenzionate",
-        "assistant": "Staff Assistant"
+        "assistant": "Staff Assistant",
+        "auditLog": "Audit Log"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
