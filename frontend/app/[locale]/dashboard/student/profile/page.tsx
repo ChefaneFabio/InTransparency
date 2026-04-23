@@ -304,7 +304,7 @@ export default function ProfilePage() {
                   )}
 
                   {/* Work Experience */}
-                  {user.workExperience && user.workExperience.length > 0 && (
+                  {Array.isArray(user.workExperience) && user.workExperience.length > 0 && (
                     <Card>
                       <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><Briefcase className="h-4 w-4" />{t('sections.experience')}</CardTitle></CardHeader>
                       <CardContent className="pt-0">

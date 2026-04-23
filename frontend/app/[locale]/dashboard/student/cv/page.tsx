@@ -91,7 +91,10 @@ export default function CvPage() {
   const u = profile.user
   const fullName = [u.firstName, u.lastName].filter(Boolean).join(' ')
   const hasLanguages = u.languageProficiencies && u.languageProficiencies.length > 0
-  const hasExperience = u.workExperience && u.workExperience.length > 0
+  // workExperience is Json? in Prisma — defend against non-array values
+  // (older schema shapes / manual edits can deliver objects or null).
+  const workExperience = Array.isArray(u.workExperience) ? u.workExperience : []
+  const hasExperience = workExperience.length > 0
   const hasCerts = u.certifications && u.certifications.length > 0
   const hasProjects = profile.projects.length > 0
   const hasSkills = profile.skills.length > 0
@@ -204,7 +207,7 @@ export default function CvPage() {
               {hasExperience && (
                 <CvSection icon={<Briefcase className="h-4 w-4" />} title={t('sections.experience')}>
                   <div className="space-y-4">
-                    {u.workExperience!.map((exp, i) => (
+                    {workExperience.map((exp, i) => (
                       <div key={i}>
                         <div className="flex items-start justify-between">
                           <div>
