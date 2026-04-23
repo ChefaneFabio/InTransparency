@@ -1,25 +1,35 @@
+import { GraduationCap, Rocket, Handshake, Sparkles } from 'lucide-react'
+
 export function SocialProof() {
   const benefits = [
     {
-      emoji: '\uD83C\uDF93',
+      Icon: GraduationCap,
+      color: 'text-blue-600',
+      bg: 'bg-blue-50',
       label: 'Students Welcome',
-      description: 'All features free - no paywalls ever'
+      description: 'All features free - no paywalls ever',
     },
     {
-      emoji: '\uD83D\uDE80',
+      Icon: Rocket,
+      color: 'text-orange-600',
+      bg: 'bg-orange-50',
       label: 'Early Access',
-      description: 'Join before public launch in 2025'
+      description: 'Join before public launch in 2025',
     },
     {
-      emoji: '\uD83E\uDD1D',
+      Icon: Handshake,
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-50',
       label: 'Build Together',
-      description: 'Shape the platform with your feedback'
+      description: 'Shape the platform with your feedback',
     },
     {
-      emoji: '\u2728',
+      Icon: Sparkles,
+      color: 'text-purple-600',
+      bg: 'bg-purple-50',
       label: 'Be First',
-      description: 'Get ahead of the competition'
-    }
+      description: 'Get ahead of the competition',
+    },
   ]
 
   return (
@@ -39,11 +49,12 @@ export function SocialProof() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => {
+            const Icon = benefit.Icon
             return (
               <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
-                  <div className="text-5xl mb-4">
-                    {benefit.emoji}
+                  <div className={`w-14 h-14 rounded-2xl ${benefit.bg} ${benefit.color} flex items-center justify-center mb-4`}>
+                    <Icon className="h-7 w-7" />
                   </div>
                   <div className="text-lg font-semibold text-gray-900 mb-2">
                     {benefit.label}
@@ -58,25 +69,6 @@ export function SocialProof() {
         </div>
 
         {/* Early Access Value Proposition */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-sm">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl mb-2">\uD83D\uDCBC</div>
-              <div className="text-lg font-bold text-primary mb-2">Portfolio First</div>
-              <p className="text-sm text-gray-600">Turn academic projects into career opportunities</p>
-            </div>
-            <div>
-              <div className="text-3xl mb-2">\uD83D\uDD12</div>
-              <div className="text-lg font-bold text-primary mb-2">Verified Work</div>
-              <p className="text-sm text-gray-600">University-backed project authentication</p>
-            </div>
-            <div>
-              <div className="text-3xl mb-2">\uD83C\uDFAF</div>
-              <div className="text-lg font-bold text-primary mb-2">Get Discovered</div>
-              <p className="text-sm text-gray-600">Recruiters find you based on real skills</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

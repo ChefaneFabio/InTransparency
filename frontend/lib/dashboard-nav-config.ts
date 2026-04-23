@@ -129,7 +129,6 @@ const recruiter: NavConfig = {
       labelKey: 'brand',
       items: [
         { labelKey: 'companyProfile',     href: '/dashboard/recruiter/company-profile' },
-        { labelKey: 'followers',          href: '/dashboard/recruiter/followers' },
         { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
       ],
     },

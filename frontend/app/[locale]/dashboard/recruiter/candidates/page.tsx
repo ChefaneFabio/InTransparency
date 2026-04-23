@@ -420,16 +420,41 @@ export default function CandidatesPage() {
 
   const universities = Array.from(new Set(candidates.map(c => c.university))).sort()
 
-  const toggleBookmark = (candidateId: string) => {
+  // Persist bookmarks to the saved-candidates pipeline. Was previously
+  // just local state — nothing was actually written to the DB, so the
+  // /dashboard/recruiter/pipeline kanban always appeared empty.
+  const toggleBookmark = async (candidateId: string) => {
+    const wasBookmarked = bookmarked.has(candidateId)
+    // Optimistic UI
     setBookmarked(prev => {
       const next = new Set(prev)
-      if (next.has(candidateId)) {
-        next.delete(candidateId)
-      } else {
-        next.add(candidateId)
-      }
+      if (wasBookmarked) next.delete(candidateId)
+      else next.add(candidateId)
       return next
     })
+    try {
+      if (wasBookmarked) {
+        await fetch('/api/dashboard/recruiter/saved-candidates', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ candidateId }),
+        })
+      } else {
+        await fetch('/api/dashboard/recruiter/saved-candidates', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ candidateId, folder: 'discovered' }),
+        })
+      }
+    } catch {
+      // Revert on failure
+      setBookmarked(prev => {
+        const next = new Set(prev)
+        if (wasBookmarked) next.add(candidateId)
+        else next.delete(candidateId)
+        return next
+      })
+    }
   }
 
   const getInitials = (firstName: string, lastName: string) => {

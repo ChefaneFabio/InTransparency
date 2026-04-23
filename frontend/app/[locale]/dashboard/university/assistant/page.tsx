@@ -18,6 +18,8 @@ import {
   TrendingUp,
   ExternalLink,
   Shield,
+  GraduationCap,
+  BarChart3,
 } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
@@ -76,13 +78,17 @@ interface ChatMessage {
 // can call. Showing the connection teaches staff what the assistant is
 // capable of without requiring them to read docs.
 const PROMPT_CATEGORIES: Array<{
-  icon: string
+  icon: typeof AlertTriangle
+  iconColor: string
+  iconBg: string
   label: string
   tool: string
   examples: string[]
 }> = [
   {
-    icon: '⚠️',
+    icon: AlertTriangle,
+    iconColor: 'text-red-600',
+    iconBg: 'bg-red-50',
     label: 'Placement a rischio',
     tool: 'list_at_risk_placements',
     examples: [
@@ -92,7 +98,9 @@ const PROMPT_CATEGORIES: Array<{
     ],
   },
   {
-    icon: '🎓',
+    icon: GraduationCap,
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-50',
     label: 'Studenti senza tirocinio',
     tool: 'list_students_without_placement',
     examples: [
@@ -102,7 +110,9 @@ const PROMPT_CATEGORIES: Array<{
     ],
   },
   {
-    icon: '📊',
+    icon: BarChart3,
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-50',
     label: 'Statistiche e report',
     tool: 'summarize_placement_stats',
     examples: [
@@ -112,7 +122,9 @@ const PROMPT_CATEGORIES: Array<{
     ],
   },
   {
-    icon: '🏢',
+    icon: Building2,
+    iconColor: 'text-amber-600',
+    iconBg: 'bg-amber-50',
     label: 'Aziende in silenzio',
     tool: 'list_stale_company_leads',
     examples: [
@@ -241,13 +253,17 @@ export default function InstitutionAssistantPage() {
 
             {/* Categorized prompts — shows what the assistant can actually do */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto w-full">
-              {PROMPT_CATEGORIES.map(cat => (
+              {PROMPT_CATEGORIES.map(cat => {
+                const Icon = cat.icon
+                return (
                 <div
                   key={cat.tool}
                   className="rounded-lg border bg-card overflow-hidden"
                 >
                   <div className="px-3 py-2 bg-muted/50 border-b flex items-center gap-2">
-                    <span className="text-base">{cat.icon}</span>
+                    <div className={`w-6 h-6 rounded-md ${cat.iconBg} ${cat.iconColor} flex items-center justify-center`}>
+                      <Icon className="h-3.5 w-3.5" />
+                    </div>
                     <span className="text-sm font-medium">{cat.label}</span>
                   </div>
                   <div className="p-2 space-y-1">
@@ -262,7 +278,8 @@ export default function InstitutionAssistantPage() {
                     ))}
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </div>
 
             {/* How it works */}

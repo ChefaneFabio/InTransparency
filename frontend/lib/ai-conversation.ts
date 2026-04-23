@@ -102,9 +102,27 @@ export function buildSystemPrompt(opts: {
     `- ${f.name}${f.required ? ' (required)' : ''}: ${f.description}`
   ).join('\n')
 
+  // Ground the model in real time so relative dates ("in due settimane",
+  // "entro fine mese") resolve correctly. Without this, Claude falls back
+  // to its training-data cutoff and emits stale ISO dates.
+  const today = new Date()
+  const todayIso = today.toISOString().slice(0, 10)
+  const todayHuman = today.toLocaleDateString(opts.locale === 'it' ? 'it-IT' : 'en-GB', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
   return `You are a friendly ${opts.role} for InTransparency.
 
 ${opts.description}
+
+CURRENT DATE: today is ${todayHuman} (${todayIso}).
+When the user specifies a relative date ("in 2 weeks", "entro fine mese",
+"next Monday", "fra 10 giorni"), resolve it to an absolute ISO 8601 date
+(YYYY-MM-DD) based on today's date above. Never emit dates from 2023 or
+2024 unless the user explicitly names that year.
 
 RULES:
 - Respond in ${lang} (or match the user's language if they switch)
@@ -112,6 +130,8 @@ RULES:
 - Ask 1-3 follow-up questions at a time, grouped by topic
 - Don't ask about fields that are irrelevant to this specific case
 - Extract information progressively from what the user shares
+- Date fields must be ISO 8601 (YYYY-MM-DD); compute relative dates from
+  today's date above
 
 COLLECTABLE FIELDS:
 ${fieldList}

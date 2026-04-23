@@ -7,12 +7,15 @@ import { Sparkles, Lock, ArrowRight } from 'lucide-react'
 
 type Feature = 'inbox' | 'offers' | 'crm' | 'placement' | 'generic'
 
-const FEATURE_META: Record<Feature, { icon: string; Key: string }> = {
-  inbox:     { icon: '📬', Key: 'inbox' },
-  offers:    { icon: '✍️', Key: 'offers' },
-  crm:       { icon: '🤝', Key: 'crm' },
-  placement: { icon: '🎓', Key: 'placement' },
-  generic:   { icon: '✨', Key: 'generic' },
+// Key maps each feature to the translation slot used for the banner title
+// and description. The visual treatment is the <Sparkles/> icon + gold
+// gradient — no per-feature iconography needed here.
+const FEATURE_KEYS: Record<Feature, string> = {
+  inbox:     'inbox',
+  offers:    'offers',
+  crm:       'crm',
+  placement: 'placement',
+  generic:   'generic',
 }
 
 interface Props {
@@ -35,7 +38,7 @@ export function PremiumUpgradeBanner({ institutionName, plan, feature }: Props) 
   const t = useTranslations('premiumBanner')
   if (plan !== 'CORE') return null
 
-  const meta = FEATURE_META[feature]
+  const featureKey = FEATURE_KEYS[feature]
 
   return (
     <div className="rounded-xl border-2 border-amber-200 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 p-4 sm:p-5 shadow-sm">
@@ -46,7 +49,7 @@ export function PremiumUpgradeBanner({ institutionName, plan, feature }: Props) 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-base font-semibold text-gray-900">
-              {t(`title.${meta.Key}`, { defaultValue: `Unlock ${feature} — PREMIUM` })}
+              {t(`title.${featureKey}`, { defaultValue: `Unlock ${feature} — PREMIUM` })}
             </h3>
             <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-800 px-2 py-0.5 rounded">
               <Lock className="h-2.5 w-2.5" />
@@ -54,7 +57,7 @@ export function PremiumUpgradeBanner({ institutionName, plan, feature }: Props) 
             </span>
           </div>
           <p className="text-sm text-gray-700 mt-1">
-            {t(`desc.${meta.Key}`, {
+            {t(`desc.${featureKey}`, {
               defaultValue:
                 'You can preview this workspace, but actions like creating, approving, or moderating require a PREMIUM plan.',
             })}
