@@ -26,6 +26,7 @@ import {
   CATEGORY_LABELS_IT,
   CATEGORY_LABELS_EN,
 } from '@/lib/integrations-catalog'
+import { IntegrationIcon } from './IntegrationIcon'
 
 interface Props {
   role: IntegrationRole
@@ -253,9 +254,8 @@ function IntegrationCard({ integration: i, isIt }: { integration: Integration; i
   return (
     <div className="group rounded-xl border bg-card p-4 hover:shadow-md hover:border-primary/30 transition-all flex flex-col">
       <div className="flex items-start gap-3 mb-2">
-        <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-xl shrink-0">
-          {i.iconEmoji}
-        </div>
+        <IntegrationIcon iconKey={i.iconKey} size={22} className="shrink-0" />
+
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 flex-wrap">
             <h3 className="font-semibold text-sm truncate">{i.name}</h3>

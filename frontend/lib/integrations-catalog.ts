@@ -26,8 +26,12 @@ export interface Integration {
   description: string
   category: string
   status: IntegrationStatus
-  /** URL to icon/logo (served from /public/integrations/...) */
-  iconEmoji: string // quick fallback — swap to SVG logos once sourced
+  /**
+   * Icon key — maps to a brand logo (simple-icons) or a conceptual
+   * Lucide icon in <IntegrationIcon />. See IntegrationIcon.tsx for
+   * the supported keys.
+   */
+  iconKey: string
   /** Where the user goes to connect or learn more */
   href?: string
   /** If null/undefined the action is a mailto to request */
@@ -47,7 +51,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Sincronizza anagrafica studenti, carriere, esami, lauree direttamente dal gestionale Cineca più diffuso in Italia.",
     category: 'student-information',
     status: 'premium',
-    iconEmoji: '🎓',
+    iconKey: 'sis',
     requestEmailSubject: 'Integrazione Esse3',
   },
   {
@@ -57,7 +61,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Import automatico dei dati placement di AlmaLaurea. Sincronizza outcome occupazionali 1 / 3 / 5 anni dalla laurea.",
     category: 'student-information',
     status: 'premium',
-    iconEmoji: '📊',
+    iconKey: 'database',
     requestEmailSubject: 'Integrazione AlmaLaurea',
   },
   {
@@ -67,7 +71,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Generazione automatica dei report SUA-RD / SUA-CdS con dati placement. Export in formato richiesto dal ministero.',
     category: 'compliance',
     status: 'premium',
-    iconEmoji: '🏛️',
+    iconKey: 'ministry',
     requestEmailSubject: 'Report ANVUR/MUR',
   },
   {
@@ -77,7 +81,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Login studenti con Sistema Pubblico di Identità Digitale e Carta d'Identità Elettronica. Accreditamento AgID in corso.",
     category: 'authentication',
     status: 'coming_soon',
-    iconEmoji: '🆔',
+    iconKey: 'italy',
     requestEmailSubject: 'Integrazione SPID / CIE',
   },
 
@@ -89,7 +93,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Emissione di credenziali digitali firmate, compatibili con lo European Digital Wallet. Verificabili cross-EU.',
     category: 'credentials',
     status: 'live',
-    iconEmoji: '🇪🇺',
+    iconKey: 'eu',
     href: '/dashboard/university/credentials',
   },
   {
@@ -99,7 +103,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Export dei profili studente in formato Europass JSON-LD. Integrazione diretta con l'European Learning Model.",
     category: 'credentials',
     status: 'live',
-    iconEmoji: '📜',
+    iconKey: 'credential',
   },
   {
     id: 'open-badges',
@@ -108,7 +112,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Emissione e verifica di Open Badges IMS Global 3.0 per progetti, competenze e stage completati.",
     category: 'credentials',
     status: 'live',
-    iconEmoji: '🏅',
+    iconKey: 'badge',
   },
   {
     id: 'erasmus-ola',
@@ -117,7 +121,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Export automatico degli OLA degli studenti in scambio. Supporta il formato JSON-LD richiesto dalla Commissione EU.',
     category: 'mobility',
     status: 'premium',
-    iconEmoji: '✈️',
+    iconKey: 'erasmus',
   },
   {
     id: 'esco',
@@ -126,7 +130,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Normalizzazione competenze con il taxonomy ESCO v1.2.0 (European Skills, Competences & Occupations). 93+ skills mapping.',
     category: 'standards',
     status: 'live',
-    iconEmoji: '🔖',
+    iconKey: 'esco',
   },
 
   // — Auth / SSO
@@ -137,7 +141,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Single Sign-On per staff e studenti tramite l'Identity Provider dell'ateneo. Supporta IDEM Italia e eduGAIN.",
     category: 'authentication',
     status: 'enterprise',
-    iconEmoji: '🔐',
+    iconKey: 'sso',
     requestEmailSubject: 'Integrazione SSO SAML',
   },
   {
@@ -147,7 +151,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Login con account Google institutional. Sync calendari per career days ed eventi.",
     category: 'authentication',
     status: 'live',
-    iconEmoji: '🟢',
+    iconKey: 'google',
   },
   {
     id: 'oauth-microsoft',
@@ -156,7 +160,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       "Login con account istituzionale Microsoft. Sync con Teams, Outlook e SharePoint.",
     category: 'authentication',
     status: 'live',
-    iconEmoji: '🟦',
+    iconKey: 'microsoft',
   },
 
   // — Workflow & Docs
@@ -167,7 +171,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Firma digitale delle convenzioni di tirocinio. Workflow ateneo → azienda → studente con notifiche.',
     category: 'documents',
     status: 'coming_soon',
-    iconEmoji: '✍️',
+    iconKey: 'docusign',
     requestEmailSubject: 'DocuSign integration',
   },
   {
@@ -177,7 +181,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Notifiche al career office quando arrivano messaggi da aziende, offerte da approvare, scadenze di stage.',
     category: 'communication',
     status: 'beta',
-    iconEmoji: '💬',
+    iconKey: 'slack',
   },
 
   // — AI agents
@@ -188,7 +192,7 @@ export const UNIVERSITY_INTEGRATIONS: Integration[] = [
       'Model Context Protocol. Espone il workspace istituzionale a Claude Desktop / Cursor / Zed come tool — staff assistant disponibile anche dal desktop.',
     category: 'ai',
     status: 'live',
-    iconEmoji: '🤖',
+    iconKey: 'ai-bot',
     href: 'https://www.in-transparency.com/mcp-server.js',
   },
 ]
@@ -206,7 +210,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Sync candidati shortlistati e applicazioni direttamente nel tuo ATS Greenhouse.",
     category: 'ats',
     status: 'coming_soon',
-    iconEmoji: '🌱',
+    iconKey: 'greenhouse',
     requestEmailSubject: 'Integrazione Greenhouse',
   },
   {
@@ -216,7 +220,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Push candidati e job posting verso Lever. Sync status bidirezionale.",
     category: 'ats',
     status: 'coming_soon',
-    iconEmoji: '⚖️',
+    iconKey: 'workflow',
     requestEmailSubject: 'Integrazione Lever',
   },
   {
@@ -226,7 +230,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Integrazione enterprise per large account. Sync requisizioni + candidati.',
     category: 'ats',
     status: 'enterprise',
-    iconEmoji: '📋',
+    iconKey: 'workday',
     requestEmailSubject: 'Integrazione Workday',
   },
 
@@ -238,7 +242,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Sync candidati e aziende partner con il tuo HubSpot CRM. Trigger automatici su outcome.",
     category: 'crm',
     status: 'beta',
-    iconEmoji: '🔶',
+    iconKey: 'hubspot',
   },
   {
     id: 'salesforce',
@@ -247,7 +251,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Integrazione enterprise Salesforce. Sync talent pool + pipeline stages.",
     category: 'crm',
     status: 'enterprise',
-    iconEmoji: '☁️',
+    iconKey: 'salesforce',
     requestEmailSubject: 'Integrazione Salesforce',
   },
 
@@ -259,7 +263,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Notifiche in canali Slack quando un candidato risponde, accetta un interview, firma un offer.',
     category: 'communication',
     status: 'live',
-    iconEmoji: '💬',
+    iconKey: 'slack',
   },
   {
     id: 'microsoft-teams',
@@ -268,7 +272,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Notifiche e posting in canali Teams. Link diretti ai profili candidati.",
     category: 'communication',
     status: 'live',
-    iconEmoji: '🟦',
+    iconKey: 'teams',
   },
 
   // — Calendar & Video
@@ -279,7 +283,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Pianificazione interview direttamente sul calendario. Invito automatico a candidato + intervistatore.",
     category: 'scheduling',
     status: 'live',
-    iconEmoji: '📅',
+    iconKey: 'google-calendar',
   },
   {
     id: 'outlook',
@@ -288,7 +292,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Sync interview schedule con Outlook. Notifiche meeting e update automatici.',
     category: 'scheduling',
     status: 'live',
-    iconEmoji: '📆',
+    iconKey: 'microsoft',
   },
   {
     id: 'zoom',
@@ -297,7 +301,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Link Zoom generato automaticamente per ogni interview. Recording opzionale (con consenso del candidato).",
     category: 'video',
     status: 'beta',
-    iconEmoji: '🎥',
+    iconKey: 'zoom',
   },
   {
     id: 'google-meet',
@@ -306,7 +310,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Link Google Meet per ogni interview. Integrazione nativa con Google Calendar.',
     category: 'video',
     status: 'live',
-    iconEmoji: '📹',
+    iconKey: 'google-meet',
   },
 
   // — Documents
@@ -317,7 +321,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Firma digitale degli offer letter. Template riutilizzabili, audit trail.',
     category: 'documents',
     status: 'beta',
-    iconEmoji: '✍️',
+    iconKey: 'docusign',
   },
 
   // — Job boards
@@ -328,7 +332,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Crossposting automatico delle offerte. Sync candidati LinkedIn.",
     category: 'job-boards',
     status: 'coming_soon',
-    iconEmoji: '💼',
+    iconKey: 'linkedin',
     requestEmailSubject: 'LinkedIn integration',
   },
   {
@@ -338,7 +342,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       'Crossposting delle tue offerte su Indeed. Sync applicazioni.',
     category: 'job-boards',
     status: 'coming_soon',
-    iconEmoji: '🔵',
+    iconKey: 'indeed',
   },
 
   // — AI
@@ -349,7 +353,7 @@ export const RECRUITER_INTEGRATIONS: Integration[] = [
       "Model Context Protocol. Il talent assistant InTransparency è disponibile anche in Claude Desktop / Cursor / Zed — cerca candidati dal tuo terminale.",
     category: 'ai',
     status: 'live',
-    iconEmoji: '🤖',
+    iconKey: 'ai-bot',
     href: 'https://www.in-transparency.com/mcp-server.js',
   },
 ]
@@ -367,7 +371,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Importa la tua esperienza e le competenze da LinkedIn per pre-compilare il profilo. Nessun sync bidirezionale — il tuo profilo resta sul tuo LinkedIn.",
     category: 'profile-import',
     status: 'live',
-    iconEmoji: '💼',
+    iconKey: 'linkedin',
   },
   {
     id: 'github',
@@ -376,7 +380,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       'Importa i tuoi repository come progetti. Estrai linguaggi, tool e commit activity come evidenza di competenze.',
     category: 'profile-import',
     status: 'live',
-    iconEmoji: '🐙',
+    iconKey: 'github',
   },
   {
     id: 'orcid',
@@ -385,7 +389,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Per studenti di dottorato o Master in research: sync pubblicazioni e contributi da ORCID.",
     category: 'profile-import',
     status: 'coming_soon',
-    iconEmoji: '🟢',
+    iconKey: 'orcid',
   },
   {
     id: 'kaggle',
@@ -394,7 +398,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Per data scientists: importa competizioni, notebook, rank come progetti verificati.",
     category: 'profile-import',
     status: 'coming_soon',
-    iconEmoji: '📊',
+    iconKey: 'kaggle',
   },
 
   // — Storage
@@ -405,7 +409,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       'Carica CV, progetti e attestati direttamente da Google Drive. Sync automatico quando aggiorni i file.',
     category: 'storage',
     status: 'live',
-    iconEmoji: '📁',
+    iconKey: 'google-drive',
   },
   {
     id: 'dropbox',
@@ -414,7 +418,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       'Import di CV, portfolio e documenti da Dropbox.',
     category: 'storage',
     status: 'coming_soon',
-    iconEmoji: '📦',
+    iconKey: 'dropbox',
   },
 
   // — Academic
@@ -425,7 +429,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Accedi con le credenziali della tua università (SAML/Shibboleth IDEM o SPID). Profilo pre-verificato.",
     category: 'authentication',
     status: 'beta',
-    iconEmoji: '🎓',
+    iconKey: 'graduation',
   },
 
   // — Export
@@ -436,7 +440,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Esporta il tuo profilo in formato Europass JSON-LD. Compatibile con European Digital Wallet.",
     category: 'export',
     status: 'live',
-    iconEmoji: '📜',
+    iconKey: 'credential',
     href: '/dashboard/student/cv',
   },
   {
@@ -446,7 +450,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Ricevi le tue credenziali come Verifiable Credentials W3C (Ed25519). Portabilità cross-EU garantita.",
     category: 'export',
     status: 'live',
-    iconEmoji: '🇪🇺',
+    iconKey: 'wallet',
     href: '/dashboard/student/credentials',
   },
   {
@@ -456,7 +460,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Ricevi Open Badges 3.0 per ogni progetto, endorsement e stage completato. Importabili in Credly, LinkedIn, Badgr.",
     category: 'export',
     status: 'live',
-    iconEmoji: '🏅',
+    iconKey: 'badge',
   },
 
   // — Communication
@@ -467,7 +471,7 @@ export const STUDENT_INTEGRATIONS: Integration[] = [
       "Sync interview e deadline tirocinio con il tuo calendario. Notifiche automatiche.",
     category: 'scheduling',
     status: 'live',
-    iconEmoji: '📅',
+    iconKey: 'google-calendar',
   },
 ]
 
