@@ -3548,18 +3548,42 @@
     },
     "students": {
       "title": "Students",
-      "subtitle": "Build your verified portfolio, get discovered by companies, and land your first role.",
+      "subtitle": "Freemium — everything you need to get hired is free. Premium unlocks advanced career tools for when you're ready to accelerate.",
       "price": "Free",
-      "period": "",
-      "cta": "Get Started",
+      "period": "forever",
+      "cta": "Get Started Free",
       "features": {
         "0": "Unlimited projects",
         "1": "University verification",
-        "2": "smart job search",
+        "2": "Smart job search",
         "3": "Skill assessments",
         "4": "Contract check"
       },
-      "whyFree": "Students never pay because companies are the ones hiring. Your portfolio, your skills, your data — you're in control. No credit card, no trial, no catch."
+      "tiers": {
+        "free": {
+          "name": "Free",
+          "price": "€0",
+          "period": "forever",
+          "description": "Everything you need to get noticed: verified portfolio, skill graph, unlimited applications."
+        },
+        "premium": {
+          "badge": "Premium — Early Access",
+          "name": "Premium",
+          "price": "Coming soon",
+          "description": "Advanced career tooling for students ready to accelerate: AI coaching, offer analyzer, priority visibility.",
+          "includes": "Everything in Free, plus:",
+          "features": {
+            "0": "Priority visibility in recruiter search results",
+            "1": "Unlimited AI Career Coach queries",
+            "2": "Interview Prep with audio/video simulations",
+            "3": "Offer analyzer: compare salary, benefits, growth",
+            "4": "Personalized Skill Path with weekly coaching",
+            "5": "Decision Pack PDF export for final interviews"
+          },
+          "cta": "Join the waitlist"
+        }
+      },
+      "whyFree": "Core features are free forever because we believe students shouldn't pay to get discovered. Premium is an optional upgrade for students who want advanced AI tools."
     },
     "companies": {
       "badge": "For Companies",

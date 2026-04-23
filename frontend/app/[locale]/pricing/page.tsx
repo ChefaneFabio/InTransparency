@@ -191,44 +191,127 @@ export default function PricingPage() {
             transition={{ duration: 0.3 }}
           >
             <section className="py-16">
-              <div className="container max-w-4xl mx-auto px-4">
+              <div className="container max-w-5xl mx-auto px-4">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold">{t('students.title')}</h2>
-                  <p className="text-muted-foreground mt-2 max-w-lg mx-auto">{t('students.subtitle')}</p>
+                  <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
+                    {t('students.subtitle')}
+                  </p>
                 </div>
 
-                <Card className="border-2 border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50/50 to-transparent dark:from-emerald-950/20 max-w-2xl mx-auto">
-                  <CardHeader className="text-center pb-4">
-                    <div className="mx-auto p-4 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 w-fit mb-4">
-                      <GraduationCap className="h-10 w-10 text-emerald-600" />
-                    </div>
-                    <div>
-                      <span className="text-5xl font-bold text-emerald-600">{t('students.price')}</span>
-                    </div>
-                    <p className="text-muted-foreground mt-3">{t('students.subtitle')}</p>
-                  </CardHeader>
-                  <CardContent className="pt-2">
-                    <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                      {[
-                        { icon: BookOpen, label: t('students.features.0') },
-                        { icon: Shield, label: t('students.features.1') },
-                        { icon: Brain, label: t('students.features.2') },
-                        { icon: Zap, label: t('students.features.3') },
-                        { icon: FileText, label: t('students.features.4') },
-                      ].map((feature, i) => (
-                        <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 border">
-                          <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/40">
-                            <feature.icon className="h-4 w-4 text-emerald-600" />
-                          </div>
-                          <span className="text-sm font-medium">{feature.label}</span>
+                <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  {/* FREE — the always-available core tier */}
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+                    <Card className="h-full flex flex-col border-2 border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50/50 to-transparent dark:from-emerald-950/20">
+                      <CardHeader className="text-center pb-2">
+                        <div className="mx-auto p-3 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 w-fit mb-3">
+                          <GraduationCap className="h-8 w-8 text-emerald-600" />
                         </div>
-                      ))}
-                    </div>
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/20" asChild>
-                      <Link href="/auth/register/student">{t('students.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                        <CardTitle className="text-lg">{t('students.tiers.free.name', { defaultValue: 'Free' })}</CardTitle>
+                        <div className="mt-3">
+                          <span className="text-4xl font-bold text-emerald-600">
+                            {t('students.tiers.free.price', { defaultValue: t('students.price') })}
+                          </span>
+                          <span className="text-sm text-muted-foreground ml-1">
+                            {t('students.tiers.free.period', { defaultValue: 'forever' })}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {t('students.tiers.free.description', {
+                            defaultValue: 'Tutto ciò che serve per farti notare dalle aziende: portfolio verificato, skills, applicazioni illimitate.',
+                          })}
+                        </p>
+                      </CardHeader>
+                      <CardContent className="pt-4 flex-1 flex flex-col">
+                        <ul className="space-y-2.5 mb-6 flex-1">
+                          {[0, 1, 2, 3, 4].map(i => (
+                            <li key={i} className="flex items-start text-sm">
+                              <Check className="h-4 w-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                              <span>{t(`students.features.${i}`)}</span>
+                            </li>
+                          ))}
+                          {[0, 1, 2].map(i => {
+                            const key = `students.tiers.free.extras.${i}`
+                            const val = t(key, { defaultValue: '' })
+                            if (!val) return null
+                            return (
+                              <li key={`extra-${i}`} className="flex items-start text-sm">
+                                <Check className="h-4 w-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                                <span>{val}</span>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                        <Button className="w-full bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/20" asChild>
+                          <Link href="/auth/register/student">
+                            {t('students.cta')}
+                            <ArrowRight className="h-4 w-4 ml-2" />
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  {/* PREMIUM — optional upgrade for advanced career tooling */}
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                    <Card className="relative h-full flex flex-col border-2 border-primary/30 shadow-xl shadow-primary/10 bg-gradient-to-br from-primary/5 via-purple-50/40 to-transparent dark:from-primary/10 dark:via-purple-950/20">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <Badge className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg border-0">
+                          <Sparkles className="h-3 w-3 mr-1" />
+                          {t('students.tiers.premium.badge', { defaultValue: 'Premium — Early Access' })}
+                        </Badge>
+                      </div>
+                      <CardHeader className="text-center pb-2 pt-6">
+                        <div className="mx-auto p-3 rounded-2xl bg-primary/10 w-fit mb-3">
+                          <Sparkles className="h-8 w-8 text-primary" />
+                        </div>
+                        <CardTitle className="text-lg">
+                          {t('students.tiers.premium.name', { defaultValue: 'Premium' })}
+                        </CardTitle>
+                        <div className="mt-3">
+                          <span className="text-4xl font-bold text-primary">
+                            {t('students.tiers.premium.price', { defaultValue: 'Coming soon' })}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {t('students.tiers.premium.description', {
+                            defaultValue:
+                              'Strumenti avanzati di carriera per chi vuole accelerare: coaching AI, analisi offerte, visibilità prioritaria.',
+                          })}
+                        </p>
+                      </CardHeader>
+                      <CardContent className="pt-4 flex-1 flex flex-col">
+                        <ul className="space-y-2.5 mb-6 flex-1">
+                          <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                            {t('students.tiers.premium.includes', { defaultValue: 'Everything in Free, plus:' })}
+                          </li>
+                          {[0, 1, 2, 3, 4, 5].map(i => {
+                            const fallbacks = [
+                              'Visibilità prioritaria nei risultati recruiter',
+                              'AI Career Coach illimitato (unlimited queries)',
+                              'Interview Prep con simulazioni audio/video',
+                              'Analizzatore offerte: confronta stipendio, benefit, crescita',
+                              'Skill path personalizzato con coaching settimanale',
+                              'Export Decision Pack PDF per colloqui finali',
+                            ]
+                            return (
+                              <li key={i} className="flex items-start text-sm">
+                                <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                                <span>{t(`students.tiers.premium.features.${i}`, { defaultValue: fallbacks[i] })}</span>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                        <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/5" asChild>
+                          <Link href="/auth/register/student?interest=premium">
+                            {t('students.tiers.premium.cta', { defaultValue: 'Join waitlist' })}
+                            <ArrowRight className="h-4 w-4 ml-2" />
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </div>
 
                 {/* Why free callout */}
                 <motion.div

@@ -3522,18 +3522,42 @@
     },
     "students": {
       "title": "Studenti",
-      "subtitle": "Costruisci il tuo portfolio verificato, fatti scoprire dalle aziende e trova il tuo primo lavoro.",
+      "subtitle": "Freemium — tutto ciò che serve per farti assumere è gratis. Premium sblocca strumenti avanzati di carriera quando sei pronto ad accelerare.",
       "price": "Gratis",
-      "period": "",
-      "cta": "Inizia Ora",
+      "period": "per sempre",
+      "cta": "Inizia Gratis",
       "features": {
         "0": "Progetti illimitati",
         "1": "Verifica universitaria",
-        "2": "Ricerca lavoro",
+        "2": "Ricerca lavoro intelligente",
         "3": "Assessment competenze",
         "4": "Check contratto"
       },
-      "whyFree": "Gli studenti non pagano mai perché sono le aziende ad assumere. Il tuo portfolio, le tue competenze, i tuoi dati — sei tu a controllare. Nessuna carta di credito, nessun trial, nessun trucco."
+      "tiers": {
+        "free": {
+          "name": "Free",
+          "price": "€0",
+          "period": "per sempre",
+          "description": "Tutto ciò che serve per farti notare: portfolio verificato, skill graph, candidature illimitate."
+        },
+        "premium": {
+          "badge": "Premium — Early Access",
+          "name": "Premium",
+          "price": "In arrivo",
+          "description": "Strumenti avanzati di carriera per chi vuole accelerare: coaching AI, analisi offerte, visibilità prioritaria.",
+          "includes": "Tutto in Free, più:",
+          "features": {
+            "0": "Visibilità prioritaria nei risultati recruiter",
+            "1": "AI Career Coach illimitato",
+            "2": "Interview Prep con simulazioni audio/video",
+            "3": "Analizzatore offerte: confronta stipendio, benefit, crescita",
+            "4": "Skill path personalizzato con coaching settimanale",
+            "5": "Export Decision Pack PDF per colloqui finali"
+          },
+          "cta": "Entra nella waitlist"
+        }
+      },
+      "whyFree": "Le funzionalità core sono sempre gratis perché crediamo che gli studenti non debbano pagare per farsi scoprire. Premium è un upgrade opzionale per chi vuole strumenti AI avanzati."
     },
     "companies": {
       "badge": "Per le Aziende",
