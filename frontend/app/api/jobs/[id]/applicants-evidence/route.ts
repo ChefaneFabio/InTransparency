@@ -2,8 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { computeFitScore } from '@/lib/fit-score-engine'
+import {
+  type FitProfile,
+  type RoleOffering,
+  type FitScore,
+  FIT_ENGINE_VERSION,
+} from '@/lib/fit-profile'
 
-export const maxDuration = 30
+export const maxDuration = 60
 
 /**
  * GET /api/jobs/[id]/applicants-evidence
@@ -35,6 +42,12 @@ export async function GET(
         requiredSkills: true,
         preferredSkills: true,
         targetDisciplines: true,
+        roleOffering: true,
+        companyIndustry: true,
+        companySize: true,
+        location: true,
+        workLocation: true,
+        remoteOk: true,
       },
     })
     if (!job) return NextResponse.json({ error: 'Job not found' }, { status: 404 })
@@ -58,6 +71,8 @@ export async function GET(
         coverLetter: true,
         createdAt: true,
         selectedProjects: true,
+        fitScore: true,
+        fitScoreComputedAt: true,
         applicant: {
           select: {
             id: true,
@@ -68,6 +83,7 @@ export async function GET(
             degree: true,
             graduationYear: true,
             gpa: true,
+            fitProfile: true,
           },
         },
       },
@@ -116,7 +132,10 @@ export async function GET(
     const endorsementCount = new Map(endorsements.map(e => [e.studentId, e._count._all]))
     const skillGraphSize = new Map(skillDeltas.map(d => [d.studentId, d._count._all]))
 
-    const applicants = applications.map(app => {
+    const offering = (job.roleOffering as RoleOffering | null) ?? null
+    const jobIsRemote = job.remoteOk || job.workLocation === 'REMOTE'
+
+    const applicants = await Promise.all(applications.map(async app => {
       const studentProjects = projectsByStudent.get(app.applicant.id) ?? []
       const studentSkillSet = new Set<string>()
       for (const p of studentProjects) {
@@ -182,6 +201,37 @@ export async function GET(
           endorsementBoost * 10
       )
 
+      // ─── Fit score: cached if current, else compute+cache ──────────────
+      let fitScore: FitScore | null = null
+      const cached = app.fitScore as FitScore | null
+      if (cached && cached.engineVersion === FIT_ENGINE_VERSION) {
+        fitScore = cached
+      } else {
+        try {
+          fitScore = await computeFitScore({
+            profile: (app.applicant.fitProfile as FitProfile | null) ?? null,
+            offering,
+            skillsScore: matchScore,
+            skillsReason: `${matchedSkills.length}/${required.length} required skills matched${
+              preferred.length ? `, ${matchedPreferred.length}/${preferred.length} preferred` : ''
+            }.`,
+            jobIndustry: job.companyIndustry,
+            jobLocation: job.location,
+            jobIsRemote,
+            companySize: job.companySize,
+          })
+          // Non-blocking cache write
+          prisma.application
+            .update({
+              where: { id: app.id },
+              data: { fitScore: fitScore as any, fitScoreComputedAt: new Date() },
+            })
+            .catch(err => console.error('Fit-score cache write failed:', err))
+        } catch (e) {
+          console.error('computeFitScore failed for applicant', app.applicant.id, e)
+        }
+      }
+
       return {
         id: app.id,
         status: app.status,
@@ -200,6 +250,7 @@ export async function GET(
           degree: app.applicant.degree,
           graduationYear: app.applicant.graduationYear,
           gpa: app.applicant.gpa ? Number(app.applicant.gpa) : null,
+          hasFitProfile: !!app.applicant.fitProfile,
         },
         evidence: {
           matchScore,
@@ -212,11 +263,17 @@ export async function GET(
           endorsementCount: endorsements,
           skillGraphSize: skillGraphSize.get(app.applicant.id) ?? 0,
         },
+        fitScore,
       }
-    })
+    }))
 
-    // Sort by match score desc so recruiters see best-fit applicants first
-    applicants.sort((a, b) => b.evidence.matchScore - a.evidence.matchScore)
+    // Sort by combined skills+fit score (fit composite includes skills already,
+    // so prefer composite when available, fall back to pure skills match score).
+    applicants.sort((a, b) => {
+      const as = a.fitScore?.composite ?? a.evidence.matchScore
+      const bs = b.fitScore?.composite ?? b.evidence.matchScore
+      return bs - as
+    })
 
     return NextResponse.json({
       applicants,

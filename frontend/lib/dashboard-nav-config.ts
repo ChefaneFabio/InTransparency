@@ -34,6 +34,7 @@ const student: NavConfig = {
         { labelKey: 'projects',    href: '/dashboard/student/projects' },
         { labelKey: 'profile',     href: '/dashboard/student/profile' },
         { labelKey: 'skills',      href: '/dashboard/student/skills' },
+        { labelKey: 'fitProfile',  href: '/dashboard/student/fit-profile' },
         { labelKey: 'credentials', href: '/dashboard/student/credentials' },
       ],
     },

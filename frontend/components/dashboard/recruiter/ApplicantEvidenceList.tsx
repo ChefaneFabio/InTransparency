@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Link } from '@/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -15,7 +16,12 @@ import {
   School,
   ArrowRight,
   Inbox,
+  ChevronDown,
+  ChevronUp,
+  AlertTriangle,
+  Sparkles,
 } from 'lucide-react'
+import type { FitScore } from '@/lib/fit-profile'
 
 interface Project {
   id: string
@@ -40,6 +46,7 @@ interface ApplicantEvidence {
     degree: string | null
     graduationYear: string | null
     gpa: number | null
+    hasFitProfile?: boolean
   }
   evidence: {
     matchScore: number
@@ -52,6 +59,7 @@ interface ApplicantEvidence {
     endorsementCount: number
     skillGraphSize: number
   }
+  fitScore: FitScore | null
 }
 
 interface Response {
@@ -69,6 +77,7 @@ const scoreColor = (s: number) => {
 export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
   const [data, setData] = useState<Response | null>(null)
   const [loading, setLoading] = useState(true)
+  const [expanded, setExpanded] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -126,16 +135,45 @@ export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
             <div className="p-4 flex flex-col md:flex-row gap-4">
               {/* Left: score + identity */}
               <div className="flex items-start gap-3 min-w-0 flex-1">
-                {/* Match score */}
-                <div
-                  className={`shrink-0 w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${scoreColor(
-                    a.evidence.matchScore
-                  )}`}
-                >
-                  <span className="text-lg font-bold leading-none">{a.evidence.matchScore}</span>
-                  <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-70">
-                    match
-                  </span>
+                {/* Dual score tile: skills + fit (if fit is computed and applicant has a profile) */}
+                <div className="shrink-0 flex gap-1.5">
+                  <div
+                    className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${scoreColor(
+                      a.evidence.matchScore
+                    )}`}
+                  >
+                    <span className="text-lg font-bold leading-none">{a.evidence.matchScore}</span>
+                    <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-70">
+                      skills
+                    </span>
+                  </div>
+                  {a.fitScore && a.applicant.hasFitProfile ? (
+                    <div
+                      className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${
+                        a.fitScore.dealBreakerHit
+                          ? 'text-red-700 bg-red-50 border-red-200 dark:bg-red-950/30 dark:text-red-300 dark:border-red-800'
+                          : scoreColor(a.fitScore.composite)
+                      }`}
+                      title={a.fitScore.dealBreakerHit ? a.fitScore.dealBreakerReason : undefined}
+                    >
+                      <span className="text-lg font-bold leading-none">
+                        {a.fitScore.dealBreakerHit ? '—' : a.fitScore.composite}
+                      </span>
+                      <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-70">
+                        fit
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      className="w-14 h-14 rounded-xl border border-dashed flex flex-col items-center justify-center text-muted-foreground"
+                      title="Applicant has not completed fit profile yet"
+                    >
+                      <Sparkles className="h-4 w-4 opacity-40" />
+                      <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-60">
+                        fit —
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Identity */}
@@ -249,8 +287,83 @@ export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
                     <ArrowRight className="h-3 w-3 ml-1" />
                   </Link>
                 </Button>
+                {a.fitScore && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => setExpanded(expanded === a.id ? null : a.id)}
+                    className="text-xs"
+                  >
+                    {expanded === a.id ? (
+                      <>
+                        Hide fit <ChevronUp className="h-3 w-3 ml-1" />
+                      </>
+                    ) : (
+                      <>
+                        Why this fit <ChevronDown className="h-3 w-3 ml-1" />
+                      </>
+                    )}
+                  </Button>
+                )}
               </div>
             </div>
+
+            {/* Fit score expansion — per-axis breakdown */}
+            {a.fitScore && expanded === a.id && (
+              <div className="px-4 pb-4">
+                <div className="border-t pt-3 space-y-2">
+                  {a.fitScore.dealBreakerHit && (
+                    <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900 p-3 flex items-start gap-2">
+                      <AlertTriangle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
+                      <div className="text-xs">
+                        <div className="font-semibold text-red-700 dark:text-red-300">
+                          Dealbreaker
+                        </div>
+                        <div className="text-red-700/80 dark:text-red-400/80">
+                          {a.fitScore.dealBreakerReason || 'A hard no was triggered.'}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {(
+                    [
+                      ['Skills', a.fitScore.skills],
+                      ['Goal alignment', a.fitScore.intent],
+                      ['Motivation', a.fitScore.motivation],
+                      ['Culture fit', a.fitScore.cultureFit],
+                      ['Position', a.fitScore.position],
+                      ['Company dimension', a.fitScore.dimension],
+                      ['Industry', a.fitScore.industry],
+                      ['Geography', a.fitScore.geography],
+                    ] as const
+                  ).map(([label, axis]) => (
+                    <div key={label} className="text-xs">
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
+                        <span className="font-medium">{label}</span>
+                        <span
+                          className={
+                            axis.score >= 75
+                              ? 'text-emerald-600 font-semibold tabular-nums'
+                              : axis.score >= 50
+                              ? 'text-blue-600 font-semibold tabular-nums'
+                              : axis.score >= 25
+                              ? 'text-amber-600 font-semibold tabular-nums'
+                              : 'text-red-600 font-semibold tabular-nums'
+                          }
+                        >
+                          {axis.score}
+                        </span>
+                      </div>
+                      <Progress value={axis.score} className="h-1.5" />
+                      <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
+                        {axis.reason}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )
       })}
