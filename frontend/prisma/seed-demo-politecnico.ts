@@ -512,7 +512,7 @@ async function main() {
           description: `Tesi/progetto nell'ambito del corso ${programName} al ${INSTITUTION_SHORT}, svolto in collaborazione con un laboratorio di ricerca o un'azienda partner. Competenze sviluppate: ${projectSkills.slice(0, 4).join(', ')}. Valutato dal relatore e verificato tramite Career Service.`,
           skills: projectSkills,
           technologies: pickN(projectSkills, 3),
-          discipline: programInfo?.discipline || 'ENGINEERING',
+          discipline: (programInfo?.discipline as any) || 'ENGINEERING',
           verificationStatus: verified ? 'VERIFIED' : pick(['PENDING', 'NEEDS_INFO']),
           verifiedBy: verified ? admin.id : null,
           verifiedAt: verified ? randDate(90) : null,
