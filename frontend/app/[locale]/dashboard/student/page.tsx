@@ -25,6 +25,7 @@ import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
+import { JourneyPreview } from '@/components/dashboard/student/JourneyPreview'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
@@ -139,6 +140,9 @@ export default function StudentDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 pb-8 space-y-5">
+      {/* Journey Preview — links to the rich /journey page */}
+      <JourneyPreview />
+
       {/* Hero Section */}
       <MetricHero gradient="primary">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
