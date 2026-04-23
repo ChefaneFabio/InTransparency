@@ -751,6 +751,42 @@ async function main() {
   }
   console.log(`✅ ${offersToCreate} offers (2 PENDING_APPROVAL, 2 ACTIVE)`)
 
+  // ── 12. Applications — populate student journey pipelines ──────────────
+  const activeJobs = await prisma.job.findMany({
+    where: { institutionId: admin.id, status: 'ACTIVE' },
+    select: { id: true },
+  })
+  if (activeJobs.length > 0) {
+    let appsCreated = 0
+    const statuses: Array<'PENDING' | 'REVIEWING' | 'SHORTLISTED' | 'INTERVIEW' | 'OFFER' | 'REJECTED'> = [
+      'PENDING', 'PENDING', 'REVIEWING', 'SHORTLISTED', 'INTERVIEW', 'OFFER', 'REJECTED',
+    ]
+    // 60% of students apply to 1-3 active jobs
+    const applicants = pickN(studentIds, Math.round(studentIds.length * 0.6))
+    for (const sid of applicants) {
+      const numApps = randInt(1, Math.min(3, activeJobs.length))
+      const chosenJobs = pickN(activeJobs, numApps)
+      for (const job of chosenJobs) {
+        try {
+          await prisma.application.create({
+            data: {
+              applicantId: sid,
+              jobId: job.id,
+              status: pick(statuses) as any,
+              coverLetter:
+                'Gentile team, sono uno studente magistrale del Politecnico di Milano. Trovo molto interessante questa opportunità in linea con i miei progetti accademici.',
+              createdAt: randDate(60),
+            },
+          })
+          appsCreated++
+        } catch {
+          // Unique [jobId, applicantId] — skip duplicates
+        }
+      }
+    }
+    console.log(`✅ ${appsCreated} applications across students' journey`)
+  }
+
   console.log(`\n✨ ${INSTITUTION_NAME} demo ready!`)
   console.log(`\n   Login: career@${INSTITUTION_DOMAIN}`)
   console.log(`   Pass:  demo2024!`)

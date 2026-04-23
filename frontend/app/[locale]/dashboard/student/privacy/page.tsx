@@ -100,6 +100,18 @@ export default function PrivacyCenter() {
           <div className="flex items-center justify-between">
             <span>
               <Badge variant="outline" className="text-xs mr-2">{t('art15')}</Badge>
+              Chi ha visto i tuoi dati (audit trail)
+            </span>
+            <Link
+              href="/dashboard/student/privacy/audit-log"
+              className="text-primary hover:underline"
+            >
+              Apri il trail →
+            </Link>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>
+              <Badge variant="outline" className="text-xs mr-2">{t('art15')}</Badge>
               {t('seeAllMatches')}
             </span>
             <Link href="/dashboard/student/matches" className="text-primary hover:underline">
