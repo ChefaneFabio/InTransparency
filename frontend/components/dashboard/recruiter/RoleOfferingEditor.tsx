@@ -27,6 +27,15 @@ interface Props {
   jobId: string
   initial?: RoleOffering | null
   onSaved?: (value: RoleOffering) => void
+  /** JD prose for the live-signal preview. If omitted, the Preview button is hidden. */
+  jobText?: {
+    title?: string | null
+    description?: string | null
+    responsibilities?: string | null
+    requirements?: string | null
+    niceToHave?: string | null
+    experience?: string | null
+  }
 }
 
 const emptyOffering = (): RoleOffering => ({
@@ -43,13 +52,50 @@ const emptyOffering = (): RoleOffering => ({
   perks: [],
 })
 
-export default function RoleOfferingEditor({ jobId, initial, onSaved }: Props) {
+export default function RoleOfferingEditor({ jobId, initial, onSaved, jobText }: Props) {
   const [value, setValue] = useState<RoleOffering>(initial ?? emptyOffering())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [saved, setSaved] = useState(false)
   const [nonNegInput, setNonNegInput] = useState('')
   const [perkInput, setPerkInput] = useState('')
+  const [previewing, setPreviewing] = useState(false)
+  const [previewSignals, setPreviewSignals] = useState<{
+    positionLevel: string | null
+    cultureTags: string[]
+    motivations: string[]
+    growthFocus: string
+  } | null>(null)
+
+  const runPreview = async () => {
+    if (!jobText) return
+    setPreviewing(true)
+    try {
+      const res = await fetch('/api/ai/extract-signals-preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(jobText),
+      })
+      if (!res.ok) throw new Error('Preview failed')
+      const data = await res.json()
+      setPreviewSignals(data.signals)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setPreviewing(false)
+    }
+  }
+
+  const applyPreview = () => {
+    if (!previewSignals) return
+    setValue(v => ({
+      ...v,
+      positionLevel: (previewSignals.positionLevel as any) || v.positionLevel,
+      cultureTags: Array.from(new Set([...v.cultureTags, ...previewSignals.cultureTags])) as any,
+      motivations: Array.from(new Set([...v.motivations, ...previewSignals.motivations])) as any,
+      growthFocus: v.growthFocus.trim() || previewSignals.growthFocus,
+    }))
+  }
 
   useEffect(() => {
     if (initial) setValue(initial)
@@ -120,6 +166,55 @@ export default function RoleOfferingEditor({ jobId, initial, onSaved }: Props) {
       </CardHeader>
 
       <CardContent className="space-y-5">
+        {/* Live JD preview — shows what the engine extracted from the description */}
+        {jobText && (jobText.description || jobText.responsibilities) && (
+          <div className="rounded-xl border border-dashed bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20 p-3">
+            <div className="flex items-start justify-between gap-2 flex-wrap">
+              <div className="flex items-start gap-2 min-w-0 flex-1">
+                <Sparkles className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+                <div className="text-xs">
+                  <p className="font-medium">Auto-read from your JD</p>
+                  <p className="text-muted-foreground">
+                    Preview how the matcher interprets your description before you publish.
+                  </p>
+                </div>
+              </div>
+              <Button size="sm" variant="outline" onClick={runPreview} disabled={previewing}>
+                {previewing ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Preview'}
+              </Button>
+            </div>
+            {previewSignals && (
+              <div className="mt-3 text-xs space-y-2">
+                <div className="flex flex-wrap gap-1.5">
+                  {previewSignals.positionLevel && (
+                    <Badge variant="secondary">
+                      Level: {previewSignals.positionLevel.replace(/-/g, ' ')}
+                    </Badge>
+                  )}
+                  {previewSignals.cultureTags.map(t => (
+                    <Badge key={t} variant="outline">
+                      {t.replace(/-/g, ' ')}
+                    </Badge>
+                  ))}
+                  {previewSignals.motivations.map(m => (
+                    <Badge key={m} className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-800">
+                      {m}
+                    </Badge>
+                  ))}
+                </div>
+                {previewSignals.growthFocus && (
+                  <p className="text-muted-foreground italic">
+                    "{previewSignals.growthFocus}"
+                  </p>
+                )}
+                <Button size="sm" variant="outline" onClick={applyPreview}>
+                  Use these ↓
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Track + Level */}
         <div className="grid gap-3 sm:grid-cols-2">
           <div>

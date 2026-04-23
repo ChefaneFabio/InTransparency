@@ -17,6 +17,7 @@ import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 interface JobData {
   id: string; title: string; companyName: string; location: string | null
   jobType: string; workLocation: string; requiredSkills: string[]; matchScore?: number
+  fitScore?: { composite: number; dealBreakerHit: boolean; dealBreakerReason?: string } | null
 }
 
 interface JobsPanelProps { embedded?: boolean }
@@ -223,7 +224,33 @@ export default function JobsPanel({ embedded = false }: JobsPanelProps = {}) {
                         </div>
                       </div>
                       <div className="flex flex-col items-end gap-2">
-                        {job.matchScore && <span className="text-xs font-semibold text-primary">{job.matchScore}%</span>}
+                        <div className="flex items-center gap-1.5">
+                          {job.fitScore && !job.fitScore.dealBreakerHit && (
+                            <span
+                              className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${
+                                job.fitScore.composite >= 75
+                                  ? 'text-emerald-700 bg-emerald-50 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-800'
+                                  : job.fitScore.composite >= 50
+                                  ? 'text-blue-700 bg-blue-50 border-blue-200 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800'
+                                  : 'text-amber-700 bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:text-amber-300 dark:border-amber-800'
+                              }`}
+                              title="Fit score — how well this role matches your motivation, culture, and career goals"
+                            >
+                              Fit {job.fitScore.composite}
+                            </span>
+                          )}
+                          {job.fitScore?.dealBreakerHit && (
+                            <span
+                              className="text-[10px] font-semibold px-1.5 py-0.5 rounded border text-red-700 bg-red-50 border-red-200 dark:bg-red-950/30 dark:text-red-300 dark:border-red-800"
+                              title={job.fitScore.dealBreakerReason || 'Dealbreaker — conflicts with your profile'}
+                            >
+                              Dealbreaker
+                            </span>
+                          )}
+                          {job.matchScore ? (
+                            <span className="text-xs font-semibold text-primary">{job.matchScore}%</span>
+                          ) : null}
+                        </div>
                         <div className="flex items-center gap-1.5">
                           <Button
                             size="sm"

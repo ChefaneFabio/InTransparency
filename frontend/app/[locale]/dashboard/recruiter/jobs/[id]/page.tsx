@@ -371,7 +371,17 @@ export default function JobDetailPage() {
       </GlassCard>
 
       {/* Role offering — non-skills fit data that drives match scores */}
-      <RoleOfferingEditor jobId={job.id} initial={job.roleOffering} />
+      <RoleOfferingEditor
+        jobId={job.id}
+        initial={job.roleOffering}
+        jobText={{
+          title: job.title,
+          description: job.description,
+          responsibilities: job.responsibilities,
+          requirements: job.requirements,
+          niceToHave: job.niceToHave,
+        }}
+      />
 
       {/* Applications — inline evidence pack per applicant */}
       <GlassCard hover={false}>

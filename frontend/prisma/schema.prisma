@@ -1532,8 +1532,18 @@ model Job {
   //   { careerTrack, positionLevel, environment[], growthFocus, motivations[],
   //     cultureTags[], teamSize, companyStage, industry, nonNegotiables[],
   //     perks[] }
-  // Shape: see RoleOffering in lib/fit-profile.ts.
+  // Shape: see RoleOffering in lib/fit-profile.ts. This is the recruiter's
+  // explicit input — used as an override when present.
   roleOffering    Json?
+
+  // Signals extracted from the JD prose (description + responsibilities +
+  // requirements + title). Claude is called once per job and the result is
+  // cached. Fills gaps when the recruiter hasn't tagged roleOffering. Source
+  // of truth for position level if roleOffering.positionLevel is absent.
+  // Shape: see ExtractedJobSignals in lib/job-signals-extractor.ts.
+  //   { version, positionLevel, cultureTags[], motivations[], growthFocus,
+  //     extractedAt }
+  extractedSignals Json?
 
   // Application Settings
   applicationUrl     String? // External application URL

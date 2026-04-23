@@ -33,6 +33,9 @@ export default function FitProfilePage() {
   const [analyzing, setAnalyzing] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
+  const [importing, setImporting] = useState(false)
+  const [importedFields, setImportedFields] = useState<string[] | null>(null)
+
   // Load existing profile on mount
   useEffect(() => {
     let cancelled = false
@@ -54,6 +57,36 @@ export default function FitProfilePage() {
       })
     return () => {
       cancelled = true
+    }
+  }, [locale])
+
+  const importFromDiscovery = useCallback(async () => {
+    setImporting(true)
+    setImportedFields(null)
+    try {
+      const res = await fetch('/api/student/fit-profile/import-from-discovery', {
+        method: 'POST',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Import failed')
+      setProfile(data.profile)
+      setCompleteness(Math.round((data.profile.completion ?? 0) * 100))
+      setImportedFields(data.imported || [])
+      // Surface a system message so the student sees what happened in the chat log
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content:
+            locale === 'it'
+              ? `Ho importato ${data.imported?.length ?? 0} campi dalla tua Self-Discovery. Controlla il profilo a destra — se qualcosa non torna, dimmelo.`
+              : `I imported ${data.imported?.length ?? 0} fields from your Self-Discovery. Check the profile on the right — tell me if anything feels off.`,
+        },
+      ])
+    } catch (e: any) {
+      alert(e.message || (locale === 'it' ? 'Import fallito' : 'Import failed'))
+    } finally {
+      setImporting(false)
     }
   }, [locale])
 
@@ -132,8 +165,44 @@ export default function FitProfilePage() {
     }
   }, [profile, locale])
 
+  const showImportCTA = (profile.completion ?? 0) < 0.4
+
   return (
-    <ConversationChat
+    <div className="space-y-4">
+      {showImportCTA && (
+        <div className="rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-4 flex items-start gap-3">
+          <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+            <span className="text-lg">✨</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-semibold">
+              {locale === 'it' ? "Hai già fatto Self-Discovery?" : 'Already done Self-Discovery?'}
+            </h3>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {locale === 'it'
+                ? "Posso leggere le tue risposte e riempire gran parte del fit profile — tu controlli e correggi."
+                : 'I can read your answers and prefill most of the fit profile — you review and tweak.'}
+            </p>
+            {importedFields && (
+              <p className="text-xs text-emerald-700 dark:text-emerald-400 mt-1.5">
+                {locale === 'it'
+                  ? `Importati: ${importedFields.join(', ')}`
+                  : `Imported: ${importedFields.join(', ')}`}
+              </p>
+            )}
+          </div>
+          <button
+            onClick={importFromDiscovery}
+            disabled={importing}
+            className="shrink-0 text-xs font-medium px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50"
+          >
+            {importing
+              ? locale === 'it' ? 'Importo…' : 'Importing…'
+              : locale === 'it' ? 'Importa' : 'Import'}
+          </button>
+        </div>
+      )}
+      <ConversationChat
       welcomeMessage={
         locale === 'it'
           ? "Parliamo di che tipo di ruolo ti farebbe stare bene — motivazioni, cultura, ambiente. Non è una candidatura: è per capire cosa matchare."
@@ -179,5 +248,6 @@ export default function FitProfilePage() {
       analyzing={analyzing}
       submitting={submitting}
     />
+    </div>
   )
 }

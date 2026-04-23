@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { computeFitScore } from '@/lib/fit-score-engine'
+import { ensureJobSignals } from '@/lib/job-signals-extractor'
 import {
   type FitProfile,
   type RoleOffering,
@@ -135,6 +136,10 @@ export async function GET(
     const offering = (job.roleOffering as RoleOffering | null) ?? null
     const jobIsRemote = job.remoteOk || job.workLocation === 'REMOTE'
 
+    // Extract once per job — cached on Job.extractedSignals at current
+    // EXTRACTOR_VERSION. Subsequent applicants reuse the same signals.
+    const extracted = await ensureJobSignals(jobId)
+
     const applicants = await Promise.all(applications.map(async app => {
       const studentProjects = projectsByStudent.get(app.applicant.id) ?? []
       const studentSkillSet = new Set<string>()
@@ -211,6 +216,7 @@ export async function GET(
           fitScore = await computeFitScore({
             profile: (app.applicant.fitProfile as FitProfile | null) ?? null,
             offering,
+            extracted,
             skillsScore: matchScore,
             skillsReason: `${matchedSkills.length}/${required.length} required skills matched${
               preferred.length ? `, ${matchedPreferred.length}/${preferred.length} preferred` : ''
@@ -219,6 +225,8 @@ export async function GET(
             jobLocation: job.location,
             jobIsRemote,
             companySize: job.companySize,
+            jobTitle: null, // caller doesn't need this once extracted is present
+            jobExperience: null,
           })
           // Non-blocking cache write
           prisma.application

@@ -21,10 +21,17 @@ import {
   computeComposite,
   FIT_ENGINE_VERSION,
 } from './fit-profile'
+import type { ExtractedJobSignals } from './job-signals-extractor'
 
 export interface ComputeFitScoreInput {
   profile: FitProfile | null
   offering: RoleOffering | null
+  /**
+   * Signals extracted from the JD prose (title, description, responsibilities).
+   * Fills in for axes where the recruiter hasn't tagged roleOffering
+   * explicitly. Tags in `offering` win when present; `extracted` fills gaps.
+   */
+  extracted?: ExtractedJobSignals | null
   /**
    * Skills axis score (0-100). Computed upstream by the skills pipeline so we
    * don't re-implement required-coverage + verified-density here.
@@ -41,6 +48,52 @@ export interface ComputeFitScoreInput {
    * Optional company-size label for dimension matching (e.g. from Job.companySize).
    */
   companySize?: string | null
+  /**
+   * Job title — used for deterministic position inference when neither the
+   * recruiter's tag nor the extracted signal is available.
+   */
+  jobTitle?: string | null
+  jobExperience?: string | null
+}
+
+/**
+ * Merge explicit roleOffering with extracted signals. Role offering wins
+ * whenever a field is populated; extracted signals fill empty fields.
+ * This is the "real data first, tags as supplement" reconciliation point.
+ */
+function mergeOffering(
+  offering: RoleOffering | null,
+  extracted: ExtractedJobSignals | null | undefined
+): RoleOffering | null {
+  if (!offering && !extracted) return null
+  if (!offering) {
+    return {
+      careerTrack: 'ic-path',
+      positionLevel: (extracted?.positionLevel as any) || 'junior-ic',
+      environment: [],
+      growthFocus: extracted?.growthFocus || '',
+      motivations: (extracted?.motivations as any) || [],
+      cultureTags: (extracted?.cultureTags as any) || [],
+      nonNegotiables: [],
+      perks: [],
+    }
+  }
+  if (!extracted) return offering
+  return {
+    ...offering,
+    // positionLevel: keep recruiter's tag if set
+    positionLevel: offering.positionLevel || (extracted.positionLevel as any) || 'junior-ic',
+    // growthFocus: prefer recruiter prose, fall back to extracted
+    growthFocus: offering.growthFocus?.trim() || extracted.growthFocus || '',
+    // cultureTags: union — recruiter explicit + JD-extracted
+    cultureTags: Array.from(
+      new Set([...(offering.cultureTags || []), ...(extracted.cultureTags || [])])
+    ),
+    // motivations: union, recruiter-first
+    motivations: Array.from(
+      new Set([...(offering.motivations || []), ...(extracted.motivations || [])])
+    ),
+  }
 }
 
 // ─── Deterministic axes ──────────────────────────────────────────────────
@@ -294,17 +347,19 @@ Return ONLY the JSON — no prose, no code fence.`
   }
 }
 
-// ─── Public entry point ──────────────────────────────────────────────────
+// ─── Fast, no-Claude variant for list views ─────────────────────────────
 
 /**
- * Compute a FitScore for a (student, job) pair. If either fitProfile or
- * roleOffering is missing, returns a neutral FitScore with skills as the
- * only loaded axis.
+ * Like computeFitScore but skips the Claude intent call. Used for list/grid
+ * views where we can't afford 1 LLM call per tile. Intent is neutralized to
+ * 50; every other axis runs as usual.
+ *
+ * Tradeoff: loses the goal-alignment signal. Students clicking into a role
+ * see the full score (with intent) computed on-demand.
  */
-export async function computeFitScore(input: ComputeFitScoreInput): Promise<FitScore> {
+export function computeFastFitScore(input: ComputeFitScoreInput): FitScore {
   const {
     profile,
-    offering,
     skillsScore,
     skillsReason,
     jobIndustry,
@@ -312,6 +367,91 @@ export async function computeFitScore(input: ComputeFitScoreInput): Promise<FitS
     jobIsRemote,
     companySize,
   } = input
+
+  const offering = mergeOffering(input.offering, input.extracted ?? null)
+
+  const skills: AxisScore = {
+    score: Math.max(0, Math.min(100, Math.round(skillsScore))),
+    reason: skillsReason || 'Skills coverage from required/preferred match.',
+  }
+
+  if (!profile || !offering) {
+    const neutral = (reason: string): AxisScore => ({ score: 50, reason })
+    return {
+      composite: Math.round(skills.score * 0.25 + 50 * 0.75),
+      skills,
+      intent: neutral('Fast score skips Claude intent call.'),
+      motivation: neutral('Profile/offering incomplete.'),
+      cultureFit: neutral('Profile/offering incomplete.'),
+      position: neutral('Profile/offering incomplete.'),
+      dimension: neutral('Profile/offering incomplete.'),
+      industry: neutral('Profile/offering incomplete.'),
+      geography: neutral('Profile/offering incomplete.'),
+      dealBreakerHit: false,
+      engineVersion: FIT_ENGINE_VERSION,
+    }
+  }
+
+  const db = dealBreakerHit(profile, offering, jobIsRemote, jobLocation)
+
+  // Intent neutralized — we don't call Claude for list views.
+  const intent: AxisScore = {
+    score: 50,
+    reason: 'Quick estimate — click in for full goal-alignment score.',
+  }
+  const motivation = matchMotivation(profile, offering)
+  const cultureFit = matchCulture(profile, offering)
+  const position = matchPosition(profile, offering)
+  const dimension = matchDimension(profile, offering, companySize)
+  const industry = matchIndustry(profile, offering, jobIndustry)
+  const geography = matchGeography(profile, jobLocation, jobIsRemote)
+
+  const composite = computeComposite(
+    { skills, intent, motivation, cultureFit, position, dimension, industry, geography },
+    db.hit
+  )
+
+  return {
+    composite,
+    skills,
+    intent,
+    motivation,
+    cultureFit,
+    position,
+    dimension,
+    industry,
+    geography,
+    dealBreakerHit: db.hit,
+    dealBreakerReason: db.reason,
+    engineVersion: FIT_ENGINE_VERSION,
+  }
+}
+
+// ─── Public entry point ──────────────────────────────────────────────────
+
+/**
+ * Compute a FitScore for a (student, job) pair. If the student hasn't filled
+ * fitProfile, returns a neutral FitScore with skills as the only loaded axis.
+ *
+ * Real-data reconciliation: the recruiter's `offering` tags are merged with
+ * `extracted` signals from the JD prose. Recruiter wins when tagged; extractor
+ * fills gaps. This means a role is match-ready even if the recruiter only
+ * wrote a description and never touched the role-offering editor.
+ */
+export async function computeFitScore(input: ComputeFitScoreInput): Promise<FitScore> {
+  const {
+    profile,
+    skillsScore,
+    skillsReason,
+    jobIndustry,
+    jobLocation,
+    jobIsRemote,
+    companySize,
+  } = input
+
+  // Merge explicit tags with JD-extracted signals. After this point, the
+  // engine only reads from `offering` (possibly synthesized from extracted).
+  const offering = mergeOffering(input.offering, input.extracted ?? null)
 
   const skills: AxisScore = {
     score: Math.max(0, Math.min(100, Math.round(skillsScore))),

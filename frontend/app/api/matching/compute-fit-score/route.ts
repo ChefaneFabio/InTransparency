@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { computeFitScore } from '@/lib/fit-score-engine'
+import { ensureJobSignals } from '@/lib/job-signals-extractor'
 import {
   type FitProfile,
   type RoleOffering,
@@ -119,9 +120,12 @@ export async function POST(req: NextRequest) {
         }.`
       : 'Role did not list required skills.'
 
+    const extracted = await ensureJobSignals(jobId)
+
     const fitScore = await computeFitScore({
       profile: (user.fitProfile as FitProfile | null) ?? null,
       offering: (job.roleOffering as RoleOffering | null) ?? null,
+      extracted,
       skillsScore,
       skillsReason,
       jobIndustry: job.companyIndustry,

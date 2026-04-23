@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { computeFastFitScore } from '@/lib/fit-score-engine'
+import type { FitProfile, RoleOffering } from '@/lib/fit-profile'
+import type { ExtractedJobSignals } from '@/lib/job-signals-extractor'
 
 /**
  * GET /api/dashboard/student/jobs
@@ -17,11 +20,17 @@ export async function GET(req: NextRequest) {
 
     const userId = session.user.id
 
-    // Get student's skills from projects
-    const projects = await prisma.project.findMany({
-      where: { userId },
-      select: { skills: true, technologies: true },
-    })
+    // Get student's skills + fit profile in one roundtrip
+    const [user, projects] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: userId },
+        select: { fitProfile: true },
+      }),
+      prisma.project.findMany({
+        where: { userId },
+        select: { skills: true, technologies: true },
+      }),
+    ])
 
     const skillSet = new Set<string>()
     for (let i = 0; i < projects.length; i++) {
@@ -30,44 +39,76 @@ export async function GET(req: NextRequest) {
       for (let j = 0; j < p.technologies.length; j++) skillSet.add(p.technologies[j].toLowerCase())
     }
     const profileSkills = Array.from(skillSet)
+    const fitProfile = (user?.fitProfile as FitProfile | null) ?? null
 
-    // Fetch active public jobs
+    // Fetch active public jobs — include fit-relevant fields
     const jobs = await prisma.job.findMany({
       where: { status: 'ACTIVE', isPublic: true },
       select: {
         id: true,
         title: true,
         companyName: true,
+        companyIndustry: true,
+        companySize: true,
         location: true,
         jobType: true,
         workLocation: true,
         requiredSkills: true,
+        preferredSkills: true,
+        remoteOk: true,
         salaryMin: true,
         salaryMax: true,
         salaryCurrency: true,
         showSalary: true,
         postedAt: true,
+        roleOffering: true,
+        extractedSignals: true,
       },
       orderBy: { postedAt: 'desc' },
       take: 100,
     })
 
-    // Calculate match score for each job
+    // Compute both a skills matchScore and a fast fit score (no Claude).
     const jobsWithScore = jobs.map(job => {
       const required = job.requiredSkills || []
-      if (required.length === 0) {
-        return { ...formatJob(job), matchScore: 0 }
-      }
-      let matches = 0
+      const preferred = job.preferredSkills || []
+      let reqHits = 0
       for (let i = 0; i < required.length; i++) {
-        if (skillSet.has(required[i].toLowerCase())) matches++
+        if (skillSet.has(required[i].toLowerCase())) reqHits++
       }
-      const matchScore = Math.round((matches / required.length) * 100)
-      return { ...formatJob(job), matchScore }
+      const matchScore =
+        required.length > 0 ? Math.round((reqHits / required.length) * 100) : 0
+
+      // Fast fit score — uses cached extractedSignals + roleOffering; no Claude.
+      const fitScore = computeFastFitScore({
+        profile: fitProfile,
+        offering: (job.roleOffering as RoleOffering | null) ?? null,
+        extracted: (job.extractedSignals as ExtractedJobSignals | null) ?? null,
+        skillsScore: matchScore,
+        skillsReason: `${reqHits}/${required.length} required skills matched`,
+        jobIndustry: job.companyIndustry,
+        jobLocation: job.location,
+        jobIsRemote: job.remoteOk || job.workLocation === 'REMOTE',
+        companySize: job.companySize,
+      })
+
+      return {
+        ...formatJob(job),
+        matchScore,
+        fitScore: fitProfile ? {
+          composite: fitScore.composite,
+          dealBreakerHit: fitScore.dealBreakerHit,
+          dealBreakerReason: fitScore.dealBreakerReason,
+        } : null,
+      }
     })
 
-    // Sort by match score desc, then by date
-    jobsWithScore.sort((a, b) => b.matchScore - a.matchScore)
+    // Sort by composite fit (if profile exists), else by skill match
+    jobsWithScore.sort((a, b) => {
+      const ac = a.fitScore?.composite ?? a.matchScore
+      const bc = b.fitScore?.composite ?? b.matchScore
+      return bc - ac
+    })
 
     return NextResponse.json({
       jobs: jobsWithScore,
