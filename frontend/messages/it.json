@@ -89,7 +89,8 @@
         "matches": "Match",
         "rolesForYou": "Ruoli Per Te",
         "selfDiscovery": "Auto-Esplorazione",
-        "discoverCompanies": "Scopri Aziende"
+        "discoverCompanies": "Scopri Aziende",
+        "integrations": "Integrazioni"
       },
       "messages": "Messaggi"
     },
@@ -143,7 +144,8 @@
         "interviewKit": "Kit Colloquio",
         "companyProfile": "Profilo Azienda",
         "followers": "Follower",
-        "assistant": "Talent Assistant"
+        "assistant": "Talent Assistant",
+        "integrations": "Integrazioni"
       },
       "search": "Ricerca",
       "brand": "Brand"
@@ -214,7 +216,8 @@
         "exchanges": "Scambi",
         "partnerCompanies": "Aziende convenzionate",
         "assistant": "Staff Assistant",
-        "auditLog": "Audit Log"
+        "auditLog": "Audit Log",
+        "integrations": "Integrazioni"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",

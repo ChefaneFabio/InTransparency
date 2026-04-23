@@ -66,13 +66,14 @@ const student: NavConfig = {
         { labelKey: 'challenges', href: '/dashboard/student/challenges' },
       ],
     },
-    // 6. Settings — analytics, privacy, preferences
+    // 6. Settings — analytics, privacy, integrations, preferences
     {
       labelKey: 'settings',
       items: [
-        { labelKey: 'analytics', href: '/dashboard/student/analytics' },
-        { labelKey: 'privacy',   href: '/dashboard/student/privacy' },
-        { labelKey: 'settings',  href: '/dashboard/student/settings' },
+        { labelKey: 'analytics',    href: '/dashboard/student/analytics' },
+        { labelKey: 'integrations', href: '/dashboard/student/integrations' },
+        { labelKey: 'privacy',      href: '/dashboard/student/privacy' },
+        { labelKey: 'settings',     href: '/dashboard/student/settings' },
       ],
     },
   ],
@@ -132,13 +133,14 @@ const recruiter: NavConfig = {
         { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
       ],
     },
-    // 7. Settings — analytics, documents, preferences
+    // 7. Settings — analytics, documents, integrations, preferences
     {
       labelKey: 'settings',
       items: [
-        { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
-        { labelKey: 'documents', href: '/dashboard/recruiter/documents' },
-        { labelKey: 'settings',  href: '/dashboard/recruiter/settings' },
+        { labelKey: 'analytics',    href: '/dashboard/recruiter/analytics' },
+        { labelKey: 'integrations', href: '/dashboard/recruiter/integrations' },
+        { labelKey: 'documents',    href: '/dashboard/recruiter/documents' },
+        { labelKey: 'settings',     href: '/dashboard/recruiter/settings' },
       ],
     },
   ],
@@ -214,9 +216,10 @@ const universityBase: NavConfig = {
     {
       labelKey: 'settings',
       items: [
-        { labelKey: 'documents', href: '/dashboard/university/documents' },
-        { labelKey: 'billing',   href: '/dashboard/university/billing' },
-        { labelKey: 'settings',  href: '/dashboard/university/settings' },
+        { labelKey: 'integrations', href: '/dashboard/university/integrations' },
+        { labelKey: 'documents',    href: '/dashboard/university/documents' },
+        { labelKey: 'billing',      href: '/dashboard/university/billing' },
+        { labelKey: 'settings',     href: '/dashboard/university/settings' },
       ],
     },
   ],

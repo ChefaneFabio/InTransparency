@@ -89,7 +89,8 @@
         "matches": "Matches",
         "rolesForYou": "Roles For You",
         "selfDiscovery": "Self-Discovery",
-        "discoverCompanies": "Discover Companies"
+        "discoverCompanies": "Discover Companies",
+        "integrations": "Integrations"
       },
       "messages": "Messages"
     },
@@ -143,7 +144,8 @@
         "interviewKit": "Interview Kit",
         "companyProfile": "Company Profile",
         "followers": "Followers",
-        "assistant": "Talent Assistant"
+        "assistant": "Talent Assistant",
+        "integrations": "Integrations"
       },
       "search": "Search",
       "brand": "Brand"
@@ -214,7 +216,8 @@
         "exchanges": "Exchanges",
         "partnerCompanies": "Partner companies",
         "assistant": "Staff Assistant",
-        "auditLog": "Audit Log"
+        "auditLog": "Audit Log",
+        "integrations": "Integrations"
       },
       "exchange": "Exchange",
       "internships": "Internships",
