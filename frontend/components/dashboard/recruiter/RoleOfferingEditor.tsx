@@ -101,6 +101,20 @@ export default function RoleOfferingEditor({ jobId, initial, onSaved, jobText }:
     if (initial) setValue(initial)
   }, [initial])
 
+  // Auto-run the preview when the form is empty and we have JD text.
+  // Recruiter sees real inferred values on page load — no extra click needed.
+  useEffect(() => {
+    const hasExplicitSignals =
+      (initial?.cultureTags?.length ?? 0) > 0 ||
+      (initial?.motivations?.length ?? 0) > 0 ||
+      (initial?.growthFocus?.trim().length ?? 0) > 0
+    if (hasExplicitSignals) return
+    if (!jobText || (!jobText.description && !jobText.responsibilities)) return
+    if (previewSignals || previewing) return
+    runPreview()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initial, jobText])
+
   const toggleIn = (key: 'environment' | 'cultureTags' | 'motivations', tag: string) => {
     setValue(v => {
       const list = v[key]

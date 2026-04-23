@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Target, CheckCircle2, AlertCircle, MapPin, Briefcase, Sparkles, ArrowRight } from 'lucide-react'
 import { Link } from '@/navigation'
+import FitScoreTile from '@/components/dashboard/shared/FitScoreTile'
 
 interface RoleMatch {
   id: string
@@ -19,6 +20,7 @@ interface RoleMatch {
   jobType: string | null
   createdAt: string
   matchScore: number
+  fitScore: { composite: number; dealBreakerHit: boolean; dealBreakerReason?: string } | null
   evidence: {
     requiredMatched: number
     requiredTotal: number
@@ -143,9 +145,15 @@ function RoleCard({ role }: { role: RoleMatch }) {
                 <h3 className="font-semibold">{role.title}</h3>
                 <div className="text-sm text-muted-foreground">{role.companyName}</div>
               </div>
-              <div className="text-right flex-shrink-0">
-                <div className="text-2xl font-bold text-primary">{role.matchScore}</div>
-                <div className="text-xs text-muted-foreground">{t('matchScore')}</div>
+              <div className="flex-shrink-0 flex items-center gap-1.5">
+                <FitScoreTile score={role.matchScore} label="skills" size="sm" />
+                <FitScoreTile
+                  score={role.fitScore ? role.fitScore.composite : null}
+                  label="fit"
+                  size="sm"
+                  dealBreakerHit={role.fitScore?.dealBreakerHit}
+                  dealBreakerReason={role.fitScore?.dealBreakerReason}
+                />
               </div>
             </div>
 

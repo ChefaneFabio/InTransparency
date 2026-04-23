@@ -28,6 +28,7 @@ import {
   ArrowRight,
   MapPin,
 } from 'lucide-react'
+import FitProfileCallout from '@/components/dashboard/student/FitProfileCallout'
 
 interface Course {
   courseName: string
@@ -244,6 +245,9 @@ export default function StudentJourneyPage() {
           )}
         </div>
       </div>
+
+      {/* ─── FIT PROFILE CALLOUT — hidden if ≥85% complete ─── */}
+      <FitProfileCallout />
 
       {/* ─── STATS STRIP ─── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

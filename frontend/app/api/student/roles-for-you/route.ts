@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getCurrentSkillGraph } from '@/lib/skill-delta'
+import { computeFastFitScore } from '@/lib/fit-score-engine'
+import type { FitProfile, RoleOffering } from '@/lib/fit-profile'
+import type { ExtractedJobSignals } from '@/lib/job-signals-extractor'
 
 /**
  * GET /api/student/roles-for-you
@@ -25,6 +28,7 @@ export async function GET() {
       desiredOccupation: true,
       willingToRelocate: true,
       willingToRelocateAbroad: true,
+      fitProfile: true,
     },
   })
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -42,17 +46,24 @@ export async function GET() {
       title: true,
       companyName: true,
       companyLogo: true,
+      companyIndustry: true,
+      companySize: true,
       location: true,
       workLocation: true,
+      remoteOk: true,
       jobType: true,
       requiredSkills: true,
       preferredSkills: true,
       description: true,
       createdAt: true,
+      roleOffering: true,
+      extractedSignals: true,
     },
     orderBy: { createdAt: 'desc' },
     take: 200,
   })
+
+  const fitProfile = (user.fitProfile as FitProfile | null) ?? null
 
   // Score each job
   const scored = jobs.map(job => {
@@ -88,6 +99,18 @@ export async function GET() {
 
     const matchScore = Math.min(100, reqScore + prefScore + depthScore + freshnessScore)
 
+    const fast = computeFastFitScore({
+      profile: fitProfile,
+      offering: (job.roleOffering as RoleOffering | null) ?? null,
+      extracted: (job.extractedSignals as ExtractedJobSignals | null) ?? null,
+      skillsScore: matchScore,
+      skillsReason: `${verifiedReq.length + selfReq.length}/${req.length} required skills matched`,
+      jobIndustry: job.companyIndustry,
+      jobLocation: job.location,
+      jobIsRemote: job.remoteOk || job.workLocation === 'REMOTE',
+      companySize: job.companySize,
+    })
+
     return {
       id: job.id,
       title: job.title,
@@ -98,6 +121,9 @@ export async function GET() {
       jobType: job.jobType,
       createdAt: job.createdAt.toISOString(),
       matchScore,
+      fitScore: fitProfile
+        ? { composite: fast.composite, dealBreakerHit: fast.dealBreakerHit, dealBreakerReason: fast.dealBreakerReason }
+        : null,
       evidence: {
         requiredMatched: req.length > 0 ? (verifiedReq.length + selfReq.length) : 0,
         requiredTotal: req.length,

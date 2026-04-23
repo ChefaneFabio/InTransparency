@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from '@/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -18,10 +18,11 @@ import {
   Inbox,
   ChevronDown,
   ChevronUp,
-  AlertTriangle,
-  Sparkles,
 } from 'lucide-react'
 import type { FitScore } from '@/lib/fit-profile'
+import FitScoreTile from '@/components/dashboard/shared/FitScoreTile'
+import FitScoreBreakdown from '@/components/dashboard/shared/FitScoreBreakdown'
+import EmptyState from '@/components/shared/EmptyState'
 
 interface Project {
   id: string
@@ -67,12 +68,6 @@ interface Response {
   jobSkills: { required: string[]; preferred: string[] }
 }
 
-const scoreColor = (s: number) => {
-  if (s >= 75) return 'text-emerald-700 bg-emerald-50 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-800'
-  if (s >= 50) return 'text-blue-700 bg-blue-50 border-blue-200 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800'
-  if (s >= 25) return 'text-amber-700 bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:text-amber-300 dark:border-amber-800'
-  return 'text-muted-foreground bg-muted border-muted-foreground/20'
-}
 
 export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
   const [data, setData] = useState<Response | null>(null)
@@ -107,13 +102,12 @@ export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
 
   if (!data || data.applicants.length === 0) {
     return (
-      <div className="text-center py-10 border rounded-xl bg-muted/20">
-        <Inbox className="h-10 w-10 mx-auto text-muted-foreground/40 mb-2" />
-        <p className="text-sm font-medium">No applications yet</p>
-        <p className="text-xs text-muted-foreground mt-1">
-          When a student applies, you'll see their evidence pack here.
-        </p>
-      </div>
+      <EmptyState
+        icon={Inbox}
+        title="No applications yet"
+        description="When a student applies, their evidence pack — verified projects, skill match, fit score — shows up here ranked."
+        gradient="primary"
+      />
     )
   }
 
@@ -135,45 +129,16 @@ export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
             <div className="p-4 flex flex-col md:flex-row gap-4">
               {/* Left: score + identity */}
               <div className="flex items-start gap-3 min-w-0 flex-1">
-                {/* Dual score tile: skills + fit (if fit is computed and applicant has a profile) */}
+                {/* Dual score tile: skills + fit */}
                 <div className="shrink-0 flex gap-1.5">
-                  <div
-                    className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${scoreColor(
-                      a.evidence.matchScore
-                    )}`}
-                  >
-                    <span className="text-lg font-bold leading-none">{a.evidence.matchScore}</span>
-                    <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-70">
-                      skills
-                    </span>
-                  </div>
-                  {a.fitScore && a.applicant.hasFitProfile ? (
-                    <div
-                      className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${
-                        a.fitScore.dealBreakerHit
-                          ? 'text-red-700 bg-red-50 border-red-200 dark:bg-red-950/30 dark:text-red-300 dark:border-red-800'
-                          : scoreColor(a.fitScore.composite)
-                      }`}
-                      title={a.fitScore.dealBreakerHit ? a.fitScore.dealBreakerReason : undefined}
-                    >
-                      <span className="text-lg font-bold leading-none">
-                        {a.fitScore.dealBreakerHit ? '—' : a.fitScore.composite}
-                      </span>
-                      <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-70">
-                        fit
-                      </span>
-                    </div>
-                  ) : (
-                    <div
-                      className="w-14 h-14 rounded-xl border border-dashed flex flex-col items-center justify-center text-muted-foreground"
-                      title="Applicant has not completed fit profile yet"
-                    >
-                      <Sparkles className="h-4 w-4 opacity-40" />
-                      <span className="text-[9px] uppercase tracking-wide mt-0.5 opacity-60">
-                        fit —
-                      </span>
-                    </div>
-                  )}
+                  <FitScoreTile score={a.evidence.matchScore} label="skills" size="md" />
+                  <FitScoreTile
+                    score={a.fitScore && a.applicant.hasFitProfile ? a.fitScore.composite : null}
+                    label="fit"
+                    size="md"
+                    dealBreakerHit={a.fitScore?.dealBreakerHit}
+                    dealBreakerReason={a.fitScore?.dealBreakerReason}
+                  />
                 </div>
 
                 {/* Identity */}
@@ -308,62 +273,24 @@ export default function ApplicantEvidenceList({ jobId }: { jobId: string }) {
               </div>
             </div>
 
-            {/* Fit score expansion — per-axis breakdown */}
-            {a.fitScore && expanded === a.id && (
-              <div className="px-4 pb-4">
-                <div className="border-t pt-3 space-y-2">
-                  {a.fitScore.dealBreakerHit && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900 p-3 flex items-start gap-2">
-                      <AlertTriangle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
-                      <div className="text-xs">
-                        <div className="font-semibold text-red-700 dark:text-red-300">
-                          Dealbreaker
-                        </div>
-                        <div className="text-red-700/80 dark:text-red-400/80">
-                          {a.fitScore.dealBreakerReason || 'A hard no was triggered.'}
-                        </div>
-                      </div>
+            {/* Fit score expansion — per-axis breakdown (shared component, animated bars) */}
+            <AnimatePresence initial={false}>
+              {a.fitScore && expanded === a.id && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-4 pb-4">
+                    <div className="border-t pt-3">
+                      <FitScoreBreakdown score={a.fitScore} />
                     </div>
-                  )}
-
-                  {(
-                    [
-                      ['Skills', a.fitScore.skills],
-                      ['Goal alignment', a.fitScore.intent],
-                      ['Motivation', a.fitScore.motivation],
-                      ['Culture fit', a.fitScore.cultureFit],
-                      ['Position', a.fitScore.position],
-                      ['Company dimension', a.fitScore.dimension],
-                      ['Industry', a.fitScore.industry],
-                      ['Geography', a.fitScore.geography],
-                    ] as const
-                  ).map(([label, axis]) => (
-                    <div key={label} className="text-xs">
-                      <div className="flex items-center justify-between gap-2 mb-0.5">
-                        <span className="font-medium">{label}</span>
-                        <span
-                          className={
-                            axis.score >= 75
-                              ? 'text-emerald-600 font-semibold tabular-nums'
-                              : axis.score >= 50
-                              ? 'text-blue-600 font-semibold tabular-nums'
-                              : axis.score >= 25
-                              ? 'text-amber-600 font-semibold tabular-nums'
-                              : 'text-red-600 font-semibold tabular-nums'
-                          }
-                        >
-                          {axis.score}
-                        </span>
-                      </div>
-                      <Progress value={axis.score} className="h-1.5" />
-                      <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
-                        {axis.reason}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )
       })}

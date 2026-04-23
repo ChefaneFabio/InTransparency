@@ -27,14 +27,14 @@ const student: NavConfig = {
         { labelKey: 'journey', href: '/dashboard/student/journey' },
       ],
     },
-    // 2. Portfolio — everything that represents "who you are"
+    // 2. Portfolio — everything that represents "who you are". Profile is
+    //    now a tabbed shell hosting Edit + CV + Fit Profile.
     {
       labelKey: 'portfolio',
       items: [
         { labelKey: 'projects',    href: '/dashboard/student/projects' },
         { labelKey: 'profile',     href: '/dashboard/student/profile' },
         { labelKey: 'skills',      href: '/dashboard/student/skills' },
-        { labelKey: 'fitProfile',  href: '/dashboard/student/fit-profile' },
         { labelKey: 'credentials', href: '/dashboard/student/credentials' },
       ],
     },
