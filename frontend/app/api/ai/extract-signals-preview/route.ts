@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
     }
 
     const ip = getClientIp(req)
-    const rl = await aiLimiter(ip)
-    if (!rl.success) {
+    const { success } = aiLimiter.check(ip)
+    if (!success) {
       return NextResponse.json({ error: 'Rate limited.' }, { status: 429 })
     }
 
