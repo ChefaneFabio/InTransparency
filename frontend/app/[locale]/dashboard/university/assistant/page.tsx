@@ -72,11 +72,55 @@ interface ChatMessage {
   cards?: CardPayload[]
 }
 
-const QUICK_PROMPTS = [
-  'Quali placement sono a rischio questa settimana?',
-  'Chi non ha ancora un tirocinio tra gli iscritti attivi?',
-  'Quante convenzioni firmate nell\'anno accademico in corso?',
-  'Aziende non contattate da oltre 45 giorni',
+// Categorized onboarding — each category maps to one tool the assistant
+// can call. Showing the connection teaches staff what the assistant is
+// capable of without requiring them to read docs.
+const PROMPT_CATEGORIES: Array<{
+  icon: string
+  label: string
+  tool: string
+  examples: string[]
+}> = [
+  {
+    icon: '⚠️',
+    label: 'Placement a rischio',
+    tool: 'list_at_risk_placements',
+    examples: [
+      'Quali placement sono a rischio questa settimana?',
+      'Mostra tirocini senza ore loggate da oltre 7 giorni',
+      'Chi ha scadenze scadute?',
+    ],
+  },
+  {
+    icon: '🎓',
+    label: 'Studenti senza tirocinio',
+    tool: 'list_students_without_placement',
+    examples: [
+      'Chi non ha ancora un tirocinio tra gli iscritti attivi?',
+      'Studenti di Ingegneria Informatica senza placement',
+      'Laureandi 2026 senza stage curriculare',
+    ],
+  },
+  {
+    icon: '📊',
+    label: 'Statistiche e report',
+    tool: 'summarize_placement_stats',
+    examples: [
+      'Quanti tirocini per tipologia nell\'anno accademico?',
+      'Distribuzione placement per fase',
+      'Esiti occupazionali dell\'ultimo semestre',
+    ],
+  },
+  {
+    icon: '🏢',
+    label: 'Aziende in silenzio',
+    tool: 'list_stale_company_leads',
+    examples: [
+      'Aziende non contattate da oltre 45 giorni',
+      'Lead senza attività nell\'ultimo mese',
+      'Partner storici da riattivare',
+    ],
+  },
 ]
 
 const RISK_LABEL: Record<string, string> = {
@@ -180,27 +224,60 @@ export default function InstitutionAssistantPage() {
         className="flex-1 overflow-y-auto rounded-xl border bg-background/60 p-4 space-y-4"
       >
         {messages.length === 0 && (
-          <div className="h-full flex flex-col items-center justify-center text-center py-8">
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-              <Bot className="h-7 w-7 text-primary" />
+          <div className="space-y-5 py-2">
+            {/* Hero */}
+            <div className="text-center pt-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-purple-600 text-white flex items-center justify-center mb-3 mx-auto shadow-lg">
+                <Bot className="h-7 w-7" />
+              </div>
+              <h2 className="text-lg font-semibold mb-1">
+                Cosa vuoi sapere sulla tua workspace?
+              </h2>
+              <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                Scrivi in italiano. Io traduco la tua domanda in una query sui tuoi
+                dati e torno con una lista cliccabile.
+              </p>
             </div>
-            <h2 className="text-lg font-semibold mb-1">
-              Cosa vuoi sapere sulla tua workspace?
-            </h2>
-            <p className="text-sm text-muted-foreground max-w-md mb-5">
-              Posso rispondere su placement, studenti, aziende — con link diretti
-              per agire.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-2xl">
-              {QUICK_PROMPTS.map(q => (
-                <button
-                  key={q}
-                  onClick={() => send(q)}
-                  className="text-left text-sm p-3 rounded-lg border hover:border-primary/40 hover:bg-primary/5 transition-colors"
+
+            {/* Categorized prompts — shows what the assistant can actually do */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto w-full">
+              {PROMPT_CATEGORIES.map(cat => (
+                <div
+                  key={cat.tool}
+                  className="rounded-lg border bg-card overflow-hidden"
                 >
-                  {q}
-                </button>
+                  <div className="px-3 py-2 bg-muted/50 border-b flex items-center gap-2">
+                    <span className="text-base">{cat.icon}</span>
+                    <span className="text-sm font-medium">{cat.label}</span>
+                  </div>
+                  <div className="p-2 space-y-1">
+                    {cat.examples.map(ex => (
+                      <button
+                        key={ex}
+                        onClick={() => send(ex)}
+                        className="w-full text-left text-xs p-2 rounded hover:bg-primary/5 hover:text-primary transition-colors"
+                      >
+                        → {ex}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ))}
+            </div>
+
+            {/* How it works */}
+            <div className="max-w-3xl mx-auto w-full rounded-lg border border-dashed border-primary/30 bg-primary/5 p-3">
+              <div className="flex items-start gap-2">
+                <Bot className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                <div className="text-xs text-muted-foreground leading-relaxed">
+                  <span className="font-medium text-foreground">
+                    Come funziona:
+                  </span>{' '}
+                  io chiamo strumenti di ricerca sul tuo database (solo letture, mai
+                  scritture), ogni query è loggata per AI Act compliance. Non invento
+                  dati — se non trovo nulla, te lo dico.
+                </div>
+              </div>
             </div>
           </div>
         )}

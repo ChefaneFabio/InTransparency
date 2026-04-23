@@ -527,6 +527,55 @@ async function main() {
   }
   console.log(`✅ ${projectCount} projects created (verified with innovation scores)`)
 
+  // ── 6b. Seed SkillDelta records from verified projects ─────────────────
+  // The platform writes SkillDelta rows only when a professor endorsement
+  // is verified. The seed creates verified projects directly, so we need
+  // to backfill the deltas here — otherwise /dashboard/student/skill-graph
+  // reads an empty graph even though projects exist.
+  //
+  // Wipe prior deltas for our students, then write one delta per project-
+  // skill pair with a realistic proficiency distribution.
+  await prisma.skillDelta.deleteMany({
+    where: { studentId: { in: studentIds } },
+  })
+
+  let deltaCount = 0
+  for (const sid of studentIds) {
+    const verifiedProjects = await prisma.project.findMany({
+      where: { userId: sid, verificationStatus: 'VERIFIED' },
+      select: { id: true, title: true, skills: true, verifiedAt: true, innovationScore: true },
+    })
+    for (const proj of verifiedProjects) {
+      const projSkills = (proj.skills || []).slice(0, randInt(3, 6))
+      for (const skill of projSkills) {
+        // Realistic distribution: 40% Intermediate, 40% Advanced, 15% Expert, 5% Beginner
+        const r = Math.random()
+        const afterLevel = r < 0.05 ? 1 : r < 0.45 ? 2 : r < 0.85 ? 3 : 4
+
+        await prisma.skillDelta.create({
+          data: {
+            studentId: sid,
+            skillTerm: skill,
+            source: 'PROJECT',
+            sourceId: proj.id,
+            sourceName: proj.title,
+            afterLevel,
+            beforeLevel: null,
+            confidence: 0.9,
+            evaluatorType: 'PROFESSOR',
+            evaluatorName: 'Tutor accademico',
+            evidence: {
+              innovationScore: proj.innovationScore,
+            } as any,
+            occurredAt: proj.verifiedAt || new Date(),
+          },
+        })
+        deltaCount++
+      }
+    }
+  }
+  console.log(`✅ ${deltaCount} skill deltas seeded (feeds /skill-graph)`)
+
   // ── 7. Partner recruiters (one per company) ────────────────────────────
   const recruiters: Array<{ id: string; company: string; sector: string }> = []
   for (const p of PARTNER_COMPANIES) {

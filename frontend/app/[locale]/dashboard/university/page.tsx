@@ -25,6 +25,7 @@ import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
+import { WorkspaceActionCenter } from '@/components/dashboard/university/WorkspaceActionCenter'
 
 interface UniversityStats {
   totalStudents: number; verifiedStudents: number; activeProfiles: number; recruiterViews: number
@@ -141,6 +142,9 @@ export default function UniversityDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-5 pb-12 px-4">
+      {/* Workspace Action Center — surfaces pending items across all modules */}
+      <WorkspaceActionCenter />
+
       {/* Hero */}
       <MetricHero gradient={isNewInstitution ? 'dark' : 'green'}>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">

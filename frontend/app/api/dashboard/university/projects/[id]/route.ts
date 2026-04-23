@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import crypto from 'crypto'
 import { createNotification } from '@/lib/notifications'
+import { writeProjectDeltas } from '@/lib/skill-delta'
 
 const verificationActionSchema = z.object({
   action: z.enum(['verify', 'reject', 'request_info']),
@@ -277,7 +278,7 @@ export async function POST(
     if (action === 'verify') {
       const fullProject = await prisma.project.findUnique({
         where: { id: projectId },
-        select: { id: true, title: true, description: true, grade: true, skills: true },
+        select: { id: true, title: true, description: true, grade: true, skills: true, userId: true },
       })
       if (fullProject) {
         const contentHash = crypto
@@ -302,6 +303,25 @@ export async function POST(
               contentHash,
               issuedBy: session.user.id,
             },
+          })
+        }
+
+        // Write SkillDelta records — feeds the student's /skill-graph.
+        // Default to Intermediate for staff-verified projects (no rubric);
+        // professor endorsements override with more accurate levels via
+        // the endorsements/verify flow.
+        if ((fullProject.skills || []).length > 0) {
+          await writeProjectDeltas({
+            projectId: fullProject.id,
+            studentId: fullProject.userId,
+            projectTitle: fullProject.title,
+            competencies: fullProject.skills.map(skill => ({
+              skill,
+              proficiencyLevel: 'Intermediate',
+            })),
+            endorserName: null, // staff verification, not endorsement
+          }).catch(err => {
+            console.error('writeProjectDeltas (staff verify) failed:', err)
           })
         }
       }
