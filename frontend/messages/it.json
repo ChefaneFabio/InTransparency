@@ -133,7 +133,8 @@
         "hiringAdvisor": "Consulente Assunzioni",
         "interviewKit": "Kit Colloquio",
         "companyProfile": "Profilo Azienda",
-        "followers": "Follower"
+        "followers": "Follower",
+        "assistant": "Talent Assistant"
       },
       "search": "Ricerca",
       "brand": "Brand"
@@ -194,7 +195,8 @@
         "conventions": "Convenzioni",
         "skillsIntelligence": "Skills Intelligence",
         "exchanges": "Scambi",
-        "partnerCompanies": "Aziende convenzionate"
+        "partnerCompanies": "Aziende convenzionate",
+        "assistant": "Staff Assistant"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -202,7 +204,8 @@
       "development": "Sviluppo",
       "learners": "Allievi",
       "credentials": "Credenziali",
-      "companies": "Aziende"
+      "companies": "Aziende",
+      "assistant": "Assistant"
     },
     "institution": {
       "features": "Funzionalità",

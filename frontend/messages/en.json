@@ -133,7 +133,8 @@
         "hiringAdvisor": "Hiring Advisor",
         "interviewKit": "Interview Kit",
         "companyProfile": "Company Profile",
-        "followers": "Followers"
+        "followers": "Followers",
+        "assistant": "Talent Assistant"
       },
       "search": "Search",
       "brand": "Brand"
@@ -194,7 +195,8 @@
         "conventions": "Conventions",
         "skillsIntelligence": "Skills Intelligence",
         "exchanges": "Exchanges",
-        "partnerCompanies": "Partner companies"
+        "partnerCompanies": "Partner companies",
+        "assistant": "Staff Assistant"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -202,7 +204,8 @@
       "development": "Development",
       "learners": "Learners",
       "credentials": "Credentials",
-      "companies": "Companies"
+      "companies": "Companies",
+      "assistant": "Assistant"
     },
     "institution": {
       "features": "Features",

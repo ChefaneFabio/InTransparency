@@ -61,6 +61,7 @@ const recruiter: NavConfig = {
     {
       labelKey: 'search',
       items: [
+        { labelKey: 'assistant', href: '/dashboard/recruiter/assistant' },
         { labelKey: 'candidates', href: '/dashboard/recruiter/candidates' },
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
       ],
@@ -112,6 +113,12 @@ export type InstitutionType = 'university' | 'its' | 'school' | 'other'
 
 const universityBase: NavConfig = {
   groups: [
+    {
+      labelKey: 'assistant',
+      items: [
+        { labelKey: 'assistant', href: '/dashboard/university/assistant' },
+      ],
+    },
     {
       labelKey: 'students',
       items: [

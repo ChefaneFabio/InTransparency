@@ -41,6 +41,7 @@ export const PREMIUM_FEATURES = [
   'convention.generate',
   'reminder.send',
   'reminder.rule.edit',
+  'assistant.query',
 ] as const
 
 export type PremiumFeature = typeof PREMIUM_FEATURES[number]
