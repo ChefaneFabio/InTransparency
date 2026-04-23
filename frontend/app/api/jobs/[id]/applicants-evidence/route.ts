@@ -112,7 +112,7 @@ export async function GET(
           verificationStatus: true,
         },
       }),
-      prisma.endorsement.groupBy({
+      prisma.professorEndorsement.groupBy({
         by: ['studentId'],
         where: { studentId: { in: applicantIds }, status: 'VERIFIED' },
         _count: { _all: true },
