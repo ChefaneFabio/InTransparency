@@ -44,9 +44,12 @@
     "student": {
       "journey": "Percorso",
       "portfolio": "Portfolio",
+      "discover": "Scopri",
+      "applications": "Candidature",
       "career": "Carriera",
       "community": "Comunità",
       "insights": "Statistiche",
+      "settings": "Impostazioni",
       "more": "Altro",
       "items": {
         "journey": "Il mio percorso",
@@ -91,9 +94,13 @@
       "messages": "Messaggi"
     },
     "recruiter": {
+      "aiTools": "AI Tools",
       "talent": "Talenti",
-      "jobs": "Lavori",
+      "pipeline": "Pipeline",
+      "jobs": "Offerte",
       "communicate": "Comunicazione",
+      "brand": "Brand",
+      "settings": "Impostazioni",
       "messages": "Messaggi",
       "insights": "Statistiche",
       "hiring": "Strumenti Assunzione",

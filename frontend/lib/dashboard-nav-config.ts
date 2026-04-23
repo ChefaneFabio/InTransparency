@@ -14,49 +14,65 @@ export interface NavConfig {
   groups: NavGroup[]
 }
 
+// Restructured 2026-04-23: split the 8-item "career" dropdown into
+// Discover (finding opportunities) and Applications (acting on them);
+// skillPath moved to Portfolio as a growth tool alongside the skill
+// graph. Journey remains the landing surface.
 const student: NavConfig = {
   groups: [
+    // 1. Journey — the engaging overview. Always first.
     {
       labelKey: 'journey',
       items: [
         { labelKey: 'journey', href: '/dashboard/student/journey' },
       ],
     },
+    // 2. Portfolio — everything that represents "who you are"
     {
       labelKey: 'portfolio',
       items: [
-        { labelKey: 'projects', href: '/dashboard/student/projects' },
-        { labelKey: 'profile', href: '/dashboard/student/profile' },
-        { labelKey: 'cv', href: '/dashboard/student/cv' },
-        { labelKey: 'skillGraph', href: '/dashboard/student/skill-graph' },
+        { labelKey: 'projects',    href: '/dashboard/student/projects' },
+        { labelKey: 'profile',     href: '/dashboard/student/profile' },
+        { labelKey: 'cv',          href: '/dashboard/student/cv' },
+        { labelKey: 'skillGraph',  href: '/dashboard/student/skill-graph' },
+        { labelKey: 'skillPath',   href: '/dashboard/student/skill-path' },
         { labelKey: 'credentials', href: '/dashboard/student/credentials' },
       ],
     },
+    // 3. Discover — finding opportunities
     {
-      labelKey: 'career',
+      labelKey: 'discover',
       items: [
-        { labelKey: 'jobs', href: '/dashboard/student/jobs' },
-        { labelKey: 'rolesForYou', href: '/dashboard/student/roles' },
-        { labelKey: 'matches', href: '/dashboard/student/matches' },
-        { labelKey: 'applications', href: '/dashboard/student/applications' },
-        { labelKey: 'tirocinio', href: '/dashboard/student/tirocinio' },
-        { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
-        { labelKey: 'selfDiscovery', href: '/self-discovery' },
+        { labelKey: 'jobs',              href: '/dashboard/student/jobs' },
+        { labelKey: 'rolesForYou',       href: '/dashboard/student/roles' },
+        { labelKey: 'matches',           href: '/dashboard/student/matches' },
         { labelKey: 'discoverCompanies', href: '/discover' },
+        { labelKey: 'selfDiscovery',     href: '/self-discovery' },
       ],
     },
+    // 4. Applications — acting on opportunities + your tirocinio
+    {
+      labelKey: 'applications',
+      items: [
+        { labelKey: 'applications', href: '/dashboard/student/applications' },
+        { labelKey: 'tirocinio',    href: '/dashboard/student/tirocinio' },
+      ],
+    },
+    // 5. Community — messages, challenges
     {
       labelKey: 'community',
       items: [
-        { labelKey: 'messages', href: '/dashboard/student/messages' },
+        { labelKey: 'messages',   href: '/dashboard/student/messages' },
         { labelKey: 'challenges', href: '/dashboard/student/challenges' },
       ],
     },
+    // 6. Settings — analytics, privacy, preferences
     {
-      labelKey: 'insights',
+      labelKey: 'settings',
       items: [
         { labelKey: 'analytics', href: '/dashboard/student/analytics' },
-        { labelKey: 'settings', href: '/dashboard/student/settings' },
+        { labelKey: 'privacy',   href: '/dashboard/student/privacy' },
+        { labelKey: 'settings',  href: '/dashboard/student/settings' },
       ],
     },
   ],
@@ -64,51 +80,65 @@ const student: NavConfig = {
 
 const recruiter: NavConfig = {
   groups: [
+    // 1. AI Tools — the differentiators (Assistant + Hiring Advisor +
+    //    Interview Kit live here as one family). Most recruiters will
+    //    start from the Assistant now.
     {
-      labelKey: 'search',
+      labelKey: 'aiTools',
       items: [
-        { labelKey: 'assistant', href: '/dashboard/recruiter/assistant' },
-        { labelKey: 'candidates', href: '/dashboard/recruiter/candidates' },
+        { labelKey: 'assistant',     href: '/dashboard/recruiter/assistant' },
+        { labelKey: 'hiringAdvisor', href: '/dashboard/recruiter/hiring-advisor' },
+        { labelKey: 'interviewKit',  href: '/dashboard/recruiter/interview-kit' },
+      ],
+    },
+    // 2. Talent — finding + evaluating candidates
+    {
+      labelKey: 'talent',
+      items: [
+        { labelKey: 'candidates',    href: '/dashboard/recruiter/candidates' },
+        { labelKey: 'talentMatch',   href: '/dashboard/recruiter/talent-match' },
+        { labelKey: 'compare',       href: '/dashboard/recruiter/compare' },
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
       ],
     },
+    // 3. Pipeline — kanban of saved candidates moving through stages
+    {
+      labelKey: 'pipeline',
+      items: [
+        { labelKey: 'pipeline', href: '/dashboard/recruiter/pipeline' },
+      ],
+    },
+    // 4. Jobs — offers lifecycle
     {
       labelKey: 'jobs',
       items: [
         { labelKey: 'listings', href: '/dashboard/recruiter/jobs' },
-        { labelKey: 'pipeline', href: '/dashboard/recruiter/pipeline' },
       ],
     },
+    // 5. Communicate — messages + challenges
     {
       labelKey: 'communicate',
       items: [
-        { labelKey: 'messages', href: '/dashboard/recruiter/messages' },
+        { labelKey: 'messages',   href: '/dashboard/recruiter/messages' },
         { labelKey: 'challenges', href: '/dashboard/recruiter/challenges' },
       ],
     },
-    {
-      labelKey: 'hiring',
-      items: [
-        { labelKey: 'talentMatch', href: '/dashboard/recruiter/talent-match' },
-        { labelKey: 'compare', href: '/dashboard/recruiter/compare' },
-        { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
-        { labelKey: 'hiringAdvisor', href: '/dashboard/recruiter/hiring-advisor' },
-        { labelKey: 'interviewKit', href: '/dashboard/recruiter/interview-kit' },
-      ],
-    },
+    // 6. Brand — company profile surface recruiters maintain
     {
       labelKey: 'brand',
       items: [
-        { labelKey: 'companyProfile', href: '/dashboard/recruiter/company-profile' },
-        { labelKey: 'followers', href: '/dashboard/recruiter/followers' },
+        { labelKey: 'companyProfile',     href: '/dashboard/recruiter/company-profile' },
+        { labelKey: 'followers',          href: '/dashboard/recruiter/followers' },
+        { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
       ],
     },
+    // 7. Settings — analytics, documents, preferences
     {
-      labelKey: 'insights',
+      labelKey: 'settings',
       items: [
         { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
         { labelKey: 'documents', href: '/dashboard/recruiter/documents' },
-        { labelKey: 'settings', href: '/dashboard/recruiter/settings' },
+        { labelKey: 'settings',  href: '/dashboard/recruiter/settings' },
       ],
     },
   ],
