@@ -17,7 +17,11 @@ import {
   Download,
   Briefcase,
   BarChart3,
+  GraduationCap,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react'
+import { Link } from '@/navigation'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import {
@@ -157,13 +161,69 @@ export default function UniversityPlacementsPage() {
 
   return (
     <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
+      {/* Pipeline navigator — surfaces the M3 + M4 workspace pipelines */}
+      <div className="grid md:grid-cols-2 gap-3">
+        <Link
+          href="/dashboard/university/placement-pipeline"
+          className="group relative rounded-xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5 hover:border-amber-400 hover:shadow-md transition-all"
+        >
+          <div className="flex items-start gap-3">
+            <div className="shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center shadow">
+              <GraduationCap className="h-5 w-5" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="font-semibold">Pipeline Tirocini</h3>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">M4</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Drag-and-drop su studenti in stage: ore, valutazioni, scadenze, convenzioni.
+                Dalla candidatura all'esito occupazionale.
+              </p>
+              <div className="inline-flex items-center gap-1 text-xs text-amber-700 font-medium mt-2 group-hover:gap-2 transition-all">
+                Apri pipeline <ArrowRight className="h-3 w-3" />
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/dashboard/university/crm"
+          className="group relative rounded-xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 hover:border-emerald-400 hover:shadow-md transition-all"
+        >
+          <div className="flex items-start gap-3">
+            <div className="shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center shadow">
+              <Building2 className="h-5 w-5" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="font-semibold">CRM Aziende</h3>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">M3</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Pipeline di acquisizione aziende: dal primo contatto alla convenzione firmata.
+                Drag-and-drop su 8 fasi.
+              </p>
+              <div className="inline-flex items-center gap-1 text-xs text-emerald-700 font-medium mt-2 group-hover:gap-2 transition-all">
+                Apri CRM <ArrowRight className="h-3 w-3" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+
       {/* Header */}
       <MetricHero gradient="primary">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <BarChart3 className="h-7 w-7 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 uppercase tracking-wide">
+                  Analytics
+                </span>
+              </div>
               <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
             </div>
           </div>
