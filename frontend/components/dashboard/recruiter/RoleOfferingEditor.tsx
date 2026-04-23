@@ -117,11 +117,14 @@ export default function RoleOfferingEditor({ jobId, initial, onSaved, jobText }:
 
   const toggleIn = (key: 'environment' | 'cultureTags' | 'motivations', tag: string) => {
     setValue(v => {
-      const list = v[key]
+      // Narrow to string[] so .includes / .filter / spread accept a plain string.
+      // The Motivation / CultureTag discriminated unions collapse to `never` when
+      // mixed together, so we treat them as string[] at the mutation boundary.
+      const list = v[key] as unknown as string[]
       return {
         ...v,
         [key]: list.includes(tag) ? list.filter(t => t !== tag) : [...list, tag],
-      }
+      } as typeof v
     })
   }
 
