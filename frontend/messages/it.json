@@ -88,6 +88,7 @@
         "credentials": "Credenziali",
         "matches": "Match",
         "rolesForYou": "Ruoli Per Te",
+        "opportunities": "Opportunità",
         "selfDiscovery": "Auto-Esplorazione",
         "discoverCompanies": "Scopri Aziende",
         "integrations": "Integrazioni"
@@ -13104,6 +13105,13 @@
     "art17": "Art. 17",
     "art20": "Art. 20",
     "aiAct": "AI Act"
+  },
+  "studentOpportunities": {
+    "title": "Opportunità",
+    "subtitle": "Tutte le offerte aperte, ruoli suggeriti per te e match dai recruiter — un unico spazio.",
+    "tabAll": "Tutte le offerte",
+    "tabRecommended": "Per te",
+    "tabMatches": "Match Recruiter"
   },
   "studentRoles": {
     "title": "Ruoli per te",
