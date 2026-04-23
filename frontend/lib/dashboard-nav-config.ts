@@ -81,15 +81,13 @@ const student: NavConfig = {
 
 const recruiter: NavConfig = {
   groups: [
-    // 1. AI Tools — the differentiators (Assistant + Hiring Advisor +
-    //    Interview Kit live here as one family). Most recruiters will
-    //    start from the Assistant now.
+    // 1. AI Tools — unified AI Talent Search (search + match + advice in one)
+    //    plus Interview Kit.
     {
       labelKey: 'aiTools',
       items: [
-        { labelKey: 'assistant',     href: '/dashboard/recruiter/assistant' },
-        { labelKey: 'hiringAdvisor', href: '/dashboard/recruiter/hiring-advisor' },
-        { labelKey: 'interviewKit',  href: '/dashboard/recruiter/interview-kit' },
+        { labelKey: 'aiTalentSearch', href: '/dashboard/recruiter/ai-talent-search' },
+        { labelKey: 'interviewKit',   href: '/dashboard/recruiter/interview-kit' },
       ],
     },
     // 2. Talent — finding + evaluating candidates
@@ -97,7 +95,6 @@ const recruiter: NavConfig = {
       labelKey: 'talent',
       items: [
         { labelKey: 'candidates',    href: '/dashboard/recruiter/candidates' },
-        { labelKey: 'talentMatch',   href: '/dashboard/recruiter/talent-match' },
         { labelKey: 'compare',       href: '/dashboard/recruiter/compare' },
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
       ],
