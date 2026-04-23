@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl'
 import { ArrowLeft, MapPin, Clock, Users, Eye, Edit, Trash2, AlertCircle } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import ApplicantEvidenceList from '@/components/dashboard/recruiter/ApplicantEvidenceList'
 
 interface Application {
   id: string
@@ -366,46 +367,14 @@ export default function JobDetailPage() {
         </div>
       </GlassCard>
 
-      {/* Applications */}
+      {/* Applications — inline evidence pack per applicant */}
       <GlassCard hover={false}>
         <div className="p-5">
           <h3 className="text-lg font-semibold">{t('applicationsTitle')}</h3>
-          <p className="text-sm text-muted-foreground mb-4">{t('applicationsDescription')}</p>
-          {job.applications && job.applications.length > 0 ? (
-            <div className="space-y-3">
-              {job.applications.map((app) => (
-                <div key={app.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-sm font-medium">
-                      {(app.applicant.firstName?.[0] || '') + (app.applicant.lastName?.[0] || '')}
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">
-                        {app.applicant.firstName} {app.applicant.lastName}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {t('applied')} {new Date(app.createdAt).toLocaleDateString()}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      {app.status.charAt(0) + app.status.slice(1).toLowerCase().replace(/_/g, ' ')}
-                    </Badge>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href={`/dashboard/recruiter/candidates/${app.applicant.id}`}>
-                        {t('view')}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-6">
-              <p className="text-muted-foreground">{t('noApplications')}</p>
-            </div>
-          )}
+          <p className="text-sm text-muted-foreground mb-4">
+            Ranked by match score. Verified projects and skill-graph evidence inline — shortlist in seconds.
+          </p>
+          <ApplicantEvidenceList jobId={job.id} />
         </div>
       </GlassCard>
     </div>
