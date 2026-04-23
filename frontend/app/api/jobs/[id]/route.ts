@@ -52,6 +52,8 @@ const updateJobSchema = z.object({
   expiresAt: z.string().datetime().optional().nullable(),
 
   // Role offering — fit-match inputs. Stored as JSON, see lib/fit-profile.ts.
+  // Optional (omit to leave unchanged) — not nullable at this API layer
+  // because Prisma Json fields won't accept a raw null.
   roleOffering: z
     .object({
       careerTrack: z.string(),
@@ -66,8 +68,7 @@ const updateJobSchema = z.object({
       nonNegotiables: z.array(z.string()),
       perks: z.array(z.string()),
     })
-    .optional()
-    .nullable(),
+    .optional(),
 })
 
 /**
