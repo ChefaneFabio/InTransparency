@@ -71,12 +71,15 @@ export async function GET(
       : null
     const weekNumber = Math.max(1, Math.ceil(elapsedMs / (7 * 86_400_000)))
 
+    // "Active" = confirmed placement that's currently running (stage.type
+    // indicates progression). PlacementStatus doesn't have an ACTIVE value —
+    // stage.type is the authoritative signal for in-progress state.
     const isActive =
-      placement.status === 'ACTIVE' ||
-      (placement.currentStage &&
-        ['MATCHED', 'CONVENTION_SIGNED', 'IN_PROGRESS', 'MID_EVALUATION'].includes(
-          placement.currentStage.type
-        ))
+      placement.status === 'CONFIRMED' &&
+      !!placement.currentStage &&
+      ['MATCHED', 'CONVENTION_SIGNED', 'IN_PROGRESS', 'MID_EVALUATION'].includes(
+        placement.currentStage.type
+      )
     const hasEnded = endMs !== null && endMs < now.getTime()
 
     // 1. Overdue deadlines
