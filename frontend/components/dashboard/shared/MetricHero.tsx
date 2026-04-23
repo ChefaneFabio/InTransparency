@@ -5,39 +5,82 @@ import { motion } from 'framer-motion'
 
 interface MetricHeroProps {
   children: ReactNode
-  gradient?: 'primary' | 'blue' | 'purple' | 'green' | 'dark'
+  gradient?: 'primary' | 'blue' | 'purple' | 'green' | 'amber' | 'dark'
   className?: string
+  /** Disable the animated gradient blobs. */
+  quiet?: boolean
 }
 
-const gradients: Record<string, string> = {
+/**
+ * Hero container used on every dashboard page header. Upgraded to
+ * InTransparency style: drifting gradient blobs + subtle grid overlay +
+ * pop-in motion. One file, cascades to 30+ pages.
+ */
+const LIGHT_GRADIENTS: Record<string, string> = {
   primary: 'from-primary/15 via-primary/8 to-background',
-  blue: 'from-blue-600/10 via-blue-500/5 to-background',
-  purple: 'from-purple-600/10 via-purple-500/5 to-background',
-  green: 'from-emerald-600/10 via-emerald-500/5 to-background',
-  dark: 'from-slate-900 via-slate-800 to-slate-900',
+  blue:    'from-blue-600/10 via-blue-500/5 to-background',
+  purple:  'from-purple-600/10 via-purple-500/5 to-background',
+  green:   'from-emerald-600/10 via-emerald-500/5 to-background',
+  amber:   'from-amber-500/15 via-amber-500/5 to-background',
+  dark:    'from-slate-900 via-slate-800 to-slate-900',
 }
 
-export function MetricHero({ children, gradient = 'primary', className = '' }: MetricHeroProps) {
+const BLOB_COLORS: Record<string, { a: string; b: string }> = {
+  primary: { a: 'from-primary/25',       b: 'from-violet-500/20' },
+  blue:    { a: 'from-blue-500/25',      b: 'from-cyan-500/20' },
+  purple:  { a: 'from-purple-500/25',    b: 'from-pink-500/20' },
+  green:   { a: 'from-emerald-500/25',   b: 'from-teal-500/20' },
+  amber:   { a: 'from-amber-500/25',     b: 'from-orange-500/20' },
+  dark:    { a: 'from-violet-500/25',    b: 'from-blue-500/20' },
+}
+
+export function MetricHero({ children, gradient = 'primary', className = '', quiet = false }: MetricHeroProps) {
   const isDark = gradient === 'dark'
+  const blobs = BLOB_COLORS[gradient] || BLOB_COLORS.primary
 
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
       className={`
         relative overflow-hidden rounded-2xl
-        bg-gradient-to-br ${gradients[gradient]}
+        bg-gradient-to-br ${LIGHT_GRADIENTS[gradient]}
         ${isDark ? 'text-white' : ''}
-        border ${isDark ? 'border-slate-700' : 'border-white/40'}
+        border ${isDark ? 'border-slate-700/60' : 'border-slate-200/60 dark:border-slate-800/60'}
         p-6 md:p-8
         ${className}
       `}
     >
-      {/* Decorative orbs */}
-      <div className={`absolute top-0 right-0 w-72 h-72 rounded-full -translate-y-1/2 translate-x-1/3 ${isDark ? 'bg-white/5' : 'bg-primary/5'}`} />
-      <div className={`absolute bottom-0 left-0 w-48 h-48 rounded-full translate-y-1/2 -translate-x-1/4 ${isDark ? 'bg-white/3' : 'bg-primary/3'}`} />
-      <div className={`absolute top-1/2 left-1/2 w-32 h-32 rounded-full -translate-x-1/2 -translate-y-1/2 ${isDark ? 'bg-white/2' : 'bg-primary/2'}`} />
+      {!quiet && (
+        <>
+          {/* Drifting gradient blob — top right */}
+          <motion.div
+            aria-hidden
+            className={`absolute -top-32 -right-24 w-80 h-80 rounded-full bg-gradient-to-br ${blobs.a} to-transparent blur-3xl`}
+            animate={{ x: [0, 20, 0], y: [0, -10, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* Drifting gradient blob — bottom left, phase-offset */}
+          <motion.div
+            aria-hidden
+            className={`absolute -bottom-32 -left-24 w-80 h-80 rounded-full bg-gradient-to-tr ${blobs.b} to-transparent blur-3xl`}
+            animate={{ x: [0, -18, 0], y: [0, 8, 0], scale: [1, 1.08, 1] }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* Subtle grid overlay — technical InTransparency signature */}
+          <div
+            aria-hidden
+            className={`absolute inset-0 pointer-events-none ${isDark ? 'opacity-[0.05]' : 'opacity-[0.03]'}`}
+            style={{
+              backgroundImage: isDark
+                ? 'linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)'
+                : 'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
+              backgroundSize: '32px 32px',
+            }}
+          />
+        </>
+      )}
       {/* Content */}
       <div className="relative z-10">{children}</div>
     </motion.div>

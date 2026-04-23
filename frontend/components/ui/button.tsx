@@ -17,6 +17,12 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        /* Jaw-dropping CTA — gradient + branded glow + subtle hover scale. Opt-in. */
+        premium:
+          "bg-gradient-to-br from-violet-600 via-primary to-blue-600 text-white shadow-[0_4px_20px_-4px_rgba(139,92,246,0.5)] hover:shadow-[0_6px_28px_-4px_rgba(139,92,246,0.65)] hover:from-violet-500 hover:via-primary/90 hover:to-blue-500 transition-all duration-200",
+        /* Success CTA — emerald gradient */
+        success:
+          "bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-[0_4px_16px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_6px_22px_-4px_rgba(16,185,129,0.6)] hover:from-emerald-400 hover:to-emerald-500 transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",

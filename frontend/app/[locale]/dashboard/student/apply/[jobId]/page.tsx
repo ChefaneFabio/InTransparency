@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -16,6 +17,7 @@ import {
 import { Link } from '@/navigation'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import ApplyFitHero from '@/components/dashboard/student/apply/ApplyFitHero'
 
 interface JobData {
   id: string; title: string; companyName: string; location: string | null
@@ -35,7 +37,9 @@ export default function ApplyPage() {
   const locale = useLocale()
   const params = useParams()
   const router = useRouter()
+  const { data: session } = useSession()
   const jobId = params.jobId as string
+  const userId = session?.user?.id
 
   const [job, setJob] = useState<JobData | null>(null)
   const [match, setMatch] = useState<ProfileMatch | null>(null)
@@ -181,22 +185,30 @@ export default function ApplyPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-5">
-      {/* Header */}
-      <MetricHero gradient="primary">
-        <div className="flex items-start gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/student/jobs"><ArrowLeft className="h-4 w-4" /></Link>
-          </Button>
-          <div className="flex-1">
-            <h1 className="text-xl font-bold">{job.title}</h1>
-            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
-              <span className="flex items-center gap-1"><Building2 className="h-3.5 w-3.5" />{job.companyName}</span>
-              {job.location && <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{job.location}</span>}
-              <Badge variant="outline" className="text-[10px]">{job.jobType?.replace('_', ' ')}</Badge>
-            </div>
-          </div>
-        </div>
-      </MetricHero>
+      {/* Back button */}
+      <Button variant="ghost" size="sm" asChild className="-ml-2 text-muted-foreground hover:text-foreground">
+        <Link href="/dashboard/student/opportunities">
+          <ArrowLeft className="h-4 w-4 mr-1.5" />
+          Back to opportunities
+        </Link>
+      </Button>
+
+      {/* Premium fit preview — jaw-dropping hero with radial score + verdict + improvement tips */}
+      {userId && (
+        <ApplyFitHero
+          userId={userId}
+          jobId={job.id}
+          jobTitle={job.title}
+          companyName={job.companyName}
+        />
+      )}
+
+      {/* Quick job meta */}
+      <div className="flex items-center gap-3 text-sm text-muted-foreground px-1 flex-wrap">
+        <span className="flex items-center gap-1"><Building2 className="h-3.5 w-3.5" />{job.companyName}</span>
+        {job.location && <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{job.location}</span>}
+        <Badge variant="outline" className="text-[10px]">{job.jobType?.replace('_', ' ')}</Badge>
+      </div>
 
       {/* Match Score */}
       {match && (
