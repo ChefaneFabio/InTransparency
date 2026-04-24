@@ -27,14 +27,21 @@ interface Props {
 }
 
 /**
- * Renders a visible PREMIUM upgrade CTA when the institution is on CORE.
- * When plan is PREMIUM (or unknown), renders nothing.
+ * DISABLED 2026-04-24 — business model pivot: institutions are now fully
+ * freemium with the complete M1–M4 workspace included. There is no CORE vs
+ * PREMIUM upsell on the institution side anymore.
  *
- * Pair with the 402 API gating in /lib/rbac/plan-check.ts: staff can still
- * read CORE dashboards, but writes return 402 — this banner is the upsell
- * surface that turns those silent 402s into an action.
+ * Kept as a no-op component so existing call sites don't need edits. If a
+ * specific feature re-enters paywall later, restore the original render for
+ * that feature key only.
  */
-export function PremiumUpgradeBanner({ institutionName, plan, feature }: Props) {
+export function PremiumUpgradeBanner(_props: Props) {
+  return null
+}
+
+// Legacy rendering path kept below for reference; not exported.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function _LegacyBanner({ institutionName, plan, feature }: Props) {
   const t = useTranslations('premiumBanner')
   if (plan !== 'CORE') return null
 

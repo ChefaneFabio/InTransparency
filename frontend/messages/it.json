@@ -3569,39 +3569,39 @@
     },
     "companies": {
       "badge": "Per le Aziende",
-      "title": "Piani per le Aziende",
-      "subtitle": "Cerca nell'intero pool di talenti verificati gratuitamente. Passa al piano superiore quando hai bisogno di più sblocchi, annunci e strumenti.",
-      "popular": "Più Popolare",
+      "title": "Scegli la forma adatta a come assumi",
+      "subtitle": "Pay-per-contact se assumi sporadicamente. Abbonamento se assumi regolarmente. Cerca talenti verificati gratis — paghi solo quando contatti davvero.",
+      "popular": "Consigliato se assumi con regolarità",
       "tiers": {
         "starter": {
-          "name": "Starter",
-          "price": "€0",
-          "period": "/mese",
-          "description": "Inizia a cercare talento verificato oggi. Nessuna carta di credito richiesta.",
-          "cta": "Inizia Gratis",
+          "name": "Pay-per-Contact",
+          "price": "€10",
+          "period": "/ contatto",
+          "description": "Pensato per piccole aziende e PMI che assumono saltuariamente. Paghi solo quando contatti davvero. Zero impegno mensile.",
+          "cta": "Inizia pay-per-contact",
           "features": {
-            "0": "Ricerca talenti illimitata",
-            "1": "Profili verificati dalle università",
-            "2": "3 sblocchi talento al signup",
-            "3": "1 annuncio di lavoro attivo",
-            "4": "Pipeline base (3 fasi)",
-            "5": "100 MB archivio documenti"
+            "0": "Ricerca talenti illimitata (gratis)",
+            "1": "Profili verificati dalle università con prove",
+            "2": "Paghi €10 solo quando riveli contatto + invii il messaggio",
+            "3": "3 crediti contatto inclusi al signup",
+            "4": "Sconto volume: 200 crediti −10%, 500 crediti −20%",
+            "5": "1 annuncio attivo"
           }
         },
         "growth": {
-          "name": "Growth",
+          "name": "Abbonamento",
           "price": "€149",
-          "period": "/mese",
-          "description": "Per team che assumono attivamente. Accesso completo a tutti gli strumenti di recruiting.",
-          "cta": "Attiva Piano Growth",
+          "period": "/ mese",
+          "description": "Consigliato per aziende mid/large che assumono regolarmente. Outreach illimitato, team seats, AI inclusa.",
+          "cta": "Attiva abbonamento",
           "features": {
-            "0": "Tutto in Starter, più:",
-            "1": "50 sblocchi talento al mese",
-            "2": "10 annunci di lavoro attivi",
-            "3": "Pipeline completa con tutte le fasi",
-            "4": "Consulente Assunzioni (illimitato)",
+            "0": "Tutto in Pay-per-Contact, più:",
+            "1": "Rivelazioni contatto illimitate (nessun costo per contatto)",
+            "2": "10 annunci attivi",
+            "3": "Pipeline completa + seats per il team",
+            "4": "Consulente Assunzioni basato su evidenze (illimitato)",
             "5": "Generatore Kit Colloquio (illimitato)",
-            "6": "Decision Pack",
+            "6": "Decision Pack + link di condivisione candidato",
             "7": "5 GB archivio documenti"
           }
         },
@@ -3609,14 +3609,14 @@
           "name": "Enterprise",
           "price": "Custom",
           "period": "",
-          "description": "Per grandi team e agenzie. Tutto illimitato con supporto dedicato.",
+          "description": "Per grandi team e gruppi multi-brand. SSO, integrazioni custom, success manager dedicato.",
           "cta": "Contatta il Team Vendite",
           "features": {
-            "0": "Tutto in Growth, più:",
-            "1": "Sblocchi talento illimitati",
-            "2": "Annunci di lavoro illimitati",
-            "3": "Accesso API",
-            "4": "Insights talenti universitari",
+            "0": "Tutto in Abbonamento, più:",
+            "1": "SSO (SAML / OIDC) + provisioning utenti",
+            "2": "Annunci illimitati + multi-brand",
+            "3": "Accesso API + integrazioni ATS",
+            "4": "Insights talenti per ateneo + ricerche salvate",
             "5": "Customer success manager dedicato",
             "6": "Integrazioni personalizzate",
             "7": "Storage illimitato",
@@ -3626,22 +3626,23 @@
       }
     },
     "payPerTalent": {
-      "badge": "Alternativa Flessibile",
-      "title": "Preferisci pagare solo quando contatti?",
-      "subtitle": "Acquista sblocchi talento singoli. €10 a talento, nessun abbonamento, nessun impegno mensile. Perfetto per chi assume sporadicamente.",
-      "cta": "Vedi pacchetti crediti",
+      "badge": "Come funziona il pay-per-contact",
+      "title": "Paghi solo quando contatti davvero",
+      "subtitle": "Cerca nel pool di talenti verificati gratis. Paghi €10 solo quando sblocchi il contatto di un candidato e invii il primo messaggio. Nessun abbonamento, nessun impegno — ideale se assumi poche volte l'anno.",
+      "cta": "Inizia pay-per-contact",
       "packages": {
-        "0": "50 crediti — €50 (€10/talento)",
-        "1": "200 crediti — €180 (€9/talento, sconto 10%)",
-        "2": "500 crediti — €400 (€8/talento, sconto 20%)",
-        "3": "1.000+ crediti — Custom (fino a sconto 40%)"
+        "0": "3 crediti — inclusi gratis al signup",
+        "1": "50 crediti — €500 (€10/contatto)",
+        "2": "200 crediti — €1.800 (€9/contatto, sconto 10%)",
+        "3": "500+ crediti — Custom (€8/contatto, sconto 20%)"
       }
     },
     "universities": {
       "title": "Università, Scuole e Centri di Formazione",
-      "subtitle": "Gratis per iniziare — anteprima della workspace istituzionale. Passa a PREMIUM quando il career office deve moderare, gestire e rendicontare.",
+      "subtitle": "Gratis per sempre. Workspace M1–M4 completa inclusa — Inbox, Moderazione Offerte, CRM, Pipeline Tirocini. Nessun upsell, nessuna sorpresa. Finanziata dalle aziende che reclutano da voi.",
       "premiumBadge": "Workspace Istituzionale",
-      "reassurance": "Inizia su CORE — gratis, nessun impegno. Passa a PREMIUM quando il tuo career office ha bisogno di moderazione, CRM e tracking tirocini. Ogni scrittura è loggata per la conformità AI Act.",
+      "freeBadge": "Workspace Completa · Gratis",
+      "reassurance": "La workspace è finanziata dalle aziende che reclutano al suo interno. Università e ITS non pagano mai — gli studenti non pagano mai. Ogni azione AI è loggata per la conformità AI Act.",
       "tiers": {
         "core": {
           "name": "CORE",

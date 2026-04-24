@@ -3595,39 +3595,39 @@
     },
     "companies": {
       "badge": "For Companies",
-      "title": "Plans for Companies",
-      "subtitle": "Search the entire verified talent pool for free. Upgrade when you need more contacts, job posts, and hiring tools.",
-      "popular": "Most Popular",
+      "title": "Pick the shape that fits how you hire",
+      "subtitle": "Per-contact if you hire occasionally. Subscription if you hire regularly. Browse verified talent for free — you only pay when you actually reach out.",
+      "popular": "Recommended if you hire regularly",
       "tiers": {
         "starter": {
-          "name": "Starter",
-          "price": "€0",
-          "period": "/month",
-          "description": "Start searching verified talent today. No credit card required.",
-          "cta": "Get Started Free",
+          "name": "Per-Contact",
+          "price": "€10",
+          "period": "/ contact",
+          "description": "Built for small companies and SMEs that hire occasionally. Pay only when you reach out. No monthly commitment.",
+          "cta": "Start pay-per-contact",
           "features": {
-            "0": "Unlimited talent search",
-            "1": "University-verified profiles",
-            "2": "3 talent unlocks at signup",
-            "3": "1 active job posting",
-            "4": "Basic pipeline (3 stages)",
-            "5": "100 MB document storage"
+            "0": "Unlimited talent search (free)",
+            "1": "University-verified profiles with evidence",
+            "2": "Pay €10 only when you reveal contact + message",
+            "3": "3 contact credits included at signup",
+            "4": "Volume discount: 200 credits −10%, 500 credits −20%",
+            "5": "1 active job posting"
           }
         },
         "growth": {
-          "name": "Growth",
+          "name": "Subscription",
           "price": "€149",
-          "period": "/month",
-          "description": "For teams actively hiring. Full access to all recruiting tools.",
-          "cta": "Start Growth Plan",
+          "period": "/ month",
+          "description": "Recommended for mid/large enterprises that hire regularly. Unlimited outreach, team seats, AI tools included.",
+          "cta": "Start subscription",
           "features": {
-            "0": "Everything in Starter, plus:",
-            "1": "50 talent unlocks per month",
+            "0": "Everything in Per-Contact, plus:",
+            "1": "Unlimited contact reveals (no per-contact fees)",
             "2": "10 active job postings",
-            "3": "Full pipeline with all stages",
+            "3": "Full pipeline with all stages + team seats",
             "4": "Evidence-Based Hiring Advisor (unlimited)",
             "5": "Interview Kit Generator (unlimited)",
-            "6": "Decision Packs",
+            "6": "Decision Packs + Share Candidate Links",
             "7": "5 GB document storage"
           }
         },
@@ -3635,14 +3635,14 @@
           "name": "Enterprise",
           "price": "Custom",
           "period": "",
-          "description": "For large teams and agencies. Unlimited everything with dedicated support.",
+          "description": "For large teams and multi-brand groups. SSO, custom integrations, dedicated success manager.",
           "cta": "Talk to Sales",
           "features": {
-            "0": "Everything in Growth, plus:",
-            "1": "Unlimited talent unlocks",
-            "2": "Unlimited job postings",
-            "3": "API access",
-            "4": "University talent insights",
+            "0": "Everything in Subscription, plus:",
+            "1": "SSO (SAML / OIDC) + user provisioning",
+            "2": "Unlimited job postings + multi-brand",
+            "3": "API access + ATS integrations",
+            "4": "University talent insights + saved searches",
             "5": "Dedicated customer success manager",
             "6": "Custom integrations",
             "7": "Unlimited storage",
@@ -3652,22 +3652,23 @@
       }
     },
     "payPerTalent": {
-      "badge": "Flexible Alternative",
-      "title": "Prefer to pay only when you reach out?",
-      "subtitle": "Buy individual talent unlocks. €10 per talent, no subscription, no monthly commitment. Perfect for occasional hiring.",
-      "cta": "View credit packages",
+      "badge": "How the per-contact tier works",
+      "title": "Pay only when you actually reach out",
+      "subtitle": "Search the verified talent pool for free. You only pay €10 when you unlock a candidate's contact + send your first message. No subscription, no commitment — ideal if you hire a few times a year.",
+      "cta": "Start pay-per-contact",
       "packages": {
-        "0": "50 credits — €50 (€10/talent)",
-        "1": "200 credits — €180 (€9/talent, 10% off)",
-        "2": "500 credits — €400 (€8/talent, 20% off)",
-        "3": "1,000+ credits — Custom (up to 40% off)"
+        "0": "3 credits — included free at signup",
+        "1": "50 credits — €500 (€10/contact)",
+        "2": "200 credits — €1,800 (€9/contact, 10% off)",
+        "3": "500+ credits — Custom (€8/contact, 20% off)"
       }
     },
     "universities": {
       "title": "Universities, Schools & Training Centers",
-      "subtitle": "Free to start — preview the institutional workspace. Upgrade when your career office needs to moderate, manage, and report.",
+      "subtitle": "Free forever. Full M1–M4 workspace included — Inbox, Offer moderation, CRM, Placement pipeline. No upsell, no gotcha. Funded by the companies that recruit from you.",
       "premiumBadge": "Institutional Workspace",
-      "reassurance": "Start on CORE — free, no commitment. Upgrade to PREMIUM when your career office needs moderation, CRM, and placement tracking. All writes are logged for AI Act compliance.",
+      "freeBadge": "Full Workspace · Free",
+      "reassurance": "The workspace is funded by the companies that recruit from it. Universities and ITS never pay — students never pay. Every AI action is logged for AI Act compliance.",
       "tiers": {
         "core": {
           "name": "CORE",
