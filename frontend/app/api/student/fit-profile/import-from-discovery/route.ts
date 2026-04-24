@@ -10,6 +10,10 @@ import {
   POSITION_TYPES,
   COMPANY_SIZES,
   emptyFitProfile,
+  type Motivation,
+  type CultureTag,
+  type PositionType,
+  type CompanySize,
 } from '@/lib/fit-profile'
 
 export const maxDuration = 30
@@ -116,10 +120,10 @@ Rules:
         extracted = {
           goal: typeof parsed.goal === 'string' ? parsed.goal.slice(0, 160) : '',
           scope: typeof parsed.scope === 'string' ? parsed.scope.slice(0, 200) : '',
-          motivations: (parsed.motivations ?? []).filter((t: string) => mSet.has(t)),
-          cultureFit: (parsed.cultureFit ?? []).filter((t: string) => cSet.has(t)),
-          positionTypes: (parsed.positionTypes ?? []).filter((t: string) => pSet.has(t)),
-          companySizes: (parsed.companySizes ?? []).filter((t: string) => sSet.has(t)),
+          motivations: (parsed.motivations ?? []).filter((t: string): t is Motivation => mSet.has(t)),
+          cultureFit: (parsed.cultureFit ?? []).filter((t: string): t is CultureTag => cSet.has(t)),
+          positionTypes: (parsed.positionTypes ?? []).filter((t: string): t is PositionType => pSet.has(t)),
+          companySizes: (parsed.companySizes ?? []).filter((t: string): t is CompanySize => sSet.has(t)),
           industries: Array.isArray(parsed.industries) ? parsed.industries.slice(0, 10) : [],
           geographies: Array.isArray(parsed.geographies) ? parsed.geographies.slice(0, 10) : [],
           wishes: Array.isArray(parsed.wishes) ? parsed.wishes.slice(0, 5) : [],
