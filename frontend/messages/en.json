@@ -2830,10 +2830,10 @@
   },
   "forITS": {
     "hero": {
-      "badge": "For ITS Academy Directors",
-      "title": "Give your graduates a verified advantage",
-      "subtitle": "Your institutional verification makes the difference. Connect ITS graduates to companies that value hands-on, verified technical skills — tracked from project to placement.",
-      "cta": "Schedule a Demo",
+      "badge": "For ITS Academy Directors · Free forever",
+      "title": "Give your graduates a verified advantage — at zero cost",
+      "subtitle": "The full workspace is free for ITS Academies: Inbox, Offer moderation, CRM, Placement pipeline, AI Assistant, audit log. No upsell, no tier lock. Funded by the companies that recruit from your graduates.",
+      "cta": "Activate your workspace — free",
       "secondaryCta": "See University Features"
     },
     "benefits": {
@@ -2856,17 +2856,17 @@
       "title": "What InTransparency does for ITS Academies"
     },
     "cta": {
-      "title": "Want to pilot with your ITS?",
-      "subtitle": "We're expanding beyond universities. Schedule a call to explore how InTransparency fits your ITS Academy.",
-      "button": "Schedule a Call"
+      "title": "Ready to activate your ITS workspace?",
+      "subtitle": "Zero cost, zero commitment. Ten minutes to set up. We'll reach out to walk through it if you'd like.",
+      "button": "Activate — free forever"
     }
   },
   "forHighSchools": {
     "hero": {
-      "badge": "For High School Orientation Coordinators",
-      "title": "Help students discover their path before university",
-      "subtitle": "Give your students a verified portfolio of projects and competencies that follows them into university or directly into the job market.",
-      "cta": "Schedule a Demo",
+      "badge": "For High School Orientation Coordinators · Free forever",
+      "title": "Help students discover their path — at no cost to the school",
+      "subtitle": "Give your students a verified portfolio that follows them into university or the job market. PCTO tracking, orientation data, ministry reporting — all free. Funded by the companies that recruit from your graduates, never from schools.",
+      "cta": "Activate — free forever",
       "secondaryCta": "See University Features"
     },
     "benefits": {
@@ -9107,10 +9107,10 @@
   },
   "forSME": {
     "hero": {
-      "badge": "For SMEs and Mid-Market Companies",
-      "title": "Pre-screened talent without agency fees",
-      "subtitle": "Access graduates with verified projects and normalized grades. No middleman recruiter, no per-posting fees. You pay only when you find the right candidate.",
-      "cta": "Create Your Account",
+      "badge": "For SMEs and small companies that hire occasionally",
+      "title": "Pay only when you actually reach out. €10 per contact.",
+      "subtitle": "Perfect if you hire a few people a year. Browse verified talent for free — you only pay €10 when you unlock a candidate's contact and send your first message. No subscription, no commitment, no agency fees.",
+      "cta": "Start pay-per-contact",
       "secondaryCta": "Try Smart Search"
     },
     "benefits": {
@@ -9119,8 +9119,8 @@
         "description": "Every project is university-verified. See real grades, real code, real outcomes — before you even talk to the candidate."
       },
       "1": {
-        "title": "Transparent costs",
-        "description": "Browse for free. Pay only to contact candidates. No annual subscription, no lock-in."
+        "title": "€10 per contact. Only when you reach out.",
+        "description": "Browse the pool for free. Pay €10 to unlock a candidate's email + send your first message. Volume discounts from 50 credits (10% off) to 500+ (20% off). No monthly fee, ever."
       },
       "2": {
         "title": "Grades you understand",
@@ -9133,9 +9133,9 @@
       "title": "Why SMEs choose InTransparency"
     },
     "cta": {
-      "title": "Stop paying for unqualified candidates",
-      "subtitle": "Register for free and start searching verified talent today.",
-      "button": "Get Started Free"
+      "title": "Start for free. Pay only when you contact.",
+      "subtitle": "No subscription, no commitment. Register and get 3 contact credits free — enough to try the platform with zero risk.",
+      "button": "Start pay-per-contact"
     }
   },
   "forAgencies": {

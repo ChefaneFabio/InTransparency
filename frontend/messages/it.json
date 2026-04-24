@@ -2870,10 +2870,10 @@
   },
   "forITS": {
     "hero": {
-      "badge": "Per Direttori ITS Academy",
-      "title": "Dai ai tuoi diplomati un vantaggio verificato",
-      "subtitle": "La tua verifica istituzionale fa la differenza. Connetti i diplomati ITS alle aziende che valorizzano competenze tecniche verificate e pratiche — dal progetto al placement.",
-      "cta": "Prenota una Demo",
+      "badge": "Per Direttori ITS Academy · Gratis per sempre",
+      "title": "Dai ai tuoi diplomati un vantaggio verificato — a costo zero",
+      "subtitle": "La workspace completa è gratis per gli ITS: Inbox, Moderazione Offerte, CRM, Pipeline Tirocini, AI Assistant, audit log. Nessun upsell, nessun tier bloccato. Finanziata dalle aziende che reclutano dai vostri diplomati.",
+      "cta": "Attiva la workspace — gratis",
       "secondaryCta": "Funzionalità Università"
     },
     "benefits": {
@@ -2896,9 +2896,9 @@
       "title": "Cosa fa InTransparency per gli ITS"
     },
     "cta": {
-      "title": "Vuoi avviare un pilota con il tuo ITS?",
-      "subtitle": "Stiamo espandendo oltre le università. Prenota una chiamata per esplorare come InTransparency si adatta alla tua ITS Academy.",
-      "button": "Prenota una Chiamata"
+      "title": "Pronti ad attivare la workspace per il tuo ITS?",
+      "subtitle": "Costo zero, impegno zero. Dieci minuti per il setup. Ti chiamiamo volentieri per guidarti se serve.",
+      "button": "Attiva — gratis per sempre"
     }
   },
   "demoAISearch": {
@@ -8969,10 +8969,10 @@
   },
   "forHighSchools": {
     "hero": {
-      "badge": "Per Coordinatori dell'Orientamento",
-      "title": "Aiuta gli studenti a scoprire il loro percorso prima dell'università",
-      "subtitle": "Dai ai tuoi studenti un portfolio verificato di progetti e competenze che li accompagna all'università o direttamente nel mondo del lavoro.",
-      "cta": "Prenota una Demo",
+      "badge": "Per Coordinatori dell'Orientamento · Gratis per sempre",
+      "title": "Aiuta gli studenti a scoprire il loro percorso — a costo zero per la scuola",
+      "subtitle": "Dai ai tuoi studenti un portfolio verificato che li accompagna all'università o nel mondo del lavoro. Tracciamento PCTO, dati di orientamento, reportistica ministeriale — tutto gratis. Finanziato dalle aziende che reclutano dai vostri diplomati, mai dalle scuole.",
+      "cta": "Attiva — gratis per sempre",
       "secondaryCta": "Funzionalità Università"
     },
     "benefits": {
@@ -9134,10 +9134,10 @@
   },
   "forSME": {
     "hero": {
-      "badge": "Per PMI e Medie Imprese",
-      "title": "Talento pre-selezionato senza costi di agenzia",
-      "subtitle": "Accedi a laureati con progetti verificati e voti normalizzati. Nessun recruiter intermedio, nessun costo per annuncio. Paghi solo quando trovi il candidato giusto.",
-      "cta": "Crea il Tuo Account",
+      "badge": "Per PMI e piccole aziende che assumono saltuariamente",
+      "title": "Paghi solo quando contatti davvero. €10 a contatto.",
+      "subtitle": "Perfetto se assumi qualche persona all'anno. Cerca talenti verificati gratis — paghi €10 solo quando sblocchi il contatto e invii il primo messaggio. Nessun abbonamento, nessun impegno, nessun costo di agenzia.",
+      "cta": "Inizia pay-per-contact",
       "secondaryCta": "Prova la Ricerca Intelligente"
     },
     "benefits": {
@@ -9146,8 +9146,8 @@
         "description": "Ogni progetto è verificato dall'università. Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
       },
       "1": {
-        "title": "Costi trasparenti",
-        "description": "Cerca gratis. Paga solo per contattare i candidati. Nessun abbonamento annuale, nessun vincolo."
+        "title": "€10 a contatto. Solo quando contatti davvero.",
+        "description": "Cerca nel pool gratis. Paga €10 per sbloccare l'email di un candidato + inviare il primo messaggio. Sconti da 50 crediti (−10%) a 500+ (−20%). Mai abbonamenti."
       },
       "2": {
         "title": "Voti che capisci",
@@ -9160,9 +9160,9 @@
       "title": "Perché le PMI scelgono InTransparency"
     },
     "cta": {
-      "title": "Smetti di pagare per candidati non qualificati",
-      "subtitle": "Registrati gratis e inizia a cercare talento verificato oggi.",
-      "button": "Inizia Gratis"
+      "title": "Inizia gratis. Paghi solo quando contatti.",
+      "subtitle": "Nessun abbonamento, nessun impegno. Registrati e ricevi 3 crediti contatto gratis — abbastanza per provare la piattaforma a rischio zero.",
+      "button": "Inizia pay-per-contact"
     }
   },
   "forAgencies": {
