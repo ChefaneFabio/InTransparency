@@ -32,9 +32,9 @@ export default function PricingPage() {
   const [segment, setSegment] = useState<Segment>(initialSegment)
 
   const companyTiers = [
-    { key: 'starter', featured: false, href: '/auth/register/recruiter', features: [0, 1, 2, 3, 4, 5] },
-    { key: 'growth', featured: true, href: '/auth/register/recruiter', features: [0, 1, 2, 3, 4, 5, 6, 7] },
-    { key: 'enterprise', featured: false, href: '/contact?subject=enterprise', features: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+    { key: 'starter',    featured: false, href: '/auth/register/recruiter?plan=per-contact', features: [0, 1, 2, 3, 4, 5] },
+    { key: 'growth',     featured: true,  href: '/auth/register/recruiter?plan=subscription', features: [0, 1, 2, 3, 4, 5, 6, 7] },
+    { key: 'enterprise', featured: false, href: '/contact?subject=enterprise',                features: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
   ]
 
   return (

@@ -3716,27 +3716,27 @@
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes — the Free plan covers portfolio, up to 3 AI project analyses, university verification, job search, skill assessments, and contract check. No credit card, no hidden costs. Premium features (extra AI analyses, priority visibility, coaching, etc.) are quoted individually on request — pay only for what you need."
+          "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€7.99/mo · €69/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. First month free, cancel anytime. If your university is a partner that sponsors Premium, it's already free for you."
         },
         "1": {
-          "q": "What do companies get for free?",
-          "a": "Unlimited search across all verified profiles, 3 talent unlocks at signup, 1 job posting, and basic pipeline management. No credit card, no trial expiration."
+          "q": "How does the per-contact price work for companies?",
+          "a": "Browse all verified talent for free. You pay €10 only when you unlock a candidate's email and send your first message. No subscription, no commitment. Ideal if you hire a few people per year. Volume discounts from 50 credits (10% off) and 500+ (20% off)."
         },
         "2": {
-          "q": "Why is the Growth plan worth it?",
-          "a": "At €149/month, you get 50 talent unlocks, 10 job posts, and full access to evidence-based hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
+          "q": "When should a company choose Subscription instead?",
+          "a": "If you hire regularly. €149/month gets you unlimited contact reveals (no more per-contact fees), 10 active job posts, team seats, unlimited AI tools (Hiring Advisor, Interview Kit, Decision Packs), shared saved searches. We'll suggest it automatically once you cross roughly 15 contacts per month."
         },
         "3": {
-          "q": "Do universities pay anything?",
-          "a": "No. The entire platform is free for all educational institutions — universities, schools, ITS, training centers. No student limits, no feature limits, no hidden costs."
+          "q": "Do universities and ITS pay anything?",
+          "a": "No. The full M1–M4 workspace is free forever: Inbox, Offer moderation, CRM, Placement pipeline, AI Assistant, audit log, reminder engine, analytics, scorecard. Optional add-ons (white-label, SSO, MIUR compliance, etc.) are priced à la carte — see the marketplace."
         },
         "4": {
           "q": "Is there a contract or lock-in?",
-          "a": "No. Monthly billing, cancel anytime. No annual contracts unless you choose one (annual plans save 2 months). Your data is always exportable."
+          "a": "No. Students: monthly billing, cancel anytime. Companies: per-contact is pay-as-you-go; subscription is monthly with optional annual discount. Institutions: core is free, add-ons are annual but cancellable. Your data is always exportable."
         },
         "5": {
-          "q": "How is this different from LinkedIn or Handshake?",
-          "a": "Every profile is backed by university-verified projects and grades — not self-reported claims. You see actual work before you contact anyone. And universities get the platform free, while Handshake charges $1,000–$20,000/year."
+          "q": "How is this different from LinkedIn, Handshake, or JobTeaser?",
+          "a": "Every profile is backed by university-verified projects, grades, and professor endorsements — not self-reported claims. The fit score matches on motivation and culture, not just CV keywords. And the workspace is free for institutions, while Handshake charges $1K–$20K/year."
         }
       }
     }

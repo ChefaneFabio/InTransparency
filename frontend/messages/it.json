@@ -3690,27 +3690,27 @@
       "questions": {
         "0": {
           "q": "È davvero gratis per gli studenti?",
-          "a": "Sì — il piano Free include portfolio, fino a 3 analisi AI di progetti, verifica universitaria, ricerca lavoro, assessment competenze e check contratto. Nessuna carta di credito, nessun costo nascosto. Le funzionalità Premium (analisi AI aggiuntive, visibilità prioritaria, coaching, ecc.) sono quotate singolarmente su richiesta — paghi solo per ciò che ti serve."
+          "a": "Sì — il piano Free copre portfolio, CV/Europass, Fit Profile, candidature illimitate, 3 analisi AI per progetto, skill path e analytics base. Premium (€7,99/mese o €69/anno) sblocca skill path completo, 8 dashboard analytics avanzate, AI illimitata, URL portfolio personalizzato, AI Interview Coach, credenziali firmate. Primo mese gratis, cancelli quando vuoi. Se la tua università è partner che sponsorizza Premium, lo è già per te."
         },
         "1": {
-          "q": "Cosa ottengono le aziende gratis?",
-          "a": "Ricerca illimitata in tutti i profili verificati, 3 sblocchi talento al signup, 1 annuncio di lavoro e gestione pipeline base. Nessuna carta di credito, nessuna scadenza trial."
+          "q": "Come funziona il prezzo per contatto per le aziende?",
+          "a": "Cerca nel pool di talenti verificati gratis. Paghi €10 solo quando sblocchi l'email di un candidato e invii il primo messaggio. Nessun abbonamento, nessun impegno. Perfetto se assumi poche persone all'anno. Sconti volume da 50 crediti (−10%) e 500+ (−20%)."
         },
         "2": {
-          "q": "Perché il piano Growth vale la pena?",
-          "a": "A €149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti — inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle università."
+          "q": "Quando un'azienda dovrebbe scegliere l'Abbonamento?",
+          "a": "Se assumi regolarmente. €149/mese ti dà rivelazioni contatto illimitate (niente più fee per contatto), 10 annunci attivi, seats per il team, AI illimitata (Consulente Assunzioni, Kit Colloquio, Decision Pack), ricerche salvate condivise. Lo suggeriremo automaticamente una volta superati circa 15 contatti al mese."
         },
         "3": {
-          "q": "Le università pagano qualcosa?",
-          "a": "No. L'intera piattaforma è gratuita per tutte le istituzioni educative — università, scuole, ITS, centri di formazione. Nessun limite su studenti, funzionalità o costi nascosti."
+          "q": "Università e ITS pagano qualcosa?",
+          "a": "No. La workspace M1–M4 completa è gratis per sempre: Inbox, Moderazione Offerte, CRM, Pipeline Tirocini, AI Assistant, audit log, reminder engine, analytics, scorecard. Moduli aggiuntivi opzionali (white-label, SSO, compliance MIUR, ecc.) a listino à la carte nel marketplace."
         },
         "4": {
           "q": "C'è un contratto o vincolo?",
-          "a": "No. Fatturazione mensile, cancella quando vuoi. Nessun contratto annuale a meno che tu non lo scelga (i piani annuali risparmiano 2 mesi). I tuoi dati sono sempre esportabili."
+          "a": "No. Studenti: fatturazione mensile, cancelli quando vuoi. Aziende: pay-per-contact è come lo vuoi; abbonamento mensile con opzionale sconto annuale. Istituzioni: core gratis, add-on annuali ma cancellabili. I dati sono sempre esportabili."
         },
         "5": {
-          "q": "Come si differenzia da LinkedIn o Handshake?",
-          "a": "Ogni profilo è supportato da progetti e voti verificati dalle università — non dichiarazioni auto-riportate. Vedi il lavoro reale prima di contattare chiunque. E le università usano la piattaforma gratis, mentre Handshake costa $1.000–$20.000/anno."
+          "q": "Come si differenzia da LinkedIn, Handshake o JobTeaser?",
+          "a": "Ogni profilo è supportato da progetti, voti e endorsement di professori verificati dall'università — non dichiarazioni. Il fit score abbina su motivazione e cultura, non solo parole chiave del CV. E la workspace è gratis per le istituzioni, mentre Handshake costa $1K–$20K/anno."
         }
       }
     }

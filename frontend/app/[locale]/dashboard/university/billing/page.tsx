@@ -1,36 +1,27 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import {
-  Sparkles,
-  Check,
-  Mail,
-  ArrowLeft,
-  Inbox,
-  FileSignature,
-  Building2,
-  GraduationCap,
-  Lock,
-} from 'lucide-react'
+import { Sparkles, Check, Mail, ArrowLeft, Info } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useMyInstitution } from '@/lib/hooks/use-my-institution'
-import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import InstitutionAddonGrid from '@/components/pricing/InstitutionAddonGrid'
+import { INSTITUTION_ADDONS } from '@/lib/config/institution-addons'
 
-const FEATURES = [
-  { icon: Inbox,         key: 'inbox',     titleEn: 'Mediation Inbox',       titleIt: 'Mediation Inbox',          descEn: 'Moderate every recruiter message before it reaches your students.', descIt: 'Modera ogni messaggio dei recruiter prima che raggiunga i tuoi studenti.' },
-  { icon: FileSignature, key: 'offers',    titleEn: 'Offer Moderation',      titleIt: 'Moderazione Offerte',       descEn: 'Approve, edit, or reject job offers before they go live.',           descIt: 'Approva, modifica o rifiuta le offerte prima della pubblicazione.' },
-  { icon: Building2,     key: 'crm',       titleEn: 'Company CRM',           titleIt: 'CRM Aziende',               descEn: 'Pipeline from first contact to signed convention, drag-and-drop.',   descIt: 'Dalla presa di contatto alla convenzione firmata, drag & drop.' },
-  { icon: GraduationCap, key: 'placement', titleEn: 'Placement Pipeline',    titleIt: 'Pipeline Tirocini',         descEn: 'Hours log, evaluations, deadlines — visible to student, tutors, company.', descIt: 'Ore, valutazioni, scadenze — visibili a studente, tutor, azienda.' },
-]
-
+/**
+ * Billing & add-ons page for institution staff.
+ * Core workspace is free forever — this page is the add-on marketplace +
+ * a contact channel for commercial discussion. If the URL has ?addon=KEY
+ * (deep-link from the /add-ons grid), highlight that card.
+ */
 export default function UniversityBillingPage() {
   const { institution, loading } = useMyInstitution()
-  const t = useTranslations()
-  // Best-effort locale detection via useTranslations isn't trivial here;
-  // we just show Italian text since institutions in-market are Italian.
-  const isPremium = institution?.plan === 'PREMIUM'
+  const searchParams = useSearchParams()
+  const requestedAddon = searchParams?.get('addon')
+  const matchedAddon = requestedAddon
+    ? INSTITUTION_ADDONS.find(a => a.key === requestedAddon)
+    : null
 
   return (
     <div className="space-y-6 pb-12 max-w-5xl mx-auto">
@@ -41,113 +32,100 @@ export default function UniversityBillingPage() {
         <ArrowLeft className="h-4 w-4" /> Dashboard
       </Link>
 
-      {/* Hero */}
-      <div className="rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 p-6 sm:p-10 shadow-sm">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-lg">
+      {/* Hero — reflects the real model */}
+      <div className="relative overflow-hidden rounded-2xl border border-emerald-200/70 dark:border-emerald-900/50 bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-emerald-950/30 dark:via-slate-950 dark:to-blue-950/30 p-6 sm:p-10 shadow-sm">
+        <div
+          aria-hidden
+          className="absolute -top-24 -right-12 w-64 h-64 rounded-full bg-gradient-to-br from-emerald-400/20 to-transparent blur-3xl pointer-events-none"
+        />
+        <div className="relative flex items-center gap-3 mb-3">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
             <Sparkles className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Institutional Workspace — PREMIUM
-            </h1>
+            <h1 className="text-2xl md:text-3xl font-bold">Billing & add-ons</h1>
             <p className="text-sm text-muted-foreground">
-              M1 Inbox · M2 Offer moderation · M3 Company CRM · M4 Placement pipeline
+              Your core workspace is free, forever. Add modules when you're ready to scale.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
+        <div className="relative mt-6 inline-flex items-center gap-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur border rounded-full px-3 py-1.5 text-sm">
           {loading ? (
-            <div className="h-10 w-48 bg-white/50 rounded animate-pulse" />
+            <span className="text-muted-foreground">Loading…</span>
           ) : institution ? (
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-sm text-gray-700">
-                <span className="font-medium">{institution.name}</span>
+            <>
+              <Check className="h-4 w-4 text-emerald-600" />
+              <span className="font-medium">{institution.name}</span>
+              <span className="text-muted-foreground">·</span>
+              <span className="text-emerald-700 dark:text-emerald-300 font-medium">
+                Full workspace active
               </span>
-              {isPremium ? (
-                <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide bg-green-100 text-green-800 px-2.5 py-1 rounded">
-                  <Check className="h-3 w-3" />
-                  PREMIUM active
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide bg-amber-100 text-amber-800 px-2.5 py-1 rounded">
-                  <Lock className="h-3 w-3" />
-                  CORE — preview only
-                </span>
-              )}
-            </div>
+            </>
           ) : (
-            <span className="text-sm text-muted-foreground">No institution linked</span>
+            <span className="text-muted-foreground">No institution linked</span>
           )}
         </div>
       </div>
 
-      {isPremium ? (
-        <Card>
-          <CardContent className="p-6 text-center">
-            <Check className="h-10 w-10 text-green-600 mx-auto mb-3" />
-            <h2 className="text-lg font-semibold mb-1">You're all set</h2>
-            <p className="text-sm text-muted-foreground">
-              All four institutional modules are unlocked for {institution?.name || 'your institution'}.
-              To change your plan, contact us.
-            </p>
-            <a href="mailto:fabio@in-transparency.com" className="inline-flex items-center gap-1 text-sm text-primary mt-4">
-              <Mail className="h-4 w-4" /> fabio@in-transparency.com
-            </a>
-          </CardContent>
-        </Card>
-      ) : (
-        <>
-          {/* Feature grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {FEATURES.map(f => {
-              const Icon = f.icon
-              return (
-                <GlassCard key={f.key} hover={false}>
-                  <div className="p-5">
-                    <div className="flex items-start gap-3">
-                      <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{f.titleIt}</h3>
-                        <p className="text-sm text-muted-foreground mt-1">{f.descIt}</p>
-                      </div>
-                    </div>
-                  </div>
-                </GlassCard>
-              )
-            })}
-          </div>
-
-          {/* CTA */}
-          <Card className="border-2 border-primary/20 bg-gradient-to-br from-blue-50 to-purple-50">
-            <CardContent className="p-6 sm:p-8 text-center">
-              <h2 className="text-xl font-bold text-gray-900 mb-2">
-                Ready to unlock PREMIUM?
-              </h2>
-              <p className="text-sm text-muted-foreground mb-5 max-w-xl mx-auto">
-                Pricing is custom per institution based on active students and modules.
-                Email us for a demo & quote.
+      {/* Deep-link highlight — if the user came from /add-ons?addon=X */}
+      {matchedAddon && (
+        <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-purple-50/40 dark:from-primary/10 dark:to-purple-950/20">
+          <CardContent className="p-6 flex items-start gap-3">
+            <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-semibold">
+                Request for <span className="text-primary">{matchedAddon.title}</span>
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="mailto:fabio@in-transparency.com?subject=PREMIUM%20upgrade%20request">
-                  <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white border-0">
+              <p className="text-xs text-muted-foreground mt-1">
+                {matchedAddon.description}
+              </p>
+              <div className="mt-3">
+                <a href={`mailto:fabio@in-transparency.com?subject=Add-on%20request%3A%20${encodeURIComponent(matchedAddon.title)}${institution?.name ? '%20for%20' + encodeURIComponent(institution.name) : ''}`}>
+                  <Button size="sm">
                     <Mail className="mr-2 h-4 w-4" />
-                    Get a quote
+                    Email us about this add-on
                   </Button>
                 </a>
-                <Link href="/dashboard/university">
-                  <Button size="lg" variant="outline">
-                    Explore on CORE
-                  </Button>
-                </Link>
               </div>
-            </CardContent>
-          </Card>
-        </>
+            </div>
+          </CardContent>
+        </Card>
       )}
+
+      {/* Explainer */}
+      <div className="rounded-xl border bg-muted/30 p-4 flex items-start gap-3">
+        <Info className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+        <p className="text-sm text-muted-foreground">
+          <span className="font-medium text-foreground">Nothing to pay for Core.</span>{' '}
+          Inbox, offer moderation, CRM, placement pipeline, AI Assistant, audit log,
+          reminder engine — all included. The marketplace below is for optional modules
+          that help you scale, integrate with your existing systems, or extend tools to every student.
+        </p>
+      </div>
+
+      {/* Add-on marketplace — same grid as /dashboard/university/add-ons */}
+      <div>
+        <h2 className="text-xl font-bold mb-4">Optional add-ons</h2>
+        <InstitutionAddonGrid authenticated cols={2} />
+      </div>
+
+      {/* Contact */}
+      <Card>
+        <CardContent className="p-6 sm:p-8 text-center">
+          <h2 className="text-lg font-bold mb-1">Anything else?</h2>
+          <p className="text-sm text-muted-foreground mb-4 max-w-xl mx-auto">
+            Not seeing what your institution needs? Tell us — every module above started
+            as a real institutional ask.
+          </p>
+          <a href="mailto:fabio@in-transparency.com?subject=Institution%20add-on%20inquiry">
+            <Button variant="outline">
+              <Mail className="mr-2 h-4 w-4" />
+              fabio@in-transparency.com
+            </Button>
+          </a>
+        </CardContent>
+      </Card>
     </div>
   )
 }

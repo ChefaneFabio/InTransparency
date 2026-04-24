@@ -15,6 +15,7 @@ import {
   HeadphonesIcon,
   BadgeCheck,
   FileSpreadsheet,
+  GraduationCap,
 } from 'lucide-react'
 
 export type AddonPricingModel =
@@ -41,6 +42,23 @@ export interface InstitutionAddon {
 }
 
 export const INSTITUTION_ADDONS: InstitutionAddon[] = [
+  {
+    key: 'premium-for-all',
+    title: 'Student Premium — for everyone',
+    oneLine: 'Sponsor Premium for every active student',
+    description:
+      "Unlock deep Skill Path, advanced analytics, unlimited AI analyses, custom portfolio URL, AI Interview Coach, Europass signed credentials — for every active student affiliated with your institution. Students see the tools unlocked with a small badge crediting you.",
+    icon: GraduationCap,
+    pricing: {
+      kind: 'per-unit',
+      eurosPerUnit: 2,
+      unitLabel: 'student / year',
+      note: '€2/student/yr · volume discounts from 2k+ · min €1,500/yr',
+    },
+    target: 'Institutions extending career tools to all students',
+    status: 'available',
+    tint: 'emerald',
+  },
   {
     key: 'white-label',
     title: 'White-label workspace',
