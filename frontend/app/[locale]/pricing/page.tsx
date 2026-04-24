@@ -15,6 +15,7 @@ import {
   Zap, BarChart3, Globe
 } from 'lucide-react'
 import { Link } from '@/navigation'
+import InstitutionAddonGrid from '@/components/pricing/InstitutionAddonGrid'
 
 type Segment = 'companies' | 'students' | 'institutions'
 
@@ -248,12 +249,12 @@ export default function PricingPage() {
                     </Card>
                   </motion.div>
 
-                  {/* PREMIUM — optional upgrade for advanced career tooling */}
+                  {/* PREMIUM — single-tier bundle, one price unlocks everything */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                    <Card className="relative h-full flex flex-col border-2 border-primary/30 shadow-xl shadow-primary/10 bg-gradient-to-br from-primary/5 via-purple-50/30 to-transparent dark:from-primary/10 dark:via-purple-950/20">
+                    <Card className="relative h-full flex flex-col border-2 border-primary/40 shadow-xl shadow-primary/15 bg-gradient-to-br from-primary/5 via-purple-50/30 to-transparent dark:from-primary/10 dark:via-purple-950/20">
                       <div className="absolute -top-3 left-5">
                         <Badge className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg border-0 text-[10px]">
-                          {t('students.tiers.premium.badge', { defaultValue: 'Premium — Early Access' })}
+                          {t('students.tiers.premium.badge', { defaultValue: 'Premium · Accelerate your career' })}
                         </Badge>
                       </div>
                       <CardHeader className="pb-3 pt-5">
@@ -265,13 +266,19 @@ export default function PricingPage() {
                         </div>
                         <div className="flex items-baseline gap-1">
                           <span className="text-4xl font-bold tracking-tight">
-                            {t('students.tiers.premium.price', { defaultValue: 'Coming soon' })}
+                            {t('students.tiers.premium.price', { defaultValue: '€7.99' })}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {t('students.tiers.premium.period', { defaultValue: '/mo · or €69/yr' })}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                        <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
+                          {t('students.tiers.premium.studentDiscount', { defaultValue: '·50% off for verified students · first month free' })}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
                           {t('students.tiers.premium.description', {
                             defaultValue:
-                              'Strumenti avanzati di carriera per chi vuole accelerare: coaching AI, analisi offerte, visibilità prioritaria.',
+                              'One subscription, all growth tools unlocked. Deep skill path, advanced analytics, priority visibility, interview coach, unlimited AI.',
                           })}
                         </p>
                       </CardHeader>
@@ -279,18 +286,19 @@ export default function PricingPage() {
                         <ul className="space-y-2.5 mb-4 flex-1">
                           <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                             {t('students.tiers.premium.includes', {
-                              defaultValue: 'Everything in Free, plus (quoted per request):',
+                              defaultValue: 'Everything in Free, plus:',
                             })}
                           </li>
-                          {[0, 1, 2, 3, 4, 5, 6].map(i => {
+                          {[0, 1, 2, 3, 4, 5, 6, 7].map(i => {
                             const fallbacks = [
+                              'Deep Skill Path: unlimited gaps, full roadmap, weekly challenges',
+                              'Advanced analytics: 8 dashboards incl. recruiter interest, market benchmark, salary context',
+                              'Unlimited AI project analyses',
+                              'Custom portfolio URL (yourname.intransparency.com)',
                               'Priority visibility in recruiter search results',
-                              'Additional AI project analyses beyond the 3 free',
-                              'Unlimited AI Career Coach queries',
-                              'Interview Prep with audio/video simulations',
-                              'Offer analyzer: compare salary, benefits, growth',
-                              'Personalized Skill Path with weekly coaching',
-                              'Decision Pack PDF export for final interviews',
+                              'AI Interview Coach with practice sessions',
+                              'Europass EDCI signed credentials (verifiable wallet)',
+                              'Peer benchmarking against your cohort',
                             ]
                             return (
                               <li key={i} className="flex items-start text-sm">
@@ -303,12 +311,12 @@ export default function PricingPage() {
                         <div className="text-[11px] text-muted-foreground mb-4 p-2.5 bg-primary/5 rounded-md border border-primary/10">
                           {t('students.tiers.premium.note', {
                             defaultValue:
-                              'Each premium feature is quoted individually. Pay only for what you use, no subscription.',
+                              'Cancel anytime. Institutional pricing: if your university is a partner, Premium is free for you — check your dashboard.',
                           })}
                         </div>
-                        <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/5" asChild>
-                          <Link href="/contact?subject=student-premium-quote">
-                            {t('students.tiers.premium.cta', { defaultValue: 'Request a quote' })}
+                        <Button className="w-full bg-gradient-to-br from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white shadow-lg shadow-primary/20" asChild>
+                          <Link href="/auth/register/student?plan=premium">
+                            {t('students.tiers.premium.cta', { defaultValue: 'Start Premium free for 30 days' })}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </Link>
                         </Button>
@@ -411,6 +419,33 @@ export default function PricingPage() {
                       'The workspace is funded by the companies that recruit from it. Universities and ITS never pay — students never pay. Every AI action is logged for AI Act compliance.',
                   })}
                 </motion.p>
+
+                {/* Paid add-ons marketplace */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-16"
+                >
+                  <div className="text-center mb-8 max-w-2xl mx-auto">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-violet-100 to-blue-100 dark:from-violet-950/40 dark:to-blue-950/40 text-xs font-medium text-violet-700 dark:text-violet-300 border border-violet-200/60 dark:border-violet-900/60">
+                      <Sparkles className="h-3 w-3" />
+                      {t('universities.addonsBadge', { defaultValue: 'Optional add-ons' })}
+                    </div>
+                    <h3 className="text-2xl font-bold mt-4">
+                      {t('universities.addonsTitle', { defaultValue: 'Scale up when you need to' })}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {t('universities.addonsSubtitle', {
+                        defaultValue:
+                          'Core stays free. Pick only the modules you actually need — white-label, multi-institution, SSO, ATS bridge, MIUR compliance, and more.',
+                      })}
+                    </p>
+                  </div>
+                  <div className="max-w-5xl mx-auto">
+                    <InstitutionAddonGrid cols={2} />
+                  </div>
+                </motion.div>
               </div>
             </section>
           </motion.div>

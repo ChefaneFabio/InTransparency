@@ -201,10 +201,11 @@ const universityBase: NavConfig = {
         { labelKey: 'programsMain', href: '/dashboard/university/programs' },
       ],
     },
-    // 7. Settings
+    // 7. Settings — workspace admin + optional paid add-ons marketplace
     {
       labelKey: 'settings',
       items: [
+        { labelKey: 'addons',       href: '/dashboard/university/add-ons' },
         { labelKey: 'integrations', href: '/dashboard/university/integrations' },
         { labelKey: 'documents',    href: '/dashboard/university/documents' },
         { labelKey: 'billing',      href: '/dashboard/university/billing' },
