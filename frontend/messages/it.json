@@ -2309,7 +2309,7 @@
       "badge": "Per Aziende, Agenzie e Team HR — Tutti i Settori",
       "title": "Un'Assunzione Sbagliata Costa Tempo e Denaro.",
       "titleHighlight": "Ti Aiutiamo a Scegliere Bene.",
-      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta — tech, ingegneria, business, design e molto altro."
+      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta. Paghi per contatto se assumi occasionalmente, o abbonati se assumi regolarmente — scegli la forma che fa per te."
     },
     "steps": {
       "0": {
@@ -2413,8 +2413,8 @@
     },
     "cta": {
       "title": "Trova Talenti di cui Fidarti",
-      "subtitle": "Esplora portfolio verificati dagli studenti. Vedi progetti reali, voti reali, competenze reali. Connettiti direttamente — gratis per iniziare.",
-      "primaryButton": "Inizia a Trovare Talenti",
+      "subtitle": "Esplora portfolio verificati gratis. Paghi €10 a contatto solo quando contatti davvero — o abbonati da €149/mese se assumi spesso.",
+      "primaryButton": "Inizia gratis",
       "secondaryButton": "Prova la Ricerca Intelligente"
     },
     "faq": {
@@ -2427,7 +2427,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "Il piano Starter è gratuito, senza costi nascosti — ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di più? Passa a Growth (€149/mese per 50 sblocchi) oppure acquista sblocchi singoli a €10 l'uno. Vedi la pagina prezzi per i dettagli."
+          "answer": "La ricerca è gratis. Due modi di pagare quando contatti: Pay-per-Contact (€10 a outreach, zero impegno — ideale se assumi occasionalmente) o Abbonamento (€149/mese, contatti illimitati + 10 annunci + seats per il team + AI illimitata — consigliato se assumi regolarmente). Enterprise ha prezzi custom con SSO + API + CSM dedicato. Vedi /pricing per il confronto completo."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",

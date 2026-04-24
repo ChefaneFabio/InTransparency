@@ -18,6 +18,7 @@ import { SubscriptionTier } from '@prisma/client'
 export const STRIPE_PRICE_IDS = {
   // Student Plans
   STUDENT_PREMIUM_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_MONTHLY || '',
+  STUDENT_PREMIUM_ANNUAL:  process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_ANNUAL  || '',
 
   // Company Plans
   RECRUITER_GROWTH_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_MONTHLY || '',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
@@ -18,6 +19,7 @@ import {
   BadgeCheck,
   UserCheck,
   Users,
+  AlertTriangle,
 } from 'lucide-react'
 import type { PremiumEntitlement } from '@/lib/entitlements'
 
@@ -42,6 +44,10 @@ const PREMIUM_FEATURES = [
 export default function StudentUpgradePage() {
   const [entitlement, setEntitlement] = useState<PremiumEntitlement | null>(null)
   const [loading, setLoading] = useState(true)
+  const searchParams = useSearchParams()
+  const successFlag = searchParams?.get('success') === '1'
+  const canceledFlag = searchParams?.get('canceled') === '1'
+  const errorFlag = searchParams?.get('error')
 
   useEffect(() => {
     let cancelled = false
@@ -126,7 +132,54 @@ export default function StudentUpgradePage() {
 
   // Upgrade offer
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      {/* Stripe return flow feedback */}
+      {successFlag && (
+        <motion.div
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-xl border border-emerald-200 bg-emerald-50 dark:bg-emerald-950/30 dark:border-emerald-900 p-4 flex items-start gap-3"
+        >
+          <Check className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+          <div className="text-sm">
+            <p className="font-semibold text-emerald-800 dark:text-emerald-200">Subscription active</p>
+            <p className="text-emerald-700/80 dark:text-emerald-300/80 text-xs mt-0.5">
+              Premium features will unlock within a minute once the webhook confirms. Refresh any page.
+            </p>
+          </div>
+        </motion.div>
+      )}
+      {canceledFlag && (
+        <motion.div
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-xl border border-amber-200 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-900 p-4 flex items-start gap-3"
+        >
+          <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="text-sm">
+            <p className="font-semibold text-amber-800 dark:text-amber-200">Checkout canceled</p>
+            <p className="text-amber-700/80 dark:text-amber-300/80 text-xs mt-0.5">
+              No charge was made. You can restart the flow anytime from the buttons below.
+            </p>
+          </div>
+        </motion.div>
+      )}
+      {errorFlag === 'stripe_not_configured' && (
+        <motion.div
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-xl border border-amber-200 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-900 p-4 flex items-start gap-3"
+        >
+          <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="text-sm">
+            <p className="font-semibold text-amber-800 dark:text-amber-200">Checkout temporarily unavailable</p>
+            <p className="text-amber-700/80 dark:text-amber-300/80 text-xs mt-0.5">
+              Our team is finalizing payment setup. Premium features are coming very soon — thanks for your patience.
+            </p>
+          </div>
+        </motion.div>
+      )}
+
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -162,17 +215,17 @@ export default function StudentUpgradePage() {
           </div>
         </div>
         <div className="relative mt-6 flex flex-col sm:flex-row gap-3">
-          <Link href="/api/checkout/create-session?plan=student-premium-monthly" className="flex-1">
+          <a href="/api/checkout/student-premium?plan=monthly" className="flex-1">
             <Button className="w-full bg-gradient-to-br from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white shadow-lg shadow-primary/25" size="lg">
               Start free 30-day trial
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
-          </Link>
-          <Link href="/api/checkout/create-session?plan=student-premium-annual" className="flex-1">
+          </a>
+          <a href="/api/checkout/student-premium?plan=annual" className="flex-1">
             <Button variant="outline" className="w-full" size="lg">
               Pay annually · €69/yr
             </Button>
-          </Link>
+          </a>
         </div>
         <p className="relative text-xs text-muted-foreground mt-3 text-center">
           Wait — is your university a partner? If so, Premium is free for you. Ask your career office.

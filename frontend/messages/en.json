@@ -2269,7 +2269,7 @@
       "badge": "For Companies, Agencies & HR Teams — All Industries",
       "title": "A Bad Hire Costs You Time and Money.",
       "titleHighlight": "We Help You Get It Right.",
-      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer — across tech, engineering, business, design, and more."
+      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer. Pay per contact if you hire occasionally, or subscribe if you hire regularly — you pick the shape that fits."
     },
     "steps": {
       "0": {
@@ -2373,8 +2373,8 @@
     },
     "cta": {
       "title": "Find Talent You Can Trust",
-      "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Start searching for free.",
-      "primaryButton": "Start Finding Talent",
+      "subtitle": "Browse verified student portfolios for free. You only pay €10 per contact when you actually reach out — or subscribe from €149/mo if you hire often.",
+      "primaryButton": "Start for free",
       "secondaryButton": "Try the Smart Search"
     },
     "faq": {
@@ -2387,7 +2387,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "The Starter plan is free with no credit card required — unlimited search, 3 talent unlocks at signup, and 1 job post. Need more? Upgrade to Growth (€149/month for 50 unlocks) or buy individual talent unlocks at €10 each. See our pricing page for details."
+          "answer": "Search is free. Two ways to pay when you contact: Per-Contact (€10 per outreach, no commitment — ideal if you hire occasionally) or Subscription (€149/mo, unlimited outreach + 10 jobs + team seats + unlimited AI tools — recommended if you hire regularly). Enterprise has custom pricing with SSO + API + dedicated CSM. See /pricing for the full comparison."
         },
         "2": {
           "question": "What types of candidates are available?",
