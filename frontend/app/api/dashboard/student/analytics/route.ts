@@ -79,13 +79,17 @@ export async function GET(req: NextRequest) {
     }
 
     const userId = session.user.id
-    const userTier = (session.user as any).subscriptionTier || 'FREE'
+    const rawTier = (session.user as any).subscriptionTier || 'FREE'
+    // Honor institution-sponsored Premium (same pattern as skill-path).
+    const { isStudentPremium } = await import('@/lib/entitlements')
+    const effectivelyPremium = rawTier === 'STUDENT_PREMIUM' || (await isStudentPremium(userId))
+    const userTier = effectivelyPremium ? 'STUDENT_PREMIUM' : rawTier
     const limits = getTierLimits(userTier)
 
     const { searchParams } = new URL(req.url)
     let timeRange = searchParams.get('timeRange') || '1month'
 
-    // Clamp FREE tier to 1month
+    // Clamp FREE tier to 1month (Premium — personal or sponsored — gets full range)
     if (userTier === 'FREE' || !(userTier in TIER_LIMITS)) {
       timeRange = '1month'
     }

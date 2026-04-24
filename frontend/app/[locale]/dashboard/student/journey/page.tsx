@@ -29,6 +29,7 @@ import {
   MapPin,
 } from 'lucide-react'
 import FitProfileCallout from '@/components/dashboard/student/FitProfileCallout'
+import SponsoredPremiumBanner from '@/components/dashboard/student/SponsoredPremiumBanner'
 
 interface Course {
   courseName: string
@@ -245,6 +246,9 @@ export default function StudentJourneyPage() {
           )}
         </div>
       </div>
+
+      {/* ─── SPONSORED PREMIUM BANNER — only shown when institution pays ─── */}
+      <SponsoredPremiumBanner />
 
       {/* ─── FIT PROFILE CALLOUT — hidden if ≥85% complete ─── */}
       <FitProfileCallout />

@@ -247,14 +247,13 @@ export async function PATCH(req: NextRequest) {
       languageProficiencies, certifications,
     } = body
 
-    // Gate portfolioUrl behind STUDENT_PREMIUM
+    // Gate portfolioUrl behind Premium — either personally paid OR
+    // institutionally sponsored (sponsorsPremium flag on the student's
+    // institution grants the same entitlements).
     if (portfolioUrl !== undefined && portfolioUrl !== null && portfolioUrl !== '') {
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: { subscriptionTier: true },
-      })
-
-      if (user?.subscriptionTier !== 'STUDENT_PREMIUM') {
+      const { isStudentPremium } = await import('@/lib/entitlements')
+      const entitled = await isStudentPremium(userId)
+      if (!entitled) {
         return NextResponse.json(
           {
             error: 'Custom portfolio URL requires a Premium subscription',

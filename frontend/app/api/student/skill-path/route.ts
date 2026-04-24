@@ -58,7 +58,13 @@ export async function GET(req: NextRequest) {
     }
 
     const userId = session.user.id
-    const userTier = (session.user as any).subscriptionTier || 'FREE'
+    const rawTier = (session.user as any).subscriptionTier || 'FREE'
+    // Honor institution-sponsored Premium — if the student's university
+    // has sponsorsPremium=true, unlock Premium limits even without a
+    // personal subscription.
+    const { isStudentPremium } = await import('@/lib/entitlements')
+    const effectivelyPremium = rawTier === 'STUDENT_PREMIUM' || (await isStudentPremium(userId))
+    const userTier = effectivelyPremium ? 'STUDENT_PREMIUM' : rawTier
     const limits = getTierLimits(userTier)
 
     // Track page view

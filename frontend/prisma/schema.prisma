@@ -4148,6 +4148,11 @@ model Institution {
   mediationEnabled  Boolean         @default(false)
   requireOfferApproval Boolean      @default(false)
 
+  // When true, the institution covers Student Premium for every student
+  // affiliated with it — individual students don't need to subscribe.
+  // Sold as an optional institutional add-on ("Premium-for-all").
+  sponsorsPremium   Boolean         @default(false)
+
   // Optional single point-of-contact / admin user (backward-compat with UniversitySettings.userId)
   primaryAdminId    String?
 
