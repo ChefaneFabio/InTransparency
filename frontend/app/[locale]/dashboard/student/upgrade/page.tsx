@@ -27,7 +27,7 @@ import type { PremiumEntitlement } from '@/lib/entitlements'
  * Student Premium upgrade page.
  * - If the student is already Premium (personal or sponsored), confirms it.
  * - If sponsored by their institution, credits the sponsor.
- * - Otherwise, shows the €7.99/mo offer with the full feature list.
+ * - Otherwise, shows the €3.99/mo (or €29/yr) offer with the full feature list.
  */
 
 const PREMIUM_FEATURES = [

@@ -59,20 +59,33 @@ export function SavingsCalculator({
   const [hiresPerYear, setHiresPerYear] = useState(defaultHires)
 
   const competitorData = competitors[competitor]
-  const COST_PER_CONTACT = 10 // €10 per contact
+  // Freemium + subscription model (effective 2026-04-25):
+  //   - 5 contacts/mo free per company domain → 60 contacts/year stay free
+  //   - Over 60 contacts/year: €89/mo Subscription, billed for the months
+  //     you're actively hiring (rough estimate: 1 month per 20 contacts above
+  //     the free quota, capped at 12 months). This is the honest replacement
+  //     for the retired €10/contact model.
+  const FREE_CONTACTS_PER_YEAR = 60
+  const SUBSCRIPTION_MONTHLY = 89
+  const CONTACTS_PER_ACTIVE_MONTH = 20
 
   const calculations = useMemo(() => {
     const competitorCost = competitorData.annualCost
-    const ourCost = hiresPerYear * COST_PER_CONTACT
+    const overage = Math.max(0, hiresPerYear - FREE_CONTACTS_PER_YEAR)
+    const monthsActive = overage === 0 ? 0 : Math.min(12, Math.ceil(overage / CONTACTS_PER_ACTIVE_MONTH))
+    const ourCost = monthsActive * SUBSCRIPTION_MONTHLY
     const savings = competitorCost - ourCost
-    const savingsPercentage = Math.round((savings / competitorCost) * 100)
+    const savingsPercentage = competitorCost > 0
+      ? Math.round((savings / competitorCost) * 100)
+      : 0
 
     return {
       competitorCost,
       ourCost,
+      monthsActive,
       savings,
       savingsPercentage,
-      contactsNeeded: Math.ceil(competitorCost / COST_PER_CONTACT)
+      isFree: ourCost === 0,
     }
   }, [hiresPerYear, competitorData])
 
@@ -143,11 +156,13 @@ export function SavingsCalculator({
                 InTransparency
               </span>
               <span className="text-2xl font-bold text-primary">
-                {formatCurrency(calculations.ourCost)}
+                {calculations.isFree ? 'Free' : formatCurrency(calculations.ourCost)}
               </span>
             </div>
             <p className="text-xs text-green-700">
-              Pay-per-contact • {hiresPerYear} contacts × €10 = {formatCurrency(calculations.ourCost)}
+              {calculations.isFree
+                ? `${hiresPerYear} contacts/yr fits inside the 5-contact/month Free tier`
+                : `${calculations.monthsActive} month${calculations.monthsActive === 1 ? '' : 's'} of €89 Subscription · unlimited contacts + AI suite`}
             </p>
           </div>
 
@@ -225,13 +240,12 @@ export function SavingsCalculator({
           </Button>
         </div>
 
-        {/* Break-even Note */}
-        {calculations.contactsNeeded > hiresPerYear && (
+        {/* Free-tier note */}
+        {calculations.isFree && (
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-center">
             <p className="text-xs text-blue-800">
-              <strong>Pro tip:</strong> You'd need to contact{' '}
-              <strong>{calculations.contactsNeeded} candidates</strong> before InTransparency
-              becomes more expensive than {competitorData.name}. Most recruiters contact fewer than 50 per year!
+              <strong>You stay free.</strong> 5 contacts/month per company domain ={' '}
+              <strong>60/year at €0</strong>. Subscribe at €89/mo only when you scale past that.
             </p>
           </div>
         )}

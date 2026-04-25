@@ -224,11 +224,11 @@ export function CandidateVideoSection({
                 Impressed by {candidateName.split(' ')[0]}'s videos?
               </p>
               <p className="text-sm text-green-700">
-                Contact them now to schedule an interview. Only €10 to unlock full contact details.
+                Contact them now to schedule an interview. Free if you have contacts left this month.
               </p>
             </div>
             <Button className="bg-primary hover:bg-green-700">
-              Contact Candidate (€10)
+              Contact Candidate
             </Button>
           </div>
         </CardContent>

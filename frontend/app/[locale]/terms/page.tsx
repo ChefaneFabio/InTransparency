@@ -132,8 +132,10 @@ export default function TermsPage() {
                 <li>I rimborsi sono soggetti alla nostra politica di rimborso</li>
               </ul>
               <p>
-                Per le aziende con modello "pay-per-contact", ogni contatto viene addebitato
-                secondo il listino prezzi corrente.
+                Per le aziende, il piano Free include 5 contatti candidati al mese per dominio
+                aziendale (quota che si resetta il 1° del mese). Oltre questa soglia, l'unico
+                percorso di upgrade è l'abbonamento (€89/mese o piano Enterprise) — i pacchetti
+                crediti pay-per-contact sono stati ritirati il 25/04/2026.
               </p>
             </CardContent>
           </Card>

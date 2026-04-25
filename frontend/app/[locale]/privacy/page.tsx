@@ -303,7 +303,7 @@ export default function PrivacyPage() {
                   num: '03',
                   title: '3. Contact Unlock',
                   items: [
-                    { text: 'Company pays €10 to unlock contact', positive: true },
+                    { text: '5 free contacts/month per company, then €89/mo subscription', positive: true },
                     { text: 'Student gets notified immediately', positive: true },
                     { text: 'Student can block future contact', positive: true },
                   ]

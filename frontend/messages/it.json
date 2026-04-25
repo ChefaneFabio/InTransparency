@@ -705,7 +705,7 @@
         },
         "companies": {
           "title": "Per le Aziende",
-          "description": "Cerca talento verificato per competenze reali. Paghi solo per contatto.",
+          "description": "Cerca talento verificato per competenze reali. Free fino a 5 contatti/mese, poi €89/mese.",
           "cta": "Inizia ad Assumere"
         }
       }
@@ -1703,7 +1703,7 @@
       "mobileBenefits": {
         "0": "Sfoglia candidati gratis",
         "1": "Competenze verificate dall'istituzione",
-        "2": "Pay per contact"
+        "2": "5 contatti gratis al mese · poi €89/mese"
       },
       "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
       "passwordPlaceholder": "Almeno 8 caratteri",
@@ -3458,8 +3458,8 @@
         "enterpriseDescription": "Integrazioni API, white-label, funzionalità custom"
       },
       "companies": {
-        "title": "Aziende: paghi per contatto",
-        "description": "Esplora liberamente i profili verificati. Paghi solo quando contatti un candidato.",
+        "title": "Aziende: 5 contatti gratis al mese, poi €89/mese",
+        "description": "Esplora liberamente i profili verificati. Ti abboni quando superi i 5 contatti al mese.",
         "enterpriseLabel": "Add-on enterprise:",
         "enterpriseDescription": "Accesso API, integrazione ATS"
       },
@@ -3695,7 +3695,7 @@
       "questions": {
         "0": {
           "q": "È davvero gratis per gli studenti?",
-          "a": "Sì — il piano Free copre portfolio, CV/Europass, Fit Profile, candidature illimitate, 3 analisi AI per progetto, skill path e analytics base. Premium (€7,99/mese o €69/anno) sblocca skill path completo, 8 dashboard analytics avanzate, AI illimitata, URL portfolio personalizzato, AI Interview Coach, credenziali firmate. Primo mese gratis, cancelli quando vuoi. Se la tua università è partner che sponsorizza Premium, lo è già per te."
+          "a": "Sì — il piano Free copre portfolio, CV/Europass, Fit Profile, candidature illimitate, 3 analisi AI per progetto, skill path e analytics base. Premium (€3,99/mese o €29/anno) sblocca skill path completo, 8 dashboard analytics avanzate, AI illimitata, URL portfolio personalizzato, AI Interview Coach, credenziali firmate. Trial di 30 giorni, cancelli quando vuoi. Se la tua università è partner che sponsorizza Premium, lo è già per te."
         },
         "1": {
           "q": "Come funziona il piano Free per le aziende?",
@@ -3711,7 +3711,7 @@
         },
         "4": {
           "q": "C'è un contratto o vincolo?",
-          "a": "No. Studenti: fatturazione mensile, cancelli quando vuoi. Aziende: pay-per-contact è come lo vuoi; abbonamento mensile con opzionale sconto annuale. Istituzioni: core gratis, add-on annuali ma cancellabili. I dati sono sempre esportabili."
+          "a": "No. Studenti: fatturazione mensile o annuale, cancelli quando vuoi. Aziende: free fino a 5 contatti/mese (no carta), poi abbonamento mensile a €89 — niente vincoli annuali. Istituzioni: core gratis per sempre, Premium e add-on annuali ma cancellabili. I dati sono sempre esportabili."
         },
         "5": {
           "q": "Come si differenzia da LinkedIn, Handshake o JobTeaser?",
@@ -4567,14 +4567,14 @@
       "inTransparency": {
         "title": "InTransparency",
         "price": "€0",
-        "period": "per contatto candidato",
+        "period": "5 contatti/mese gratis · poi €89/mese",
         "benefits": {
           "browseFree": "Naviga intero database GRATIS",
-          "payWhenFound": "Paghi solo quando trovi qualcuno",
-          "noSubscription": "Nessun abbonamento, crediti mai scadono"
+          "payWhenFound": "5 contatti al mese senza carta, poi abbonamento",
+          "noSubscription": "Niente vincoli annuali, cancelli quando vuoi"
         }
       },
-      "summary": "Per studenti: 100% gratuito, senza costi nascosti. Per università: Piattaforma core gratuita. Per aziende: Paghi solo per risultati."
+      "summary": "Per studenti: piano Free completo + Premium €3,99/mese. Per università e ITS: Free Core per sempre + Premium opzionale €39/mese. Per aziende: 5 contatti gratis al mese, poi €89/mese per illimitati."
     },
     "uniqueFeatures": {
       "title": "5 Funzionalità che LinkedIn Non Ha",
@@ -6623,8 +6623,8 @@
         "desc": "Descrivi il candidato ideale in linguaggio naturale. Il sistema trova i profili più compatibili."
       },
       "payPerContact": {
-        "title": "Contatta Candidati — Gratis per Iniziare",
-        "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
+        "title": "Contatta Candidati — 5 Gratis al Mese",
+        "desc": "Niente carta richiesta. Cinque contatti ogni mese a costo zero, poi abbonamento da €89/mese per illimitati."
       }
     },
     "cta": {
@@ -7401,7 +7401,7 @@
     "cq1": "Come posso trovare candidati?",
     "ca1": "Puoi utilizzare la nostra ricerca avanzata per filtrare candidati per competenze, università, anno di laurea, GPA e altro. Il nostro sistema di matching basato su evidenze ti suggerisce automaticamente i candidati più adatti alle tue posizioni aperte.",
     "cq2": "Quanto costa contattare un candidato?",
-    "ca2": "Con il piano Pay-per-Contact, ogni contatto costa €5. Se contatti più di 20 candidati al mese, ti consigliamo il piano Enterprise a €99/mese che include contatti illimitati, filtri avanzati e accesso API.",
+    "ca2": "I primi 5 contatti ogni mese sono gratis (quota per dominio aziendale, si resetta il 1°). Oltre questa soglia ti abboni: €89/mese per contatti illimitati + 10 annunci + seats team + suite AI completa. Enterprise (custom) sblocca SSO, API e CSM dedicato.",
     "cq3": "Come funziona il matching basato su evidenze?",
     "ca3": "Il nostro algoritmo analizza i progetti degli studenti, le competenze verificate, i voti universitari e le preferenze per calcolare un punteggio di compatibilità. Più alto è il punteggio, migliore è il match con le tue esigenze.",
     "cq4": "Posso pubblicare offerte di lavoro?",
@@ -9223,7 +9223,7 @@
       },
       "2": {
         "title": "Nessun costo iniziale",
-        "description": "Cerca e salva candidati gratis. Paghi solo quando vuoi contattare qualcuno. Perfetto per budget startup."
+        "description": "Cerca e salva candidati gratis. Cinque contatti al mese a costo zero, poi abbonamento €89/mese se ti serve scalare. Perfetto per budget startup."
       },
       "3": {
         "title": "Cultural fit con dati",

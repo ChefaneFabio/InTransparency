@@ -87,10 +87,10 @@ const promptConfig: Record<ReferralTriggerType, {
     color: 'bg-primary'
   },
   'company-enterprise-upgrade': {
-    title: 'Upgrade to Enterprise & Save 90%',
-    description: 'You\'ve contacted 10+ candidates this month (€100+). Enterprise gives unlimited contacts for €99/month.',
-    reward: 'Save €901/year',
-    cta: 'Upgrade Now',
+    title: 'Upgrade to Subscription — unlimited contacts',
+    description: 'You\'ve hit your 5 free contacts this month. Subscribe at €89/mo for unlimited contacts, 10 job posts, team seats, and the full AI suite.',
+    reward: 'Unlimited contacts',
+    cta: 'Subscribe',
     icon: TrendingUp,
     color: 'from-orange-500 to-red-500'
   }

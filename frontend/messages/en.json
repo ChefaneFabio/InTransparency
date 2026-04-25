@@ -589,7 +589,7 @@
               "Track your pipeline from first contact to offer acceptance"
             ],
             "stats": {
-              "cost": "Pay per contact",
+              "cost": "Free + €89/mo",
               "speed": "48h avg. response"
             },
             "visual": {
@@ -1617,7 +1617,7 @@
           "description": "Find verified talent from universities",
           "benefits": {
             "0": "Search verified profiles",
-            "1": "Pay per contact",
+            "1": "5 free contacts/month, then €89/mo",
             "2": "ATS integration",
             "3": "Analytics dashboard"
           }
@@ -1775,7 +1775,7 @@
       "mobileBenefits": {
         "0": "Browse candidates free",
         "1": "Institution-verified skills",
-        "2": "Pay per contact"
+        "2": "5 free contacts/month, then €89/mo"
       },
       "noCreditCard": "No credit card required. Browse candidates immediately.",
       "passwordPlaceholder": "At least 8 characters",
@@ -3484,8 +3484,8 @@
         "enterpriseDescription": "API integrations, white-label, custom features"
       },
       "companies": {
-        "title": "Companies: pay per contact",
-        "description": "Browse verified profiles freely. Pay only when you reach out.",
+        "title": "Companies: 5 free contacts/month, then €89/mo",
+        "description": "Browse verified profiles freely. Subscribe when you scale past 5 contacts a month.",
         "enterpriseLabel": "Enterprise add-ons:",
         "enterpriseDescription": "API access, ATS integration"
       },
@@ -3721,7 +3721,7 @@
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€7.99/mo · €69/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. First month free, cancel anytime. If your university is a partner that sponsors Premium, it's already free for you."
+          "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€3.99/mo · €29/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. 30-day trial, cancel anytime. If your university is a partner that sponsors Premium, it's already free for you."
         },
         "1": {
           "q": "How does the free tier work for companies?",
@@ -6662,8 +6662,8 @@
         "desc": "Descrivi il candidato ideale in linguaggio naturale. Il sistema trova i profili più compatibili."
       },
       "payPerContact": {
-        "title": "Contact Candidates — Free During Launch",
-        "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
+        "title": "Contact Candidates — 5 Free per Month",
+        "desc": "No card required. Five contacts every month at no cost, then €89/mo subscription for unlimited."
       }
     },
     "cta": {
@@ -7440,7 +7440,7 @@
     "cq1": "How can I find candidates?",
     "ca1": "You can use our advanced search to filter candidates by skills, university, graduation year, GPA, and more. Our evidence-based matching automatically suggests the most suitable candidates for your open positions.",
     "cq2": "How much does it cost to contact a candidate?",
-    "ca2": "With the Pay-per-Contact plan, each contact costs €5. If you contact more than 20 candidates per month, we recommend the Enterprise plan at €99/month which includes unlimited contacts, advanced filters, and API access.",
+    "ca2": "The first 5 contacts each month are free (quota counts across your company domain and resets on the 1st). Beyond that, you subscribe: €89/mo for unlimited contacts + 10 job posts + team seats + full AI suite. Enterprise (custom) unlocks SSO, API and dedicated CSM.",
     "cq3": "How does evidence-based matching work?",
     "ca3": "Our algorithm analyzes students' projects, verified skills, university grades, and preferences to calculate a compatibility score. The higher the score, the better the match with your needs.",
     "cq4": "Can I post job listings?",
@@ -9639,7 +9639,7 @@
         "4": {
           "feature": "Recruiter cost",
           "them": "€8,000+/year for Recruiter",
-          "us": "Free to browse, pay per contact"
+          "us": "Free to browse · €89/mo for unlimited contacts"
         },
         "5": {
           "feature": "evidence-based matching",
