@@ -11,7 +11,7 @@ export default function InstitutionAddonsPage() {
 
   return (
     <div className="space-y-6">
-      <MetricHero gradient="purple">
+      <MetricHero gradient="institution">
         <div className="flex items-center gap-4">
           <motion.div
             initial={{ scale: 0, rotate: -180 }}

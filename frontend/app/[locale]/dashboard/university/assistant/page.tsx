@@ -208,7 +208,7 @@ export default function InstitutionAssistantPage() {
   return (
     <div className="space-y-5 pb-6 max-w-4xl mx-auto flex flex-col h-[calc(100vh-100px)]">
 
-      <MetricHero gradient="primary">
+      <MetricHero gradient="institution">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
             <Sparkles className="h-5 w-5 text-primary" />

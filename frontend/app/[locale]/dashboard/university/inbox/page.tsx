@@ -174,7 +174,7 @@ export default function InstitutionInboxPage() {
 
   return (
     <div className="space-y-5 pb-12">
-      <MetricHero gradient="primary">
+      <MetricHero gradient="institution">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">

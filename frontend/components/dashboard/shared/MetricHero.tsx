@@ -5,7 +5,15 @@ import { motion } from 'framer-motion'
 
 interface MetricHeroProps {
   children: ReactNode
-  gradient?: 'primary' | 'blue' | 'purple' | 'green' | 'amber' | 'dark'
+  gradient?:
+    | 'primary'
+    | 'blue'
+    | 'purple'
+    | 'green'
+    | 'amber'
+    | 'dark'
+    | 'institution'
+    | 'institutionDark'
   className?: string
   /** Disable the animated gradient blobs. */
   quiet?: boolean
@@ -15,27 +23,37 @@ interface MetricHeroProps {
  * Hero container used on every dashboard page header. Upgraded to
  * InTransparency style: drifting gradient blobs + subtle grid overlay +
  * pop-in motion. One file, cascades to 30+ pages.
+ *
+ * `institution` / `institutionDark` are the refined "scholarly archival"
+ * palette — warm stone + bronze + muted plum. Used across
+ * /dashboard/university/* to give institutions a distinctive aesthetic
+ * separate from the cool generic-corporate primary/blue palette.
  */
 const LIGHT_GRADIENTS: Record<string, string> = {
-  primary: 'from-primary/15 via-primary/8 to-background',
-  blue:    'from-blue-600/10 via-blue-500/5 to-background',
-  purple:  'from-purple-600/10 via-purple-500/5 to-background',
-  green:   'from-emerald-600/10 via-emerald-500/5 to-background',
-  amber:   'from-amber-500/15 via-amber-500/5 to-background',
-  dark:    'from-slate-900 via-slate-800 to-slate-900',
+  primary:         'from-primary/15 via-primary/8 to-background',
+  blue:            'from-blue-600/10 via-blue-500/5 to-background',
+  purple:          'from-purple-600/10 via-purple-500/5 to-background',
+  green:           'from-emerald-600/10 via-emerald-500/5 to-background',
+  amber:           'from-amber-500/15 via-amber-500/5 to-background',
+  dark:            'from-slate-900 via-slate-800 to-slate-900',
+  institution:     'from-stone-100/80 via-amber-50/40 to-background',
+  institutionDark: 'from-stone-950 via-amber-950/30 to-stone-900',
 }
 
 const BLOB_COLORS: Record<string, { a: string; b: string }> = {
-  primary: { a: 'from-primary/25',       b: 'from-violet-500/20' },
-  blue:    { a: 'from-blue-500/25',      b: 'from-cyan-500/20' },
-  purple:  { a: 'from-purple-500/25',    b: 'from-pink-500/20' },
-  green:   { a: 'from-emerald-500/25',   b: 'from-teal-500/20' },
-  amber:   { a: 'from-amber-500/25',     b: 'from-orange-500/20' },
-  dark:    { a: 'from-violet-500/25',    b: 'from-blue-500/20' },
+  primary:         { a: 'from-primary/25',       b: 'from-violet-500/20' },
+  blue:            { a: 'from-blue-500/25',      b: 'from-cyan-500/20' },
+  purple:          { a: 'from-purple-500/25',    b: 'from-pink-500/20' },
+  green:           { a: 'from-emerald-500/25',   b: 'from-teal-500/20' },
+  amber:           { a: 'from-amber-500/25',     b: 'from-orange-500/20' },
+  dark:            { a: 'from-violet-500/25',    b: 'from-blue-500/20' },
+  // Bronze + plum — feels like a paper hall, not an admin SaaS
+  institution:     { a: 'from-amber-700/20',     b: 'from-rose-700/12' },
+  institutionDark: { a: 'from-amber-500/25',     b: 'from-rose-400/15' },
 }
 
 export function MetricHero({ children, gradient = 'primary', className = '', quiet = false }: MetricHeroProps) {
-  const isDark = gradient === 'dark'
+  const isDark = gradient === 'dark' || gradient === 'institutionDark'
   const blobs = BLOB_COLORS[gradient] || BLOB_COLORS.primary
 
   return (
