@@ -25,6 +25,8 @@ import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
 import { RecruiterActionCenter } from '@/components/dashboard/recruiter/RecruiterActionCenter'
+import PendingEnrichmentDrainer from '@/components/dashboard/recruiter/PendingEnrichmentDrainer'
+import RecruiterOnboardingGate from '@/components/dashboard/recruiter/RecruiterOnboardingGate'
 
 interface ContactUsage { used: number; limit: number; remaining: number }
 
@@ -128,6 +130,13 @@ export default function RecruiterDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-5 pb-12 px-4">
+      {/* Drains the domain-enrichment that was pre-fetched at signup time */}
+      <PendingEnrichmentDrainer />
+
+      {/* Conversational onboarding for first-time recruiters (auto-mounts
+          only when RecruiterSettings.companyName is empty). */}
+      <RecruiterOnboardingGate />
+
       {/* Action Center — "what needs my attention today" */}
       <RecruiterActionCenter />
 

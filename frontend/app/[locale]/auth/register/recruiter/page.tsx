@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
@@ -8,8 +8,21 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Building2, Loader2, CheckCircle } from 'lucide-react'
+import { Building2, Loader2, CheckCircle, Sparkles, AlertCircle } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
+
+interface DomainEnrichment {
+  skipped?: boolean
+  reason?: string
+  message?: string
+  companyName?: string
+  companyWebsite?: string
+  companyLogo?: string
+  domain?: string
+}
+
+const PENDING_ENRICHMENT_KEY = 'intransparency_pending_recruiter_enrichment'
 
 export default function RecruiterRegisterPage() {
   const t = useTranslations('auth')
@@ -24,6 +37,32 @@ export default function RecruiterRegisterPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
+  const [enrichment, setEnrichment] = useState<DomainEnrichment | null>(null)
+  const [isEnriching, setIsEnriching] = useState(false)
+
+  // Debounced domain enrichment as the recruiter types their email
+  useEffect(() => {
+    const email = formData.email
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      setEnrichment(null)
+      return
+    }
+    const handle = setTimeout(async () => {
+      setIsEnriching(true)
+      try {
+        const res = await fetch(`/api/recruiter/enrich-domain?email=${encodeURIComponent(email)}`)
+        if (res.ok) {
+          const data: DomainEnrichment = await res.json()
+          setEnrichment(data)
+        }
+      } catch {
+        // silent — enrichment is opportunistic
+      } finally {
+        setIsEnriching(false)
+      }
+    }, 600)
+    return () => clearTimeout(handle)
+  }, [formData.email])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,6 +80,24 @@ export default function RecruiterRegisterPage() {
 
       if (!response.ok) {
         throw new Error(data.error || 'Registration failed')
+      }
+
+      // Stash the enrichment so the dashboard can write it to RecruiterSettings
+      // on first load (the user is now authenticated post-signin).
+      if (enrichment && !enrichment.skipped && enrichment.companyName) {
+        try {
+          sessionStorage.setItem(
+            PENDING_ENRICHMENT_KEY,
+            JSON.stringify({
+              companyName: enrichment.companyName,
+              companyWebsite: enrichment.companyWebsite,
+              companyLogo: enrichment.companyLogo,
+              domain: enrichment.domain,
+            })
+          )
+        } catch {
+          // sessionStorage may be unavailable (private mode); skip silently
+        }
       }
 
       const signInResult = await signIn('credentials', {
@@ -192,6 +249,61 @@ export default function RecruiterRegisterPage() {
                       aria-required="true"
                       disabled={isLoading}
                     />
+
+                    {/* Live domain enrichment preview — shows what we'll auto-fill */}
+                    <AnimatePresence mode="wait">
+                      {isEnriching && (
+                        <motion.div
+                          key="enriching"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-2 flex items-center gap-2 text-xs text-muted-foreground"
+                        >
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                          Looking up your company…
+                        </motion.div>
+                      )}
+                      {!isEnriching && enrichment && enrichment.skipped && enrichment.reason === 'free_provider' && (
+                        <motion.div
+                          key="free-provider"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-2 flex items-start gap-2 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-2.5 text-xs text-amber-900 dark:text-amber-200"
+                        >
+                          <AlertCircle className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
+                          <span>{enrichment.message}</span>
+                        </motion.div>
+                      )}
+                      {!isEnriching && enrichment && !enrichment.skipped && enrichment.companyName && (
+                        <motion.div
+                          key="enriched"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-2 flex items-center gap-2.5 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border border-blue-200 dark:border-blue-800 p-2.5"
+                        >
+                          {enrichment.companyLogo && (
+                            <img
+                              src={enrichment.companyLogo}
+                              alt={enrichment.companyName}
+                              className="h-7 w-7 rounded bg-white object-contain"
+                              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-blue-900 dark:text-blue-200 flex items-center gap-1">
+                              <Sparkles className="h-3 w-3" />
+                              We'll set up your profile
+                            </p>
+                            <p className="text-[11px] text-blue-700 dark:text-blue-300 truncate">
+                              {enrichment.companyName} · {enrichment.domain}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   <div>

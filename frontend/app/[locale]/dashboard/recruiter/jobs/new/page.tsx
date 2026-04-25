@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import { ConversationChat, type ChatMessage, type ProfileField } from '@/components/dashboard/shared/ConversationChat'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import JobPasteImport from '@/components/dashboard/recruiter/JobPasteImport'
 
 const JOB_PROFILE_FIELDS: ProfileField[] = [
   { key: 'title', label: 'Title', type: 'text' },
@@ -116,34 +117,71 @@ export default function NewJobPage() {
     label: t(`profile.${f.key}`, { defaultValue: f.label }),
   }))
 
+  const handleParsedJob = useCallback((parsed: Record<string, any>) => {
+    // Merge parsed AI output into the working profile, dedup arrays.
+    setProfile(prev => {
+      const merged = { ...prev }
+      for (const [key, value] of Object.entries(parsed)) {
+        if (value === undefined || value === null || value === '') continue
+        if (Array.isArray(value) && Array.isArray(prev[key])) {
+          merged[key] = Array.from(new Set([...(prev[key] || []), ...value]))
+        } else {
+          merged[key] = value
+        }
+      }
+      return merged
+    })
+    // Surface a confirmation in the chat thread so the recruiter sees what
+    // was extracted instead of having to compare the side panel cold.
+    const summary: string[] = []
+    if (parsed.title) summary.push(`**${parsed.title}**`)
+    if (parsed.jobType) summary.push(parsed.jobType.toLowerCase().replace('_', ' '))
+    if (parsed.location) summary.push(parsed.location)
+    if (Array.isArray(parsed.requiredSkills) && parsed.requiredSkills.length > 0) {
+      summary.push(`skills: ${parsed.requiredSkills.slice(0, 5).join(', ')}`)
+    }
+    setMessages(prev => [
+      ...prev,
+      {
+        role: 'assistant',
+        content: summary.length
+          ? `I extracted: ${summary.join(' · ')}.\n\nReview the form on the right and tell me what to add or fix.`
+          : t('chat.followUp'),
+      },
+    ])
+  }, [t])
+
   return (
-    <ConversationChat
-      welcomeMessage={t('chat.welcome')}
-      placeholder={t('chat.placeholder')}
-      analyzingText={t('chat.analyzing')}
-      createButtonText={t('chat.looksGood')}
-      creatingText={t('chat.creating')}
-      incompleteText={t('chat.incompleteProfile')}
-      errorText={t('chat.error')}
-      profileTitle={t('profile.title')}
-      completenessLabel={t('profile.completeness')}
-      profileFields={localizedFields}
-      profile={profile}
-      completeness={completeness}
-      onSendMessage={handleSendMessage}
-      onProfileChange={(field, value) => setProfile(prev => ({ ...prev, [field]: value }))}
-      onArrayAdd={(field, value) => {
-        if (!value.trim()) return
-        setProfile(prev => ({ ...prev, [field]: Array.from(new Set([...(prev[field] || []), value.trim()])) }))
-      }}
-      onArrayRemove={(field, index) => {
-        setProfile(prev => ({ ...prev, [field]: (prev[field] || []).filter((_: any, i: number) => i !== index) }))
-      }}
-      onCreate={handleCreate}
-      canCreate={!!(profile.title && profile.description && profile.jobType)}
-      messages={messages}
-      analyzing={analyzing}
-      submitting={submitting}
-    />
+    <div className="max-w-4xl mx-auto pb-2 px-4 pt-4">
+      <JobPasteImport onParsed={handleParsedJob} />
+      <ConversationChat
+        welcomeMessage={t('chat.welcome')}
+        placeholder={t('chat.placeholder')}
+        analyzingText={t('chat.analyzing')}
+        createButtonText={t('chat.looksGood')}
+        creatingText={t('chat.creating')}
+        incompleteText={t('chat.incompleteProfile')}
+        errorText={t('chat.error')}
+        profileTitle={t('profile.title')}
+        completenessLabel={t('profile.completeness')}
+        profileFields={localizedFields}
+        profile={profile}
+        completeness={completeness}
+        onSendMessage={handleSendMessage}
+        onProfileChange={(field, value) => setProfile(prev => ({ ...prev, [field]: value }))}
+        onArrayAdd={(field, value) => {
+          if (!value.trim()) return
+          setProfile(prev => ({ ...prev, [field]: Array.from(new Set([...(prev[field] || []), value.trim()])) }))
+        }}
+        onArrayRemove={(field, index) => {
+          setProfile(prev => ({ ...prev, [field]: (prev[field] || []).filter((_: any, i: number) => i !== index) }))
+        }}
+        onCreate={handleCreate}
+        canCreate={!!(profile.title && profile.description && profile.jobType)}
+        messages={messages}
+        analyzing={analyzing}
+        submitting={submitting}
+      />
+    </div>
   )
 }
