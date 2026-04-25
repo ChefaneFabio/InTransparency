@@ -4254,6 +4254,29 @@
         "setup": "5-minute setup"
       }
     },
+    "workspaceModules": {
+      "title": "Built for the career office — not just another job board",
+      "subtitle": "Four modules that turn placement from spreadsheets into an auditable workflow. Preview on Free Core; unlock writes with Premium.",
+      "m1": {
+        "title": "Mediation Inbox",
+        "desc": "Every recruiter message to your students is reviewed by your staff first. Approve, edit, or reject. Full audit trail."
+      },
+      "m2": {
+        "title": "Offer Moderation",
+        "desc": "Job offers tied to your institution go to PENDING_APPROVAL. Block offers that violate stage rules before students see them."
+      },
+      "m3": {
+        "title": "Company CRM",
+        "desc": "Drag-and-drop kanban from first contact to signed convention. Track every company relationship your career office manages."
+      },
+      "m4": {
+        "title": "Placement Pipeline",
+        "desc": "Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation. Replaces your career office spreadsheets."
+      },
+      "compliance": "Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.",
+      "pricingCta": "See pricing",
+      "demoCta": "Request a demo"
+    },
     "coCreation": {
       "title": "We Build With You, Not For You",
       "subtitle": "InTransparency is not a product you install. It's a partnership you shape.",

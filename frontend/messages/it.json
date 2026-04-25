@@ -4228,6 +4228,29 @@
         "setup": "Setup in 5 minuti"
       }
     },
+    "workspaceModules": {
+      "title": "Costruita per il career office, non l'ennesima job board",
+      "subtitle": "Quattro moduli che trasformano il placement da fogli Excel in un workflow auditabile. Anteprima sul Free Core; sblocca le scritture con Premium.",
+      "m1": {
+        "title": "Mediation Inbox",
+        "desc": "Ogni messaggio dei recruiter ai vostri studenti passa prima dal vostro staff. Approva, modifica o rifiuta. Audit trail completo."
+      },
+      "m2": {
+        "title": "Moderazione Offerte",
+        "desc": "Le offerte legate alla vostra istituzione vanno in PENDING_APPROVAL. Bloccate le offerte che violano le regole di stage prima che gli studenti le vedano."
+      },
+      "m3": {
+        "title": "CRM Aziende",
+        "desc": "Kanban drag-and-drop dal primo contatto alla convenzione firmata. Tracciate ogni relazione aziendale gestita dal vostro career office."
+      },
+      "m4": {
+        "title": "Pipeline Tirocini",
+        "desc": "Ciclo di vita completo del tirocinio — registro ore, valutazioni intermedie/finali, scadenze, generazione automatica convenzioni. Sostituisce i fogli Excel del career office."
+      },
+      "compliance": "Ogni scrittura è loggata per la conformità AI Act. Gli studenti mantengono i diritti GDPR Art. 22 su ogni decisione automatizzata.",
+      "pricingCta": "Vedi i prezzi",
+      "demoCta": "Richiedi una demo"
+    },
     "coCreation": {
       "title": "Costruiamo Con Voi, Non Per Voi",
       "subtitle": "InTransparency non è un prodotto da installare. È una partnership da costruire insieme.",
