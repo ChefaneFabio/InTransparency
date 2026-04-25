@@ -115,18 +115,11 @@ export function EmptyState({
       )}
 
       <div className="relative">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.1, type: 'spring', stiffness: 280, damping: 20 }}
-          className={`mx-auto w-16 h-16 rounded-2xl ${theme.iconBg} flex items-center justify-center mb-4 ring-4 ${theme.iconRing} ${
-            isToned ? 'shadow-lg' : ''
-          }`}
-        >
-          <Icon className={`h-8 w-8 ${theme.iconText}`} />
-        </motion.div>
+        {/* Quieter icon presentation — small mono outline, no gradient tile.
+            The icon is supportive, not the visual hook. */}
+        <Icon className={`mx-auto h-6 w-6 mb-4 ${isToned ? theme.accentText : 'text-muted-foreground/50'}`} strokeWidth={1.6} />
 
-        <h3 className="text-lg font-semibold text-foreground mb-1.5">{title}</h3>
+        <h3 className="text-base font-semibold text-foreground mb-1.5">{title}</h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
           {description}
         </p>

@@ -10,17 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
 import { useTranslations } from 'next-intl'
-import {
-  Loader2,
-  Sparkles,
-  CheckCircle2,
-  Building2,
-  Globe,
-  MapPin,
-  Bell,
-  Eye,
-  RefreshCw,
-} from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
@@ -67,18 +57,14 @@ function extractDomain(input: string): string | null {
 }
 
 /**
- * Branded section header — small caps, accent dot, consistent across sections.
+ * Section header — typography-led, no icon tile. Hairline accent line under
+ * the title for visual rhythm without leaning on iconography.
  */
-function SectionHeader({ icon: Icon, title, hint }: { icon: any; title: string; hint?: string }) {
+function SectionHeader({ title, hint }: { title: string; hint?: string }) {
   return (
-    <div className="flex items-start gap-3 mb-4">
-      <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md shrink-0">
-        <Icon className="h-4 w-4 text-white" />
-      </div>
-      <div>
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">{title}</h3>
-        {hint && <p className="text-xs text-muted-foreground mt-0.5">{hint}</p>}
-      </div>
+    <div className="mb-5 pb-4 border-b border-border/60">
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
+      {hint && <p className="text-sm text-muted-foreground mt-1">{hint}</p>}
     </div>
   )
 }
@@ -236,39 +222,37 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
           <Card>
             <CardContent className="p-5 sm:p-6">
               <SectionHeader
-                icon={Building2}
                 title="Brand identity"
                 hint="How your company shows up to candidates and partners."
               />
 
-              {/* Auto-fill banner */}
-              <div className="mb-5 rounded-xl border border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-4 flex items-start gap-3">
-                <Sparkles className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
+              {/* Auto-fill — quieter, no decorative icon */}
+              <div className="mb-5 rounded-xl border border-border/60 bg-muted/30 p-4 flex items-start gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                  <p className="text-sm font-semibold text-foreground">
                     Auto-fill from your domain
                   </p>
-                  <p className="text-xs text-blue-700 dark:text-blue-300 mt-0.5">
-                    Add your website above and we'll fetch the logo, infer industry + a
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                    Add your website above and we'll fetch the logo, infer industry and a
                     short description from public info. You can edit anything after.
                   </p>
                   {enrichError && (
-                    <p className="text-xs text-rose-700 dark:text-rose-300 mt-2">{enrichError}</p>
+                    <p className="text-sm text-rose-700 dark:text-rose-400 mt-2">{enrichError}</p>
                   )}
                 </div>
                 <Button
                   size="sm"
                   onClick={handleAutoFill}
                   disabled={enriching || !settings.companyWebsite}
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 text-white shadow-md shrink-0"
+                  className="shrink-0"
                 >
                   {enriching ? (
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  ) : (
                     <>
-                      <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-                      Auto-fill
+                      <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />
+                      Looking up
                     </>
+                  ) : (
+                    'Auto-fill'
                   )}
                 </Button>
               </div>
@@ -276,10 +260,8 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
               <div className="grid sm:grid-cols-[120px_1fr] gap-5">
                 {/* Logo */}
                 <div>
-                  <Label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-                    Logo
-                  </Label>
-                  <div className="aspect-square rounded-xl border-2 border-dashed border-muted bg-muted/30 flex items-center justify-center overflow-hidden relative group">
+                  <Label className="text-sm font-medium mb-2 block">Logo</Label>
+                  <div className="aspect-square rounded-xl border border-border/60 bg-muted/30 flex items-center justify-center overflow-hidden">
                     {settings.companyLogo ? (
                       <img
                         src={settings.companyLogo}
@@ -290,16 +272,15 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                         }}
                       />
                     ) : (
-                      <Building2 className="h-10 w-10 text-muted-foreground/40" />
+                      <span className="text-xs text-muted-foreground/60">No logo</span>
                     )}
                   </div>
                   {settings.companyWebsite && (
                     <button
                       type="button"
                       onClick={handleRefetchLogo}
-                      className="mt-2 w-full inline-flex items-center justify-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                      className="mt-2 w-full text-xs text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <RefreshCw className="h-3 w-3" />
                       Re-fetch
                     </button>
                   )}
@@ -307,9 +288,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
 
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <Label className="text-xs uppercase tracking-wider text-muted-foreground">
-                      Company name
-                    </Label>
+                    <Label className="text-sm font-medium">Company name</Label>
                     <Input
                       value={settings.companyName}
                       onChange={e => u('companyName', e.target.value)}
@@ -317,10 +296,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label className="text-xs uppercase tracking-wider text-muted-foreground flex items-center gap-1">
-                      <Globe className="h-3 w-3" />
-                      Website
-                    </Label>
+                    <Label className="text-sm font-medium">Website</Label>
                     <Input
                       value={settings.companyWebsite}
                       onChange={e => u('companyWebsite', e.target.value)}
@@ -328,9 +304,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label className="text-xs uppercase tracking-wider text-muted-foreground">
-                      About <span className="text-muted-foreground/60 normal-case">— shown to candidates</span>
-                    </Label>
+                    <Label className="text-sm font-medium">About</Label>
                     <Textarea
                       value={settings.companyDescription}
                       onChange={e => u('companyDescription', e.target.value)}
@@ -338,8 +312,8 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                       rows={3}
                       className="resize-none"
                     />
-                    <p className="text-[11px] text-muted-foreground">
-                      One short paragraph. Mention what you build and why people stay.
+                    <p className="text-xs text-muted-foreground">
+                      One short paragraph. Shown on your public profile and job posts.
                     </p>
                   </div>
                 </div>
@@ -351,13 +325,12 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
           <Card>
             <CardContent className="p-5 sm:p-6">
               <SectionHeader
-                icon={MapPin}
                 title="Company details"
                 hint="Used for filtering, fit score, and your public profile."
               />
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <Label className="text-xs uppercase tracking-wider text-muted-foreground">Industry</Label>
+                  <Label className="text-sm font-medium">Industry</Label>
                   <Select value={settings.companyIndustry} onValueChange={v => u('companyIndustry', v)}>
                     <SelectTrigger><SelectValue placeholder="Select industry" /></SelectTrigger>
                     <SelectContent>
@@ -368,7 +341,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                   </Select>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs uppercase tracking-wider text-muted-foreground">Company size</Label>
+                  <Label className="text-sm font-medium">Company size</Label>
                   <Select value={settings.companySize} onValueChange={v => u('companySize', v)}>
                     <SelectTrigger><SelectValue placeholder="Select size" /></SelectTrigger>
                     <SelectContent>
@@ -379,7 +352,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                   </Select>
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
-                  <Label className="text-xs uppercase tracking-wider text-muted-foreground">Headquarters</Label>
+                  <Label className="text-sm font-medium">Headquarters</Label>
                   <Input
                     value={settings.companyLocation}
                     onChange={e => u('companyLocation', e.target.value)}
@@ -394,7 +367,6 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
           <Card>
             <CardContent className="p-5 sm:p-6">
               <SectionHeader
-                icon={Bell}
                 title="Communication preferences"
                 hint="Email notifications. You can change these any time."
               />
@@ -426,12 +398,9 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
 
         {/* ── LIVE PUBLIC-PROFILE PREVIEW ── */}
         <div className="lg:sticky lg:top-4">
-          <Card className="overflow-hidden border-2 border-dashed">
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50/40 dark:from-slate-900 dark:to-blue-950/20 p-3 border-b">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground flex items-center gap-1">
-                <Eye className="h-3 w-3" />
-                Public profile preview
-              </p>
+          <Card className="overflow-hidden">
+            <div className="px-5 py-3 border-b border-border/60 bg-muted/30">
+              <p className="text-xs text-muted-foreground">Public profile preview</p>
             </div>
             <CardContent className="p-5">
               <div className="flex items-start gap-3 mb-3">
@@ -444,7 +413,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                       onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
                     />
                   ) : (
-                    <Building2 className="h-6 w-6 text-muted-foreground/50" />
+                    <span className="text-[10px] text-muted-foreground/60">Logo</span>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -452,8 +421,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                     {settings.companyName || 'Your company name'}
                   </p>
                   {settings.companyLocation && (
-                    <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                      <MapPin className="h-3 w-3" />
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       {settings.companyLocation}
                     </p>
                   )}
@@ -467,11 +435,11 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                 </Badge>
               )}
               {settings.companyDescription ? (
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-5">
+                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-5">
                   {settings.companyDescription}
                 </p>
               ) : (
-                <p className="text-xs text-muted-foreground/50 italic">
+                <p className="text-sm text-muted-foreground/50 italic">
                   Add a short description to attract better-fit candidates.
                 </p>
               )}
@@ -480,16 +448,15 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                   href={settings.companyWebsite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[11px] text-blue-600 dark:text-blue-400 hover:underline mt-3 inline-flex items-center gap-1"
+                  className="text-xs text-foreground hover:underline mt-3 block"
                 >
-                  <Globe className="h-3 w-3" />
                   {extractDomain(settings.companyWebsite) || settings.companyWebsite}
                 </a>
               )}
             </CardContent>
           </Card>
-          <p className="text-[11px] text-muted-foreground mt-2 text-center">
-            This is what candidates see on your profile and job postings.
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            What candidates see on your profile and job postings.
           </p>
         </div>
       </div>
@@ -504,16 +471,14 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
             transition={{ type: 'spring', stiffness: 300, damping: 26 }}
             className="fixed bottom-4 inset-x-4 sm:left-auto sm:right-4 sm:max-w-md z-40"
           >
-            <div className="rounded-2xl border bg-white dark:bg-slate-900 shadow-2xl p-3 flex items-center gap-3">
+            <div className="rounded-2xl border bg-white dark:bg-slate-900 shadow-2xl px-4 py-3 flex items-center gap-3">
               {saveState === 'saved' ? (
-                <>
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />
-                  <p className="text-sm font-medium text-foreground flex-1">All changes saved.</p>
-                </>
+                <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400 flex-1">
+                  All changes saved.
+                </p>
               ) : (
                 <>
-                  <div className="h-2 w-2 rounded-full bg-amber-500 animate-pulse shrink-0 ml-2" />
-                  <p className="text-sm font-medium text-foreground flex-1">You have unsaved changes.</p>
+                  <p className="text-sm font-medium text-foreground flex-1">Unsaved changes</p>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -522,19 +487,8 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
                   >
                     Discard
                   </Button>
-                  <Button
-                    onClick={handleSave}
-                    disabled={saving}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 text-white shadow-md"
-                  >
-                    {saving ? (
-                      <>
-                        <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />
-                        Saving…
-                      </>
-                    ) : (
-                      'Save changes'
-                    )}
+                  <Button onClick={handleSave} disabled={saving}>
+                    {saving ? 'Saving…' : 'Save changes'}
                   </Button>
                 </>
               )}
