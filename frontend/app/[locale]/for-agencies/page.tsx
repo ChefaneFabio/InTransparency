@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight } from 'lucide-react'
+import HeroCTA from '@/components/ui/HeroCTA'
 
 export default function ForAgenciesPage() {
   const t = useTranslations('forAgencies')
@@ -28,17 +29,13 @@ export default function ForAgenciesPage() {
           <p className="text-sm text-blue-300 font-medium mb-4">{t('hero.badge')}</p>
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">{t('hero.title')}</h1>
           <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">{t('hero.subtitle')}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register/recruiter">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 w-full sm:w-auto">
-                {t('hero.cta')}<ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/for-companies">
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
-                {t('hero.secondaryCta')}
-              </Button>
-            </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <HeroCTA href="/auth/register/recruiter" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
+              {t('hero.cta')}
+            </HeroCTA>
+            <HeroCTA href="/for-companies" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
+              {t('hero.secondaryCta')}
+            </HeroCTA>
           </div>
         </div>
       </section>
@@ -68,11 +65,9 @@ export default function ForAgenciesPage() {
         <div className="container max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
           <p className="text-blue-200 mb-8 max-w-xl mx-auto">{t('cta.subtitle')}</p>
-          <Link href="/auth/register/recruiter">
-            <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
-              {t('cta.button')}<ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </Link>
+          <HeroCTA href="/auth/register/recruiter" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
+            {t('cta.button')}
+          </HeroCTA>
         </div>
       </section>
       <Footer />
