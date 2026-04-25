@@ -2373,7 +2373,7 @@
     },
     "cta": {
       "title": "Find Talent You Can Trust",
-      "subtitle": "Browse verified portfolios free. Reach out to 5 candidates per month at no cost. Need more? Subscribe from €149/mo for unlimited contacts and the full AI suite.",
+      "subtitle": "Browse verified portfolios free. Reach out to 5 candidates per month at no cost. Need more? Subscribe from €89/mo for unlimited contacts and the full AI suite.",
       "primaryButton": "Start free",
       "secondaryButton": "Try the Smart Search"
     },
@@ -2387,7 +2387,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "Free to search and contact up to 5 candidates per month — no card, no commitment. After 5 you subscribe to keep going (€149/mo for unlimited contacts + 10 job posts + team seats + full AI suite). Enterprise has custom pricing with SSO, API, dedicated CSM. See /pricing for the full comparison."
+          "answer": "Free to search and contact up to 5 candidates per month — no card, no commitment. After 5 you subscribe to keep going (€89/mo for unlimited contacts + 10 job posts + team seats + full AI suite). Enterprise has custom pricing with SSO, API, dedicated CSM. See /pricing for the full comparison."
         },
         "2": {
           "question": "What types of candidates are available?",
@@ -3617,7 +3617,7 @@
         },
         "growth": {
           "name": "Subscription",
-          "price": "€149",
+          "price": "€89",
           "period": "/ month",
           "description": "Unlimited contacts, team seats, full AI suite. The only upgrade path when you've used your monthly quota.",
           "cta": "Start subscription",
@@ -3664,7 +3664,7 @@
       "cta": "See the new pricing",
       "packages": {
         "0": "Free tier · 5 contacts/month",
-        "1": "Subscription · unlimited contacts at €149/mo",
+        "1": "Subscription · unlimited contacts at €89/mo",
         "2": "Enterprise · custom pricing",
         "3": "Try free, upgrade when you scale"
       }
@@ -3729,7 +3729,7 @@
         },
         "2": {
           "q": "What happens after 5 contacts?",
-          "a": "We block further contacts and show the subscription path. We retired credit packs — there's no €10/contact, no à-la-carte. The cleanest way to keep contacting is the €149/mo Subscription which gives unlimited contacts, team seats, and the full AI suite (Hiring Advisor, Interview Kit, Decision Packs). Quota resets monthly so you never lose access entirely."
+          "a": "We block further contacts and show the subscription path. We retired credit packs — there's no €10/contact, no à-la-carte. The cleanest way to keep contacting is the €89/mo Subscription which gives unlimited contacts, team seats, and the full AI suite (Hiring Advisor, Interview Kit, Decision Packs). Quota resets monthly so you never lose access entirely."
         },
         "3": {
           "q": "Do universities and ITS pay anything?",
@@ -9115,7 +9115,7 @@
     "hero": {
       "badge": "For SMEs and small companies — free up to 5 contacts a month",
       "title": "Try the verified talent pool free. Subscribe when you scale.",
-      "subtitle": "Browse all profiles free. Reach out to 5 candidates each month at no cost — quota resets on the 1st. When you need to contact more, switch to the €149/mo subscription. No credit packs, no per-contact fees, no agency middlemen.",
+      "subtitle": "Browse all profiles free. Reach out to 5 candidates each month at no cost — quota resets on the 1st. When you need to contact more, switch to the €89/mo subscription. No credit packs, no per-contact fees, no agency middlemen.",
       "cta": "Start free",
       "secondaryCta": "Try Smart Search"
     },
@@ -9140,7 +9140,7 @@
     },
     "cta": {
       "title": "Start free. Subscribe when you've outgrown the free tier.",
-      "subtitle": "No card, no commitment. Five contacts every month at no cost. When you scale past that, one upgrade path: €149/mo subscription with unlimited contacts and the full AI suite.",
+      "subtitle": "No card, no commitment. Five contacts every month at no cost. When you scale past that, one upgrade path: €89/mo subscription with unlimited contacts and the full AI suite.",
       "button": "Start free"
     }
   },

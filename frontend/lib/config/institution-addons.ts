@@ -51,9 +51,9 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     icon: GraduationCap,
     pricing: {
       kind: 'per-unit',
-      eurosPerUnit: 2,
+      eurosPerUnit: 1,
       unitLabel: 'student / year',
-      note: '€2/student/yr · volume discounts from 2k+ · min €1,500/yr',
+      note: '€1/student/yr · volume discounts from 2k+ · min €750/yr',
     },
     target: 'Institutions extending career tools to all students',
     status: 'available',
@@ -66,7 +66,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       "Host the full workspace on your own subdomain (e.g. placement.polimi.it), with your logo, colors, and Terms. Your recruiters see you, not us. Perfect for prestigious institutions that need to own the company relationship end-to-end.",
     icon: Palette,
-    pricing: { kind: 'annual', euros: 24000, note: 'from €24k/yr — scales with enrollment' },
+    pricing: { kind: 'annual', euros: 14000, note: 'from €14k/yr — scales with enrollment' },
     target: 'Prestigious universities · PoliMi-tier',
     status: 'roadmap',
     tint: 'violet',
@@ -78,7 +78,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'Cross-institution analytics, shared employer CRM, consolidated reporting. Built for ITS networks (Lombardia, Piemonte), diocesan university groups, AFAM, regional consortia.',
     icon: Network,
-    pricing: { kind: 'annual', euros: 12000, note: 'from €12k/yr for up to 5 institutions' },
+    pricing: { kind: 'annual', euros: 7000, note: 'from €7k/yr for up to 5 institutions' },
     target: 'Consortia · 2+ institutions',
     status: 'roadmap',
     tint: 'blue',
@@ -90,7 +90,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'SAML 2.0 or OIDC authentication against your IdP (Azure AD, Google Workspace, Okta, Shibboleth). SCIM user provisioning so staff accounts follow your HR system.',
     icon: Key,
-    pricing: { kind: 'annual', euros: 4000 },
+    pricing: { kind: 'annual', euros: 2500 },
     target: 'Institutions >1000 staff accounts',
     status: 'roadmap',
     tint: 'slate',
@@ -104,8 +104,8 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     icon: Plug,
     pricing: {
       kind: 'one-time-plus-annual',
-      oneTimeEuros: 8000,
-      annualEuros: 3000,
+      oneTimeEuros: 5000,
+      annualEuros: 1500,
       note: 'one-time setup + annual support',
     },
     target: 'Italian universities with legacy ERP',
@@ -119,7 +119,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'Dedicated AI quota: bulk endorsement pass-through, faster fit-score recomputation, no shared queue. Ideal when your staff runs reminder engines and AI Assistant at high cadence.',
     icon: Gauge,
-    pricing: { kind: 'monthly', euros: 1200, note: 'scales with concurrent users' },
+    pricing: { kind: 'monthly', euros: 690, note: 'scales with concurrent users' },
     target: 'Institutions with heavy AI workload',
     status: 'available',
     tint: 'emerald',
@@ -131,7 +131,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'Automated regulatory reporting in the formats MIUR and ANVUR actually require. Placement outcome reports, skills alignment with AVA 3.0, generation of CRUI-format exports. Annual audit-ready data room.',
     icon: ShieldCheck,
-    pricing: { kind: 'annual', euros: 4500 },
+    pricing: { kind: 'annual', euros: 2900 },
     target: 'All Italian universities',
     status: 'roadmap',
     tint: 'rose',
@@ -143,7 +143,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'Named CSM who knows your placement office. Quarterly business reviews, 24h response SLA, priority data-export guarantees, integration support. Onboarding for new staff included.',
     icon: HeadphonesIcon,
-    pricing: { kind: 'annual', euros: 15000, note: 'from €15k/yr' },
+    pricing: { kind: 'annual', euros: 9000, note: 'from €9k/yr' },
     target: 'Strategic partners',
     status: 'available',
     tint: 'blue',
@@ -157,9 +157,9 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     icon: BadgeCheck,
     pricing: {
       kind: 'per-unit',
-      eurosPerUnit: 1.2,
+      eurosPerUnit: 0.6,
       unitLabel: 'credential',
-      note: '€1.20/credential, volume discounts from 5k+',
+      note: '€0.60/credential, volume discounts from 5k+',
     },
     target: 'All institutions issuing credentials',
     status: 'beta',
@@ -172,7 +172,7 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
     description:
       'Custom report pipelines tailored to your board, your academic senate, your regional authority. Branded PDF/XLSX exports on a schedule, data room for external auditors, board-meeting packs.',
     icon: FileSpreadsheet,
-    pricing: { kind: 'annual', euros: 3500 },
+    pricing: { kind: 'annual', euros: 1900 },
     target: 'Multi-stakeholder institutions',
     status: 'available',
     tint: 'amber',

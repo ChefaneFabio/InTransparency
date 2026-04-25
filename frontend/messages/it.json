@@ -2413,7 +2413,7 @@
     },
     "cta": {
       "title": "Trova Talenti di cui Fidarti",
-      "subtitle": "Esplora portfolio verificati gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €149/mese per contatti illimitati e suite AI completa.",
+      "subtitle": "Esplora portfolio verificati gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €89/mese per contatti illimitati e suite AI completa.",
       "primaryButton": "Inizia gratis",
       "secondaryButton": "Prova la Ricerca Intelligente"
     },
@@ -2427,7 +2427,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "Gratis cercare e contattare fino a 5 candidati al mese — niente carta, niente impegno. Dopo i 5 ti abboni per continuare (€149/mese per contatti illimitati + 10 annunci + seats per il team + suite AI). Enterprise ha prezzi custom con SSO, API, CSM dedicato. Vedi /pricing per il confronto completo."
+          "answer": "Gratis cercare e contattare fino a 5 candidati al mese — niente carta, niente impegno. Dopo i 5 ti abboni per continuare (€89/mese per contatti illimitati + 10 annunci + seats per il team + suite AI). Enterprise ha prezzi custom con SSO, API, CSM dedicato. Vedi /pricing per il confronto completo."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",
@@ -3591,7 +3591,7 @@
         },
         "growth": {
           "name": "Abbonamento",
-          "price": "€149",
+          "price": "€89",
           "period": "/ mese",
           "description": "Contatti illimitati, seats per il team, suite AI completa. L'unico percorso quando hai esaurito la quota mensile.",
           "cta": "Attiva abbonamento",
@@ -3638,7 +3638,7 @@
       "cta": "Vedi i nuovi prezzi",
       "packages": {
         "0": "Piano Free · 5 contatti/mese",
-        "1": "Abbonamento · contatti illimitati a €149/mese",
+        "1": "Abbonamento · contatti illimitati a €89/mese",
         "2": "Enterprise · prezzi custom",
         "3": "Provi gratis, ti abboni quando scali"
       }
@@ -3703,7 +3703,7 @@
         },
         "2": {
           "q": "Cosa succede dopo i 5 contatti?",
-          "a": "Blocchiamo ulteriori contatti e mostriamo il percorso abbonamento. Abbiamo ritirato i pacchetti crediti — niente €10/contatto, niente à-la-carte. Il modo più semplice per continuare è l'Abbonamento da €149/mese che dà contatti illimitati, seats per il team e la suite AI completa. La quota si resetta ogni mese, quindi non perdi mai l'accesso del tutto."
+          "a": "Blocchiamo ulteriori contatti e mostriamo il percorso abbonamento. Abbiamo ritirato i pacchetti crediti — niente €10/contatto, niente à-la-carte. Il modo più semplice per continuare è l'Abbonamento da €89/mese che dà contatti illimitati, seats per il team e la suite AI completa. La quota si resetta ogni mese, quindi non perdi mai l'accesso del tutto."
         },
         "3": {
           "q": "Università e ITS pagano qualcosa?",
@@ -9142,7 +9142,7 @@
     "hero": {
       "badge": "Per PMI e piccole aziende — gratis fino a 5 contatti al mese",
       "title": "Provi il pool di talenti verificati gratis. Ti abboni quando scali.",
-      "subtitle": "Sfogli tutti i profili gratis. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1°. Quando ti serve di più, passi all'abbonamento da €149/mese. Niente pacchetti crediti, niente fee per contatto, niente intermediari.",
+      "subtitle": "Sfogli tutti i profili gratis. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1°. Quando ti serve di più, passi all'abbonamento da €89/mese. Niente pacchetti crediti, niente fee per contatto, niente intermediari.",
       "cta": "Inizia gratis",
       "secondaryCta": "Prova la Ricerca Intelligente"
     },
@@ -9167,7 +9167,7 @@
     },
     "cta": {
       "title": "Inizia gratis. Ti abboni quando hai superato il piano Free.",
-      "subtitle": "Niente carta, niente impegno. Cinque contatti ogni mese a costo zero. Quando scali oltre, c'è un solo percorso: abbonamento da €149/mese con contatti illimitati e suite AI completa.",
+      "subtitle": "Niente carta, niente impegno. Cinque contatti ogni mese a costo zero. Quando scali oltre, c'è un solo percorso: abbonamento da €89/mese con contatti illimitati e suite AI completa.",
       "button": "Inizia gratis"
     }
   },

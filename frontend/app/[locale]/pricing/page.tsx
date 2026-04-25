@@ -283,10 +283,10 @@ export default function PricingPage() {
                         </div>
                         <div className="flex items-baseline gap-1">
                           <span className="text-4xl font-bold tracking-tight">
-                            {t('students.tiers.premium.price', { defaultValue: '€7.99' })}
+                            {t('students.tiers.premium.price', { defaultValue: '€3.99' })}
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            {t('students.tiers.premium.period', { defaultValue: '/mo · or €69/yr' })}
+                            {t('students.tiers.premium.period', { defaultValue: '/mo · or €29/yr' })}
                           </span>
                         </div>
                         <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
@@ -373,49 +373,124 @@ export default function PricingPage() {
                   <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('universities.subtitle')}</p>
                 </div>
 
-                {/* Single free tier — full institutional workspace included at no cost */}
-                <div className="max-w-2xl mx-auto">
+                {/* Two-tier: Free Core + Premium. Add-ons listed below. */}
+                <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  {/* Free Core */}
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                    <Card className="relative h-full flex flex-col border-2 border-emerald-300 shadow-xl shadow-emerald-200/30 bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/30 dark:from-emerald-950/20 dark:via-slate-950 dark:to-blue-950/20">
+                    <Card className="relative h-full flex flex-col border-2 border-emerald-300 shadow-lg bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/30 dark:from-emerald-950/20 dark:via-slate-950 dark:to-blue-950/20">
                       <div className="absolute -top-3 left-5">
                         <Badge className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg border-0 text-[10px]">
-                          {t('universities.freeBadge', { defaultValue: 'Full Workspace · Free' })}
+                          {t('universities.tiers.free.badge', { defaultValue: 'Free Core · forever' })}
                         </Badge>
                       </div>
                       <CardHeader className="pb-3 pt-5">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="h-2 w-2 rounded-full bg-emerald-500" />
                           <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
-                            {t('universities.tiers.free.name', { defaultValue: 'Academic Partners' })}
+                            {t('universities.tiers.free.name', { defaultValue: 'Free Core' })}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-1">
                           <span className="text-4xl font-bold tracking-tight">
-                            {t('universities.tiers.free.price', { defaultValue: 'Free' })}
+                            {t('universities.tiers.free.price', { defaultValue: '€0' })}
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            {t('universities.tiers.free.period', { defaultValue: '· forever' })}
+                            {t('universities.tiers.free.period', { defaultValue: '/ forever' })}
                           </span>
                         </div>
                         <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                           {t('universities.tiers.free.description', {
                             defaultValue:
-                              'Universities and ITS get the full M1–M4 workspace — Inbox, Offer moderation, CRM, Placement pipeline — included. Reminder engine, AI Assistant, audit log, scorecard, all analytics. Forever.',
+                              'Everything you need to run placement: M1–M4 workspace, basic analytics, scorecard, audit log (30 days). 90% of small/mid institutions never need more.',
                           })}
                         </p>
                       </CardHeader>
                       <CardContent className="pt-4 flex-1 flex flex-col">
-                        <ul className="space-y-2.5 mb-6 flex-1 grid sm:grid-cols-2 gap-y-2.5 gap-x-4">
-                          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+                        <ul className="space-y-2.5 mb-6 flex-1">
+                          {[
+                            'M1 Mediation Inbox',
+                            'M2 Offer moderation',
+                            'M3 Company CRM (drag-and-drop pipeline)',
+                            'M4 Placement pipeline (hours, evaluations, deadlines)',
+                            'Basic analytics + Scorecard',
+                            'Audit log (last 30 days)',
+                            'AI Assistant (50 queries/month)',
+                            'Project verification + endorsements',
+                            'Convention Builder (template-based)',
+                          ].map((label, i) => (
                             <li key={i} className="flex items-start text-sm">
                               <Check className="h-4 w-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
-                              <span>{t(`universities.tiers.premium.features.${i}`)}</span>
+                              <span>{label}</span>
                             </li>
                           ))}
                         </ul>
-                        <Button className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white border-0 shadow-lg shadow-emerald-500/20" asChild>
+                        <Button variant="outline" className="w-full border-emerald-300 text-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-950/30" asChild>
                           <Link href="/auth/register/academic-partner">
-                            {t('universities.tiers.free.cta', { defaultValue: 'Activate your workspace — free' })}
+                            {t('universities.tiers.free.cta', { defaultValue: 'Activate Free Core' })}
+                            <ArrowRight className="h-4 w-4 ml-2" />
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  {/* Premium — institutional freemium upgrade */}
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                    <Card className="relative h-full flex flex-col border-2 border-violet-300 shadow-xl shadow-violet-200/40 bg-gradient-to-br from-violet-50/60 via-white to-blue-50/40 dark:from-violet-950/30 dark:via-slate-950 dark:to-blue-950/20">
+                      <div className="absolute -top-3 left-5">
+                        <Badge className="bg-gradient-to-r from-violet-600 to-blue-600 text-white shadow-lg border-0 text-[10px]">
+                          {t('universities.tiers.premium.badge', { defaultValue: 'Premium · for growing institutions' })}
+                        </Badge>
+                      </div>
+                      <CardHeader className="pb-3 pt-5">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="h-2 w-2 rounded-full bg-violet-500" />
+                          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700 dark:text-violet-300">
+                            {t('universities.tiers.premium.name', { defaultValue: 'Institutional Premium' })}
+                          </span>
+                        </div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold tracking-tight">
+                            {t('universities.tiers.premium.price', { defaultValue: '€39' })}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {t('universities.tiers.premium.period', { defaultValue: '/mo · or €390/yr' })}
+                          </span>
+                        </div>
+                        <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
+                          {t('universities.tiers.premium.note', { defaultValue: '·30-day free trial · cancel anytime' })}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                          {t('universities.tiers.premium.description', {
+                            defaultValue:
+                              'Unlocks the scale features: unlimited AI Assistant, advanced analytics, full audit log, reminder automation, AI-personalized conventions, basic MIUR reports.',
+                          })}
+                        </p>
+                      </CardHeader>
+                      <CardContent className="pt-4 flex-1 flex flex-col">
+                        <ul className="space-y-2.5 mb-6 flex-1">
+                          <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                            {t('universities.tiers.premium.includes', { defaultValue: 'Everything in Free Core, plus:' })}
+                          </li>
+                          {[
+                            'AI Assistant unlimited (no monthly cap)',
+                            'Advanced analytics: cross-cohort, cross-program drills',
+                            'Audit log: full history + CSV exports',
+                            'Reminder engine: full automation (rules + cron)',
+                            'Convention Builder: AI-personalized clauses',
+                            'Skills Intelligence + Curriculum Alignment',
+                            'MIUR-format reports (basic)',
+                            'Priority email support (24h response)',
+                          ].map((label, i) => (
+                            <li key={i} className="flex items-start text-sm">
+                              <Check className="h-4 w-4 text-violet-600 mr-2 mt-0.5 flex-shrink-0" />
+                              <span>{label}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <Button className="w-full bg-gradient-to-br from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white shadow-lg shadow-violet-500/25" asChild>
+                          <Link href="/contact?subject=institutional-premium">
+                            {t('universities.tiers.premium.cta', { defaultValue: 'Start Premium · 30-day trial' })}
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </Link>
                         </Button>
