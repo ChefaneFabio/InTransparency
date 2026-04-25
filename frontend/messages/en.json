@@ -3567,29 +3567,33 @@
       },
       "tiers": {
         "free": {
+          "badge": "Free · forever",
           "name": "Free",
           "price": "€0",
           "period": "forever",
-          "description": "Core portfolio and discovery. Publish up to 3 projects with AI analysis; university verification included."
+          "description": "Full portfolio and discovery. Unlimited applications, 3 AI project analyses, university verification included.",
+          "cta": "Get started free"
         },
         "premium": {
-          "badge": "Premium — On Request",
+          "badge": "Premium · accelerate your career",
           "name": "Premium",
-          "price": "Custom quote",
-          "period": "",
-          "description": "Advanced career tooling priced per feature. Request a quote for what you need — no subscription.",
-          "includes": "Everything in Free, plus (quoted per request):",
+          "price": "€3.99",
+          "period": "/mo · or €29/yr",
+          "studentDiscount": "· 30-day trial · cancel anytime",
+          "description": "Unlock the full Skill Path, unlimited AI, and the career tooling that actually moves the needle. Free if your university sponsors Premium.",
+          "includes": "Everything in Free, plus:",
           "features": {
-            "0": "Priority visibility in recruiter search results",
-            "1": "Additional AI project analyses beyond the 3 free",
-            "2": "Unlimited AI Career Coach queries",
-            "3": "Interview Prep with audio/video simulations",
-            "4": "Offer analyzer: compare salary, benefits, growth",
-            "5": "Personalized Skill Path with weekly coaching",
-            "6": "Decision Pack PDF export for final interviews"
+            "0": "Full Skill Path with 12-month roadmap",
+            "1": "8 advanced analytics dashboards",
+            "2": "Unlimited AI project analyses",
+            "3": "Custom portfolio URL (yourname.intransparency.com)",
+            "4": "Priority visibility in recruiter search",
+            "5": "AI Interview Coach with audio/video simulations",
+            "6": "Europass digitally-signed credentials",
+            "7": "Decision Pack PDF export for final interviews"
           },
-          "cta": "Request a quote",
-          "note": "Each premium feature is quoted individually. Pay only for what you use, no subscription."
+          "cta": "Start the 30-day trial",
+          "note": "30-day free trial · no lock-in · cancel in 1 click."
         }
       },
       "whyFree": "Core features are free forever. Students upload up to 3 projects for AI analysis. Premium features are available à la carte — request a quote for the specific tooling you need."
@@ -3671,48 +3675,52 @@
     },
     "universities": {
       "title": "Universities, Schools & Training Centers",
-      "subtitle": "Free forever. Full M1–M4 workspace included — Inbox, Offer moderation, CRM, Placement pipeline. No upsell, no gotcha. Funded by the companies that recruit from you.",
+      "subtitle": "Free Core forever · optional Premium at €39/mo when you scale. No upsell, no gotcha — transparent pricing.",
       "premiumBadge": "Institutional Workspace",
       "freeBadge": "Full Workspace · Free",
-      "reassurance": "The workspace is funded by the companies that recruit from it. Universities and ITS never pay — students never pay. Every AI action is logged for AI Act compliance.",
+      "reassurance": "Free Core forever, Premium and add-ons available when you need them. Every AI action is logged for AI Act compliance.",
+      "addonsBadge": "Optional add-ons",
+      "addonsTitle": "Scale up when you need to",
+      "addonsSubtitle": "Enterprise modules marketplace: white-label, SSO, ATS bridges, MIUR compliance, and more. All optional, list-priced.",
       "tiers": {
-        "core": {
-          "name": "CORE",
-          "price": "Free",
-          "period": "forever",
-          "description": "Verify students, connect them with companies, and preview the institutional workspace. Writes on workspace modules are locked.",
-          "cta": "Get Started Free",
+        "free": {
+          "badge": "Free Core · forever",
+          "name": "Free Core",
+          "price": "€0",
+          "period": "/ forever",
+          "description": "Full M1–M4 workspace for universities and ITS. No upsell, no surprises.",
+          "cta": "Activate Free Core",
           "features": {
-            "0": "Unlimited students",
-            "1": "Project verification (theses, GitHub, portfolios)",
-            "2": "Professor endorsements",
-            "3": "AlmaLaurea sync",
-            "4": "Aggregated placement dashboard",
-            "5": "Top 20 hiring companies",
-            "6": "Analytics per program (last 12 months)",
-            "7": "Career center widget (base)",
-            "8": "Preview of M1 / M2 / M3 / M4 workspace (read-only)",
-            "9": "Data export (12 months)"
+            "0": "M1 Mediation Inbox",
+            "1": "M2 Offer moderation",
+            "2": "M3 Company CRM (drag-and-drop pipeline)",
+            "3": "M4 Placement pipeline (hours, evaluations, deadlines)",
+            "4": "Basic analytics + Scorecard",
+            "5": "Audit log (last 30 days)",
+            "6": "AI Assistant (50 queries/month)",
+            "7": "Project verification + endorsements",
+            "8": "Convention Builder (template-based)"
           }
         },
         "premium": {
-          "name": "PREMIUM",
-          "price": "On request",
-          "period": "",
-          "description": "Unlock the full institutional workspace: mediation, offer moderation, company CRM, placement pipeline — all audit-logged.",
-          "cta": "Request a quote",
+          "badge": "Institutional Premium · for growing institutions",
+          "name": "Institutional Premium",
+          "price": "€39",
+          "period": "/mo · or €390/yr",
+          "note": "· 30-day free trial · cancel anytime",
+          "description": "Unlock unlimited AI, advanced analytics, reminder automation, and MIUR reporting. For institutions scaling past Free Core.",
+          "includes": "Everything in Free Core, plus:",
           "features": {
-            "0": "Everything in CORE, plus:",
-            "1": "M1 Mediation Inbox — moderate recruiter messages",
-            "2": "M2 Offer Moderation — approve jobs before students see them",
-            "3": "M3 Company CRM — kanban pipeline, convention tracking",
-            "4": "M4 Placement Pipeline — hours log, evaluations, deadlines",
-            "5": "Reminder engine (email + SMS) on deadlines and stage transitions",
-            "6": "AI Act compliance pack + per-action audit trail",
-            "7": "Esse3 / ANVUR / MUR integrations and reports",
-            "8": "Single Sign-On (SAML / Shibboleth)",
-            "9": "Dedicated Customer Success Manager"
-          }
+            "0": "AI Assistant unlimited (no monthly cap)",
+            "1": "Advanced analytics: cross-cohort, cross-program drills",
+            "2": "Audit log: full history + CSV exports",
+            "3": "Reminder engine: full automation (rules + cron)",
+            "4": "Convention Builder: AI-personalized clauses",
+            "5": "Skills Intelligence + Curriculum Alignment",
+            "6": "MIUR-format reports (basic)",
+            "7": "Priority email support (24h response)"
+          },
+          "cta": "Start Premium · 30-day trial"
         }
       }
     },

@@ -122,7 +122,10 @@ export async function GET(req: NextRequest) {
   const baseline = {
     companyName,
     companyWebsite: `https://${domain}`,
-    companyLogo: `https://logo.clearbit.com/${domain}`,
+    // Route through our own proxy — avoids CSP issues, hides recruiter
+    // email domain from Clearbit, and falls back gracefully when the logo
+    // isn't found (no 408 timeouts in the browser console).
+    companyLogo: `/api/recruiter/logo-proxy?domain=${encodeURIComponent(domain)}`,
     domain,
   }
 

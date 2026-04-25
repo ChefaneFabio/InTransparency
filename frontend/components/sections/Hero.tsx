@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
 import { BRAND_IMAGES } from '@/lib/brand-images'
 import { AppPreview } from '@/components/sections/AppPreview'
-import VerifiedSkillsOrb from '@/components/3d/VerifiedSkillsOrb'
+import HeroVisual from '@/components/3d/HeroVisual'
 import TiltCard from '@/components/3d/TiltCard'
 
 const segmentIcons = {
@@ -40,13 +40,6 @@ export function Hero() {
 
   return (
     <section className="relative py-16 sm:py-20 overflow-hidden">
-      {/* 3D backdrop — only on the students segment where it amplifies the
-          "verified skills" message most powerfully without competing with
-          B2B pricing copy. */}
-      {activeSegment === 'students' && (
-        <VerifiedSkillsOrb className="absolute inset-x-0 top-0 h-[640px] -z-0 opacity-70 dark:opacity-50" />
-      )}
-
       <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           {/* Social proof — earned, not decorative */}
@@ -110,7 +103,11 @@ export function Hero() {
           </div>
         </div>
 
-        {/* App preview — changes per segment */}
+        {/* Hero scene per segment.
+            Students get the photoreal credential render — drop the asset at
+            /public/hero/student-credential.webp (or .png) to swap from the
+            CSS-only fallback to the real Blender/AI-rendered scene.
+            Companies + institutions still get the AppPreview product shot. */}
         <motion.div
           className="mt-16 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
@@ -125,7 +122,11 @@ export function Hero() {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.3 }}
             >
-              <AppPreview segment={activeSegment} />
+              {activeSegment === 'students' ? (
+                <HeroVisual className="mx-auto max-w-[560px]" />
+              ) : (
+                <AppPreview segment={activeSegment} />
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.div>
