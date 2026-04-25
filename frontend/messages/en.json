@@ -2269,7 +2269,7 @@
       "badge": "For Companies, Agencies & HR Teams — All Industries",
       "title": "A Bad Hire Costs You Time and Money.",
       "titleHighlight": "We Help You Get It Right.",
-      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer. Pay per contact if you hire occasionally, or subscribe if you hire regularly — you pick the shape that fits."
+      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer. 5 free contacts every month, then subscribe when you scale."
     },
     "steps": {
       "0": {
@@ -2373,8 +2373,8 @@
     },
     "cta": {
       "title": "Find Talent You Can Trust",
-      "subtitle": "Browse verified student portfolios for free. You only pay €10 per contact when you actually reach out — or subscribe from €149/mo if you hire often.",
-      "primaryButton": "Start for free",
+      "subtitle": "Browse verified portfolios free. Reach out to 5 candidates per month at no cost. Need more? Subscribe from €149/mo for unlimited contacts and the full AI suite.",
+      "primaryButton": "Start free",
       "secondaryButton": "Try the Smart Search"
     },
     "faq": {
@@ -2387,7 +2387,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "Search is free. Two ways to pay when you contact: Per-Contact (€10 per outreach, no commitment — ideal if you hire occasionally) or Subscription (€149/mo, unlimited outreach + 10 jobs + team seats + unlimited AI tools — recommended if you hire regularly). Enterprise has custom pricing with SSO + API + dedicated CSM. See /pricing for the full comparison."
+          "answer": "Free to search and contact up to 5 candidates per month — no card, no commitment. After 5 you subscribe to keep going (€149/mo for unlimited contacts + 10 job posts + team seats + full AI suite). Enterprise has custom pricing with SSO, API, dedicated CSM. See /pricing for the full comparison."
         },
         "2": {
           "question": "What types of candidates are available?",
@@ -3596,39 +3596,39 @@
     },
     "companies": {
       "badge": "For Companies",
-      "title": "Pick the shape that fits how you hire",
-      "subtitle": "Per-contact if you hire occasionally. Subscription if you hire regularly. Browse verified talent for free — you only pay when you actually reach out.",
-      "popular": "Recommended if you hire regularly",
+      "title": "Free to try, subscribe when you scale",
+      "subtitle": "Search verified talent for free. 5 contacts every month free. When you need more, subscribe — there's only one upgrade path, no credit packs to manage.",
+      "popular": "Most companies pick this",
       "tiers": {
         "starter": {
-          "name": "Per-Contact",
-          "price": "€10",
-          "period": "/ contact",
-          "description": "Built for small companies and SMEs that hire occasionally. Pay only when you reach out. No monthly commitment.",
-          "cta": "Start pay-per-contact",
+          "name": "Free",
+          "price": "€0",
+          "period": "/ forever",
+          "description": "Search the entire verified talent pool. Contact up to 5 candidates each month — quota resets on the 1st. No card required.",
+          "cta": "Start free",
           "features": {
-            "0": "Unlimited talent search (free)",
+            "0": "Unlimited talent search",
             "1": "University-verified profiles with evidence",
-            "2": "Pay €10 only when you reveal contact + message",
-            "3": "3 contact credits included at signup",
-            "4": "Volume discount: 200 credits −10%, 500 credits −20%",
-            "5": "1 active job posting"
+            "2": "5 contacts every month, free (resets monthly)",
+            "3": "Fit score + match reasons on every profile",
+            "4": "1 active job posting",
+            "5": "Decision Pack preview · 1/month"
           }
         },
         "growth": {
           "name": "Subscription",
           "price": "€149",
           "period": "/ month",
-          "description": "Recommended for mid/large enterprises that hire regularly. Unlimited outreach, team seats, AI tools included.",
+          "description": "Unlimited contacts, team seats, full AI suite. The only upgrade path when you've used your monthly quota.",
           "cta": "Start subscription",
           "features": {
-            "0": "Everything in Per-Contact, plus:",
-            "1": "Unlimited contact reveals (no per-contact fees)",
+            "0": "Everything in Free, plus:",
+            "1": "Unlimited contact reveals",
             "2": "10 active job postings",
             "3": "Full pipeline with all stages + team seats",
             "4": "Evidence-Based Hiring Advisor (unlimited)",
             "5": "Interview Kit Generator (unlimited)",
-            "6": "Decision Packs + Share Candidate Links",
+            "6": "Decision Packs + Share Candidate Links (unlimited)",
             "7": "5 GB document storage"
           }
         },
@@ -3652,16 +3652,21 @@
         }
       }
     },
+    "freemiumFunnel": {
+      "badge": "How the free tier works",
+      "title": "Try us with 5 free contacts every month",
+      "subtitle": "Search the verified talent pool for free. Reach out to up to 5 candidates per month at no cost. When you need to contact more, subscribe — that's the only path forward, no credit packs to manage."
+    },
     "payPerTalent": {
-      "badge": "How the per-contact tier works",
-      "title": "Pay only when you actually reach out",
-      "subtitle": "Search the verified talent pool for free. You only pay €10 when you unlock a candidate's contact + send your first message. No subscription, no commitment — ideal if you hire a few times a year.",
-      "cta": "Start pay-per-contact",
+      "badge": "Retired — see Free tier",
+      "title": "We retired pay-per-contact",
+      "subtitle": "Free tier now includes 5 contacts per month for everyone — no credit packs needed. Subscribe when you scale.",
+      "cta": "See the new pricing",
       "packages": {
-        "0": "3 credits — included free at signup",
-        "1": "50 credits — €500 (€10/contact)",
-        "2": "200 credits — €1,800 (€9/contact, 10% off)",
-        "3": "500+ credits — Custom (€8/contact, 20% off)"
+        "0": "Free tier · 5 contacts/month",
+        "1": "Subscription · unlimited contacts at €149/mo",
+        "2": "Enterprise · custom pricing",
+        "3": "Try free, upgrade when you scale"
       }
     },
     "universities": {
@@ -3719,12 +3724,12 @@
           "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€7.99/mo · €69/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. First month free, cancel anytime. If your university is a partner that sponsors Premium, it's already free for you."
         },
         "1": {
-          "q": "How does the per-contact price work for companies?",
-          "a": "Browse all verified talent for free. You pay €10 only when you unlock a candidate's email and send your first message. No subscription, no commitment. Ideal if you hire a few people per year. Volume discounts from 50 credits (10% off) and 500+ (20% off)."
+          "q": "How does the free tier work for companies?",
+          "a": "Search verified talent free, no card required. Contact up to 5 candidates every month at no cost — quota resets on the 1st. The 5-contact cap counts across your whole company domain (so you can't multiply accounts to dodge it). When you need to contact more, subscribe."
         },
         "2": {
-          "q": "When should a company choose Subscription instead?",
-          "a": "If you hire regularly. €149/month gets you unlimited contact reveals (no more per-contact fees), 10 active job posts, team seats, unlimited AI tools (Hiring Advisor, Interview Kit, Decision Packs), shared saved searches. We'll suggest it automatically once you cross roughly 15 contacts per month."
+          "q": "What happens after 5 contacts?",
+          "a": "We block further contacts and show the subscription path. We retired credit packs — there's no €10/contact, no à-la-carte. The cleanest way to keep contacting is the €149/mo Subscription which gives unlimited contacts, team seats, and the full AI suite (Hiring Advisor, Interview Kit, Decision Packs). Quota resets monthly so you never lose access entirely."
         },
         "3": {
           "q": "Do universities and ITS pay anything?",
@@ -9108,10 +9113,10 @@
   },
   "forSME": {
     "hero": {
-      "badge": "For SMEs and small companies that hire occasionally",
-      "title": "Pay only when you actually reach out. €10 per contact.",
-      "subtitle": "Perfect if you hire a few people a year. Browse verified talent for free — you only pay €10 when you unlock a candidate's contact and send your first message. No subscription, no commitment, no agency fees.",
-      "cta": "Start pay-per-contact",
+      "badge": "For SMEs and small companies — free up to 5 contacts a month",
+      "title": "Try the verified talent pool free. Subscribe when you scale.",
+      "subtitle": "Browse all profiles free. Reach out to 5 candidates each month at no cost — quota resets on the 1st. When you need to contact more, switch to the €149/mo subscription. No credit packs, no per-contact fees, no agency middlemen.",
+      "cta": "Start free",
       "secondaryCta": "Try Smart Search"
     },
     "benefits": {
@@ -9120,8 +9125,8 @@
         "description": "Every project is university-verified. See real grades, real code, real outcomes — before you even talk to the candidate."
       },
       "1": {
-        "title": "€10 per contact. Only when you reach out.",
-        "description": "Browse the pool for free. Pay €10 to unlock a candidate's email + send your first message. Volume discounts from 50 credits (10% off) to 500+ (20% off). No monthly fee, ever."
+        "title": "5 free contacts every month",
+        "description": "Search free. Contact up to 5 candidates per month at zero cost. Monthly reset gives you a recurring trial moment. When you need more, the path is one subscription — no credit packs to manage."
       },
       "2": {
         "title": "Grades you understand",
@@ -9134,9 +9139,9 @@
       "title": "Why SMEs choose InTransparency"
     },
     "cta": {
-      "title": "Start for free. Pay only when you contact.",
-      "subtitle": "No subscription, no commitment. Register and get 3 contact credits free — enough to try the platform with zero risk.",
-      "button": "Start pay-per-contact"
+      "title": "Start free. Subscribe when you've outgrown the free tier.",
+      "subtitle": "No card, no commitment. Five contacts every month at no cost. When you scale past that, one upgrade path: €149/mo subscription with unlimited contacts and the full AI suite.",
+      "button": "Start free"
     }
   },
   "forAgencies": {

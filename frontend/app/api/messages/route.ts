@@ -165,20 +165,34 @@ export async function POST(req: NextRequest) {
         // Fall through to the message creation at the end of the function
       }
 
-      // RECRUITER_FREE / FREE: allow first 5 unique contacts per company domain
+      // FREE / RECRUITER_FREE / RECRUITER_PAY_PER_CONTACT: 5 free unique contacts
+      // PER MONTH per company domain. After that, subscribe to continue.
+      // Per-contact credit purchases were retired 2026-04-25 — the only path
+      // forward after exhausting the free quota is the subscription tier.
       const FREE_CONTACT_LIMIT = 5
-      if (!activePositionListing && (user.subscriptionTier === 'RECRUITER_FREE' || user.subscriptionTier === 'FREE')) {
+      const isFreemiumTier =
+        user.subscriptionTier === 'RECRUITER_FREE' ||
+        user.subscriptionTier === 'FREE' ||
+        user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT'
+
+      if (!activePositionListing && isFreemiumTier) {
         const existingContact = await prisma.contactUsage.findFirst({
           where: { recruiterId: session.user.id, recipientId: recipientId },
         })
 
         if (!existingContact) {
-          // Count free contacts across the entire company domain
+          // Monthly window — quota resets on the 1st each month so recruiters
+          // get a recurring trial moment that nudges to subscription.
+          const now = new Date()
+          const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+
+          // Count free contacts across the entire company domain (prevents
+          // creating multiple accounts to get extra free contacts).
           const emailDomain = user.email.split('@')[1]?.toLowerCase()
           const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
           const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
 
-          let domainContactCount = 0
+          let monthlyDomainContactCount = 0
           if (isCompanyDomain) {
             const domainRecruiters = await prisma.user.findMany({
               where: {
@@ -188,128 +202,41 @@ export async function POST(req: NextRequest) {
               select: { id: true },
             })
             const domainRecruiterIds = domainRecruiters.map(r => r.id)
-            domainContactCount = await prisma.contactUsage.count({
-              where: { recruiterId: { in: domainRecruiterIds } },
+            monthlyDomainContactCount = await prisma.contactUsage.count({
+              where: {
+                recruiterId: { in: domainRecruiterIds },
+                firstContactAt: { gte: startOfMonth },
+              },
             })
           } else {
-            domainContactCount = await prisma.contactUsage.count({
-              where: { recruiterId: session.user.id },
+            monthlyDomainContactCount = await prisma.contactUsage.count({
+              where: {
+                recruiterId: session.user.id,
+                firstContactAt: { gte: startOfMonth },
+              },
             })
           }
 
-          if (domainContactCount >= FREE_CONTACT_LIMIT) {
+          if (monthlyDomainContactCount >= FREE_CONTACT_LIMIT) {
             return NextResponse.json({
               error: isCompanyDomain
-                ? `Your company (${emailDomain}) has used all ${FREE_CONTACT_LIMIT} free contacts. Purchase credits or open a position to continue.`
-                : `You've used all ${FREE_CONTACT_LIMIT} free contacts. Purchase credits or open a position to continue.`,
-              upgradeUrl: '/pricing?for=recruiters',
-              freeContactsUsed: domainContactCount,
+                ? `Your company (${emailDomain}) has used all ${FREE_CONTACT_LIMIT} free contacts this month. Subscribe for unlimited contacts.`
+                : `You've used all ${FREE_CONTACT_LIMIT} free contacts this month. Subscribe for unlimited contacts.`,
+              upgradeUrl: '/pricing?for=companies&plan=subscription',
+              code: 'FREE_QUOTA_EXHAUSTED',
+              freeContactsUsedThisMonth: monthlyDomainContactCount,
               freeContactLimit: FREE_CONTACT_LIMIT,
+              resetsOn: new Date(now.getFullYear(), now.getMonth() + 1, 1).toISOString(),
             }, { status: 403 })
           }
         }
         // Free contact allowed — fall through to message creation
       }
 
-      // RECRUITER_PAY_PER_CONTACT: check balance and deduct (skip if position listing active)
-      if (!activePositionListing && user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
-        // Check dedup: already contacted = free re-contact
-        const existingContact = await prisma.contactUsage.findFirst({
-          where: {
-            recruiterId: session.user.id,
-            recipientId: recipientId,
-          }
-        })
-
-        if (!existingContact) {
-          // New contact - check balance
-          if (user.contactBalance < 1000) {
-            return NextResponse.json({
-              error: 'Insufficient contact credits. Purchase more credits to contact new candidates.',
-              upgradeUrl: '/pricing?for=recruiters',
-              balance: user.contactBalance,
-              costPerContact: 1000,
-            }, { status: 403 })
-          }
-
-          // Deduct balance and create message + usage in transaction
-          const threadId = validatedData.threadId || `thread_${Date.now()}_${Math.random().toString(36).substring(7)}`
-
-          const result = await prisma.$transaction(async (tx) => {
-            // Deduct contact balance
-            await tx.user.update({
-              where: { id: session.user.id },
-              data: {
-                contactBalance: { decrement: 1000 },
-              },
-            })
-
-            const message = await tx.message.create({
-              data: {
-                senderId: session.user.id,
-                recipientEmail: validatedData.recipientEmail,
-                recipientId: validatedData.recipientId || null,
-                subject: validatedData.subject,
-                content: validatedData.content,
-                threadId,
-                replyToId: validatedData.replyToId,
-              },
-              include: {
-                sender: {
-                  select: {
-                    id: true,
-                    firstName: true,
-                    lastName: true,
-                    email: true,
-                    photo: true,
-                    company: true,
-                  }
-                }
-              }
-            })
-
-            // Record contact usage for dedup
-            const now = new Date()
-            const billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), 1)
-            const billingPeriodEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1)
-
-            await tx.contactUsage.create({
-              data: {
-                recruiterId: session.user.id,
-                recipientId: recipientId,
-                billingPeriodStart,
-                billingPeriodEnd,
-                messageId: message.id,
-              }
-            })
-
-            return message
-          })
-
-          // Notify the recipient
-          if (recipientId) {
-            const senderName = [result.sender.firstName, result.sender.lastName].filter(Boolean).join(' ') || 'A recruiter'
-            await createNotification({
-              userId: recipientId,
-              type: 'MESSAGE_RECEIVED',
-              title: 'New Message from Recruiter',
-              body: `${senderName} sent you a message${validatedData.subject ? `: ${validatedData.subject}` : ''}`,
-              link: `/dashboard/student/messages?thread=${threadId}`,
-              groupKey: `msg-${threadId}`,
-            }).catch(() => {})
-          }
-
-          return NextResponse.json({
-            success: true,
-            message: result,
-          }, { status: 201 })
-        }
-
-        // Already contacted this student - free re-contact, fall through to create message
-      }
-
-      // RECRUITER_ENTERPRISE: allow unlimited, still record ContactUsage for analytics
-      // Also handles PAY_PER_CONTACT re-contacts (already contacted student)
+      // RECRUITER_ENTERPRISE / RECRUITER_GROWTH (subscription) / re-contacts:
+      // unlimited. Still record ContactUsage for dedup + analytics.
+      // (Per-contact credit purchases retired 2026-04-25 — freemium tiers
+      // hit the gate above, paid tiers fall through here.)
       const threadId = validatedData.threadId || `thread_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
       const message = await prisma.message.create({

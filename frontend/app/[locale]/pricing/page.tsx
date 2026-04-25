@@ -31,8 +31,11 @@ export default function PricingPage() {
   const initialSegment = (searchParams.get('for') as Segment) || 'companies'
   const [segment, setSegment] = useState<Segment>(initialSegment)
 
+  // Two-tier company structure (Free / Subscription / Enterprise). Per-contact
+  // credit purchases retired 2026-04-25 — Free tier gives 5 contacts/month,
+  // then subscribe to continue. No credit packs, no à-la-carte purchases.
   const companyTiers = [
-    { key: 'starter',    featured: false, href: '/auth/register/recruiter?plan=per-contact', features: [0, 1, 2, 3, 4, 5] },
+    { key: 'starter',    featured: false, href: '/auth/register/recruiter?plan=free',         features: [0, 1, 2, 3, 4, 5] },
     { key: 'growth',     featured: true,  href: '/auth/register/recruiter?plan=subscription', features: [0, 1, 2, 3, 4, 5, 6, 7] },
     { key: 'enterprise', featured: false, href: '/contact?subject=enterprise',                features: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
   ]
@@ -162,26 +165,40 @@ export default function PricingPage() {
                   ))}
                 </div>
 
-                {/* Pay-per-talent */}
+                {/* How the freemium funnel works — replaces the old per-credit
+                    package grid. Five contacts/month free, then subscribe. */}
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="mt-10 p-6 rounded-2xl border-2 border-dashed border-muted-foreground/20 bg-muted/30 text-center"
+                  className="mt-10 p-6 rounded-2xl border bg-gradient-to-br from-emerald-50/60 via-white to-blue-50/40 dark:from-emerald-950/20 dark:via-slate-950 dark:to-blue-950/20 text-center"
                 >
-                  <Badge variant="outline" className="mb-3">{t('payPerTalent.badge')}</Badge>
-                  <h3 className="text-xl font-bold">{t('payPerTalent.title')}</h3>
-                  <p className="text-sm text-muted-foreground mt-1 max-w-lg mx-auto">{t('payPerTalent.subtitle')}</p>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5 max-w-3xl mx-auto">
-                    {[0, 1, 2, 3].map(i => (
-                      <div key={i} className="p-3 rounded-xl bg-white dark:bg-slate-800 border text-sm font-medium">
-                        {t(`payPerTalent.packages.${i}`)}
-                      </div>
-                    ))}
+                  <Badge variant="outline" className="mb-3 bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800">
+                    {t('freemiumFunnel.badge', { defaultValue: 'How the free tier works' })}
+                  </Badge>
+                  <h3 className="text-xl font-bold">
+                    {t('freemiumFunnel.title', { defaultValue: 'Try us with 5 free contacts every month' })}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1 max-w-xl mx-auto">
+                    {t('freemiumFunnel.subtitle', {
+                      defaultValue:
+                        "Search the verified talent pool for free. Reach out to up to 5 candidates per month at no cost. When you need to contact more, subscribe — that's the only path forward, no credit packs to manage.",
+                    })}
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-3 mt-5 max-w-2xl mx-auto text-left">
+                    <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
+                      <div className="text-xs uppercase font-semibold text-emerald-700 dark:text-emerald-300 tracking-wide">Step 1</div>
+                      <div className="text-sm font-medium mt-1">Search free, browse all profiles</div>
+                    </div>
+                    <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
+                      <div className="text-xs uppercase font-semibold text-blue-700 dark:text-blue-300 tracking-wide">Step 2</div>
+                      <div className="text-sm font-medium mt-1">Contact up to 5 candidates · monthly reset</div>
+                    </div>
+                    <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
+                      <div className="text-xs uppercase font-semibold text-violet-700 dark:text-violet-300 tracking-wide">Step 3</div>
+                      <div className="text-sm font-medium mt-1">Subscribe to remove the cap</div>
+                    </div>
                   </div>
-                  <Button variant="outline" className="mt-5" asChild>
-                    <Link href="/contact?subject=credits">{t('payPerTalent.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
-                  </Button>
                 </motion.div>
               </div>
             </section>

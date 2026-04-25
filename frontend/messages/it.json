@@ -2309,7 +2309,7 @@
       "badge": "Per Aziende, Agenzie e Team HR — Tutti i Settori",
       "title": "Un'Assunzione Sbagliata Costa Tempo e Denaro.",
       "titleHighlight": "Ti Aiutiamo a Scegliere Bene.",
-      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta. Paghi per contatto se assumi occasionalmente, o abbonati se assumi regolarmente — scegli la forma che fa per te."
+      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta. 5 contatti gratis ogni mese, ti abboni quando scali."
     },
     "steps": {
       "0": {
@@ -2413,7 +2413,7 @@
     },
     "cta": {
       "title": "Trova Talenti di cui Fidarti",
-      "subtitle": "Esplora portfolio verificati gratis. Paghi €10 a contatto solo quando contatti davvero — o abbonati da €149/mese se assumi spesso.",
+      "subtitle": "Esplora portfolio verificati gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €149/mese per contatti illimitati e suite AI completa.",
       "primaryButton": "Inizia gratis",
       "secondaryButton": "Prova la Ricerca Intelligente"
     },
@@ -2427,7 +2427,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "La ricerca è gratis. Due modi di pagare quando contatti: Pay-per-Contact (€10 a outreach, zero impegno — ideale se assumi occasionalmente) o Abbonamento (€149/mese, contatti illimitati + 10 annunci + seats per il team + AI illimitata — consigliato se assumi regolarmente). Enterprise ha prezzi custom con SSO + API + CSM dedicato. Vedi /pricing per il confronto completo."
+          "answer": "Gratis cercare e contattare fino a 5 candidati al mese — niente carta, niente impegno. Dopo i 5 ti abboni per continuare (€149/mese per contatti illimitati + 10 annunci + seats per il team + suite AI). Enterprise ha prezzi custom con SSO, API, CSM dedicato. Vedi /pricing per il confronto completo."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",
@@ -3570,39 +3570,39 @@
     },
     "companies": {
       "badge": "Per le Aziende",
-      "title": "Scegli la forma adatta a come assumi",
-      "subtitle": "Pay-per-contact se assumi sporadicamente. Abbonamento se assumi regolarmente. Cerca talenti verificati gratis — paghi solo quando contatti davvero.",
-      "popular": "Consigliato se assumi con regolarità",
+      "title": "Provi gratis, ti abboni quando scali",
+      "subtitle": "Cerchi talenti verificati gratis. 5 contatti ogni mese gratis. Quando ti serve di più, ti abboni — un solo percorso, niente pacchetti crediti da gestire.",
+      "popular": "La maggior parte sceglie questo",
       "tiers": {
         "starter": {
-          "name": "Pay-per-Contact",
-          "price": "€10",
-          "period": "/ contatto",
-          "description": "Pensato per piccole aziende e PMI che assumono saltuariamente. Paghi solo quando contatti davvero. Zero impegno mensile.",
-          "cta": "Inizia pay-per-contact",
+          "name": "Free",
+          "price": "€0",
+          "period": "/ per sempre",
+          "description": "Cerchi nell'intero pool di talenti verificati. Contatti fino a 5 candidati al mese — quota resettata il 1° del mese. Nessuna carta richiesta.",
+          "cta": "Inizia gratis",
           "features": {
-            "0": "Ricerca talenti illimitata (gratis)",
+            "0": "Ricerca talenti illimitata",
             "1": "Profili verificati dalle università con prove",
-            "2": "Paghi €10 solo quando riveli contatto + invii il messaggio",
-            "3": "3 crediti contatto inclusi al signup",
-            "4": "Sconto volume: 200 crediti −10%, 500 crediti −20%",
-            "5": "1 annuncio attivo"
+            "2": "5 contatti ogni mese, gratis (reset mensile)",
+            "3": "Fit score + ragioni del match su ogni profilo",
+            "4": "1 annuncio attivo",
+            "5": "Anteprima Decision Pack · 1/mese"
           }
         },
         "growth": {
           "name": "Abbonamento",
           "price": "€149",
           "period": "/ mese",
-          "description": "Consigliato per aziende mid/large che assumono regolarmente. Outreach illimitato, team seats, AI inclusa.",
+          "description": "Contatti illimitati, seats per il team, suite AI completa. L'unico percorso quando hai esaurito la quota mensile.",
           "cta": "Attiva abbonamento",
           "features": {
-            "0": "Tutto in Pay-per-Contact, più:",
-            "1": "Rivelazioni contatto illimitate (nessun costo per contatto)",
+            "0": "Tutto in Free, più:",
+            "1": "Rivelazioni contatto illimitate",
             "2": "10 annunci attivi",
             "3": "Pipeline completa + seats per il team",
             "4": "Consulente Assunzioni basato su evidenze (illimitato)",
             "5": "Generatore Kit Colloquio (illimitato)",
-            "6": "Decision Pack + link di condivisione candidato",
+            "6": "Decision Pack + link di condivisione candidato (illimitati)",
             "7": "5 GB archivio documenti"
           }
         },
@@ -3626,16 +3626,21 @@
         }
       }
     },
+    "freemiumFunnel": {
+      "badge": "Come funziona il piano Free",
+      "title": "Provaci con 5 contatti gratis ogni mese",
+      "subtitle": "Cerchi nel pool di talenti verificati gratis. Contatti fino a 5 candidati ogni mese senza costi. Quando ti serve di più, ti abboni — è l'unico percorso, niente pacchetti crediti da gestire."
+    },
     "payPerTalent": {
-      "badge": "Come funziona il pay-per-contact",
-      "title": "Paghi solo quando contatti davvero",
-      "subtitle": "Cerca nel pool di talenti verificati gratis. Paghi €10 solo quando sblocchi il contatto di un candidato e invii il primo messaggio. Nessun abbonamento, nessun impegno — ideale se assumi poche volte l'anno.",
-      "cta": "Inizia pay-per-contact",
+      "badge": "Ritirato — vedi il piano Free",
+      "title": "Abbiamo ritirato il pay-per-contact",
+      "subtitle": "Il piano Free ora include 5 contatti al mese per tutti — niente pacchetti crediti. Ti abboni quando scali.",
+      "cta": "Vedi i nuovi prezzi",
       "packages": {
-        "0": "3 crediti — inclusi gratis al signup",
-        "1": "50 crediti — €500 (€10/contatto)",
-        "2": "200 crediti — €1.800 (€9/contatto, sconto 10%)",
-        "3": "500+ crediti — Custom (€8/contatto, sconto 20%)"
+        "0": "Piano Free · 5 contatti/mese",
+        "1": "Abbonamento · contatti illimitati a €149/mese",
+        "2": "Enterprise · prezzi custom",
+        "3": "Provi gratis, ti abboni quando scali"
       }
     },
     "universities": {
@@ -3693,12 +3698,12 @@
           "a": "Sì — il piano Free copre portfolio, CV/Europass, Fit Profile, candidature illimitate, 3 analisi AI per progetto, skill path e analytics base. Premium (€7,99/mese o €69/anno) sblocca skill path completo, 8 dashboard analytics avanzate, AI illimitata, URL portfolio personalizzato, AI Interview Coach, credenziali firmate. Primo mese gratis, cancelli quando vuoi. Se la tua università è partner che sponsorizza Premium, lo è già per te."
         },
         "1": {
-          "q": "Come funziona il prezzo per contatto per le aziende?",
-          "a": "Cerca nel pool di talenti verificati gratis. Paghi €10 solo quando sblocchi l'email di un candidato e invii il primo messaggio. Nessun abbonamento, nessun impegno. Perfetto se assumi poche persone all'anno. Sconti volume da 50 crediti (−10%) e 500+ (−20%)."
+          "q": "Come funziona il piano Free per le aziende?",
+          "a": "Cerchi talenti verificati gratis, senza carta. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1° del mese. Il limite di 5 si conta sull'intero dominio aziendale (così non puoi moltiplicare account per aggirarlo). Quando ti serve di più, ti abboni."
         },
         "2": {
-          "q": "Quando un'azienda dovrebbe scegliere l'Abbonamento?",
-          "a": "Se assumi regolarmente. €149/mese ti dà rivelazioni contatto illimitate (niente più fee per contatto), 10 annunci attivi, seats per il team, AI illimitata (Consulente Assunzioni, Kit Colloquio, Decision Pack), ricerche salvate condivise. Lo suggeriremo automaticamente una volta superati circa 15 contatti al mese."
+          "q": "Cosa succede dopo i 5 contatti?",
+          "a": "Blocchiamo ulteriori contatti e mostriamo il percorso abbonamento. Abbiamo ritirato i pacchetti crediti — niente €10/contatto, niente à-la-carte. Il modo più semplice per continuare è l'Abbonamento da €149/mese che dà contatti illimitati, seats per il team e la suite AI completa. La quota si resetta ogni mese, quindi non perdi mai l'accesso del tutto."
         },
         "3": {
           "q": "Università e ITS pagano qualcosa?",
@@ -9135,10 +9140,10 @@
   },
   "forSME": {
     "hero": {
-      "badge": "Per PMI e piccole aziende che assumono saltuariamente",
-      "title": "Paghi solo quando contatti davvero. €10 a contatto.",
-      "subtitle": "Perfetto se assumi qualche persona all'anno. Cerca talenti verificati gratis — paghi €10 solo quando sblocchi il contatto e invii il primo messaggio. Nessun abbonamento, nessun impegno, nessun costo di agenzia.",
-      "cta": "Inizia pay-per-contact",
+      "badge": "Per PMI e piccole aziende — gratis fino a 5 contatti al mese",
+      "title": "Provi il pool di talenti verificati gratis. Ti abboni quando scali.",
+      "subtitle": "Sfogli tutti i profili gratis. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1°. Quando ti serve di più, passi all'abbonamento da €149/mese. Niente pacchetti crediti, niente fee per contatto, niente intermediari.",
+      "cta": "Inizia gratis",
       "secondaryCta": "Prova la Ricerca Intelligente"
     },
     "benefits": {
@@ -9147,8 +9152,8 @@
         "description": "Ogni progetto è verificato dall'università. Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
       },
       "1": {
-        "title": "€10 a contatto. Solo quando contatti davvero.",
-        "description": "Cerca nel pool gratis. Paga €10 per sbloccare l'email di un candidato + inviare il primo messaggio. Sconti da 50 crediti (−10%) a 500+ (−20%). Mai abbonamenti."
+        "title": "5 contatti gratis ogni mese",
+        "description": "Cerchi gratis. Contatti fino a 5 candidati al mese a costo zero. Il reset mensile ti dà un momento di trial ricorrente. Quando ti serve di più, c'è un solo percorso: l'abbonamento — niente pacchetti crediti da gestire."
       },
       "2": {
         "title": "Voti che capisci",
@@ -9161,9 +9166,9 @@
       "title": "Perché le PMI scelgono InTransparency"
     },
     "cta": {
-      "title": "Inizia gratis. Paghi solo quando contatti.",
-      "subtitle": "Nessun abbonamento, nessun impegno. Registrati e ricevi 3 crediti contatto gratis — abbastanza per provare la piattaforma a rischio zero.",
-      "button": "Inizia pay-per-contact"
+      "title": "Inizia gratis. Ti abboni quando hai superato il piano Free.",
+      "subtitle": "Niente carta, niente impegno. Cinque contatti ogni mese a costo zero. Quando scali oltre, c'è un solo percorso: abbonamento da €149/mese con contatti illimitati e suite AI completa.",
+      "button": "Inizia gratis"
     }
   },
   "forAgencies": {
