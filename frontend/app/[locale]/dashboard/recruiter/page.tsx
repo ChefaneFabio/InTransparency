@@ -141,7 +141,7 @@ export default function RecruiterDashboard() {
       <RecruiterActionCenter />
 
       {/* Hero */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex-1">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">

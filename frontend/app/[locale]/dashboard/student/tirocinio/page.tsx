@@ -132,7 +132,7 @@ export default function StudentPlacementPage() {
   if (placements.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-5">
-        <MetricHero gradient="primary">
+        <MetricHero gradient="student">
           <div>
             <h1 className="text-2xl font-bold">Il mio tirocinio</h1>
             <p className="text-muted-foreground mt-1">Traccia il tuo stage, le ore, le valutazioni.</p>
@@ -155,7 +155,7 @@ export default function StudentPlacementPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6 space-y-5 pb-12">
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold">Il mio tirocinio</h1>
           <p className="text-muted-foreground mt-1">

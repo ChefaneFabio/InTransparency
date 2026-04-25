@@ -210,7 +210,7 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Project Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <div className="space-y-4">
           <div>
             <div className="flex items-center space-x-3 mb-2">

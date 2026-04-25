@@ -282,7 +282,7 @@ export default function ProjectEditPage() {
         </Link>
       </Button>
 
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <div>
           <h1 className="text-2xl font-bold">Modifica progetto</h1>
           <p className="text-sm text-muted-foreground mt-1">

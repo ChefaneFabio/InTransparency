@@ -48,7 +48,7 @@ export default function UniversityInsightsPage() {
 
   return (
     <div className="min-h-screen space-y-6">
-      <MetricHero gradient="dark">
+      <MetricHero gradient="companyDark">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
           <p className="text-white/60 mt-1">{t('subtitle')}</p>

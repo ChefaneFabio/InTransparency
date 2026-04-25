@@ -538,7 +538,7 @@ export default function CandidatesPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" asChild>

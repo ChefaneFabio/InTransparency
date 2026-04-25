@@ -14,46 +14,68 @@ interface MetricHeroProps {
     | 'dark'
     | 'institution'
     | 'institutionDark'
+    | 'student'
+    | 'studentDark'
+    | 'company'
+    | 'companyDark'
   className?: string
   /** Disable the animated gradient blobs. */
   quiet?: boolean
 }
 
 /**
- * Hero container used on every dashboard page header. Upgraded to
- * InTransparency style: drifting gradient blobs + subtle grid overlay +
- * pop-in motion. One file, cascades to 30+ pages.
+ * Hero container used on every dashboard page header. Cascades to 30+ pages.
  *
- * `institution` / `institutionDark` are the refined "scholarly archival"
- * palette — warm stone + bronze + muted plum. Used across
- * /dashboard/university/* to give institutions a distinctive aesthetic
- * separate from the cool generic-corporate primary/blue palette.
+ * Aesthetic: restrained, gallery-quiet. Colors are tints, not fills.
+ * Each palette is a *suggestion* of warmth/coolness rather than a saturated
+ * brand block. The dark variant uses warm-cool slate-stone instead of pure
+ * cold slate.
+ *
+ * `institution` / `institutionDark` lean warm stone + bronze + muted plum.
+ * `student` / `studentDark` lean cool violet + soft plum.
+ * `company` / `companyDark` lean steel blue + slate.
+ * Older saturated names (primary/blue/purple/green/amber/dark) are kept
+ * for compatibility but were softened in the same pass.
  */
 const LIGHT_GRADIENTS: Record<string, string> = {
-  primary:         'from-primary/15 via-primary/8 to-background',
-  blue:            'from-blue-600/10 via-blue-500/5 to-background',
-  purple:          'from-purple-600/10 via-purple-500/5 to-background',
-  green:           'from-emerald-600/10 via-emerald-500/5 to-background',
-  amber:           'from-amber-500/15 via-amber-500/5 to-background',
+  primary:         'from-primary/8 via-primary/4 to-background',
+  blue:            'from-blue-500/6 via-blue-400/3 to-background',
+  purple:          'from-purple-500/6 via-purple-400/3 to-background',
+  green:           'from-emerald-500/6 via-emerald-400/3 to-background',
+  amber:           'from-amber-500/8 via-amber-400/3 to-background',
   dark:            'from-slate-900 via-slate-800 to-slate-900',
-  institution:     'from-stone-100/80 via-amber-50/40 to-background',
-  institutionDark: 'from-stone-950 via-amber-950/30 to-stone-900',
+  institution:     'from-stone-100/70 via-amber-50/30 to-background',
+  institutionDark: 'from-stone-950 via-stone-900 to-amber-950/40',
+  student:         'from-violet-50/60 via-purple-50/30 to-background',
+  studentDark:     'from-slate-950 via-violet-950/30 to-slate-900',
+  company:         'from-slate-100/60 via-blue-50/30 to-background',
+  companyDark:     'from-slate-950 via-slate-900 to-blue-950/40',
 }
 
 const BLOB_COLORS: Record<string, { a: string; b: string }> = {
-  primary:         { a: 'from-primary/25',       b: 'from-violet-500/20' },
-  blue:            { a: 'from-blue-500/25',      b: 'from-cyan-500/20' },
-  purple:          { a: 'from-purple-500/25',    b: 'from-pink-500/20' },
-  green:           { a: 'from-emerald-500/25',   b: 'from-teal-500/20' },
-  amber:           { a: 'from-amber-500/25',     b: 'from-orange-500/20' },
-  dark:            { a: 'from-violet-500/25',    b: 'from-blue-500/20' },
-  // Bronze + plum — feels like a paper hall, not an admin SaaS
-  institution:     { a: 'from-amber-700/20',     b: 'from-rose-700/12' },
-  institutionDark: { a: 'from-amber-500/25',     b: 'from-rose-400/15' },
+  primary:         { a: 'from-primary/15',       b: 'from-violet-500/10' },
+  blue:            { a: 'from-blue-500/14',      b: 'from-cyan-500/10' },
+  purple:          { a: 'from-purple-500/14',    b: 'from-pink-500/10' },
+  green:           { a: 'from-emerald-500/14',   b: 'from-teal-500/10' },
+  amber:           { a: 'from-amber-500/14',     b: 'from-orange-500/10' },
+  dark:            { a: 'from-violet-500/15',    b: 'from-blue-500/10' },
+  // Bronze + plum — paper hall, not admin SaaS
+  institution:     { a: 'from-amber-700/14',     b: 'from-rose-700/8' },
+  institutionDark: { a: 'from-amber-500/16',     b: 'from-rose-400/10' },
+  // Refined plum + ink violet
+  student:         { a: 'from-violet-500/14',    b: 'from-fuchsia-400/8' },
+  studentDark:     { a: 'from-violet-500/18',    b: 'from-fuchsia-400/10' },
+  // Steel + soft mineral
+  company:         { a: 'from-blue-500/12',      b: 'from-slate-500/8' },
+  companyDark:     { a: 'from-blue-400/14',      b: 'from-cyan-400/8' },
 }
 
 export function MetricHero({ children, gradient = 'primary', className = '', quiet = false }: MetricHeroProps) {
-  const isDark = gradient === 'dark' || gradient === 'institutionDark'
+  const isDark =
+    gradient === 'dark' ||
+    gradient === 'institutionDark' ||
+    gradient === 'studentDark' ||
+    gradient === 'companyDark'
   const blobs = BLOB_COLORS[gradient] || BLOB_COLORS.primary
 
   return (

@@ -188,7 +188,7 @@ export default function StudentMessages() {
     <div className="min-h-screen space-y-6">
       <div className="space-y-6">
         {/* Header */}
-        <MetricHero gradient="primary">
+        <MetricHero gradient="student">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Messages</h1>

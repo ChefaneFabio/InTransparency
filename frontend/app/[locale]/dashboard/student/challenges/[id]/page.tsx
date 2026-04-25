@@ -266,7 +266,7 @@ export default function StudentChallengeDetailPage() {
             Back
           </Link>
         </Button>
-        <MetricHero gradient="primary">
+        <MetricHero gradient="student">
           <div className="flex items-start gap-4">
             {challenge.companyLogo ? (
               <img

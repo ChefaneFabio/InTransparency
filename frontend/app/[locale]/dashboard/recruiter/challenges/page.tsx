@@ -108,7 +108,7 @@ export default function RecruiterChallengesPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>

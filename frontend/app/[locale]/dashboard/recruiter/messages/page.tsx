@@ -201,7 +201,7 @@ export default function RecruiterMessagesPage() {
     <div className="min-h-screen space-y-6">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <MetricHero gradient="primary" className="mb-6">
+        <MetricHero gradient="company" className="mb-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>

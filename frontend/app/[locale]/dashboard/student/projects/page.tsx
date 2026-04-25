@@ -216,7 +216,7 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-background space-y-8">
       {/* Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold">Your Projects</h1>

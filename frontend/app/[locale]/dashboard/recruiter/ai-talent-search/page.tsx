@@ -33,7 +33,7 @@ export default function AITalentSearchPage() {
 
   return (
     <div className="space-y-6">
-      <MetricHero gradient="dark">
+      <MetricHero gradient="companyDark">
         <div className="flex items-center gap-4">
           <motion.div
             initial={{ scale: 0, rotate: -180 }}

@@ -32,7 +32,7 @@ export default function OpportunitiesPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
-      <MetricHero gradient="blue">
+      <MetricHero gradient="student">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/30 to-blue-500/10 border border-white/10 flex items-center justify-center">
             <Briefcase className="h-6 w-6 text-white" />

@@ -29,7 +29,7 @@ export default function RecruiterSettingsPage() {
 
   return (
     <div className="max-w-5xl mx-auto py-8 px-4 space-y-6">
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <h1 className="text-2xl font-semibold">Settings</h1>
         <p className="text-muted-foreground">
           Company profile, documents, and integrations.

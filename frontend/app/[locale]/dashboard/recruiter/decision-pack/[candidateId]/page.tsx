@@ -156,7 +156,7 @@ export default function DecisionPackPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="flex items-center justify-between mb-6">
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter/candidates">

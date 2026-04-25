@@ -163,7 +163,7 @@ export default function RecruiterPipelineAnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="space-y-5">
           <div>
             <div className="flex items-center gap-2 text-primary text-sm font-medium mb-1">

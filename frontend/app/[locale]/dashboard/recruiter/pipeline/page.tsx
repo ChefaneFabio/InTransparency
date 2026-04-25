@@ -307,7 +307,7 @@ export default function RecruiterPipelinePage() {
 
   return (
     <div className="space-y-6">
-      <MetricHero gradient="primary">
+      <MetricHero gradient="company">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold">{t('title')}</h1>

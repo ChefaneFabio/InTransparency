@@ -73,7 +73,7 @@ export default function StudentApplications() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-5">
       {/* Header */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
       </MetricHero>

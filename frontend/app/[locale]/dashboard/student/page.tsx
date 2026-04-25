@@ -144,7 +144,7 @@ export default function StudentDashboard() {
       <JourneyPreview />
 
       {/* Hero Section */}
-      <MetricHero gradient="primary">
+      <MetricHero gradient="student">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex-1">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">

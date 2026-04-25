@@ -88,7 +88,7 @@ export default function InterviewKitPage() {
 
   return (
     <div className="min-h-screen space-y-6">
-      <MetricHero gradient="dark">
+      <MetricHero gradient="companyDark">
         <div className="flex items-center gap-4">
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
