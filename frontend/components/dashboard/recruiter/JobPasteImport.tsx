@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Sparkles, Loader2, ChevronDown, ChevronUp, Link as LinkIcon, FileText } from 'lucide-react'
+import { Loader2, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
@@ -80,28 +80,23 @@ export default function JobPasteImport({ onParsed }: Props) {
   const canParse = mode === 'text' ? text.trim().length > 30 : /^https?:\/\/\S+/.test(url.trim())
 
   return (
-    <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/40 dark:to-cyan-950/40 mb-4">
+    <div className="rounded-xl border border-border/60 bg-muted/30 mb-4">
       <button
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between px-4 py-3 text-left"
       >
-        <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md">
-            <Sparkles className="h-4 w-4 text-white" />
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-blue-900 dark:text-blue-100">
-              Have an existing job description?
-            </p>
-            <p className="text-xs text-blue-700 dark:text-blue-300">
-              Paste it (or a URL) and we'll auto-fill the form in seconds.
-            </p>
-          </div>
+        <div>
+          <p className="text-sm font-semibold text-foreground">
+            Have an existing job description?
+          </p>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Paste it (or a URL) and we'll auto-fill the form in seconds.
+          </p>
         </div>
         {open ? (
-          <ChevronUp className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+          <ChevronUp className="h-4 w-4 text-muted-foreground shrink-0" />
         ) : (
-          <ChevronDown className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+          <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
         )}
       </button>
 
@@ -116,27 +111,25 @@ export default function JobPasteImport({ onParsed }: Props) {
           >
             <div className="px-4 pb-4 space-y-3">
               {/* Mode toggle */}
-              <div className="inline-flex rounded-lg border border-blue-200 dark:border-blue-800 bg-white/60 dark:bg-slate-900/60 p-0.5">
+              <div className="inline-flex rounded-lg border border-border/60 bg-background p-0.5">
                 <button
                   onClick={() => setMode('text')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                     mode === 'text'
-                      ? 'bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-200 shadow-sm'
-                      : 'text-blue-700/70 dark:text-blue-300/70 hover:text-blue-900 dark:hover:text-blue-100'
+                      ? 'bg-foreground text-background'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <FileText className="h-3 w-3" />
                   Paste text
                 </button>
                 <button
                   onClick={() => setMode('url')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                     mode === 'url'
-                      ? 'bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-200 shadow-sm'
-                      : 'text-blue-700/70 dark:text-blue-300/70 hover:text-blue-900 dark:hover:text-blue-100'
+                      ? 'bg-foreground text-background'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <LinkIcon className="h-3 w-3" />
                   From URL
                 </button>
               </div>
@@ -147,7 +140,7 @@ export default function JobPasteImport({ onParsed }: Props) {
                   onChange={e => setText(e.target.value)}
                   placeholder="Paste the full job description here. Italian or English both work."
                   rows={5}
-                  className="bg-white dark:bg-slate-900 border-blue-200 dark:border-blue-800 text-sm"
+                  className="text-sm"
                   disabled={loading}
                 />
               ) : (
@@ -156,42 +149,31 @@ export default function JobPasteImport({ onParsed }: Props) {
                   value={url}
                   onChange={e => setUrl(e.target.value)}
                   placeholder="https://example.com/jobs/senior-developer"
-                  className="bg-white dark:bg-slate-900 border-blue-200 dark:border-blue-800 text-sm"
+                  className="text-sm"
                   disabled={loading}
                 />
               )}
 
               {error && (
-                <p className="text-xs text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 rounded-md px-3 py-2">
+                <p className="text-sm text-rose-700 dark:text-rose-400">
                   {error}
                 </p>
               )}
 
               <div className="flex items-center justify-between gap-3">
-                <p className="text-[11px] text-blue-700/80 dark:text-blue-300/80">
+                <p className="text-xs text-muted-foreground">
                   We'll fill what we can; you review and edit before publishing.
                 </p>
-                <Button
-                  onClick={handleParse}
-                  disabled={!canParse || loading}
-                  size="sm"
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 text-white shadow-md"
-                >
+                <Button onClick={handleParse} disabled={!canParse || loading} size="sm">
                   {loading ? (
                     <>
                       <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />
-                      Reading…
+                      Reading
                     </>
                   ) : done ? (
-                    <>
-                      <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-                      Done · check the fields
-                    </>
+                    'Done · check the fields'
                   ) : (
-                    <>
-                      <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-                      Auto-fill the form
-                    </>
+                    'Auto-fill the form'
                   )}
                 </Button>
               </div>

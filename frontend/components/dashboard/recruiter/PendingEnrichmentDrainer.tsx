@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Sparkles, X, CheckCircle2 } from 'lucide-react'
+import { X } from 'lucide-react'
 
 const PENDING_ENRICHMENT_KEY = 'intransparency_pending_recruiter_enrichment'
 
@@ -61,26 +61,25 @@ export default function PendingEnrichmentDrainer() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
-          className="fixed top-20 right-4 z-50 max-w-sm rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/60 dark:to-cyan-950/60 dark:border-blue-800 shadow-2xl p-4 flex items-start gap-3"
+          className="fixed top-20 right-4 z-50 max-w-sm rounded-xl border bg-card shadow-xl p-4 flex items-start gap-3"
         >
           {confirmation.companyLogo && (
             <img
               src={confirmation.companyLogo}
               alt={confirmation.companyName}
-              className="h-10 w-10 rounded bg-white object-contain shrink-0"
+              className="h-10 w-10 rounded bg-white object-contain shrink-0 border"
               onError={e => {
                 (e.target as HTMLImageElement).style.display = 'none'
               }}
             />
           )}
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 flex items-center gap-1">
-              <Sparkles className="h-3.5 w-3.5" />
+            <p className="text-sm font-semibold text-foreground">
               Profile pre-filled
             </p>
-            <p className="text-xs text-blue-700 dark:text-blue-200 mt-0.5 leading-relaxed">
-              We set up <strong>{confirmation.companyName}</strong> from your work email. Review and complete it from{' '}
-              <a href="/dashboard/recruiter/settings" className="underline font-medium hover:text-blue-900 dark:hover:text-blue-50">
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+              We set up <strong className="text-foreground">{confirmation.companyName}</strong> from your work email. Review and complete it from{' '}
+              <a href="/dashboard/recruiter/settings" className="underline font-medium text-foreground hover:no-underline">
                 Settings
               </a>
               .
@@ -88,12 +87,11 @@ export default function PendingEnrichmentDrainer() {
           </div>
           <button
             onClick={() => setConfirmation(null)}
-            className="text-blue-600 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 shrink-0"
+            className="text-muted-foreground hover:text-foreground shrink-0"
             aria-label="Dismiss"
           >
             <X className="h-4 w-4" />
           </button>
-          <CheckCircle2 className="absolute -top-2 -right-2 h-5 w-5 text-emerald-500 bg-white rounded-full" />
         </motion.div>
       )}
     </AnimatePresence>
