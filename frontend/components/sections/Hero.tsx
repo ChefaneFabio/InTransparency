@@ -8,6 +8,8 @@ import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
 import { BRAND_IMAGES } from '@/lib/brand-images'
 import { AppPreview } from '@/components/sections/AppPreview'
+import VerifiedSkillsOrb from '@/components/3d/VerifiedSkillsOrb'
+import TiltCard from '@/components/3d/TiltCard'
 
 const segmentIcons = {
   students: GraduationCap,
@@ -37,8 +39,15 @@ export function Hero() {
   const cta = segmentCTAs[activeSegment]
 
   return (
-    <section className="py-16 sm:py-20">
-      <div className="container">
+    <section className="relative py-16 sm:py-20 overflow-hidden">
+      {/* 3D backdrop — only on the students segment where it amplifies the
+          "verified skills" message most powerfully without competing with
+          B2B pricing copy. */}
+      {activeSegment === 'students' && (
+        <VerifiedSkillsOrb className="absolute inset-x-0 top-0 h-[640px] -z-0 opacity-70 dark:opacity-50" />
+      )}
+
+      <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           {/* Social proof — earned, not decorative */}
           <p className="mb-8 text-sm font-medium tracking-widest text-primary uppercase">
@@ -170,20 +179,23 @@ export function Hero() {
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                {/* Feature cards */}
+                {/* Feature cards — 3D tilt to reinforce engagement-as-progress */}
                 <div className="space-y-4">
                   {[0, 1, 2].map((index) => (
-                    <div
+                    <TiltCard
                       key={`${activeSegment}-${index}`}
-                      className="bg-card rounded-xl border border-border p-5"
+                      intensity={6}
+                      className="rounded-xl"
                     >
-                      <h3 className="text-base font-semibold text-foreground mb-2">
-                        {t(`${segment}.features.${index}.title`)}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {t(`${segment}.features.${index}.description`)}
-                      </p>
-                    </div>
+                      <div className="bg-card rounded-xl border border-border p-5 hover:border-primary/40 transition-colors">
+                        <h3 className="text-base font-semibold text-foreground mb-2">
+                          {t(`${segment}.features.${index}.title`)}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {t(`${segment}.features.${index}.description`)}
+                        </p>
+                      </div>
+                    </TiltCard>
                   ))}
                 </div>
 

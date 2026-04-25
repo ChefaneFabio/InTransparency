@@ -9,6 +9,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import TiltCard from '@/components/3d/TiltCard'
 import {
   ArrowRight, Check, GraduationCap, Building2, Sparkles,
   Briefcase, BookOpen, Shield, Brain, FileText, Users,
@@ -119,6 +120,7 @@ export default function PricingPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + i * 0.1 }}
                     >
+                      <TiltCard intensity={5} className="rounded-xl h-full">
                       <Card className={`relative h-full flex flex-col ${tier.featured ? 'border-2 border-primary shadow-xl shadow-primary/10' : 'border-2'}`}>
                         {tier.featured && (
                           <div className="absolute -top-3 left-5">
@@ -161,6 +163,7 @@ export default function PricingPage() {
                           </Button>
                         </CardContent>
                       </Card>
+                      </TiltCard>
                     </motion.div>
                   ))}
                 </div>
