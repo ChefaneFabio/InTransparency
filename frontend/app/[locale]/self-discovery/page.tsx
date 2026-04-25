@@ -18,6 +18,7 @@ import {
   ENERGIZING_ACTIVITIES,
   STEPS,
 } from '@/lib/self-discovery'
+import ProjectTaggingStep, { type ProjectTagsMap } from '@/components/student/ProjectTaggingStep'
 
 interface DiscoveryProfile {
   coreValues: string[]
@@ -29,6 +30,7 @@ interface DiscoveryProfile {
   idealDayNarrative: string | null
   fiveYearNarrative: string | null
   selfAssessedSkills: Array<{ skill: string; level: number; evidence?: string }> | null
+  projectTags: ProjectTagsMap | null
   discoveryInsights: any
   stepsCompleted: number
   completedAt: string | null
@@ -52,6 +54,7 @@ export default function SelfDiscoveryPage() {
   const [fiveYear, setFiveYear] = useState('')
   const [selfSkills, setSelfSkills] = useState<Array<{ skill: string; level: number }>>([])
   const [newSkill, setNewSkill] = useState('')
+  const [projectTags, setProjectTags] = useState<ProjectTagsMap>({})
 
   useEffect(() => {
     fetch('/api/student/self-discovery')
@@ -69,6 +72,7 @@ export default function SelfDiscoveryPage() {
           setIdealDay(p.idealDayNarrative ?? '')
           setFiveYear(p.fiveYearNarrative ?? '')
           setSelfSkills(p.selfAssessedSkills ?? [])
+          setProjectTags((p.projectTags as ProjectTagsMap) ?? {})
           setCurrentStep(Math.min(6, (p.stepsCompleted ?? 0) + 1))
         }
       })
@@ -84,6 +88,7 @@ export default function SelfDiscoveryPage() {
       data.energizingActivities = energizing
       data.drainingActivities = draining
     }
+    if (step === 3) data.projectTags = projectTags
     if (step === 4) {
       data.motivations = motivations
       data.dealbreakers = dealbreakers
@@ -216,12 +221,7 @@ export default function SelfDiscoveryPage() {
             )}
 
             {currentStep === 3 && (
-              <div className="text-center py-8">
-                <p className="text-muted-foreground">{t('steps.projects.note')}</p>
-                <Button variant="outline" className="mt-4" asChild>
-                  <a href="/dashboard/student/projects">{t('steps.projects.goToProjects')}</a>
-                </Button>
-              </div>
+              <ProjectTaggingStep value={projectTags} onChange={setProjectTags} />
             )}
 
             {currentStep === 4 && (
