@@ -8,7 +8,6 @@ import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
 import { BRAND_IMAGES } from '@/lib/brand-images'
 import { AppPreview } from '@/components/sections/AppPreview'
-import HeroVisual from '@/components/3d/HeroVisual'
 import TiltCard from '@/components/3d/TiltCard'
 
 const segmentIcons = {
@@ -103,11 +102,10 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Hero scene per segment.
-            Students get the photoreal credential render — drop the asset at
-            /public/hero/student-credential.webp (or .png) to swap from the
-            CSS-only fallback to the real Blender/AI-rendered scene.
-            Companies + institutions still get the AppPreview product shot. */}
+        {/* Hero scene — product shot per segment. The HeroVisual photoreal
+            slot was removed from here while waiting for a real Blender /
+            AI-rendered asset; the CSS-only fallback didn't pull its weight.
+            Drop a render in /public/hero/ and re-import HeroVisual when ready. */}
         <motion.div
           className="mt-16 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
@@ -122,11 +120,7 @@ export function Hero() {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.3 }}
             >
-              {activeSegment === 'students' ? (
-                <HeroVisual className="mx-auto max-w-[560px]" />
-              ) : (
-                <AppPreview segment={activeSegment} />
-              )}
+              <AppPreview segment={activeSegment} />
             </motion.div>
           </AnimatePresence>
         </motion.div>
