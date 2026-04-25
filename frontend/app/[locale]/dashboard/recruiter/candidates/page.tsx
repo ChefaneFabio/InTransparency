@@ -771,6 +771,7 @@ export default function CandidatesPage() {
           <div className="p-5">
             <EmptyState
               icon={Users}
+              tone="company"
               title={t('empty.title')}
               description={t('empty.description')}
               action={{

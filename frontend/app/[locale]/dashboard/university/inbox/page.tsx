@@ -252,6 +252,7 @@ export default function InstitutionInboxPage() {
           <CardContent className="p-2">
             <EmptyState
               icon={Inbox}
+              tone="institution"
               title={
                 statusFilter === 'PENDING_REVIEW'
                   ? 'Nessun messaggio in attesa'

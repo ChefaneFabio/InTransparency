@@ -30,6 +30,7 @@ import {
 } from 'lucide-react'
 import FitProfileCallout from '@/components/dashboard/student/FitProfileCallout'
 import SponsoredPremiumBanner from '@/components/dashboard/student/SponsoredPremiumBanner'
+import { motion, useReducedMotion } from 'framer-motion'
 
 interface Course {
   courseName: string
@@ -368,66 +369,104 @@ export default function StudentJourneyPage() {
         </Card>
       )}
 
-      {/* ─── MILESTONES TIMELINE ─── */}
-      <Card>
-        <CardContent className="p-5">
-          <div className="flex items-center justify-between mb-4">
+      {/* ─── MILESTONES TIMELINE — 3D depth + staggered entry ─── */}
+      <Card className="relative overflow-hidden">
+        {/* Soft ambient glow that scales with progress */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-50"
+          style={{
+            background: `radial-gradient(circle at 30% 0%, rgba(139,92,246,${0.06 + (milestonePct / 100) * 0.12}), transparent 60%)`,
+          }}
+        />
+        <CardContent className="p-5 relative">
+          <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="text-base font-semibold flex items-center gap-2">
-                <Target className="h-4 w-4 text-primary" />
+                <Target className="h-4 w-4 text-violet-600" />
                 Tappe del tuo percorso
               </h2>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {hasCompleted} su {data.milestones.length} completate
+                {hasCompleted} su {data.milestones.length} completate · ogni tappa genera evidenza verificata
               </p>
             </div>
-            <div className="text-sm font-bold text-primary">{milestonePct}%</div>
+            <div className="text-right">
+              <div className="text-2xl font-bold bg-gradient-to-br from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
+                {milestonePct}%
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-3">
-            {data.milestones.map((m, i) => {
-              const Icon = MILESTONE_ICONS[m.key] || Circle
-              const isNext = !m.done && data.milestones.slice(0, i).every(x => x.done)
-              return (
-                <div key={m.key} className="flex items-start gap-3">
-                  <div className="flex flex-col items-center shrink-0">
-                    <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+          {/* Progress spine — gradients with progress */}
+          <div className="relative pl-1">
+            <div className="absolute left-[1.125rem] top-2 bottom-2 w-0.5 bg-muted" />
+            <motion.div
+              className="absolute left-[1.125rem] top-2 w-0.5 bg-gradient-to-b from-emerald-400 via-violet-400 to-fuchsia-400 rounded-full"
+              initial={{ height: 0 }}
+              animate={{ height: `calc(${milestonePct}% - 4px)` }}
+              transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
+            />
+
+            <div className="space-y-2.5 relative">
+              {data.milestones.map((m, i) => {
+                const Icon = MILESTONE_ICONS[m.key] || Circle
+                const isNext = !m.done && data.milestones.slice(0, i).every(x => x.done)
+                return (
+                  <motion.div
+                    key={m.key}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.15 + i * 0.08, duration: 0.4, ease: 'easeOut' }}
+                    className="flex items-start gap-3 group"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotateZ: 8 }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+                      className={`relative w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all ${
                         m.done
-                          ? 'bg-emerald-100 text-emerald-700 ring-2 ring-emerald-200'
+                          ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white ring-2 ring-emerald-200 dark:ring-emerald-800/40 shadow-lg shadow-emerald-500/30'
                           : isNext
-                            ? 'bg-primary/10 text-primary ring-2 ring-primary/30 animate-pulse'
+                            ? 'bg-gradient-to-br from-violet-500 to-fuchsia-600 text-white ring-2 ring-violet-300 dark:ring-violet-700/60 shadow-lg shadow-violet-500/40'
                             : 'bg-muted text-muted-foreground/50'
                       }`}
                     >
                       {m.done ? <CheckCircle2 className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
-                    </div>
-                    {i < data.milestones.length - 1 && (
-                      <div
-                        className={`w-0.5 flex-1 min-h-[1rem] mt-1 ${
-                          m.done ? 'bg-emerald-200' : 'bg-muted'
-                        }`}
-                      />
-                    )}
-                  </div>
-                  <div className="flex-1 pb-3 pt-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`text-sm ${m.done ? 'font-medium' : 'text-muted-foreground'}`}>
-                        {m.label}
-                      </span>
+                      {/* Pulsing halo for the next milestone */}
                       {isNext && (
-                        <Badge className="bg-primary/10 text-primary border-0 text-[10px]">
-                          Prossima
-                        </Badge>
+                        <span className="absolute inset-0 rounded-full bg-violet-400/40 animate-ping" />
                       )}
-                      {m.done && m.date && (
-                        <span className="text-xs text-muted-foreground">{fmtDate(m.date)}</span>
-                      )}
+                    </motion.div>
+                    <div
+                      className={`flex-1 pb-2 pt-1.5 px-3 rounded-lg transition-colors ${
+                        isNext
+                          ? 'bg-gradient-to-r from-violet-50/60 to-transparent dark:from-violet-950/30'
+                          : 'group-hover:bg-muted/40'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`text-sm ${m.done ? 'font-semibold text-foreground' : isNext ? 'font-medium text-violet-700 dark:text-violet-300' : 'text-muted-foreground'}`}>
+                          {m.label}
+                        </span>
+                        {isNext && (
+                          <Badge className="bg-violet-500 text-white border-0 text-[10px] shadow-sm">
+                            <Sparkles className="h-2.5 w-2.5 mr-0.5" />
+                            Prossima
+                          </Badge>
+                        )}
+                        {m.done && (
+                          <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-[10px]">
+                            <Shield className="h-2.5 w-2.5 mr-0.5" />
+                            Verificata
+                          </Badge>
+                        )}
+                        {m.done && m.date && (
+                          <span className="text-xs text-muted-foreground">{fmtDate(m.date)}</span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )
-            })}
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -31,6 +31,7 @@ import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
 import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
 import ReadinessBrief from '@/components/dashboard/recruiter/ReadinessBrief'
 import CandidateSummary from '@/components/dashboard/recruiter/CandidateSummary'
+import VerifiedSkillsRibbon from '@/components/dashboard/recruiter/VerifiedSkillsRibbon'
 
 interface Project {
   id: string
@@ -327,6 +328,15 @@ export default function CandidateProfilePage() {
               )}
             </div>
           </div>
+
+          {/* Verified skills ribbon — the brand promise at-a-glance */}
+          <VerifiedSkillsRibbon
+            skills={allSkills}
+            university={candidate.university}
+            gpa={candidate.gpa}
+            verifiedProjects={candidate.projects.filter(p => p.innovationScore !== null).length}
+            totalProjects={candidate.projectCount}
+          />
 
           {/* Stats strip */}
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">

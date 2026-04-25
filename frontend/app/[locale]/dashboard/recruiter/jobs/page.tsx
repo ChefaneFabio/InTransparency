@@ -305,6 +305,7 @@ export default function RecruiterJobs() {
           <div className="p-5">
             <EmptyState
               icon={Briefcase}
+              tone="company"
               title={t('empty.title')}
               description={t('empty.description')}
               action={{

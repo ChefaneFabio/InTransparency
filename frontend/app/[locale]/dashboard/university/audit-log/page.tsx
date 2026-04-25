@@ -283,6 +283,7 @@ export default function AuditLogPage() {
           <CardContent className="p-2">
             <EmptyState
               icon={Shield}
+              tone="institution"
               title="Nessun evento nell'intervallo selezionato"
               description="Prova ad allargare l'intervallo di date o a rimuovere i filtri."
             />
