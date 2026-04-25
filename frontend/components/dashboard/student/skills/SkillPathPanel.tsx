@@ -22,6 +22,7 @@ import {
   Clock,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Link } from '@/navigation'
 import { useSkillPath } from '@/lib/use-skill-path'
@@ -119,18 +120,19 @@ export default function SkillPathPanel({ embedded = false }: { embedded?: boolea
       </MetricHero>
       )}
 
-      {/* Premium upsell for FREE tier */}
+      {/* Premium upsell for FREE tier — points at the new student upgrade page,
+          which honors institution-sponsored Premium and shows the right CTA. */}
       {isLimited && (
-        <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-primary/5 border border-primary/10 rounded-lg flex items-center justify-between">
+        <div className="mb-6 p-4 bg-gradient-to-r from-violet-50 via-white to-blue-50 dark:from-violet-950/20 dark:via-slate-950 dark:to-blue-950/20 border border-violet-200/60 dark:border-violet-900/40 rounded-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <PremiumBadge audience="student" variant="chip" static />
             <div>
               <p className="text-sm font-medium text-foreground">{t('premiumUpsell.title')}</p>
               <p className="text-xs text-muted-foreground">{t('premiumUpsell.description')}</p>
             </div>
           </div>
-          <Button size="sm" asChild>
-            <Link href="/pricing">
+          <Button size="sm" className="bg-gradient-to-br from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white shadow-md shadow-violet-500/20" asChild>
+            <Link href="/dashboard/student/upgrade">
               {t('premiumUpsell.cta')}
               <ArrowRight className="h-3 w-3 ml-1" />
             </Link>

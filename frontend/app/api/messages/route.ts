@@ -134,7 +134,9 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'User not found' }, { status: 404 })
       }
 
-      // Check for active position listing first (Pay-Per-Position: unlimited contacts)
+      // Position-listing pay-per-position tier was retired with the per-contact
+      // dismantling (commit 1e27cbe). Legacy active listings are still honored
+      // until they expire — read-only check, no new ones can be created.
       const activePositionListing = await prisma.positionListing.findFirst({
         where: {
           recruiterId: session.user.id,
@@ -145,7 +147,7 @@ export async function POST(req: NextRequest) {
       })
 
       if (activePositionListing) {
-        // Check dedup: already contacted = no increment
+        // Legacy listing — grant unlimited contacts until it expires naturally.
         const existingContact = await prisma.contactUsage.findFirst({
           where: {
             recruiterId: session.user.id,
@@ -154,7 +156,6 @@ export async function POST(req: NextRequest) {
         })
 
         if (!existingContact) {
-          // Increment contacts used on the position listing
           await prisma.positionListing.update({
             where: { id: activePositionListing.id },
             data: { contactsUsed: { increment: 1 } },
@@ -233,7 +234,7 @@ export async function POST(req: NextRequest) {
         // Free contact allowed — fall through to message creation
       }
 
-      // RECRUITER_ENTERPRISE / RECRUITER_GROWTH (subscription) / re-contacts:
+      // RECRUITER_ENTERPRISE (€89/mo subscription + enterprise) / re-contacts:
       // unlimited. Still record ContactUsage for dedup + analytics.
       // (Per-contact credit purchases retired 2026-04-25 — freemium tiers
       // hit the gate above, paid tiers fall through here.)

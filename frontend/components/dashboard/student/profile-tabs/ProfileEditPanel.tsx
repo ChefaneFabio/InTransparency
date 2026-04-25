@@ -23,6 +23,7 @@ import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DonutChart } from '@/components/dashboard/shared/DonutChart'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { StaggerContainer, StaggerItem } from '@/components/ui/animated-card'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 
 interface WorkExperienceEntry {
   company: string; role: string; startDate: string; endDate: string
@@ -251,7 +252,16 @@ export default function ProfileEditPanel({ embedded = false }: { embedded?: bool
                   <CardContent className="p-5 space-y-4">
                     <div><Label>{t('fields.tagline')}</Label><Input value={editTagline} onChange={e => setEditTagline(e.target.value)} placeholder={t('placeholders.tagline')} /></div>
                     <div><Label>{t('fields.bio')}</Label><Textarea rows={4} value={editBio} onChange={e => setEditBio(e.target.value)} placeholder={t('placeholders.bio')} /></div>
-                    <div><Label>{t('fields.portfolio')}</Label><Input value={editPortfolioUrl} onChange={e => setEditPortfolioUrl(e.target.value)} placeholder="https://..." /></div>
+                    <div>
+                      <Label className="flex items-center gap-2">
+                        {t('fields.portfolio')}
+                        <PremiumBadge audience="student" variant="chip" label="Premium" />
+                      </Label>
+                      <Input value={editPortfolioUrl} onChange={e => setEditPortfolioUrl(e.target.value)} placeholder="https://yourname.intransparency.com" />
+                      <p className="text-[11px] text-muted-foreground mt-1">
+                        Premium feature: custom portfolio URL on your own subdomain.
+                      </p>
+                    </div>
                     <div className="space-y-3 border-t pt-4">
                       <h4 className="text-sm font-medium">{t('privacy.title')}</h4>
                       <div className="flex items-center justify-between"><Label>{t('privacy.publicProfile')}</Label><Switch checked={editProfilePublic} onCheckedChange={setEditProfilePublic} /></div>

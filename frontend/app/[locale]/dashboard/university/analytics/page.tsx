@@ -12,6 +12,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import ScorecardPanel from '@/components/dashboard/university/analytics/ScorecardPanel'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 
 // ---------------------------------------------------------------------------
 // Types matching the API response shapes from /api/dashboard/university/analytics
@@ -238,14 +239,31 @@ export default function UniversityAnalytics() {
       )}
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
+        {/* Free Core: Overview + Placement basics. Everything else is Premium
+            (advanced analytics: cross-cohort, market benchmark, scorecard etc.) */}
         <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="placement">Placement</TabsTrigger>
-          <TabsTrigger value="skills">Skills Gap</TabsTrigger>
-          <TabsTrigger value="employers">Employers</TabsTrigger>
-          <TabsTrigger value="salary">Salary</TabsTrigger>
-          <TabsTrigger value="benchmark">Benchmark</TabsTrigger>
-          <TabsTrigger value="scorecard">Scorecard</TabsTrigger>
+          <TabsTrigger value="skills" className="gap-1">
+            Skills Gap
+            <PremiumBadge audience="institution" variant="lock" static />
+          </TabsTrigger>
+          <TabsTrigger value="employers" className="gap-1">
+            Employers
+            <PremiumBadge audience="institution" variant="lock" static />
+          </TabsTrigger>
+          <TabsTrigger value="salary" className="gap-1">
+            Salary
+            <PremiumBadge audience="institution" variant="lock" static />
+          </TabsTrigger>
+          <TabsTrigger value="benchmark" className="gap-1">
+            Benchmark
+            <PremiumBadge audience="institution" variant="lock" static />
+          </TabsTrigger>
+          <TabsTrigger value="scorecard" className="gap-1">
+            Scorecard
+            <PremiumBadge audience="institution" variant="lock" static />
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="scorecard" className="space-y-6">

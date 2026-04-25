@@ -22,7 +22,6 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Message {
@@ -175,11 +174,6 @@ export default function InstitutionInboxPage() {
 
   return (
     <div className="space-y-5 pb-12">
-      <PremiumUpgradeBanner
-        institutionName={institutionName}
-        plan={institutionPlan}
-        feature="inbox"
-      />
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>

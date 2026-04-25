@@ -30,7 +30,6 @@ import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabi
 import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
 import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
 import ReadinessBrief from '@/components/dashboard/recruiter/ReadinessBrief'
-import { PositionUpsellBanner } from '@/components/dashboard/recruiter/PositionUpsellBanner'
 import CandidateSummary from '@/components/dashboard/recruiter/CandidateSummary'
 
 interface Project {
@@ -80,13 +79,6 @@ export default function CandidateProfilePage() {
   const [contactSubject, setContactSubject] = useState('')
   const [sendingMessage, setSendingMessage] = useState(false)
   const [messageSent, setMessageSent] = useState(false)
-  const [positionUpsell, setPositionUpsell] = useState<{
-    show: boolean
-    recentContacts: number
-    spentRecently: number
-    positionPrice: number
-    savings: number
-  } | null>(null)
   const [shareOpen, setShareOpen] = useState(false)
 
   useEffect(() => {
@@ -142,20 +134,9 @@ export default function CandidateProfilePage() {
 
   const openContactForm = async () => {
     setShowContactForm(true)
-    if (!candidate) return
-    try {
-      const res = await fetch('/api/recruiter/contacts/check', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentId: candidate.id }),
-      })
-      const data = await res.json()
-      if (data.positionUpsell?.show) {
-        setPositionUpsell(data.positionUpsell)
-      }
-    } catch {
-      // Non-critical — don't block the form
-    }
+    // Position upsell removed with the per-contact dismantling — recruiters
+    // are now on freemium-monthly-quota or subscription, no position-listing
+    // tier exists anymore.
   }
 
   const sendMessage = async () => {
@@ -614,14 +595,6 @@ export default function CandidateProfilePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {positionUpsell && positionUpsell.show && (
-                <PositionUpsellBanner
-                  recentContacts={positionUpsell.recentContacts}
-                  spentRecently={positionUpsell.spentRecently}
-                  positionPrice={positionUpsell.positionPrice}
-                  savings={positionUpsell.savings}
-                />
-              )}
               {!candidate.email && (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
                   {t('contactForm.emailNotPublic')}

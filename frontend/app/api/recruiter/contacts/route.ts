@@ -8,7 +8,8 @@ import prisma from '@/lib/prisma'
  * Returns the recruiter's contact-usage state under the freemium model:
  *   - 5 free contacts/month per company domain (FREE / RECRUITER_FREE / legacy
  *     RECRUITER_PAY_PER_CONTACT)
- *   - Unlimited (RECRUITER_GROWTH subscription / RECRUITER_ENTERPRISE)
+ *   - Unlimited (RECRUITER_ENTERPRISE — covers both €89/mo subscription and
+ *     true enterprise tiers until we split them in the schema)
  * Per-contact credit purchases retired 2026-04-25.
  */
 export async function GET(_req: NextRequest) {
@@ -28,9 +29,7 @@ export async function GET(_req: NextRequest) {
     if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
     const FREE_CONTACT_LIMIT = 5
-    const isUnlimited =
-      user.subscriptionTier === 'RECRUITER_GROWTH' ||
-      user.subscriptionTier === 'RECRUITER_ENTERPRISE'
+    const isUnlimited = user.subscriptionTier === 'RECRUITER_ENTERPRISE'
 
     const totalContacted = await prisma.contactUsage.count({
       where: { recruiterId: session.user.id },

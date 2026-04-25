@@ -16,9 +16,9 @@ import {
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
-import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 import { useMyInstitution } from '@/lib/hooks/use-my-institution'
 
 interface AuditEvent {
@@ -181,11 +181,6 @@ export default function AuditLogPage() {
 
   return (
     <div className="space-y-5 pb-12 max-w-5xl mx-auto">
-      <PremiumUpgradeBanner
-        institutionName={institution?.name}
-        plan={institution?.plan}
-        feature="generic"
-      />
 
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -194,10 +189,16 @@ export default function AuditLogPage() {
               <Shield className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold">Audit Log</h1>
+              <h1 className="text-xl md:text-2xl font-bold flex items-center gap-2 flex-wrap">
+                Audit Log
+                <PremiumBadge audience="institution" variant="chip" label="Premium · full export" />
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Ogni azione scritta o query AI, tracciata con actor + timestamp. Evidenza
                 riproducibile per AI Act Art. 86 e GDPR Art. 22.
+                <span className="block mt-1 text-xs">
+                  Free Core: ultimi 30 giorni · Premium: storia completa + export CSV.
+                </span>
               </p>
             </div>
           </div>

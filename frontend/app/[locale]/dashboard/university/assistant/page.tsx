@@ -22,8 +22,8 @@ import {
   BarChart3,
 } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
-import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 import { useMyInstitution } from '@/lib/hooks/use-my-institution'
 
 interface AtRiskCard {
@@ -207,11 +207,6 @@ export default function InstitutionAssistantPage() {
 
   return (
     <div className="space-y-5 pb-6 max-w-4xl mx-auto flex flex-col h-[calc(100vh-100px)]">
-      <PremiumUpgradeBanner
-        institutionName={institution?.name}
-        plan={institution?.plan}
-        feature="generic"
-      />
 
       <MetricHero gradient="primary">
         <div className="flex items-center gap-3">
@@ -219,13 +214,17 @@ export default function InstitutionAssistantPage() {
             <Sparkles className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold flex items-center gap-2">
+            <h1 className="text-xl font-bold flex items-center gap-2 flex-wrap">
               Staff Assistant
               <Badge variant="secondary" className="text-[10px]">BETA</Badge>
+              <PremiumBadge audience="institution" variant="chip" label="Premium · unlimited" />
             </h1>
             <p className="text-sm text-muted-foreground">
               Chiedi in linguaggio naturale — placement a rischio, studenti senza
               tirocinio, aziende in silenzio. Ogni query è loggata per AI Act.
+              <span className="block mt-1 text-xs">
+                Free Core: 50 query/mese · Premium: illimitato.
+              </span>
             </p>
           </div>
         </div>

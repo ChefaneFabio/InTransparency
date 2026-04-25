@@ -15,9 +15,9 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import { PremiumUpgradeBanner } from '@/components/dashboard/shared/PremiumUpgradeBanner'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { useMyInstitution } from '@/lib/hooks/use-my-institution'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 
 interface Stage {
   id: string; name: string; order: number; type: string
@@ -134,17 +134,18 @@ export default function PlacementPipelinePage() {
 
   return (
     <div className="space-y-6 pb-12">
-      <PremiumUpgradeBanner
-        institutionName={institution?.name}
-        plan={institution?.plan}
-        feature="placement"
-      />
       <MetricHero gradient="primary">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Pipeline Placement</h1>
+            <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+              Pipeline Placement
+              <PremiumBadge audience="institution" variant="chip" label="Premium · automation" />
+            </h1>
             <p className="text-muted-foreground mt-1">
               Dalla candidatura all'esito occupazionale. Tracciamento orario, valutazioni, scadenze — visibile a te, ai tutor, allo studente e all'azienda.
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Free Core: tracciamento manuale fino a 50 placement attivi · Premium: reminder automatici (7/30/60gg), notifiche tutor/studente, esiti occupazionali e export.
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">

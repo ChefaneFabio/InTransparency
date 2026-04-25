@@ -21,6 +21,7 @@ import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { useInstitution } from '@/lib/institution-context'
+import PremiumBadge from '@/components/shared/PremiumBadge'
 
 interface Convention {
   id: string
@@ -142,7 +143,15 @@ export default function ConventionsPage() {
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader><DialogTitle>{t('form.title')}</DialogTitle></DialogHeader>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  {t('form.title')}
+                  <PremiumBadge audience="institution" variant="chip" label="AI · Premium" />
+                </DialogTitle>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Free Core: standard ministerial template. Premium: AI-personalized convention with company-specific clauses, INAIL/CCNL auto-fill, and bulk export.
+                </p>
+              </DialogHeader>
               <div className="space-y-5 pt-2">
                 {/* Company section */}
                 <div>
