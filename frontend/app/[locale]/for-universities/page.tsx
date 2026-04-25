@@ -26,6 +26,7 @@ import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
 import { UniversityUrgency } from '@/components/sections/universities/UniversityUrgency'
 import { SavingsCalculator } from '@/components/sections/universities/SavingsCalculator'
 import { UniversityPrestige } from '@/components/sections/universities/UniversityPrestige'
+import HeroCTA from '@/components/ui/HeroCTA'
 
 const COUNTRY_TABS = [
   {
@@ -95,18 +96,13 @@ export default function ForUniversitiesPage() {
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
               {t('hero.subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact?subject=university-pilot">
-                <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 w-full sm:w-auto">
-                  {t('hero.demoCta')}
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/auth/register/academic-partner">
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
-                  {t('hero.registerCta')}
-                </Button>
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <HeroCTA href="/contact?subject=university-pilot" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
+                {t('hero.demoCta')}
+              </HeroCTA>
+              <HeroCTA href="/auth/register/academic-partner" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
+                {t('hero.registerCta')}
+              </HeroCTA>
             </div>
           </div>
         </div>
@@ -479,18 +475,13 @@ export default function ForUniversitiesPage() {
           <p className="text-blue-200 mb-8 max-w-xl mx-auto">
             {t('cta.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact?subject=university-pilot">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 w-full sm:w-auto">
-                {t('cta.demoButton')}
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/auth/register/academic-partner">
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
-                {t('cta.registerButton')}
-              </Button>
-            </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <HeroCTA href="/contact?subject=university-pilot" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
+              {t('cta.demoButton')}
+            </HeroCTA>
+            <HeroCTA href="/auth/register/academic-partner" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
+              {t('cta.registerButton')}
+            </HeroCTA>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-blue-200">
             <span>{t('cta.features.free')}</span>

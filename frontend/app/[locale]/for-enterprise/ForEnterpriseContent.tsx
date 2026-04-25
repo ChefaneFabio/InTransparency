@@ -17,6 +17,10 @@ import {
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
+import HeroVisual from '@/components/3d/HeroVisual'
+import HeroCTA from '@/components/ui/HeroCTA'
+import { StickyCTA } from '@/components/engagement/StickyCTA'
 
 interface Capability {
   titleKey: string
@@ -74,16 +78,46 @@ export default function ForEnterpriseContent() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container max-w-5xl mx-auto px-4 pt-32 pb-16">
-        <div className="mb-10">
-          <Badge variant="outline" className="mb-3">
-            <Building2 className="h-3 w-3 mr-1" />
-            {t('badge')}
-          </Badge>
-          <h1 className="text-4xl font-bold mb-3">{t('hero.title')}</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">{t('hero.subtitle')}</p>
-        </div>
 
+      {/* ── Hero — text + visual side-by-side, brings parity with siblings ── */}
+      <section className="container max-w-6xl mx-auto px-4 pt-28 pb-12">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge variant="outline" className="mb-4">
+              <Building2 className="h-3 w-3 mr-1" />
+              {t('badge')}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-5">
+              {t('hero.title')}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+              {t('hero.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <HeroCTA href="/contact?role=enterprise&subject=pilot" variant="primary">
+                {t('cta.pilot')}
+              </HeroCTA>
+              <HeroCTA href="/integrations/agents" variant="secondary">
+                {t('cta.agentGuide')}
+              </HeroCTA>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="hidden lg:block"
+          >
+            <HeroVisual className="max-w-[460px] ml-auto" />
+          </motion.div>
+        </div>
+      </section>
+
+      <main className="container max-w-5xl mx-auto px-4 pb-16">
         <div className="grid md:grid-cols-2 gap-4 mb-10">
           {CAPABILITIES.map(c => {
             const Icon = c.icon
@@ -141,20 +175,24 @@ export default function ForEnterpriseContent() {
         </Card>
 
         <div className="flex flex-wrap gap-3">
-          <Button size="lg" asChild>
-            <Link href="/contact?role=enterprise&subject=pilot">
-              {t('cta.pilot')}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/integrations/agents">{t('cta.agentGuide')}</Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/eu-compliance">{t('cta.compliance')}</Link>
-          </Button>
+          <HeroCTA href="/contact?role=enterprise&subject=pilot" variant="primary">
+            {t('cta.pilot')}
+          </HeroCTA>
+          <HeroCTA href="/integrations/agents" variant="secondary">
+            {t('cta.agentGuide')}
+          </HeroCTA>
+          <HeroCTA href="/eu-compliance" variant="secondary">
+            {t('cta.compliance')}
+          </HeroCTA>
         </div>
       </main>
+
+      <StickyCTA
+        href="/contact?role=enterprise&subject=pilot"
+        text={t('cta.pilot')}
+        show
+      />
+
       <Footer />
     </div>
   )

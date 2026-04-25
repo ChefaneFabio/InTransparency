@@ -13,6 +13,7 @@ import { BRAND_IMAGES } from '@/lib/brand-images'
 import { FAQ } from '@/components/engagement/FAQ'
 import { TypewriterText } from '@/components/engagement/TypewriterText'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
+import HeroCTA from '@/components/ui/HeroCTA'
 import {
   ArrowRight,
   Play,
@@ -70,18 +71,13 @@ export default function ForCompaniesPage() {
               <motion.p variants={fadeUp} custom={2} className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
                 {t('hero.subtitle')}
               </motion.p>
-              <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
-                  <Link href="/auth/register?role=recruiter">
-                    {t('cta.primaryButton')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
-                  <Link href="/demo/ai-search">
-                    {t('cta.secondaryButton')}
-                  </Link>
-                </Button>
+              <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row gap-3 justify-center">
+                <HeroCTA href="/auth/register?role=recruiter" variant="primary">
+                  {t('cta.primaryButton')}
+                </HeroCTA>
+                <HeroCTA href="/demo/ai-search" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
+                  {t('cta.secondaryButton')}
+                </HeroCTA>
               </motion.div>
             </motion.div>
           </div>
