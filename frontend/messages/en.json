@@ -13978,6 +13978,10 @@
       "daysAgo": "{count}d ago"
     }
   },
+  "pressSection": {
+    "eyebrow": "As featured in",
+    "linkAria": "Read the {name} article"
+  },
   "trustMetrics": {
     "aria": "Platform trust signals",
     "eyebrow": "Built on verifiable standards",

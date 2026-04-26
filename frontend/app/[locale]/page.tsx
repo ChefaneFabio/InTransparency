@@ -1,6 +1,7 @@
 import { StructuredData } from '@/components/seo/StructuredData'
 import { Hero } from '@/components/sections/Hero'
 import { TrustMetrics } from '@/components/sections/TrustMetrics'
+import { PressSection } from '@/components/sections/PressSection'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { ComparisonTable } from '@/components/sections/ComparisonTable'
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
@@ -23,6 +24,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <TrustMetrics />
+        <PressSection />
         <HowItWorks />
         <ComparisonTable />
         <TestimonialsSection />

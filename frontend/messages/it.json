@@ -14006,6 +14006,10 @@
       "daysAgo": "{count}g fa"
     }
   },
+  "pressSection": {
+    "eyebrow": "Parla di noi",
+    "linkAria": "Leggi l'articolo di {name}"
+  },
   "trustMetrics": {
     "aria": "Indicatori di affidabilità della piattaforma",
     "eyebrow": "Costruita su standard verificabili",
