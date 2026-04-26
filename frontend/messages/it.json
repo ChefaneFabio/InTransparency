@@ -447,7 +447,7 @@
       },
       "solution": "La Soluzione InTransparency",
       "solutionPoints": {
-        "verified": "Progetti verificati dall'istituzione (30/30 in tesi ML)",
+        "verified": "Progetti reali con voti (30/30 in tesi ML)",
         "realWork": "Vedi il lavoro reale, non affermazioni",
         "aiAnalysis": "Analisi automatizzata di progetti complessi",
         "noApplications": "Zero candidature → Le aziende ti trovano",
@@ -462,8 +462,8 @@
         "description": "Tesi, stage curriculare, tirocini - in qualsiasi formato"
       },
       "step2": {
-        "title": "Verifica dell'Istituzione",
-        "description": "La tua istituzione autentica tramite la nostra dashboard"
+        "title": "Endorsement Opzionale dei Docenti",
+        "description": "I docenti del tuo ateneo o scuola possono validare i progetti dalla nostra dashboard — quando hanno tempo"
       },
       "step3": {
         "title": "Le Aziende ti Scoprono",
@@ -611,7 +611,7 @@
             "description": "Importa i dati degli studenti o lasciali registrare autonomamente. Verifica progetti e voti con un click.",
             "details": [
               "Importazione massiva via CSV o collegamento al sistema informativo studenti",
-              "Gli studenti si registrano e si collegano alla tua istituzione per la verifica"
+              "Gli studenti si registrano e si collegano al tuo ateneo o scuola per la validazione opzionale"
             ],
             "stats": {
               "setup": "< 1 giorno",
@@ -664,8 +664,8 @@
       "badge": "Funzionalità Principali",
       "title": "Competenze Verificate al 100%, Non Affermazioni da CV",
       "verification": {
-        "title": "Verifica Istituzionale",
-        "description": "Ogni competenza tracciabile all'istituzione"
+        "title": "Endorsement Opzionale dei Docenti",
+        "description": "Ogni competenza tracciabile a un progetto reale, con validazione opzionale"
       },
       "aiAnalysis": {
         "title": "Analisi automatizzata",
@@ -691,7 +691,7 @@
     "cta": {
       "title": "Inizia con",
       "titleHighlight": "InTransparency",
-      "subtitle": "Che tu sia uno studente, un'istituzione o un'azienda — c'è un percorso pensato per te.",
+      "subtitle": "Che tu sia uno studente, un partner formativo o un'azienda — c'è un percorso pensato per te.",
       "segments": {
         "students": {
           "title": "Per gli Studenti",
@@ -770,7 +770,7 @@
     },
     "booking": {
       "title": "Prenota una Demo",
-      "subtitle": "Scopri come InTransparency può funzionare per la tua istituzione o azienda. Prenota una chiamata gratuita con il nostro team.",
+      "subtitle": "Scopri come InTransparency può funzionare per il tuo team o organizzazione. Prenota una chiamata gratuita con il nostro team.",
       "cta": "Prenota un Incontro",
       "note": "Gratuito, senza impegno - chiamata di 15 min"
     },
@@ -844,7 +844,7 @@
     "platformPreview": {
       "badge": "Vedi come funziona",
       "title": "Progettato per Come Lavori Davvero",
-      "subtitle": "Un'interfaccia pulita e intuitiva progettata per studenti, istituzioni e aziende."
+      "subtitle": "Un'interfaccia pulita e intuitiva progettata per studenti, partner formativi e aziende."
     },
     "comparison": {
       "badge": "Un modo migliore",
@@ -941,7 +941,7 @@
           {
             "feature": "Verifica skills",
             "traditional": "Screening CV",
-            "ours": "Verificato dall'istituzione"
+            "ours": "Progetti reali con validazione opzionale"
           },
           {
             "feature": "Tempo",
@@ -1244,7 +1244,7 @@
     "segments": {
       "student": "Sono uno Studente",
       "company": "Sono un'Azienda",
-      "university": "Sono un'Istituzione",
+      "university": "Sono un Partner Formativo",
       "general": "Richiesta Generica"
     },
     "segmentMessage": {
@@ -1299,13 +1299,13 @@
       "title": "Inviaci un Messaggio",
       "fullName": "Nome Completo",
       "emailAddress": "Indirizzo Email",
-      "companyUniversity": "Azienda/Istituzione",
+      "companyUniversity": "Azienda / Partner Formativo",
       "role": "Ruolo",
       "roleOptions": {
         "select": "Seleziona il tuo ruolo",
         "student": "Studente",
         "recruiter": "Recruiter",
-        "universityAdmin": "Amministratore Istituzione",
+        "universityAdmin": "Amministratore Partner Formativo",
         "professor": "Professore",
         "other": "Altro"
       },
@@ -1466,7 +1466,7 @@
     },
     "whyItWorks": {
       "0": {
-        "title": "Verifica Istituzionale",
+        "title": "Endorsement Opzionale dei Docenti",
         "description": "I tuoi progetti sono verificati dalla tua istituzione, dando ai recruiter fiducia nel tuo lavoro senza lunghi screening."
       },
       "1": {
@@ -1503,8 +1503,8 @@
       "clear": "Cancella",
       "fieldOfStudy": "Campo di Studio",
       "allFields": "Tutti i Campi",
-      "university": "Istituzione",
-      "allUniversities": "Tutte le Istituzioni",
+      "university": "Partner Formativo",
+      "allUniversities": "Tutti i Partner Formativi",
       "institutionTypes": {
         "universities": "Università",
         "its": "ITS Academy",
@@ -1711,9 +1711,9 @@
       "signIn": "Accedi"
     },
     "university": {
-      "title": "Registrazione Istituzione",
+      "title": "Registrazione Partner Formativo",
       "subtitle": "Career Intelligence Gratuito - Nessun Abbonamento Mai",
-      "cardTitle": "Crea il Tuo Account Istituzione",
+      "cardTitle": "Crea il Tuo Account Partner Formativo",
       "cardDescription": "Verifica studenti e traccia placement",
       "submitButton": "Crea Account Istituzione Gratuito",
       "submittingButton": "Creazione Account...",
@@ -1738,9 +1738,9 @@
           "description": "Il tuo badge istituzionale su ogni profilo studente"
         }
       },
-      "createTitle": "Crea Account Istituzione",
+      "createTitle": "Crea Account Partner Formativo",
       "createSubtitle": "Inizia con il piano freemium",
-      "formTitle": "Dettagli Istituzione",
+      "formTitle": "Dettagli Partner Formativo",
       "formDescription": "Verificheremo la tua email istituzionale",
       "freemiumNote": "Piattaforma Freemium - Nessun costo di attivazione, nessun costo nascosto",
       "institutionalEmail": "Email Istituzionale",
@@ -1801,7 +1801,7 @@
           }
         },
         "university": {
-          "name": "Istituzione",
+          "name": "Partner Formativo",
           "description": "Verifica i progetti degli studenti e traccia i placement",
           "benefits": {
             "0": "Modello freemium",
@@ -1932,7 +1932,7 @@
       "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
       "roles": {
         "student": "Studente",
-        "university": "Istituzione",
+        "university": "Partner Formativo",
         "recruiter": "Azienda"
       }
     },
@@ -1942,7 +1942,7 @@
       "email": "Email",
       "password": "Password",
       "companyName": "Nome Azienda",
-      "universityName": "Nome Istituzione"
+      "universityName": "Nome del Partner Formativo"
     },
     "messages": {
       "registrationFailed": "Registrazione fallita",
@@ -2009,7 +2009,7 @@
             "desc": "Condividi il tuo lavoro reale — tesi, codice, design, relazioni. Qualsiasi formato. Competenze, complessità e innovazione vengono analizzate automaticamente."
           },
           "1": {
-            "title": "Fatti Verificare dalla Tua Istituzione",
+            "title": "Chiedi un Endorsement ai Tuoi Docenti",
             "desc": "La tua università, ITS o scuola conferma che il progetto è reale. Voti, raccomandazioni e badge di verifica costruiscono il tuo trust score."
           },
           "2": {
@@ -2661,7 +2661,7 @@
       "subtitle": "Vedi esattamente cosa ogni parte può e non può accedere",
       "stakeholders": {
         "student": "Studente",
-        "university": "Istituzione",
+        "university": "Partner Formativo",
         "company": "Azienda"
       },
       "student": {
@@ -2682,7 +2682,7 @@
           "title": "Condivisione Dati",
           "items": {
             "0": {
-              "with": "Istituzione",
+              "with": "Partner Formativo",
               "data": "Registri accademici, corsi, voti, progetti",
               "purpose": "Solo verifica",
               "consent": "Richiesto"
@@ -2709,7 +2709,7 @@
         }
       },
       "university": {
-        "title": "Accesso Dati Istituzione",
+        "title": "Accesso Dati Partner Formativo",
         "description": "Accesso limitato solo per scopi di verifica.",
         "controls": {
           "title": "Accesso & Controlli",
@@ -2975,12 +2975,12 @@
       "tryExample": "Prova un esempio:",
       "student": "Studente",
       "company": "Azienda",
-      "university": "Istituzione"
+      "university": "Partner Formativo"
     },
     "tabs": {
       "student": "Studente",
       "company": "Azienda",
-      "university": "Istituzione"
+      "university": "Partner Formativo"
     }
   },
   "transparency": {
@@ -4053,7 +4053,7 @@
       "roles": {
         "student": "Studente",
         "company": "Azienda",
-        "institution": "Istituzione"
+        "institution": "Partner Formativo"
       }
     },
     "chatbot": {
@@ -5959,7 +5959,7 @@
         "departmentCategory": "Dipartimento / Categoria",
         "minimumGrade": "Voto Minimo",
         "anyGrade": "Qualsiasi voto",
-        "institutionName": "Nome Istituzione",
+        "institutionName": "Nome del Partner Formativo",
         "search": "Cerca",
         "reset": "Reimposta",
         "searchStats": "Statistiche Ricerca",
@@ -8216,7 +8216,7 @@
       "sendMessage": "Invia Messaggio",
       "saveCandidate": "Salva Candidato",
       "profileSummary": "Riepilogo Profilo",
-      "summaryUniversity": "Istituzione",
+      "summaryUniversity": "Partner Formativo",
       "summaryDegree": "Corso / Percorso",
       "summaryGraduationYear": "Anno di conseguimento",
       "summaryGpa": "Media Voti",
@@ -8939,7 +8939,7 @@
       "verifyDomain": "Verifica",
       "customDomainNote": "Richiede piano Premium Embed. Contatta il supporto per configurare.",
       "preview": "Anteprima",
-      "institutionNamePreview": "Nome Istituzione",
+      "institutionNamePreview": "Nome del Partner Formativo",
       "learnMore": "Scopri di piu",
       "validation": {
         "nameRequired": "Il nome e obbligatorio",
@@ -13252,7 +13252,7 @@
     "heroSubtitle": "Ottieni aiuto personalizzato per il tuo percorso — AI conversazionale 24/7 trasparente sull'uso dei dati",
     "roleStudent": "Studente",
     "roleCompany": "Azienda",
-    "roleInstitution": "Istituzione",
+    "roleInstitution": "Partner Formativo",
     "poweredBy": "Powered by AI • Conforme GDPR",
     "transparentAiLabel": "AI Trasparente:",
     "transparentAiDesc": "Questa conversazione aiuta a migliorare la tua esperienza. I dati sono conformi al GDPR e usati per migliorare i match. Puoi disattivarla dalle impostazioni.",
@@ -13374,7 +13374,7 @@
     "lastNamePlaceholder": "Rossi",
     "bioLabel": "Presentazione",
     "bioPlaceholder": "Raccontaci qualcosa di te...",
-    "institutionNameLabel": "Nome Istituzione",
+    "institutionNameLabel": "Nome del Partner Formativo",
     "institutionNamePlaceholder": "es. Politecnico di Milano",
     "institutionTypeLabel": "Tipo di Istituzione",
     "websiteLabel": "Sito Web",

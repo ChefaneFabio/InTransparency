@@ -306,7 +306,7 @@
         "features": [
           {
             "title": "Verified Portfolio",
-            "description": "Projects verified by your institution — from theses to internship reports"
+            "description": "Real projects with optional professor endorsement — theses, internship reports, code"
           },
           {
             "title": "Verified Profile",
@@ -317,7 +317,7 @@
             "description": "Companies across all industries reach out to you directly"
           }
         ],
-        "statsLabel": "Institution-verified portfolios —",
+        "statsLabel": "Real student portfolios —",
         "statsValue": "helping students and companies find each other"
       },
       "universities": {
@@ -348,7 +348,7 @@
           }
         ],
         "statsLabel": "A free marketplace connecting",
-        "statsValue": "students, institutions, and companies — together"
+        "statsValue": "students, academic partners, and companies — together"
       },
       "companies": {
         "badge": "For Companies & Startups — All Industries",
@@ -367,7 +367,7 @@
         "features": [
           {
             "title": "Verified Talent",
-            "description": "Every skill backed by the student's institution"
+            "description": "Every skill backed by real project work — endorsed by professors when available"
           },
           {
             "title": "Real Projects",
@@ -388,7 +388,7 @@
       "unifiedPrimaryCTA": "Sign Up Free",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": [
-        "Skills verified by institutions, not self-reported",
+        "Real skills with optional professor endorsement, not self-reported",
         "Every sector — tech, engineering, business, design, science",
         "Free for everyone during launch"
       ],
@@ -447,7 +447,7 @@
       },
       "solution": "The InTransparency Solution",
       "solutionPoints": {
-        "verified": "Institution-verified projects (30/30 in ML thesis)",
+        "verified": "Real student projects with grades (30/30 in ML thesis)",
         "realWork": "See real work, not claims",
         "aiAnalysis": "automated analysis of complex projects",
         "noApplications": "Zero applications → Companies find you",
@@ -462,8 +462,8 @@
         "description": "Thesis, internships, apprenticeships - any format"
       },
       "step2": {
-        "title": "Institution Verification",
-        "description": "Your institution authenticates via our dashboard"
+        "title": "Optional Professor Endorsement",
+        "description": "Professors at your school can endorse projects via our dashboard — when they have time"
       },
       "step3": {
         "title": "Companies Discover You",
@@ -491,7 +491,7 @@
             "title": "Create Your Profile",
             "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
             "details": [
-              "Institution Integrated: Profile created automatically from institution data",
+              "Academic partner integrated: profile created automatically from your school's data",
               "Independent: Upload projects (code, docs, presentations) + select courses"
             ],
             "stats": {
@@ -512,7 +512,7 @@
             ],
             "stats": {
               "analysis": "Automated",
-              "verification": "Institution-backed"
+              "verification": "Professor-endorsed"
             },
             "visual": {
               "analysisTitle": "Analysis in Progress...",
@@ -572,7 +572,7 @@
             ],
             "stats": {
               "time saved": "80%",
-              "verification": "Institution-backed"
+              "verification": "Professor-endorsed"
             },
             "visual": {
               "analysisTitle": "Decision Pack Loading...",
@@ -611,7 +611,7 @@
             "description": "Import student records or let them self-register. Verify projects and grades with one click.",
             "details": [
               "Bulk import via CSV or connect your student information system",
-              "Students self-register and link to your institution for verification"
+              "Students self-register and link to your school for optional endorsement"
             ],
             "stats": {
               "setup": "< 1 day",
@@ -664,8 +664,8 @@
       "badge": "Key Features",
       "title": "100% Verified Skills, Not Resume Claims",
       "verification": {
-        "title": "Institution Verification",
-        "description": "Every skill traceable to institution"
+        "title": "Optional Professor Endorsement",
+        "description": "Every skill traceable to a real project, with optional endorsement"
       },
       "aiAnalysis": {
         "title": "Automated Analysis",
@@ -691,7 +691,7 @@
     "cta": {
       "title": "Get started with",
       "titleHighlight": "InTransparency",
-      "subtitle": "Whether you're a student, institution, or company — there's a path built for you.",
+      "subtitle": "Whether you're a student, academic partner, or company — there's a path built for you.",
       "segments": {
         "students": {
           "title": "For Students",
@@ -770,7 +770,7 @@
     },
     "booking": {
       "title": "Book a Demo",
-      "subtitle": "See how InTransparency can work for your institution or company. Schedule a free call with our team.",
+      "subtitle": "See how InTransparency can work for your team or organization. Schedule a free call with our team.",
       "cta": "Book a Meeting",
       "note": "Free, no obligation - 15 min call"
     },
@@ -787,7 +787,7 @@
           "title": "Create Your Profile",
           "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
           "details": [
-            "Institution Integrated: Profile created automatically from institution data",
+            "Academic partner integrated: profile created automatically from your school's data",
             "Independent: Upload projects (code, docs, presentations) + select courses",
             "the platform identifies courses and creates complete profile",
             "Both paths: Full platform access in < 5 minutes"
@@ -811,7 +811,7 @@
           ],
           "stats": {
             "analysis": "Automated",
-            "verification": "Institution-backed"
+            "verification": "Professor-endorsed"
           },
           "visual": {
             "analysisTitle": "Analysis in Progress...",
@@ -844,7 +844,7 @@
     "platformPreview": {
       "badge": "See it in action",
       "title": "Built for How You Actually Work",
-      "subtitle": "A clean, intuitive interface designed for students, institutions, and companies."
+      "subtitle": "A clean, intuitive interface designed for students, academic partners, and companies."
     },
     "comparison": {
       "badge": "A better way",
@@ -862,7 +862,7 @@
           {
             "feature": "Skills proof",
             "traditional": "Self-reported on CV",
-            "ours": "Verified by your institution"
+            "ours": "Real projects with optional professor endorsement"
           },
           {
             "feature": "Cost",
@@ -914,7 +914,7 @@
           {
             "feature": "Cost",
             "traditional": "Career services budget",
-            "ours": "Free for institutions"
+            "ours": "Free Core for academic partners"
           },
           {
             "feature": "Reporting",
@@ -936,12 +936,12 @@
           {
             "feature": "Candidate pool",
             "traditional": "Unverified applications",
-            "ours": "Institution-verified students"
+            "ours": "Real student profiles, often with endorsement"
           },
           {
             "feature": "Skills verification",
             "traditional": "CV screening",
-            "ours": "Verified by the institution"
+            "ours": "Real projects with optional endorsement"
           },
           {
             "feature": "Time to connect",
@@ -1244,7 +1244,7 @@
     "segments": {
       "student": "I'm a Student",
       "company": "I'm a Company",
-      "university": "I'm an Institution",
+      "university": "I'm an Academic Partner",
       "general": "General Inquiry"
     },
     "segmentMessage": {
@@ -1254,7 +1254,7 @@
       },
       "company": {
         "title": "Looking for verified talent across all disciplines?",
-        "subtitle": "Book a demo to see how InTransparency gives you access to institution-verified candidates."
+        "subtitle": "Book a demo to see how InTransparency gives you access to real student profiles, often with professor endorsement."
       },
       "university": {
         "title": "Interested in becoming an academic partner?",
@@ -1267,7 +1267,7 @@
     },
     "section": {
       "title": "Let's Start a Conversation",
-      "subtitle": "Whether you're a student, recruiter, or institution, we're excited to hear from you."
+      "subtitle": "Whether you're a student, recruiter, or academic partner, we're excited to hear from you."
     },
     "methods": {
       "email": {
@@ -1299,13 +1299,13 @@
       "title": "Send us a Message",
       "fullName": "Full Name",
       "emailAddress": "Email Address",
-      "companyUniversity": "Company/Institution",
+      "companyUniversity": "Company / Academic Partner",
       "role": "Role",
       "roleOptions": {
         "select": "Select your role",
         "student": "Student",
         "recruiter": "Recruiter",
-        "universityAdmin": "Institution Admin",
+        "universityAdmin": "Academic Partner Admin",
         "professor": "Professor",
         "other": "Other"
       },
@@ -1466,7 +1466,7 @@
     },
     "whyItWorks": {
       "0": {
-        "title": "Institution Verification",
+        "title": "Optional Professor Endorsement",
         "description": "Your projects are verified by your institution, giving recruiters confidence in your work without lengthy screening."
       },
       "1": {
@@ -1503,8 +1503,8 @@
       "clear": "Clear",
       "fieldOfStudy": "Field of Study",
       "allFields": "All Fields",
-      "university": "Institution",
-      "allUniversities": "All Institutions",
+      "university": "Academic Partner",
+      "allUniversities": "All Academic Partners",
       "institutionTypes": {
         "universities": "Universities",
         "its": "ITS Academies",
@@ -1623,7 +1623,7 @@
           }
         },
         "university": {
-          "name": "Institution",
+          "name": "Academic Partner",
           "description": "Verify student projects and track placements",
           "benefits": {
             "0": "Freemium model",
@@ -1783,10 +1783,10 @@
       "signIn": "Sign in"
     },
     "university": {
-      "title": "Institution Registration",
+      "title": "Academic Partner Registration",
       "subtitle": "Free Career Intelligence - No Subscriptions Ever",
-      "cardTitle": "Create Your Institution Account",
-      "cardDescription": "Verify students and track placements",
+      "cardTitle": "Create Your Academic Partner Account",
+      "cardDescription": "Endorse student work and track placement outcomes",
       "submitButton": "Create Free Institution Account",
       "submittingButton": "Creating Account...",
       "heroTitle": "Connect Students with Employers",
@@ -1904,7 +1904,7 @@
       "unexpectedError": "An unexpected error occurred. Please try again.",
       "roles": {
         "student": "Student",
-        "university": "Institution",
+        "university": "Academic Partner",
         "recruiter": "Company"
       }
     },
@@ -2621,7 +2621,7 @@
       "subtitle": "See exactly what each party can and cannot access",
       "stakeholders": {
         "student": "Student",
-        "university": "Institution",
+        "university": "Academic Partner",
         "company": "Company"
       },
       "student": {
@@ -2642,7 +2642,7 @@
           "title": "Data Sharing",
           "items": {
             "0": {
-              "with": "Institution",
+              "with": "Academic Partner",
               "data": "Academic records, courses, grades, projects",
               "purpose": "Verification only",
               "consent": "Required"
@@ -3001,12 +3001,12 @@
       "tryExample": "Try an example:",
       "student": "Student",
       "company": "Company",
-      "university": "Institution"
+      "university": "Academic Partner"
     },
     "tabs": {
       "student": "Student",
       "company": "Company",
-      "university": "Institution"
+      "university": "Academic Partner"
     }
   },
   "transparency": {
@@ -3794,7 +3794,7 @@
     "graduationYear": "Graduation Year",
     "degreeLabel": "Degree",
     "degreePlaceholder": "Computer Science",
-    "institutionLabel": "Institution",
+    "institutionLabel": "Academic Partner",
     "institutionPlaceholder": "MIT",
     "institutionalEmail": "Institutional Email (for verification)",
     "emailPlaceholder": "your.name@university.edu",
@@ -4079,7 +4079,7 @@
       "roles": {
         "student": "Student",
         "company": "Company",
-        "institution": "Institution"
+        "institution": "Academic Partner"
       }
     },
     "chatbot": {
@@ -8255,7 +8255,7 @@
       "sendMessage": "Send Message",
       "saveCandidate": "Save Candidate",
       "profileSummary": "Profile Summary",
-      "summaryUniversity": "Institution",
+      "summaryUniversity": "Academic Partner",
       "summaryDegree": "Program",
       "summaryGraduationYear": "Graduation Year",
       "summaryGpa": "GPA",
@@ -13225,7 +13225,7 @@
     "heroSubtitle": "Get personalized help for your journey - 24/7 conversational AI that's transparent about data usage",
     "roleStudent": "Student",
     "roleCompany": "Company",
-    "roleInstitution": "Institution",
+    "roleInstitution": "Academic Partner",
     "poweredBy": "Powered by AI • GDPR Compliant",
     "transparentAiLabel": "Transparent AI:",
     "transparentAiDesc": "This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings.",
