@@ -3555,8 +3555,18 @@
   "pricingPage": {
     "hero": {
       "eyebrow": "Pricing",
-      "title": "Clear pricing. No surprises.",
-      "subtitle": "Freemium for students and academic partners. Companies search free, and pay only when they're ready to hire."
+      "title": "Verified talent, transparent pricing.",
+      "subtitle": "Students and academic partners free, forever. Companies search the verified pool free up to 5 contacts/month — €89/mo when you scale."
+    },
+    "vatNote": "VAT excl.",
+    "trustNoCardTrial": "No card · 30-day trial · cancel anytime",
+    "trustFreeForever": "Free forever · no card required",
+    "trustStrip": {
+      "label": "Trusted foundation",
+      "pilot": "UniBg pilot",
+      "startCup": "Start Cup award",
+      "gdpr": "GDPR + AI Act audit log",
+      "dataRoom": "EU data residency"
     },
     "segments": {
       "companies": "Companies",
@@ -3593,7 +3603,7 @@
           "period": "/mo · or €45/yr",
           "cadence": "/ month",
           "annualPrice": "€45 / year",
-          "annualSavings": "save €15",
+          "annualSavings": "save €15 (25%)",
           "studentDiscount": "· 30-day trial · cancel anytime",
           "description": "Unlock the full Skill Path, unlimited AI, and the career tooling that actually moves the needle. Free if your university sponsors Premium.",
           "includes": "Everything in Free, plus:",
@@ -3616,9 +3626,9 @@
     },
     "companies": {
       "badge": "For Companies",
-      "title": "Hire from real, AI-verified work — not resume claims",
+      "title": "Hire from real, AI-verified work",
       "subtitle": "Search the verified pool free. Reach 5 candidates every month at no cost. Subscribe when you scale.",
-      "popular": "Most chosen",
+      "popular": "Recommended",
       "roiAnchor": "A bad hire costs €30,000+ in salary, lost time, and team morale. InTransparency reduces that risk by showing real, AI-verified work instead of resume claims. Free until you've proven the pool — €89/month when you're ready to scale.",
       "tiers": {
         "starter": {
@@ -3641,7 +3651,7 @@
           "price": "€89",
           "period": "/ month",
           "annualPrice": "€890 / year",
-          "annualSavings": "save €178",
+          "annualSavings": "save €178 (17%)",
           "description": "Unlimited contacts, team seats, full AI suite. The only upgrade path when you've used your monthly quota.",
           "cta": "Subscribe — €89/mo",
           "features": {
@@ -3659,7 +3669,8 @@
           "name": "Enterprise",
           "price": "Custom",
           "period": "",
-          "description": "For large teams and multi-brand groups. SSO, custom integrations, dedicated success manager.",
+          "trustLine": "For 50+ recruiter teams · multi-brand groups · regulated industries",
+          "description": "Custom contract, signed security review, named CSM, billing on PO. For organisations that need to meet procurement requirements.",
           "cta": "Talk to Sales",
           "features": {
             "0": "Everything in Subscription, plus:",
@@ -3698,9 +3709,12 @@
       "premiumBadge": "Academic Partner Workspace",
       "freeBadge": "Full Workspace · Free",
       "reassurance": "Free Core forever, Premium and add-ons available when you need them. Every AI action is logged for AI Act compliance.",
-      "addonsBadge": "Optional add-ons",
+      "addonsBadge": "Available add-ons",
       "addonsTitle": "Scale modules — pick only what you need",
       "addonsSubtitle": "White-label, multi-institution rollup, SSO, ATS bridges, MIUR compliance. List-priced, individually negotiable, indicative until GA — early-bird pricing locks in for waitlist signups.",
+      "addonsAvailableSubtitle": "Modules available today: priority AI quota, dedicated CSM, custom reporting, ATS bridge (beta), bulk verifiable credentials (beta).",
+      "roadmapHint": "White-label workspace, multi-institution rollup, SSO, MIUR/ANVUR pack — currently in development.",
+      "roadmapCta": "Talk to us →",
       "tiers": {
         "free": {
           "badge": "Free Core · forever",
@@ -3729,7 +3743,7 @@
           "period": "/mo · or €390/yr",
           "cadence": "/ month",
           "annualPrice": "€390 / year",
-          "annualSavings": "save €78",
+          "annualSavings": "save €78 (17%)",
           "note": "· 30-day free trial · cancel anytime",
           "description": "Unlock unlimited AI, advanced analytics, reminder automation, and MIUR reporting. For academic partners scaling past Free Core.",
           "includes": "Everything in Free Core, plus:",

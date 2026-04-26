@@ -7,15 +7,20 @@ import { Link } from '@/navigation'
 import InstitutionAddonGrid from '@/components/pricing/InstitutionAddonGrid'
 
 /**
- * Pricing page redesign — typography-first.
+ * Pricing page — revenue-hardened typography-first design.
  *
- * Goals: revenue clarity (each free → paid path is one CTA away), authority
- * through restraint (no decorative icons, no entrance animations, no
- * gradient pills), and real numbers (annual savings shown in €, not %).
- *
- * Layout: single scroll. Header nav already segments by audience, so this
- * page stacks Companies → Students → Academic Partners with quiet anchor
- * links in the hero. Each segment is one tier table + one outcome line.
+ * Hardening pass (post-critique):
+ *  • Specific H1 stating actual pricing summary, not generic "Clear pricing".
+ *  • Trust strip beneath the hero — UniBg pilot, Start Cup award, GDPR/AI
+ *    Act compliance. Only what's true; no fabrication.
+ *  • Annual savings show both € and %, not just €.
+ *  • VAT-excluded label on every euro price (Italian B2B buyers expect it).
+ *  • Trust microcopy ("No card · 30-day trial · cancel anytime") next to
+ *    the price, not buried in CTA text.
+ *  • Enterprise tier carries actual decision-criteria copy, not "more of
+ *    everything". Lists SSO, ATS, security review, named CSM, SLA.
+ *  • "Most chosen" replaced with neutral "Recommended" — we don't yet
+ *    have data to back the original claim.
  */
 
 type Tier = {
@@ -28,25 +33,30 @@ type Tier = {
   features: string[]
   cta: { label: string; href: string; external?: boolean }
   emphasized?: boolean
+  trustLine?: string
+  /** Show "VAT excl." label next to price. True for paid tiers. */
+  showVatNote?: boolean
 }
 
-function TierColumn({ tier }: { tier: Tier }) {
-  const CTA = tier.cta.external ? 'a' : Link
-  const ctaProps = tier.cta.external
-    ? { href: tier.cta.href }
-    : { href: tier.cta.href as any }
+function TierColumn({ tier, vatLabel }: { tier: Tier; vatLabel: string }) {
+  const isExternal = tier.cta.external
+  const ctaClass = `inline-flex items-center justify-center w-full h-11 px-5 text-sm font-medium rounded-md transition-colors ${
+    tier.emphasized
+      ? 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100'
+      : 'bg-transparent text-slate-900 border border-slate-300 hover:bg-slate-50 dark:text-white dark:border-slate-700 dark:hover:bg-slate-900'
+  }`
 
   return (
     <div
       className={`flex flex-col h-full pt-10 pb-8 px-8 ${
         tier.emphasized
-          ? 'border-x border-t-2 border-x-slate-200 border-t-slate-900 bg-white dark:border-x-slate-800 dark:border-t-white dark:bg-slate-950'
-          : 'border-t border-t-slate-200 dark:border-t-slate-800'
+          ? 'border-x border-t-2 border-b border-x-slate-200 border-t-slate-900 border-b-slate-200 bg-white dark:border-x-slate-800 dark:border-t-white dark:border-b-slate-800 dark:bg-slate-950'
+          : 'border-t border-b border-t-slate-200 border-b-slate-200 dark:border-t-slate-800 dark:border-b-slate-800'
       }`}
     >
       {tier.emphasized && (
         <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-900 dark:text-white -mt-4 mb-6">
-          {tier.eyebrow ?? 'Most chosen'}
+          {tier.eyebrow ?? 'Recommended'}
         </div>
       )}
       {!tier.emphasized && tier.eyebrow && (
@@ -64,11 +74,21 @@ function TierColumn({ tier }: { tier: Tier }) {
         <span className="text-sm text-slate-500">{tier.cadence}</span>
       </div>
 
+      {tier.showVatNote && (
+        <div className="mt-1 text-[11px] text-slate-500 uppercase tracking-wider">
+          {vatLabel}
+        </div>
+      )}
+
       {tier.annual && (
-        <div className="mt-2 text-sm text-slate-600 dark:text-slate-400 tabular-nums">
+        <div className="mt-3 text-sm text-slate-600 dark:text-slate-400 tabular-nums">
           {tier.annual.price}{' '}
           <span className="text-slate-500">— {tier.annual.savings}</span>
         </div>
+      )}
+
+      {tier.trustLine && (
+        <div className="mt-3 text-[12px] text-slate-500 leading-snug">{tier.trustLine}</div>
       )}
 
       <p className="mt-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 min-h-[3.5rem]">
@@ -84,16 +104,15 @@ function TierColumn({ tier }: { tier: Tier }) {
       </ul>
 
       <div className="mt-10">
-        <CTA
-          {...(ctaProps as any)}
-          className={`inline-flex items-center justify-center w-full h-11 px-5 text-sm font-medium rounded-md transition-colors ${
-            tier.emphasized
-              ? 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100'
-              : 'bg-transparent text-slate-900 border border-slate-300 hover:bg-slate-50 dark:text-white dark:border-slate-700 dark:hover:bg-slate-900'
-          }`}
-        >
-          {tier.cta.label}
-        </CTA>
+        {isExternal ? (
+          <a href={tier.cta.href} className={ctaClass}>
+            {tier.cta.label}
+          </a>
+        ) : (
+          <Link href={tier.cta.href as any} className={ctaClass}>
+            {tier.cta.label}
+          </Link>
+        )}
       </div>
     </div>
   )
@@ -125,6 +144,9 @@ function SectionHeader({
 
 export default function PricingPage() {
   const t = useTranslations('pricingPage')
+  const vatLabel = t('vatNote', { defaultValue: 'VAT excl.' })
+  const trustNoCard = t('trustNoCardTrial', { defaultValue: 'No card required · 30-day trial · cancel anytime' })
+  const trustFreeForever = t('trustFreeForever', { defaultValue: 'Free forever · no card required' })
 
   const companyTiers: Tier[] = [
     {
@@ -133,6 +155,7 @@ export default function PricingPage() {
       cadence: t('companies.tiers.starter.period'),
       description: t('companies.tiers.starter.description'),
       features: [0, 1, 2, 3, 4, 5].map(i => t(`companies.tiers.starter.features.${i}`)),
+      trustLine: trustFreeForever,
       cta: {
         label: t('companies.tiers.starter.cta'),
         href: '/auth/register/recruiter?plan=free',
@@ -145,8 +168,10 @@ export default function PricingPage() {
       cadence: t('companies.tiers.growth.period'),
       annual: {
         price: t('companies.tiers.growth.annualPrice', { defaultValue: '€890 / year' }),
-        savings: t('companies.tiers.growth.annualSavings', { defaultValue: 'save €178' }),
+        savings: t('companies.tiers.growth.annualSavings', { defaultValue: 'save €178 (17%)' }),
       },
+      showVatNote: true,
+      trustLine: trustNoCard,
       description: t('companies.tiers.growth.description'),
       features: [1, 2, 3, 4, 5, 6, 7].map(i => t(`companies.tiers.growth.features.${i}`)),
       cta: {
@@ -161,6 +186,9 @@ export default function PricingPage() {
       cadence: t('companies.tiers.enterprise.period') || 'pricing',
       description: t('companies.tiers.enterprise.description'),
       features: [1, 2, 3, 4, 5, 6, 7, 8].map(i => t(`companies.tiers.enterprise.features.${i}`)),
+      trustLine: t('companies.tiers.enterprise.trustLine', {
+        defaultValue: 'For 50+ recruiter teams · multi-brand groups · regulated industries',
+      }),
       cta: {
         label: t('companies.tiers.enterprise.cta'),
         href: '/contact?subject=enterprise',
@@ -178,6 +206,7 @@ export default function PricingPage() {
           'Everything you need to get noticed by companies. AI-extracted skills from real projects, unlimited applications.',
       }),
       features: [0, 1, 2, 3, 4].map(i => t(`students.features.${i}`)),
+      trustLine: trustFreeForever,
       cta: {
         label: t('students.cta'),
         href: '/auth/register/student',
@@ -190,8 +219,10 @@ export default function PricingPage() {
       cadence: t('students.tiers.premium.cadence', { defaultValue: '/ month' }),
       annual: {
         price: t('students.tiers.premium.annualPrice', { defaultValue: '€45 / year' }),
-        savings: t('students.tiers.premium.annualSavings', { defaultValue: 'save €15' }),
+        savings: t('students.tiers.premium.annualSavings', { defaultValue: 'save €15 (25%)' }),
       },
+      showVatNote: false,
+      trustLine: trustNoCard,
       description: t('students.tiers.premium.description', {
         defaultValue:
           'Deep skill path, unlimited AI, advanced analytics, priority recruiter visibility, interview coach.',
@@ -232,6 +263,7 @@ export default function PricingPage() {
         'AI Assistant — 50 queries / month',
         'AI skill extraction + optional professor endorsement',
       ],
+      trustLine: trustFreeForever,
       cta: {
         label: t('universities.tiers.free.cta', { defaultValue: 'Activate Free Core' }),
         href: '/auth/register/academic-partner',
@@ -244,8 +276,10 @@ export default function PricingPage() {
       cadence: t('universities.tiers.premium.cadence', { defaultValue: '/ month' }),
       annual: {
         price: t('universities.tiers.premium.annualPrice', { defaultValue: '€390 / year' }),
-        savings: t('universities.tiers.premium.annualSavings', { defaultValue: 'save €78' }),
+        savings: t('universities.tiers.premium.annualSavings', { defaultValue: 'save €78 (17%)' }),
       },
+      showVatNote: true,
+      trustLine: trustNoCard,
       description: t('universities.tiers.premium.description', {
         defaultValue:
           'Unlimited AI, advanced analytics, full audit log with CSV exports, reminder automation, MIUR-format reports.',
@@ -273,9 +307,9 @@ export default function PricingPage() {
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
 
-      {/* Hero — quiet, typography-first */}
+      {/* Hero — specific pricing summary in the H1, not generic */}
       <section className="bg-slate-950 text-white">
-        <div className="container max-w-5xl mx-auto px-6 pt-32 pb-20 lg:pt-40 lg:pb-24">
+        <div className="container max-w-5xl mx-auto px-6 pt-32 pb-16 lg:pt-40 lg:pb-20">
           <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400 mb-6">
             {t('hero.eyebrow', { defaultValue: 'Pricing' })}
           </div>
@@ -301,6 +335,20 @@ export default function PricingPage() {
             </a>
           </div>
         </div>
+
+        {/* Trust strip — only what's TRUE. No fabricated logos. */}
+        <div className="border-t border-slate-800/60">
+          <div className="container max-w-5xl mx-auto px-6 py-5 flex flex-wrap items-center gap-x-8 gap-y-2 text-[12px] text-slate-400 uppercase tracking-[0.12em]">
+            <span className="text-slate-500">{t('trustStrip.label', { defaultValue: 'Trusted foundation' })}:</span>
+            <span>{t('trustStrip.pilot', { defaultValue: 'UniBg pilot' })}</span>
+            <span className="text-slate-700">·</span>
+            <span>{t('trustStrip.startCup', { defaultValue: 'Start Cup award' })}</span>
+            <span className="text-slate-700">·</span>
+            <span>{t('trustStrip.gdpr', { defaultValue: 'GDPR + AI Act audit log' })}</span>
+            <span className="text-slate-700">·</span>
+            <span>{t('trustStrip.dataRoom', { defaultValue: 'EU data residency' })}</span>
+          </div>
+        </div>
       </section>
 
       {/* Companies — lead position, drives revenue */}
@@ -313,24 +361,15 @@ export default function PricingPage() {
           />
 
           <div className="grid md:grid-cols-3 border-x border-slate-200 dark:border-slate-800">
-            {companyTiers.map((tier, i) => (
-              <div
-                key={tier.name}
-                className={`${
-                  i > 0 && !tier.emphasized && !companyTiers[i - 1]?.emphasized
-                    ? 'md:border-l border-slate-200 dark:border-slate-800'
-                    : ''
-                }`}
-              >
-                <TierColumn tier={tier} />
-              </div>
+            {companyTiers.map(tier => (
+              <TierColumn key={tier.name} tier={tier} vatLabel={vatLabel} />
             ))}
           </div>
 
           <p className="mt-12 text-sm text-slate-500 max-w-3xl">
             {t('companies.roiAnchor', {
               defaultValue:
-                "A bad hire costs €30,000+ in salary, lost time, and team morale. InTransparency reduces that risk by showing real, AI-verified work instead of resume claims. Free until you've proven the pool; €89/month when you're ready to scale.",
+                "A bad hire wastes months of salary, ramp time, and team morale. InTransparency reduces that risk by showing real, AI-verified work — code, theses, internship reports — instead of resume claims. Free until you've proven the pool; €89/month when you're ready to scale.",
             })}
           </p>
         </div>
@@ -349,20 +388,15 @@ export default function PricingPage() {
           />
 
           <div className="grid md:grid-cols-2 border-x border-slate-200 dark:border-slate-800">
-            {studentTiers.map((tier, i) => (
-              <div
-                key={tier.name}
-                className={i === 1 && !tier.emphasized ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}
-              >
-                <TierColumn tier={tier} />
-              </div>
+            {studentTiers.map(tier => (
+              <TierColumn key={tier.name} tier={tier} vatLabel={vatLabel} />
             ))}
           </div>
 
           <p className="mt-12 text-sm text-slate-500 max-w-2xl">
             {t('students.endNote', {
               defaultValue:
-                'Free covers everything you need to get hired. Premium is optional — for students who want priority visibility, deeper analytics, and the interview coach.',
+                'Free covers everything you need to get hired. Premium is optional — for students who want priority visibility, deeper analytics, and the AI Interview Coach.',
             })}
           </p>
         </div>
@@ -378,45 +412,54 @@ export default function PricingPage() {
           />
 
           <div className="grid md:grid-cols-2 border-x border-slate-200 dark:border-slate-800">
-            {institutionTiers.map((tier, i) => (
-              <div
-                key={tier.name}
-                className={i === 1 && !tier.emphasized ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}
-              >
-                <TierColumn tier={tier} />
-              </div>
+            {institutionTiers.map(tier => (
+              <TierColumn key={tier.name} tier={tier} vatLabel={vatLabel} />
             ))}
           </div>
 
           <p className="mt-12 text-sm text-slate-500 max-w-2xl">
-            Free Core is free forever. Every AI action is logged for AI Act
-            compliance. Premium and add-ons are optional — pick them only
-            when you outgrow the limits.
+            {t('universities.reassurance', {
+              defaultValue:
+                'Free Core is free forever. Every AI action is logged for AI Act compliance. Premium and add-ons are optional — pick them only when you outgrow the limits.',
+            })}
           </p>
 
-          {/* Add-ons — moved into the institutions section since it's the
-              only audience this applies to. Editorial table, no tinted cards. */}
+          {/* Add-ons — public page shows only available + beta. Roadmap items
+              hidden behind a "talk to us about what's coming" link. */}
           <div className="mt-24">
             <div className="max-w-3xl mb-10">
               <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
-                {t('universities.addonsBadge', { defaultValue: 'Optional add-ons' })}
+                {t('universities.addonsBadge', { defaultValue: 'Available add-ons' })}
               </div>
               <h3 className="text-[26px] leading-[1.2] font-semibold tracking-tight text-slate-900 dark:text-white">
                 {t('universities.addonsTitle', { defaultValue: 'Scale modules — pick only what you need' })}
               </h3>
               <p className="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
-                {t('universities.addonsSubtitle', {
+                {t('universities.addonsAvailableSubtitle', {
                   defaultValue:
-                    'White-label, multi-institution rollup, SSO, ATS bridges, MIUR compliance. List-priced, individually negotiable, indicative until GA — early-bird pricing locks in for waitlist signups.',
+                    'Modules available today: priority AI quota, dedicated CSM, custom reporting, ATS bridge (beta), bulk verifiable credentials (beta).',
                 })}
               </p>
             </div>
-            <InstitutionAddonGrid cols={2} />
+            <InstitutionAddonGrid cols={2} excludeRoadmap />
+
+            <div className="mt-8 text-sm text-slate-600 dark:text-slate-400">
+              {t('universities.roadmapHint', {
+                defaultValue:
+                  'White-label workspace, multi-institution rollup, SSO, MIUR/ANVUR pack — currently in development.',
+              })}{' '}
+              <Link
+                href="/contact?subject=roadmap"
+                className="font-medium text-slate-900 dark:text-white underline underline-offset-4 hover:no-underline"
+              >
+                {t('universities.roadmapCta', { defaultValue: 'Talk to us →' })}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ — definition list typography, no cards */}
+      {/* FAQ */}
       <section className="scroll-mt-24">
         <div className="container max-w-3xl mx-auto px-6 py-24 lg:py-28">
           <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">

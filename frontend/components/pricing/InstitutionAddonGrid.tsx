@@ -35,11 +35,16 @@ interface Props {
   /** Kept for API compat with the public pricing page; ignored in the
    *  editorial layout, which always renders one row per add-on. */
   cols?: 2 | 3
+  /** Hide roadmap items from the grid. The public pricing page sets this
+   *  so visitors see only what's actually available; the auth'd dashboard
+   *  add-ons page leaves it false to surface the full roadmap. */
+  excludeRoadmap?: boolean
 }
 
-export default function InstitutionAddonGrid({ authenticated, locale = 'en', only }: Props) {
+export default function InstitutionAddonGrid({ authenticated, locale = 'en', only, excludeRoadmap }: Props) {
   const t = useTranslations('dashboard.addonGrid')
-  const items = only ? INSTITUTION_ADDONS.filter(a => only.includes(a.key)) : INSTITUTION_ADDONS
+  const filtered = only ? INSTITUTION_ADDONS.filter(a => only.includes(a.key)) : INSTITUTION_ADDONS
+  const items = excludeRoadmap ? filtered.filter(a => a.status !== 'roadmap') : filtered
 
   const contactHref = (a: InstitutionAddon) =>
     authenticated

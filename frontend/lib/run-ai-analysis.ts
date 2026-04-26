@@ -57,6 +57,11 @@ export async function runAIAnalysis(projectId: string, projectData: ProjectData)
           detectedCompetencies: analysis.detectedCompetencies,
           softSkills: analysis.softSkills,
           recommendations: analysis.recommendations,
+          // Provenance flag — true only when Claude actually ran. The UI
+          // reads this to decide whether to show the "AI-verified" badge
+          // or a softer "Preliminary" label. Heuristic fallbacks return
+          // undefined here, which we coerce to explicit false.
+          aiVerified: analysis.aiVerified === true,
           analyzedAt: new Date().toISOString()
         })),
 

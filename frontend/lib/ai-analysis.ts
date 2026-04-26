@@ -78,6 +78,14 @@ export interface RatedSkill {
 }
 
 export interface AnalysisResult {
+  // Verification provenance — true only when Claude actually ran on the
+  // project. False when the heuristic fallback was used (Claude API
+  // failed). The UI must NOT show an "AI-verified" badge when this is
+  // false; show "Preliminary score · retry for AI verification" instead.
+  // Marketing copy promises AI verification; honour it.
+  // Optional for back-compat — treat absent as `false` (be conservative).
+  aiVerified?: boolean
+
   // Overall scores (0-100)
   innovationScore: number
   complexityScore: number
@@ -1127,7 +1135,11 @@ async function callClaude(prompt: string, files?: ProjectData['files']): Promise
     text = text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '')
   }
 
-  return JSON.parse(text)
+  // Tag Claude-produced results with aiVerified:true at the source. Every
+  // Claude call site spreads the result, so this propagates automatically.
+  // Heuristic fallbacks never call this function — their returns stay
+  // `aiVerified: undefined`, which the API treats as `false`.
+  return { ...JSON.parse(text), aiVerified: true }
 }
 
 /**
