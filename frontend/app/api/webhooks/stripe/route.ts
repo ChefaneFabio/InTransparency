@@ -271,22 +271,55 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
 
 // Handle subscription created
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
-  // Institutional Premium subscriptions don't have a userId — the buyer is
-  // the org. checkout.session.completed has already set Institution.plan
-  // and the Stripe IDs; here we just record the period and skip user logic.
+  // Institutional Premium subscriptions don't have a userId at the top level
+  // — the buyer is the org. checkout.session.completed has already set
+  // Institution.plan and the Stripe IDs; here we record the billing period
+  // AND write a Subscription row tagged with institutionId so revenue
+  // analytics can count institutional money the same way they count
+  // user-owned subscriptions.
   if (subscription.metadata?.type === 'institutional_premium') {
     const institutionId = subscription.metadata?.institutionId
+    const purchasedByUserId = subscription.metadata?.purchasedByUserId
     if (institutionId) {
       const subData = subscription as any
+      const periodEnd = subData.current_period_end
+        ? new Date(subData.current_period_end * 1000)
+        : undefined
+
       await prisma.institution.update({
         where: { id: institutionId },
         data: {
           subscriptionStatus: subscription.status === 'trialing' ? 'TRIALING' : 'ACTIVE',
-          premiumUntil: subData.current_period_end
-            ? new Date(subData.current_period_end * 1000)
-            : undefined,
+          premiumUntil: periodEnd,
         },
       })
+
+      // Subscription history row — userId points at the admin who clicked
+      // checkout, institutionId names the org. Revenue analytics filter
+      // WHERE institutionId IS NOT NULL to isolate institutional revenue.
+      if (purchasedByUserId) {
+        const price = subscription.items.data[0]?.price
+        await prisma.subscription.create({
+          data: {
+            userId: purchasedByUserId,
+            institutionId,
+            tier: 'INSTITUTION_ENTERPRISE', // re-uses the enum slot for institutional billing
+            status: subscription.status === 'trialing' ? 'TRIALING' : 'ACTIVE',
+            stripeSubscriptionId: subscription.id,
+            stripePriceId: price?.id,
+            stripeCurrentPeriodEnd: periodEnd,
+            amount: price?.unit_amount ?? 0,
+            currency: price?.currency ?? 'eur',
+            interval: price?.recurring?.interval ?? 'month',
+            trialStart: subData.trial_start ? new Date(subData.trial_start * 1000) : null,
+            trialEnd: subData.trial_end ? new Date(subData.trial_end * 1000) : null,
+            startedAt: new Date(subscription.created * 1000),
+          },
+        }).catch(err => {
+          // Best-effort — duplicate-row safety if the same event fires twice.
+          console.error('Failed to create Subscription row for institution:', err)
+        })
+      }
     }
     return
   }

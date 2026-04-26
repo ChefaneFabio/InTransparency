@@ -759,6 +759,14 @@ model Subscription {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  // For institutional subscriptions (Institutional Premium €39/mo · €390/yr),
+  // userId points at the institution's primaryAdmin (the human who clicked
+  // checkout) and institutionId names the org being billed. For user-owned
+  // subscriptions (Student Premium / Recruiter Subscription) institutionId
+  // is null. Revenue analytics filter by institutionId IS NOT NULL to count
+  // institutional money separately from per-user money.
+  institutionId String?
+
   tier   SubscriptionTier
   status SubscriptionStatus
 
@@ -784,6 +792,7 @@ model Subscription {
   updatedAt  DateTime  @updatedAt
 
   @@index([userId])
+  @@index([institutionId])
   @@index([status])
   @@index([stripeSubscriptionId])
 }

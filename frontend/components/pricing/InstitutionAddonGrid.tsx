@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -20,10 +21,18 @@ const TINT: Record<InstitutionAddon['tint'], { bg: string; border: string; icon:
   slate:  { bg: 'from-slate-50 to-slate-100/40 dark:from-slate-900 dark:to-slate-800/60',      border: 'border-slate-200/70 dark:border-slate-800',      icon: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300',      text: 'text-slate-700 dark:text-slate-300' },
 }
 
-const STATUS_COPY: Record<InstitutionAddon['status'], { label: string; className: string }> = {
-  available: { label: 'Available now', className: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800' },
-  beta:      { label: 'Beta — early access', className: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800' },
-  roadmap:   { label: 'Coming soon', className: 'bg-slate-200 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700' },
+// Status colors live here; the user-visible label comes from i18n
+// (dashboard.addonGrid.status*) so EN/IT stay in sync with the rest of the
+// dashboard copy.
+const STATUS_CLASSNAME: Record<InstitutionAddon['status'], string> = {
+  available: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800',
+  beta:      'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800',
+  roadmap:   'bg-slate-200 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
+}
+const STATUS_LABEL_KEY: Record<InstitutionAddon['status'], 'statusAvailable' | 'statusBeta' | 'statusComingSoon'> = {
+  available: 'statusAvailable',
+  beta:      'statusBeta',
+  roadmap:   'statusComingSoon',
 }
 
 interface Props {
@@ -37,6 +46,7 @@ interface Props {
 }
 
 export default function InstitutionAddonGrid({ authenticated, locale = 'en', only, cols = 2 }: Props) {
+  const t = useTranslations('dashboard.addonGrid')
   const items = only ? INSTITUTION_ADDONS.filter(a => only.includes(a.key)) : INSTITUTION_ADDONS
 
   const contactHref = (a: InstitutionAddon) =>
@@ -48,7 +58,8 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
     <div className={`grid gap-4 ${cols === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-2'}`}>
       {items.map((a, i) => {
         const tint = TINT[a.tint]
-        const status = STATUS_COPY[a.status]
+        const statusClass = STATUS_CLASSNAME[a.status]
+        const statusLabel = t(STATUS_LABEL_KEY[a.status])
         const Icon = a.icon
         const isComingSoon = a.status === 'roadmap'
         return (
@@ -69,9 +80,9 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
               <div className={`w-11 h-11 rounded-xl ${tint.icon} flex items-center justify-center shrink-0`}>
                 <Icon className="h-5 w-5" />
               </div>
-              <Badge variant="outline" className={`text-[10px] ${status.className}`}>
+              <Badge variant="outline" className={`text-[10px] ${statusClass}`}>
                 {isComingSoon && <Clock className="h-2.5 w-2.5 mr-1" />}
-                {status.label}
+                {statusLabel}
               </Badge>
             </div>
 
@@ -90,7 +101,9 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
             <div className="mt-4 pt-4 border-t flex items-end justify-between gap-3">
               <div>
                 <div className={`text-lg font-bold tracking-tight ${isComingSoon ? 'text-muted-foreground' : tint.text}`}>
-                  {isComingSoon ? `Indicative · ${formatAddonPrice(a.pricing, locale)}` : formatAddonPrice(a.pricing, locale)}
+                  {isComingSoon
+                    ? t('indicativePrice', { price: formatAddonPrice(a.pricing, locale) })
+                    : formatAddonPrice(a.pricing, locale)}
                 </div>
                 {'note' in a.pricing && a.pricing.note && !isComingSoon && (
                   <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight max-w-[180px]">
@@ -99,13 +112,13 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
                 )}
                 {isComingSoon && (
                   <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight max-w-[180px]">
-                    Pricing finalized at GA · join the waitlist for early-bird discount
+                    {t('comingSoonNote')}
                   </div>
                 )}
               </div>
               <Button size="sm" variant="outline" asChild>
                 <Link href={contactHref(a) as any}>
-                  {isComingSoon ? 'Join waitlist' : authenticated ? 'Request' : 'Talk to us'}
+                  {isComingSoon ? t('ctaWaitlist') : authenticated ? t('ctaRequest') : t('ctaTalk')}
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
               </Button>
