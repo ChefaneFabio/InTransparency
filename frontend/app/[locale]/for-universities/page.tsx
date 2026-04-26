@@ -8,7 +8,6 @@ import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -21,54 +20,15 @@ import {
 import { FAQ } from '@/components/engagement/FAQ'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
-import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
-import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
-import { UniversityUrgency } from '@/components/sections/universities/UniversityUrgency'
 import { SavingsCalculator } from '@/components/sections/universities/SavingsCalculator'
-import { UniversityPrestige } from '@/components/sections/universities/UniversityPrestige'
 import HeroCTA from '@/components/ui/HeroCTA'
 
-const COUNTRY_TABS = [
-  {
-    code: 'IT',
-    flag: '🇮🇹',
-    label: 'Italy',
-    pain: 'Career services rely on end-of-year surveys with 15% response rates. Placement data is months old by the time it reaches ministry reports.',
-    value: 'Real-time placement funnels replace surveys. Grade normalization (18-30 scale) lets companies from DE, FR, NL instantly understand your students\' results.',
-  },
-  {
-    code: 'DE',
-    flag: '🇩🇪',
-    label: 'Germany',
-    pain: 'Dual-study partnerships lack visibility into which companies actually engage with students. The inverted grading system (1.0 = best) confuses international recruiters.',
-    value: 'Automatic grade translation (1.0-5.0 → all EU systems). Company leaderboard shows which employers actively recruit from your Hochschule.',
-  },
-  {
-    code: 'FR',
-    flag: '🇫🇷',
-    label: 'France',
-    pain: 'Grandes écoles and universities compete for the same employer relationships but lack data on recruiter behaviour and cross-border placement.',
-    value: 'Unified analytics across formations. Erasmus Bridge connects your exchange students to both home and host employer networks simultaneously.',
-  },
-  {
-    code: 'ES',
-    flag: '🇪🇸',
-    label: 'Spain',
-    pain: 'Youth unemployment at 27% makes placement proof essential for accreditation. Most prácticas go untracked after the initial agreement.',
-    value: 'Verified placement tracking from first contact to hiring outcome. Exportable reports for ANECA accreditation and ministerial reporting.',
-  },
-  {
-    code: 'NL',
-    flag: '🇳🇱',
-    label: 'Netherlands',
-    pain: 'HBO and WO institutions need to demonstrate employability outcomes for NVAO accreditation. International student placement is especially hard to track.',
-    value: 'Cross-border placement visibility for your international cohorts. Decision Packs translate Dutch grades for employers across Europe.',
-  },
-]
+// Slim sweep 2026-04-26 — page cut from 13 sections to 6. Dropped imports
+// (UniversityUrgency, UniversityPrestige, DecisionPackPreview, AnalyticsPreview,
+// Tabs, COUNTRY_TABS) remain available in their source files for re-use.
 
 export default function ForUniversitiesPage() {
   const t = useTranslations('forUniversities')
-  const [activeCountry, setActiveCountry] = useState('IT')
   const [showSticky, setShowSticky] = useState(false)
 
   useEffect(() => {
@@ -149,7 +109,7 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
-      {/* Institutional Workspace — M1-M4 modules showcase (shipped 2026-04) */}
+      {/* Institutional Workspace — four modules, no internal "M1-M4" jargon */}
       <section className="py-16 bg-gradient-to-br from-amber-50/40 via-white to-blue-50/40">
         <div className="container max-w-6xl mx-auto px-4">
           <motion.div
@@ -171,7 +131,7 @@ export default function ForUniversitiesPage() {
             <p className="text-gray-600 text-lg">
               {t('workspaceModules.subtitle', {
                 defaultValue:
-                  'Four modules that turn placement from spreadsheets into an auditable workflow. Preview on the free CORE tier; unlock writes with PREMIUM.',
+                  'Four modules that turn placement from spreadsheets into an auditable workflow. Free Core gets full read access; Premium unlocks automation and unlimited AI.',
               })}
             </p>
           </motion.div>
@@ -180,7 +140,7 @@ export default function ForUniversitiesPage() {
             {[
               {
                 icon: Inbox,
-                code: 'M1',
+                key: 'm1',
                 title: t('workspaceModules.m1.title', { defaultValue: 'Mediation Inbox' }),
                 desc: t('workspaceModules.m1.desc', {
                   defaultValue:
@@ -191,18 +151,18 @@ export default function ForUniversitiesPage() {
               },
               {
                 icon: FileSignature,
-                code: 'M2',
+                key: 'm2',
                 title: t('workspaceModules.m2.title', { defaultValue: 'Offer Moderation' }),
                 desc: t('workspaceModules.m2.desc', {
                   defaultValue:
-                    'Job offers tied to your institution go to PENDING_APPROVAL. Block offers that violate stage rules before students see them.',
+                    'Job offers tied to your institution go to pending approval. Block offers that violate stage rules before students see them.',
                 }),
                 color: 'text-purple-600',
                 bg: 'bg-purple-100',
               },
               {
                 icon: Building2,
-                code: 'M3',
+                key: 'm3',
                 title: t('workspaceModules.m3.title', { defaultValue: 'Company CRM' }),
                 desc: t('workspaceModules.m3.desc', {
                   defaultValue:
@@ -213,7 +173,7 @@ export default function ForUniversitiesPage() {
               },
               {
                 icon: GraduationCap,
-                code: 'M4',
+                key: 'm4',
                 title: t('workspaceModules.m4.title', { defaultValue: 'Placement Pipeline' }),
                 desc: t('workspaceModules.m4.desc', {
                   defaultValue:
@@ -226,7 +186,7 @@ export default function ForUniversitiesPage() {
               const Icon = m.icon
               return (
                 <motion.div
-                  key={m.code}
+                  key={m.key}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
@@ -234,11 +194,8 @@ export default function ForUniversitiesPage() {
                 >
                   <Card className="h-full hover:shadow-lg hover:border-primary/30 transition-all">
                     <CardContent className="p-5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className={`w-10 h-10 rounded-lg ${m.bg} flex items-center justify-center`}>
-                          <Icon className={`h-5 w-5 ${m.color}`} />
-                        </div>
-                        <span className="text-xs font-mono text-muted-foreground">{m.code}</span>
+                      <div className={`w-10 h-10 rounded-lg ${m.bg} flex items-center justify-center mb-3`}>
+                        <Icon className={`h-5 w-5 ${m.color}`} />
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-1.5">{m.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed">{m.desc}</p>
@@ -273,20 +230,14 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
-      {/* Urgency — why this decision can't wait */}
-      <UniversityUrgency />
-
-      {/* Savings calculator — hard-money value prop */}
+      {/* Savings calculator — hard-money value prop, the only ROI section we keep */}
       <section className="py-20">
         <div className="container max-w-6xl mx-auto px-4">
           <SavingsCalculator />
         </div>
       </section>
 
-      {/* Prestige — rector-level framing */}
-      <UniversityPrestige />
-
-      {/* Grade Normalizer Demo — most tangible value prop, show it early */}
+      {/* Grade Normalizer Demo — most tangible value prop */}
       <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
           <motion.div
@@ -310,142 +261,14 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
-      {/* Country-specific pain/value */}
-      <section className="py-12 bg-white">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('countries.title')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              {t('countries.subtitle')}
-            </p>
-          </div>
-
-          <Tabs value={activeCountry} onValueChange={setActiveCountry}>
-            <TabsList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 max-w-lg mx-auto mb-8">
-              {COUNTRY_TABS.map((tab) => (
-                <TabsTrigger key={tab.code} value={tab.code} className="text-sm">
-                  {tab.flag} {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {COUNTRY_TABS.map((tab) => (
-              <TabsContent key={tab.code} value={tab.code}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="border-red-200 bg-red-50/50">
-                    <CardContent className="pt-6">
-                      <h3 className="font-semibold text-red-800 mb-2">{t('countries.painLabel')}</h3>
-                      <p className="text-sm text-red-700">{tab.pain}</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-green-200 bg-green-50/50">
-                    <CardContent className="pt-6">
-                      <h3 className="font-semibold text-green-800 mb-2">{t('countries.valueLabel')}</h3>
-                      <p className="text-sm text-green-700">{tab.value}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </section>
-
-      {/* More Demos — Decision Pack + Analytics */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              {t('demos.title')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-lg">
-              {t('demos.subtitle')}
-            </p>
-          </motion.div>
-
-          <div className="space-y-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="mb-6">
-                <h3 className="text-xl font-bold">{t('demos.decisionPack.title')}</h3>
-                <p className="text-sm text-gray-600">{t('demos.decisionPack.description')}</p>
-              </div>
-              <div className="max-w-2xl">
-                <DecisionPackPreview data={null} />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="mb-6">
-                <h3 className="text-xl font-bold">{t('demos.analytics.title')}</h3>
-                <p className="text-sm text-gray-600">{t('demos.analytics.description')}</p>
-              </div>
-              <div className="max-w-2xl">
-                <AnalyticsPreview />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Co-Creation */}
-      <section className="py-16 bg-amber-50/50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <Badge className="mb-4 bg-amber-100 text-amber-800 border-amber-200">
-              Co-Creation
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              {t('coCreation.title')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-lg">
-              {t('coCreation.subtitle')}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[0, 1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Card className="h-full border-amber-100">
-                  <CardContent className="pt-6">
-                    <h3 className="text-base font-bold mb-2">{t(`coCreation.points.${i}.title`)}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{t(`coCreation.points.${i}.desc`)}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Slim sweep 2026-04-26 dropped 5 sections that diluted the funnel:
+          - UniversityUrgency (vague urgency-marketing)
+          - UniversityPrestige (overlapped with hero framing)
+          - Country-specific tabs (5 countries, repetitive copy)
+          - More Demos: DecisionPack + Analytics (second-tier — Grade Normalizer leads)
+          - Co-Creation (overlap with hero/pilot proof)
+          Components remain in /components/sections/universities/ and
+          /components/demo/ for re-use if scale changes the equation. */}
 
       {/* FAQ */}
       <section className="py-12">

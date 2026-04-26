@@ -9,7 +9,9 @@ import { BookingSection } from '@/components/sections/BookingSection'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PWAInstallBanner } from '@/components/ui/pwa-install-banner'
-import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
+// FloatingTransparenty mascot retired 2026-04-26 — brand pivot toward
+// verified-by-evidence (typography-led, less playful imagery). Component
+// file remains in /components/mascot/ for future reuse if direction changes.
 
 export const revalidate = 3600
 
@@ -29,7 +31,6 @@ export default function Home() {
       </main>
       <Footer />
       <PWAInstallBanner />
-      <FloatingTransparenty />
     </div>
   )
 }
