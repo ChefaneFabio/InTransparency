@@ -19,7 +19,8 @@ export default function StudentRegisterPage() {
     lastName: '',
     email: '',
     password: '',
-    role: 'STUDENT'
+    role: 'STUDENT',
+    country: 'IT',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -192,6 +193,27 @@ export default function StudentRegisterPage() {
                   minLength={8}
                   disabled={isLoading}
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="country">{t('university.country', { defaultValue: 'Country' })}</Label>
+                <select
+                  id="country"
+                  className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  value={formData.country}
+                  onChange={(e) => setFormData(prev => ({ ...prev, country: e.target.value }))}
+                  disabled={isLoading}
+                >
+                  <option value="IT">Italia</option>
+                  <option value="DE">Deutschland</option>
+                  <option value="FR">France</option>
+                  <option value="ES">España</option>
+                  <option value="NL">Nederland</option>
+                  <option value="PT">Portugal</option>
+                  <option value="PL">Polska</option>
+                  <option value="RO">România</option>
+                  <option value="SE">Sverige</option>
+                </select>
               </div>
 
               <Button

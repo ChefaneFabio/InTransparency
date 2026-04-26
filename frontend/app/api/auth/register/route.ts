@@ -4,13 +4,17 @@ import bcrypt from "bcryptjs"
 import { z } from "zod"
 import { authLimiter, getClientIp } from "@/lib/rate-limit"
 
-// Validation schema
+// Validation schema. Country is optional; the User model defaults it to 'IT'
+// for backward compatibility, but the registration form passes the user's
+// selected country (IT/DE/FR/ES/NL/PT/PL/RO/SE) for accurate EU positioning
+// and future tax/locale logic.
 const registerSchema = z.object({
   email: z.string().email("Invalid email address").max(255),
   password: z.string().min(8, "Password must be at least 8 characters").max(128),
   firstName: z.string().min(1, "First name is required").max(100),
   lastName: z.string().min(1, "Last name is required").max(100),
   role: z.enum(["STUDENT", "RECRUITER", "UNIVERSITY", "TECHPARK", "PROFESSOR"]).optional(),
+  country: z.string().length(2).optional(),
 })
 
 // Roles that anyone can self-assign through THIS generic endpoint.
@@ -73,6 +77,7 @@ export async function POST(req: NextRequest) {
         lastName: validatedData.lastName.trim(),
         username,
         role,
+        ...(validatedData.country ? { country: validatedData.country } : {}),
         emailVerified: false,
         profilePublic: false,
       },

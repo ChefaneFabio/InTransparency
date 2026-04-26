@@ -52,13 +52,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Candidate not found' }, { status: 404 })
     }
 
-    // In production, this would come from encrypted user settings
-    const greenhouseApiKey = process.env.GREENHOUSE_API_KEY || recruiterUser?.stripeCustomerId // placeholder
+    // The previous placeholder fell back to the recruiter's Stripe customer
+    // ID as the API key — that was a real bug (would leak the ID in HTTP
+    // headers). Now: explicit env-var check, hard 503 if not set. Per-tenant
+    // keys via encrypted settings will replace this in a follow-up.
+    const greenhouseApiKey = process.env.GREENHOUSE_API_KEY
 
     if (!greenhouseApiKey) {
       return NextResponse.json({
-        error: 'Greenhouse integration not configured. Please add your API key in settings.'
-      }, { status: 400 })
+        error: 'Greenhouse integration is not yet configured for this deployment. Contact support to enable.',
+        code: 'INTEGRATION_NOT_CONFIGURED',
+        integration: 'greenhouse',
+      }, { status: 503 })
     }
 
     // Format candidate for Greenhouse API
