@@ -35,27 +35,38 @@ interface Props {
 type StepState = 'todo' | 'done' | 'doneAuto'
 
 const STORAGE_PREFIX = 'intransparency_journey_'
+const FIRST_SEEN_PREFIX = 'intransparency_journey_seen_'
 
-function loadState(journeyKey: string): { steps: Record<string, StepState>; dismissed: boolean; expanded: boolean } {
-  if (typeof window === 'undefined') return { steps: {}, dismissed: false, expanded: false }
+interface PersistedState {
+  steps: Record<string, StepState>
+  dismissed: boolean
+  expanded: boolean
+  /** Set to true after the first auto-expand so we don't keep popping. */
+  firstSeen?: boolean
+}
+
+function loadState(journeyKey: string): PersistedState {
+  if (typeof window === 'undefined') return { steps: {}, dismissed: false, expanded: false, firstSeen: false }
   try {
     const raw = localStorage.getItem(STORAGE_PREFIX + journeyKey)
-    if (!raw) return { steps: {}, dismissed: false, expanded: false }
+    if (!raw) return { steps: {}, dismissed: false, expanded: false, firstSeen: false }
     const parsed = JSON.parse(raw)
     return {
       steps: parsed.steps || {},
       dismissed: !!parsed.dismissed,
       expanded: !!parsed.expanded,
+      firstSeen: !!parsed.firstSeen || !!localStorage.getItem(FIRST_SEEN_PREFIX + journeyKey),
     }
   } catch {
-    return { steps: {}, dismissed: false, expanded: false }
+    return { steps: {}, dismissed: false, expanded: false, firstSeen: false }
   }
 }
 
-function saveState(journeyKey: string, state: { steps: Record<string, StepState>; dismissed: boolean; expanded: boolean }) {
+function saveState(journeyKey: string, state: PersistedState) {
   if (typeof window === 'undefined') return
   try {
     localStorage.setItem(STORAGE_PREFIX + journeyKey, JSON.stringify(state))
+    if (state.firstSeen) localStorage.setItem(FIRST_SEEN_PREFIX + journeyKey, '1')
   } catch {
     // localStorage unavailable (private mode, quota) — silent
   }
@@ -85,22 +96,38 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
   const [stepStates, setStepStates] = useState<Record<string, StepState>>({})
   const [expanded, setExpanded] = useState(false)
   const [dismissed, setDismissed] = useState(false)
+  const [firstSeen, setFirstSeen] = useState(true) // default true so we don't auto-expand pre-hydration
   const [hydrated, setHydrated] = useState(false)
 
-  // Hydrate from localStorage
+  // Hydrate from localStorage. If this is the user's first time seeing the
+  // journey panel ever, auto-expand so they actually notice it instead of
+  // walking past the collapsed pill.
   useEffect(() => {
     const loaded = loadState(journey.key)
     setStepStates(loaded.steps)
     setDismissed(loaded.dismissed)
-    setExpanded(loaded.expanded)
+    setFirstSeen(!!loaded.firstSeen)
+    if (!loaded.firstSeen && !loaded.dismissed) {
+      setExpanded(true) // auto-pop on first visit
+    } else {
+      setExpanded(loaded.expanded)
+    }
     setHydrated(true)
   }, [journey.key])
+
+  // Once hydrated and rendered expanded, mark first-seen so we don't keep
+  // auto-expanding on every navigation.
+  useEffect(() => {
+    if (hydrated && expanded && !firstSeen) {
+      setFirstSeen(true)
+    }
+  }, [hydrated, expanded, firstSeen])
 
   // Persist
   useEffect(() => {
     if (!hydrated) return
-    saveState(journey.key, { steps: stepStates, dismissed, expanded })
-  }, [stepStates, dismissed, expanded, hydrated, journey.key])
+    saveState(journey.key, { steps: stepStates, dismissed, expanded, firstSeen })
+  }, [stepStates, dismissed, expanded, firstSeen, hydrated, journey.key])
 
   // Run detections in parallel — on mount + on tab refocus
   const runDetections = useCallback(async () => {

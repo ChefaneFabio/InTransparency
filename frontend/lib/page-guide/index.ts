@@ -349,6 +349,350 @@ export const PAGE_GUIDES: Record<string, PageGuide> = {
       'MIUR / ANVUR compliance pack',
     ],
   },
+
+  // ── STUDENT (extended coverage) ──
+  '/dashboard/student/profile': {
+    about: 'Your public-facing identity — what recruiters see.',
+    actions: [
+      'Add a photo + a one-line bio',
+      'Upload a CV (or generate one from /cv)',
+      'Set your job-search status (active, passive, not looking)',
+    ],
+    premium: ['Custom portfolio URL — yourname.intransparency.com'],
+    related: [
+      { label: 'Generate CV', href: '/dashboard/student/cv' },
+      { label: 'Settings', href: '/dashboard/student/settings' },
+    ],
+  },
+  '/dashboard/student/skills': {
+    about: 'Your verified skills, sourced from projects + courses + endorsements.',
+    actions: [
+      'Browse skills with proof links',
+      'See suggested skills to add (gap analysis)',
+      'Endorse a skill on a peer\'s profile',
+    ],
+  },
+  '/dashboard/student/skill-path': {
+    about: 'Your 12-month roadmap of skills to build, ordered by ROI for your target roles.',
+    actions: [
+      'Pick weekly challenges that move you forward',
+      'See which skills unlock which roles',
+      'Track completion of each milestone',
+    ],
+    premium: ['Full 12-month roadmap · weekly coaching'],
+  },
+  '/dashboard/student/jobs': {
+    about: 'Browse all open jobs across the platform — filter by anything.',
+    actions: [
+      'Filter by discipline, city, contract type, salary band',
+      'Save jobs for later (bookmark icon)',
+      'Apply directly from any card',
+    ],
+    related: [
+      { label: 'AI matches for you', href: '/dashboard/student/matches' },
+    ],
+  },
+  '/dashboard/student/messages': {
+    about: 'Inbox of conversations with recruiters who reached out to you.',
+    actions: [
+      'Reply to recruiters who contacted you',
+      'Mark threads as resolved',
+      'Block unwanted contact (also reports to staff for institutional users)',
+    ],
+  },
+  '/dashboard/student/fit-profile': {
+    about: 'Your fit profile — values, motivations, dealbreakers — that powers job matching.',
+    actions: [
+      'Re-run the 6-step self-discovery to update it',
+      'Edit individual sections directly',
+      'Import insights from a recent interview reflection',
+    ],
+    related: [
+      { label: 'Self-discovery', href: '/self-discovery' },
+    ],
+  },
+  '/dashboard/student/tirocinio': {
+    about: 'Internship tracking — hours log, evaluations, deadlines.',
+    actions: [
+      'Log hours weekly so the institution sees real-time progress',
+      'Submit mid + final evaluations',
+      'Download convention + signed agreements',
+    ],
+  },
+  '/dashboard/student/analytics': {
+    about: 'Profile analytics — views, recruiter engagement, search position.',
+    actions: [
+      'See who viewed your profile this week',
+      'Identify which projects drive the most engagement',
+      'Compare your visibility to your discipline median',
+    ],
+    premium: ['8 advanced dashboards · cohort benchmarks · recruiter intent signals'],
+  },
+  '/dashboard/student/settings': {
+    about: 'Account settings — language, notifications, dark mode.',
+    actions: [
+      'Toggle notifications you want',
+      'Change interface language',
+      'Manage connected accounts',
+    ],
+  },
+  '/dashboard/student/privacy': {
+    about: 'Privacy controls — what\'s public, who can contact you, GDPR exports.',
+    actions: [
+      'Set profile visibility per audience',
+      'Block specific companies from seeing you',
+      'Export all your data (GDPR Art. 15)',
+      'Delete your account',
+    ],
+    related: [
+      { label: 'Audit log', href: '/dashboard/student/privacy/audit-log' },
+    ],
+  },
+  '/dashboard/student/integrations': {
+    about: 'Connect GitHub, LinkedIn, AlmaLaurea — pull verified data automatically.',
+    actions: [
+      'Sync GitHub commits + repos',
+      'Pull AlmaLaurea profile (Italy)',
+      'Import LinkedIn experience (read-only)',
+    ],
+  },
+
+  // ── RECRUITER (extended coverage) ──
+  '/dashboard/recruiter/analytics': {
+    about: 'Recruiter analytics — funnel conversion, source-of-hire, time-to-hire.',
+    actions: [
+      'Identify the highest-converting source of candidates',
+      'Find pipeline-stage drop-off (where candidates ghost)',
+      'Compare your time-to-hire to your industry median',
+    ],
+  },
+  '/dashboard/recruiter/messages': {
+    about: 'All your conversations with candidates in one inbox.',
+    actions: [
+      'Reply directly from the inbox',
+      'Mark threads as resolved',
+      'Search past conversations',
+    ],
+  },
+  '/dashboard/recruiter/watchlist': {
+    about: 'Saved candidates — your long-term talent pool.',
+    actions: [
+      'Bookmark candidates for later (no contact-quota cost)',
+      'Tag for filtering ("for senior backend role 2026")',
+      'Bulk-message your watchlist when a relevant role opens',
+    ],
+  },
+  '/dashboard/recruiter/talent-match': {
+    about: 'AI-suggested candidates per open job, ranked by fit score.',
+    actions: [
+      'Open any candidate to see fit-score breakdown',
+      'One-click contact (uses 1 monthly contact)',
+      'Filter the suggestion engine by must-have skills',
+    ],
+  },
+  '/dashboard/recruiter/ai-talent-search': {
+    about: 'Search candidates with natural language ("Python intern with ML thesis").',
+    actions: [
+      'Describe the role conversationally',
+      'Refine results without rebuilding filters',
+      'Save searches as alerts',
+    ],
+  },
+  '/dashboard/recruiter/interview-kit': {
+    about: 'AI-generated interview questions tailored to a role + candidate.',
+    actions: [
+      'Pick a job to generate kit for',
+      'Customize question depth (junior / mid / senior)',
+      'Export as PDF for the interviewing team',
+    ],
+  },
+  '/dashboard/recruiter/hiring-advisor': {
+    about: 'Conversational AI advisor for hiring decisions, grounded in candidate evidence.',
+    actions: [
+      'Ask "Should I hire X?" — get evidence-based reasoning',
+      'Compare two candidates side-by-side',
+      'Get suggested follow-up questions for an interview',
+    ],
+  },
+  '/dashboard/recruiter/compare': {
+    about: 'Side-by-side comparison of up to 4 candidates.',
+    actions: [
+      'Add candidates from any list page',
+      'Toggle which evidence types to compare',
+      'Export the comparison as a Decision Pack',
+    ],
+  },
+  '/dashboard/recruiter/challenges': {
+    about: 'Post company challenges — open problems for students to solve as projects.',
+    actions: [
+      'Post a new challenge (problem statement + expected outcome)',
+      'Review submissions',
+      'Convert top submitters into job applicants',
+    ],
+  },
+  '/dashboard/recruiter/followers': {
+    about: 'Students who follow your company — warm leads, already interested in you.',
+    actions: [
+      'Browse followers',
+      'Send a bulk update when a new role opens',
+      'Filter by university or discipline',
+    ],
+  },
+  '/dashboard/recruiter/company-profile': {
+    about: 'Your public company page — what students see when they browse companies.',
+    actions: [
+      'Preview the public-facing version',
+      'Edit hero + about (or use Auto-fill in /settings)',
+      'Add team members + culture content',
+    ],
+    related: [
+      { label: 'Edit brand identity', href: '/dashboard/recruiter/settings' },
+    ],
+  },
+  '/dashboard/recruiter/university-insights': {
+    about: 'Aggregated insights: which universities → best hires for us.',
+    actions: [
+      'See which universities consistently send strong-fit candidates',
+      'Drill into one university\'s historical placements with you',
+      'Reach out to career offices directly',
+    ],
+  },
+  '/dashboard/recruiter/documents': {
+    about: 'Document library — NDAs, contract templates, policy docs.',
+    actions: [
+      'Upload templates that auto-attach to offer emails',
+      'Manage versions',
+      'Share with the hiring team',
+    ],
+  },
+
+  // ── INSTITUTION (extended coverage) ──
+  '/dashboard/university/programs': {
+    about: 'Program-level insights: curriculum alignment, career destinations, skills intelligence, exchanges.',
+    actions: [
+      'Pick a tab to drill into (Curriculum / Career Paths / Skills Intelligence / Exchanges)',
+      'Compare program outcomes to other universities',
+      'Identify curriculum gaps relative to market demand',
+    ],
+    premium: ['Skills Intelligence + Curriculum Alignment'],
+  },
+  '/dashboard/university/internship-pipeline': {
+    about: 'Earlier-stage pipeline (pre-tirocinio) — active sourcing for internships.',
+    actions: [
+      'Track companies you\'re sourcing from',
+      'Coordinate stage placements for upcoming cohorts',
+    ],
+  },
+  '/dashboard/university/courses': {
+    about: 'All courses offered — filter by department, year, professor.',
+    actions: [
+      'Drill into any course to see student projects + outcomes',
+      'Identify courses with high vs low project completion',
+    ],
+  },
+  '/dashboard/university/projects': {
+    about: 'All student projects across the institution — quality control + verification queue.',
+    actions: [
+      'Filter projects awaiting professor verification',
+      'Bulk-approve verified projects',
+      'Identify projects flagged for review',
+    ],
+  },
+  '/dashboard/university/employer-crm': {
+    about: 'Aggregate view of employers across all program managers — cross-team visibility.',
+    actions: [
+      'Search any company across teams',
+      'Identify orphaned accounts (no active owner)',
+      'Reassign accounts to staff',
+    ],
+  },
+  '/dashboard/university/recruiters': {
+    about: 'List of recruiters who\'ve engaged with the institution.',
+    actions: [
+      'Filter by company, recency, engagement depth',
+      'Cold-warm-hot scoring',
+    ],
+  },
+  '/dashboard/university/alumni': {
+    about: 'Alumni database — outreach for hiring + mentoring opportunities.',
+    actions: [
+      'Filter by graduation year, current employer, role',
+      'Send bulk update / call-for-mentors',
+      'Track alumni-mediated hires',
+    ],
+  },
+  '/dashboard/university/scorecard': {
+    about: 'Standardized scorecard — placement %, time-to-hire, gross outcome — for accreditation.',
+    actions: [
+      'View the single-page scorecard',
+      'Export as PDF for ANVUR / accreditation submissions',
+      'Compare year-over-year trends',
+    ],
+    premium: ['MIUR-format reports · custom exports'],
+  },
+  '/dashboard/university/board': {
+    about: 'C-suite dashboard — KPIs, outcomes summary for board reporting.',
+    actions: [
+      'Single-page overview for the academic senate',
+      'Export presentation-ready slides',
+    ],
+  },
+  '/dashboard/university/events': {
+    about: 'Manage career fairs, employer days, alumni events.',
+    actions: [
+      'Schedule a new event with capacity + registration',
+      'Send invites to filtered student segments',
+      'Track attendance + lead capture',
+    ],
+  },
+  '/dashboard/university/communications': {
+    about: 'Mass communication — newsletters, alerts, announcements to students.',
+    actions: [
+      'Compose a newsletter with student-segment targeting',
+      'Schedule for later send',
+      'Track open + click rates',
+    ],
+  },
+  '/dashboard/university/pcto': {
+    about: 'PCTO management for high schools — Italian mandatory work experience.',
+    actions: [
+      'Track PCTO hours per student',
+      'Match students with companies in /pcto/marketplace',
+      'Generate hour-completion certificates',
+    ],
+  },
+  '/dashboard/university/orientation': {
+    about: 'High-school orientation funnel — pull future students from PCTO partner schools.',
+    actions: [
+      'Manage orientation events',
+      'Track which schools convert into matriculations',
+    ],
+  },
+  '/dashboard/university/parental-consent': {
+    about: 'Parental-consent management for under-18 students.',
+    actions: [
+      'Send consent requests via email',
+      'Track signed vs pending',
+      'Bulk-import consent forms',
+    ],
+  },
+  '/dashboard/university/integrations': {
+    about: 'Connect Esse3, U-GOV, AlmaLaurea, ANVUR, MIUR data feeds.',
+    actions: [
+      'Configure each connector',
+      'Schedule sync frequency',
+      'View last sync status + errors',
+    ],
+    premium: ['ATS bridge add-on (€5k setup + €1.5k/yr)'],
+  },
+  '/dashboard/university/settings': {
+    about: 'Institution settings — branding, user permissions, regional config.',
+    actions: [
+      'Set the institution logo + colours',
+      'Manage staff roles + permissions',
+      'Configure regional defaults (CCNL, INAIL, ESCO version)',
+    ],
+  },
 }
 
 /**

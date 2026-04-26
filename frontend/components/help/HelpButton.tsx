@@ -32,28 +32,68 @@ const SEGMENT_THEME: Record<JourneySegment, { accent: string; ring: string }> = 
   institution: { accent: 'text-amber-700 dark:text-amber-300',   ring: 'hover:ring-amber-300' },
 }
 
+const SEEN_KEY_PREFIX = 'intransparency_pageguide_seen_'
+
 export default function HelpButton({ segment }: Props) {
   const pathname = usePathname() || ''
   const [open, setOpen] = useState(false)
   const [guide, setGuide] = useState<PageGuide | null>(null)
+  const [showAttractor, setShowAttractor] = useState(false)
   const theme = SEGMENT_THEME[segment]
 
-  // Resolve guide whenever the path changes
+  // Strip locale to get a stable key — /it/dashboard/x and /en/dashboard/x
+  // should be treated as the same page for the "seen" flag.
+  const stableKey = pathname.replace(/^\/[a-z]{2}(?=\/)/, '')
+
+  // Resolve guide whenever the path changes; show attractor pulse on first
+  // visit to a route that has a registered guide (not for fallback pages).
   useEffect(() => {
-    setGuide(getGuideForPath(pathname))
-    setOpen(false) // close popover on navigation
-  }, [pathname])
+    const resolved = getGuideForPath(pathname)
+    setGuide(resolved)
+    setOpen(false)
+
+    if (typeof window === 'undefined') return
+    const seenKey = SEEN_KEY_PREFIX + stableKey
+    const alreadySeen = !!localStorage.getItem(seenKey)
+    if (resolved && !alreadySeen) {
+      setShowAttractor(true)
+      // Auto-fade after 6s if user doesn't engage
+      const timer = setTimeout(() => setShowAttractor(false), 6000)
+      return () => clearTimeout(timer)
+    } else {
+      setShowAttractor(false)
+    }
+  }, [pathname, stableKey])
+
+  const handleOpen = () => {
+    setOpen(o => !o)
+    setShowAttractor(false)
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(SEEN_KEY_PREFIX + stableKey, '1')
+      } catch {
+        // localStorage unavailable — silent
+      }
+    }
+  }
 
   return (
     <>
-      {/* Floating "?" launcher — sits to the left of the chatbot launcher */}
+      {/* Floating "?" launcher — sits to the left of the chatbot launcher.
+          Pulses softly on first visit to a page with a registered guide. */}
       <button
-        onClick={() => setOpen(o => !o)}
+        onClick={handleOpen}
         className={`fixed bottom-6 right-24 z-30 h-10 w-10 rounded-full bg-card border shadow-md flex items-center justify-center text-muted-foreground transition-all hover:shadow-lg hover:text-foreground hover:ring-2 ${theme.ring} focus:outline-none focus-visible:ring-2`}
         aria-label="Page help"
         aria-expanded={open}
       >
-        <HelpCircle className="h-5 w-5" />
+        {showAttractor && (
+          <span
+            aria-hidden
+            className={`absolute inset-0 rounded-full animate-ping ${theme.accent} opacity-30 bg-current`}
+          />
+        )}
+        <HelpCircle className="h-5 w-5 relative" />
       </button>
 
       <AnimatePresence>
