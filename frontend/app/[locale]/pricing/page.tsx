@@ -1,419 +1,442 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Check } from 'lucide-react'
 import { Link } from '@/navigation'
 import InstitutionAddonGrid from '@/components/pricing/InstitutionAddonGrid'
+
+/**
+ * Pricing page redesign — typography-first.
+ *
+ * Goals: revenue clarity (each free → paid path is one CTA away), authority
+ * through restraint (no decorative icons, no entrance animations, no
+ * gradient pills), and real numbers (annual savings shown in €, not %).
+ *
+ * Layout: single scroll. Header nav already segments by audience, so this
+ * page stacks Companies → Students → Academic Partners with quiet anchor
+ * links in the hero. Each segment is one tier table + one outcome line.
+ */
+
+type Tier = {
+  name: string
+  eyebrow?: string
+  price: string
+  cadence: string
+  annual?: { price: string; savings: string }
+  description: string
+  features: string[]
+  cta: { label: string; href: string; external?: boolean }
+  emphasized?: boolean
+}
+
+function TierColumn({ tier }: { tier: Tier }) {
+  const CTA = tier.cta.external ? 'a' : Link
+  const ctaProps = tier.cta.external
+    ? { href: tier.cta.href }
+    : { href: tier.cta.href as any }
+
+  return (
+    <div
+      className={`flex flex-col h-full pt-10 pb-8 px-8 ${
+        tier.emphasized
+          ? 'border-x border-t-2 border-x-slate-200 border-t-slate-900 bg-white dark:border-x-slate-800 dark:border-t-white dark:bg-slate-950'
+          : 'border-t border-t-slate-200 dark:border-t-slate-800'
+      }`}
+    >
+      {tier.emphasized && (
+        <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-900 dark:text-white -mt-4 mb-6">
+          {tier.eyebrow ?? 'Most chosen'}
+        </div>
+      )}
+      {!tier.emphasized && tier.eyebrow && (
+        <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 -mt-4 mb-6">
+          {tier.eyebrow}
+        </div>
+      )}
+
+      <div className="text-base font-semibold text-slate-900 dark:text-slate-100">{tier.name}</div>
+
+      <div className="mt-6 flex items-baseline gap-1.5">
+        <span className="text-5xl font-semibold tracking-tight text-slate-900 dark:text-white tabular-nums">
+          {tier.price}
+        </span>
+        <span className="text-sm text-slate-500">{tier.cadence}</span>
+      </div>
+
+      {tier.annual && (
+        <div className="mt-2 text-sm text-slate-600 dark:text-slate-400 tabular-nums">
+          {tier.annual.price}{' '}
+          <span className="text-slate-500">— {tier.annual.savings}</span>
+        </div>
+      )}
+
+      <p className="mt-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 min-h-[3.5rem]">
+        {tier.description}
+      </p>
+
+      <ul className="mt-8 space-y-3 text-[14px] text-slate-700 dark:text-slate-300 flex-1">
+        {tier.features.map((f, i) => (
+          <li key={i} className="leading-relaxed">
+            {f}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-10">
+        <CTA
+          {...(ctaProps as any)}
+          className={`inline-flex items-center justify-center w-full h-11 px-5 text-sm font-medium rounded-md transition-colors ${
+            tier.emphasized
+              ? 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100'
+              : 'bg-transparent text-slate-900 border border-slate-300 hover:bg-slate-50 dark:text-white dark:border-slate-700 dark:hover:bg-slate-900'
+          }`}
+        >
+          {tier.cta.label}
+        </CTA>
+      </div>
+    </div>
+  )
+}
+
+function SectionHeader({
+  eyebrow,
+  title,
+  lede,
+}: {
+  eyebrow: string
+  title: string
+  lede: string
+}) {
+  return (
+    <div className="max-w-3xl mb-14">
+      <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+        {eyebrow}
+      </div>
+      <h2 className="text-[34px] leading-[1.15] font-semibold tracking-tight text-slate-900 dark:text-white">
+        {title}
+      </h2>
+      <p className="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-400">
+        {lede}
+      </p>
+    </div>
+  )
+}
 
 export default function PricingPage() {
   const t = useTranslations('pricingPage')
 
-  const companyTiers = [
-    { key: 'starter',    featured: false, href: '/auth/register/recruiter?plan=free',         features: [0, 1, 2, 3, 4, 5] },
-    { key: 'growth',     featured: true,  href: '/auth/register/recruiter?plan=subscription', features: [0, 1, 2, 3, 4, 5, 6, 7] },
-    { key: 'enterprise', featured: false, href: '/contact?subject=enterprise',                features: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+  const companyTiers: Tier[] = [
+    {
+      name: t('companies.tiers.starter.name'),
+      price: '€0',
+      cadence: t('companies.tiers.starter.period'),
+      description: t('companies.tiers.starter.description'),
+      features: [0, 1, 2, 3, 4, 5].map(i => t(`companies.tiers.starter.features.${i}`)),
+      cta: {
+        label: t('companies.tiers.starter.cta'),
+        href: '/auth/register/recruiter?plan=free',
+      },
+    },
+    {
+      name: t('companies.tiers.growth.name'),
+      eyebrow: t('companies.popular'),
+      price: '€89',
+      cadence: t('companies.tiers.growth.period'),
+      annual: {
+        price: t('companies.tiers.growth.annualPrice', { defaultValue: '€890 / year' }),
+        savings: t('companies.tiers.growth.annualSavings', { defaultValue: 'save €178' }),
+      },
+      description: t('companies.tiers.growth.description'),
+      features: [1, 2, 3, 4, 5, 6, 7].map(i => t(`companies.tiers.growth.features.${i}`)),
+      cta: {
+        label: t('companies.tiers.growth.cta'),
+        href: '/auth/register/recruiter?plan=subscription',
+      },
+      emphasized: true,
+    },
+    {
+      name: t('companies.tiers.enterprise.name'),
+      price: t('companies.tiers.enterprise.price'),
+      cadence: t('companies.tiers.enterprise.period') || 'pricing',
+      description: t('companies.tiers.enterprise.description'),
+      features: [1, 2, 3, 4, 5, 6, 7, 8].map(i => t(`companies.tiers.enterprise.features.${i}`)),
+      cta: {
+        label: t('companies.tiers.enterprise.cta'),
+        href: '/contact?subject=enterprise',
+      },
+    },
+  ]
+
+  const studentTiers: Tier[] = [
+    {
+      name: t('students.tiers.free.name', { defaultValue: 'Free' }),
+      price: '€0',
+      cadence: t('students.tiers.free.period', { defaultValue: 'forever' }),
+      description: t('students.tiers.free.description', {
+        defaultValue:
+          'Everything you need to get noticed by companies. AI-extracted skills from real projects, unlimited applications.',
+      }),
+      features: [0, 1, 2, 3, 4].map(i => t(`students.features.${i}`)),
+      cta: {
+        label: t('students.cta'),
+        href: '/auth/register/student',
+      },
+    },
+    {
+      name: t('students.tiers.premium.name', { defaultValue: 'Premium' }),
+      eyebrow: t('students.tiers.premium.eyebrow', { defaultValue: 'Accelerate your career' }),
+      price: '€5',
+      cadence: t('students.tiers.premium.cadence', { defaultValue: '/ month' }),
+      annual: {
+        price: t('students.tiers.premium.annualPrice', { defaultValue: '€45 / year' }),
+        savings: t('students.tiers.premium.annualSavings', { defaultValue: 'save €15' }),
+      },
+      description: t('students.tiers.premium.description', {
+        defaultValue:
+          'Deep skill path, unlimited AI, advanced analytics, priority recruiter visibility, interview coach.',
+      }),
+      features: [
+        t('students.tiers.premium.features.0', { defaultValue: 'Deep Skill Path with 12-month roadmap' }),
+        t('students.tiers.premium.features.1', { defaultValue: '8 advanced analytics dashboards' }),
+        t('students.tiers.premium.features.2', { defaultValue: 'Unlimited AI project analyses' }),
+        t('students.tiers.premium.features.3', { defaultValue: 'Custom portfolio URL' }),
+        t('students.tiers.premium.features.4', { defaultValue: 'Priority visibility in recruiter search' }),
+        t('students.tiers.premium.features.5', { defaultValue: 'AI Interview Coach' }),
+        t('students.tiers.premium.features.6', { defaultValue: 'Europass signed credentials' }),
+      ],
+      cta: {
+        label: t('students.tiers.premium.cta', { defaultValue: 'Start Premium · 30 days free' }),
+        href: '/auth/register/student?plan=premium',
+      },
+      emphasized: true,
+    },
+  ]
+
+  const institutionTiers: Tier[] = [
+    {
+      name: t('universities.tiers.free.name', { defaultValue: 'Free Core' }),
+      price: '€0',
+      cadence: t('universities.tiers.free.period', { defaultValue: '/ forever' }),
+      description: t('universities.tiers.free.description', {
+        defaultValue:
+          'Full M1–M4 placement workspace. 90% of small and mid-sized academic partners never need more.',
+      }),
+      features: [
+        'M1 Mediation Inbox',
+        'M2 Offer moderation',
+        'M3 Company CRM (drag-and-drop pipeline)',
+        'M4 Placement pipeline (hours, evaluations, deadlines)',
+        'Basic analytics + Scorecard',
+        'Audit log (last 30 days)',
+        'AI Assistant — 50 queries / month',
+        'AI skill extraction + optional professor endorsement',
+      ],
+      cta: {
+        label: t('universities.tiers.free.cta', { defaultValue: 'Activate Free Core' }),
+        href: '/auth/register/academic-partner',
+      },
+    },
+    {
+      name: t('universities.tiers.premium.name', { defaultValue: 'Institutional Premium' }),
+      eyebrow: t('universities.tiers.premium.eyebrow', { defaultValue: 'For academic partners scaling past Free Core' }),
+      price: '€39',
+      cadence: t('universities.tiers.premium.cadence', { defaultValue: '/ month' }),
+      annual: {
+        price: t('universities.tiers.premium.annualPrice', { defaultValue: '€390 / year' }),
+        savings: t('universities.tiers.premium.annualSavings', { defaultValue: 'save €78' }),
+      },
+      description: t('universities.tiers.premium.description', {
+        defaultValue:
+          'Unlimited AI, advanced analytics, full audit log with CSV exports, reminder automation, MIUR-format reports.',
+      }),
+      features: [
+        'Unlimited AI Assistant — no monthly cap',
+        'Advanced analytics — cross-cohort, cross-program drills',
+        'Full audit log + CSV exports',
+        'Reminder engine — full automation (rules + cron)',
+        'Convention Builder — AI-personalized clauses',
+        'Skills Intelligence + Curriculum Alignment',
+        'MIUR-format reports (basic)',
+        'Priority email support — 24h response',
+      ],
+      cta: {
+        label: t('universities.tiers.premium.cta', { defaultValue: 'Start Premium · 30 days free' }),
+        href: '/api/checkout/institutional-premium?plan=monthly',
+        external: true,
+      },
+      emphasized: true,
+    },
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
 
-      {/* Hero */}
-      <section className="relative bg-slate-900 text-white">
-        <div className="container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl lg:text-5xl font-bold mb-4"
-          >
+      {/* Hero — quiet, typography-first */}
+      <section className="bg-slate-950 text-white">
+        <div className="container max-w-5xl mx-auto px-6 pt-32 pb-20 lg:pt-40 lg:pb-24">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400 mb-6">
+            {t('hero.eyebrow', { defaultValue: 'Pricing' })}
+          </div>
+          <h1 className="text-[44px] sm:text-[56px] leading-[1.05] font-semibold tracking-tight max-w-3xl">
             {t('hero.title')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-white/70 max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className="mt-6 text-[19px] leading-relaxed text-slate-300 max-w-2xl">
             {t('hero.subtitle')}
-          </motion.p>
+          </p>
 
-          {/* Lightweight anchor nav — duplicates nothing the header doesn't already do,
-              just lets users jump within this single scroll page */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70"
-          >
-            <a href="#companies" className="hover:text-white transition-colors">{t('segments.companies')}</a>
-            <span className="text-white/20">·</span>
-            <a href="#students" className="hover:text-white transition-colors">{t('segments.students')}</a>
-            <span className="text-white/20">·</span>
-            <a href="#institutions" className="hover:text-white transition-colors">{t('segments.institutions')}</a>
-          </motion.div>
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm text-slate-400">
+            <a href="#companies" className="hover:text-white transition-colors">
+              {t('segments.companies')}
+              <span className="ml-1.5 text-slate-600">€89/mo</span>
+            </a>
+            <a href="#students" className="hover:text-white transition-colors">
+              {t('segments.students')}
+              <span className="ml-1.5 text-slate-600">free · €5/mo</span>
+            </a>
+            <a href="#institutions" className="hover:text-white transition-colors">
+              {t('segments.institutions')}
+              <span className="ml-1.5 text-slate-600">free · €39/mo</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Companies */}
-      <section id="companies" className="py-20 scroll-mt-20">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('companies.title')}</h2>
-            <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('companies.subtitle')}</p>
-          </div>
+      {/* Companies — lead position, drives revenue */}
+      <section id="companies" className="scroll-mt-24 border-b border-slate-200 dark:border-slate-800">
+        <div className="container max-w-6xl mx-auto px-6 py-24 lg:py-28">
+          <SectionHeader
+            eyebrow={t('segments.companies')}
+            title={t('companies.title')}
+            lede={t('companies.subtitle')}
+          />
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {companyTiers.map(tier => (
-              <Card
-                key={tier.key}
-                className={`relative h-full flex flex-col ${
-                  tier.featured ? 'border-2 border-primary shadow-md' : 'border'
+          <div className="grid md:grid-cols-3 border-x border-slate-200 dark:border-slate-800">
+            {companyTiers.map((tier, i) => (
+              <div
+                key={tier.name}
+                className={`${
+                  i > 0 && !tier.emphasized && !companyTiers[i - 1]?.emphasized
+                    ? 'md:border-l border-slate-200 dark:border-slate-800'
+                    : ''
                 }`}
               >
-                {tier.featured && (
-                  <div className="absolute -top-3 left-5">
-                    <Badge className="bg-primary text-white text-[10px]">
-                      {t('companies.popular')}
-                    </Badge>
-                  </div>
-                )}
-                <CardHeader className="pb-3 pt-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {t(`companies.tiers.${tier.key}.name`)}
-                  </span>
-                  <div className="flex items-baseline gap-1 mt-2">
-                    <span className="text-4xl font-bold tracking-tight">{t(`companies.tiers.${tier.key}.price`)}</span>
-                    <span className="text-sm text-muted-foreground">{t(`companies.tiers.${tier.key}.period`)}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{t(`companies.tiers.${tier.key}.description`)}</p>
-                </CardHeader>
-                <CardContent className="pt-4 flex-1 flex flex-col">
-                  <ul className="space-y-2.5 mb-6 flex-1">
-                    {tier.features.map(fi => (
-                      <li key={fi} className="flex items-start text-sm">
-                        <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                        <span>{t(`companies.tiers.${tier.key}.features.${fi}`)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    className="w-full"
-                    variant={tier.featured ? 'default' : 'outline'}
-                    asChild
-                  >
-                    <Link href={tier.href}>
-                      {t(`companies.tiers.${tier.key}.cta`)}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                <TierColumn tier={tier} />
+              </div>
             ))}
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-10 max-w-2xl mx-auto">
-            {t('freemiumFunnel.subtitle', {
+          <p className="mt-12 text-sm text-slate-500 max-w-3xl">
+            {t('companies.roiAnchor', {
               defaultValue:
-                "Search the verified talent pool for free. Reach out to up to 5 candidates per month at no cost. When you need to contact more, subscribe — that's the only path forward, no credit packs to manage.",
+                "A bad hire costs €30,000+ in salary, lost time, and team morale. InTransparency reduces that risk by showing real, AI-verified work instead of resume claims. Free until you've proven the pool; €89/month when you're ready to scale.",
             })}
           </p>
         </div>
       </section>
 
       {/* Students */}
-      <section id="students" className="py-20 bg-muted/30 scroll-mt-20">
-        <div className="container max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('students.title')}</h2>
-            <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-              {t('students.subtitle')}
-            </p>
-          </div>
+      <section
+        id="students"
+        className="scroll-mt-24 border-b border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40"
+      >
+        <div className="container max-w-5xl mx-auto px-6 py-24 lg:py-28">
+          <SectionHeader
+            eyebrow={t('segments.students')}
+            title={t('students.title')}
+            lede={t('students.subtitle')}
+          />
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {/* Free */}
-            <Card className="h-full flex flex-col border">
-              <CardHeader className="pb-3 pt-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {t('students.tiers.free.name', { defaultValue: 'Free' })}
-                </span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold tracking-tight">
-                    {t('students.tiers.free.price', { defaultValue: t('students.price') })}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    · {t('students.tiers.free.period', { defaultValue: 'forever' })}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  {t('students.tiers.free.description', {
-                    defaultValue: 'Everything you need to get noticed by companies: AI-extracted skills, real projects, unlimited applications.',
-                  })}
-                </p>
-              </CardHeader>
-              <CardContent className="pt-4 flex-1 flex flex-col">
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {[0, 1, 2, 3, 4].map(i => (
-                    <li key={i} className="flex items-start text-sm">
-                      <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                      <span>{t(`students.features.${i}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/auth/register/student">
-                    {t('students.cta')}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Premium */}
-            <Card className="relative h-full flex flex-col border-2 border-primary shadow-md">
-              <div className="absolute -top-3 left-5">
-                <Badge className="bg-primary text-white text-[10px]">
-                  {t('students.tiers.premium.name', { defaultValue: 'Premium' })}
-                </Badge>
+          <div className="grid md:grid-cols-2 border-x border-slate-200 dark:border-slate-800">
+            {studentTiers.map((tier, i) => (
+              <div
+                key={tier.name}
+                className={i === 1 && !tier.emphasized ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}
+              >
+                <TierColumn tier={tier} />
               </div>
-              <CardHeader className="pb-3 pt-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  {t('students.tiers.premium.name', { defaultValue: 'Premium' })}
-                </span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold tracking-tight">
-                    {t('students.tiers.premium.price', { defaultValue: '€5' })}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {t('students.tiers.premium.period', { defaultValue: '/mo · or €45/yr' })}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('students.tiers.premium.studentDiscount', { defaultValue: '30-day trial · cancel anytime' })}
-                </p>
-                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                  {t('students.tiers.premium.description', {
-                    defaultValue:
-                      'One subscription, all growth tools unlocked. Deep skill path, advanced analytics, priority visibility, interview coach, unlimited AI.',
-                  })}
-                </p>
-              </CardHeader>
-              <CardContent className="pt-4 flex-1 flex flex-col">
-                <ul className="space-y-2.5 mb-4 flex-1">
-                  <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                    {t('students.tiers.premium.includes', { defaultValue: 'Everything in Free, plus:' })}
-                  </li>
-                  {[0, 1, 2, 3, 4, 5, 6, 7].map(i => {
-                    const fallbacks = [
-                      'Deep Skill Path: unlimited gaps, full roadmap, weekly challenges',
-                      'Advanced analytics: 8 dashboards incl. recruiter interest, market benchmark, salary context',
-                      'Unlimited AI project analyses',
-                      'Custom portfolio URL (yourname.intransparency.com)',
-                      'Priority visibility in recruiter search results',
-                      'AI Interview Coach with practice sessions',
-                      'Europass EDCI signed credentials (verifiable wallet)',
-                      'Peer benchmarking against your cohort',
-                    ]
-                    return (
-                      <li key={i} className="flex items-start text-sm">
-                        <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                        <span>{t(`students.tiers.premium.features.${i}`, { defaultValue: fallbacks[i] })}</span>
-                      </li>
-                    )
-                  })}
-                </ul>
-                <Button className="w-full" asChild>
-                  <Link href="/auth/register/student?plan=premium">
-                    {t('students.tiers.premium.cta', { defaultValue: 'Start Premium free for 30 days' })}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+            ))}
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-8 max-w-lg mx-auto">
-            {t('students.whyFree')}
+          <p className="mt-12 text-sm text-slate-500 max-w-2xl">
+            {t('students.endNote', {
+              defaultValue:
+                'Free covers everything you need to get hired. Premium is optional — for students who want priority visibility, deeper analytics, and the interview coach.',
+            })}
           </p>
         </div>
       </section>
 
       {/* Institutions */}
-      <section id="institutions" className="py-20 scroll-mt-20">
-        <div className="container max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">{t('universities.title')}</h2>
-            <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('universities.subtitle')}</p>
-          </div>
+      <section id="institutions" className="scroll-mt-24 border-b border-slate-200 dark:border-slate-800">
+        <div className="container max-w-5xl mx-auto px-6 py-24 lg:py-28">
+          <SectionHeader
+            eyebrow={t('segments.institutions')}
+            title={t('universities.title')}
+            lede={t('universities.subtitle')}
+          />
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {/* Free Core */}
-            <Card className="h-full flex flex-col border">
-              <CardHeader className="pb-3 pt-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {t('universities.tiers.free.name', { defaultValue: 'Free Core' })}
-                </span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold tracking-tight">
-                    {t('universities.tiers.free.price', { defaultValue: '€0' })}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {t('universities.tiers.free.period', { defaultValue: '/ forever' })}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  {t('universities.tiers.free.description', {
-                    defaultValue:
-                      'Full M1–M4 workspace. No upsell, no surprises. 90% of small/mid institutions never need more.',
-                  })}
-                </p>
-              </CardHeader>
-              <CardContent className="pt-4 flex-1 flex flex-col">
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {[
-                    'M1 Mediation Inbox',
-                    'M2 Offer moderation',
-                    'M3 Company CRM (drag-and-drop pipeline)',
-                    'M4 Placement pipeline (hours, evaluations, deadlines)',
-                    'Basic analytics + Scorecard',
-                    'Audit log (last 30 days)',
-                    'AI Assistant (50 queries/month)',
-                    'AI skill extraction + optional professor endorsement',
-                    'Convention Builder (template-based)',
-                  ].map((label, i) => (
-                    <li key={i} className="flex items-start text-sm">
-                      <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                      <span>{label}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/auth/register/academic-partner">
-                    {t('universities.tiers.free.cta', { defaultValue: 'Activate Free Core' })}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Premium */}
-            <Card className="relative h-full flex flex-col border-2 border-primary shadow-md">
-              <div className="absolute -top-3 left-5">
-                <Badge className="bg-primary text-white text-[10px]">
-                  {t('universities.tiers.premium.name', { defaultValue: 'Institutional Premium' })}
-                </Badge>
+          <div className="grid md:grid-cols-2 border-x border-slate-200 dark:border-slate-800">
+            {institutionTiers.map((tier, i) => (
+              <div
+                key={tier.name}
+                className={i === 1 && !tier.emphasized ? 'md:border-l border-slate-200 dark:border-slate-800' : ''}
+              >
+                <TierColumn tier={tier} />
               </div>
-              <CardHeader className="pb-3 pt-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  {t('universities.tiers.premium.name', { defaultValue: 'Institutional Premium' })}
-                </span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold tracking-tight">
-                    {t('universities.tiers.premium.price', { defaultValue: '€39' })}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {t('universities.tiers.premium.period', { defaultValue: '/mo · or €390/yr' })}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('universities.tiers.premium.note', { defaultValue: '30-day free trial · cancel anytime' })}
-                </p>
-                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                  {t('universities.tiers.premium.description', {
-                    defaultValue:
-                      'Unlocks the scale features: unlimited AI Assistant, advanced analytics, full audit log, reminder automation, AI-personalized conventions, basic MIUR reports.',
-                  })}
-                </p>
-              </CardHeader>
-              <CardContent className="pt-4 flex-1 flex flex-col">
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  <li className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                    {t('universities.tiers.premium.includes', { defaultValue: 'Everything in Free Core, plus:' })}
-                  </li>
-                  {[
-                    'AI Assistant unlimited (no monthly cap)',
-                    'Advanced analytics: cross-cohort, cross-program drills',
-                    'Audit log: full history + CSV exports',
-                    'Reminder engine: full automation (rules + cron)',
-                    'Convention Builder: AI-personalized clauses',
-                    'Skills Intelligence + Curriculum Alignment',
-                    'MIUR-format reports (basic)',
-                    'Priority email support (24h response)',
-                  ].map((label, i) => (
-                    <li key={i} className="flex items-start text-sm">
-                      <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                      <span>{label}</span>
-                    </li>
-                  ))}
-                </ul>
-                {/* Plain <a> not Link — /api/* must NOT get a locale prefix
-                    (next-intl's createNavigation has localePrefix: 'always') */}
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <Button className="flex-1" asChild>
-                    <a href="/api/checkout/institutional-premium?plan=monthly">
-                      {t('universities.tiers.premium.cta', { defaultValue: 'Start trial · €39/mo' })}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" className="flex-1" asChild>
-                    <a href="/api/checkout/institutional-premium?plan=annual">
-                      {t('universities.tiers.premium.ctaAnnual', { defaultValue: 'Pay annually · €390/yr · save 17%' })}
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            ))}
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
-            {t('universities.reassurance', {
-              defaultValue:
-                'Free Core is free forever. Premium and add-ons are optional — pick them only when you outgrow the limits. Every AI action is logged for AI Act compliance.',
-            })}
+          <p className="mt-12 text-sm text-slate-500 max-w-2xl">
+            Free Core is free forever. Every AI action is logged for AI Act
+            compliance. Premium and add-ons are optional — pick them only
+            when you outgrow the limits.
           </p>
 
-          {/* Add-ons marketplace */}
-          <div className="mt-16">
-            <div className="text-center mb-8 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold">
-                {t('universities.addonsTitle', { defaultValue: 'Scale up when you need to' })}
+          {/* Add-ons — moved into the institutions section since it's the
+              only audience this applies to. Editorial table, no tinted cards. */}
+          <div className="mt-24">
+            <div className="max-w-3xl mb-10">
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+                {t('universities.addonsBadge', { defaultValue: 'Optional add-ons' })}
+              </div>
+              <h3 className="text-[26px] leading-[1.2] font-semibold tracking-tight text-slate-900 dark:text-white">
+                {t('universities.addonsTitle', { defaultValue: 'Scale modules — pick only what you need' })}
               </h3>
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
                 {t('universities.addonsSubtitle', {
                   defaultValue:
-                    'Optional enterprise modules: white-label, SSO, ATS bridges, MIUR compliance, and more. Pick only what you need.',
+                    'White-label, multi-institution rollup, SSO, ATS bridges, MIUR compliance. List-priced, individually negotiable, indicative until GA — early-bird pricing locks in for waitlist signups.',
                 })}
               </p>
             </div>
-            <div className="max-w-5xl mx-auto">
-              <InstitutionAddonGrid cols={2} />
-            </div>
+            <InstitutionAddonGrid cols={2} />
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 bg-muted/30">
-        <div className="container max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">{t('faq.title')}</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[0, 1, 2, 3, 4, 5].map(i => (
-              <Card key={i}>
-                <CardHeader>
-                  <CardTitle className="text-base">{t(`faq.questions.${i}.q`)}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{t(`faq.questions.${i}.a`)}</p>
-                </CardContent>
-              </Card>
-            ))}
+      {/* FAQ — definition list typography, no cards */}
+      <section className="scroll-mt-24">
+        <div className="container max-w-3xl mx-auto px-6 py-24 lg:py-28">
+          <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+            FAQ
           </div>
+          <h2 className="text-[34px] leading-[1.15] font-semibold tracking-tight text-slate-900 dark:text-white mb-12">
+            {t('faq.title')}
+          </h2>
+          <dl className="divide-y divide-slate-200 dark:divide-slate-800">
+            {[0, 1, 2, 3, 4, 5].map(i => (
+              <div key={i} className="py-7">
+                <dt className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                  {t(`faq.questions.${i}.q`)}
+                </dt>
+                <dd className="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {t(`faq.questions.${i}.a`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

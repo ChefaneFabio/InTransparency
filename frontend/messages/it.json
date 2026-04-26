@@ -3528,13 +3528,14 @@
   },
   "pricingPage": {
     "hero": {
+      "eyebrow": "Prezzi",
       "title": "Prezzi chiari. Nessuna sorpresa.",
-      "subtitle": "Freemium per studenti e istituzioni. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
+      "subtitle": "Freemium per studenti e partner formativi. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
     },
     "segments": {
       "companies": "Aziende",
       "students": "Studenti",
-      "institutions": "Istituzioni"
+      "institutions": "Partner Formativi"
     },
     "students": {
       "title": "Studenti",
@@ -3560,9 +3561,13 @@
         },
         "premium": {
           "badge": "Premium · accelera la tua carriera",
+          "eyebrow": "Accelera la tua carriera",
           "name": "Premium",
           "price": "€5",
           "period": "/mese · o €45/anno",
+          "cadence": "/ mese",
+          "annualPrice": "€45 / anno",
+          "annualSavings": "risparmi €15",
           "studentDiscount": "· trial 30 giorni · cancelli quando vuoi",
           "description": "Sblocca skill path completo, AI illimitata e gli strumenti di carriera che fanno la differenza. Gratis se la tua università sponsorizza Premium.",
           "includes": "Tutto in Free, più:",
@@ -3580,13 +3585,15 @@
           "note": "Trial 30 giorni gratis · niente vincoli · cancelli in 1 click."
         }
       },
-      "whyFree": "Le funzionalità core sono sempre gratis. Premium è opzionale a €5/mese (o €45/anno con sconto)."
+      "whyFree": "Le funzionalità core sono sempre gratis. Premium è opzionale a €5/mese (o €45/anno con sconto).",
+      "endNote": "Free copre tutto ciò che ti serve per essere assunto. Premium è opzionale — per studenti che vogliono visibilità prioritaria, analytics più profonde e l'AI Interview Coach."
     },
     "companies": {
       "badge": "Per le Aziende",
-      "title": "Provi gratis, ti abboni quando scali",
-      "subtitle": "Cerchi talenti verificati con AI gratis. 5 contatti ogni mese gratis. Quando ti serve di più, ti abboni — un solo percorso, niente pacchetti crediti da gestire.",
-      "popular": "La maggior parte sceglie questo",
+      "title": "Assumi da lavori reali, verificati dall'AI — non da auto-dichiarazioni nel CV",
+      "subtitle": "Cerchi nel pool verificato gratis. Contatti 5 candidati al mese senza costi. Ti abboni quando scali.",
+      "popular": "Più scelto",
+      "roiAnchor": "Un'assunzione sbagliata costa €30.000+ tra stipendio, tempo perso e morale del team. InTransparency riduce quel rischio mostrando lavoro reale verificato dall'AI invece di dichiarazioni nel CV. Gratis finché non hai validato il pool — €89/mese quando sei pronto a scalare.",
       "tiers": {
         "starter": {
           "name": "Free",
@@ -3607,8 +3614,10 @@
           "name": "Abbonamento",
           "price": "€89",
           "period": "/ mese",
+          "annualPrice": "€890 / anno",
+          "annualSavings": "risparmi €178",
           "description": "Contatti illimitati, seats per il team, suite AI completa. L'unico percorso quando hai esaurito la quota mensile.",
-          "cta": "Attiva abbonamento",
+          "cta": "Abbonati — €89/mese",
           "features": {
             "0": "Tutto in Free, più:",
             "1": "Rivelazioni contatto illimitate",
@@ -3658,14 +3667,14 @@
       }
     },
     "universities": {
-      "title": "Università, Scuole e Centri di Formazione",
-      "subtitle": "Free Core per sempre · Premium opzionale a €39/mese per crescere. Niente upsell, prezzi trasparenti.",
+      "title": "Pensato per i partner formativi — gratis finché non ne esci",
+      "subtitle": "Workspace tirocini M1–M4 completa, gratis per sempre. Premium e add-on sbloccano le funzionalità di scala quando ti servono.",
       "premiumBadge": "Workspace Istituzionale",
       "freeBadge": "Workspace Completa · Gratis",
       "reassurance": "Free Core per sempre, Premium e add-on opzionali quando ne hai bisogno. Ogni azione AI è loggata per la conformità AI Act.",
       "addonsBadge": "Add-on opzionali",
-      "addonsTitle": "Scala quando ti serve",
-      "addonsSubtitle": "Marketplace di moduli enterprise: white-label, SSO, integrazioni ATS, compliance MIUR e altro. Tutti opzionali, prezzi listino.",
+      "addonsTitle": "Moduli di scala — prendi solo quello che ti serve",
+      "addonsSubtitle": "White-label, rollup multi-istituzione, SSO, integrazioni ATS, conformità MIUR. Prezzi di listino, negoziabili, indicativi fino al GA — early-bird per chi si iscrive in waitlist.",
       "tiers": {
         "free": {
           "badge": "Free Core · per sempre",
@@ -3688,9 +3697,13 @@
         },
         "premium": {
           "badge": "Institutional Premium · per crescere",
+          "eyebrow": "Per partner formativi che scalano oltre Free Core",
           "name": "Institutional Premium",
           "price": "€39",
           "period": "/mese · o €390/anno",
+          "cadence": "/ mese",
+          "annualPrice": "€390 / anno",
+          "annualSavings": "risparmi €78",
           "note": "· trial 30 giorni · cancelli quando vuoi",
           "description": "Sblocca AI illimitata, analytics avanzate, automazioni reminder e i report MIUR. Per istituzioni che scalano oltre il Free Core.",
           "includes": "Tutto in Free Core, più:",
