@@ -3,9 +3,11 @@
 Drop press logos here as SVG (preferred) or transparent PNG. Files referenced by
 `lib/config/press.ts`:
 
+- `corriere-della-sera.svg` — Corriere della Sera (URL pending — see config note)
 - `fondazione-pesenti.svg` — Fondazione Pesenti
 - `bergamonews.svg` — Bergamonews
 - `italpress.svg` — Italpress
+- `informatore-orobico.svg` — Informatore Orobico
 - `ansa.svg` — ANSA
 - `lombardia-italia-economy.svg` — Lombardia Italia Economy
 

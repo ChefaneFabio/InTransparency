@@ -14,8 +14,13 @@
  *  • Fondazione Pesenti — dedicated article, awarded the Special Prize
  *  • Bergamonews — Bergamo's main online news outlet, Start Cup coverage
  *  • Italpress — national news agency, names InTransparency as 3rd place
+ *  • Informatore Orobico — Bergamo regional outlet, Start Cup coverage
  *  • Lombardia Italia Economy — regional business outlet
  *  • ANSA Lombardia — national news agency, regional desk (Start Cup)
+ *  • Corriere della Sera — added per founder confirmation (URL pending;
+ *    user has private knowledge of coverage — possibly print or paywalled
+ *    that public web search couldn't surface). Rendered as a non-link
+ *    wordmark until the source URL is provided.
  */
 
 export interface PressItem {
@@ -35,6 +40,13 @@ export interface PressItem {
 
 export const PRESS_ITEMS: PressItem[] = [
   {
+    name: 'Corriere della Sera',
+    logo: '/press/corriere-della-sera.svg',
+    // href intentionally omitted — pending URL from founder. Renders as a
+    // non-clickable wordmark in the press strip.
+    style: 'serif',
+  },
+  {
     name: 'Fondazione Pesenti',
     logo: '/press/fondazione-pesenti.svg',
     href: 'https://fondazionepesenti.it/2026/02/04/start-cup-bergamo-2025-intransparency-wins-the-fondazione-pesenti-special-award/',
@@ -51,6 +63,12 @@ export const PRESS_ITEMS: PressItem[] = [
     logo: '/press/italpress.svg',
     href: 'https://www.italpress.com/start-cup-bergamo-2025-di-unibg-la-finale-premia-il-progetto-recensup/',
     style: 'sans',
+  },
+  {
+    name: 'Informatore Orobico',
+    logo: '/press/informatore-orobico.svg',
+    href: 'https://www.informatoreorobico.it/2026/02/04/start-cup-bergamo-2025-finale-con-premiazione-al-kilometro-rosso/',
+    style: 'serif',
   },
   {
     name: 'ANSA Lombardia',
