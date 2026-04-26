@@ -27,11 +27,17 @@ interface ParsedJob {
   salaryMin?: number
   salaryMax?: number
   salaryCurrency?: string
+  // Typed skill buckets — categorized by the AI extractor
+  hardSkills?: string[]
+  softSkills?: string[]
+  designSkills?: string[]
+  domainKnowledge?: string[]
+  languages?: string[]
+  // Legacy unions for back-compat (concat of the typed buckets)
   requiredSkills?: string[]
   preferredSkills?: string[]
   education?: string
   experience?: string
-  languages?: string[]
   seniority?: string
 }
 
@@ -121,11 +127,15 @@ Return a JSON object with these fields. Omit any field you cannot reasonably inf
 - salaryMin (number, EUR; convert if currency is different and note in description)
 - salaryMax (number, EUR)
 - salaryCurrency (string, default "EUR")
-- requiredSkills (array of 3-8 short skill names: "Python", "AWS", "Italian B2", "Stakeholder management")
+- hardSkills (array of technical/tools/frameworks ONLY: "Rust", "AWS", "Linux", "PostgreSQL", "Figma". DO NOT mix in languages or soft skills here.)
+- softSkills (array of interpersonal/behavioral ONLY: "Communication", "Teamwork", "Leadership", "Problem solving". Inferable from phrases like "team player", "ottime capacità relazionali", "self-starter".)
+- designSkills (array, only for design-related roles: "UX research", "Visual design", "Prototyping", "Design systems")
+- domainKnowledge (array of industry/domain expertise: "Manufacturing", "Fintech", "E-commerce", "Healthcare", "Legal tech")
+- languages (array of SPOKEN languages with optional CEFR level: ["Italian", "English B2", "German C1"]. NEVER programming languages.)
+- requiredSkills (array — backwards-compat union; concat hardSkills + softSkills + designSkills + domainKnowledge)
 - preferredSkills (array, nice-to-haves)
-- education (string, e.g. "Laurea triennale in Informatica")
+- education (string, e.g. "Laurea triennale in Informatica" or "Non richiesta")
 - experience (string, e.g. "0-2 anni" or "3-5 years")
-- languages (array, e.g. ["Italian", "English"])
 - seniority: "intern" | "junior" | "mid" | "senior" | "lead"
 
 CRITICAL:

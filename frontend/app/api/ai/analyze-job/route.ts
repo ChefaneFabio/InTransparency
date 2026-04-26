@@ -20,11 +20,18 @@ const JOB_FIELDS = [
   { name: 'salaryMin', description: 'Minimum salary (number, in EUR)' },
   { name: 'salaryMax', description: 'Maximum salary (number, in EUR)' },
   { name: 'salaryPeriod', description: '"yearly", "monthly", or "hourly"' },
-  { name: 'requiredSkills', description: 'Array of required skills (3-8)' },
-  { name: 'preferredSkills', description: 'Array of preferred/nice-to-have skills' },
-  { name: 'education', description: 'Required education level (e.g. "Bachelor\'s", "Master\'s")' },
+  // Typed skill buckets — DO NOT lump everything into requiredSkills.
+  // Categorize each extracted skill into the right bucket.
+  { name: 'hardSkills', description: 'Technical/tooling skills only — programming languages, frameworks, libraries, tools, platforms. Examples: "Rust", "AWS", "Linux", "Figma", "PostgreSQL", "Assembly".' },
+  { name: 'softSkills', description: 'Interpersonal/behavioral skills only. Examples: "Communication", "Teamwork", "Leadership", "Problem solving", "Time management", "Adaptability".' },
+  { name: 'designSkills', description: 'Design-specific skills if the role is design-related. Examples: "UX research", "Visual design", "Prototyping", "Design systems", "Accessibility". OMIT for non-design roles.' },
+  { name: 'domainKnowledge', description: 'Industry/domain expertise. Examples: "Manufacturing", "Fintech", "E-commerce", "Healthcare", "Legal tech", "EdTech".' },
+  { name: 'languages', description: 'Spoken/written languages with optional CEFR level. Examples: ["Italian", "English B2", "German C1"]. NEVER programming languages here.' },
+  // Legacy unions for back-compat — populate as the union of the typed buckets above.
+  { name: 'requiredSkills', description: 'Backwards-compat union — populate as concat(hardSkills, softSkills, designSkills, domainKnowledge). Do not add new items here that are missing from the typed buckets.' },
+  { name: 'preferredSkills', description: 'Array of preferred/nice-to-have skills (typed-bucket categorization not required for preferred).' },
+  { name: 'education', description: 'Required education level (e.g. "Bachelor\'s", "Master\'s", "Non richiesta")' },
   { name: 'experience', description: 'Required experience (e.g. "0-1 years", "3-5 years")' },
-  { name: 'languages', description: 'Required languages (e.g. ["Italian", "English"])' },
   { name: 'companyName', description: 'Company name' },
   { name: 'companyIndustry', description: 'Industry sector' },
   { name: 'applicationUrl', description: 'External application URL (if not using platform)' },

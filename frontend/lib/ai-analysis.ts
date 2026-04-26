@@ -99,10 +99,18 @@ export interface AnalysisResult {
   summary: string
 
   // Competencies detected/validated — each with a proficiency score
+  // (technical / hard skills: programming languages, frameworks, tools)
   detectedCompetencies: RatedSkill[]
 
-  // Soft skills inferred from project context
+  // Soft skills inferred from project context (interpersonal, behavioral)
   softSkills: RatedSkill[]
+
+  // Optional typed buckets — added 2026-04-26 for transversal categorization
+  // alignment with the recruiter job-posting flow. When the project context
+  // makes them inferable, populate; otherwise leave empty.
+  designSkills?: RatedSkill[]    // UX research, prototyping, visual design
+  domainKnowledge?: RatedSkill[] // industry/domain expertise (manufacturing, fintech, healthcare)
+  languages?: RatedSkill[]       // spoken languages with optional CEFR (Italian B2, English C1)
 
   // Recommendations
   recommendations: string[]

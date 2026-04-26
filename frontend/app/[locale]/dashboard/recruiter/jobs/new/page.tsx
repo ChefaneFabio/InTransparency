@@ -7,16 +7,22 @@ import { ConversationChat, type ChatMessage, type ProfileField } from '@/compone
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import JobPasteImport from '@/components/dashboard/recruiter/JobPasteImport'
 
+// Typed skill buckets render as separate badge groups — recruiters see
+// "Hard skills: Rust, Linux" / "Languages: German B2" / "Soft skills:
+// Communication" instead of one generic "Required skills" dump.
 const JOB_PROFILE_FIELDS: ProfileField[] = [
   { key: 'title', label: 'Title', type: 'text' },
   { key: 'jobType', label: 'Type', type: 'badge' },
   { key: 'workLocation', label: 'Location type', type: 'badge' },
   { key: 'location', label: 'Location', type: 'text' },
-  { key: 'requiredSkills', label: 'Required skills', type: 'array' },
+  { key: 'hardSkills', label: 'Hard skills', type: 'array' },
+  { key: 'softSkills', label: 'Soft skills', type: 'array' },
+  { key: 'designSkills', label: 'Design skills', type: 'array' },
+  { key: 'domainKnowledge', label: 'Domain knowledge', type: 'array' },
+  { key: 'languages', label: 'Languages', type: 'array' },
   { key: 'preferredSkills', label: 'Preferred skills', type: 'array' },
   { key: 'education', label: 'Education', type: 'text' },
   { key: 'experience', label: 'Experience', type: 'text' },
-  { key: 'languages', label: 'Languages', type: 'array' },
   { key: 'salaryMin', label: 'Salary min', type: 'text' },
   { key: 'salaryMax', label: 'Salary max', type: 'text' },
   { key: 'salaryPeriod', label: 'Salary period', type: 'text' },

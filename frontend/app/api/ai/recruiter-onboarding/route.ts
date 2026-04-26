@@ -56,6 +56,11 @@ On EVERY turn, reply with ONE JSON object — no markdown fences, no commentary 
       "location": "...",
       "salaryMin": 0,
       "salaryMax": 0,
+      "hardSkills": ["..."],
+      "softSkills": ["..."],
+      "designSkills": ["..."],
+      "domainKnowledge": ["..."],
+      "languages": ["..."],
       "requiredSkills": ["..."],
       "preferredSkills": ["..."],
       "experience": "...",
@@ -67,7 +72,14 @@ On EVERY turn, reply with ONE JSON object — no markdown fences, no commentary 
 
 RULES:
 - Only include fields you've actually learned this turn or earlier — omit unknown ones.
-- "complete" goes true ONLY when you have at least: companyName, companyDescription, AND a job with title + description + jobType + at least 3 requiredSkills.
+- SKILLS MUST BE CATEGORIZED. Never lump everything into requiredSkills.
+  - hardSkills = technical/tools/frameworks/programming languages (Rust, AWS, Linux, Figma, Assembly)
+  - softSkills = interpersonal/behavioral (Communication, Teamwork, Leadership, Problem solving)
+  - designSkills = design-specific only (UX research, Visual design, Prototyping)
+  - domainKnowledge = industry/domain expertise (Manufacturing, Fintech, Healthcare)
+  - languages = SPOKEN languages with optional CEFR level (Italian, German B2). NEVER programming languages.
+  - requiredSkills = backwards-compat union (concat the four buckets above).
+- "complete" goes true ONLY when you have at least: companyName, companyDescription, AND a job with title + description + jobType + at least 3 categorized skills (across the typed buckets).
 - When complete, your "reply" should ask "Want me to save this and open the draft for review?" — wait for confirmation.
 - Italian-language users are common. Mirror their language.
 - Be warm but quick. Do not ask 5 things at once. 1-2 questions per turn.`
@@ -83,6 +95,13 @@ interface ExtractedJob {
   location?: string
   salaryMin?: number
   salaryMax?: number
+  // Typed skill buckets
+  hardSkills?: string[]
+  softSkills?: string[]
+  designSkills?: string[]
+  domainKnowledge?: string[]
+  languages?: string[]
+  // Legacy unions
   requiredSkills?: string[]
   preferredSkills?: string[]
   experience?: string
@@ -165,6 +184,20 @@ export async function POST(req: NextRequest) {
           '-' +
           Date.now().toString(36)
 
+        // Persist typed skill buckets. Build requiredSkills as the union of
+        // hard + soft + design + domain so back-compat search/agents code
+        // continues to see the full skill set.
+        const hard   = Array.isArray(j.hardSkills)      ? j.hardSkills      : []
+        const soft   = Array.isArray(j.softSkills)      ? j.softSkills      : []
+        const design = Array.isArray(j.designSkills)    ? j.designSkills    : []
+        const domain = Array.isArray(j.domainKnowledge) ? j.domainKnowledge : []
+        const langs  = Array.isArray(j.languages)       ? j.languages       : []
+        // If the AI returned a flat requiredSkills (legacy or fallback), trust
+        // the typed buckets when they exist; otherwise use the flat array.
+        const requiredUnion = (hard.length || soft.length || design.length || domain.length)
+          ? [...hard, ...soft, ...design, ...domain]
+          : (Array.isArray(j.requiredSkills) ? j.requiredSkills : [])
+
         const created = await prisma.job.create({
           data: {
             recruiterId: userId,
@@ -182,7 +215,12 @@ export async function POST(req: NextRequest) {
             salaryMin: j.salaryMin || null,
             salaryMax: j.salaryMax || null,
             salaryCurrency: 'EUR',
-            requiredSkills: Array.isArray(j.requiredSkills) ? j.requiredSkills : [],
+            hardSkills:      hard,
+            softSkills:      soft,
+            designSkills:    design,
+            domainKnowledge: domain,
+            languages:       langs,
+            requiredSkills:  requiredUnion,
             preferredSkills: Array.isArray(j.preferredSkills) ? j.preferredSkills : [],
             experience: j.experience || null,
             education: j.education || null,

@@ -1531,11 +1531,20 @@ model Job {
   showSalary     Boolean @default(false)
 
   // Required Skills & Qualifications
-  requiredSkills  String[] @default([])
-  preferredSkills String[] @default([])
-  education       String? // "Bachelor's", "Master's", "PhD", etc.
-  experience      String? // "0-1 years", "2-3 years", "5+ years"
-  languages       String[] @default([])
+  // requiredSkills/preferredSkills are kept as flat unions for back-compat
+  // with existing search, agents, and analytics code. The typed buckets
+  // below are the real source of truth — the AI extractor now categorizes
+  // skills so recruiters see them grouped rather than as a generic dump.
+  requiredSkills    String[] @default([])
+  preferredSkills   String[] @default([])
+  // Typed skill buckets (added 2026-04-26):
+  hardSkills        String[] @default([]) // technical, tools, frameworks, programming languages (Rust, AWS, Linux, Figma)
+  softSkills        String[] @default([]) // interpersonal, behavioral (communication, teamwork, leadership)
+  designSkills      String[] @default([]) // design tools and methods (UX research, prototyping, visual design)
+  domainKnowledge   String[] @default([]) // industry expertise (manufacturing, fintech, healthcare)
+  education         String? // "Bachelor's", "Master's", "PhD", etc.
+  experience        String? // "0-1 years", "2-3 years", "5+ years"
+  languages         String[] @default([]) // spoken/written languages: ISO codes or language names ("Italian", "German B2")
 
   // Target Disciplines (from Project disciplines)
   targetDisciplines ProjectDiscipline[] @default([])
