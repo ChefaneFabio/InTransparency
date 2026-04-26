@@ -304,7 +304,7 @@
         ],
         "features": [
           {
-            "title": "Portfolio Verificato",
+            "title": "Portfolio Verificato con AI",
             "description": "Carica i tuoi progetti, la tua università li certifica"
           },
           {
@@ -365,7 +365,7 @@
         ],
         "features": [
           {
-            "title": "Talento Verificato",
+            "title": "Talenti Verificati con AI",
             "description": "Ogni competenza certificata dall'istituto dello studente"
           },
           {
@@ -395,7 +395,7 @@
         "students": {
           "headline1": "Scopri in Cosa Sei Bravo.",
           "headline2": "Poi Dimostralo.",
-          "subheadline": "Carica i tuoi progetti. I docenti possono valutare e validare il tuo lavoro. Le tue competenze diventano visibili alle persone giuste. Niente CV da riscrivere — solo prove.",
+          "subheadline": "Carica i tuoi progetti. La nostra AI estrae le competenze reali dal tuo codice, dalle tesi e dai report — verificate dagli artefatti, controllabili. Bonus opzionale: un docente può aggiungere il suo endorsement. Niente CV da riscrivere, niente indovinelli — solo prove.",
           "cta": "Costruisci il Tuo Portfolio",
           "benefits": [
             "Validazione opzionale dei progetti dai docenti",
@@ -417,7 +417,7 @@
         "companies": {
           "headline1": "Un'Assunzione Sbagliata Costa.",
           "headline2": "Ti Aiutiamo a Scegliere Bene.",
-          "subheadline": "Gli studenti caricano progetti reali, spesso con validazione opzionale dei docenti. Vedi lavori veri — non CV autocertificati — prima ancora di fare un'offerta. In ogni disciplina.",
+          "subheadline": "Gli studenti caricano progetti reali. La nostra AI estrae le competenze dagli artefatti — codice, tesi, report — e ti mostra l'evidenza. Bonus opzionale: l'endorsement di un docente. Assumi sul lavoro reale, non sui CV autocertificati.",
           "cta": "Inizia a Trovare Talenti",
           "benefits": [
             "Progetti reali, con validazione opzionale dai docenti",
@@ -450,7 +450,7 @@
         "realWork": "Vedi il lavoro reale, non affermazioni",
         "aiAnalysis": "Analisi automatizzata di progetti complessi",
         "noApplications": "Zero candidature → Le aziende ti trovano",
-        "accuracy": "Matching competenze verificate (vs CV auto-dichiarati)"
+        "accuracy": "Matching competenze verificate con AI (vs CV auto-dichiarati)"
       }
     },
     "howItWorks": {
@@ -461,7 +461,7 @@
         "description": "Tesi, stage curriculare, tirocini - in qualsiasi formato"
       },
       "step2": {
-        "title": "Endorsement Opzionale dei Docenti",
+        "title": "Bonus: Endorsement Opzionale dei Docenti",
         "description": "I docenti del tuo ateneo o scuola possono validare i progetti dalla nostra dashboard — quando hanno tempo"
       },
       "step3": {
@@ -473,8 +473,8 @@
         "description": "Database completo, filtri illimitati, ricerca intelligente"
       },
       "companyStep2": {
-        "title": "Vedi Progetti Verificati",
-        "description": "Voti reali, progetti reali, competenze verificate"
+        "title": "Vedi Progetti Reali",
+        "description": "Voti reali, progetti reali, competenze verificate con AI"
       },
       "companyStep3": {
         "title": "Connettiti Direttamente",
@@ -483,7 +483,7 @@
       "students": {
         "title": "Come Funziona",
         "titleHighlight": "InTransparency",
-        "subtitle": "Da progetto accademico a portfolio verificato a contatto con il datore di lavoro — in tre passi",
+        "subtitle": "Da progetto accademico a portfolio verificato con AI a contatto con il datore di lavoro — in tre passi",
         "step": "Passo",
         "steps": [
           {
@@ -522,9 +522,9 @@
           },
           {
             "title": "Connettiti con le Aziende",
-            "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate",
+            "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate con AI",
             "details": [
-              "Le aziende sfogliano portfolio verificati",
+              "Le aziende sfogliano portfolio verificato con AI",
               "Match intelligente competenze-requisiti"
             ],
             "stats": {
@@ -542,14 +542,14 @@
       "companies": {
         "title": "Come Funziona",
         "titleHighlight": "il Recruiting",
-        "subtitle": "Dalla ricerca di talento verificato a decisioni di assunzione sicure — in tre passi",
+        "subtitle": "Dalla ricerca di talenti verificati con AI a decisioni di assunzione sicure — in tre passi",
         "step": "Passo",
         "steps": [
           {
-            "title": "Cerca Talento Verificato",
+            "title": "Cerca Talenti Verificati con AI",
             "description": "Cerca per competenze, voti, progetti. L'il sistema abbina i candidati ai tuoi requisiti.",
             "details": [
-              "Filtra per competenze verificate, media voti, tipo di progetto e località",
+              "Filtra per competenze verificate con AI, media voti, tipo di progetto e località",
               "Il matching basato su evidenze classifica i candidati per rilevanza rispetto al tuo ruolo"
             ],
             "stats": {
@@ -564,9 +564,9 @@
           },
           {
             "title": "Valuta i Decision Pack",
-            "description": "Vedi voti verificati, progetti, valutazioni della personalità. Tutto ciò che serve per decidere, in un documento.",
+            "description": "Vedi voti reali, progetti, valutazioni della personalità. Tutto ciò che serve per decidere, in un documento.",
             "details": [
-              "Trascrizioni accademiche e portfolio progetti verificati in un'unica vista",
+              "Trascrizioni accademiche e portfolio progetti reali in un'unica vista",
               "Riassunti candidato generati automaticamente con analisi di compatibilità"
             ],
             "stats": {
@@ -577,7 +577,7 @@
               "analysisTitle": "Caricamento Decision Pack...",
               "innovationScore": "Match Competenze",
               "codeQuality": "Media Verificata",
-              "skillsDetected": "Competenze Verificate:"
+              "skillsDetected": "Competenze Verificate con AI:"
             }
           },
           {
@@ -641,7 +641,7 @@
           },
           {
             "title": "Dimostra l'Impatto",
-            "description": "Esporta dati di placement verificati per i report ministeriali. Analytics contratti e alert precoci.",
+            "description": "Esporta dati di placement in tempo reale per i report ministeriali. Analytics contratti e alert precoci.",
             "details": [
               "Report con un click per ANVUR, AlmaLaurea e requisiti ministeriali",
               "Alert precoci quando i tassi di placement scendono sotto gli obiettivi"
@@ -661,9 +661,9 @@
     },
     "features": {
       "badge": "Funzionalità Principali",
-      "title": "Competenze Verificate al 100%, Non Affermazioni da CV",
+      "title": "Competenze Verificate con AI al 100%, Non Affermazioni da CV",
       "verification": {
-        "title": "Endorsement Opzionale dei Docenti",
+        "title": "Bonus: Endorsement Opzionale dei Docenti",
         "description": "Ogni competenza tracciabile a un progetto reale, con validazione opzionale"
       },
       "aiAnalysis": {
@@ -694,7 +694,7 @@
       "segments": {
         "students": {
           "title": "Per gli Studenti",
-          "description": "Crea il tuo portfolio verificato e fatti scoprire dalle aziende — gratuito, senza costi nascosti.",
+          "description": "Crea il tuo portfolio verificato con AI e fatti scoprire dalle aziende — gratuito, senza costi nascosti.",
           "cta": "Inizia Gratis"
         },
         "universities": {
@@ -704,7 +704,7 @@
         },
         "companies": {
           "title": "Per le Aziende",
-          "description": "Cerca talento verificato per competenze reali. Free fino a 5 contatti/mese, poi €89/mese.",
+          "description": "Cerca talenti verificati con AI per competenze verificate con AI. Free fino a 5 contatti/mese, poi €89/mese.",
           "cta": "Inizia ad Assumere"
         }
       }
@@ -712,8 +712,8 @@
     "trustIndicators": {
       "features": {
         "0": {
-          "title": "Competenze Reali",
-          "description": "Progetti autentici, con validazione opzionale dei docenti"
+          "title": "Competenze Verificate con AI",
+          "description": "Progetti autentici, con validazione opzionale dei docenti (bonus)"
         },
         "1": {
           "title": "Contatto Diretto",
@@ -741,7 +741,7 @@
         "students": {
           "title": "Per gli Studenti",
           "benefits": {
-            "0": "Costruisci un portfolio verificato dai tuoi progetti",
+            "0": "Costruisci un portfolio verificato con AI dai tuoi progetti",
             "1": "Fatti scoprire dalle aziende che cercano le tue competenze",
             "2": "Nessuna candidatura necessaria - le aziende ti contattano",
             "3": "Sempre gratuito, nessun costo nascosto"
@@ -759,7 +759,7 @@
         "companies": {
           "title": "Per le Aziende",
           "benefits": {
-            "0": "Cerca talenti verificati per competenze reali",
+            "0": "Cerca talenti verificati con AI per competenze verificate con AI",
             "1": "Vedi progetti reali, non dichiarazioni nel CV",
             "2": "Contatti illimitati durante il lancio i candidati",
             "3": "Nessun abbonamento, nessun vincolo"
@@ -776,7 +776,7 @@
     "howItWorksPage": {
       "title": "Come Funziona",
       "titleHighlight": "InTransparency",
-      "subtitle": "Da progetto accademico a portfolio verificato a contatto con il datore di lavoro — in tre passi",
+      "subtitle": "Da progetto accademico a portfolio verificato con AI a contatto con il datore di lavoro — in tre passi",
       "pauseDemo": "Pausa Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Avanzamento automatico ogni 4 secondi",
@@ -821,9 +821,9 @@
         },
         {
           "title": "Connettiti con le Aziende",
-          "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate",
+          "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate con AI",
           "details": [
-            "Le aziende sfogliano portfolio verificati",
+            "Le aziende sfogliano portfolio verificato con AI",
             "Match intelligente competenze-requisiti",
             "Contatto diretto senza intermediari",
             "Notifiche opportunità in tempo reale"
@@ -881,7 +881,7 @@
           {
             "feature": "Portfolio",
             "traditional": "PDF o profilo LinkedIn",
-            "ours": "Portfolio progetti verificato"
+            "ours": "Portfolio progetti reali"
           }
         ]
       },
@@ -924,7 +924,7 @@
       },
       "companies": {
         "title": "Un Modo Più Semplice per Trovare Talenti Junior",
-        "subtitle": "Esplora profili verificati da università e ITS italiani — connettiti quando sei pronto.",
+        "subtitle": "Esplora profili verificati con AI da università e ITS italiani — connettiti quando sei pronto.",
         "traditionalLabel": "Prima",
         "rows": [
           {
@@ -1044,7 +1044,7 @@
     },
     "apiOverview": {
       "title": "Panoramica API",
-      "description": "InTransparency fornisce API RESTful per università che inviano dati verificati degli studenti, per aziende che cercano e filtrano candidati per competenze reali, e per piattaforme terze che costruiscono integrazioni. Tutti i dati sono verificati dall'istituzione e conformi al GDPR."
+      "description": "InTransparency fornisce API RESTful per università che inviano dati verificati degli studenti, per aziende che cercano e filtrano candidati per competenze verificate con AI, e per piattaforme terze che costruiscono integrazioni. Tutti i dati sono verificati dall'istituzione e conformi al GDPR."
     },
     "endpoints": {
       "title": "Endpoint API",
@@ -1124,7 +1124,7 @@
         "description": "Tutte le funzionalità core - gratuito, senza costi nascosti",
         "badge": "100% Gratis",
         "features": {
-          "uploads": "Caricamenti progetti verificati illimitati",
+          "uploads": "Caricamenti progetti reali illimitati",
           "verification": "Verifica istituzionale",
           "portfolio": "Pagina portfolio pubblica",
           "discovery": "Scoperta da aziende",
@@ -1146,7 +1146,7 @@
           "customUrl": "URL portfolio personalizzato",
           "contactRecruiters": "Contatta recruiter direttamente",
           "aiRecommendations": "Raccomandazioni carriera personalizzate",
-          "resumeBuilder": "Resume builder con progetti verificati",
+          "resumeBuilder": "Resume builder con progetti reali",
           "interviewPrep": "Strumenti preparazione colloqui",
           "prioritySupport": "Supporto prioritario",
           "removeBadge": "Rimuovi badge 'Powered by InTransparency'"
@@ -1176,7 +1176,7 @@
     "companies": {
       "badge": "Per Aziende - Accesso Completo Gratuito",
       "title": "Servizio Trasparente Ricerca Talenti - Niente Abbonamenti",
-      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Contatta candidati verificati — gratis per iniziare. Screening più veloce, accuratezza verificata.",
+      "subtitle": "Sfoglia profili verificati con AI 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Contatta candidati verificati — gratis per iniziare. Screening più veloce, accuratezza verificata.",
       "browseFree": {
         "name": "Sfoglia Gratis",
         "price": "€0",
@@ -1200,7 +1200,7 @@
         "name": "Servizio Trasparente Ricerca Talenti",
         "price": "€0",
         "period": "per contatto (niente abbonamenti)",
-        "description": "Sfoglia profili verificati 100% GRATIS → Contatta il candidato giusto — gratis per iniziare",
+        "description": "Sfoglia profili verificati con AI 100% GRATIS → Contatta il candidato giusto — gratis per iniziare",
         "badge": "Più Popolare - Paga Solo Uso",
         "cta": "Inizia a Sfogliare Gratis"
       },
@@ -1252,7 +1252,7 @@
         "subtitle": "Il nostro team ti supporta personalmente — dalla costruzione del portfolio alla preparazione per i colloqui."
       },
       "company": {
-        "title": "Cerchi talenti verificati in tutte le discipline?",
+        "title": "Cerchi talenti verificati con AI in tutte le discipline?",
         "subtitle": "Prenota una demo per scoprire come InTransparency ti dà accesso a candidati verificati dai partner formativi."
       },
       "university": {
@@ -1384,7 +1384,7 @@
     "cards": {
       "yourStory": {
         "title": "La Tua Storia Qui",
-        "description": "Condividi come le competenze verificate hanno aiutato la tua carriera"
+        "description": "Condividi come le competenze verificate con AI hanno aiutato la tua carriera"
       },
       "realStudents": {
         "title": "Studenti Reali",
@@ -1487,9 +1487,9 @@
   },
   "explore": {
     "hero": {
-      "badge": "Scopri Talenti Verificati",
+      "badge": "Scopri Talenti Verificati con AI",
       "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca portfolio studenti con competenze verificate. Progetti autenticati dai partner formativi.",
+      "subtitle": "Cerca portfolio studenti con competenze verificate con AI. Progetti autenticati dai partner formativi.",
       "searchPlaceholder": "Cerca per nome, competenza o istituzione...",
       "stats": {
         "students": "Studenti",
@@ -1622,7 +1622,7 @@
       "submitButton": "Crea Account Studente Gratuito",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Fatti Scoprire dalle Aziende",
-      "heroSubtitle": "Costruisci un portfolio verificato. Lascia che le aziende ti trovino in base alle tue competenze reali e ai tuoi progetti.",
+      "heroSubtitle": "Costruisci un portfolio verificato con AI. Lascia che le aziende ti trovino in base alle tue competenze verificate con AI e ai tuoi progetti.",
       "freeBadge": "Freemium",
       "benefits": {
         "0": {
@@ -1634,7 +1634,7 @@
           "description": "Smetti di inviare candidature - lascia che le opportunità vengano da te"
         },
         "2": {
-          "title": "Portfolio Verificato",
+          "title": "Portfolio Verificato con AI",
           "description": "Progetti supportati dall'istituzione di cui i datori di lavoro si fidano"
         },
         "3": {
@@ -1643,7 +1643,7 @@
         }
       },
       "createTitle": "Crea il Tuo Account",
-      "createSubtitle": "Costruisci il tuo portfolio verificato",
+      "createSubtitle": "Costruisci il tuo portfolio verificato con AI",
       "formTitle": "I Tuoi Dati",
       "formDescription": "Ci vogliono meno di 2 minuti",
       "mobileBenefitsTitle": "Perché gli studenti ci scelgono:",
@@ -1658,22 +1658,22 @@
     },
     "recruiter": {
       "title": "Registrazione Azienda",
-      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Accesso Completo",
+      "subtitle": "Trova talenti verificati con AI - Sfoglia Gratis, Accesso Completo",
       "cardTitle": "Crea il Tuo Account Aziendale",
       "cardDescription": "Scopri candidati verificati con ricerca intelligente",
       "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
       "submittingButton": "Creazione Account...",
-      "heroTitle": "Assumi Talenti Verificati, Non CV",
+      "heroTitle": "Assumi Talenti Verificati con AI, Non CV",
       "heroSubtitle": "Accedi a laureati verificati dai partner formativi. Ogni competenza è tracciabile a corsi e progetti reali.",
       "browseBadge": "Sfoglia Gratis, Accesso Completo",
       "benefits": {
         "0": {
-          "title": "Solo Competenze Verificate",
+          "title": "Solo Competenze Verificate con AI",
           "description": "Ogni competenza supportata da progetti universitari"
         },
         "1": {
           "title": "Matching basato su evidenze",
-          "description": "Abbina candidati in base a competenze verificate"
+          "description": "Abbina candidati in base a competenze verificate con AI"
         },
         "2": {
           "title": "Screening Più Veloce",
@@ -1685,7 +1685,7 @@
         }
       },
       "createTitle": "Crea Account Aziendale",
-      "createSubtitle": "Inizia ad assumere talenti verificati oggi",
+      "createSubtitle": "Inizia ad assumere talenti verificati con AI oggi",
       "formTitle": "I Tuoi Dati",
       "formDescription": "Crea il tuo account recruiter",
       "workEmail": "Email Aziendale",
@@ -1717,7 +1717,7 @@
       "submitButton": "Crea Account Istituzione Gratuito",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Collega Studenti e Datori di Lavoro",
-      "heroSubtitle": "Verifica i progetti degli studenti e aiutali a farsi scoprire dalle aziende che cercano competenze reali.",
+      "heroSubtitle": "Verifica i progetti degli studenti e aiutali a farsi scoprire dalle aziende che cercano competenze verificate con AI.",
       "freeBadge": "Freemium",
       "benefits": {
         "0": {
@@ -1791,9 +1791,9 @@
       "roles": {
         "recruiter": {
           "name": "Azienda",
-          "description": "Trova talenti verificati dai partner formativi",
+          "description": "Trova talenti verificati con AI dai partner formativi",
           "benefits": {
-            "0": "Cerca profili verificati",
+            "0": "Cerca profili verificati con AI",
             "1": "Paga per contatto",
             "2": "Integrazione ATS",
             "3": "Dashboard analytics"
@@ -1868,7 +1868,7 @@
       "title": "Registrazione Tech Park",
       "subtitle": "Unisciti a InTransparency come partner B2B",
       "heroTitle": "Offri alle aziende del tuo parco un vantaggio nel recruiting",
-      "heroSubtitle": "Offri l'accesso a talenti verificati automaticamente come servizio alle aziende del tuo parco. Costo zero per il parco, valore enorme per i membri.",
+      "heroSubtitle": "Offri l'accesso a talenti verificati con AI automaticamente come servizio alle aziende del tuo parco. Costo zero per il parco, valore enorme per i membri.",
       "freeBadge": "Gratuito per i Tech Park",
       "benefits": {
         "0": {
@@ -2001,7 +2001,7 @@
     "journey": {
       "student": {
         "headline": "Smetti di Candidarti. Inizia a Essere Scoperto.",
-        "subheadline": "Il tuo portfolio verificato lavora per te. Le aziende ti trovano in base a ciò che hai realmente costruito.",
+        "subheadline": "Il tuo portfolio verificato con AI lavora per te. Le aziende ti trovano in base a ciò che hai realmente costruito.",
         "steps": {
           "0": {
             "title": "Carica i Tuoi Progetti",
@@ -2013,10 +2013,10 @@
           },
           "2": {
             "title": "Le Aziende Ti Scoprono",
-            "desc": "I recruiter cercano profili verificati e ti contattano direttamente. Nessuna candidatura, nessuna lettera di presentazione. Vieni trovato per ciò che hai costruito."
+            "desc": "I recruiter cercano profili verificati con AI e ti contattano direttamente. Nessuna candidatura, nessuna lettera di presentazione. Vieni trovato per ciò che hai costruito."
           }
         },
-        "outcome": "Vieni scoperto per le tue competenze reali — non filtrato via dai bot di parole chiave."
+        "outcome": "Vieni scoperto per le tue competenze verificate con AI — non filtrato via dai bot di parole chiave."
       },
       "institution": {
         "headline": "Conosci il Tuo Vero Tasso di Placement.",
@@ -2039,15 +2039,15 @@
       },
       "company": {
         "headline": "Trova Talenti Junior di cui Fidarti.",
-        "subheadline": "Ogni competenza verificata da un'istituzione. Ogni progetto tracciabile alla fonte.",
+        "subheadline": "Ogni competenze verificate con AI da un'istituzione. Ogni progetto tracciabile alla fonte.",
         "steps": {
           "0": {
-            "title": "Cerca Profili Verificati",
+            "title": "Cerca Profili Verificati con AI",
             "desc": "Esplora portfolio studenti filtrando per competenze, istituzione, voti, posizione e tipo di progetto. La ricerca intelligente trova il match giusto."
           },
           "1": {
             "title": "Rivedi Lavori Reali",
-            "desc": "Vedi progetti reali, voti verificati e analisi delle competenze. Nessuna auto-dichiarazione da CV — solo competenze provate."
+            "desc": "Vedi progetti reali, voti reali e analisi delle competenze. Nessuna auto-dichiarazione da CV — solo competenze provate."
           },
           "2": {
             "title": "Connettiti Direttamente",
@@ -2082,7 +2082,7 @@
           },
           "2": {
             "title": "Reverse Recruitment",
-            "desc": "Invece di inviare candidature, le aziende vengono da te. Il tuo profilo verificato è la tua miglior presentazione.",
+            "desc": "Invece di inviare candidature, le aziende vengono da te. Il tuo profili verificati con AI è la tua miglior presentazione.",
             "features": {
               "0": "Appari nelle ricerche dei recruiter automaticamente",
               "1": "Vieni abbinato a opportunità rilevanti",
@@ -2129,8 +2129,8 @@
         "subtitle": "Un processo di selezione trasparente basato su evidenze verificate, non auto-dichiarazioni.",
         "cards": {
           "0": {
-            "title": "Pool di Talenti Verificati",
-            "desc": "Ogni profilo è supportato da dati accademici. Cerca per competenze reali, voti verificati e lavori concreti.",
+            "title": "Pool di Talenti Verificati con AI",
+            "desc": "Ogni profilo è supportato da dati accademici. Cerca per competenze verificate con AI, voti reali e lavori concreti.",
             "features": {
               "0": "250+ filtri di ricerca",
               "1": "Matching intelligente dei candidati",
@@ -2168,7 +2168,7 @@
         },
         "1": {
           "title": "Tecnologia che Legge Lavori Reali",
-          "desc": "La nostra piattaforma analizza i file dei progetti — codice, PDF, immagini — ed estrae competenze reali. Non keyword matching."
+          "desc": "La nostra piattaforma analizza i file dei progetti — codice, PDF, immagini — ed estrae competenze verificate con AI. Non keyword matching."
         },
         "2": {
           "title": "Progettato per i Risultati",
@@ -2210,12 +2210,12 @@
       "badge": "Per Studenti — Ogni Disciplina, Ogni Percorso",
       "title": "Scopri in Cosa Sei Davvero Bravo.",
       "titleHighlight": "Poi Dimostralo.",
-      "subtitle": "Carica i tuoi progetti. La nostra tecnologia mappa le tue competenze reali. I docenti possono validarli quando hanno tempo. Ottieni un portfolio che parla da solo — niente CV da riscrivere, niente indovinelli."
+      "subtitle": "Carica i tuoi progetti. La nostra AI estrae le competenze reali dal codice, dalle tesi e dai report — controllabili dagli artefatti. Bonus opzionale: un docente può aggiungere il suo endorsement quando ha tempo. Il portfolio parla da solo — niente CV da riscrivere."
     },
     "steps": {
       "0": {
         "title": "Carica i Tuoi Progetti",
-        "desc": "Tesi, codice, design, relazioni di laboratorio, business case — qualsiasi formato, qualsiasi disciplina. Carica i tuoi file e le tue competenze reali vengono mappate automaticamente."
+        "desc": "Tesi, codice, design, relazioni di laboratorio, business case — qualsiasi formato, qualsiasi disciplina. Carica i tuoi file e le tue competenze verificate con AI vengono mappate automaticamente."
       },
       "1": {
         "title": "La Tua Università Verifica",
@@ -2223,10 +2223,10 @@
       },
       "2": {
         "title": "Fatti Notare",
-        "desc": "Il tuo portfolio verificato diventa visibile alle persone giuste. Basta inviare candidature nel vuoto — lascia che il tuo lavoro apra le porte per te."
+        "desc": "Il tuo portfolio verificato con AI diventa visibile alle persone giuste. Basta inviare candidature nel vuoto — lascia che il tuo lavoro apra le porte per te."
       },
       "title": "Come Funziona per Te",
-      "subtitle": "Tre passi dal progetto al portfolio verificato."
+      "subtitle": "Tre passi dal progetto al portfolio verificato con AI."
     },
     "features": {
       "0": {
@@ -2234,7 +2234,7 @@
         "desc": "I tuoi file — codice, PDF, presentazioni — vengono analizzati per mostrarti le competenze che hai costruito, anche quelle che non sapevi di avere."
       },
       "1": {
-        "title": "Portfolio Verificato",
+        "title": "Portfolio Verificato con AI",
         "desc": "I tuoi progetti portano il badge di verifica della tua università. Un portfolio sostenuto dalla tua scuola, non solo dalle tue parole."
       },
       "2": {
@@ -2259,7 +2259,7 @@
     "audience": {
       "0": {
         "title": "Studenti delle Superiori",
-        "desc": "Mostra i tuoi primi progetti e le esperienze di alternanza scuola-lavoro. Inizia a costruire il tuo portfolio verificato presto."
+        "desc": "Mostra i tuoi primi progetti e le esperienze di alternanza scuola-lavoro. Inizia a costruire il tuo portfolio verificato con AI presto."
       },
       "1": {
         "title": "Studenti ITS Academy",
@@ -2274,7 +2274,7 @@
     },
     "demo": {
       "title": "Guardalo in Azione",
-      "subtitle": "Scopri come gli studenti costruiscono portfolio verificati",
+      "subtitle": "Scopri come gli studenti costruiscono portfolio verificato con AI",
       "bullet1": "Carica qualsiasi progetto in pochi secondi",
       "bullet2": "Vedi le tue competenze mappate automaticamente",
       "bullet3": "Fatti scoprire dalle aziende",
@@ -2299,7 +2299,7 @@
           "answer": "Qualsiasi cosa su cui hai lavorato — tesi, codice, design, relazioni, presentazioni, video. Supportiamo tutti i principali formati di file."
         },
         "2": {
-          "question": "Come funziona la verifica?",
+          "question": "Come funziona l’endorsement opzionale?",
           "answer": "Quando un docente o assistente decide di validare un progetto, conferma che è reale, può aggiungere voti e crediti ECTS, e un badge di verifica appare sul portfolio. La validazione è opzionale — i tuoi progetti restano visibili anche senza, e il portfolio mostra chiaramente cosa è stato validato e cosa no."
         },
         "3": {
@@ -2308,7 +2308,7 @@
         },
         "4": {
           "question": "Come mi trovano le aziende?",
-          "answer": "Le aziende cercano tra i portfolio verificati per competenze, università, posizione e tipo di progetto. Quando trovano una corrispondenza, possono contattarti direttamente."
+          "answer": "Le aziende cercano tra i portfolio verificato con AI per competenze, università, posizione e tipo di progetto. Quando trovano una corrispondenza, possono contattarti direttamente."
         }
       }
     }
@@ -2318,16 +2318,16 @@
       "badge": "Per Aziende, Agenzie e Team HR — Tutti i Settori",
       "title": "Un'Assunzione Sbagliata Costa Tempo e Denaro.",
       "titleHighlight": "Ti Aiutiamo a Scegliere Bene.",
-      "subtitle": "Gli studenti caricano progetti reali, spesso con validazione opzionale dei docenti. Vedi lavori veri — non CV autocertificati — prima di fare un'offerta. 5 contatti gratis ogni mese, ti abboni quando scali."
+      "subtitle": "Gli studenti caricano progetti reali. La nostra AI estrae le competenze dagli artefatti e ti mostra l'evidenza — codice, voti, file di progetto. Bonus opzionale: endorsement dei docenti. 5 contatti gratis ogni mese, ti abboni quando scali."
     },
     "steps": {
       "0": {
-        "title": "Cerca Profili Verificati",
+        "title": "Cerca Profili Verificati con AI",
         "desc": "Esplora portfolio studenti filtrando per competenze, università, voti, posizione e tipo di progetto. La ricerca intelligente trova il match giusto."
       },
       "1": {
         "title": "Rivedi Lavori Reali",
-        "desc": "Vedi progetti reali, voti verificati e analisi delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
+        "desc": "Vedi progetti reali, voti reali e analisi delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
       },
       "2": {
         "title": "Connettiti Direttamente",
@@ -2339,10 +2339,10 @@
     "features": {
       "0": {
         "title": "Ricerca Intelligente Candidati",
-        "desc": "Trova candidati per competenze reali — non parole chiave. Le competenze vengono comprese dal lavoro effettivo, non dai buzzword del CV."
+        "desc": "Trova candidati per competenze verificate con AI — non parole chiave. Le competenze vengono comprese dal lavoro effettivo, non dai buzzword del CV."
       },
       "1": {
-        "title": "Pool di Talenti Verificati",
+        "title": "Pool di Talenti Verificati con AI",
         "desc": "Ogni profilo è supportato da dati accademici. Università e scuole confermano voti, progetti e competenze."
       },
       "2": {
@@ -2415,21 +2415,21 @@
     },
     "demo": {
       "title": "Scopri la Piattaforma",
-      "subtitle": "Guarda come i recruiter trovano talenti verificati",
-      "bullet1": "Cerca per competenze reali, non parole chiave",
-      "bullet2": "Esamina progetti e voti verificati",
+      "subtitle": "Guarda come i recruiter trovano talenti verificati con AI",
+      "bullet1": "Cerca per competenze verificate con AI, non parole chiave",
+      "bullet2": "Esamina progetti e voti reali",
       "bullet3": "Connettiti direttamente con i candidati",
       "cta": "Prova la Demo"
     },
     "cta": {
       "title": "Trova Talenti di cui Fidarti",
-      "subtitle": "Esplora portfolio verificati gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €89/mese per contatti illimitati e suite AI completa.",
+      "subtitle": "Esplora portfolio verificato con AI gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €89/mese per contatti illimitati e suite AI completa.",
       "primaryButton": "Inizia gratis",
       "secondaryButton": "Prova la Ricerca Intelligente"
     },
     "faq": {
       "title": "Domande Frequenti",
-      "subtitle": "Come i talenti verificati cambiano il tuo processo di assunzione",
+      "subtitle": "Come i talenti verificati con AI cambiano il tuo processo di assunzione",
       "items": {
         "0": {
           "question": "In cosa è diverso da LinkedIn?",
@@ -2445,11 +2445,11 @@
         },
         "3": {
           "question": "Posso pubblicare annunci di lavoro?",
-          "answer": "Sì. Crea annunci di lavoro che si abbinano automaticamente ai profili verificati degli studenti in base a competenze reali, non ad algoritmi di parole chiave."
+          "answer": "Sì. Crea annunci di lavoro che si abbinano automaticamente ai profili verificati con AI degli studenti in base a competenze verificate con AI, non ad algoritmi di parole chiave."
         },
         "4": {
           "question": "Come funzionano i Decision Pack?",
-          "answer": "I Decision Pack sono dossier automatizzati che raccolgono i progetti verificati, i voti, l'analisi delle competenze e la previsione di placement di uno studente in un unico documento."
+          "answer": "I Decision Pack sono dossier automatizzati che raccolgono i progetti reali, i voti, l'analisi delle competenze e la previsione di placement di uno studente in un unico documento."
         }
       }
     }
@@ -2516,7 +2516,7 @@
       },
       "2": {
         "title": "Scuole Superiori",
-        "desc": "Aiuta gli studenti a costruire il loro primo portfolio verificato. Mostra i progetti di alternanza scuola-lavoro e le prime esperienze."
+        "desc": "Aiuta gli studenti a costruire il loro primo portfolio verificato con AI. Mostra i progetti di alternanza scuola-lavoro e le prime esperienze."
       },
       "title": "Per Ogni Tipo di Scuola",
       "subtitle": "Che tu sia un'università, un'accademia ITS o una scuola superiore — i tuoi studenti meritano visibilità."
@@ -2889,7 +2889,7 @@
     },
     "benefits": {
       "0": {
-        "title": "Portfolio progetti verificati",
+        "title": "Portfolio progetti reali",
         "description": "Gli studenti caricano i progetti ITS con il badge di endorsement opzionale dei docenti. Le aziende vedono prove concrete, non solo dichiarazioni."
       },
       "1": {
@@ -2985,7 +2985,7 @@
   "transparency": {
     "hero": {
       "badge": "Il Nostro Impegno alla Trasparenza",
-      "title": "Competenze Verificate",
+      "title": "Competenze Verificate con AI",
       "subtitle": "Spiegazioni Chiare",
       "description": "Competenze hard e soft validate dall'docenti. Matching basato su evidenze spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
       "ctas": {
@@ -3042,7 +3042,7 @@
       "subtitle": "Quattro pilastri di completa trasparenza sulla piattaforma",
       "pillars": {
         "0": {
-          "title": "1. Competenze Verificate",
+          "title": "1. Competenze Verificate con AI",
           "description": "Competenze hard e soft verificate attraverso dati accademici e analisi progetti.",
           "items": {
             "0": "Hard skills: Verificate attraverso progetti, codice, design, ricerca",
@@ -3144,7 +3144,7 @@
     },
     "cta": {
       "title": "Sperimenta la Vera Trasparenza",
-      "subtitle": "Unisciti a una piattaforma dove competenze verificate, matching spiegabile e visibilità reciproca creano match migliori per tutti.",
+      "subtitle": "Unisciti a una piattaforma dove competenze verificate con AI, matching spiegabile e visibilità reciproca creano match migliori per tutti.",
       "buttons": {
         "getStarted": "Inizia Gratis",
         "demo": "Prova la Demo Live",
@@ -3246,7 +3246,7 @@
             "0": "Invita aziende che reclutano dai tuoi studenti",
             "1": "Azienda si iscrive → Usa InTransparency → Guadagni 20% revenue Anno 1",
             "2": "Esempio: Azienda spende €500 in Anno 1 = €100 bonus per istituzione",
-            "3": "Win-win: Aziende ottengono talenti verificati, tu dimostri impatto placement",
+            "3": "Win-win: Aziende ottengono talenti verificati con AI, tu dimostri impatto placement",
             "4": "Traccia in analytics: \"BMW ha reclutato 5 studenti via tuo referral - €87 guadagnati\""
           },
           "cta": "Ottieni Link Referral Aziende",
@@ -3310,7 +3310,7 @@
             "2": "Ottieni 3 mesi gratis tier Enterprise (valore €297)",
             "3": "In evidenza in materiali marketing e presentazioni istituzioni",
             "4": "Opportunità speaking a career fair ITS ed eventi",
-            "5": "Costruisci employer brand come campione talenti verificati"
+            "5": "Costruisci employer brand come campione talenti verificati con AI"
           },
           "cta": "Invia Success Story",
           "trigger": "Dopo assunzione riuscita: \"Condividi successo assunzione per 3 mesi gratis?\""
@@ -3457,7 +3457,7 @@
       "subtitle": "Vogliamo che il talento sia scopribile prima che commercializzabile",
       "students": {
         "title": "Studenti: accesso completo",
-        "description": "Costruisci il tuo portfolio verificato con tutte le funzionalità base.",
+        "description": "Costruisci il tuo portfolio verificato con AI con tutte le funzionalità base.",
         "premiumLabel": "Opzioni future:",
         "premiumDescription": "Visibilità prioritaria, analytics avanzati"
       },
@@ -3469,7 +3469,7 @@
       },
       "companies": {
         "title": "Aziende: 5 contatti gratis al mese, poi €89/mese",
-        "description": "Esplora liberamente i profili verificati. Ti abboni quando superi i 5 contatti al mese.",
+        "description": "Esplora liberamente i profili verificati con AI. Ti abboni quando superi i 5 contatti al mese.",
         "enterpriseLabel": "Add-on enterprise:",
         "enterpriseDescription": "Accesso API, integrazione ATS"
       },
@@ -3523,7 +3523,7 @@
       "primaryButton": "Inizia Ora",
       "secondaryButton": "Scopri Come Funziona",
       "companiesPrefix": "Per le aziende:",
-      "companiesLink": "Esplora talenti verificati, paghi solo per i contatti"
+      "companiesLink": "Esplora talenti verificati con AI, paghi solo per i contatti"
     }
   },
   "pricingPage": {
@@ -3585,14 +3585,14 @@
     "companies": {
       "badge": "Per le Aziende",
       "title": "Provi gratis, ti abboni quando scali",
-      "subtitle": "Cerchi talenti verificati gratis. 5 contatti ogni mese gratis. Quando ti serve di più, ti abboni — un solo percorso, niente pacchetti crediti da gestire.",
+      "subtitle": "Cerchi talenti verificati con AI gratis. 5 contatti ogni mese gratis. Quando ti serve di più, ti abboni — un solo percorso, niente pacchetti crediti da gestire.",
       "popular": "La maggior parte sceglie questo",
       "tiers": {
         "starter": {
           "name": "Free",
           "price": "€0",
           "period": "/ per sempre",
-          "description": "Cerchi nell'intero pool di talenti verificati. Contatti fino a 5 candidati al mese — quota resettata il 1° del mese. Nessuna carta richiesta.",
+          "description": "Cerchi nell'intero pool di talenti verificati con AI. Contatti fino a 5 candidati al mese — quota resettata il 1° del mese. Nessuna carta richiesta.",
           "cta": "Inizia gratis",
           "features": {
             "0": "Ricerca talenti illimitata",
@@ -3643,7 +3643,7 @@
     "freemiumFunnel": {
       "badge": "Come funziona il piano Free",
       "title": "Provaci con 5 contatti gratis ogni mese",
-      "subtitle": "Cerchi nel pool di talenti verificati gratis. Contatti fino a 5 candidati ogni mese senza costi. Quando ti serve di più, ti abboni — è l'unico percorso, niente pacchetti crediti da gestire."
+      "subtitle": "Cerchi nel pool di talenti verificati con AI gratis. Contatti fino a 5 candidati ogni mese senza costi. Quando ti serve di più, ti abboni — è l'unico percorso, niente pacchetti crediti da gestire."
     },
     "payPerTalent": {
       "badge": "Ritirato — vedi il piano Free",
@@ -3717,7 +3717,7 @@
         },
         "1": {
           "q": "Come funziona il piano Free per le aziende?",
-          "a": "Cerchi talenti verificati gratis, senza carta. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1° del mese. Il limite di 5 si conta sull'intero dominio aziendale (così non puoi moltiplicare account per aggirarlo). Quando ti serve di più, ti abboni."
+          "a": "Cerchi talenti verificati con AI gratis, senza carta. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1° del mese. Il limite di 5 si conta sull'intero dominio aziendale (così non puoi moltiplicare account per aggirarlo). Quando ti serve di più, ti abboni."
         },
         "2": {
           "q": "Cosa succede dopo i 5 contatti?",
@@ -4012,7 +4012,7 @@
     "hero": {
       "badge": "Talenti in Evidenza",
       "title": "Scopri Portfolio Studenti Verificati",
-      "subtitle": "Esplora progetti verificati dall'istituzione dai migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "subtitle": "Esplora progetti reali dall'istituzione dai migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
       "createPortfolio": "Crea il Tuo Portfolio",
       "browseAsRecruiter": "Naviga come Recruiter"
     },
@@ -4025,7 +4025,7 @@
     "loading": "Caricamento portfolio in evidenza...",
     "empty": {
       "title": "Nessun portfolio ancora",
-      "description": "Sii il primo a creare un portfolio verificato!",
+      "description": "Sii il primo a creare un portfolio verificato con AI!",
       "cta": "Crea il Tuo Portfolio"
     },
     "card": {
@@ -4039,8 +4039,8 @@
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
-      "title": "Fatti Scoprire con il Tuo Portfolio Verificato",
-      "subtitle": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
+      "title": "Fatti Scoprire con il Tuo Portfolio Verificato con AI",
+      "subtitle": "Crea il tuo portfolio verificato con AI in pochi minuti e fatti scoprire dalle migliori aziende",
       "createPortfolio": "Crea Portfolio Gratuito",
       "learnMore": "Scopri Come Funziona"
     }
@@ -4621,7 +4621,7 @@
       "title": "5 Funzionalità che LinkedIn Non Ha",
       "features": {
         "universityVerified": {
-          "title": "Dati con Validazione Opzionale dei Docenti",
+          "title": "Dati con Bonus: Validazione Opzionale dei Docenti",
           "description": "Voti e corsi verificati dall'istituzione"
         },
         "aiAnalysis": {
@@ -4651,7 +4651,7 @@
           "description": "QUALSIASI settore - non solo tech"
         },
         "verifiedSkills": {
-          "title": "Competenze Verificate Necessarie",
+          "title": "Competenze Verificate con AI Necessarie",
           "description": "Vedi progetti effettivi + voti, non affermazioni"
         },
         "universityFilters": {
@@ -5075,8 +5075,8 @@
   "studentsFeatured": {
     "hero": {
       "badge": "Talenti in Primo Piano",
-      "title": "Scopri Portfolio Verificati di Studenti",
-      "description": "Esplora progetti verificati dai partner formativi dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "title": "Scopri Portfolio Verificato con AI di Studenti",
+      "description": "Esplora progetti reali dai partner formativi dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
       "ctaStudent": "Crea il Tuo Portfolio",
       "ctaRecruiter": "Cerca come Recruiter"
     },
@@ -5089,7 +5089,7 @@
     "loading": "Caricamento portfolio in primo piano...",
     "empty": {
       "title": "Nessun portfolio ancora",
-      "description": "Sii il primo a creare un portfolio verificato!",
+      "description": "Sii il primo a creare un portfolio verificato con AI!",
       "cta": "Crea il Tuo Portfolio"
     },
     "card": {
@@ -5100,8 +5100,8 @@
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
-      "title": "Fatti Scoprire con il Tuo Portfolio Verificato",
-      "description": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
+      "title": "Fatti Scoprire con il Tuo Portfolio Verificato con AI",
+      "description": "Crea il tuo portfolio verificato con AI in pochi minuti e fatti scoprire dalle migliori aziende",
       "primaryButton": "Crea Portfolio Gratuito",
       "secondaryButton": "Scopri Come Funziona"
     }
@@ -5272,7 +5272,7 @@
         "verifyEmail": "Verifica la tua email",
         "verifyEmailDesc": "Conferma il tuo account e abilita le notifiche",
         "verifyUni": "Collega email universitaria",
-        "verifyUniDesc": "Ottieni il badge verificato di cui i recruiter si fidano",
+        "verifyUniDesc": "Ottieni il badge di evidenza di cui i recruiter si fidano",
         "endorsement": "Richiedi una referenza del professore",
         "endorsementDesc": "Il segnale di fiducia più alto sulla piattaforma"
       }
@@ -5461,7 +5461,7 @@
     "submitting": "Invio...",
     "submitFailed": "Invio fallito. Riprova.",
     "submitted": "Candidatura inviata",
-    "submittedDesc": "L'azienda valutera il tuo profilo verificato e i tuoi progetti. Sarai aggiornato su eventuali sviluppi.",
+    "submittedDesc": "L'azienda valutera il tuo profili verificati con AI e i tuoi progetti. Sarai aggiornato su eventuali sviluppi.",
     "viewApplications": "Le mie candidature",
     "browseMore": "Cerca altre offerte",
     "trust": {
@@ -5624,7 +5624,7 @@
       "badge": "La Nostra Missione",
       "title": "Rendere il Percorso dalla Formazione al Lavoro",
       "titleHighlight": "Più Trasparente",
-      "description": "Crediamo che il talento debba essere riconosciuto attraverso competenze reali e verificate. InTransparency collega studenti, istituzioni e aziende in un marketplace trasparente dove tutti vincono."
+      "description": "Crediamo che il talento debba essere riconosciuto attraverso competenze verificate con AI e verificate. InTransparency collega studenti, istituzioni e aziende in un marketplace trasparente dove tutti vincono."
     },
     "problem": {
       "badge": "Il Contesto",
@@ -5645,7 +5645,7 @@
       },
       "paragraphs": {
         "0": "Ogni anno, centinaia di migliaia di giovani italiani iniziano percorsi di stage con la speranza di costruire una carriera. Tuttavia, il sistema attuale non sempre riesce a valorizzare le competenze acquisite durante gli studi, creando un divario tra formazione e opportunità lavorative.",
-        "1": "Spesso manca un collegamento efficace tra ciò che gli studenti sanno fare e ciò che le aziende cercano. Senza strumenti adeguati per rendere visibili le competenze verificate, il talento rischia di rimanere nascosto.",
+        "1": "Spesso manca un collegamento efficace tra ciò che gli studenti sanno fare e ciò che le aziende cercano. Senza strumenti adeguati per rendere visibili le competenze verificate con AI, il talento rischia di rimanere nascosto.",
         "2": "Le università e le istituzioni formative, pur investendo nella qualità della didattica, spesso non dispongono di strumenti per monitorare i risultati occupazionali dei propri studenti. Questa mancanza di dati rende difficile migliorare il sistema."
       }
     },
@@ -5655,11 +5655,11 @@
       "points": {
         "0": {
           "title": "Competenze Prima di Tutto",
-          "description": "Il valore di uno studente dovrebbe essere misurato da ciò che sa fare — progetti verificati, competenze reali, endorsement istituzionali — non solo dal percorso formativo."
+          "description": "Il valore di uno studente dovrebbe essere misurato da ciò che sa fare — progetti reali, competenze verificate con AI, endorsement istituzionali — non solo dal percorso formativo."
         },
         "1": {
           "title": "Investire nella Scoperta del Talento",
-          "description": "Le aziende che cercano candidati qualificati meritano strumenti efficaci per trovarli. Un sistema basato su competenze verificate rende il processo più efficiente per tutti."
+          "description": "Le aziende che cercano candidati qualificati meritano strumenti efficaci per trovarli. Un sistema basato su competenze verificate con AI rende il processo più efficiente per tutti."
         },
         "2": {
           "title": "Collegare Formazione e Lavoro",
@@ -5676,10 +5676,10 @@
       "items": {
         "0": {
           "title": "Trasparenza in Ogni Interazione",
-          "description": "Ogni interazione sulla nostra piattaforma è tracciabile. Le aziende vedono competenze verificate. Gli studenti vedono chi è interessato. Le istituzioni vedono i risultati."
+          "description": "Ogni interazione sulla nostra piattaforma è tracciabile. Le aziende vedono competenze verificate con AI. Gli studenti vedono chi è interessato. Le istituzioni vedono i risultati."
         },
         "1": {
-          "title": "Competenze Verificate, Progetti Reali",
+          "title": "Competenze Verificate con AI, Progetti Reali",
           "description": "Crediamo che un progetto di tesi da 30/30 racconti molto di un candidato. La nostra piattaforma mette al primo posto il lavoro concreto e verificato dai partner formativi."
         },
         "2": {
@@ -5688,7 +5688,7 @@
         },
         "3": {
           "title": "Meritocrazia Basata su Progetti Reali",
-          "description": "Nessun bias per il nome dell'università. I tuoi progetti verificati parlano da soli. Il miglior lavoro vince, indipendentemente dal background."
+          "description": "Nessun bias per il nome dell'università. I tuoi progetti reali parlano da soli. Il miglior lavoro vince, indipendentemente dal background."
         }
       }
     },
@@ -5822,13 +5822,13 @@
           "title": "Candidati Abbinati",
           "matchScore": "Punteggio di Abbinamento",
           "matchReasons": "Motivi dell'Abbinamento",
-          "verifiedProjects": "Progetti Verificati",
+          "verifiedProjects": "Progetti Reali",
           "viewProfile": "Visualizza Profilo",
           "contact": "Contatta",
           "noResults": "Nessun candidato trovato",
           "noResultsDescription": "Prova ad ampliare i criteri di ricerca o a modificare le competenze richieste.",
           "skillMatch": "Competenza corrispondente",
-          "verifiedProject": "Ha progetti verificati",
+          "verifiedProject": "Ha progetti reali",
           "highGrade": "Voto accademico alto",
           "institutionVerified": "Progetti verificati dall'istituzione",
           "locationMatch": "Località corrispondente"
@@ -5953,7 +5953,7 @@
       },
       "courseSearch": {
         "title": "Ricerca per Corso",
-        "subtitle": "Cerca candidati per voti verificati nei corsi universitari",
+        "subtitle": "Cerca candidati per voti reali nei corsi universitari",
         "filters": "Filtri",
         "departmentCategory": "Dipartimento / Categoria",
         "minimumGrade": "Voto Minimo",
@@ -6356,7 +6356,7 @@
       "relocate": "Disponibile a trasferirsi",
       "abroad": "Disponibile all'estero"
     },
-    "footer": "Generato dal portfolio verificato su {platform}",
+    "footer": "Generato dal portfolio verificato con AI su {platform}",
     "empty": "Completa il tuo profilo per generare il CV"
   },
   "personalityInsights": {
@@ -6541,7 +6541,7 @@
       },
       "verified": {
         "value": "100%",
-        "label": "Competenze Verificate"
+        "label": "Competenze Verificate con AI"
       },
       "sectors": {
         "value": "6",
@@ -6549,7 +6549,7 @@
       }
     },
     "badges": {
-      "verified": "Profili Verificati dall'Istituto",
+      "verified": "Profili Verificati con AI dall'Istituto",
       "freeForStudents": "Gratis per Studenti e Università",
       "noSubscription": "Nessun Abbonamento Richiesto"
     }
@@ -6558,7 +6558,7 @@
     "badge": "Per Ingegneria e Manifattura",
     "hero": {
       "title": "Assumi Ingegneri Che Sanno Davvero Costruire",
-      "subtitle": "Vedi portfolio di progetti verificati — modelli CAD, analisi FEA, prototipi di meccatronica — non solo CV. Da università e ITS Academy italiani.",
+      "subtitle": "Vedi portfolio di progetti reali — modelli CAD, analisi FEA, prototipi di meccatronica — non solo CV. Da università e ITS Academy italiani.",
       "browseCta": "Cerca Studenti di Ingegneria",
       "demoCta": "Prenota una Demo"
     },
@@ -6572,7 +6572,7 @@
       "title": "Vedi il Lavoro, Non Solo le Parole",
       "subtitle": "InTransparency ti mostra cosa hanno effettivamente costruito gli studenti di ingegneria — verificato dai professori.",
       "verifiedProjects": {
-        "title": "Portfolio Progetti Verificati",
+        "title": "Portfolio Progetti Reali",
         "desc": "Vedi progetti CAD reali, risultati di simulazione e prototipi — ciascuno verificato dall'istituto dello studente."
       },
       "technicalPortfolios": {
@@ -6613,7 +6613,7 @@
     "badge": "Per Consulenza e Servizi Professionali",
     "hero": {
       "title": "Assumi Consulenti con Soft Skill Verificate",
-      "subtitle": "Profili di personalità DISC, voti normalizzati e competenze verificate dall'istituto. Smetti di indovinare sulle soft skill.",
+      "subtitle": "Profili di personalità DISC, voti normalizzati e competenze verificate con AI dall'istituto. Smetti di indovinare sulle soft skill.",
       "browseCta": "Cerca Candidati",
       "demoCta": "Prenota una Demo"
     },
@@ -6635,8 +6635,8 @@
         "desc": "Confronta candidati di università diverse in modo equo. Voti normalizzati agli standard ECTS in 6 sistemi europei."
       },
       "verifiedSkills": {
-        "title": "Competenze Verificate dall'Istituto",
-        "desc": "Soft skill valutate dal lavoro reale sui progetti — comunicazione, teamwork, leadership, problem solving — con validazione opzionale dei docenti quando disponibile."
+        "title": "Competenze Verificate con AI dall'Istituto",
+        "desc": "Soft skill valutate dal lavoro reale sui progetti — comunicazione, teamwork, leadership, problem solving — con validazione opzionale dei docenti (bonus) quando disponibile."
       },
       "decisionPack": {
         "title": "Decision Pack PDF",
@@ -6647,7 +6647,7 @@
       "title": "Come Funziona",
       "step1": {
         "title": "Cerca Gratis",
-        "desc": "Sfoglia profili verificati filtrati per università, competenze, voti e tratti di personalità."
+        "desc": "Sfoglia profili verificati con AI filtrati per università, competenze, voti e tratti di personalità."
       },
       "step2": {
         "title": "Confronta i Candidati",
@@ -6687,10 +6687,10 @@
       "subtitle": "Pensato per le piccole e medie imprese che hanno bisogno di assumere senza rischi.",
       "searchFree": {
         "title": "Cerca Gratis",
-        "desc": "Sfoglia tutti i profili verificati senza pagare nulla. Nessuna registrazione necessaria per esplorare."
+        "desc": "Sfoglia tutti i profili verificati con AI senza pagare nulla. Nessuna registrazione necessaria per esplorare."
       },
       "verified": {
-        "title": "Profili con Validazione Opzionale dei Docenti",
+        "title": "Profili con Bonus: Validazione Opzionale dei Docenti",
         "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
       },
       "aiSearch": {
@@ -6743,8 +6743,8 @@
     "shareMessages": {
       "whatsapp": "Ciao! Sto usando InTransparency per mostrare i miei progetti universitari verificati alle migliori aziende. Unisciti e costruisci anche tu il tuo portfolio professionale! {link}",
       "linkedin": "Entusiasta di far parte di @InTransparency — una piattaforma che verifica i tuoi progetti accademici e ti connette direttamente con i recruiter. Se sei studente o neolaureato, dai un'occhiata: {link}",
-      "instagram": "Sto costruendo il mio portfolio verificato su InTransparency — dove le tue vere competenze parlano più forte di un CV curato. Unisciti! Link in bio o: {link}",
-      "email": "Ciao! Volevo condividere InTransparency con te — è una piattaforma dove costruisci un portfolio di progetti reali (con validazione opzionale dei docenti), così le aziende ti trovano per quello che sai davvero fare. Registrati qui: {link}"
+      "instagram": "Sto costruendo il mio portfolio verificato con AI su InTransparency — dove le tue vere competenze parlano più forte di un CV curato. Unisciti! Link in bio o: {link}",
+      "email": "Ciao! Volevo condividere InTransparency con te — è una piattaforma dove costruisci un portfolio di progetti reali (con validazione opzionale dei docenti (bonus)), così le aziende ti trovano per quello che sai davvero fare. Registrati qui: {link}"
     },
     "progress": {
       "title": "I Tuoi Progressi",
@@ -7042,7 +7042,7 @@
     "card1Title": "Documenta i PCTO",
     "card1Text": "Carica i progetti svolti durante stage, tirocini e alternanza. La tua scuola li verifica con un badge ufficiale.",
     "card2Title": "Fatti Scoprire",
-    "card2Text": "Le aziende cercano studenti con competenze specifiche. Il tuo profilo verificato ti rende visibile senza candidarti.",
+    "card2Text": "Le aziende cercano studenti con competenze specifiche. Il tuo profili verificati con AI ti rende visibile senza candidarti.",
     "card3Title": "Primo Stage o Lavoro",
     "card3Text": "Quando un'azienda trova il tuo profilo, ti contatta direttamente. Stage PCTO, tirocinio o primo impiego.",
     "stepsTitle": "Come Funziona in 4 Passi",
@@ -7079,7 +7079,7 @@
     "card1Title": "Competenze Tecniche Certificate",
     "card1Text": "Carica i progetti di laboratorio, le certificazioni e le competenze acquisite. Il tuo ITS le verifica ufficialmente.",
     "card2Title": "Visibilità alle Aziende",
-    "card2Text": "Le imprese cercano tecnici specializzati. Il tuo profilo verificato ti mette in contatto diretto con chi assume.",
+    "card2Text": "Le imprese cercano tecnici specializzati. Il tuo profili verificati con AI ti mette in contatto diretto con chi assume.",
     "card3Title": "Apprendistato e Lavoro",
     "card3Text": "Dall'apprendistato in azienda al primo contratto. Le imprese ti trovano grazie alle competenze che hai dimostrato.",
     "stepsTitle": "Come Funziona in 4 Passi",
@@ -7108,7 +7108,7 @@
     "badge": "Tesi • Portfolio • Graduate Jobs",
     "heroTitle": "Dalla Laurea alla",
     "heroTitleHighlight": "Carriera",
-    "heroDescription": "Costruisci il tuo portfolio accademico con tesi, progetti e ricerche. Le aziende cercano neolaureati con competenze verificate.",
+    "heroDescription": "Costruisci il tuo portfolio accademico con tesi, progetti e ricerche. Le aziende cercano neolaureati con competenze verificate con AI.",
     "heroSubtext": "I docenti possono validare il tuo lavoro come livello extra di prova. I datori di lavoro scoprono il tuo portfolio. Distinguiti dal primo giorno.",
     "createProfile": "Crea il Tuo Profilo Gratis",
     "howItWorks": "Come Funziona",
@@ -7116,7 +7116,7 @@
     "card1Title": "Portfolio Accademico",
     "card1Text": "Carica tesi, progetti di ricerca, pubblicazioni e lavori di gruppo. La tua università li certifica ufficialmente.",
     "card2Title": "Distinguiti dai Colleghi",
-    "card2Text": "Un CV non basta. Il tuo portfolio verificato mostra cosa sai fare davvero, con prove concrete del tuo lavoro.",
+    "card2Text": "Un CV non basta. Il tuo portfolio verificato con AI mostra cosa sai fare davvero, con prove concrete del tuo lavoro.",
     "card3Title": "Graduate Jobs e Stage",
     "card3Text": "Le aziende cercano neolaureati qualificati. Ti trovano grazie ai tuoi progetti, non solo al voto di laurea.",
     "stepsTitle": "Come Funziona in 4 Passi",
@@ -7147,7 +7147,7 @@
     "heroBadge": "PCTO • Stage • Prima Esperienza Lavorativa",
     "heroTitle": "Collega i Tuoi Studenti alle",
     "heroTitleHighlight": "Aziende del Territorio",
-    "heroDescription": "Piattaforma gratuita per gestire PCTO, stage e prime esperienze lavorative. Le aziende cercano studenti con competenze verificate dalla tua scuola.",
+    "heroDescription": "Piattaforma gratuita per gestire PCTO, stage e prime esperienze lavorative. Le aziende cercano studenti con competenze verificate con AI dalla tua scuola.",
     "heroSubtext": "Modello freemium per istituti scolastici. Nessun costo di setup.",
     "getStarted": "Inizia Gratuitamente",
     "seeHowItWorks": "Scopri Come Funziona",
@@ -7195,7 +7195,7 @@
     "service2Item2": "Competenze verificate migliorano la visibilità",
     "service2Item3": "Le aziende vedono l'endorsement della scuola",
     "service2Item4": "Spiegazioni trasparenti del matching",
-    "verificationTitle": "Endorsement Opzionale dei Docenti",
+    "verificationTitle": "Bonus: Endorsement Opzionale dei Docenti",
     "verificationBadge": "Livello Qualità",
     "verificationSubtitle": "Fiducia nel Marketplace",
     "verificationItem1": "Workflow di verifica manuale o API",
@@ -7258,7 +7258,7 @@
     "faq2A": "Il servizio base è completamente gratuito per le scuole. Le aziende pagano per contattare gli studenti. Opzioni enterprise disponibili per istituti con esigenze avanzate.",
     "faq3Q": "Funziona anche per l'alternanza scuola-lavoro?",
     "faq3A": "Sì, la piattaforma supporta tutte le forme di alternanza: PCTO, stage curriculari, tirocini formativi e prime esperienze lavorative. Ogni attività può essere documentata e verificata dalla scuola.",
-    "faq4Q": "Come funziona la verifica?",
+    "faq4Q": "Come funziona l’endorsement opzionale?",
     "faq4A": "Gli studenti caricano i progetti e i docenti li verificano attraverso la dashboard. La verifica aggiunge un badge dei docenti che aumenta la visibilità e la credibilità dello studente nel marketplace.",
     "faq5Q": "Possiamo usarlo per il RAV?",
     "faq5A": "Sì, la dashboard analytics fornisce dati esportabili utili per il Rapporto di Autovalutazione: metriche di placement, competenze più richieste, aziende che hanno contattato gli studenti.",
@@ -7272,7 +7272,7 @@
   "forItsInstitutes": {
     "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Studenti",
     "heroTitle": "Connetti i Tuoi Diplomati alle",
-    "heroTitleHighlight": "Aziende che Cercano Competenze Verificate",
+    "heroTitleHighlight": "Aziende che Cercano Competenze Verificate con AI",
     "heroDescription": "Marketplace che connette i tuoi studenti ITS alle aziende che assumono. La endorsement opzionale dei docenti dà ai diplomati un vantaggio competitivo. Traccia il placement con analytics.",
     "heroSubtext": "Modello freemium per i partner formativi.",
     "getStarted": "Inizia Ora",
@@ -7285,7 +7285,7 @@
     "mp1Check4": "Le aziende contattano gli studenti direttamente",
     "mp2Title": "Matching basato su evidenze",
     "mp2Check1": "L'il sistema abbina competenze a requisiti lavorativi",
-    "mp2Check2": "Le competenze verificate migliorano la visibilità",
+    "mp2Check2": "Le competenze verificate con AI migliorano la visibilità",
     "mp2Check3": "Spiegazioni algoritmi trasparenti",
     "mp2Check4": "Screening più veloce con dati verificati",
     "mp3Title": "Traccia il Tuo Impatto",
@@ -7308,7 +7308,7 @@
     "matchingBadge": "GRATUITO per gli Studenti",
     "matchingSubtitle": "Matching basato su evidenze Trasparente",
     "matchingItem1": "L'il sistema abbina competenze a requisiti lavorativi",
-    "matchingItem2": "Le competenze verificate migliorano la visibilità",
+    "matchingItem2": "Le competenze verificate con AI migliorano la visibilità",
     "matchingItem3": "Le aziende vedono il tuo endorsement istituzionale",
     "matchingItem4": "Spiegazioni trasparenti del matching",
     "matchingNote": "Screening candidati più veloce con dati verificati",
@@ -7328,7 +7328,7 @@
     "analyticsItem4": "Allerte di intervento precoce",
     "areasTitle": "Tutte le Aree ITS Supportate",
     "areasSubtitle": "Dalla meccatronica alle biotecnologie - aziende che assumono attivamente diplomati ITS",
-    "verifiedSkillsSeek": "Competenze Verificate Cercate dalle Aziende:",
+    "verifiedSkillsSeek": "Competenze Verificate con AI Cercate dalle Aziende:",
     "companiesHiring": "Aziende che Assumono:",
     "searchesPerMonth": "{count} ricerche aziendali/mese per competenze in quest'area",
     "howStudentsGetHired": "Come Vengono Assunti gli Studenti",
@@ -7373,7 +7373,7 @@
     "faq1A": "Le aziende cercano tra diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua endorsement opzionale dei docenti dà loro un vantaggio competitivo.",
     "faq2Q": "Cosa significa freemium?",
     "faq2A": "Le funzionalità core sono incluse senza costi. Le aziende pagano per contatto. Funzionalità enterprise disponibili per istituzioni più grandi.",
-    "faq3Q": "Come funziona la verifica?",
+    "faq3Q": "Come funziona l’endorsement opzionale?",
     "faq3A": "Gli studenti caricano manualmente i progetti e tu li verifichi tramite la nostra dashboard semplice. Per istituzioni più grandi, possiamo configurare l'integrazione API (contattaci per dettagli). Zero lavoro IT per te dopo il setup.",
     "faq4Q": "Possiamo aggiungere strumenti per il Career Day?",
     "faq4A": "Sì! L'add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con codici QR, prenotazione colloqui e widget personalizzati. Il marketplace core resta gratuito, senza costi nascosti. Vedi la pagina prezzi per dettagli.",
@@ -7390,7 +7390,7 @@
   "perUniversita": {
     "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Laureati",
     "heroTitle": "Connetti i Tuoi Laureati alle",
-    "heroTitleHighlight": "Aziende che Cercano Talenti Verificati",
+    "heroTitleHighlight": "Aziende che Cercano Talenti Verificati con AI",
     "heroDescription": "Marketplace che connette i tuoi studenti alle aziende. La endorsement opzionale dei docenti dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.",
     "heroSubtext": "Modello freemium per i partner formativi.",
     "registerInstitution": "Registra la Tua Istituzione",
@@ -7478,7 +7478,7 @@
     "cq2": "Quanto costa contattare un candidato?",
     "ca2": "I primi 5 contatti ogni mese sono gratis (quota per dominio aziendale, si resetta il 1°). Oltre questa soglia ti abboni: €89/mese per contatti illimitati + 10 annunci + seats team + suite AI completa. Enterprise (custom) sblocca SSO, API e CSM dedicato.",
     "cq3": "Come funziona il matching basato su evidenze?",
-    "ca3": "Il nostro algoritmo analizza i progetti degli studenti, le competenze verificate, i voti universitari e le preferenze per calcolare un punteggio di compatibilità. Più alto è il punteggio, migliore è il match con le tue esigenze.",
+    "ca3": "Il nostro algoritmo analizza i progetti degli studenti, le competenze verificate con AI, i voti universitari e le preferenze per calcolare un punteggio di compatibilità. Più alto è il punteggio, migliore è il match con le tue esigenze.",
     "cq4": "Posso pubblicare offerte di lavoro?",
     "ca4": "Sì! Puoi pubblicare offerte di lavoro dalla tua dashboard. Gli studenti potranno candidarsi direttamente e riceverai notifiche per ogni nuova candidatura.",
     "iq1": "Come può la mia istituzione partecipare?",
@@ -7898,7 +7898,7 @@
     "growthAreas": "Aree di Crescita",
     "growthAreasDescription": "Competenze in fase di sviluppo, non ancora pronte per la produzione",
     "aiProjectAnalysis": "Analisi Progetti con IA",
-    "aiProjectAnalysisDescription": "Risultati dell'analisi IA sui progetti verificati",
+    "aiProjectAnalysisDescription": "Risultati dell'analisi IA sui progetti reali",
     "recommendations": "Raccomandazioni IA",
     "recommendationsDescription": "Prossimi passi suggeriti per lo sviluppo del candidato",
     "project": "progetto",
@@ -8529,7 +8529,7 @@
       "noRecruiterActivity": "Nessuna attivita recruiter ancora",
       "verificationProgress": "Progresso verifiche",
       "studentsVerified": "Studenti verificati",
-      "verificationPercent": "{percentage}% degli studenti ha profili verificati",
+      "verificationPercent": "{percentage}% degli studenti ha profili verificati con AI",
       "studentActivation": "Attivazione Studenti",
       "activationRate": "Tasso di Attivazione",
       "profileCompletion": "Completamento Profilo",
@@ -9052,7 +9052,7 @@
     "hero": {
       "badge": "Per Coordinatori dell'Orientamento · Gratis per sempre",
       "title": "Aiuta gli studenti a scoprire il loro percorso — a costo zero per la scuola",
-      "subtitle": "Dai ai tuoi studenti un portfolio verificato che li accompagna all'università o nel mondo del lavoro. Tracciamento PCTO, dati di orientamento, reportistica ministeriale — tutto gratis. Finanziato dalle aziende che reclutano dai vostri diplomati, mai dalle scuole.",
+      "subtitle": "Dai ai tuoi studenti un portfolio verificato con AI che li accompagna all'università o nel mondo del lavoro. Tracciamento PCTO, dati di orientamento, reportistica ministeriale — tutto gratis. Finanziato dalle aziende che reclutano dai vostri diplomati, mai dalle scuole.",
       "cta": "Attiva — gratis per sempre",
       "secondaryCta": "Funzionalità Università"
     },
@@ -9071,7 +9071,7 @@
       },
       "3": {
         "title": "Profili pronti per l'università",
-        "description": "Quando i tuoi studenti passano all'università, il loro portfolio verificato li segue — dandogli un vantaggio."
+        "description": "Quando i tuoi studenti passano all'università, il loro portfolio verificato con AI li segue — dandogli un vantaggio."
       },
       "title": "Cosa fa InTransparency per le scuole superiori"
     },
@@ -9104,7 +9104,7 @@
       },
       "3": {
         "title": "Strumenti per eventi e career day",
-        "description": "Organizza eventi di talent matching con profili verificati. Le aziende incontrano candidati pre-qualificati, non partecipanti casuali."
+        "description": "Organizza eventi di talent matching con profili verificati con AI. Le aziende incontrano candidati pre-qualificati, non partecipanti casuali."
       },
       "title": "Cosa fa InTransparency per i tech park"
     },
@@ -9124,7 +9124,7 @@
     },
     "benefits": {
       "0": {
-        "title": "Portfolio progetti verificato",
+        "title": "Portfolio progetti reali",
         "description": "Carica i tuoi progetti universitari con endorsement opzionale dei docenti. Le aziende vedono cosa hai costruito, non cosa dichiari."
       },
       "1": {
@@ -9133,7 +9133,7 @@
       },
       "2": {
         "title": "Le aziende ti trovano",
-        "description": "Invece di candidarti a centinaia di posizioni, i recruiter cercano competenze verificate e ti contattano direttamente."
+        "description": "Invece di candidarti a centinaia di posizioni, i recruiter cercano competenze verificate con AI e ti contattano direttamente."
       },
       "3": {
         "title": "Insight sulla personalità e le competenze",
@@ -9151,18 +9151,18 @@
     "hero": {
       "badge": "Per Studenti ITS Academy",
       "title": "Le tue competenze pratiche meritano di essere viste",
-      "subtitle": "Hai costruito cose reali durante il tuo percorso ITS. Mostralo alle aziende con un portfolio verificato dal tuo istituto.",
+      "subtitle": "Hai costruito cose reali durante il tuo percorso ITS. Mostralo alle aziende con un portfolio verificato con AI dal tuo istituto.",
       "cta": "Crea il Tuo Portfolio",
       "secondaryCta": "Prova la Demo"
     },
     "benefits": {
       "0": {
         "title": "I progetti ITS, verificati",
-        "description": "Carica i progetti pratici con il badge di verifica del tuo ITS. Le aziende vedono competenze reali, non solo un diploma."
+        "description": "Carica i progetti pratici con il badge di verifica del tuo ITS. Le aziende vedono competenze verificate con AI, non solo un diploma."
       },
       "1": {
         "title": "Visibilità presso le aziende tecniche",
-        "description": "Aziende come Siemens, ABB e PMI cercano diplomati ITS con competenze verificate in meccatronica, IT, automazione."
+        "description": "Aziende come Siemens, ABB e PMI cercano diplomati ITS con competenze verificate con AI in meccatronica, IT, automazione."
       },
       "2": {
         "title": "Competenze riconosciute all'estero",
@@ -9199,7 +9199,7 @@
       },
       "2": {
         "title": "Un vantaggio per l'università",
-        "description": "Quando ti iscrivi all'università, il tuo portfolio verificato ti accompagna. Non parti da zero."
+        "description": "Quando ti iscrivi all'università, il tuo portfolio verificato con AI ti accompagna. Non parti da zero."
       },
       "3": {
         "title": "Gratuito senza limiti",
@@ -9216,7 +9216,7 @@
   "forSME": {
     "hero": {
       "badge": "Per PMI e piccole aziende — gratis fino a 5 contatti al mese",
-      "title": "Provi il pool di talenti verificati gratis. Ti abboni quando scali.",
+      "title": "Provi il pool di talenti verificati con AI gratis. Ti abboni quando scali.",
       "subtitle": "Sfogli tutti i profili gratis. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1°. Quando ti serve di più, passi all'abbonamento da €89/mese. Niente pacchetti crediti, niente fee per contatto, niente intermediari.",
       "cta": "Inizia gratis",
       "secondaryCta": "Prova la Ricerca Intelligente"
@@ -9224,7 +9224,7 @@
     "benefits": {
       "0": {
         "title": "Competenze verificate, non parole",
-        "description": "Ogni progetto è reale, spesso con validazione opzionale dei docenti. Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
+        "description": "Ogni progetto è reale, spesso con validazione opzionale dei docenti (bonus). Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
       },
       "1": {
         "title": "5 contatti gratis ogni mese",
@@ -9236,7 +9236,7 @@
       },
       "3": {
         "title": "Decision Pack per ogni candidato",
-        "description": "Un dossier completo: portfolio, voti, personalità, competenze verificate. Tutto ciò che serve per decidere, in un documento."
+        "description": "Un dossier completo: portfolio, voti, personalità, competenze verificate con AI. Tutto ciò che serve per decidere, in un documento."
       },
       "title": "Perché le PMI scelgono InTransparency"
     },
@@ -9250,14 +9250,14 @@
     "hero": {
       "badge": "Per Agenzie e Professionisti HR",
       "title": "Candidati verificati per i tuoi clienti, su scala",
-      "subtitle": "Accedi a un pool di talenti con competenze verificate dalle università. Cerca per competenze, voti, progetti — presenta ai tuoi clienti candidati già validati.",
+      "subtitle": "Accedi a un pool di talenti con competenze verificate con AI dalle università. Cerca per competenze, voti, progetti — presenta ai tuoi clienti candidati già validati.",
       "cta": "Crea il Tuo Account",
       "secondaryCta": "Funzionalità Aziende"
     },
     "benefits": {
       "0": {
         "title": "Screening già fatto",
-        "description": "Progetti reali (con validazione opzionale dei docenti), voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
+        "description": "Progetti reali (con validazione opzionale dei docenti (bonus)), voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
       },
       "1": {
         "title": "Ricerca Intelligente conversazionale",
@@ -9275,7 +9275,7 @@
     },
     "cta": {
       "title": "Dai ai tuoi clienti candidati migliori",
-      "subtitle": "Registrati gratis. Cerca talento verificato. Presenta candidati con prove, non promesse.",
+      "subtitle": "Registrati gratis. Cerca talenti verificati con AI. Presenta candidati con prove, non promesse.",
       "button": "Inizia Gratis"
     }
   },
@@ -9283,18 +9283,18 @@
     "hero": {
       "badge": "Per Startup e Scale-up",
       "title": "Assumi velocemente con prove, non con colloqui infiniti",
-      "subtitle": "Vedi cosa i candidati hanno effettivamente costruito — progetti verificati, competenze reali, personalità valutata. Riduci il tuo processo di assunzione da settimane a giorni.",
+      "subtitle": "Vedi cosa i candidati hanno effettivamente costruito — progetti reali, competenze verificate con AI, personalità valutata. Riduci il tuo processo di assunzione da settimane a giorni.",
       "cta": "Crea il Tuo Account",
       "secondaryCta": "Prova la Ricerca Intelligente"
     },
     "benefits": {
       "0": {
         "title": "Vedi il lavoro, non il CV",
-        "description": "Progetti reali con codice, risultati e validazione opzionale dei docenti. Sai cosa sa fare un candidato prima del primo colloquio."
+        "description": "Progetti reali con codice, risultati e validazione opzionale dei docenti (bonus). Sai cosa sa fare un candidato prima del primo colloquio."
       },
       "1": {
         "title": "Velocità di assunzione",
-        "description": "Ricerca Intelligente, filtri per competenze verificate, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
+        "description": "Ricerca Intelligente, filtri per competenze verificate con AI, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
       },
       "2": {
         "title": "Nessun costo iniziale",
@@ -9308,7 +9308,7 @@
     },
     "cta": {
       "title": "Il tuo prossimo assunto è qui",
-      "subtitle": "Registrati in 2 minuti. Inizia a cercare talento verificato.",
+      "subtitle": "Registrati in 2 minuti. Inizia a cercare talenti verificati con AI.",
       "button": "Inizia Gratis"
     }
   },
@@ -9703,7 +9703,7 @@
       },
       "cv": {
         "title": "InTransparency vs CV Tradizionali",
-        "description": "I CV sono statici, non verificati e soggetti a bias. InTransparency sostituisce gli elenchi puntati con portfolio di progetti verificati.",
+        "description": "I CV sono statici, non verificati e soggetti a bias. InTransparency sostituisce gli elenchi puntati con portfolio di progetti reali.",
         "button": "Vedi il confronto"
       }
     }
@@ -9768,7 +9768,7 @@
       }
     },
     "cta": {
-      "title": "Inizia a cercare talenti verificati",
+      "title": "Inizia a cercare talenti verificati con AI",
       "subtitle": "Trova neolaureati con competenze dimostrate, non solo profili curati.",
       "button": "Inizia gratis"
     }
@@ -9881,7 +9881,7 @@
       }
     },
     "differentiators": {
-      "title": "Perché i Portfolio Verificati Battono i CV",
+      "title": "Perché i Portfolio Verificato con AI Battono i CV",
       "cards": {
         "0": {
           "title": "Mostra, non raccontare",
@@ -9898,7 +9898,7 @@
       }
     },
     "cta": {
-      "title": "Costruisci il tuo portfolio verificato",
+      "title": "Costruisci il tuo portfolio verificato con AI",
       "subtitle": "Sostituisci il tuo CV con una vetrina dinamica e verificata del tuo percorso accademico.",
       "button": "Crea il tuo portfolio"
     }
@@ -10128,7 +10128,7 @@
         "topEmployers": "Top Aziende"
       },
       "download": "Scarica",
-      "note": "Questo report e stato assemblato dai dati di placement verificati sulla piattaforma."
+      "note": "Questo report e stato assemblato dai dati di placement in tempo reale sulla piattaforma."
     },
     "empty": "Seleziona tipo e periodo, poi clicca Genera.",
     "comingSoon": {
@@ -10280,7 +10280,7 @@
   },
   "advancedSearch": {
     "title": "Cerca Candidati",
-    "subtitle": "Trova talento verificato",
+    "subtitle": "Trova talenti verificati con AI",
     "searchPlaceholder": "Cerca per nome, competenza o parola chiave...",
     "university": "Università",
     "allUniversities": "Tutte le università",
@@ -10576,7 +10576,7 @@
     "highVerification": "Alta verifica",
     "students": "studenti",
     "matchYourRoles": "corrispondono ai tuoi ruoli",
-    "verifiedProjects": "progetti verificati",
+    "verifiedProjects": "progetti reali",
     "verificationRate": "verificati",
     "talentPool": "Dimensione talent pool",
     "topSkills": "Competenze principali",
@@ -10593,9 +10593,9 @@
     "addSkills": "Oppure aggiungi competenze specifiche",
     "skillPlaceholder": "es. Python, React, SQL...",
     "findTalent": "Trova Talenti Corrispondenti",
-    "matching": "Analisi profili verificati...",
+    "matching": "Analisi profili verificati con AI...",
     "scanning": "Analisi in corso...",
-    "scanningDesc": "Valutazione candidati rispetto ai tuoi criteri utilizzando progetti verificati, valutazioni stage e dati accademici.",
+    "scanningDesc": "Valutazione candidati rispetto ai tuoi criteri utilizzando progetti reali, valutazioni stage e dati accademici.",
     "results": "{count} corrispondenze trovate",
     "rankedBy": "Classificati per punteggio evidenze",
     "whyThisStudent": "Perché questo studente?",
@@ -10774,7 +10774,7 @@
     },
     "openRoles": "ruoli aperti",
     "industries": "settori",
-    "verifiedProjects": "progetti verificati",
+    "verifiedProjects": "progetti reali",
     "industriesShort": "settori",
     "roles": "ruoli",
     "transferableSkills": "Competenze Trasferibili",
@@ -10890,7 +10890,7 @@
     "evalPending": "Valutazione del tutor non ancora ricevuta.",
     "studentAssessment": "Autovalutazione Studente",
     "selfRating": "Autovalutazione",
-    "verifiedSkills": "Competenze Verificate",
+    "verifiedSkills": "Competenze Verificate con AI",
     "progress": {
       "hours": "Progresso Ore",
       "complete": "completato",
@@ -10930,7 +10930,7 @@
   },
   "universityStages": {
     "title": "Stage e Tirocini",
-    "subtitle": "Monitora le esperienze di tirocinio, le valutazioni dei tutor aziendali e le competenze verificate.",
+    "subtitle": "Monitora le esperienze di tirocinio, le valutazioni dei tutor aziendali e le competenze verificate con AI.",
     "addStage": "Registra Stage",
     "searchPlaceholder": "Cerca per studente, azienda o ruolo...",
     "filterStatus": "Stato",
@@ -11052,7 +11052,7 @@
       "noCourses": "Aggiungi il catalogo corsi",
       "noCoursesDesc": "Nessun corso registrato. I corsi aiutano i recruiter a trovare studenti con competenze specifiche e migliorano l'analisi di allineamento curriculare.",
       "lowVerification": "Verifica più progetti",
-      "lowVerificationDesc": "Meno della metà dei progetti è verificata. I progetti verificati portano credibilità istituzionale e si posizionano meglio nelle ricerche dei recruiter.",
+      "lowVerificationDesc": "Meno della metà dei progetti è verificata. I progetti reali portano credibilità istituzionale e si posizionano meglio nelle ricerche dei recruiter.",
       "lowContacts": "Rafforza l'engagement dei recruiter",
       "lowContactsDesc": "Pochi recruiter contattano i tuoi studenti. Considera l'organizzazione di eventi di carriera virtuali o il contatto con aziende nella rete alumni."
     },
@@ -11307,7 +11307,7 @@
     "factorLabels": {
       "requiredSkills": "Competenze che corrispondevano a ciò che cercavano",
       "preferredSkills": "Competenze preferite bonus",
-      "verifiedProjects": "I tuoi progetti verificati",
+      "verifiedProjects": "I tuoi progetti reali",
       "internshipExperience": "Il tuo percorso di tirocinio / stage",
       "academicPerformance": "Il tuo rendimento accademico",
       "verifiedDepth": "Profondità verificata sulle competenze chiave"
@@ -11561,7 +11561,7 @@
         "helper": "Skill del corso allineate a ESCO v1.2"
       },
       "verified": {
-        "label": "Studenti con profilo verificato",
+        "label": "Studenti con profili verificati con AI",
         "helper": "Identità + carriera verificate dall'ateneo"
       },
       "banner": {
@@ -11984,7 +11984,7 @@
     },
     "completeForm": {
       "heading": "Competenze acquisite durante lo scambio presso il tuo Partner Formativo",
-      "description": "Aggiungi le competenze che lo studente ha dimostrabilmente acquisito. Verranno trasmesse al grafico delle competenze verificate del Partner Formativo di origine.",
+      "description": "Aggiungi le competenze che lo studente ha dimostrabilmente acquisito. Verranno trasmesse al grafico delle competenze verificate con AI del Partner Formativo di origine.",
       "skillPlaceholder": "Aggiungi una competenza (es. Machine Learning)"
     },
     "levels": {
@@ -12358,11 +12358,11 @@
       },
       "portfolio": {
         "title": "Portfolio Unificato",
-        "description": "Combina il tuo profilo LinkedIn con i progetti verificati di InTransparency"
+        "description": "Combina il tuo profilo LinkedIn con i progetti reali di InTransparency"
       },
       "visibility": {
         "title": "Maggiore Visibilità",
-        "description": "I recruiter vedranno il tuo profilo completo con competenze verificate"
+        "description": "I recruiter vedranno il tuo profilo completo con competenze verificate con AI"
       },
       "notifications": {
         "title": "Notifiche Smart",
@@ -12401,9 +12401,9 @@
   },
   "forEnterprise": {
     "meta": {
-      "title": "Per le grandi aziende — il layer di competenze verificate per il tuo ATS",
+      "title": "Per le grandi aziende — il layer di competenze verificate con AI per il tuo ATS",
       "description": "Le grandi aziende non hanno bisogno di un altro ATS. Hanno bisogno di dati candidati verificati che alimentino l'ATS che già utilizzano. InTransparency si integra con Greenhouse, Lever, Workday tramite webhook; espone un'API agent per i tuoi strumenti AI interni; e include la documentazione procurement richiesta dal tuo ufficio legale.",
-      "ogTitle": "Per le grandi aziende — il layer di competenze verificate per il tuo ATS",
+      "ogTitle": "Per le grandi aziende — il layer di competenze verificate con AI per il tuo ATS",
       "ogDescription": "Alimenta il tuo Greenhouse/Lever/Workday con candidati basati su evidenze verificate."
     },
     "schema": {
@@ -12417,7 +12417,7 @@
     "badge": "Per grandi aziende (oltre 200 dipendenti)",
     "hero": {
       "title": "Non ti serve un altro ATS. Ti servono dati verificati che alimentino l'ATS che già utilizzi.",
-      "subtitle": "InTransparency è il layer di competenze verificate per l'istruzione superiore europea. Non competiamo con Greenhouse, Lever o Workday — li alimentiamo. Ogni candidato che inseriamo nella tua pipeline arriva con evidenze crittografiche, spiegazioni conformi all'AI Act e una provenance pronta per audit. I tuoi recruiter lavorano con gli strumenti che già conoscono; i tuoi compliance officer ricevono documenti realmente utilizzabili."
+      "subtitle": "InTransparency è il layer di competenze verificate con AI per l'istruzione superiore europea. Non competiamo con Greenhouse, Lever o Workday — li alimentiamo. Ogni candidato che inseriamo nella tua pipeline arriva con evidenze crittografiche, spiegazioni conformi all'AI Act e una provenance pronta per audit. I tuoi recruiter lavorano con gli strumenti che già conoscono; i tuoi compliance officer ricevono documenti realmente utilizzabili."
     },
     "practiceLabel": "Cosa significa in concreto:",
     "seeIt": "Vedi",
@@ -12466,7 +12466,7 @@
         "after": "(17 standard UE con endpoint deployati) e la lista dei sub-processor."
       },
       "step3": "Definiamo lo scope dell'integrazione ATS — tipicamente webhook Greenhouse / Lever / Workday. InTransparency invia le shortlist; il tuo ATS prende in carico il record candidato da lì in poi.",
-      "step4": "Pilot tecnico di 30 giorni: gratuito fino a 5 postazioni recruiter. Alla fine decidi se il layer di competenze verificate ha davvero migliorato la quality of hire.",
+      "step4": "Pilot tecnico di 30 giorni: gratuito fino a 5 postazioni recruiter. Alla fine decidi se il layer di competenze verificate con AI ha davvero migliorato la quality of hire.",
       "step5": "Accordo quadro pluriennale se lo desideri. Pricing per postazione o a consumo — a tua scelta."
     },
     "cta": {
@@ -12798,7 +12798,7 @@
       },
       "europass": {
         "name": "Europass",
-        "whatWeDo": "Gli studenti esportano il proprio profilo verificato in formato Europass v3 JSON-LD con un click."
+        "whatWeDo": "Gli studenti esportano il proprio profili verificati con AI in formato Europass v3 JSON-LD con un click."
       },
       "edci": {
         "name": "EDCI — European Digital Credentials for Learning",
@@ -12810,7 +12810,7 @@
       },
       "openBadges": {
         "name": "Open Badges / IMS Global",
-        "whatWeDo": "Gli studenti esportano le proprie competenze verificate Avanzato/Esperto come credenziali Open Badges 3.0 — ingeribili da Credly, Accredible, Badgr, Digital Promise e da qualsiasi LMS che parli OB 3.0."
+        "whatWeDo": "Gli studenti esportano le proprie competenze verificate con AI Avanzato/Esperto come credenziali Open Badges 3.0 — ingeribili da Credly, Accredible, Badgr, Digital Promise e da qualsiasi LMS che parli OB 3.0."
       },
       "digComp": {
         "name": "DigComp",
@@ -13202,11 +13202,11 @@
     "title": "Ruoli per te",
     "subtitleStart": "Match personalizzati sui ruoli, basati sul tuo grafico competenze verificato",
     "subtitleEnd": "La stessa logica evidence-weighted che i recruiter usano per valutarti, rovesciata per aiutarti a trovare i ruoli in cui calzi davvero.",
-    "verifiedSkillsCount": "{count, plural, one {# competenza verificata} other {# competenze verificate}}",
+    "verifiedSkillsCount": "{count, plural, one {# competenze verificate con AI} other {# competenze verificate con AI}}",
     "emptyGraphTitle": "Il tuo grafico competenze verificato è vuoto",
     "emptyGraphDesc": "Questi match usano solo le competenze autodichiarate. Completa uno stage o ottieni l'endorsement di un docente per sbloccare il matching evidence-weighted — i tuoi punteggi saliranno e i recruiter noteranno la differenza.",
     "noStrongMatchesTitle": "Nessun match forte al momento",
-    "noStrongMatchesDesc": "Abbiamo analizzato {count} offerte attive ma nessuna supera la soglia. Riprova tra una settimana o aggiungi altre competenze verificate.",
+    "noStrongMatchesDesc": "Abbiamo analizzato {count} offerte attive ma nessuna supera la soglia. Riprova tra una settimana o aggiungi altre competenze verificate con AI.",
     "matchScore": "punteggio match",
     "posted": "Pubblicato il",
     "verifiedStrengths": "I tuoi punti di forza verificati:",
@@ -13230,7 +13230,7 @@
     "expertLevel": "Livello esperto",
     "multiSource": "Multi-fonte (più forte)",
     "proficiencyDistribution": "Distribuzione di proficiency",
-    "allVerifiedSkills": "Tutte le competenze verificate",
+    "allVerifiedSkills": "Tutte le competenze verificate con AI",
     "exportEuropass": "Esporta in Europass",
     "sourcesCount": "{count} fonti",
     "evidenceTimeline": "Cronologia evidenze",
@@ -13599,13 +13599,13 @@
     "unableToLoad": "Impossibile caricare",
     "unableToLoadHint": "Se ritieni che si tratti di un errore, contatta direttamente lo studente.",
     "thankYou": "Grazie!",
-    "thankYouDesc": "Il tuo endorsement è stato registrato e aiuterà {studentName} a mostrare le competenze verificate ai potenziali datori di lavoro.",
+    "thankYouDesc": "Il tuo endorsement è stato registrato e aiuterà {studentName} a mostrare le competenze verificate con AI ai potenziali datori di lavoro.",
     "responseRecorded": "Risposta registrata",
     "responseRecordedDesc": "Grazie per la tua risposta. Lo studente è stato notificato.",
-    "aboutIntransparency": "<strong>InTransparency</strong> aiuta gli studenti a mostrare progetti verificati e a connettersi con i datori di lavoro tramite endorsement dei docenti.",
+    "aboutIntransparency": "<strong>InTransparency</strong> aiuta gli studenti a mostrare progetti reali e a connettersi con i datori di lavoro tramite endorsement dei docenti.",
     "openProfessorPortal": "Apri portale docente",
     "pageTitle": "Verifica progetto studente",
-    "pageSubtitle": "Il tuo endorsement aiuta questo studente a presentare competenze verificate ai datori di lavoro",
+    "pageSubtitle": "Il tuo endorsement aiuta questo studente a presentare competenze verificate con AI ai datori di lavoro",
     "studentInfo": "Informazioni studente",
     "student": "Studente",
     "university": "Università",
@@ -13673,7 +13673,7 @@
     "breadcrumbIntegrations": "Integrazioni",
     "breadcrumbAgents": "Agent",
     "agentNative": "Agent-native",
-    "heroTitle": "Collega il tuo agent AI al grafico delle competenze verificate",
+    "heroTitle": "Collega il tuo agent AI al grafico delle competenze verificate con AI",
     "heroDesc": "InTransparency espone l'intero grafico di aziende, offerte e credenziali come strumento per agent. Funziona con Claude Desktop, Cursor, Zed, ChatGPT, LangChain, LlamaIndex e qualsiasi host compatibile con OpenAPI.",
     "readOnlyNotice": "<strong>Sola lettura di default.</strong> Gli endpoint pubblici (aziende, offerte, credenziali, ESCO, registro degli algoritmi, glossario) non richiedono autenticazione. Le azioni di scrittura (candidatura, pubblicazione offerte) usano chiavi agent con scope e consenso esplicito dell'utente.",
     "option1Title": "Opzione 1 — Server MCP (Claude Desktop, Cursor, Zed)",

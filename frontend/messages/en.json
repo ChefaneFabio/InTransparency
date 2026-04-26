@@ -304,11 +304,11 @@
         ],
         "features": [
           {
-            "title": "Verified Portfolio",
-            "description": "Real projects with optional professor endorsement — theses, internship reports, code"
+            "title": "AI-Verified Portfolio",
+            "description": "Real projects with optional professor endorsement (bonus signal) — theses, internship reports, code"
           },
           {
-            "title": "Verified Profile",
+            "title": "AI-Verified Profile",
             "description": "Describe your work, the platform extracts skills and matches you to opportunities"
           },
           {
@@ -359,13 +359,13 @@
         "primaryCTA": "Start Finding Talent",
         "secondaryCTA": "Learn More",
         "benefits": [
-          "Skills with optional professor endorsement",
+          "Skills with optional professor endorsement (bonus signal)",
           "Real projects, real grades — not resume claims",
           "Full access, free to start"
         ],
         "features": [
           {
-            "title": "Verified Talent",
+            "title": "AI-Verified Talent",
             "description": "Every skill backed by real project work — endorsed by professors when available"
           },
           {
@@ -387,7 +387,7 @@
       "unifiedPrimaryCTA": "Sign Up Free",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": [
-        "Real skills with optional professor endorsement, not self-reported",
+        "Real skills with optional professor endorsement (bonus signal), not self-reported",
         "Every sector — tech, engineering, business, design, science",
         "Free for everyone during launch"
       ],
@@ -395,11 +395,11 @@
         "students": {
           "headline1": "Discover What You're Good At.",
           "headline2": "Then Prove It.",
-          "subheadline": "Upload your projects. Professors can review and endorse them. Your skills become visible to the right people. No CV rewriting, no guessing — just proof.",
+          "subheadline": "Upload your projects. Our AI extracts the real skills from your code, theses, and reports — auditable, evidence-based. Optional bonus: a professor can add their endorsement. No CV rewriting, no guessing — just proof.",
           "cta": "Build Your Portfolio",
           "benefits": [
-            "Optional professor endorsement on your projects",
-            "Skills mapped automatically from your projects",
+            "AI extracts real skills from your work",
+            "Optional bonus: professor endorsement",
             "Get discovered without sending applications"
           ]
         },
@@ -417,10 +417,10 @@
         "companies": {
           "headline1": "A Bad Hire Costs You.",
           "headline2": "We Help You Get It Right.",
-          "subheadline": "Students upload real projects, often with optional professor endorsements. You see actual work — not self-reported CVs — before you ever make an offer. Every discipline.",
+          "subheadline": "Students upload real projects. Our AI extracts the actual skills from the artifacts — code, theses, reports — and shows you the evidence. Optional bonus: a professor's endorsement. You hire on real work, not self-reported CVs.",
           "cta": "Start Finding Talent",
           "benefits": [
-            "Real projects, with optional professor endorsement",
+            "Real projects, with optional professor endorsement (bonus signal)",
             "Every discipline — tech, business, design, law",
             "Contact candidates directly"
           ]
@@ -461,7 +461,7 @@
         "description": "Thesis, internships, apprenticeships - any format"
       },
       "step2": {
-        "title": "Optional Professor Endorsement",
+        "title": "Bonus: Optional Professor Endorsement",
         "description": "Professors at your school can endorse projects via our dashboard — when they have time"
       },
       "step3": {
@@ -473,8 +473,8 @@
         "description": "Full database, unlimited filters, smart search"
       },
       "companyStep2": {
-        "title": "See Verified Projects",
-        "description": "Real grades, real projects, verified skills"
+        "title": "See Real Projects",
+        "description": "Real grades, real projects, real skills"
       },
       "companyStep3": {
         "title": "Connect Directly",
@@ -483,7 +483,7 @@
       "students": {
         "title": "How",
         "titleHighlight": "InTransparency Works",
-        "subtitle": "From academic project to verified portfolio to employer contact — in three steps",
+        "subtitle": "From academic project to AI-verified portfolio to employer contact — in three steps",
         "step": "Step",
         "steps": [
           {
@@ -511,7 +511,7 @@
             ],
             "stats": {
               "analysis": "Automated",
-              "verification": "Professor-endorsed"
+              "verification": "AI-Verified · Optional Professor Bonus"
             },
             "visual": {
               "analysisTitle": "Analysis in Progress...",
@@ -522,9 +522,9 @@
           },
           {
             "title": "Connect with Companies",
-            "description": "Companies browse the marketplace and contact you directly based on your verified skills",
+            "description": "Companies browse the marketplace and contact you directly based on your real skills",
             "details": [
-              "Companies browse verified portfolios",
+              "Companies browse real portfolios",
               "Intelligent skills-requirements matching"
             ],
             "stats": {
@@ -542,14 +542,14 @@
       "companies": {
         "title": "How",
         "titleHighlight": "Hiring Works",
-        "subtitle": "From verified talent search to confident hiring decisions — in three steps",
+        "subtitle": "From real talent search to confident hiring decisions — in three steps",
         "step": "Step",
         "steps": [
           {
-            "title": "Search Verified Talent",
+            "title": "Search AI-Verified Talent",
             "description": "Search by skills, grades, projects. automatically matches candidates to your requirements.",
             "details": [
-              "Filter by verified skills, GPA, project type, and location",
+              "Filter by real skills, GPA, project type, and location",
               "evidence-based matching ranks candidates by relevance to your role"
             ],
             "stats": {
@@ -566,18 +566,18 @@
             "title": "Review Decision Packs",
             "description": "See verified grades, projects, personality assessments. Everything you need to decide, in one document.",
             "details": [
-              "Verified academic transcripts and project portfolios in one view",
+              "Real academic transcripts and project portfolios in one view",
               "auto-generated candidate summaries with skill-match breakdowns"
             ],
             "stats": {
               "time saved": "80%",
-              "verification": "Professor-endorsed"
+              "verification": "AI-Verified · Optional Professor Bonus"
             },
             "visual": {
               "analysisTitle": "Decision Pack Loading...",
               "innovationScore": "Skill Match",
-              "codeQuality": "Verified GPA",
-              "skillsDetected": "Verified Skills:"
+              "codeQuality": "Actual GPA",
+              "skillsDetected": "Real Skills:"
             }
           },
           {
@@ -602,7 +602,7 @@
       "institutions": {
         "title": "How",
         "titleHighlight": "Placement Works",
-        "subtitle": "From student onboarding to verified placement reporting — in three steps",
+        "subtitle": "From student onboarding to real-time placement reporting — in three steps",
         "step": "Step",
         "steps": [
           {
@@ -641,7 +641,7 @@
           },
           {
             "title": "Prove Impact",
-            "description": "Export verified placement data for ministry reporting. Contract analytics and early warning alerts.",
+            "description": "Export real-time placement data for ministry reporting. Contract analytics and early warning alerts.",
             "details": [
               "One-click reports for ANVUR, AlmaLaurea, and ministry requirements",
               "Early warning alerts when placement rates drop below targets"
@@ -661,9 +661,9 @@
     },
     "features": {
       "badge": "Key Features",
-      "title": "100% Verified Skills, Not Resume Claims",
+      "title": "100% Real Skills, Not Resume Claims",
       "verification": {
-        "title": "Optional Professor Endorsement",
+        "title": "Bonus: Optional Professor Endorsement",
         "description": "Every skill traceable to a real project, with optional endorsement"
       },
       "aiAnalysis": {
@@ -684,7 +684,7 @@
       "title": "The Numbers Speak",
       "higherResponse": "higher responses for students",
       "fasterScreening": "faster screening for companies",
-      "matchAccuracy": "verified match accuracy",
+      "matchAccuracy": "AI-verified match accuracy",
       "placementBoost": "placement boost for academic partners"
     },
     "cta": {
@@ -694,7 +694,7 @@
       "segments": {
         "students": {
           "title": "For Students",
-          "description": "Build your verified portfolio and get discovered by companies — free with no hidden costs.",
+          "description": "Build your AI-verified portfolio and get discovered by companies — free with no hidden costs.",
           "cta": "Get Started Free"
         },
         "universities": {
@@ -704,7 +704,7 @@
         },
         "companies": {
           "title": "For Companies",
-          "description": "Search verified talent by real skills. Pay only per contact.",
+          "description": "Search real talent by real skills. Pay only per contact.",
           "cta": "Start Hiring"
         }
       }
@@ -713,7 +713,7 @@
       "features": {
         "0": {
           "title": "Real Skills",
-          "description": "Authentic projects, with optional professor endorsement"
+          "description": "Authentic projects, with optional professor endorsement (bonus signal)"
         },
         "1": {
           "title": "Direct Contact",
@@ -741,7 +741,7 @@
         "students": {
           "title": "For Students",
           "benefits": {
-            "0": "Build a verified portfolio from your projects",
+            "0": "Build a AI-verified portfolio from your projects",
             "1": "Get discovered by companies looking for your skills",
             "2": "No applications needed - companies contact you",
             "3": "Always free, no hidden costs"
@@ -759,7 +759,7 @@
         "companies": {
           "title": "For Companies",
           "benefits": {
-            "0": "Search verified talent by real skills",
+            "0": "Search real talent by real skills",
             "1": "See actual projects, not resume claims",
             "2": "Unlimited access — free to start candidates",
             "3": "No subscriptions, no commitments"
@@ -776,7 +776,7 @@
     "howItWorksPage": {
       "title": "How",
       "titleHighlight": "InTransparency Works",
-      "subtitle": "From academic project to verified portfolio to employer contact — in three steps",
+      "subtitle": "From academic project to AI-verified portfolio to employer contact — in three steps",
       "pauseDemo": "Pause Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Auto-advancing every 4 seconds",
@@ -810,7 +810,7 @@
           ],
           "stats": {
             "analysis": "Automated",
-            "verification": "Professor-endorsed"
+            "verification": "AI-Verified · Optional Professor Bonus"
           },
           "visual": {
             "analysisTitle": "Analysis in Progress...",
@@ -821,9 +821,9 @@
         },
         {
           "title": "Connect with Companies",
-          "description": "Companies browse the marketplace and contact you directly based on your verified skills",
+          "description": "Companies browse the marketplace and contact you directly based on your real skills",
           "details": [
-            "Companies browse verified portfolios",
+            "Companies browse real portfolios",
             "Intelligent skills-requirements matching",
             "Direct contact without intermediaries",
             "Real-time opportunity notifications"
@@ -850,7 +850,7 @@
       "cta": "Get Started Free",
       "students": {
         "title": "A New Way to Start Your Career",
-        "subtitle": "Instead of sending CVs and waiting, let your verified work speak for you.",
+        "subtitle": "Instead of sending CVs and waiting, let your real work speak for you.",
         "traditionalLabel": "Before",
         "rows": [
           {
@@ -861,7 +861,7 @@
           {
             "feature": "Skills proof",
             "traditional": "Self-reported on CV",
-            "ours": "Real projects with optional professor endorsement"
+            "ours": "Real projects with optional professor endorsement (bonus signal)"
           },
           {
             "feature": "Cost",
@@ -903,7 +903,7 @@
           {
             "feature": "Verification",
             "traditional": "Paper certificates",
-            "ours": "Digital verified badges"
+            "ours": "Digital evidence badges"
           },
           {
             "feature": "Analytics",
@@ -924,7 +924,7 @@
       },
       "companies": {
         "title": "A Simpler Way to Find Junior Talent",
-        "subtitle": "Browse verified profiles from Italian universities and ITS academies — connect when you're ready.",
+        "subtitle": "Browse AI-verified profile from Italian universities and ITS academies — connect when you're ready.",
         "traditionalLabel": "Before",
         "rows": [
           {
@@ -938,7 +938,7 @@
             "ours": "Real student profiles, often with endorsement"
           },
           {
-            "feature": "Skills verification",
+            "feature": "Skills evidence",
             "traditional": "CV screening",
             "ours": "Real projects with optional endorsement"
           },
@@ -1146,7 +1146,7 @@
           "customUrl": "Custom portfolio URL",
           "contactRecruiters": "Contact recruiters directly",
           "aiRecommendations": "Personalized career recommendations",
-          "resumeBuilder": "Resume builder with verified projects",
+          "resumeBuilder": "Resume builder with real projects",
           "interviewPrep": "Interview preparation tools",
           "prioritySupport": "Priority support",
           "removeBadge": "Remove 'Powered by InTransparency' badge"
@@ -1189,7 +1189,7 @@
           "profiles": "See all profiles (anonymized)",
           "filters": "Advanced filters by academic partner, courses, grades",
           "aiSearch": "Candidate Search",
-          "verified": "verified skills from all project types",
+          "verified": "real skills from all project types",
           "location": "Location and availability filters",
           "saveSearches": "Save searches and candidates",
           "noFees": "No monthly fees ever"
@@ -1200,7 +1200,7 @@
         "name": "Transparent Talent Sourcing Service",
         "price": "€0",
         "period": "per contact (no subscriptions)",
-        "description": "Browse 100% verified profiles FREE → Contact the right candidate",
+        "description": "Browse 100% AI-verified profile FREE → Contact the right candidate",
         "badge": "Most Popular - Pay As You Use",
         "cta": "Start Browsing Free"
       },
@@ -1252,7 +1252,7 @@
         "subtitle": "Our team supports you personally — from building your portfolio to preparing for interviews."
       },
       "company": {
-        "title": "Looking for verified talent across all disciplines?",
+        "title": "Looking for real talent across all disciplines?",
         "subtitle": "Book a demo to see how InTransparency gives you access to real student profiles, often with professor endorsement."
       },
       "university": {
@@ -1384,7 +1384,7 @@
     "cards": {
       "yourStory": {
         "title": "Your Story Here",
-        "description": "Share how verified skills helped your career"
+        "description": "Share how real skills helped your career"
       },
       "realStudents": {
         "title": "Real Students",
@@ -1487,7 +1487,7 @@
   },
   "explore": {
     "hero": {
-      "badge": "Discover Verified Talent",
+      "badge": "Discover AI-Verified Talent",
       "title": "Explore Student Portfolios",
       "subtitle": "Search student portfolios with real project work. Endorsed by professors when available.",
       "searchPlaceholder": "Search by name, skill, or school...",
@@ -1569,7 +1569,7 @@
     },
     "cta": {
       "title": "Ready to Get Discovered?",
-      "subtitle": "Showcase your verified work to companies",
+      "subtitle": "Showcase your real work to companies",
       "createPortfolio": "Create Your Free Portfolio"
     },
     "options": {
@@ -1613,9 +1613,9 @@
       "roles": {
         "recruiter": {
           "name": "Company",
-          "description": "Find verified talent from universities",
+          "description": "Find real talent from universities",
           "benefits": {
-            "0": "Search verified profiles",
+            "0": "Search AI-verified profile",
             "1": "5 free contacts/month, then €89/mo",
             "2": "ATS integration",
             "3": "Analytics dashboard"
@@ -1643,7 +1643,7 @@
         },
         "techpark": {
           "name": "Tech Park",
-          "description": "Offer verified talent as a service to your member companies",
+          "description": "Offer real talent as a service to your member companies",
           "benefits": {
             "0": "Zero cost for the park",
             "1": "Talent pipeline for members",
@@ -1694,7 +1694,7 @@
       "submitButton": "Create Free Student Account",
       "submittingButton": "Creating Account...",
       "heroTitle": "Get Discovered by Companies",
-      "heroSubtitle": "Build a verified portfolio. Let companies find you based on your real skills and projects.",
+      "heroSubtitle": "Build a AI-verified portfolio. Let companies find you based on your real skills and projects.",
       "freeBadge": "Freemium",
       "benefits": {
         "0": {
@@ -1706,8 +1706,8 @@
           "description": "Stop applying endlessly - let opportunities come to you"
         },
         "2": {
-          "title": "Verified Portfolio",
-          "description": "Projects with optional professor endorsement that employers trust"
+          "title": "AI-Verified Portfolio",
+          "description": "Projects with optional professor endorsement (bonus signal) that employers trust"
         },
         "3": {
           "title": "Real Challenges",
@@ -1715,7 +1715,7 @@
         }
       },
       "createTitle": "Create Your Account",
-      "createSubtitle": "Build your verified portfolio",
+      "createSubtitle": "Build your AI-verified portfolio",
       "formTitle": "Your Details",
       "formDescription": "Takes less than 2 minutes",
       "mobileBenefitsTitle": "Why students love us:",
@@ -1730,26 +1730,26 @@
     },
     "recruiter": {
       "title": "Company Registration",
-      "subtitle": "Find verified talent - Browse Free, Full Access",
+      "subtitle": "Find real talent - Browse Free, Full Access",
       "cardTitle": "Create Your Company Account",
       "cardDescription": "Discover verified candidates with smart search",
       "submitButton": "Start Hiring - Free to Browse",
       "submittingButton": "Creating Account...",
-      "heroTitle": "Hire Verified Talent, Not Resumes",
+      "heroTitle": "Hire AI-Verified Talent, Not Resumes",
       "heroSubtitle": "Access real student profiles, often with professor endorsement. Every skill traceable to actual coursework and projects.",
       "browseBadge": "Browse Free, Full Access",
       "benefits": {
         "0": {
-          "title": "Verified Skills Only",
+          "title": "Real Skills Only",
           "description": "Every skill backed by real project work"
         },
         "1": {
           "title": "Evidence-Based Matching",
-          "description": "Match candidates based on verified skills"
+          "description": "Match candidates based on real skills"
         },
         "2": {
           "title": "Faster Screening",
-          "description": "See verified work samples directly"
+          "description": "See real work samples directly"
         },
         "3": {
           "title": "Full Access",
@@ -1757,7 +1757,7 @@
         }
       },
       "createTitle": "Create Company Account",
-      "createSubtitle": "Start hiring verified talent today",
+      "createSubtitle": "Start hiring real talent today",
       "formTitle": "Your Details",
       "formDescription": "Create your recruiter account",
       "workEmail": "Work Email",
@@ -1773,7 +1773,7 @@
       "mobileBenefitsTitle": "Why companies choose us:",
       "mobileBenefits": {
         "0": "Browse candidates free",
-        "1": "Real skills with optional professor endorsement",
+        "1": "Real skills with optional professor endorsement (bonus signal)",
         "2": "5 free contacts/month, then €89/mo"
       },
       "noCreditCard": "No credit card required. Browse candidates immediately.",
@@ -1840,7 +1840,7 @@
       "title": "Tech Park Registration",
       "subtitle": "Join InTransparency as a B2B partner",
       "heroTitle": "Give your member companies a recruiting advantage",
-      "heroSubtitle": "Offer verified talent access as a service to your park's companies. Zero cost for the park, massive value for members.",
+      "heroSubtitle": "Offer real talent access as a service to your park's companies. Zero cost for the park, massive value for members.",
       "freeBadge": "Free for Tech Parks",
       "benefits": {
         "0": {
@@ -1926,7 +1926,7 @@
     "hero": {
       "badge": "Complete Platform",
       "title": "Powerful Features for Everyone",
-      "subtitle": "From real student projects with optional professor endorsement to smart search, everything you need to connect students and companies."
+      "subtitle": "From real student projects with optional professor endorsement (bonus signal) to smart search, everything you need to connect students and companies."
     },
     "filters": {
       "all": "All",
@@ -1961,7 +1961,7 @@
     "journey": {
       "student": {
         "headline": "Stop Applying. Start Getting Discovered.",
-        "subheadline": "Your verified portfolio works for you. Companies find you based on what you've actually built.",
+        "subheadline": "Your AI-verified portfolio works for you. Companies find you based on what you've actually built.",
         "steps": {
           "0": {
             "title": "Upload Your Projects",
@@ -1973,7 +1973,7 @@
           },
           "2": {
             "title": "Companies Discover You",
-            "desc": "Recruiters search verified profiles and reach out directly. No applications, no cover letters. You get found for what you've built."
+            "desc": "Recruiters search AI-verified profile and reach out directly. No applications, no cover letters. You get found for what you've built."
           }
         },
         "outcome": "You get discovered for your real skills — not filtered out by keyword bots."
@@ -2042,7 +2042,7 @@
           },
           "2": {
             "title": "Reverse Recruitment",
-            "desc": "Instead of sending applications, companies come to you. Your verified profile is your best pitch.",
+            "desc": "Instead of sending applications, companies come to you. Your AI-verified profile is your best pitch.",
             "features": {
               "0": "Appear in recruiter searches automatically",
               "1": "Get matched to relevant opportunities",
@@ -2089,7 +2089,7 @@
         "subtitle": "A transparent hiring process built on verified evidence, not self-reported claims.",
         "cards": {
           "0": {
-            "title": "Verified Talent Pool",
+            "title": "AI-Verified Talent Pool",
             "desc": "Every profile is backed by academic data. Search by real skills, verified grades, and actual project work.",
             "features": {
               "0": "250+ search filters",
@@ -2099,7 +2099,7 @@
           },
           "1": {
             "title": "Evidence-Based Screening",
-            "desc": "Review actual project files, analysis scores, and optional professor endorsement — before you ever reach out.",
+            "desc": "Review actual project files, analysis scores, and optional professor endorsement (bonus signal) — before you ever reach out.",
             "features": {
               "0": "See real projects, not just keywords",
               "1": "Skill and complexity scores",
@@ -2136,14 +2136,14 @@
         },
         "3": {
           "title": "Full Transparency",
-          "desc": "Students see who viewed them. Companies see verified work. Institutions see real placement data. No black boxes."
+          "desc": "Students see who viewed them. Companies see real work. Institutions see real placement data. No black boxes."
         }
       }
     },
     "proof": {
       "0": {
         "value": "100%",
-        "label": "Academically verified profiles"
+        "label": "Academically AI-verified profile"
       },
       "1": {
         "value": "5 min",
@@ -2178,7 +2178,7 @@
         "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Upload your files and your real competencies are mapped automatically."
       },
       "1": {
-        "title": "Optional Professor Endorsement",
+        "title": "Bonus: Optional Professor Endorsement",
         "desc": "When a professor or assistant has time, they can review a project, confirm it's real, and add grades, ECTS, and a verification badge. Endorsement is optional — your portfolio stays visible either way."
       },
       "2": {
@@ -2186,7 +2186,7 @@
         "desc": "Your portfolio becomes visible to the right people. Endorsed work carries an extra trust signal. No more sending applications into the void — let your work open doors for you."
       },
       "title": "How It Works for You",
-      "subtitle": "Three steps from project to verified portfolio."
+      "subtitle": "Three steps from project to AI-verified portfolio."
     },
     "features": {
       "0": {
@@ -2194,12 +2194,12 @@
         "desc": "Your actual files — code, PDFs, presentations — are analyzed to reveal the competencies you've built, even ones you didn't realize you had."
       },
       "1": {
-        "title": "Verified Portfolio",
+        "title": "AI-Verified Portfolio",
         "desc": "Your projects carry your university's verification badge. A portfolio backed by your school, not just your own words."
       },
       "2": {
         "title": "Be Discoverable",
-        "desc": "Instead of sending CVs everywhere, your verified work speaks for itself. The right opportunities can find you."
+        "desc": "Instead of sending CVs everywhere, your real work speaks for itself. The right opportunities can find you."
       },
       "3": {
         "title": "Trust Score",
@@ -2219,7 +2219,7 @@
     "audience": {
       "0": {
         "title": "High School Students",
-        "desc": "Showcase your first projects and alternanza scuola-lavoro experiences. Start building your verified portfolio early."
+        "desc": "Showcase your first projects and alternanza scuola-lavoro experiences. Start building your AI-verified portfolio early."
       },
       "1": {
         "title": "ITS Academy Students",
@@ -2234,7 +2234,7 @@
     },
     "demo": {
       "title": "See It In Action",
-      "subtitle": "Watch how students build verified portfolios",
+      "subtitle": "Watch how students build real portfolios",
       "bullet1": "Upload any project in seconds",
       "bullet2": "See your skills mapped automatically",
       "bullet3": "Get discovered by companies",
@@ -2259,16 +2259,16 @@
           "answer": "Anything you've worked on — thesis, code, designs, reports, presentations, videos. We support all major file formats."
         },
         "2": {
-          "question": "How does the verification work?",
+          "question": "How does the optional endorsement work?",
           "answer": "Your university or school confirms your projects are real, adds grades and ECTS credits, and attaches a verification badge to your portfolio."
         },
         "3": {
           "question": "Who can see my portfolio?",
-          "answer": "You control visibility. You can make your profile public, visible only to verified recruiters, or completely private."
+          "answer": "You control visibility. You can make your profile public, visible only to verified-business recruiters, or completely private."
         },
         "4": {
           "question": "How do companies find me?",
-          "answer": "Companies search verified portfolios by skills, university, location, and project type. When they find a match, they can contact you directly."
+          "answer": "Companies search real portfolios by skills, university, location, and project type. When they find a match, they can contact you directly."
         }
       }
     }
@@ -2278,7 +2278,7 @@
       "badge": "For Companies, Agencies & HR Teams — All Industries",
       "title": "A Bad Hire Costs You Time and Money.",
       "titleHighlight": "We Help You Get It Right.",
-      "subtitle": "Students upload real projects, often with optional professor endorsements. You see actual work — not self-reported CVs — before you make an offer. 5 free contacts every month, then subscribe when you scale."
+      "subtitle": "Students upload real projects. Our AI extracts the skills from the artifacts and surfaces evidence — code samples, grades, project files. Optional bonus: professor endorsement. 5 free contacts every month, then subscribe when you scale."
     },
     "steps": {
       "0": {
@@ -2302,7 +2302,7 @@
         "desc": "Find candidates by real competencies — not keywords. Skills are understood from actual project work, not CV buzzwords."
       },
       "1": {
-        "title": "Verified Talent Pool",
+        "title": "AI-Verified Talent Pool",
         "desc": "Every profile is backed by academic data. Universities and schools confirm grades, projects, and skills."
       },
       "2": {
@@ -2357,7 +2357,7 @@
       "rows": {
         "0": {
           "before": "Self-reported CVs",
-          "after": "Academically verified projects"
+          "after": "Academically real projects"
         },
         "1": {
           "before": "Keyword-matching algorithms",
@@ -2375,21 +2375,21 @@
     },
     "demo": {
       "title": "See the Platform",
-      "subtitle": "Watch how recruiters find verified talent",
+      "subtitle": "Watch how recruiters find real talent",
       "bullet1": "Search by real skills, not keywords",
-      "bullet2": "Review verified projects and grades",
+      "bullet2": "Review real projects and grades",
       "bullet3": "Connect directly with candidates",
       "cta": "Try the Demo"
     },
     "cta": {
       "title": "Find Talent You Can Trust",
-      "subtitle": "Browse verified portfolios free. Reach out to 5 candidates per month at no cost. Need more? Subscribe from €89/mo for unlimited contacts and the full AI suite.",
+      "subtitle": "Browse real portfolios free. Reach out to 5 candidates per month at no cost. Need more? Subscribe from €89/mo for unlimited contacts and the full AI suite.",
       "primaryButton": "Start free",
       "secondaryButton": "Try the Smart Search"
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "subtitle": "How verified talent changes your hiring process",
+      "subtitle": "How real talent changes your hiring process",
       "items": {
         "0": {
           "question": "How is this different from LinkedIn?",
@@ -2409,7 +2409,7 @@
         },
         "4": {
           "question": "How do Decision Packs work?",
-          "answer": "Decision Packs are automated candidate dossiers that compile a student's verified projects, grades, skills analysis, and placement prediction into one document."
+          "answer": "Decision Packs are automated candidate dossiers that compile a student's real projects, grades, skills analysis, and placement prediction into one document."
         }
       }
     }
@@ -2476,7 +2476,7 @@
       },
       "2": {
         "title": "High Schools",
-        "desc": "Help students build their first verified portfolio. Showcase alternanza scuola-lavoro projects and early career experiences."
+        "desc": "Help students build their first AI-verified portfolio. Showcase alternanza scuola-lavoro projects and early career experiences."
       },
       "title": "Built for Every Type of School",
       "subtitle": "Whether you're a research university, ITS academy, or high school — your students deserve visibility."
@@ -2850,7 +2850,7 @@
     "benefits": {
       "0": {
         "title": "Verified project portfolios",
-        "description": "Students upload ITS projects with your optional professor endorsement badge. Companies see proof, not just claims."
+        "description": "Students upload ITS projects with your optional professor endorsement (bonus signal) badge. Companies see proof, not just claims."
       },
       "1": {
         "title": "Companies discover your graduates",
@@ -2876,7 +2876,7 @@
     "hero": {
       "badge": "For High School Orientation Coordinators · Free forever",
       "title": "Help students discover their path — at no cost to the school",
-      "subtitle": "Give your students a verified portfolio that follows them into university or the job market. PCTO tracking, orientation data, ministry reporting — all free. Funded by the companies that recruit from your graduates, never from schools.",
+      "subtitle": "Give your students a AI-verified portfolio that follows them into university or the job market. PCTO tracking, orientation data, ministry reporting — all free. Funded by the companies that recruit from your graduates, never from schools.",
       "cta": "Activate — free forever",
       "secondaryCta": "See University Features"
     },
@@ -2895,7 +2895,7 @@
       },
       "3": {
         "title": "University-ready profiles",
-        "description": "When your students move to university, their verified portfolio transfers with them — giving them a head start."
+        "description": "When your students move to university, their AI-verified portfolio transfers with them — giving them a head start."
       },
       "title": "What InTransparency does for high schools"
     },
@@ -2928,7 +2928,7 @@
       },
       "3": {
         "title": "Event and career day tools",
-        "description": "Run talent matching events with verified profiles. Companies meet pre-qualified candidates, not random attendees."
+        "description": "Run talent matching events with AI-verified profile. Companies meet pre-qualified candidates, not random attendees."
       },
       "title": "What InTransparency does for tech parks"
     },
@@ -3011,9 +3011,9 @@
   "transparency": {
     "hero": {
       "badge": "Our Transparency Commitment",
-      "title": "Verified Skills",
+      "title": "Real Skills",
       "subtitle": "Clear Explanations",
-      "description": "Professor-endorsed hard and soft skills. Explainable evidence-based matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
+      "description": "AI-Verified · Optional Professor Bonus hard and soft skills. Explainable evidence-based matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
       "ctas": {
         "features": "See Our Features",
         "demo": "Try Live Demo"
@@ -3073,7 +3073,7 @@
           "items": {
             "0": "Hard skills: Verified through projects, code, designs, research",
             "1": "Soft skills: Analyzed from teamwork, leadership, presentations",
-            "2": "Professor-endorsed grades, courses, and achievements",
+            "2": "AI-Verified · Optional Professor Bonus grades, courses, and achievements",
             "3": "Verified data outperforms traditional self-reported methods"
           }
         },
@@ -3170,7 +3170,7 @@
     },
     "cta": {
       "title": "Experience True Transparency",
-      "subtitle": "Join a platform where verified skills, explainable matching, and mutual visibility create better matches for everyone.",
+      "subtitle": "Join a platform where real skills, explainable matching, and mutual visibility create better matches for everyone.",
       "buttons": {
         "getStarted": "Get Started Free",
         "demo": "Try Live Demo",
@@ -3272,7 +3272,7 @@
             "0": "Refer companies recruiting from your students",
             "1": "Company signs up → Uses InTransparency → You earn 20% Year 1 revenue",
             "2": "Example: Company spends €500 in Year 1 = €100 bonus to institution",
-            "3": "Win-win: Companies get verified talent, you prove placement impact",
+            "3": "Win-win: Companies get real talent, you prove placement impact",
             "4": "Track in analytics: \"BMW recruited 5 students via your referral - €87 earned\""
           },
           "cta": "Get Company Referral Link",
@@ -3336,7 +3336,7 @@
             "2": "Get 3 months free Enterprise tier (€297 value)",
             "3": "Featured in marketing materials and institution presentations",
             "4": "Speaking opportunities at ITS career fairs and events",
-            "5": "Build employer brand as verified talent champion"
+            "5": "Build employer brand as real talent champion"
           },
           "cta": "Submit Success Story",
           "trigger": "After successful hire: \"Share your hiring success for 3 months free?\""
@@ -3369,7 +3369,7 @@
     "intransparencyWay": {
       "title": "What we add",
       "items": {
-        "0": "Professor-endorsed projects in any format",
+        "0": "AI-Verified · Optional Professor Bonus projects in any format",
         "1": "Hard and soft skills surfaced from evidence",
         "2": "A profile that complements — doesn't replace — the CV",
         "3": "Work you can actually look at, not just claims",
@@ -3386,7 +3386,7 @@
         "items": {
           "0": {
             "title": "Self-reported skills",
-            "description": "Without optional professor endorsement, skills are hard to validate — which leads to mismatched hires on both sides."
+            "description": "Without optional professor endorsement (bonus signal), skills are hard to validate — which leads to mismatched hires on both sides."
           },
           "1": {
             "title": "Unexplained matches",
@@ -3406,7 +3406,7 @@
         "title": "Our approach",
         "items": {
           "0": {
-            "title": "Real skills with optional professor endorsement",
+            "title": "Real skills with optional professor endorsement (bonus signal)",
             "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) tied to projects, courses, and institutional records."
           },
           "1": {
@@ -3474,7 +3474,7 @@
         },
         "3": {
           "title": "Proof alongside words",
-          "description": "Professor-endorsed work sits next to a candidate's own description — together they're better."
+          "description": "AI-Verified · Optional Professor Bonus work sits next to a candidate's own description — together they're better."
         }
       }
     },
@@ -3483,7 +3483,7 @@
       "subtitle": "We want talent to be discoverable before it's commercial",
       "students": {
         "title": "Students: full access",
-        "description": "Build your verified portfolio with all core features included.",
+        "description": "Build your AI-verified portfolio with all core features included.",
         "premiumLabel": "Future options:",
         "premiumDescription": "Priority visibility, advanced analytics"
       },
@@ -3495,7 +3495,7 @@
       },
       "companies": {
         "title": "Companies: 5 free contacts/month, then €89/mo",
-        "description": "Browse verified profiles freely. Subscribe when you scale past 5 contacts a month.",
+        "description": "Browse AI-verified profile freely. Subscribe when you scale past 5 contacts a month.",
         "enterpriseLabel": "Enterprise add-ons:",
         "enterpriseDescription": "API access, ATS integration"
       },
@@ -3549,7 +3549,7 @@
       "primaryButton": "Get Started",
       "secondaryButton": "See How It Works",
       "companiesPrefix": "For companies:",
-      "companiesLink": "Browse verified talent, pay only for contacts"
+      "companiesLink": "Browse real talent, pay only for contacts"
     }
   },
   "pricingPage": {
@@ -3611,18 +3611,18 @@
     "companies": {
       "badge": "For Companies",
       "title": "Free to try, subscribe when you scale",
-      "subtitle": "Search verified talent for free. 5 contacts every month free. When you need more, subscribe — there's only one upgrade path, no credit packs to manage.",
+      "subtitle": "Search real talent for free. 5 contacts every month free. When you need more, subscribe — there's only one upgrade path, no credit packs to manage.",
       "popular": "Most companies pick this",
       "tiers": {
         "starter": {
           "name": "Free",
           "price": "€0",
           "period": "/ forever",
-          "description": "Search the entire verified talent pool. Contact up to 5 candidates each month — quota resets on the 1st. No card required.",
+          "description": "Search the entire real talent pool. Contact up to 5 candidates each month — quota resets on the 1st. No card required.",
           "cta": "Start free",
           "features": {
             "0": "Unlimited talent search",
-            "1": "Real student profiles with evidence — professor-endorsed when available",
+            "1": "Real student profiles with evidence — with optional professor endorsement as bonus",
             "2": "5 contacts every month, free (resets monthly)",
             "3": "Fit score + match reasons on every profile",
             "4": "1 active job posting",
@@ -3669,7 +3669,7 @@
     "freemiumFunnel": {
       "badge": "How the free tier works",
       "title": "Try us with 5 free contacts every month",
-      "subtitle": "Search the verified talent pool for free. Reach out to up to 5 candidates per month at no cost. When you need to contact more, subscribe — that's the only path forward, no credit packs to manage."
+      "subtitle": "Search the real talent pool for free. Reach out to up to 5 candidates per month at no cost. When you need to contact more, subscribe — that's the only path forward, no credit packs to manage."
     },
     "payPerTalent": {
       "badge": "Retired — see Free tier",
@@ -3708,7 +3708,7 @@
             "4": "Basic analytics + Scorecard",
             "5": "Audit log (last 30 days)",
             "6": "AI Assistant (50 queries/month)",
-            "7": "Project verification + endorsements",
+            "7": "AI skill extraction from real projects + optional professor bonus",
             "8": "Convention Builder (template-based)"
           }
         },
@@ -3743,7 +3743,7 @@
         },
         "1": {
           "q": "How does the free tier work for companies?",
-          "a": "Search verified talent free, no card required. Contact up to 5 candidates every month at no cost — quota resets on the 1st. The 5-contact cap counts across your whole company domain (so you can't multiply accounts to dodge it). When you need to contact more, subscribe."
+          "a": "Search real talent free, no card required. Contact up to 5 candidates every month at no cost — quota resets on the 1st. The 5-contact cap counts across your whole company domain (so you can't multiply accounts to dodge it). When you need to contact more, subscribe."
         },
         "2": {
           "q": "What happens after 5 contacts?",
@@ -4051,7 +4051,7 @@
     "loading": "Loading featured portfolios...",
     "empty": {
       "title": "No portfolios yet",
-      "description": "Be the first to create a verified portfolio!",
+      "description": "Be the first to create a AI-verified portfolio!",
       "cta": "Create Your Portfolio"
     },
     "card": {
@@ -4065,8 +4065,8 @@
       "viewPortfolio": "View Portfolio"
     },
     "cta": {
-      "title": "Get Discovered Through Your Verified Portfolio",
-      "subtitle": "Create your verified portfolio in minutes and get discovered by top companies",
+      "title": "Get Discovered Through Your AI-Verified Portfolio",
+      "subtitle": "Create your AI-verified portfolio in minutes and get discovered by top companies",
       "createPortfolio": "Create Free Portfolio",
       "learnMore": "Learn How It Works"
     }
@@ -4649,7 +4649,7 @@
       "features": {
         "universityVerified": {
           "title": "Institution-Verified Data",
-          "description": "Professor-endorsed grades and courses"
+          "description": "AI-Verified · Optional Professor Bonus grades and courses"
         },
         "aiAnalysis": {
           "title": "Project Analysis",
@@ -4678,7 +4678,7 @@
           "description": "ANY sector - not just tech"
         },
         "verifiedSkills": {
-          "title": "Verified Skills Needed",
+          "title": "Real Skills Needed",
           "description": "See actual projects + grades, not claims"
         },
         "universityFilters": {
@@ -4695,7 +4695,7 @@
         },
         "fasterHiring": {
           "title": "2x Faster Hiring",
-          "description": "Pre-verified projects skip screening"
+          "description": "Pre-real projects skip screening"
         },
         "italyEU": {
           "title": "Italy/EU Talent",
@@ -5116,7 +5116,7 @@
     "loading": "Loading featured portfolios...",
     "empty": {
       "title": "No portfolios yet",
-      "description": "Be the first to create a verified portfolio!",
+      "description": "Be the first to create a AI-verified portfolio!",
       "cta": "Create Your Portfolio"
     },
     "card": {
@@ -5127,8 +5127,8 @@
       "viewPortfolio": "View Portfolio"
     },
     "cta": {
-      "title": "Get Discovered Through Your Verified Portfolio",
-      "description": "Create your verified portfolio in minutes and get discovered by top companies",
+      "title": "Get Discovered Through Your AI-Verified Portfolio",
+      "description": "Create your AI-verified portfolio in minutes and get discovered by top companies",
       "primaryButton": "Create Free Portfolio",
       "secondaryButton": "Learn How It Works"
     }
@@ -5488,7 +5488,7 @@
     "submitting": "Sending...",
     "submitFailed": "Failed to submit. Please try again.",
     "submitted": "Application sent",
-    "submittedDesc": "The company will review your verified profile and projects. You'll be notified of any updates.",
+    "submittedDesc": "The company will review your AI-verified profile and projects. You'll be notified of any updates.",
     "viewApplications": "View my applications",
     "browseMore": "Browse more jobs",
     "trust": {
@@ -5651,7 +5651,7 @@
       "badge": "Our Mission",
       "title": "Making the Path from Education to Career",
       "titleHighlight": "More Transparent",
-      "description": "We believe that talent should be recognized through real, verified skills. InTransparency connects students, institutions, and companies in a transparent marketplace where everyone wins."
+      "description": "We believe that talent should be recognized through real, real skills. InTransparency connects students, institutions, and companies in a transparent marketplace where everyone wins."
     },
     "problem": {
       "badge": "The Context",
@@ -5682,11 +5682,11 @@
       "points": {
         "0": {
           "title": "Skills Come First",
-          "description": "A student's value should be measured by what they can do — verified projects, real competencies, institutional endorsements — not just by their educational path."
+          "description": "A student's value should be measured by what they can do — real projects, real competencies, institutional endorsements — not just by their educational path."
         },
         "1": {
           "title": "Investing in Talent Discovery",
-          "description": "Companies looking for qualified candidates deserve effective tools to find them. A system based on verified skills makes the process more efficient for everyone."
+          "description": "Companies looking for qualified candidates deserve effective tools to find them. A system based on real skills makes the process more efficient for everyone."
         },
         "2": {
           "title": "Connecting Education and Work",
@@ -5703,10 +5703,10 @@
       "items": {
         "0": {
           "title": "Transparency in Every Interaction",
-          "description": "Every interaction on our platform is traceable. Companies see verified skills. Students see who's interested. Institutions see outcomes."
+          "description": "Every interaction on our platform is traceable. Companies see real skills. Students see who's interested. Institutions see outcomes."
         },
         "1": {
-          "title": "Verified Skills, Real Projects",
+          "title": "Real Skills, Real Projects",
           "description": "We believe a 30/30 thesis project tells a lot about a candidate. Our platform puts concrete, professor-endorsed work first."
         },
         "2": {
@@ -5715,7 +5715,7 @@
         },
         "3": {
           "title": "Meritocracy Based on Real Projects",
-          "description": "No name-brand university bias. Your verified projects speak for themselves. The best work wins, regardless of background."
+          "description": "No name-brand university bias. Your real projects speak for themselves. The best work wins, regardless of background."
         }
       }
     },
@@ -5849,15 +5849,15 @@
           "title": "Matched Candidates",
           "matchScore": "Match Score",
           "matchReasons": "Match Reasons",
-          "verifiedProjects": "Verified Projects",
+          "verifiedProjects": "Real Projects",
           "viewProfile": "View Profile",
           "contact": "Contact",
           "noResults": "No matching candidates found",
           "noResultsDescription": "Try broadening your search criteria or adjusting the required skills.",
           "skillMatch": "Skill match",
-          "verifiedProject": "Has verified projects",
+          "verifiedProject": "Has real projects",
           "highGrade": "High academic grade",
-          "institutionVerified": "Professor-endorsed projects",
+          "institutionVerified": "AI-Verified · Optional Professor Bonus projects",
           "locationMatch": "Location match"
         },
         "history": {
@@ -6395,7 +6395,7 @@
       "relocate": "Willing to relocate",
       "abroad": "Available internationally"
     },
-    "footer": "Generated from verified portfolio on {platform}",
+    "footer": "Generated from AI-verified portfolio on {platform}",
     "empty": "Complete your profile to generate your CV"
   },
   "personalityInsights": {
@@ -6580,7 +6580,7 @@
       },
       "verified": {
         "value": "100%",
-        "label": "Institution-Verified Skills"
+        "label": "Institution-Real Skills"
       },
       "sectors": {
         "value": "6",
@@ -6675,7 +6675,7 @@
       },
       "verifiedSkills": {
         "title": "Institution-Verified Competencies",
-        "desc": "Soft skills scored from real project work — communication, teamwork, leadership, problem solving — with optional professor endorsement when available."
+        "desc": "Soft skills scored from real project work — communication, teamwork, leadership, problem solving — with optional professor endorsement (bonus signal) when available."
       },
       "decisionPack": {
         "title": "Decision Pack PDF",
@@ -6686,7 +6686,7 @@
       "title": "How It Works",
       "step1": {
         "title": "Search Free",
-        "desc": "Browse verified profiles filtered by university, skills, grades, and personality traits."
+        "desc": "Browse AI-verified profile filtered by university, skills, grades, and personality traits."
       },
       "step2": {
         "title": "Compare Candidates",
@@ -6782,7 +6782,7 @@
     "shareMessages": {
       "whatsapp": "Hey! I'm using InTransparency to showcase my verified real student projects to top companies. Join me and build your professional portfolio too! {link}",
       "linkedin": "Excited to be part of @InTransparency — a platform that verifies your academic projects and connects you directly with recruiters. If you're a student or recent graduate, check it out: {link}",
-      "instagram": "Building my verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
+      "instagram": "Building my AI-verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
       "email": "Hi! I wanted to share InTransparency with you — it's a platform where you build a portfolio of real projects (with optional professor endorsements), so companies can find you for what you actually know how to do. Sign up here: {link}"
     },
     "progress": {
@@ -7081,7 +7081,7 @@
     "card1Title": "Document PCTO",
     "card1Text": "Upload projects from internships, traineeships, and work experience. Your school verifies them with an official badge.",
     "card2Title": "Get Discovered",
-    "card2Text": "Companies look for students with specific skills. Your verified profile makes you visible without applying.",
+    "card2Text": "Companies look for students with specific skills. Your AI-verified profile makes you visible without applying.",
     "card3Title": "First Internship or Job",
     "card3Text": "When a company finds your profile, they contact you directly. PCTO internship, traineeship, or first job.",
     "stepsTitle": "How It Works in 4 Steps",
@@ -7118,7 +7118,7 @@
     "card1Title": "Certified Technical Skills",
     "card1Text": "Upload lab projects, certifications, and skills acquired. Your ITS officially verifies them.",
     "card2Title": "Visibility to Companies",
-    "card2Text": "Companies look for specialized technicians. Your verified profile connects you directly with employers.",
+    "card2Text": "Companies look for specialized technicians. Your AI-verified profile connects you directly with employers.",
     "card3Title": "Apprenticeship and Jobs",
     "card3Text": "From company apprenticeship to your first contract. Companies find you through the skills you've demonstrated.",
     "stepsTitle": "How It Works in 4 Steps",
@@ -7147,7 +7147,7 @@
     "badge": "Thesis • Portfolio • Graduate Jobs",
     "heroTitle": "From Degree to",
     "heroTitleHighlight": "Career",
-    "heroDescription": "Build your academic portfolio with thesis, projects, and research. Companies seek graduates with verified skills.",
+    "heroDescription": "Build your academic portfolio with thesis, projects, and research. Companies seek graduates with real skills.",
     "heroSubtext": "Professors can endorse your work as an extra layer of proof. Employers discover your portfolio. Stand out from day one.",
     "createProfile": "Create Your Free Profile",
     "howItWorks": "How It Works",
@@ -7155,7 +7155,7 @@
     "card1Title": "Academic Portfolio",
     "card1Text": "Upload thesis, research projects, publications, and group work. Your university certifies them officially.",
     "card2Title": "Stand Out from Peers",
-    "card2Text": "A CV isn't enough. Your verified portfolio shows what you can really do, with concrete proof of your work.",
+    "card2Text": "A CV isn't enough. Your AI-verified portfolio shows what you can really do, with concrete proof of your work.",
     "card3Title": "Graduate Jobs and Internships",
     "card3Text": "Companies seek qualified graduates. They find you through your projects, not just your degree grade.",
     "stepsTitle": "How It Works in 4 Steps",
@@ -7194,7 +7194,7 @@
     "pctoFullTitle": "PCTO: Pathways for Transversal Skills and Orientation",
     "pctoLawText": "Law 145/2018 requires at least {techHours} hours for technical institutes and {liceiHours} hours for licei. InTransparency helps your school to:",
     "pctoCheck1": "Find partner companies for internships and traineeships",
-    "pctoCheck2": "Document acquired skills with optional professor endorsement",
+    "pctoCheck2": "Document acquired skills with optional professor endorsement (bonus signal)",
     "pctoCheck3": "Track hours and activities for MIUR reporting",
     "pctoCheck4": "Prepare students for first job placement",
     "techHoursLabel": "Min hours Technical Institutes",
@@ -7218,7 +7218,7 @@
     "card3Check3": "Data to guide curriculum",
     "card3Check4": "Alert: \"Student X: 0 views in 30 days\"",
     "servicesTitle": "Services for High Schools",
-    "servicesSubtitle": "Marketplace platform with optional professor endorsement quality layer",
+    "servicesSubtitle": "Marketplace platform with optional professor endorsement (bonus signal) quality layer",
     "primaryService": "PRIMARY SERVICE",
     "service1Title": "Internship & PCTO Marketplace",
     "service1Free": "Free for schools",
@@ -7311,8 +7311,8 @@
   "forItsInstitutes": {
     "heroBadge": "Free Marketplace • Get Your Students Hired",
     "heroTitle": "Connect Your Graduates to",
-    "heroTitleHighlight": "Companies Seeking Verified Skills",
-    "heroDescription": "Marketplace connecting your ITS students to companies actively hiring. Your optional professor endorsement gives graduates a competitive edge. Track placement success with analytics.",
+    "heroTitleHighlight": "Companies Seeking Real Skills",
+    "heroDescription": "Marketplace connecting your ITS students to companies actively hiring. Your optional professor endorsement (bonus signal) gives graduates a competitive edge. Track placement success with analytics.",
     "heroSubtext": "Freemium model for academic partners.",
     "getStarted": "Get Started",
     "seeHowItWorks": "See How It Works",
@@ -7342,7 +7342,7 @@
     "discoveryItem2": "Students visible without applying",
     "discoveryItem3": "Your verification badge = quality signal",
     "discoveryItem4": "Companies contact you directly through the platform",
-    "discoveryNote": "Real student credentials with optional professor endorsement",
+    "discoveryNote": "Real student credentials with optional professor endorsement (bonus signal)",
     "matchingTitle": "Matching Service",
     "matchingBadge": "FREE for Students",
     "matchingSubtitle": "Transparent Matching",
@@ -7367,7 +7367,7 @@
     "analyticsItem4": "Early intervention alerts",
     "areasTitle": "All ITS Areas Supported",
     "areasSubtitle": "From mechatronics to biotech - companies actively hiring ITS graduates",
-    "verifiedSkillsSeek": "Verified Skills Companies Seek:",
+    "verifiedSkillsSeek": "Real Skills Companies Seek:",
     "companiesHiring": "Companies Hiring:",
     "searchesPerMonth": "{count} company searches/month for skills in this area",
     "howStudentsGetHired": "How Students Get Hired",
@@ -7409,7 +7409,7 @@
     "skillsSeek": "Skills Companies Seek:",
     "faqTitle": "Frequently Asked Questions",
     "faq1Q": "How does the marketplace help our students?",
-    "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your optional professor endorsement gives them a competitive edge.",
+    "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your optional professor endorsement (bonus signal) gives them a competitive edge.",
     "faq2Q": "What does freemium mean?",
     "faq2A": "Core features are included at no cost. Companies full access. Enterprise features available for larger institutions.",
     "faq3Q": "How does verification work?",
@@ -7429,7 +7429,7 @@
   "perUniversita": {
     "heroBadge": "Free Marketplace • Get Your Graduates Hired",
     "heroTitle": "Connect Your Graduates to",
-    "heroTitleHighlight": "Companies Seeking Verified Talent",
+    "heroTitleHighlight": "Companies Seeking AI-Verified Talent",
     "heroDescription": "Marketplace connecting your students to companies. Optional professor endorsement gives graduates a competitive edge. Track success with analytics.",
     "heroSubtext": "Freemium model for academic partners.",
     "registerInstitution": "Register Your Institution",
@@ -7517,7 +7517,7 @@
     "cq2": "How much does it cost to contact a candidate?",
     "ca2": "The first 5 contacts each month are free (quota counts across your company domain and resets on the 1st). Beyond that, you subscribe: €89/mo for unlimited contacts + 10 job posts + team seats + full AI suite. Enterprise (custom) unlocks SSO, API and dedicated CSM.",
     "cq3": "How does evidence-based matching work?",
-    "ca3": "Our algorithm analyzes students' projects, verified skills, university grades, and preferences to calculate a compatibility score. The higher the score, the better the match with your needs.",
+    "ca3": "Our algorithm analyzes students' projects, real skills, university grades, and preferences to calculate a compatibility score. The higher the score, the better the match with your needs.",
     "cq4": "Can I post job listings?",
     "ca4": "Yes! You can post job listings from your dashboard. Students can apply directly and you'll receive notifications for each new application.",
     "iq1": "How can my institution participate?",
@@ -8568,7 +8568,7 @@
       "noRecruiterActivity": "No recruiter activity yet",
       "verificationProgress": "Verification progress",
       "studentsVerified": "Students verified",
-      "verificationPercent": "{percentage}% of students have verified profiles",
+      "verificationPercent": "{percentage}% of students have AI-verified profile",
       "studentActivation": "Student Activation",
       "activationRate": "Activation Rate",
       "profileCompletion": "Profile Completion",
@@ -9098,7 +9098,7 @@
     "benefits": {
       "0": {
         "title": "Verified project portfolio",
-        "description": "Upload your university projects with optional professor endorsement. Companies see what you built, not what you claim."
+        "description": "Upload your university projects with optional professor endorsement (bonus signal). Companies see what you built, not what you claim."
       },
       "1": {
         "title": "Grades translated across Europe",
@@ -9106,7 +9106,7 @@
       },
       "2": {
         "title": "Companies find you",
-        "description": "Instead of applying to hundreds of positions, recruiters search for verified skills and contact you directly."
+        "description": "Instead of applying to hundreds of positions, recruiters search for real skills and contact you directly."
       },
       "3": {
         "title": "Personality and skills insights",
@@ -9135,7 +9135,7 @@
       },
       "1": {
         "title": "Visibility with technical companies",
-        "description": "Companies like Siemens, ABB, and SMEs search for ITS graduates with verified skills in mechatronics, IT, automation."
+        "description": "Companies like Siemens, ABB, and SMEs search for ITS graduates with real skills in mechatronics, IT, automation."
       },
       "2": {
         "title": "Skills recognized abroad",
@@ -9172,7 +9172,7 @@
       },
       "2": {
         "title": "A head start for university",
-        "description": "When you enroll in university, your verified portfolio comes with you. You don't start from scratch."
+        "description": "When you enroll in university, your AI-verified portfolio comes with you. You don't start from scratch."
       },
       "3": {
         "title": "Free, no credit card",
@@ -9189,7 +9189,7 @@
   "forSME": {
     "hero": {
       "badge": "For SMEs and small companies — free up to 5 contacts a month",
-      "title": "Try the verified talent pool free. Subscribe when you scale.",
+      "title": "Try the real talent pool free. Subscribe when you scale.",
       "subtitle": "Browse all profiles free. Reach out to 5 candidates each month at no cost — quota resets on the 1st. When you need to contact more, switch to the €89/mo subscription. No credit packs, no per-contact fees, no agency middlemen.",
       "cta": "Start free",
       "secondaryCta": "Try Smart Search"
@@ -9197,7 +9197,7 @@
     "benefits": {
       "0": {
         "title": "Verified skills, not buzzwords",
-        "description": "Every project is real, often with optional professor endorsement. See actual grades, code, and outcomes — before you even talk to the candidate."
+        "description": "Every project is real, often with optional professor endorsement (bonus signal). See actual grades, code, and outcomes — before you even talk to the candidate."
       },
       "1": {
         "title": "5 free contacts every month",
@@ -9209,7 +9209,7 @@
       },
       "3": {
         "title": "Decision Pack for every candidate",
-        "description": "A complete dossier: portfolio, grades, personality, verified skills. Everything you need to decide, in one document."
+        "description": "A complete dossier: portfolio, grades, personality, real skills. Everything you need to decide, in one document."
       },
       "title": "Why SMEs choose InTransparency"
     },
@@ -9223,14 +9223,14 @@
     "hero": {
       "badge": "For Agencies and HR Professionals",
       "title": "Verified candidates for your clients, at scale",
-      "subtitle": "Access a talent pool of real student work, often with optional professor endorsement. Search by skills, grades, projects — present clients with evidence-backed candidates.",
+      "subtitle": "Access a talent pool of real student work, often with optional professor endorsement (bonus signal). Search by skills, grades, projects — present clients with evidence-backed candidates.",
       "cta": "Create Your Account",
       "secondaryCta": "Company Features"
     },
     "benefits": {
       "0": {
         "title": "Screening already done",
-        "description": "Real student projects (with optional professor endorsement), normalized grades, personality assessments. Present clients with data, not just CVs."
+        "description": "Real student projects (with optional professor endorsement (bonus signal)), normalized grades, personality assessments. Present clients with data, not just CVs."
       },
       "1": {
         "title": "Conversational smart search",
@@ -9248,7 +9248,7 @@
     },
     "cta": {
       "title": "Give your clients better candidates",
-      "subtitle": "Register for free. Search verified talent. Present candidates with proof, not promises.",
+      "subtitle": "Register for free. Search real talent. Present candidates with proof, not promises.",
       "button": "Get Started Free"
     }
   },
@@ -9256,18 +9256,18 @@
     "hero": {
       "badge": "For Startups and Scale-ups",
       "title": "Hire fast with proof, not endless interviews",
-      "subtitle": "See what candidates actually built — verified projects, real skills, assessed personality. Cut your hiring process from weeks to days.",
+      "subtitle": "See what candidates actually built — real projects, real skills, assessed personality. Cut your hiring process from weeks to days.",
       "cta": "Create Your Account",
       "secondaryCta": "Try Smart Search"
     },
     "benefits": {
       "0": {
         "title": "See the work, not the CV",
-        "description": "Real projects with code, outcomes, and optional professor endorsement. You know what a candidate can do before the first interview."
+        "description": "Real projects with code, outcomes, and optional professor endorsement (bonus signal). You know what a candidate can do before the first interview."
       },
       "1": {
         "title": "Hiring speed",
-        "description": "smart search, verified skills filters, candidate comparison. From need to offer in days, not months."
+        "description": "smart search, real skills filters, candidate comparison. From need to offer in days, not months."
       },
       "2": {
         "title": "No upfront cost",
@@ -9281,7 +9281,7 @@
     },
     "cta": {
       "title": "Your next hire is here",
-      "subtitle": "Register in 2 minutes. Start searching verified talent.",
+      "subtitle": "Register in 2 minutes. Start searching real talent.",
       "button": "Get Started Free"
     }
   },
@@ -9694,7 +9694,7 @@
         "0": {
           "feature": "Skills evidence",
           "them": "Self-reported",
-          "us": "Real projects + optional professor endorsement"
+          "us": "Real projects + optional professor endorsement (bonus signal)"
         },
         "1": {
           "feature": "Project proof",
@@ -9741,7 +9741,7 @@
       }
     },
     "cta": {
-      "title": "Start searching verified talent",
+      "title": "Start searching real talent",
       "subtitle": "Find graduates with proven skills, not just polished profiles.",
       "button": "Get started free"
     }
@@ -9814,7 +9814,7 @@
   "compareCV": {
     "hero": {
       "title": "InTransparency vs Traditional CVs",
-      "subtitle": "CVs let anyone claim anything. InTransparency shows verified work, not self-described bullet points."
+      "subtitle": "CVs let anyone claim anything. InTransparency shows real work, not self-described bullet points."
     },
     "table": {
       "title": "Feature Comparison",
@@ -9824,7 +9824,7 @@
         "0": {
           "feature": "Verification",
           "them": "Anyone can claim anything",
-          "us": "Real projects with optional professor endorsement"
+          "us": "Real projects with optional professor endorsement (bonus signal)"
         },
         "1": {
           "feature": "Proof of work",
@@ -9871,7 +9871,7 @@
       }
     },
     "cta": {
-      "title": "Build your verified portfolio",
+      "title": "Build your AI-verified portfolio",
       "subtitle": "Replace your CV with a living, verified showcase of your academic work.",
       "button": "Create your portfolio"
     }
@@ -10101,7 +10101,7 @@
         "topEmployers": "Top Employers"
       },
       "download": "Download",
-      "note": "This report was assembled from verified placement data on the platform."
+      "note": "This report was assembled from real-time placement data on the platform."
     },
     "empty": "Select type and period, then click Generate.",
     "comingSoon": {
@@ -10253,7 +10253,7 @@
   },
   "advancedSearch": {
     "title": "Search Candidates",
-    "subtitle": "Find verified talent",
+    "subtitle": "Find real talent",
     "searchPlaceholder": "Search by name, skill, or keyword...",
     "university": "University",
     "allUniversities": "All universities",
@@ -10549,7 +10549,7 @@
     "highVerification": "High verification",
     "students": "students",
     "matchYourRoles": "match your roles",
-    "verifiedProjects": "verified projects",
+    "verifiedProjects": "real projects",
     "verificationRate": "verified",
     "talentPool": "Talent pool size",
     "topSkills": "Top skills",
@@ -10566,14 +10566,14 @@
     "addSkills": "Or add specific skills",
     "skillPlaceholder": "e.g. Python, React, SQL...",
     "findTalent": "Find Matching Talent",
-    "matching": "Scanning verified profiles...",
+    "matching": "Scanning AI-verified profile...",
     "scanning": "Analyzing profiles...",
-    "scanningDesc": "Scoring candidates against your criteria using verified projects, internship evaluations, and academic data.",
+    "scanningDesc": "Scoring candidates against your criteria using real projects, internship evaluations, and academic data.",
     "results": "{count} matches found",
     "rankedBy": "Ranked by evidence score",
     "whyThisStudent": "Why this student?",
     "hideDetails": "Hide details",
-    "relevantProjects": "Relevant verified projects",
+    "relevantProjects": "Relevant real projects",
     "internshipRecord": "Internship record",
     "viewProfile": "View",
     "noMatches": "No matches found",
@@ -10747,7 +10747,7 @@
     },
     "openRoles": "open roles",
     "industries": "industries",
-    "verifiedProjects": "verified projects",
+    "verifiedProjects": "real projects",
     "industriesShort": "industries",
     "roles": "roles",
     "transferableSkills": "Transferable Skills",
@@ -11280,7 +11280,7 @@
     "factorLabels": {
       "requiredSkills": "Skills that matched what they were looking for",
       "preferredSkills": "Bonus skills they wanted",
-      "verifiedProjects": "Your verified projects",
+      "verifiedProjects": "Your real projects",
       "internshipExperience": "Your stage / internship record",
       "academicPerformance": "Your academic performance",
       "verifiedDepth": "Verified depth on key skills"
@@ -11534,7 +11534,7 @@
         "helper": "Program skills aligned to ESCO v1.2"
       },
       "verified": {
-        "label": "Students with verified profile",
+        "label": "Students with AI-verified profile",
         "helper": "Identity + transcript verified by the institution (when available)"
       },
       "banner": {
@@ -12331,11 +12331,11 @@
       },
       "portfolio": {
         "title": "Unified Portfolio",
-        "description": "Combine your LinkedIn profile with your InTransparency verified projects"
+        "description": "Combine your LinkedIn profile with your InTransparency real projects"
       },
       "visibility": {
         "title": "Greater Visibility",
-        "description": "Recruiters will see your complete profile with verified skills"
+        "description": "Recruiters will see your complete profile with real skills"
       },
       "notifications": {
         "title": "Smart Notifications",
@@ -12771,7 +12771,7 @@
       },
       "europass": {
         "name": "Europass",
-        "whatWeDo": "Students export their verified profile as Europass v3 JSON-LD with a single click."
+        "whatWeDo": "Students export their AI-verified profile as Europass v3 JSON-LD with a single click."
       },
       "edci": {
         "name": "EDCI — European Digital Credentials for Learning",
@@ -12783,7 +12783,7 @@
       },
       "openBadges": {
         "name": "Open Badges / IMS Global",
-        "whatWeDo": "Students export their Advanced/Expert verified skills as Open Badges 3.0 credentials — ingestible by Credly, Accredible, Badgr, Digital Promise, every LMS that speaks OB 3.0."
+        "whatWeDo": "Students export their Advanced/Expert real skills as Open Badges 3.0 credentials — ingestible by Credly, Accredible, Badgr, Digital Promise, every LMS that speaks OB 3.0."
       },
       "digComp": {
         "name": "DigComp",
@@ -13094,7 +13094,7 @@
   },
   "studentCredentials": {
     "title": "Your verifiable credentials",
-    "subtitle": "Cryptographically signed proofs of your verified work — shareable with employers, verifiable without contacting us, compatible with the EU Digital Wallet.",
+    "subtitle": "Cryptographically signed proofs of your real work — shareable with employers, verifiable without contacting us, compatible with the EU Digital Wallet.",
     "readyToIssue": "Ready to issue ({count})",
     "readyToIssueDesc": "These verified items don't have credentials yet. Click to issue one.",
     "issuing": "Issuing…",
@@ -13179,7 +13179,7 @@
     "emptyGraphTitle": "Your verified skill graph is empty",
     "emptyGraphDesc": "These matches use your self-declared skills only. Complete a stage or get a professor endorsement to unlock evidence-weighted matching — your scores will jump, and recruiters will see the difference.",
     "noStrongMatchesTitle": "No strong matches right now",
-    "noStrongMatchesDesc": "We scanned {count} active jobs but none scored above the threshold. Check back in a week, or add more verified skills.",
+    "noStrongMatchesDesc": "We scanned {count} active jobs but none scored above the threshold. Check back in a week, or add more real skills.",
     "matchScore": "match score",
     "posted": "Posted",
     "verifiedStrengths": "Your verified strengths:",
@@ -13203,7 +13203,7 @@
     "expertLevel": "Expert-level",
     "multiSource": "Multi-source (stronger)",
     "proficiencyDistribution": "Proficiency distribution",
-    "allVerifiedSkills": "All verified skills",
+    "allVerifiedSkills": "All real skills",
     "exportEuropass": "Export to Europass",
     "sourcesCount": "{count} sources",
     "evidenceTimeline": "Evidence timeline",
@@ -13572,13 +13572,13 @@
     "unableToLoad": "Unable to Load",
     "unableToLoadHint": "If you believe this is an error, please contact the student directly.",
     "thankYou": "Thank You!",
-    "thankYouDesc": "Your endorsement has been recorded and will help {studentName} showcase their verified skills to potential employers.",
+    "thankYouDesc": "Your endorsement has been recorded and will help {studentName} showcase their real skills to potential employers.",
     "responseRecorded": "Response Recorded",
     "responseRecordedDesc": "Thank you for your response. The student has been notified.",
-    "aboutIntransparency": "<strong>InTransparency</strong> helps students showcase verified projects and connect with employers through faculty endorsements.",
+    "aboutIntransparency": "<strong>InTransparency</strong> helps students showcase real projects and connect with employers through faculty endorsements.",
     "openProfessorPortal": "Open Professor Portal",
     "pageTitle": "Verify Student Project",
-    "pageSubtitle": "Your endorsement helps this student showcase verified skills to employers",
+    "pageSubtitle": "Your endorsement helps this student showcase real skills to employers",
     "studentInfo": "Student Information",
     "student": "Student",
     "university": "University",
