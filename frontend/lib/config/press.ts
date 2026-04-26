@@ -12,6 +12,7 @@
  * Start Cup Bergamo 2025 coverage cycle (final held 2026-02-03):
  *
  *  • Fondazione Pesenti — dedicated article, awarded the Special Prize
+ *  • Bergamonews — Bergamo's main online news outlet, Start Cup coverage
  *  • Italpress — national news agency, names InTransparency as 3rd place
  *  • Lombardia Italia Economy — regional business outlet
  *  • ANSA Lombardia — national news agency, regional desk (Start Cup)
@@ -38,6 +39,12 @@ export const PRESS_ITEMS: PressItem[] = [
     logo: '/press/fondazione-pesenti.svg',
     href: 'https://fondazionepesenti.it/2026/02/04/start-cup-bergamo-2025-intransparency-wins-the-fondazione-pesenti-special-award/',
     style: 'serif',
+  },
+  {
+    name: 'Bergamonews',
+    logo: '/press/bergamonews.svg',
+    href: 'https://www.bergamonews.it/2026/02/04/start-cup-premiato-recensup-aggregatore-di-recensioni-per-migliorare-la-reputazione-digitale/865446/',
+    style: 'sans',
   },
   {
     name: 'Italpress',

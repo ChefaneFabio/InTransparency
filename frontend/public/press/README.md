@@ -4,6 +4,7 @@ Drop press logos here as SVG (preferred) or transparent PNG. Files referenced by
 `lib/config/press.ts`:
 
 - `fondazione-pesenti.svg` — Fondazione Pesenti
+- `bergamonews.svg` — Bergamonews
 - `italpress.svg` — Italpress
 - `ansa.svg` — ANSA
 - `lombardia-italia-economy.svg` — Lombardia Italia Economy
