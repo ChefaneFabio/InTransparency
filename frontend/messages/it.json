@@ -699,8 +699,8 @@
           "cta": "Inizia Gratis"
         },
         "universities": {
-          "title": "Per le Istituzioni",
-          "description": "Verifica i progetti degli studenti e monitora i risultati — gratis per i partner.",
+          "title": "Per Atenei, ITS e Scuole",
+          "description": "Workspace completa per il placement — gratis per i partner formativi. I docenti possono validare progetti quando vogliono.",
           "cta": "Diventa Partner"
         },
         "companies": {
@@ -713,8 +713,8 @@
     "trustIndicators": {
       "features": {
         "0": {
-          "title": "Competenze Verificate",
-          "description": "Ogni progetto autenticato dalle istituzioni"
+          "title": "Competenze Reali",
+          "description": "Progetti autentici, con validazione opzionale dei docenti"
         },
         "1": {
           "title": "Contatto Diretto",
@@ -722,7 +722,7 @@
         },
         "2": {
           "title": "Freemium",
-          "description": "Nessun costo per studenti e istituzioni"
+          "description": "Free Core per studenti, atenei, ITS e scuole"
         },
         "3": {
           "title": "Accesso Completo",
@@ -732,12 +732,12 @@
       "badges": {
         "freemium": "Freemium",
         "gdpr": "Conforme al GDPR",
-        "verified": "Verificato dall'Istituzione"
+        "verified": "Validato dai docenti"
       }
     },
     "valueProposition": {
       "title": "Costruito per Tutti",
-      "subtitle": "Valore trasparente per studenti, istituzioni e aziende.",
+      "subtitle": "Valore trasparente per studenti, atenei, ITS, scuole e aziende.",
       "cards": {
         "students": {
           "title": "Per gli Studenti",
@@ -749,12 +749,12 @@
           }
         },
         "universities": {
-          "title": "Per le Istituzioni",
+          "title": "Per Atenei, ITS e Scuole",
           "benefits": {
-            "0": "Verifica i progetti e i risultati degli studenti",
+            "0": "Validazione opzionale dei progetti dai docenti",
             "1": "Monitora i risultati di placement con analytics",
             "2": "Collega gli studenti direttamente ai datori di lavoro",
-            "3": "Gratuito per tutte le istituzioni partner"
+            "3": "Free Core gratis per tutti i partner formativi"
           }
         },
         "companies": {
@@ -13990,8 +13990,8 @@
       "source": "/api/student/europass"
     },
     "universities": {
-      "label": "Università rappresentate",
-      "source": "Studenti registrati presso partner e atenei osservati"
+      "label": "Partner formativi rappresentati",
+      "source": "Studenti registrati presso atenei, ITS e scuole partner"
     },
     "gdpr": {
       "label": "Diritti self-service completi",

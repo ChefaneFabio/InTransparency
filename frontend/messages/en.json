@@ -699,8 +699,8 @@
           "cta": "Get Started Free"
         },
         "universities": {
-          "title": "For Institutions",
-          "description": "Verify student projects and track placement outcomes — free for partners.",
+          "title": "For Universities, ITS & Schools",
+          "description": "Full placement workspace — free for academic partners. Professors can endorse projects when they have time.",
           "cta": "Partner With Us"
         },
         "companies": {
@@ -713,8 +713,8 @@
     "trustIndicators": {
       "features": {
         "0": {
-          "title": "Verified Skills",
-          "description": "Every project authenticated by institutions"
+          "title": "Real Skills",
+          "description": "Authentic projects, with optional professor endorsement"
         },
         "1": {
           "title": "Direct Contact",
@@ -722,7 +722,7 @@
         },
         "2": {
           "title": "Freemium",
-          "description": "No cost for students and universities"
+          "description": "Free Core for students, universities, ITS and schools"
         },
         "3": {
           "title": "Full Access",
@@ -732,12 +732,12 @@
       "badges": {
         "freemium": "Freemium",
         "gdpr": "GDPR Compliant",
-        "verified": "Institution Verified"
+        "verified": "Endorsed by professors"
       }
     },
     "valueProposition": {
       "title": "Built for Everyone",
-      "subtitle": "Transparent value for students, institutions, and companies.",
+      "subtitle": "Transparent value for students, universities, ITS, schools, and companies.",
       "cards": {
         "students": {
           "title": "For Students",
@@ -749,12 +749,12 @@
           }
         },
         "universities": {
-          "title": "For Institutions",
+          "title": "For Universities, ITS & Schools",
           "benefits": {
-            "0": "Verify student projects and achievements",
+            "0": "Optional professor endorsement on student projects",
             "1": "Track placement outcomes with analytics",
             "2": "Connect students directly to employers",
-            "3": "Free for all partner institutions"
+            "3": "Free Core forever for academic partners"
           }
         },
         "companies": {
@@ -13963,8 +13963,8 @@
       "source": "/api/student/europass"
     },
     "universities": {
-      "label": "Universities represented",
-      "source": "Students registered across partner + observed institutions"
+      "label": "Academic partners represented",
+      "source": "Students registered across partner universities, ITS academies and high schools"
     },
     "gdpr": {
       "label": "Full self-service rights",
