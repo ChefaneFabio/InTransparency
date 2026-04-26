@@ -15,6 +15,16 @@ import { Menu, X, ChevronDown, ChevronRight, Home, LogOut } from 'lucide-react'
 import { dashboardNavConfig, getUniversityNavForType, type DashboardRole, type NavGroup } from '@/lib/dashboard-nav-config'
 import NotificationBell from '@/components/notifications/NotificationBell'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import HelpButton from '@/components/help/HelpButton'
+
+const ROLE_TO_HELP_SEGMENT: Record<DashboardRole, 'student' | 'recruiter' | 'institution' | null> = {
+  student: 'student',
+  recruiter: 'recruiter',
+  university: 'institution',
+  institution: 'institution',
+  professor: null,
+  techpark: null,
+} as any
 
 interface DashboardNavProps {
   role: DashboardRole
@@ -114,7 +124,10 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
             )
           })}
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
+            {ROLE_TO_HELP_SEGMENT[role] && (
+              <HelpButton segment={ROLE_TO_HELP_SEGMENT[role]!} />
+            )}
             <LanguageSwitcher />
             <NotificationBell />
             <Button

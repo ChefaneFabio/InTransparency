@@ -1,22 +1,12 @@
 /**
  * Per-page contextual guides for the dashboard.
  *
- * Each guide answers four questions a user might have when they land on
- * a page:
- *   1. What is this page?
- *   2. What can I actually do here?
- *   3. Which Premium features unlock here? (only if any)
- *   4. Where do I go next?
- *
- * Content is keyed by exact pathname under /dashboard/. The PageGuide
- * component matches `pathname.startsWith(key)` (longer keys win) so
- * detail pages like /dashboard/recruiter/candidates/[id] inherit from
- * /dashboard/recruiter/candidates unless explicitly overridden.
- *
- * Pages without a registered guide fall back to a generic "Use the chat
- * for help" panel — the goal is high-quality coverage on the most-used
- * surfaces, not exhaustive coverage of every route.
+ * Bilingual: pass `locale` to `getGuideForPath()` to get an Italian guide.
+ * Italian falls back to English on any pathname not yet translated, so
+ * coverage can grow incrementally without breaking the IT user.
  */
+
+export type Locale = 'en' | 'it'
 
 export interface PageGuide {
   /** What is this page, in one short sentence. */
@@ -31,7 +21,305 @@ export interface PageGuide {
   tip?: string
 }
 
+// ────────────────────────────────────────────────────────────────────
+// ITALIAN — high-traffic pages first; remaining IT calls fall back to EN.
+// ────────────────────────────────────────────────────────────────────
+const PAGE_GUIDES_IT: Record<string, PageGuide> = {
+  // ── STUDENT ──
+  '/dashboard/student': {
+    about: 'La tua home — top match, attività recente, progressi del journey.',
+    actions: [
+      'Apri il prossimo step dal pannello journey (in basso a sinistra)',
+      'Vedi i 3 lavori top consigliati dall\'AI',
+      'Controlla le candidature in corso',
+    ],
+    related: [
+      { label: 'Il tuo journey', href: '/dashboard/student/journey' },
+      { label: 'Tutti i match', href: '/dashboard/student/matches' },
+    ],
+    tip: 'Clicca un milestone nella timeline per vedere le evidenze collegate.',
+  },
+  '/dashboard/student/journey': {
+    about: 'Timeline visuale del tuo percorso dall\'iscrizione al primo lavoro.',
+    actions: [
+      'Marca i milestone completati man mano che li raggiungi',
+      'Vedi le evidenze collegate a ogni milestone',
+      'Usa l\'indicatore "prossimo" per sapere dove concentrarti',
+    ],
+    related: [
+      { label: 'Auto-esplorazione', href: '/self-discovery' },
+      { label: 'Skills graph', href: '/dashboard/student/skill-graph' },
+    ],
+  },
+  '/dashboard/student/projects': {
+    about: 'L\'inventario dei tuoi progetti — la base di tutte le evidenze verificate.',
+    actions: [
+      'Aggiungi un nuovo progetto con codice, file, media',
+      'Chiedi un endorsement al professore su qualsiasi progetto',
+      'Affina il framing man mano che la tua direzione si chiarisce',
+    ],
+    premium: ['Analisi AI illimitate (Free: 3 per progetto)'],
+    related: [
+      { label: 'Skills graph', href: '/dashboard/student/skill-graph' },
+      { label: 'Credenziali', href: '/dashboard/student/credentials' },
+    ],
+    tip: 'Un progetto con un endorsement vale più di dieci senza.',
+  },
+  '/dashboard/student/projects/new': {
+    about: 'Crea un nuovo progetto. Titolo, descrizione, disciplina, file — l\'AI estrae le competenze.',
+    actions: [
+      'Scegli la disciplina giusta per estrazioni AI accurate',
+      'Carica codice/PDF/media che dimostrano il lavoro',
+      'Aggiungi nome corso + voto se è accademico',
+    ],
+    tip: 'L\'URL GitHub fa il pull dei commit live + README pinnato.',
+  },
+  '/dashboard/student/profile': {
+    about: 'La tua identità pubblica — quello che vedono i recruiter.',
+    actions: [
+      'Aggiungi una foto + una bio di una riga',
+      'Carica un CV (o generane uno da /cv)',
+      'Imposta il tuo stato (in cerca, passivo, non in cerca)',
+    ],
+    premium: ['URL portfolio personalizzato — tuonome.intransparency.com'],
+    related: [
+      { label: 'Genera CV', href: '/dashboard/student/cv' },
+      { label: 'Impostazioni', href: '/dashboard/student/settings' },
+    ],
+  },
+  '/dashboard/student/skills': {
+    about: 'Le tue competenze verificate, dai progetti + corsi + endorsement.',
+    actions: [
+      'Sfoglia le competenze con i link alle prove',
+      'Vedi competenze suggerite da aggiungere',
+      'Endorsa una competenza sul profilo di un peer',
+    ],
+  },
+  '/dashboard/student/matches': {
+    about: 'Lavori consigliati dall\'AI ordinati per fit score sul tuo profilo.',
+    actions: [
+      'Clicca su un match per vedere il breakdown del fit score',
+      'Candidati con un click — il portfolio si attacca automaticamente',
+      'Salva i match per dopo dall\'icona segnalibro',
+    ],
+    related: [
+      { label: 'Tutti i lavori', href: '/dashboard/student/jobs' },
+      { label: 'Modifica fit profile', href: '/dashboard/student/fit-profile' },
+    ],
+    tip: 'Aggiorna il fit profile dopo ogni colloquio — affina il matching.',
+  },
+  '/dashboard/student/applications': {
+    about: 'Tracker per ogni candidatura — stato, fase, messaggi recruiter.',
+    actions: [
+      'Vedi quali candidature avanzano vs ferme',
+      'Apri i messaggi dei recruiter da ogni card',
+      'Ritira candidature che non vuoi più',
+    ],
+  },
+  '/dashboard/student/cv': {
+    about: 'CV Europass costruito automaticamente da profilo + progetti. Download in un click.',
+    actions: [
+      'Scegli il formato (Europass / moderno / minimal)',
+      'Rigenera dopo qualsiasi modifica al profilo',
+      'Scarica come PDF o DOCX',
+    ],
+  },
+  '/dashboard/student/upgrade': {
+    about: 'Pitch Premium e checkout Stripe. Gratis se la tua università sponsorizza Premium.',
+    actions: [
+      'Confronta Free vs Premium',
+      'Verifica se la tua istituzione sponsorizza Premium per te',
+      'Inizia il trial 30 giorni — cancelli quando vuoi',
+    ],
+  },
+  '/dashboard/student/messages': {
+    about: 'Inbox delle conversazioni con i recruiter che ti hanno contattato.',
+    actions: [
+      'Rispondi ai recruiter che ti hanno contattato',
+      'Marca le conversazioni come risolte',
+      'Blocca contatti indesiderati',
+    ],
+  },
+  '/dashboard/student/tirocinio': {
+    about: 'Tracking del tirocinio — registro ore, valutazioni, scadenze.',
+    actions: [
+      'Logga le ore settimanalmente',
+      'Invia valutazioni intermedie + finali',
+      'Scarica convenzione + accordi firmati',
+    ],
+  },
+
+  // ── RECRUITER ──
+  '/dashboard/recruiter': {
+    about: 'La tua home — action center, donut quota contatti, top candidati, AI consigli.',
+    actions: [
+      'Affronta gli item nell\'action center per primi',
+      'Vedi i candidati top per ogni offerta aperta',
+      'Controlla la quota contatti del mese',
+    ],
+    related: [
+      { label: 'Cerca candidati', href: '/dashboard/recruiter/candidates' },
+      { label: 'Pubblica offerta', href: '/dashboard/recruiter/jobs/new' },
+    ],
+    tip: 'Il donut mostra i contatti rimasti — la quota si resetta il 1° del mese.',
+  },
+  '/dashboard/recruiter/candidates': {
+    about: 'Cerca profili studenti verificati. Filtra per competenze, università, fit score.',
+    actions: [
+      'Usa la ricerca naturale per descrivere il ruolo',
+      'Filtra per disciplina, anno, università o match salvato',
+      'Salva candidati per dopo (gratis, non scala dalla quota)',
+      'Genera Decision Pack su qualsiasi candidato',
+    ],
+    premium: ['Contatti illimitati dopo i 5/mese gratis — Abbonamento €89/mese'],
+    related: [
+      { label: 'Ricerca AI', href: '/dashboard/recruiter/ai-talent-search' },
+      { label: 'Talent match per offerta', href: '/dashboard/recruiter/talent-match' },
+    ],
+    tip: 'Salvare è gratis — solo l\'invio di un messaggio scala dalla quota.',
+  },
+  '/dashboard/recruiter/jobs': {
+    about: 'Tutte le tue offerte — attive, draft, in pausa, chiuse.',
+    actions: [
+      'Pubblica una nuova offerta (incolla una JD esistente, l\'AI riempie il form)',
+      'Attiva/chiudi un\'offerta',
+      'Vedi candidature + visualizzazioni per offerta',
+    ],
+    related: [
+      { label: 'Pubblica offerta', href: '/dashboard/recruiter/jobs/new' },
+      { label: 'Pipeline (kanban)', href: '/dashboard/recruiter/pipeline' },
+    ],
+  },
+  '/dashboard/recruiter/jobs/new': {
+    about: 'Crea un\'offerta. Incolla una JD o URL — il parser AI riempie il form.',
+    actions: [
+      'Usa il banner "Incolla JD" per importare una descrizione esistente',
+      'Oppure usa la chat conversazionale campo per campo',
+      'Salva come draft per pubblicare dopo',
+    ],
+    tip: 'L\'import via incolla è il path più veloce — sotto i 5 secondi nella maggior parte dei casi.',
+  },
+  '/dashboard/recruiter/settings': {
+    about: 'Identità del brand, dettagli azienda, integrazioni, notifiche. Il pulsante "Auto-fill dal dominio" riempie quasi tutto.',
+    actions: [
+      'Clicca "Auto-fill dal dominio" per logo + settore + descrizione',
+      'Modifica la descrizione — appare su ogni offerta pubblicata',
+      'Attiva solo le notifiche che ti servono',
+    ],
+    tip: 'Rifai il fetch del logo dopo un rebrand col pulsante "Re-fetch" sotto l\'anteprima logo.',
+  },
+
+  // ── INSTITUTION ──
+  '/dashboard/university': {
+    about: 'La tua home — salute placement, attività recente, azioni rapide su M1–M4.',
+    actions: [
+      'Rivedi gli item pendenti su Inbox / Offerte / CRM / Pipeline',
+      'Apri il pannello journey per i passi setup ancora aperti',
+      'Approfondisci dalle card Overview',
+    ],
+  },
+  '/dashboard/university/students': {
+    about: 'Anagrafica studenti verificati — la tua popolazione di responsabilità.',
+    actions: [
+      'Filtra per programma, anno, stato',
+      'Aggiungi uno studente manualmente o importa CSV',
+      'Approfondisci ogni studente per il portfolio completo',
+    ],
+    related: [
+      { label: 'Import bulk', href: '/dashboard/university/students/import' },
+      { label: 'Aggiungi studente', href: '/dashboard/university/students/add' },
+    ],
+  },
+  '/dashboard/university/inbox': {
+    about: 'M1 Mediation Inbox — i messaggi dei recruiter aspettano la tua approvazione qui.',
+    actions: [
+      'Approva un messaggio per inviarlo allo studente',
+      'Modifica un messaggio prima di approvare (es. rimuovere contatti off-platform)',
+      'Rifiuta messaggi che violano le regole di stage',
+    ],
+    tip: 'Conformità AI Act + GDPR: ogni approva/rifiuta è loggato nell\'audit trail.',
+  },
+  '/dashboard/university/offers': {
+    about: 'M2 Moderazione Offerte — gli annunci legati alla tua istituzione aspettano l\'approvazione.',
+    actions: [
+      'Approva un\'offerta verificata per pubblicarla',
+      'Blocca offerte che violano le tue regole',
+      'Chiedi modifiche al recruiter direttamente',
+    ],
+  },
+  '/dashboard/university/crm': {
+    about: 'M3 CRM Aziende — kanban drag-and-drop dal primo contatto alla convenzione firmata.',
+    actions: [
+      'Trascina un\'azienda tra le fasi (lead → outreach → meeting → convenzione → attiva)',
+      'Aggiungi una nuova azienda con un click',
+      'Apri qualsiasi azienda per la storia completa dei touchpoint',
+    ],
+    premium: ['Fasi pipeline custom, viste multi-team, reporting avanzato'],
+  },
+  '/dashboard/university/placement-pipeline': {
+    about: 'M4 Pipeline Placement — ciclo completo del tirocinio: ore, valutazioni, scadenze, convenzioni.',
+    actions: [
+      'Traccia placement attivi con logging ore real-time',
+      'Schedula valutazioni intermedie/finali con reminder automatici',
+      'Genera report di esito a fine tirocinio',
+    ],
+    premium: [
+      'Reminder engine (automazione full, regole + cron)',
+      'Generazione convenzione AI-personalizzata',
+    ],
+  },
+  '/dashboard/university/conventions': {
+    about: 'Convention Builder — genera accordi tripartiti conformi in 60 secondi.',
+    actions: [
+      'Scegli un template (curricolare / extracurricolare / PCTO / Erasmus)',
+      'Auto-fill INAIL + CCNL dal profilo azienda',
+      'Bulk-export convenzioni per firma in massa',
+    ],
+    premium: ['Clausole AI-personalizzate · template custom · bulk export'],
+  },
+  '/dashboard/university/analytics': {
+    about: '7 tab di analytics: Overview, Placement, Skills Gap, Employers, Salary, Benchmark, Scorecard.',
+    actions: [
+      'Vedi l\'Overview per la salute top-line del placement',
+      'Approfondisci Placement per breakdown per coorte',
+    ],
+    premium: ['Skills Gap, Employers, Salary, Benchmark, Scorecard — 5 tab avanzate'],
+  },
+  '/dashboard/university/audit-log': {
+    about: 'Audit trail per azione. Free Core: ultimi 30 giorni. Premium: storia completa + export CSV.',
+    actions: [
+      'Filtra per utente, tipo azione, intervallo date',
+      'Export CSV (Premium)',
+      'Approfondisci ogni evento per payload completo + diff prima/dopo',
+    ],
+    premium: ['Storia completa oltre i 30 giorni · export CSV · accesso API'],
+  },
+  '/dashboard/university/assistant': {
+    about: 'AI Staff Assistant — Q&A su placement, conformità, normative. 50 query/mese Free, illimitato Premium.',
+    actions: [
+      'Chiedi qualsiasi cosa in linguaggio naturale',
+      'Cita fonti ufficiali (AI Act, GDPR, normative MIUR)',
+      'Salva risposte utili come knowledge del team',
+    ],
+    premium: ['Query illimitate · training custom sui documenti della tua istituzione'],
+  },
+  '/dashboard/university/billing': {
+    about: 'Free Core hero, upsell Institutional Premium e marketplace add-on.',
+    actions: [
+      'Conferma che il Free Core è attivo (workspace M1–M4 + AI assistant)',
+      'Prova Institutional Premium con il trial 30 giorni',
+      'Sfoglia 9 add-on istituzionali (white-label, SSO, MIUR pack, ATS bridge, ...)',
+    ],
+    related: [
+      { label: 'Marketplace add-on', href: '/dashboard/university/add-ons' },
+    ],
+  },
+}
+
+// ────────────────────────────────────────────────────────────────────
+// ENGLISH — full coverage. Italian falls back to this on any miss.
 // Longest matching prefix wins, so detail pages can override the list view.
+// ────────────────────────────────────────────────────────────────────
 export const PAGE_GUIDES: Record<string, PageGuide> = {
   // ── STUDENT ──
   '/dashboard/student': {
@@ -698,14 +986,34 @@ export const PAGE_GUIDES: Record<string, PageGuide> = {
 /**
  * Resolve a guide for the given pathname using longest-prefix matching.
  * Returns null if no match — callers should render a generic fallback.
+ *
+ * Italian lookup tries IT first, falls back to EN if the page hasn't been
+ * translated yet — so coverage can grow incrementally.
  */
-export function getGuideForPath(pathname: string): PageGuide | null {
-  // Exact match first
-  if (PAGE_GUIDES[pathname]) return PAGE_GUIDES[pathname]
+export function getGuideForPath(pathname: string, locale: Locale = 'en'): PageGuide | null {
+  const tables: Record<string, PageGuide>[] =
+    locale === 'it' ? [PAGE_GUIDES_IT, PAGE_GUIDES] : [PAGE_GUIDES]
+
   // Drop locale prefix (/it/dashboard/... → /dashboard/...)
   const stripped = pathname.replace(/^\/[a-z]{2}(?=\/)/, '')
-  if (PAGE_GUIDES[stripped]) return PAGE_GUIDES[stripped]
-  // Longest-prefix match — sort keys by length descending, find first that matches
+
+  for (const table of tables) {
+    if (table[pathname]) return table[pathname]
+    if (table[stripped]) return table[stripped]
+  }
+  // Longest-prefix match across all tables
+  const allKeys = Array.from(new Set(tables.flatMap(t => Object.keys(t)))).sort(
+    (a, b) => b.length - a.length
+  )
+  for (const k of allKeys) {
+    if (stripped.startsWith(k) || pathname.startsWith(k)) {
+      // Prefer IT if available
+      for (const t of tables) {
+        if (t[k]) return t[k]
+      }
+    }
+  }
+  // Old fallback path (kept for safety, shouldn't reach here)
   const keys = Object.keys(PAGE_GUIDES).sort((a, b) => b.length - a.length)
   for (const k of keys) {
     if (stripped.startsWith(k) || pathname.startsWith(k)) return PAGE_GUIDES[k]

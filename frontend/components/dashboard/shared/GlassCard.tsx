@@ -11,13 +11,15 @@ interface GlassCardProps {
   gradient?: 'primary' | 'blue' | 'purple' | 'green' | 'amber' | 'rose' | 'none'
 }
 
+// Restrained tints — barely-there washes that hint at segment without
+// dominating. Saturation cut by ~50% from the previous values.
 const gradientMeshes: Record<string, string> = {
-  primary: 'before:bg-gradient-to-br before:from-primary/10 before:via-primary/5 before:to-transparent',
-  blue: 'before:bg-gradient-to-br before:from-blue-500/10 before:via-blue-400/5 before:to-transparent',
-  purple: 'before:bg-gradient-to-br before:from-purple-500/10 before:via-purple-400/5 before:to-transparent',
-  green: 'before:bg-gradient-to-br before:from-emerald-500/10 before:via-emerald-400/5 before:to-transparent',
-  amber: 'before:bg-gradient-to-br before:from-amber-500/10 before:via-amber-400/5 before:to-transparent',
-  rose: 'before:bg-gradient-to-br before:from-rose-500/10 before:via-rose-400/5 before:to-transparent',
+  primary: 'before:bg-gradient-to-br before:from-primary/5 before:via-primary/2 before:to-transparent',
+  blue: 'before:bg-gradient-to-br before:from-blue-500/5 before:via-blue-400/2 before:to-transparent',
+  purple: 'before:bg-gradient-to-br before:from-purple-500/5 before:via-purple-400/2 before:to-transparent',
+  green: 'before:bg-gradient-to-br before:from-emerald-500/5 before:via-emerald-400/2 before:to-transparent',
+  amber: 'before:bg-gradient-to-br before:from-amber-500/5 before:via-amber-400/2 before:to-transparent',
+  rose: 'before:bg-gradient-to-br before:from-rose-500/5 before:via-rose-400/2 before:to-transparent',
   none: '',
 }
 

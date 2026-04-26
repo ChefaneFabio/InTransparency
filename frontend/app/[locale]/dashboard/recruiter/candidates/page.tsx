@@ -207,11 +207,12 @@ function StartOutreachAction({
 
 function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) {
   const s = match.matchScore
+  // Quiet match-score chip — bordered, not filled. Color signals tier subtly.
   const tone =
-    s >= 80 ? { bg: 'bg-emerald-100', text: 'text-emerald-800', ring: 'ring-emerald-300' } :
-    s >= 60 ? { bg: 'bg-blue-100', text: 'text-blue-800', ring: 'ring-blue-300' } :
-    s >= 40 ? { bg: 'bg-amber-100', text: 'text-amber-800', ring: 'ring-amber-300' } :
-              { bg: 'bg-gray-100', text: 'text-gray-700', ring: 'ring-gray-300' }
+    s >= 80 ? { bg: 'bg-card', text: 'text-emerald-700 dark:text-emerald-400', ring: 'ring-emerald-300/60' } :
+    s >= 60 ? { bg: 'bg-card', text: 'text-blue-700 dark:text-blue-400', ring: 'ring-blue-300/60' } :
+    s >= 40 ? { bg: 'bg-card', text: 'text-amber-700 dark:text-amber-400', ring: 'ring-amber-300/60' } :
+              { bg: 'bg-card', text: 'text-muted-foreground', ring: 'ring-border' }
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -578,54 +579,34 @@ export default function CandidatesPage() {
         </div>
       </MetricHero>
 
-      {/* Stats */}
+      {/* Stats — neutral surfaces, hairline borders, no rainbow gradients */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <GlassCard gradient="primary" hover={false}>
+        <GlassCard gradient="none" hover={false}>
           <div className="p-4">
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-primary" />
-              <div>
-                <p className="text-2xl font-bold">{filteredCandidates.length}</p>
-                <p className="text-xs text-muted-foreground">{t('stats.candidates')}</p>
-              </div>
-            </div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">{t('stats.candidates')}</p>
+            <p className="text-2xl font-bold tracking-tight mt-1">{filteredCandidates.length}</p>
           </div>
         </GlassCard>
-        <GlassCard gradient="blue" hover={false}>
+        <GlassCard gradient="none" hover={false}>
           <div className="p-4">
-            <div className="flex items-center gap-2">
-              <Code className="h-5 w-5 text-primary" />
-              <div>
-                <p className="text-2xl font-bold">
-                  {filteredCandidates.reduce((acc, c) => acc + c._count.projects, 0)}
-                </p>
-                <p className="text-xs text-muted-foreground">{t('stats.projects')}</p>
-              </div>
-            </div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">{t('stats.projects')}</p>
+            <p className="text-2xl font-bold tracking-tight mt-1">
+              {filteredCandidates.reduce((acc, c) => acc + c._count.projects, 0)}
+            </p>
           </div>
         </GlassCard>
-        <GlassCard gradient="green" hover={false}>
+        <GlassCard gradient="none" hover={false}>
           <div className="p-4">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
-              <div>
-                <p className="text-2xl font-bold">
-                  {filteredCandidates.filter(c => c.projects.some(p => p.universityVerified)).length}
-                </p>
-                <p className="text-xs text-muted-foreground">{t('stats.verified')}</p>
-              </div>
-            </div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">{t('stats.verified')}</p>
+            <p className="text-2xl font-bold tracking-tight mt-1">
+              {filteredCandidates.filter(c => c.projects.some(p => p.universityVerified)).length}
+            </p>
           </div>
         </GlassCard>
-        <GlassCard gradient="amber" hover={false}>
+        <GlassCard gradient="none" hover={false}>
           <div className="p-4">
-            <div className="flex items-center gap-2">
-              <Bookmark className="h-5 w-5 text-primary" />
-              <div>
-                <p className="text-2xl font-bold">{bookmarked.size}</p>
-                <p className="text-xs text-muted-foreground">{t('stats.saved')}</p>
-              </div>
-            </div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">{t('stats.saved')}</p>
+            <p className="text-2xl font-bold tracking-tight mt-1">{bookmarked.size}</p>
           </div>
         </GlassCard>
       </div>

@@ -4,7 +4,6 @@ import prisma from '@/lib/prisma'
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
 import { InstitutionProvider } from '@/lib/institution-context'
 import JourneyPanel from '@/components/journey/JourneyPanel'
-import HelpButton from '@/components/help/HelpButton'
 
 export default async function UniversityDashboardLayout({
   children,
@@ -34,7 +33,6 @@ export default async function UniversityDashboardLayout({
       <InstitutionProvider type={institutionType}>
         {children}
         <JourneyPanel segment="institution" />
-        <HelpButton segment="institution" />
       </InstitutionProvider>
     </div>
   )

@@ -27,6 +27,7 @@ import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/ani
 import { RecruiterActionCenter } from '@/components/dashboard/recruiter/RecruiterActionCenter'
 import PendingEnrichmentDrainer from '@/components/dashboard/recruiter/PendingEnrichmentDrainer'
 import RecruiterOnboardingGate from '@/components/dashboard/recruiter/RecruiterOnboardingGate'
+import { getTimeGreeting } from '@/lib/greeting'
 
 interface ContactUsage { used: number; limit: number; remaining: number }
 
@@ -145,7 +146,7 @@ export default function RecruiterDashboard() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex-1">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-              {t('greeting')}{user?.firstName ? `, ${user.firstName}` : ''}
+              {getTimeGreeting(locale as 'en' | 'it')}{user?.firstName ? `, ${user.firstName}` : ''}
             </h1>
             <p className="text-sm text-muted-foreground mt-1 mb-4">{t('subtitle')}</p>
             <div className="flex gap-3">

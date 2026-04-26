@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HelpCircle, X, MessageSquare, Sparkles } from 'lucide-react'
@@ -36,6 +37,7 @@ const SEEN_KEY_PREFIX = 'intransparency_pageguide_seen_'
 
 export default function HelpButton({ segment }: Props) {
   const pathname = usePathname() || ''
+  const locale = useLocale() as 'en' | 'it'
   const [open, setOpen] = useState(false)
   const [guide, setGuide] = useState<PageGuide | null>(null)
   const [showAttractor, setShowAttractor] = useState(false)
@@ -48,7 +50,7 @@ export default function HelpButton({ segment }: Props) {
   // Resolve guide whenever the path changes; show attractor pulse on first
   // visit to a route that has a registered guide (not for fallback pages).
   useEffect(() => {
-    const resolved = getGuideForPath(pathname)
+    const resolved = getGuideForPath(pathname, locale)
     setGuide(resolved)
     setOpen(false)
 
@@ -63,7 +65,7 @@ export default function HelpButton({ segment }: Props) {
     } else {
       setShowAttractor(false)
     }
-  }, [pathname, stableKey])
+  }, [pathname, stableKey, locale])
 
   const handleOpen = () => {
     setOpen(o => !o)
@@ -79,21 +81,21 @@ export default function HelpButton({ segment }: Props) {
 
   return (
     <>
-      {/* Floating "?" launcher — sits to the left of the chatbot launcher.
+      {/* "?" launcher — embedded in the top nav next to the language switcher.
           Pulses softly on first visit to a page with a registered guide. */}
       <button
         onClick={handleOpen}
-        className={`fixed bottom-6 right-24 z-30 h-10 w-10 rounded-full bg-card border shadow-md flex items-center justify-center text-muted-foreground transition-all hover:shadow-lg hover:text-foreground hover:ring-2 ${theme.ring} focus:outline-none focus-visible:ring-2`}
-        aria-label="Page help"
+        className={`relative inline-flex items-center justify-center h-9 w-9 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors focus:outline-none focus-visible:ring-2 ${theme.ring}`}
+        aria-label={locale === 'it' ? 'Aiuto pagina' : 'Page help'}
         aria-expanded={open}
       >
         {showAttractor && (
           <span
             aria-hidden
-            className={`absolute inset-0 rounded-full animate-ping ${theme.accent} opacity-30 bg-current`}
+            className={`absolute inset-1 rounded-md animate-ping ${theme.accent} opacity-25 bg-current`}
           />
         )}
-        <HelpCircle className="h-5 w-5 relative" />
+        <HelpCircle className="h-4 w-4 relative" />
       </button>
 
       <AnimatePresence>
@@ -110,24 +112,26 @@ export default function HelpButton({ segment }: Props) {
             />
 
             <motion.div
-              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+              initial={{ opacity: 0, y: -8, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.96 }}
+              exit={{ opacity: 0, y: -8, scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-              className="fixed bottom-20 right-24 z-40 w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl bg-card border shadow-2xl overflow-hidden"
+              className="fixed top-16 right-4 z-40 w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl bg-card border shadow-2xl overflow-hidden"
             >
               {/* Header */}
               <div className="flex items-start justify-between gap-3 p-4 border-b">
                 <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">About this page</p>
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {locale === 'it' ? 'Su questa pagina' : 'About this page'}
+                  </p>
                   <h3 className="text-sm font-semibold text-foreground mt-1 leading-snug">
-                    {guide?.about || 'Need help with this page?'}
+                    {guide?.about || (locale === 'it' ? 'Hai bisogno di aiuto?' : 'Need help with this page?')}
                   </h3>
                 </div>
                 <button
                   onClick={() => setOpen(false)}
                   className="text-muted-foreground hover:text-foreground p-1 -m-1 shrink-0"
-                  aria-label="Close"
+                  aria-label={locale === 'it' ? 'Chiudi' : 'Close'}
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -137,7 +141,9 @@ export default function HelpButton({ segment }: Props) {
                 {/* Actions */}
                 {guide?.actions?.length ? (
                   <div>
-                    <p className="text-xs font-semibold text-foreground mb-2">What you can do here</p>
+                    <p className="text-xs font-semibold text-foreground mb-2">
+                      {locale === 'it' ? 'Cosa puoi fare qui' : 'What you can do here'}
+                    </p>
                     <ul className="space-y-1.5">
                       {guide.actions.map((a, i) => (
                         <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
@@ -149,16 +155,17 @@ export default function HelpButton({ segment }: Props) {
                   </div>
                 ) : (
                   <p className="text-sm text-muted-foreground">
-                    No detailed guide for this page yet — open the chat below for help.
+                    {locale === 'it'
+                      ? 'Nessuna guida dettagliata per questa pagina — apri la chat per aiuto.'
+                      : 'No detailed guide for this page yet — open the chat below for help.'}
                   </p>
                 )}
 
                 {/* Premium */}
                 {guide?.premium?.length ? (
                   <div className="rounded-lg border border-amber-200 dark:border-amber-800/50 bg-amber-50/50 dark:bg-amber-950/20 p-3">
-                    <p className="text-[10px] uppercase tracking-widest font-semibold text-amber-700 dark:text-amber-300 flex items-center gap-1">
-                      <Sparkles className="h-3 w-3" />
-                      Premium unlocks here
+                    <p className="text-[10px] uppercase tracking-widest font-semibold text-amber-700 dark:text-amber-300">
+                      {locale === 'it' ? 'Premium qui sblocca' : 'Premium unlocks here'}
                     </p>
                     <ul className="mt-1.5 space-y-1">
                       {guide.premium.map((p, i) => (
@@ -173,7 +180,9 @@ export default function HelpButton({ segment }: Props) {
                 {/* Tip */}
                 {guide?.tip ? (
                   <div className="rounded-lg bg-muted/40 border border-border/60 p-3">
-                    <p className="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground">Tip</p>
+                    <p className="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground">
+                      {locale === 'it' ? 'Suggerimento' : 'Tip'}
+                    </p>
                     <p className="text-sm text-foreground mt-1 leading-relaxed">{guide.tip}</p>
                   </div>
                 ) : null}
@@ -181,7 +190,9 @@ export default function HelpButton({ segment }: Props) {
                 {/* Related pages */}
                 {guide?.related?.length ? (
                   <div>
-                    <p className="text-xs font-semibold text-foreground mb-2">Related</p>
+                    <p className="text-xs font-semibold text-foreground mb-2">
+                      {locale === 'it' ? 'Collegate' : 'Related'}
+                    </p>
                     <div className="flex flex-wrap gap-1.5">
                       {guide.related.map((r, i) => (
                         <Link
@@ -200,9 +211,10 @@ export default function HelpButton({ segment }: Props) {
 
               {/* Footer — open chat fallback */}
               <div className="p-3 border-t bg-muted/20">
-                <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                  <MessageSquare className={`h-3 w-3 ${theme.accent}`} />
-                  Need more? Use the chat (bottom-right) — it knows this page too.
+                <p className="text-xs text-muted-foreground">
+                  {locale === 'it'
+                    ? 'Serve di più? Usa la chat in basso a destra — conosce anche questa pagina.'
+                    : 'Need more? Use the chat (bottom-right) — it knows this page too.'}
                 </p>
               </div>
             </motion.div>

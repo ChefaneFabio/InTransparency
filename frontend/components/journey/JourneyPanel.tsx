@@ -2,9 +2,10 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import { Link } from '@/navigation'
+import { useLocale } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ChevronUp, ChevronDown, X, RotateCcw } from 'lucide-react'
-import { JOURNEYS, type JourneySegment, type JourneyStep } from '@/lib/journeys'
+import { getJourney, type JourneySegment } from '@/lib/journeys'
 
 /**
  * Ambient journey companion.
@@ -90,9 +91,29 @@ const SEGMENT_THEME: Record<JourneySegment, { accent: string; ring: string; bg: 
   },
 }
 
-export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: Props) {
-  const journey = JOURNEYS[segment]
+export default function JourneyPanel({ segment, reopenLabel }: Props) {
+  const locale = useLocale() as 'en' | 'it'
+  const journey = getJourney(segment, locale)
   const theme = SEGMENT_THEME[segment]
+  const L = locale === 'it'
+    ? {
+        reopen: reopenLabel || 'Mostra journey',
+        next: 'Prossimo',
+        allDone: 'Tutto fatto — bel lavoro.',
+        hide: 'Nascondi journey',
+        markDone: (label: string) => `Marca "${label}" completato`,
+        markUndone: (label: string) => `Marca "${label}" non completato`,
+        allCheckedOff: 'Tutto spuntato. Il pannello continua a tracciare la tua attività — togli la spunta a uno step per rivisitarlo.',
+      }
+    : {
+        reopen: reopenLabel || 'Show journey',
+        next: 'Next',
+        allDone: 'All done — nice work.',
+        hide: 'Hide journey',
+        markDone: (label: string) => `Mark "${label}" done`,
+        markUndone: (label: string) => `Mark "${label}" not done`,
+        allCheckedOff: "Everything's checked off. The journey panel will keep tracking your activity — uncheck any step to revisit.",
+      }
   const [stepStates, setStepStates] = useState<Record<string, StepState>>({})
   const [expanded, setExpanded] = useState(false)
   const [dismissed, setDismissed] = useState(false)
@@ -187,10 +208,10 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
       <button
         onClick={() => setDismissed(false)}
         className="fixed bottom-4 left-4 z-30 flex items-center gap-2 px-3 py-2 rounded-full bg-card border shadow-md text-xs text-muted-foreground hover:text-foreground hover:shadow-lg transition-all"
-        aria-label={reopenLabel}
+        aria-label={L.reopen}
       >
         <RotateCcw className="h-3 w-3" />
-        {reopenLabel}
+        {L.reopen}
         <span className={`text-[10px] font-semibold ${theme.accent}`}>{completedCount}/{totalCount}</span>
       </button>
     )
@@ -235,10 +256,10 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-foreground leading-tight">{journey.title}</p>
             {allDone ? (
-              <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5">All done — nice work.</p>
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5">{L.allDone}</p>
             ) : nextStep ? (
               <p className="text-xs text-muted-foreground mt-0.5 truncate">
-                Next: <span className="text-foreground font-medium">{nextStep.label}</span>
+                {L.next}: <span className="text-foreground font-medium">{nextStep.label}</span>
               </p>
             ) : null}
           </div>
@@ -258,7 +279,7 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
                 }
               }}
               className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors cursor-pointer"
-              aria-label="Hide journey"
+              aria-label={L.hide}
             >
               <X className="h-3.5 w-3.5" />
             </span>
@@ -299,7 +320,7 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
                               ? 'bg-emerald-500 text-white'
                               : 'border-2 border-muted-foreground/30 hover:border-foreground/60'
                           }`}
-                          aria-label={done ? `Mark "${step.label}" not done` : `Mark "${step.label}" done`}
+                          aria-label={done ? L.markUndone(step.label) : L.markDone(step.label)}
                         >
                           {done && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
                         </button>
@@ -326,7 +347,7 @@ export default function JourneyPanel({ segment, reopenLabel = 'Show journey' }: 
                 })}
                 {allDone && (
                   <p className="text-xs text-emerald-700 dark:text-emerald-400 px-1.5 pt-1 leading-relaxed">
-                    Everything's checked off. The journey panel will keep tracking your activity — uncheck any step to revisit.
+                    {L.allCheckedOff}
                   </p>
                 )}
               </div>
