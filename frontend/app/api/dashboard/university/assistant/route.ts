@@ -15,11 +15,11 @@ import Anthropic from '@anthropic-ai/sdk'
  * hasn't had a placement yet this year?"), Claude translates that into
  * read-only queries against the institution's workspace data.
  *
- * PREMIUM-gated: a CORE institution can see the assistant UI but
- * writes/reads through this endpoint require PREMIUM. All tool calls
- * are audit-logged with the institution id, the user id, and the
- * resolved query — this is the compliance artifact we sell to
- * universities worried about AI Act obligations.
+ * Quota: Free Core gets 50 queries/month (counted by the AssistantTurn
+ * audit-event written below). Institutional Premium is unlimited. All tool
+ * calls are audit-logged with the institution id, the user id, and the
+ * resolved query — this is the compliance artifact we sell to universities
+ * worried about AI Act obligations.
  *
  * Tools are strictly read-only. The assistant cannot change stages,
  * send messages, or touch student data directly — it reports what
@@ -379,7 +379,8 @@ export async function POST(req: NextRequest) {
     // Use the first staff institution (typical staff work at one institution)
     const institutionId = scope.staffInstitutionIds[0]
 
-    // PREMIUM-gate
+    // Quota gate (50/mo for Free Core, unlimited for Premium). Counted via
+    // AssistantTurn audit events — see below for the corresponding write.
     if (!scope.isPlatformAdmin) {
       const gate = await checkPremium(institutionId, 'assistant.query')
       if (gate) return gate
@@ -392,6 +393,20 @@ export async function POST(req: NextRequest) {
     if (clientMessages.length === 0) {
       return NextResponse.json({ error: 'messages required' }, { status: 400 })
     }
+
+    // Turn marker — one per accepted POST. checkPremium counts these to
+    // enforce the 50/month Free Core quota. Tool invocations within the
+    // turn are logged separately under entityType: 'AssistantQuery'.
+    const turnId = `turn_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+    await audit({
+      actorId: session.user.id,
+      actorRole: 'INSTITUTION_STAFF',
+      action: 'assistant.turn.start',
+      entityType: 'AssistantTurn',
+      entityId: turnId,
+      payload: { messageCount: clientMessages.length },
+      institutionId,
+    })
 
     const messages: Anthropic.MessageParam[] = clientMessages.map(m => ({
       role: m.role,

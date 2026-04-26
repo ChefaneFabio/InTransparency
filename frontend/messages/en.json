@@ -284,7 +284,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "2 Prizes at Start Cup Bergamo 2025 • In discussion with Università di Bergamo",
+      "serviceBadge": "2 Prizes at Start Cup Bergamo 2025 • Pilot at Università di Bergamo",
       "segmentLabels": {
         "students": "Students",
         "institutes": "Institutes",
@@ -300,7 +300,7 @@
         "secondaryCTA": "Learn More",
         "benefits": [
           "Companies find you for what you can actually do",
-          "Your university verifies your work",
+          "Professors can review and endorse your projects",
           "Free for students"
         ],
         "features": [
@@ -322,7 +322,7 @@
       },
       "universities": {
         "badge": "For Universities, ITS & Schools",
-        "headlinePart1": "Every Graduate Visible.",
+        "headlinePart1": "Every Student Visible.",
         "headlinePart2": "Every Outcome Measurable.",
         "description": "",
         "descriptionStrong": "",
@@ -336,7 +336,7 @@
         "features": [
           {
             "title": "Student Visibility",
-            "description": "Companies discover your verified graduates directly"
+            "description": "Companies discover your students and graduates directly — endorsed by professors when available"
           },
           {
             "title": "Verification Badge",
@@ -360,7 +360,7 @@
         "primaryCTA": "Start Finding Talent",
         "secondaryCTA": "Learn More",
         "benefits": [
-          "Skills verified by the student's university",
+          "Skills with optional professor endorsement",
           "Real projects, real grades — not resume claims",
           "Full access, free to start"
         ],
@@ -396,32 +396,32 @@
         "students": {
           "headline1": "Discover What You're Good At.",
           "headline2": "Then Prove It.",
-          "subheadline": "Upload your projects. Your university verifies them. Your skills become visible to the right people. No CV rewriting, no guessing — just proof.",
+          "subheadline": "Upload your projects. Professors can review and endorse them. Your skills become visible to the right people. No CV rewriting, no guessing — just proof.",
           "cta": "Build Your Portfolio",
           "benefits": [
-            "Your university verifies your work",
+            "Optional professor endorsement on your projects",
             "Skills mapped automatically from your projects",
             "Get discovered without sending applications"
           ]
         },
         "institutions": {
-          "headline1": "Every Graduate Visible.",
+          "headline1": "Every Student Visible.",
           "headline2": "Every Outcome Measurable.",
-          "subheadline": "Your students upload projects. You verify with one click. Companies discover them year-round. You see real placement data — not annual surveys.",
+          "subheadline": "Your students upload projects. Professors can endorse them with one click — when they have time. Companies discover students year-round. You see real placement data, not annual surveys.",
           "cta": "Become an Academic Partner",
           "benefits": [
             "Real-time placement analytics, not surveys",
-            "One-click student verification",
-            "Free for all academic partners"
+            "Optional one-click endorsement by professors",
+            "Free Core forever for academic partners"
           ]
         },
         "companies": {
           "headline1": "A Bad Hire Costs You.",
           "headline2": "We Help You Get It Right.",
-          "subheadline": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer — across every discipline.",
+          "subheadline": "Students upload real projects, often with optional professor endorsements. You see actual work — not self-reported CVs — before you ever make an offer. Every discipline.",
           "cta": "Start Finding Talent",
           "benefits": [
-            "Verified projects, not self-reported CVs",
+            "Real projects, with optional professor endorsement",
             "Every discipline — tech, business, design, law",
             "Contact candidates directly"
           ]
@@ -430,7 +430,7 @@
       "exploreByRole": "Explore by role",
       "socialProof": {
         "startCup": "2 Prizes at Start Cup Bergamo 2025",
-        "unibgPilot": "In discussion with Università degli Studi di Bergamo"
+        "unibgPilot": "Pilot at Università degli Studi di Bergamo"
       }
     },
     "problem": {
@@ -987,7 +987,7 @@
       "operational": "All systems operational",
       "gdpr": "GDPR Compliant",
       "poweredBy": "Smart Technology",
-      "pilotBergamo": "In discussion with UniBG"
+      "pilotBergamo": "Pilot at UniBG"
     },
     "copyright": "© 2025-2026 InTransparency. All rights reserved.",
     "support": "Support",
@@ -1816,6 +1816,16 @@
       "formDescription": "We'll verify your institutional email",
       "freemiumNote": "Freemium Platform - No setup fees, no hidden charges",
       "institutionalEmail": "Institutional Email",
+      "institutionName": "Institution name",
+      "institutionNamePlaceholder": "Università degli Studi di…",
+      "institutionType": "Type",
+      "country": "Country",
+      "types": {
+        "publicUniversity": "Public University",
+        "privateUniversity": "Private University",
+        "its": "ITS Academy",
+        "school": "High School"
+      },
       "mobileBenefitsTitle": "Why universities choose us:",
       "mobileBenefits": {
         "0": "Verified student portfolios",
@@ -2169,12 +2179,12 @@
         "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Upload your files and your real competencies are mapped automatically."
       },
       "1": {
-        "title": "Your University Verifies",
-        "desc": "Your school confirms the project is real and adds grades, ECTS, and a verification badge. This makes your portfolio trusted and credible."
+        "title": "Optional Professor Endorsement",
+        "desc": "When a professor or assistant has time, they can review a project, confirm it's real, and add grades, ECTS, and a verification badge. Endorsement is optional — your portfolio stays visible either way."
       },
       "2": {
         "title": "Get Noticed",
-        "desc": "Your verified portfolio becomes visible to the right people. No more sending applications into the void — let your work open doors for you."
+        "desc": "Your portfolio becomes visible to the right people. Endorsed work carries an extra trust signal. No more sending applications into the void — let your work open doors for you."
       },
       "title": "How It Works for You",
       "subtitle": "Three steps from project to verified portfolio."
@@ -2243,7 +2253,7 @@
       "items": {
         "0": {
           "question": "Is it really free?",
-          "answer": "Yes, completely free for students. No hidden costs, no premium tiers. You upload, your university verifies, and your portfolio becomes visible."
+          "answer": "Yes, the Free plan is free forever. Premium is optional at €5/mo (or €45/yr). You upload your projects, professors can endorse them when they want, and your portfolio becomes visible to companies."
         },
         "1": {
           "question": "What can I upload?",
@@ -2269,7 +2279,7 @@
       "badge": "For Companies, Agencies & HR Teams — All Industries",
       "title": "A Bad Hire Costs You Time and Money.",
       "titleHighlight": "We Help You Get It Right.",
-      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer. 5 free contacts every month, then subscribe when you scale."
+      "subtitle": "Students upload real projects, often with optional professor endorsements. You see actual work — not self-reported CVs — before you make an offer. 5 free contacts every month, then subscribe when you scale."
     },
     "steps": {
       "0": {
@@ -2316,6 +2326,7 @@
       "subtitle": "Tools that help you find, evaluate, and connect with verified junior talent."
     },
     "diversity": {
+      "badge": "Diversity & Inclusion",
       "title": "Better Hiring Starts with Fairer Hiring",
       "subtitle": "Traditional recruitment rewards polished CVs and personal networks. Skills-based hiring levels the playing field.",
       "points": {
@@ -2383,7 +2394,7 @@
       "items": {
         "0": {
           "question": "How is this different from LinkedIn?",
-          "answer": "Every profile is backed by university-verified projects and grades — not self-reported claims. You see actual work, not buzzwords."
+          "answer": "Every profile is backed by real student projects and grades. Professors can optionally endorse projects when they review them — endorsed work carries an extra trust signal, but you always see the underlying evidence, not buzzwords."
         },
         "1": {
           "question": "What does it cost?",
@@ -2407,9 +2418,9 @@
   "forAcademicPartners": {
     "hero": {
       "badge": "For Universities, ITS & Schools",
-      "title": "Every Graduate Visible.",
+      "title": "Every Student Visible.",
       "titleHighlight": "Every Outcome Measurable.",
-      "subtitle": "Your students upload projects. You verify with one click. Companies discover them year-round. You see real placement data — not annual surveys. This is how modern career services work."
+      "subtitle": "Your students upload projects. Professors can endorse them with one click — when they have time, never required. Companies discover students year-round. You see real placement data, not annual surveys. This is how modern career services work."
     },
     "steps": {
       "0": {
@@ -3560,7 +3571,7 @@
       "cta": "Get Started Free",
       "features": {
         "0": "3 AI project analyses",
-        "1": "University verification",
+        "1": "Optional professor endorsement",
         "2": "Smart job search",
         "3": "Skill assessments",
         "4": "Contract check"
@@ -3571,14 +3582,14 @@
           "name": "Free",
           "price": "€0",
           "period": "forever",
-          "description": "Full portfolio and discovery. Unlimited applications, 3 AI project analyses, university verification included.",
+          "description": "Full portfolio and discovery. Unlimited applications, 3 AI project analyses. Professors can optionally endorse your projects when they review them.",
           "cta": "Get started free"
         },
         "premium": {
           "badge": "Premium · accelerate your career",
           "name": "Premium",
-          "price": "€3.99",
-          "period": "/mo · or €29/yr",
+          "price": "€5",
+          "period": "/mo · or €45/yr",
           "studentDiscount": "· 30-day trial · cancel anytime",
           "description": "Unlock the full Skill Path, unlimited AI, and the career tooling that actually moves the needle. Free if your university sponsors Premium.",
           "includes": "Everything in Free, plus:",
@@ -3612,7 +3623,7 @@
           "cta": "Start free",
           "features": {
             "0": "Unlimited talent search",
-            "1": "University-verified profiles with evidence",
+            "1": "Real student profiles with evidence — professor-endorsed when available",
             "2": "5 contacts every month, free (resets monthly)",
             "3": "Fit score + match reasons on every profile",
             "4": "1 active job posting",
@@ -3729,7 +3740,7 @@
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€3.99/mo · €29/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. 30-day trial, cancel anytime. If your university is a partner that sponsors Premium, it's already free for you."
+          "a": "Yes — Free covers portfolio, CV/Europass, Fit Profile, unlimited applications, 3 AI project analyses per project, basic skill path and analytics. Premium (€5/mo · €45/yr) unlocks deep skill path, 8 advanced analytics dashboards, unlimited AI, custom portfolio URL, AI Interview Coach, signed credentials. 30-day trial, cancel anytime."
         },
         "1": {
           "q": "How does the free tier work for companies?",
@@ -3740,8 +3751,8 @@
           "a": "We block further contacts and show the subscription path. We retired credit packs — there's no €10/contact, no à-la-carte. The cleanest way to keep contacting is the €89/mo Subscription which gives unlimited contacts, team seats, and the full AI suite (Hiring Advisor, Interview Kit, Decision Packs). Quota resets monthly so you never lose access entirely."
         },
         "3": {
-          "q": "Do universities and ITS pay anything?",
-          "a": "No. The full M1–M4 workspace is free forever: Inbox, Offer moderation, CRM, Placement pipeline, AI Assistant, audit log, reminder engine, analytics, scorecard. Optional add-ons (white-label, SSO, MIUR compliance, etc.) are priced à la carte — see the marketplace."
+          "q": "Do universities and ITS have to pay?",
+          "a": "No, not to start. Free Core covers the full M1–M4 workspace (Inbox, Offer moderation, CRM, Placement pipeline), basic analytics + scorecard, AI Assistant up to 50 queries/month, and a 30-day audit log — forever. Institutional Premium (€39/mo · €390/yr, 30-day trial) is the optional upgrade for institutions that need unlimited AI, advanced analytics, full audit history with CSV exports, reminder automation, and basic MIUR reports. Enterprise add-ons (white-label, SSO, ATS bridge) are priced à la carte in the marketplace."
         },
         "4": {
           "q": "Is there a contract or lock-in?",
@@ -3749,7 +3760,7 @@
         },
         "5": {
           "q": "How is this different from LinkedIn, Handshake, or JobTeaser?",
-          "a": "Every profile is backed by university-verified projects, grades, and professor endorsements — not self-reported claims. The fit score matches on motivation and culture, not just CV keywords. And the workspace is free for institutions, while Handshake charges $1K–$20K/year."
+          "a": "Every profile is backed by real projects, grades, and (when a professor takes the time) endorsements — not self-reported claims. The fit score matches on motivation and culture, not just CV keywords. And the Free Core workspace is free for institutions, while Handshake charges $1K–$20K/year."
         }
       }
     }
@@ -4200,9 +4211,9 @@
   },
   "forUniversities": {
     "hero": {
-      "badge": "In discussion with Università di Bergamo",
+      "badge": "Pilot at Università di Bergamo · available across the EU",
       "title": "Replace surveys with real-time placement proof",
-      "subtitle": "Live placement analytics, cross-border grade normalization, and verified student profiles. Currently in dialogue with Italian universities — expanding across Europe in 2026.",
+      "subtitle": "Live placement analytics, cross-border grade normalization, and verified student profiles. Available for universities, ITS, and high schools across the EU. Pilot underway at Università di Bergamo.",
       "registerCta": "Create Your Partner Account",
       "demoCta": "Schedule a Demo"
     },
@@ -4235,7 +4246,7 @@
         "title": "Università degli Studi di Bergamo",
         "subtitle": "In Discussion",
         "status": "In Discussion",
-        "description": "We're in dialogue with UniBG career services about replacing end-of-year surveys with real-time placement analytics for Computer Science and Engineering students across Lombardy employers."
+        "description": "Pilot with UniBG career services: replacing end-of-year surveys with real-time placement analytics for Computer Science and Engineering students across Lombardy employers."
       },
       "startCup": {
         "title": "Start Cup Bergamo 2025",
@@ -5732,9 +5743,24 @@
         "cancel": "Cancel",
         "thankYou": "Thank you for your response!",
         "pending": "Pending"
+      },
+      "aiAnalysisBanner": {
+        "headlineNearCap": "{remaining} AI analysis left on \"{project}\"",
+        "headlineAtCap": "AI analyses cap reached on \"{project}\"",
+        "subNearCap": "Free includes {limit} analyses per project. Premium removes the cap and adds the AI Interview Coach + signed credentials.",
+        "subAtCapSingle": "Upgrade to Premium for unlimited re-runs and the full Skill Path (€5/mo, 30-day trial).",
+        "subAtCapMulti": "{count} of your projects have used all {limit} free analyses. Upgrade to Premium for unlimited re-runs (€5/mo, 30-day trial).",
+        "cta": "Upgrade · €5/mo"
       }
     },
     "recruiter": {
+      "contactBanner": {
+        "headlineNearCap": "{used} of {limit} free contacts used this month",
+        "headlineAtCap": "Free contact quota reached for this month",
+        "subNearCap": "{percent}% of your monthly free quota. Resets {date}. Subscribe to remove the cap.",
+        "subAtCap": "Quota resets on {date}. Subscribe at €89/mo for unlimited contacts and the full AI suite.",
+        "cta": "Subscribe · €89/mo"
+      },
       "positions": {
         "title": "Position Listings",
         "subtitle": "Open positions to contact unlimited candidates",
@@ -6065,7 +6091,7 @@
         "professorEndorsements": "Professor Endorsements",
         "gradeProvenance": "Grade Provenance",
         "placementProbabilityFactors": "Placement Probability Factors",
-        "universityVerified": "University Verified"
+        "universityVerified": "Professor Endorsed"
       },
       "compare": {
         "title": "Candidate Comparison",
@@ -6205,6 +6231,25 @@
         "analyzing": "Analyzing career page...",
         "importJobs": "Import Jobs"
       }
+    },
+    "university": {
+      "usageBanner": {
+        "headlineNearCap": "You've used {used} of {limit} AI Assistant queries this month",
+        "headlineAtCap": "AI Assistant cap reached for this month",
+        "subNearCap": "{percent}% of your monthly quota. Resets {date}. Institutional Premium removes the cap entirely.",
+        "subAtCap": "Quota resets on {date}. Upgrade to Institutional Premium for unlimited queries — €39/mo, 30-day trial.",
+        "cta": "Upgrade to Premium"
+      }
+    },
+    "addonGrid": {
+      "statusAvailable": "Available now",
+      "statusBeta": "Beta — early access",
+      "statusComingSoon": "Coming soon",
+      "indicativePrice": "Indicative · {price}",
+      "comingSoonNote": "Pricing finalized at GA · join the waitlist for early-bird discount",
+      "ctaWaitlist": "Join waitlist",
+      "ctaRequest": "Request",
+      "ctaTalk": "Talk to us"
     }
   },
   "studentSettings": {
@@ -6575,7 +6620,7 @@
         "desc": "the platform analyses complexity, tools used, and innovation level of each engineering project."
       },
       "institutionBacked": {
-        "title": "University-Verified Grades",
+        "title": "Grades from Real Transcripts",
         "desc": "Grades normalized across universities using the Bologna Process. Compare students from different institutions fairly."
       },
       "personalityInsights": {
@@ -6631,7 +6676,7 @@
       },
       "verifiedSkills": {
         "title": "Institution-Verified Competencies",
-        "desc": "Soft skills scored and verified by the university — communication, teamwork, leadership, problem solving, and more."
+        "desc": "Soft skills scored from real project work — communication, teamwork, leadership, problem solving — with optional professor endorsement when available."
       },
       "decisionPack": {
         "title": "Decision Pack PDF",
@@ -6739,7 +6784,7 @@
       "whatsapp": "Hey! I'm using InTransparency to showcase my verified institutional projects to top companies. Join me and build your professional portfolio too! {link}",
       "linkedin": "Excited to be part of @InTransparency — a platform that verifies your academic projects and connects you directly with recruiters. If you're a student or recent graduate, check it out: {link}",
       "instagram": "Building my verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
-      "email": "Hi! I wanted to share InTransparency with you — it's a platform where universities verify your projects and skills, making it easier for companies to find and hire you. Sign up here: {link}"
+      "email": "Hi! I wanted to share InTransparency with you — it's a platform where you build a portfolio of real projects (with optional professor endorsements), so companies can find you for what you actually know how to do. Sign up here: {link}"
     },
     "progress": {
       "title": "Your Progress",
@@ -7104,7 +7149,7 @@
     "heroTitle": "From Degree to",
     "heroTitleHighlight": "Career",
     "heroDescription": "Build your academic portfolio with thesis, projects, and research. Companies seek graduates with verified skills.",
-    "heroSubtext": "Your university verifies your work. Employers discover your portfolio. Stand out from day one.",
+    "heroSubtext": "Professors can endorse your work as an extra layer of proof. Employers discover your portfolio. Stand out from day one.",
     "createProfile": "Create Your Free Profile",
     "howItWorks": "How It Works",
     "whatYouCanDo": "What You Can Do with InTransparency",
@@ -7298,7 +7343,7 @@
     "discoveryItem2": "Students visible without applying",
     "discoveryItem3": "Your verification badge = quality signal",
     "discoveryItem4": "Companies contact you directly through the platform",
-    "discoveryNote": "University-verified credentials employers trust",
+    "discoveryNote": "Real student credentials with optional professor endorsement",
     "matchingTitle": "Matching Service",
     "matchingBadge": "FREE for Students",
     "matchingSubtitle": "Transparent Matching",
@@ -9153,7 +9198,7 @@
     "benefits": {
       "0": {
         "title": "Verified skills, not buzzwords",
-        "description": "Every project is university-verified. See real grades, real code, real outcomes — before you even talk to the candidate."
+        "description": "Every project is real, often with optional professor endorsement. See actual grades, code, and outcomes — before you even talk to the candidate."
       },
       "1": {
         "title": "5 free contacts every month",
@@ -9179,14 +9224,14 @@
     "hero": {
       "badge": "For Agencies and HR Professionals",
       "title": "Verified candidates for your clients, at scale",
-      "subtitle": "Access a talent pool with university-verified skills. Search by skills, grades, projects — present your clients with pre-validated candidates.",
+      "subtitle": "Access a talent pool of real student work, often with optional professor endorsement. Search by skills, grades, projects — present clients with evidence-backed candidates.",
       "cta": "Create Your Account",
       "secondaryCta": "Company Features"
     },
     "benefits": {
       "0": {
         "title": "Screening already done",
-        "description": "University-verified projects, normalized grades, personality assessments. Present clients with data, not just CVs."
+        "description": "Real student projects (with optional professor endorsement), normalized grades, personality assessments. Present clients with data, not just CVs."
       },
       "1": {
         "title": "Conversational smart search",
@@ -9219,7 +9264,7 @@
     "benefits": {
       "0": {
         "title": "See the work, not the CV",
-        "description": "Real projects with code, outcomes, and university verification. You know what a candidate can do before the first interview."
+        "description": "Real projects with code, outcomes, and optional professor endorsement. You know what a candidate can do before the first interview."
       },
       "1": {
         "title": "Hiring speed",
@@ -9648,9 +9693,9 @@
       "usLabel": "InTransparency",
       "rows": {
         "0": {
-          "feature": "Skills verification",
+          "feature": "Skills evidence",
           "them": "Self-reported",
-          "us": "University-verified"
+          "us": "Real projects + optional professor endorsement"
         },
         "1": {
           "feature": "Project proof",
@@ -9780,7 +9825,7 @@
         "0": {
           "feature": "Verification",
           "them": "Anyone can claim anything",
-          "us": "University-verified projects"
+          "us": "Real projects with optional professor endorsement"
         },
         "1": {
           "feature": "Proof of work",
@@ -9866,7 +9911,7 @@
       "uploadImage": "Click to upload an image",
       "uploading": "Uploading...",
       "academic": "Academic Context (optional)",
-      "academicHint": "Link to a course for university verification.",
+      "academicHint": "Link to a course so a professor can optionally endorse this project.",
       "courseName": "Course",
       "courseNamePlaceholder": "e.g. Machine Learning",
       "grade": "Grade",
@@ -11491,7 +11536,7 @@
       },
       "verified": {
         "label": "Students with verified profile",
-        "helper": "Identity + transcript verified by the university"
+        "helper": "Identity + transcript verified by the institution (when available)"
       },
       "banner": {
         "title": "Turn on verified credentials for your first cohort",

@@ -119,7 +119,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-2">Featured Projects</h2>
           <p className="text-gray-600 mb-8">
-            All projects are university-verified and authenticated by institutional systems
+            Projects can carry an optional university endorsement when a professor reviews and signs them — look for the verification badge.
           </p>
 
           {user.projects.length === 0 ? (

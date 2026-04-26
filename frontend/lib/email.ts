@@ -374,6 +374,80 @@ export async function sendEndorsementExpiryNoticeEmail(
   await sendEmail(to, `Endorsement request for "${projectTitle}" expiring soon`, html)
 }
 
+// --- Subscription Trial Ending Email ---
+
+/**
+ * Sent ~3 days before a Stripe trial converts to paid. Triggered by the
+ * customer.subscription.trial_will_end webhook event.
+ */
+export async function sendTrialEndingEmail(
+  to: string,
+  recipientName: string,
+  tierLabel: string,
+  trialEndsAt: Date,
+  manageUrl: string
+) {
+  const dateStr = trialEndsAt.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">Your ${escapeHtml(tierLabel)} trial ends ${escapeHtml(dateStr)}</h2>
+    <p>Hi ${escapeHtml(recipientName)},</p>
+    <p>
+      Heads up — your free trial of <strong>${escapeHtml(tierLabel)}</strong> ends on
+      <strong>${escapeHtml(dateStr)}</strong>. After that you'll be charged automatically using
+      the payment method on file. No action needed if you want to keep the subscription.
+    </p>
+    <div style="background: #FFFBEB; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #FDE68A;">
+      <p style="margin: 0; color: #92400E;">
+        Want to cancel before the charge? You can do it in one click from your billing settings — no friction, no questions.
+      </p>
+    </div>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${manageUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Manage Subscription
+      </a>
+    </div>
+  `)
+  await sendEmail(to, `Your ${tierLabel} trial ends ${dateStr}`, html)
+}
+
+// --- Subscription Payment Failed Email ---
+
+/**
+ * Sent on the first invoice.payment_failed event. Stripe will retry payment
+ * automatically over the following days; this email gives the customer a
+ * heads-up so they can update their card before retries are exhausted.
+ */
+export async function sendPaymentFailedEmail(
+  to: string,
+  recipientName: string,
+  tierLabel: string,
+  amount: number,        // major units (euros)
+  currency: string,      // 'eur'
+  manageUrl: string
+) {
+  const amountStr = `${currency.toUpperCase() === 'EUR' ? '€' : currency.toUpperCase() + ' '}${amount.toFixed(2)}`
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">We couldn't charge your card</h2>
+    <p>Hi ${escapeHtml(recipientName)},</p>
+    <p>
+      We tried to charge <strong>${escapeHtml(amountStr)}</strong> for your
+      <strong>${escapeHtml(tierLabel)}</strong> subscription, but the card was declined.
+      We'll retry automatically over the next few days.
+    </p>
+    <div style="background: #FEF2F2; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #FECACA;">
+      <p style="margin: 0; color: #991B1B;">
+        To avoid losing access, please update your payment method as soon as possible.
+      </p>
+    </div>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${manageUrl}" style="display: inline-block; background: #DC2626; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Update Payment Method
+      </a>
+    </div>
+  `)
+  await sendEmail(to, `Payment failed for your ${tierLabel} subscription`, html)
+}
+
 // --- Shared email wrapper ---
 
 function emailWrapper(content: string): string {

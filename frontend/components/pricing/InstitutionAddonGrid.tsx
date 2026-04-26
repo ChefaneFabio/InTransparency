@@ -21,9 +21,9 @@ const TINT: Record<InstitutionAddon['tint'], { bg: string; border: string; icon:
 }
 
 const STATUS_COPY: Record<InstitutionAddon['status'], { label: string; className: string }> = {
-  available: { label: 'Available', className: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800' },
-  beta:      { label: 'Beta',      className: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800' },
-  roadmap:   { label: 'On request',className: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-700' },
+  available: { label: 'Available now', className: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800' },
+  beta:      { label: 'Beta — early access', className: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800' },
+  roadmap:   { label: 'Coming soon', className: 'bg-slate-200 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700' },
 }
 
 interface Props {
@@ -57,9 +57,14 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.04 * i, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -3 }}
-            className={`relative rounded-2xl border ${tint.border} bg-gradient-to-br ${tint.bg} p-5 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow`}
+            whileHover={!isComingSoon ? { y: -3 } : undefined}
+            className={`relative rounded-2xl border ${tint.border} bg-gradient-to-br ${tint.bg} p-5 flex flex-col h-full shadow-sm transition-shadow ${
+              isComingSoon ? 'opacity-75' : 'hover:shadow-md'
+            }`}
           >
+            {isComingSoon && (
+              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-300/40 dark:ring-slate-700/40" aria-hidden />
+            )}
             <div className="flex items-start justify-between gap-3 mb-3">
               <div className={`w-11 h-11 rounded-xl ${tint.icon} flex items-center justify-center shrink-0`}>
                 <Icon className="h-5 w-5" />
@@ -84,18 +89,23 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
             {/* Price + CTA */}
             <div className="mt-4 pt-4 border-t flex items-end justify-between gap-3">
               <div>
-                <div className={`text-lg font-bold tracking-tight ${tint.text}`}>
-                  {formatAddonPrice(a.pricing, locale)}
+                <div className={`text-lg font-bold tracking-tight ${isComingSoon ? 'text-muted-foreground' : tint.text}`}>
+                  {isComingSoon ? `Indicative · ${formatAddonPrice(a.pricing, locale)}` : formatAddonPrice(a.pricing, locale)}
                 </div>
-                {'note' in a.pricing && a.pricing.note && (
+                {'note' in a.pricing && a.pricing.note && !isComingSoon && (
                   <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight max-w-[180px]">
                     {a.pricing.note}
+                  </div>
+                )}
+                {isComingSoon && (
+                  <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight max-w-[180px]">
+                    Pricing finalized at GA · join the waitlist for early-bird discount
                   </div>
                 )}
               </div>
               <Button size="sm" variant="outline" asChild>
                 <Link href={contactHref(a) as any}>
-                  {authenticated ? 'Request' : 'Talk to us'}
+                  {isComingSoon ? 'Join waitlist' : authenticated ? 'Request' : 'Talk to us'}
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
               </Button>

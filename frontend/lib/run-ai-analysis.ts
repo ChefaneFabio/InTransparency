@@ -60,7 +60,8 @@ export async function runAIAnalysis(projectId: string, projectData: ProjectData)
           analyzedAt: new Date().toISOString()
         })),
 
-        aiAnalyzed: true
+        aiAnalyzed: true,
+        aiAnalysisCount: { increment: 1 },
       }
     })
 

@@ -43,7 +43,7 @@ export const COMMANDS: Command[] = [
   { id: 'student.fit-profile', label: { en: 'My fit profile', it: 'Il mio fit profile' }, group: { en: 'Navigate', it: 'Vai a' }, href: '/dashboard/student/fit-profile', roles: ['student'] },
   { id: 'student.self-discovery', label: { en: 'Run self-discovery', it: 'Auto-esplorazione' }, hint: { en: '6-step exploration of values + skills', it: '6 passi: valori + competenze' }, group: { en: 'Create', it: 'Crea' }, href: '/self-discovery', roles: ['student'], keywords: ['discovery', 'capire chi sei'] },
   { id: 'student.messages', label: { en: 'Messages', it: 'Messaggi' }, group: { en: 'Navigate', it: 'Vai a' }, href: '/dashboard/student/messages', roles: ['student'] },
-  { id: 'student.upgrade', label: { en: 'Upgrade to Premium', it: 'Passa a Premium' }, hint: { en: '€3.99/mo · 30-day trial', it: '€3,99/mese · trial 30 giorni' }, group: { en: 'Account', it: 'Account' }, href: '/dashboard/student/upgrade', roles: ['student'], keywords: ['premium', 'paid'] },
+  { id: 'student.upgrade', label: { en: 'Upgrade to Premium', it: 'Passa a Premium' }, hint: { en: '€5/mo · 30-day trial', it: '€5/mese · trial 30 giorni' }, group: { en: 'Account', it: 'Account' }, href: '/dashboard/student/upgrade', roles: ['student'], keywords: ['premium', 'paid'] },
 
   // ── RECRUITER ──
   { id: 'recruiter.home', label: { en: 'Go to dashboard', it: 'Vai al dashboard' }, group: { en: 'Navigate', it: 'Vai a' }, href: '/dashboard/recruiter', roles: ['recruiter'], keywords: ['home'] },

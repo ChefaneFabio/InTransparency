@@ -28,7 +28,11 @@ export async function GET(_req: NextRequest) {
     })
     if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
-    const FREE_CONTACT_LIMIT = 5
+    // Mirror the gate in /api/messages/route.ts:
+    //   corporate domain → 5 free contacts/month (shared across the company)
+    //   personal email   → 2 free contacts/month (per user, anti-abuse)
+    const FREE_CONTACT_LIMIT_CORPORATE = 5
+    const FREE_CONTACT_LIMIT_PERSONAL  = 2
     const isUnlimited = user.subscriptionTier === 'RECRUITER_ENTERPRISE'
 
     const totalContacted = await prisma.contactUsage.count({
@@ -51,7 +55,8 @@ export async function GET(_req: NextRequest) {
 
     const emailDomain = user.email.split('@')[1]?.toLowerCase()
     const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
-    const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
+    const isCompanyDomain = !!emailDomain && !freeProviders.includes(emailDomain)
+    const FREE_CONTACT_LIMIT = isCompanyDomain ? FREE_CONTACT_LIMIT_CORPORATE : FREE_CONTACT_LIMIT_PERSONAL
 
     let monthlyDomainContactCount = 0
     if (isCompanyDomain) {
@@ -75,6 +80,7 @@ export async function GET(_req: NextRequest) {
       model: 'freemium',
       unlimited: false,
       tier: user.subscriptionTier,
+      emailType: isCompanyDomain ? 'corporate' : 'personal',
       totalContacted,
       monthlyContactsUsed: monthlyDomainContactCount,
       monthlyFreeLimit: FREE_CONTACT_LIMIT,

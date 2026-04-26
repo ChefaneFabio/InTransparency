@@ -42,23 +42,11 @@ export interface InstitutionAddon {
 }
 
 export const INSTITUTION_ADDONS: InstitutionAddon[] = [
-  {
-    key: 'premium-for-all',
-    title: 'Student Premium — for everyone',
-    oneLine: 'Sponsor Premium for every active student',
-    description:
-      "Unlock deep Skill Path, advanced analytics, unlimited AI analyses, custom portfolio URL, AI Interview Coach, Europass signed credentials — for every active student affiliated with your institution. Students see the tools unlocked with a small badge crediting you.",
-    icon: GraduationCap,
-    pricing: {
-      kind: 'per-unit',
-      eurosPerUnit: 1,
-      unitLabel: 'student / year',
-      note: '€1/student/yr · volume discounts from 2k+ · min €750/yr',
-    },
-    target: 'Institutions extending career tools to all students',
-    status: 'available',
-    tint: 'emerald',
-  },
+  // The "Premium-for-all" sponsorship add-on (€1/student/yr) was retired
+  // 2026-04-26. Per the spec lock-in: universities and ITS do NOT pay for
+  // their students. Students subscribe individually at €5/mo or €45/yr.
+  // The Institution.sponsorsPremium schema column is kept for potential
+  // free-pilot use but is no longer offered as a paid add-on.
   {
     key: 'white-label',
     title: 'White-label workspace',

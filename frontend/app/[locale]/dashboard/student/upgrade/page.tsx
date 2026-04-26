@@ -27,7 +27,7 @@ import type { PremiumEntitlement } from '@/lib/entitlements'
  * Student Premium upgrade page.
  * - If the student is already Premium (personal or sponsored), confirms it.
  * - If sponsored by their institution, credits the sponsor.
- * - Otherwise, shows the €3.99/mo (or €29/yr) offer with the full feature list.
+ * - Otherwise, shows the €5/mo (or €45/yr) offer with the full feature list.
  */
 
 const PREMIUM_FEATURES = [
@@ -203,14 +203,14 @@ export default function StudentUpgradePage() {
           </div>
           <div className="shrink-0 text-right">
             <div className="flex items-baseline gap-1">
-              <span className="text-4xl font-bold tracking-tight">€3.99</span>
+              <span className="text-4xl font-bold tracking-tight">€5</span>
               <span className="text-sm text-muted-foreground">/mo</span>
             </div>
             <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
-              First month free · cancel anytime
+              30-day free trial · cancel anytime
             </p>
             <p className="text-[11px] text-muted-foreground mt-0.5">
-              or €29/yr · save 39%
+              or €45/yr · save 25%
             </p>
           </div>
         </div>
@@ -223,7 +223,7 @@ export default function StudentUpgradePage() {
           </a>
           <a href="/api/checkout/student-premium?plan=annual" className="flex-1">
             <Button variant="outline" className="w-full" size="lg">
-              Pay annually · €29/yr
+              Pay annually · €45/yr
             </Button>
           </a>
         </div>

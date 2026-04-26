@@ -3,7 +3,8 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getUserScope } from '@/lib/rbac/institution-scope'
-import { checkPremium } from '@/lib/rbac/plan-check'
+import { getInstitutionPlan } from '@/lib/rbac/plan-check'
+import { getInstitutionTier } from '@/lib/config/pricing'
 
 /**
  * GET /api/dashboard/university/audit-log
@@ -20,8 +21,9 @@ import { checkPremium } from '@/lib/rbac/plan-check'
  *   since      — ISO date
  *   limit      — default 100, max 500
  *
- * PREMIUM-gated. Reads are blocked on CORE so staff can't browse audit
- * trails without upgrading — the log itself is the product value.
+ * Plan behavior: Free Core sees the last 30 days. Institutional Premium
+ * sees the full history with no retention clamp. CSV export is a separate
+ * Premium-only endpoint (see audit.export.csv gate).
  */
 export async function GET(req: NextRequest) {
   try {
@@ -40,10 +42,12 @@ export async function GET(req: NextRequest) {
 
     const institutionId = scope.staffInstitutionIds[0]
 
-    if (!scope.isPlatformAdmin) {
-      const gate = await checkPremium(institutionId, 'assistant.query')
-      if (gate) return gate
-    }
+    // Retention clamp — Free Core sees only the last `auditLogDays` days.
+    // PREMIUM has -1 (unlimited) so no clamp is applied. Platform admins
+    // bypass the clamp entirely.
+    const plan = await getInstitutionPlan(institutionId)
+    const tier = getInstitutionTier(plan)
+    const retentionDays = tier.limits.auditLogDays
 
     const { searchParams } = new URL(req.url)
     const where: any = { institutionId }
@@ -60,11 +64,19 @@ export async function GET(req: NextRequest) {
     const entityId = searchParams.get('entityId')
     if (entityId) where.entityId = entityId
 
-    const since = searchParams.get('since')
-    if (since) {
-      const d = new Date(since)
-      if (!isNaN(d.getTime())) where.createdAt = { gte: d }
-    }
+    // Resolve the effective `since` floor: max of caller-provided since and
+    // the plan's retention floor (so Free Core can never reach beyond 30d).
+    const sinceParam = searchParams.get('since')
+    const callerSince = sinceParam ? new Date(sinceParam) : null
+    const planFloor =
+      retentionDays > 0 && !scope.isPlatformAdmin
+        ? new Date(Date.now() - retentionDays * 24 * 60 * 60 * 1000)
+        : null
+    const effectiveSince =
+      callerSince && !isNaN(callerSince.getTime()) && planFloor
+        ? new Date(Math.max(callerSince.getTime(), planFloor.getTime()))
+        : (callerSince && !isNaN(callerSince.getTime()) ? callerSince : planFloor)
+    if (effectiveSince) where.createdAt = { gte: effectiveSince }
 
     const limit = Math.min(parseInt(searchParams.get('limit') || '100', 10), 500)
 
@@ -121,6 +133,13 @@ export async function GET(req: NextRequest) {
         action: a.action,
         count: a._count._all,
       })),
+      // Plan envelope — lets the UI render "showing last 30 days · upgrade
+      // for full history" when the institution is on Free Core.
+      plan: plan ?? 'CORE',
+      retentionDays: retentionDays < 0 ? null : retentionDays,
+      effectiveSince: effectiveSince ? effectiveSince.toISOString() : null,
+      csvExportAvailable: tier.limits.csvExports,
+      upgradeUrl: tier.limits.csvExports ? null : '/pricing?for=institutions',
     })
   } catch (error: any) {
     console.error('Audit log fetch error:', error)

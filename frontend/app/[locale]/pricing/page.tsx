@@ -246,7 +246,7 @@ export default function PricingPage() {
                         </div>
                         <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                           {t('students.tiers.free.description', {
-                            defaultValue: 'Tutto ciò che serve per farti notare dalle aziende: portfolio verificato, skills, applicazioni illimitate.',
+                            defaultValue: 'Everything you need to get noticed by companies: verified portfolio, skills, unlimited applications.',
                           })}
                         </p>
                       </CardHeader>
@@ -286,10 +286,10 @@ export default function PricingPage() {
                         </div>
                         <div className="flex items-baseline gap-1">
                           <span className="text-4xl font-bold tracking-tight">
-                            {t('students.tiers.premium.price', { defaultValue: '€3.99' })}
+                            {t('students.tiers.premium.price', { defaultValue: '€5' })}
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            {t('students.tiers.premium.period', { defaultValue: '/mo · or €29/yr' })}
+                            {t('students.tiers.premium.period', { defaultValue: '/mo · or €45/yr' })}
                           </span>
                         </div>
                         <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
@@ -331,7 +331,7 @@ export default function PricingPage() {
                         <div className="text-[11px] text-muted-foreground mb-4 p-2.5 bg-primary/5 rounded-md border border-primary/10">
                           {t('students.tiers.premium.note', {
                             defaultValue:
-                              'Cancel anytime. Institutional pricing: if your university is a partner, Premium is free for you — check your dashboard.',
+                              '30-day free trial · cancel in one click · save 25% with annual billing.',
                           })}
                         </div>
                         <Button className="w-full bg-gradient-to-br from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white shadow-lg shadow-primary/20" asChild>
@@ -491,12 +491,19 @@ export default function PricingPage() {
                             </li>
                           ))}
                         </ul>
-                        <Button className="w-full bg-gradient-to-br from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white shadow-lg shadow-violet-500/25" asChild>
-                          <Link href="/contact?subject=institutional-premium">
-                            {t('universities.tiers.premium.cta', { defaultValue: 'Start Premium · 30-day trial' })}
-                            <ArrowRight className="h-4 w-4 ml-2" />
-                          </Link>
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button className="flex-1 bg-gradient-to-br from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white shadow-lg shadow-violet-500/25" asChild>
+                            <Link href="/api/checkout/institutional-premium?plan=monthly">
+                              {t('universities.tiers.premium.cta', { defaultValue: 'Start trial · €39/mo' })}
+                              <ArrowRight className="h-4 w-4 ml-2" />
+                            </Link>
+                          </Button>
+                          <Button variant="outline" className="flex-1 border-violet-300 text-violet-700 hover:bg-violet-50 dark:hover:bg-violet-950/30" asChild>
+                            <Link href="/api/checkout/institutional-premium?plan=annual">
+                              {t('universities.tiers.premium.ctaAnnual', { defaultValue: 'Pay annually · €390/yr · save 17%' })}
+                            </Link>
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -511,7 +518,7 @@ export default function PricingPage() {
                 >
                   {t('universities.reassurance', {
                     defaultValue:
-                      'The workspace is funded by the companies that recruit from it. Universities and ITS never pay — students never pay. Every AI action is logged for AI Act compliance.',
+                      'Free Core is free forever. Premium and add-ons are optional — pick them only when you outgrow the limits. Every AI action is logged for AI Act compliance.',
                   })}
                 </motion.p>
 

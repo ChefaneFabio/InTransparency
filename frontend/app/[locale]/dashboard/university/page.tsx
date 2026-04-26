@@ -26,6 +26,7 @@ import { StatCard } from '@/components/dashboard/shared/StatCard'
 import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
 import { WorkspaceActionCenter } from '@/components/dashboard/university/WorkspaceActionCenter'
+import { UsageBanner } from '@/components/dashboard/university/UsageBanner'
 
 interface UniversityStats {
   totalStudents: number; verifiedStudents: number; activeProfiles: number; recruiterViews: number
@@ -142,6 +143,9 @@ export default function UniversityDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-5 pb-12 px-4">
+      {/* Quota nudge — only shows on Free Core when AI usage hits 70% of cap */}
+      <UsageBanner />
+
       {/* Workspace Action Center — surfaces pending items across all modules */}
       <WorkspaceActionCenter />
 

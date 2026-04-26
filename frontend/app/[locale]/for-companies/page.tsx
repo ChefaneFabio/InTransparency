@@ -169,7 +169,7 @@ export default function ForCompaniesPage() {
             >
               <motion.div variants={fadeUp} custom={0}>
                 <Badge className="mb-4 bg-emerald-100 text-emerald-800 border-emerald-200">
-                  Diversity & Inclusion
+                  {t('diversity.badge', { defaultValue: 'Diversity & Inclusion' })}
                 </Badge>
               </motion.div>
               <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-4xl font-bold mb-4">

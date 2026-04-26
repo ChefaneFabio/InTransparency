@@ -13,6 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
 import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPanel'
 import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringConfirmationBanner'
+import { AIAnalysisQuotaBanner } from '@/components/dashboard/student/AIAnalysisQuotaBanner'
 import { PendingVerificationsCard } from '@/components/dashboard/student/PendingVerificationsCard'
 import { OnboardingGate } from '@/components/dashboard/student/OnboardingGate'
 import { VisibilityWidget } from '@/components/dashboard/student/VisibilityWidget'
@@ -185,6 +186,8 @@ export default function StudentDashboard() {
         />
       )}
       <HiringConfirmationBanner />
+      {/* AI quota nudge — only shows on Free when a project hits 2/3 or 3/3 */}
+      <AIAnalysisQuotaBanner />
       <OnboardingGate />
       <PendingVerificationsCard />
 

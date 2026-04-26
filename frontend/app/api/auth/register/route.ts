@@ -13,8 +13,13 @@ const registerSchema = z.object({
   role: z.enum(["STUDENT", "RECRUITER", "UNIVERSITY", "TECHPARK", "PROFESSOR"]).optional(),
 })
 
-// Roles that anyone can self-assign at registration
-const SELF_ASSIGNABLE_ROLES = ["STUDENT", "RECRUITER", "UNIVERSITY", "TECHPARK", "PROFESSOR"] as const
+// Roles that anyone can self-assign through THIS generic endpoint.
+// UNIVERSITY is intentionally excluded — it requires the dedicated
+// /api/auth/register/academic-partner flow which also creates the Institution
+// row + admin staff link. Allowing UNIVERSITY here would leave an orphan
+// admin user with no institution to administer. TECHPARK and PROFESSOR
+// remain admin-approved.
+const SELF_ASSIGNABLE_ROLES = ["STUDENT", "RECRUITER"] as const
 
 export async function POST(req: NextRequest) {
   try {

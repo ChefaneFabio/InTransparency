@@ -725,11 +725,16 @@ model Project {
   recruiterViews Int     @default(0)
 
   // AI Analysis (discipline-specific)
-  aiAnalyzed      Boolean @default(false)
-  complexityScore Int? // Technical complexity, research rigor, design quality
-  innovationScore Int? // Creativity, originality
-  marketRelevance Int? // Industry demand, practical application
-  aiInsights      Json? // Store detailed discipline-specific AI analysis
+  aiAnalyzed       Boolean @default(false)
+  // Number of times AI analysis has run on this project. Free students are
+  // capped at 3 per project (per pricing.ts STUDENT_TIERS.FREE marketing
+  // claim). Premium = unlimited. Incremented in lib/run-ai-analysis.ts on
+  // successful completion; gated in /api/projects/[id]/analyze.
+  aiAnalysisCount  Int     @default(0)
+  complexityScore  Int? // Technical complexity, research rigor, design quality
+  innovationScore  Int? // Creativity, originality
+  marketRelevance  Int? // Industry demand, practical application
+  aiInsights       Json? // Store detailed discipline-specific AI analysis
 
   // Relations
   endorsements        ProfessorEndorsement[]
@@ -4166,6 +4171,15 @@ model Institution {
   legalName         String?
   vatNumber         String?
 
+  // Stripe subscription state — populated by /api/checkout/institutional-premium
+  // and the Stripe webhook handler. plan flips to PREMIUM on success and back
+  // to CORE on cancellation. Status mirrors Stripe's subscription status so we
+  // can show "trialing", "past_due", etc. in the institution dashboard.
+  stripeCustomerId      String?            @unique
+  stripeSubscriptionId  String?            @unique
+  subscriptionStatus    SubscriptionStatus @default(INACTIVE)
+  premiumUntil          DateTime?
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -4180,6 +4194,7 @@ model Institution {
 
   @@index([type])
   @@index([plan])
+  @@index([stripeSubscriptionId])
 }
 
 model InstitutionStaff {

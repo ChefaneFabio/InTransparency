@@ -166,11 +166,16 @@ export async function POST(req: NextRequest) {
         // Fall through to the message creation at the end of the function
       }
 
-      // FREE / RECRUITER_FREE / RECRUITER_PAY_PER_CONTACT: 5 free unique contacts
-      // PER MONTH per company domain. After that, subscribe to continue.
+      // Freemium contact gate.
+      //   Corporate email domain → 5 free contacts/month, shared across all
+      //     recruiters at that domain (prevents multi-account abuse).
+      //   Free-provider email (gmail/yahoo/hotmail/etc.) → 2/month per user.
+      //     Reduced cap closes the "sign up 50 gmail accounts" loophole and
+      //     gives serious recruiters a strong incentive to use corporate email.
       // Per-contact credit purchases were retired 2026-04-25 — the only path
       // forward after exhausting the free quota is the subscription tier.
-      const FREE_CONTACT_LIMIT = 5
+      const FREE_CONTACT_LIMIT_CORPORATE = 5
+      const FREE_CONTACT_LIMIT_PERSONAL  = 2
       const isFreemiumTier =
         user.subscriptionTier === 'RECRUITER_FREE' ||
         user.subscriptionTier === 'FREE' ||
@@ -187,11 +192,10 @@ export async function POST(req: NextRequest) {
           const now = new Date()
           const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
 
-          // Count free contacts across the entire company domain (prevents
-          // creating multiple accounts to get extra free contacts).
           const emailDomain = user.email.split('@')[1]?.toLowerCase()
           const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
-          const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
+          const isCompanyDomain = !!emailDomain && !freeProviders.includes(emailDomain)
+          const FREE_CONTACT_LIMIT = isCompanyDomain ? FREE_CONTACT_LIMIT_CORPORATE : FREE_CONTACT_LIMIT_PERSONAL
 
           let monthlyDomainContactCount = 0
           if (isCompanyDomain) {
@@ -222,11 +226,12 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({
               error: isCompanyDomain
                 ? `Your company (${emailDomain}) has used all ${FREE_CONTACT_LIMIT} free contacts this month. Subscribe for unlimited contacts.`
-                : `You've used all ${FREE_CONTACT_LIMIT} free contacts this month. Subscribe for unlimited contacts.`,
+                : `You've used all ${FREE_CONTACT_LIMIT} free contacts this month from a personal email account. Switch to a corporate email for ${FREE_CONTACT_LIMIT_CORPORATE} free contacts/month, or subscribe for unlimited.`,
               upgradeUrl: '/pricing?for=companies&plan=subscription',
               code: 'FREE_QUOTA_EXHAUSTED',
               freeContactsUsedThisMonth: monthlyDomainContactCount,
               freeContactLimit: FREE_CONTACT_LIMIT,
+              emailType: isCompanyDomain ? 'corporate' : 'personal',
               resetsOn: new Date(now.getFullYear(), now.getMonth() + 1, 1).toISOString(),
             }, { status: 403 })
           }

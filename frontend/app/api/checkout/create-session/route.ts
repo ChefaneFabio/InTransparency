@@ -182,6 +182,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Subscription checkout (STUDENT_PREMIUM, RECRUITER_ENTERPRISE, INSTITUTION_ENTERPRISE)
+    // Recruiter and Institution tiers are B2B — collect VAT/Tax ID for
+    // compliant EU invoicing. Student tier collects nothing extra (B2C).
+    const isB2B = tier !== 'STUDENT_PREMIUM'
     const checkoutSession = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
@@ -208,7 +211,11 @@ export async function POST(req: NextRequest) {
         trial_period_days: user.subscriptionTier === 'FREE' ? 14 : undefined
       },
       allow_promotion_codes: true,
-      billing_address_collection: 'required'
+      billing_address_collection: 'required',
+      ...(isB2B && {
+        tax_id_collection: { enabled: true },
+        customer_update: { name: 'auto', address: 'auto' },
+      }),
     })
 
     return NextResponse.json({

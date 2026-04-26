@@ -2,6 +2,18 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
+import { sendTrialEndingEmail, sendPaymentFailedEmail } from '@/lib/email'
+
+// Map Stripe metadata.tier → human label for emails.
+function tierLabel(tier: string | undefined): string {
+  switch (tier) {
+    case 'STUDENT_PREMIUM':            return 'Student Premium'
+    case 'RECRUITER_PAY_PER_CONTACT':  return 'Company Subscription'
+    case 'RECRUITER_ENTERPRISE':       return 'Company Subscription'
+    case 'INSTITUTION_ENTERPRISE':     return 'Institutional Premium'
+    default: return 'your subscription'
+  }
+}
 
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || ''
@@ -76,6 +88,47 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   const userId = session.metadata?.userId
   const tier = session.metadata?.tier
   const type = session.metadata?.type
+
+  // Institutional Premium has its own metadata shape (institutionId, no userId
+  // because the buyer is the org, not the person). Branch off before the
+  // userId guard.
+  if (type === 'institutional_premium' && session.mode === 'subscription') {
+    const institutionId = session.metadata?.institutionId
+    if (!institutionId) {
+      console.error('Missing institutionId in institutional_premium session metadata')
+      return
+    }
+
+    await prisma.institution.update({
+      where: { id: institutionId },
+      data: {
+        plan: 'PREMIUM',
+        stripeCustomerId: session.customer as string,
+        stripeSubscriptionId: session.subscription as string,
+        subscriptionStatus: 'TRIALING', // flips to ACTIVE after the trial via subscription.updated
+      },
+    })
+
+    const purchasedByUserId = session.metadata?.purchasedByUserId
+    if (purchasedByUserId) {
+      await prisma.analytics.create({
+        data: {
+          userId: purchasedByUserId,
+          eventType: 'SUBSCRIPTION_STARTED',
+          eventName: 'institutional_premium_started',
+          properties: {
+            institutionId,
+            plan: session.metadata?.plan ?? null,
+            subscriptionId:
+              typeof session.subscription === 'string'
+                ? session.subscription
+                : session.subscription?.id ?? null,
+          },
+        },
+      })
+    }
+    return
+  }
 
   if (!userId) {
     console.error('Missing userId in session metadata')
@@ -218,6 +271,26 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
 
 // Handle subscription created
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
+  // Institutional Premium subscriptions don't have a userId — the buyer is
+  // the org. checkout.session.completed has already set Institution.plan
+  // and the Stripe IDs; here we just record the period and skip user logic.
+  if (subscription.metadata?.type === 'institutional_premium') {
+    const institutionId = subscription.metadata?.institutionId
+    if (institutionId) {
+      const subData = subscription as any
+      await prisma.institution.update({
+        where: { id: institutionId },
+        data: {
+          subscriptionStatus: subscription.status === 'trialing' ? 'TRIALING' : 'ACTIVE',
+          premiumUntil: subData.current_period_end
+            ? new Date(subData.current_period_end * 1000)
+            : undefined,
+        },
+      })
+    }
+    return
+  }
+
   const userId = subscription.metadata?.userId
   const tier = subscription.metadata?.tier
 
@@ -266,79 +339,89 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
 
 // Handle subscription updated
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
-  const userId = subscription.metadata?.userId
-
-  if (!userId) {
-    // Try to find user by Stripe subscription ID
-    const user = await prisma.user.findFirst({
-      where: { stripeSubscriptionId: subscription.id }
-    })
-
-    if (!user) {
-      console.error('Could not find user for subscription:', subscription.id)
-      return
-    }
-  }
-
   const status = mapStripeStatus(subscription.status)
   const subData = subscription as any
+  const periodEnd = subData.current_period_end
+    ? new Date(subData.current_period_end * 1000)
+    : undefined
 
-  // Update user
-  await prisma.user.update({
-    where: {
-      stripeSubscriptionId: subscription.id
-    },
-    data: {
-      subscriptionStatus: status,
-      premiumUntil: subData.current_period_end
-        ? new Date(subData.current_period_end * 1000)
-        : undefined
+  // Institutional Premium: route the update to Institution, not User.
+  if (subscription.metadata?.type === 'institutional_premium') {
+    const institution = await prisma.institution.findFirst({
+      where: { stripeSubscriptionId: subscription.id },
+    })
+    if (!institution) {
+      console.error('Could not find institution for subscription:', subscription.id)
+      return
     }
+    await prisma.institution.update({
+      where: { id: institution.id },
+      data: { subscriptionStatus: status, premiumUntil: periodEnd },
+    })
+    return
+  }
+
+  // Default: user-owned subscription.
+  const user = await prisma.user.findFirst({
+    where: { stripeSubscriptionId: subscription.id },
+  })
+  if (!user) {
+    console.error('Could not find user for subscription:', subscription.id)
+    return
+  }
+
+  await prisma.user.update({
+    where: { stripeSubscriptionId: subscription.id },
+    data: { subscriptionStatus: status, premiumUntil: periodEnd },
   })
 
-  // Update subscription record
   await prisma.subscription.updateMany({
-    where: {
-      stripeSubscriptionId: subscription.id,
-      endedAt: null
-    },
-    data: {
-      status,
-      stripeCurrentPeriodEnd: subData.current_period_end
-        ? new Date(subData.current_period_end * 1000)
-        : undefined
-    }
+    where: { stripeSubscriptionId: subscription.id, endedAt: null },
+    data: { status, stripeCurrentPeriodEnd: periodEnd },
   })
 }
 
 // Handle subscription deleted (canceled)
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
-  // Update user
+  // Institutional Premium: revert plan to CORE, mark canceled.
+  if (subscription.metadata?.type === 'institutional_premium') {
+    const institution = await prisma.institution.findFirst({
+      where: { stripeSubscriptionId: subscription.id },
+    })
+    if (institution) {
+      await prisma.institution.update({
+        where: { id: institution.id },
+        data: {
+          plan: 'CORE',
+          subscriptionStatus: 'CANCELED',
+          premiumUntil: null,
+        },
+      })
+      await prisma.analytics.create({
+        data: {
+          userId: institution.primaryAdminId ?? subscription.metadata?.purchasedByUserId ?? '',
+          eventType: 'SUBSCRIPTION_CANCELED',
+          eventName: 'institutional_premium_canceled',
+          properties: { institutionId: institution.id, subscriptionId: subscription.id },
+        },
+      }).catch(() => {/* analytics is best-effort */})
+    }
+    return
+  }
+
+  // Default: user-owned subscription.
   await prisma.user.update({
-    where: {
-      stripeSubscriptionId: subscription.id
-    },
-    data: {
-      subscriptionStatus: 'EXPIRED',
-      subscriptionTier: 'FREE'
-    }
+    where: { stripeSubscriptionId: subscription.id },
+    data: { subscriptionStatus: 'EXPIRED', subscriptionTier: 'FREE' },
   })
 
-  // End subscription record
   await prisma.subscription.updateMany({
-    where: {
-      stripeSubscriptionId: subscription.id,
-      endedAt: null
-    },
-    data: {
-      status: 'EXPIRED',
-      endedAt: new Date()
-    }
+    where: { stripeSubscriptionId: subscription.id, endedAt: null },
+    data: { status: 'EXPIRED', endedAt: new Date() },
   })
 
-  // Track analytics
   const user = await prisma.user.findFirst({
-    where: { stripeSubscriptionId: subscription.id }
+    where: { stripeSubscriptionId: subscription.id },
   })
 
   if (user) {
@@ -347,50 +430,81 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
         userId: user.id,
         eventType: 'SUBSCRIPTION_CANCELED',
         eventName: 'subscription_canceled',
-        properties: {
-          subscriptionId: subscription.id
-        }
-      }
+        properties: { subscriptionId: subscription.id },
+      },
     })
   }
 }
 
 // Handle trial ending soon (3 days before)
 async function handleTrialWillEnd(subscription: Stripe.Subscription) {
-  const user = await prisma.user.findFirst({
-    where: { stripeSubscriptionId: subscription.id }
-  })
+  const subData = subscription as any
+  const trialEndsAt = subData.trial_end ? new Date(subData.trial_end * 1000) : new Date()
+  const manageUrl = `${process.env.NEXT_PUBLIC_URL || ''}/dashboard/subscription`
 
+  // Institutional Premium — recipient is the admin, label is the institution.
+  if (subscription.metadata?.type === 'institutional_premium') {
+    const institution = await prisma.institution.findFirst({
+      where: { stripeSubscriptionId: subscription.id },
+      select: { primaryAdminId: true, name: true },
+    })
+    if (!institution?.primaryAdminId) return
+    const admin = await prisma.user.findUnique({
+      where: { id: institution.primaryAdminId },
+      select: { email: true, firstName: true },
+    })
+    if (!admin) return
+    await sendTrialEndingEmail(
+      admin.email,
+      admin.firstName || institution.name,
+      'Institutional Premium',
+      trialEndsAt,
+      manageUrl
+    ).catch(err => console.error('Trial-ending email failed (institutional):', err))
+    return
+  }
+
+  // User-owned (student or recruiter) subscription.
+  const user = await prisma.user.findFirst({
+    where: { stripeSubscriptionId: subscription.id },
+    select: { email: true, firstName: true, subscriptionTier: true },
+  })
   if (!user) {
     console.error('Could not find user for subscription:', subscription.id)
     return
   }
-
-  // TODO: Send email notification about trial ending
-  const subData = subscription as any
-  console.log(`Trial will end for user ${user.email} on ${new Date(subData.trial_end * 1000)}`)
+  await sendTrialEndingEmail(
+    user.email,
+    user.firstName || 'there',
+    tierLabel(subscription.metadata?.tier ?? user.subscriptionTier),
+    trialEndsAt,
+    manageUrl
+  ).catch(err => console.error('Trial-ending email failed (user):', err))
 }
 
 // Handle successful payment
 async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
   const invoiceData = invoice as any
   if (!invoiceData.subscription) return
-
   if (!stripe) return
 
   const subscription = await stripe.subscriptions.retrieve(invoiceData.subscription as string)
   const subData = subscription as any
+  const periodEnd = subData.current_period_end
+    ? new Date(subData.current_period_end * 1000)
+    : undefined
+
+  if (subscription.metadata?.type === 'institutional_premium') {
+    await prisma.institution.updateMany({
+      where: { stripeSubscriptionId: subscription.id },
+      data: { subscriptionStatus: 'ACTIVE', premiumUntil: periodEnd },
+    })
+    return
+  }
 
   await prisma.user.update({
-    where: {
-      stripeSubscriptionId: subscription.id
-    },
-    data: {
-      subscriptionStatus: 'ACTIVE',
-      premiumUntil: subData.current_period_end
-        ? new Date(subData.current_period_end * 1000)
-        : undefined
-    }
+    where: { stripeSubscriptionId: subscription.id },
+    data: { subscriptionStatus: 'ACTIVE', premiumUntil: periodEnd },
   })
 }
 
@@ -398,17 +512,64 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
 async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
   const invoiceData = invoice as any
   if (!invoiceData.subscription) return
+  if (!stripe) return
+
+  // Pull the subscription to read metadata and route correctly. The invoice
+  // object alone doesn't tell us if the subscription belongs to a User or
+  // an Institution.
+  const subscription = await stripe.subscriptions.retrieve(invoiceData.subscription as string)
+
+  const amountMajor = (invoice.amount_due ?? 0) / 100
+  const currency = invoice.currency ?? 'eur'
+  const manageUrl = `${process.env.NEXT_PUBLIC_URL || ''}/dashboard/subscription`
+
+  if (subscription.metadata?.type === 'institutional_premium') {
+    await prisma.institution.updateMany({
+      where: { stripeSubscriptionId: subscription.id },
+      data: { subscriptionStatus: 'PAST_DUE' },
+    })
+    const institution = await prisma.institution.findFirst({
+      where: { stripeSubscriptionId: subscription.id },
+      select: { primaryAdminId: true, name: true },
+    })
+    if (institution?.primaryAdminId) {
+      const admin = await prisma.user.findUnique({
+        where: { id: institution.primaryAdminId },
+        select: { email: true, firstName: true },
+      })
+      if (admin) {
+        await sendPaymentFailedEmail(
+          admin.email,
+          admin.firstName || institution.name,
+          'Institutional Premium',
+          amountMajor,
+          currency,
+          manageUrl
+        ).catch(err => console.error('Payment-failed email failed (institutional):', err))
+      }
+    }
+    return
+  }
 
   await prisma.user.update({
-    where: {
-      stripeSubscriptionId: invoiceData.subscription as string
-    },
-    data: {
-      subscriptionStatus: 'PAST_DUE'
-    }
+    where: { stripeSubscriptionId: subscription.id },
+    data: { subscriptionStatus: 'PAST_DUE' },
   })
 
-  // TODO: Send email notification about failed payment
+  const user = await prisma.user.findFirst({
+    where: { stripeSubscriptionId: subscription.id },
+    select: { email: true, firstName: true, subscriptionTier: true },
+  })
+  if (user) {
+    await sendPaymentFailedEmail(
+      user.email,
+      user.firstName || 'there',
+      tierLabel(subscription.metadata?.tier ?? user.subscriptionTier),
+      amountMajor,
+      currency,
+      manageUrl
+    ).catch(err => console.error('Payment-failed email failed (user):', err))
+  }
 }
 
 // Map Stripe subscription status to our enum

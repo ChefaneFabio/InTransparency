@@ -1,84 +1,89 @@
 /**
- * Pricing Configuration for InTransparency
+ * Pricing Configuration for InTransparency — single source of truth.
  *
- * Revenue model:
- * - Students: Free forever. They are the product.
- * - Universities / Schools / ITS: Free forever. They are the distribution channel.
- * - Companies: Freemium. Free to search, paid to contact at scale.
+ * Freemium-everywhere model:
+ *   Students:     Free + Premium (€5/mo · €45/yr) — 30-day trial
+ *   Companies:    Free (5 contacts/mo) + Subscription (€89/mo · €890/yr) + Enterprise
+ *   Institutions: Free Core + Institutional Premium (€39/mo · €390/yr)
  *
- * Company tiers:
- *   Starter (free): 3 talent unlocks at signup (one-time), 1 job post, basic pipeline
- *   Growth (€149/mo): 50 talent unlocks/mo, 10 job posts, full tools
- *   Enterprise (custom): unlimited everything, API, dedicated CSM
+ * Visible prices are owned by the i18n files (`messages/en.json` +
+ * `messages/it.json`, key `pricingPage`). The numbers here are the
+ * implementation source of truth for gates, checkouts, and analytics.
+ * Whenever you edit one, edit the other — they must agree.
  */
 
-import { SubscriptionTier } from '@prisma/client'
+import { SubscriptionTier, InstitutionPlan } from '@prisma/client'
 
-// Stripe Price IDs
+// ─── Stripe Price IDs ──────────────────────────────────────────
+
 export const STRIPE_PRICE_IDS = {
-  // Student Plans
+  // Students — €5/mo · €45/yr
   STUDENT_PREMIUM_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_MONTHLY || '',
   STUDENT_PREMIUM_ANNUAL:  process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_ANNUAL  || '',
 
-  // Company Plans
+  // Companies — €89/mo · €890/yr
   RECRUITER_GROWTH_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_MONTHLY || '',
-  RECRUITER_GROWTH_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_ANNUAL || '',
+  RECRUITER_GROWTH_ANNUAL:  process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_ANNUAL  || '',
 
-  // Legacy — kept for backward compatibility
+  // Institutions — €39/mo · €390/yr (Phase 1 of freemium-everywhere)
+  INSTITUTIONAL_PREMIUM_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_INSTITUTIONAL_PREMIUM_MONTHLY || '',
+  INSTITUTIONAL_PREMIUM_ANNUAL:  process.env.NEXT_PUBLIC_STRIPE_INSTITUTIONAL_PREMIUM_ANNUAL  || '',
+
+  // Legacy — kept for backward compatibility with old position listings
   CONTACT_CREDITS: process.env.NEXT_PUBLIC_STRIPE_CONTACT_CREDITS || '',
   POSITION_LISTING_STANDARD: process.env.NEXT_PUBLIC_STRIPE_POSITION_LISTING || '',
 } as const
 
-// ─── Pricing Tiers ─────────────────────────────────────────────
+// ─── Company Tiers ─────────────────────────────────────────────
 
 export interface PricingTier {
   id: SubscriptionTier
   name: string
   pricingModel: 'free' | 'subscription' | 'custom'
   price: {
-    monthly: number  // euros, 0 for free
-    annual: number   // euros, 0 for free
+    monthly: number  // euros, 0 for free/custom
+    annual: number   // euros, 0 for free/custom
   }
   limits: {
-    contacts?: number        // -1 = unlimited
-    jobPosts?: number        // -1 = unlimited
-    documents?: number       // MB, -1 = unlimited
-    hiringAdvisor?: number   // messages/mo, -1 = unlimited
-    interviewKits?: number   // per month, -1 = unlimited
-    decisionPacks?: number   // per month, -1 = unlimited
+    contacts?: number              // -1 = unlimited; for company freemium gate
+    monthlyFreeContacts?: number   // recurring monthly free quota (Starter only)
+    jobPosts?: number              // -1 = unlimited
+    documents?: number             // MB, -1 = unlimited
+    hiringAdvisor?: number         // messages/mo, -1 = unlimited
+    interviewKits?: number         // per month, -1 = unlimited
+    decisionPacks?: number         // per month, -1 = unlimited
     apiAccess?: boolean
     dedicatedSupport?: boolean
   }
   popular?: boolean
 }
 
-// Company Tiers
 export const COMPANY_TIERS = {
   STARTER: {
     id: 'RECRUITER_FREE' as SubscriptionTier,
-    name: 'Starter',
+    name: 'Free',
     pricingModel: 'free' as const,
     price: { monthly: 0, annual: 0 },
     limits: {
-      talentConnections: 3, // one-time at signup, not recurring
+      monthlyFreeContacts: 5,  // recurring; resets on the 1st of each month
       jobPosts: 1,
-      documents: 100,        // 100 MB
+      documents: 100,           // 100 MB
       hiringAdvisor: 3,
       interviewKits: 1,
-      decisionPacks: 0,
+      decisionPacks: 1,
       apiAccess: false,
       dedicatedSupport: false,
     },
   },
   GROWTH: {
     id: 'RECRUITER_PAY_PER_CONTACT' as SubscriptionTier,
-    name: 'Growth',
+    name: 'Subscription',
     pricingModel: 'subscription' as const,
-    price: { monthly: 149, annual: 1490 },
+    price: { monthly: 89, annual: 890 },
     limits: {
-      talentConnections: 50,
+      contacts: -1,
       jobPosts: 10,
-      documents: 5120,       // 5 GB
+      documents: 5120,          // 5 GB
       hiringAdvisor: -1,
       interviewKits: -1,
       decisionPacks: -1,
@@ -93,7 +98,7 @@ export const COMPANY_TIERS = {
     pricingModel: 'custom' as const,
     price: { monthly: 0, annual: 0 }, // custom pricing
     limits: {
-      talentConnections: -1,
+      contacts: -1,
       jobPosts: -1,
       documents: -1,
       hiringAdvisor: -1,
@@ -103,15 +108,8 @@ export const COMPANY_TIERS = {
       dedicatedSupport: true,
     },
   },
-}
+} as const
 
-// ─── Feature gating ────────────────────────────────────────────
-
-/**
- * Phase 1: Soft enforcement.
- * Show limits in UI but don't hard-block yet.
- * This will switch to hard enforcement in Phase 2.
- */
 export function getCompanyTier(subscriptionTier: SubscriptionTier): PricingTier {
   switch (subscriptionTier) {
     case 'RECRUITER_ENTERPRISE':
@@ -123,24 +121,116 @@ export function getCompanyTier(subscriptionTier: SubscriptionTier): PricingTier 
   }
 }
 
+// ─── Student Tiers ─────────────────────────────────────────────
+
+export interface StudentTier {
+  id: 'FREE' | 'STUDENT_PREMIUM'
+  name: string
+  pricingModel: 'free' | 'subscription'
+  price: { monthly: number; annual: number }
+  trialDays?: number
+}
+
+export const STUDENT_TIERS = {
+  FREE: {
+    id: 'FREE' as const,
+    name: 'Free',
+    pricingModel: 'free' as const,
+    price: { monthly: 0, annual: 0 },
+  },
+  PREMIUM: {
+    id: 'STUDENT_PREMIUM' as const,
+    name: 'Premium',
+    pricingModel: 'subscription' as const,
+    price: { monthly: 5, annual: 45 },
+    trialDays: 30,
+  },
+} as const
+
+// ─── Institutional Tiers ───────────────────────────────────────
+// Mirrors the Prisma `InstitutionPlan` enum (CORE | PREMIUM).
+// Universities, schools, ITS share the same freemium model.
+
+export interface InstitutionalTier {
+  id: InstitutionPlan
+  name: string
+  pricingModel: 'free' | 'subscription'
+  price: { monthly: number; annual: number }
+  trialDays?: number
+  limits: {
+    aiAssistantQueries: number      // per month, -1 = unlimited
+    auditLogDays: number            // history retention, -1 = unlimited
+    reminderAutomation: boolean     // cron-driven reminder rules
+    advancedAnalytics: boolean      // cross-cohort, cross-program drills
+    aiPersonalizedConventions: boolean
+    miurReports: boolean            // basic MIUR-format export
+    csvExports: boolean
+    prioritySupport: boolean        // 24h SLA email
+  }
+}
+
+export const INSTITUTIONAL_TIERS: Record<InstitutionPlan, InstitutionalTier> = {
+  CORE: {
+    id: 'CORE',
+    name: 'Free Core',
+    pricingModel: 'free',
+    price: { monthly: 0, annual: 0 },
+    limits: {
+      aiAssistantQueries: 50,
+      auditLogDays: 30,
+      reminderAutomation: false,
+      advancedAnalytics: false,
+      aiPersonalizedConventions: false,
+      miurReports: false,
+      csvExports: false,
+      prioritySupport: false,
+    },
+  },
+  PREMIUM: {
+    id: 'PREMIUM',
+    name: 'Institutional Premium',
+    pricingModel: 'subscription',
+    price: { monthly: 39, annual: 390 },
+    trialDays: 30,
+    limits: {
+      aiAssistantQueries: -1,
+      auditLogDays: -1,
+      reminderAutomation: true,
+      advancedAnalytics: true,
+      aiPersonalizedConventions: true,
+      miurReports: true,
+      csvExports: true,
+      prioritySupport: true,
+    },
+  },
+}
+
+export function getInstitutionTier(plan: InstitutionPlan | null | undefined): InstitutionalTier {
+  return INSTITUTIONAL_TIERS[plan ?? 'CORE']
+}
+
+// ─── Generic helpers (kept for backward compatibility) ─────────
+
 export function hasFeature(
-  userTier: SubscriptionTier,
-  feature: keyof PricingTier['limits']
+  _userTier: SubscriptionTier,
+  _feature: keyof PricingTier['limits']
 ): boolean {
-  // Phase 1: grant access to everything — soft limits shown in UI
+  // Soft enforcement on company side — the real gate lives in
+  // /api/messages/route.ts (5-contact monthly quota). This helper is
+  // intentionally permissive for UI-side optimistic checks.
   return true
 }
 
 export function hasReachedLimit(
-  userTier: SubscriptionTier,
-  feature: keyof PricingTier['limits'],
-  currentUsage: number
+  _userTier: SubscriptionTier,
+  _feature: keyof PricingTier['limits'],
+  _currentUsage: number
 ): boolean {
-  // Phase 1: no hard limits — soft nudges only
   return false
 }
 
-// Stripe configuration
+// ─── Stripe Configuration ──────────────────────────────────────
+
 export const STRIPE_CONFIG = {
   publicKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
   secretKey: process.env.STRIPE_SECRET_KEY || '',

@@ -10,7 +10,7 @@ const COPY: Record<PremiumAudience, { label: string; href: string; tooltip: stri
   student: {
     label: 'Premium',
     href: '/dashboard/student/upgrade',
-    tooltip: 'Student Premium feature · €3.99/mo or €29/yr (free for partner-institution students)',
+    tooltip: 'Student Premium feature · €5/mo or €45/yr · 30-day trial',
   },
   institution: {
     label: 'Institutional Premium',
