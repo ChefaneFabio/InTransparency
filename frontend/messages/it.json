@@ -15,7 +15,7 @@
     "mission": "Missione",
     "forSchools": "Per le Scuole",
     "forStudents": "Per Studenti",
-    "forInstitutions": "Per Istituzioni",
+    "forInstitutions": "Per Partner Formativi",
     "forCompanies": "Per Aziende",
     "buildPortfolio": "Crea Portfolio",
     "aiJobSearch": "Ricerca Intelligente",
@@ -151,8 +151,7 @@
         "aiTalentSearch": "AI Talent Search",
         "integrations": "Integrazioni"
       },
-      "search": "Ricerca",
-      "brand": "Brand"
+      "search": "Ricerca"
     },
     "university": {
       "workspace": "Workspace",
@@ -491,7 +490,7 @@
             "title": "Crea il Tuo Profilo",
             "description": "Due modi: Partner istituzionale = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
             "details": [
-              "Integrazione Istituzionale: Profilo creato automaticamente dai dati istituzionali",
+              "Integrazione Istituzionale: Profilo creato automaticamente dai dati accademici",
               "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi"
             ],
             "stats": {
@@ -787,7 +786,7 @@
           "title": "Crea il Tuo Profilo",
           "description": "Due modi: Partner istituzionale = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
           "details": [
-            "Integrazione Istituzionale: Profilo creato automaticamente dai dati istituzionali",
+            "Integrazione Istituzionale: Profilo creato automaticamente dai dati accademici",
             "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi",
             "Il sistema identifica i corsi e crea un profilo completo",
             "Entrambi i percorsi: Accesso completo alla piattaforma in < 5 minuti"
@@ -914,7 +913,7 @@
           {
             "feature": "Costo",
             "traditional": "Budget career services",
-            "ours": "Gratis per le istituzioni"
+            "ours": "Gratis per i partner formativi"
           },
           {
             "feature": "Reporting",
@@ -1060,7 +1059,7 @@
       },
       "placements": {
         "title": "API Placement",
-        "description": "Monitora e reporta gli esiti dei placement. Ottieni dati in tempo reale su visualizzazioni, contatti, colloqui e assunzioni dei laureati della tua istituzione."
+        "description": "Monitora e reporta gli esiti dei placement. Ottieni dati in tempo reale su visualizzazioni, contatti, colloqui e assunzioni dei laureati del tuo ateneo o scuola."
       },
       "webhooks": {
         "title": "Webhook",
@@ -1215,7 +1214,7 @@
       }
     },
     "institutes": {
-      "badge": "Per Istituzioni (Scuole, Università e ITS)",
+      "badge": "Per Partner Formativi (Scuole, Università e ITS)",
       "title": "Servizio Gratuito Career Intelligence - Niente Abbonamenti Mai",
       "subtitle": "Servizi GRATUITI Verifica + Analytics. Dashboard di verifica semplice. Tu autentichi, noi forniamo insights. Zero costi vs AlmaLaurea (€2.500/anno). Prova aumento placement 85% al MIUR.",
       "free": {
@@ -1254,7 +1253,7 @@
       },
       "company": {
         "title": "Cerchi talenti verificati in tutte le discipline?",
-        "subtitle": "Prenota una demo per scoprire come InTransparency ti dà accesso a candidati verificati dalle istituzioni."
+        "subtitle": "Prenota una demo per scoprire come InTransparency ti dà accesso a candidati verificati dai partner formativi."
       },
       "university": {
         "title": "Vuoi diventare partner formativo?",
@@ -1490,7 +1489,7 @@
     "hero": {
       "badge": "Scopri Talenti Verificati",
       "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca portfolio studenti con competenze verificate. Progetti autenticati dalle istituzioni.",
+      "subtitle": "Cerca portfolio studenti con competenze verificate. Progetti autenticati dai partner formativi.",
       "searchPlaceholder": "Cerca per nome, competenza o istituzione...",
       "stats": {
         "students": "Studenti",
@@ -1665,7 +1664,7 @@
       "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Assumi Talenti Verificati, Non CV",
-      "heroSubtitle": "Accedi a laureati verificati dalle istituzioni. Ogni competenza è tracciabile a corsi e progetti reali.",
+      "heroSubtitle": "Accedi a laureati verificati dai partner formativi. Ogni competenza è tracciabile a corsi e progetti reali.",
       "browseBadge": "Sfoglia Gratis, Accesso Completo",
       "benefits": {
         "0": {
@@ -1702,7 +1701,7 @@
       "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
       "mobileBenefits": {
         "0": "Sfoglia candidati gratis",
-        "1": "Competenze verificate dall'istituzione",
+        "1": "Competenze validate dall'docenti",
         "2": "5 contatti gratis al mese · poi €89/mese"
       },
       "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
@@ -1735,7 +1734,7 @@
         },
         "3": {
           "title": "Credenziali Verificate",
-          "description": "Il tuo badge istituzionale su ogni profilo studente"
+          "description": "Il tuo badge dei docenti su ogni profilo studente"
         }
       },
       "createTitle": "Crea Account Partner Formativo",
@@ -1792,7 +1791,7 @@
       "roles": {
         "recruiter": {
           "name": "Azienda",
-          "description": "Trova talenti verificati dalle istituzioni",
+          "description": "Trova talenti verificati dai partner formativi",
           "benefits": {
             "0": "Cerca profili verificati",
             "1": "Paga per contatto",
@@ -1967,7 +1966,7 @@
     "hero": {
       "badge": "Piattaforma Completa",
       "title": "Funzionalità Potenti per Tutti",
-      "subtitle": "Dalle competenze verificate dall'istituzione alla ricerca intelligente, tutto ciò di cui hai bisogno per collegare studenti e aziende."
+      "subtitle": "Dalle competenze validate dall'docenti alla ricerca intelligente, tutto ciò di cui hai bisogno per collegare studenti e aziende."
     },
     "filters": {
       "all": "Tutte",
@@ -2033,10 +2032,10 @@
           },
           "2": {
             "title": "Traccia i Risultati di Carriera",
-            "desc": "Vedi quali studenti vengono contattati, intervistati e assunti. Dati di placement in tempo reale che dimostrano l'impatto della tua istituzione."
+            "desc": "Vedi quali studenti vengono contattati, intervistati e assunti. Dati di placement in tempo reale che dimostrano l'impatto del tuo ateneo o scuola."
           }
         },
-        "outcome": "Dimostra l'impatto reale della tua istituzione sull'occupabilità degli studenti — con dati, non aneddoti."
+        "outcome": "Dimostra l'impatto reale del tuo ateneo o scuola sull'occupabilità degli studenti — con dati, non aneddoti."
       },
       "company": {
         "headline": "Trova Talenti Junior di cui Fidarti.",
@@ -2074,7 +2073,7 @@
           },
           "1": {
             "title": "Trust Score Istituzionale",
-            "desc": "La verifica della tua istituzione trasforma il tuo profilo da un CV auto-dichiarato in evidenza verificata.",
+            "desc": "La verifica del tuo ateneo o scuola trasforma il tuo profilo da un CV auto-dichiarato in evidenza verificata.",
             "features": {
               "0": "Badge di verifica visibile ai recruiter",
               "1": "Trust score basato su dati accademici reali",
@@ -2107,11 +2106,11 @@
           },
           "1": {
             "title": "Verifica con Un Click",
-            "desc": "Approva i progetti degli studenti singolarmente o in batch. Aggiungi voti, ECTS e badge istituzionali facilmente.",
+            "desc": "Approva i progetti degli studenti singolarmente o in batch. Aggiungi voti, ECTS e badge dei docenti facilmente.",
             "features": {
               "0": "Dashboard di approvazione batch",
               "1": "Integrazione ECTS e voti",
-              "2": "Badge istituzionali digitali"
+              "2": "Badge dei docenti digitali"
             }
           },
           "2": {
@@ -2131,7 +2130,7 @@
         "cards": {
           "0": {
             "title": "Pool di Talenti Verificati",
-            "desc": "Ogni profilo è supportato da dati istituzionali. Cerca per competenze reali, voti verificati e lavori concreti.",
+            "desc": "Ogni profilo è supportato da dati accademici. Cerca per competenze reali, voti verificati e lavori concreti.",
             "features": {
               "0": "250+ filtri di ricerca",
               "1": "Matching intelligente dei candidati",
@@ -2140,7 +2139,7 @@
           },
           "1": {
             "title": "Screening Basato su Evidenze",
-            "desc": "Rivedi file di progetto reali, punteggi di analisi e verifica istituzionale — prima ancora di contattare.",
+            "desc": "Rivedi file di progetto reali, punteggi di analisi e endorsement opzionale dei docenti — prima ancora di contattare.",
             "features": {
               "0": "Vedi progetti reali, non solo parole chiave",
               "1": "Punteggi di competenze e complessità",
@@ -2891,7 +2890,7 @@
     "benefits": {
       "0": {
         "title": "Portfolio progetti verificati",
-        "description": "Gli studenti caricano i progetti ITS con il badge di verifica istituzionale. Le aziende vedono prove concrete, non solo dichiarazioni."
+        "description": "Gli studenti caricano i progetti ITS con il badge di endorsement opzionale dei docenti. Le aziende vedono prove concrete, non solo dichiarazioni."
       },
       "1": {
         "title": "Le aziende scoprono i tuoi diplomati",
@@ -2931,7 +2930,7 @@
       },
       "university": {
         "title": "Demo Hub Ricerca Intelligente",
-        "subtitle": "Per Istituzioni (Scuole, Università Per Istituti (Università & ITS) ITS)",
+        "subtitle": "Per Partner Formativi (Scuole, Università Per Istituti (Università & ITS) ITS)",
         "placeholder": "Cerca studenti o lavori...",
         "initialMessage": "Ciao! Sono Transparenty, il tuo assistente istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
         "registrationLink": "/auth/register/academic-partner"
@@ -2988,7 +2987,7 @@
       "badge": "Il Nostro Impegno alla Trasparenza",
       "title": "Competenze Verificate",
       "subtitle": "Spiegazioni Chiare",
-      "description": "Competenze hard e soft verificate dall'istituzione. Matching basato su evidenze spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
+      "description": "Competenze hard e soft validate dall'docenti. Matching basato su evidenze spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
       "ctas": {
         "features": "Vedi le Nostre Funzionalità",
         "demo": "Prova la Demo Live"
@@ -3008,7 +3007,7 @@
           "1": {
             "title": "30% mismatch competenze",
             "subtitle": "nelle assunzioni",
-            "description": "La verifica istituzionale colma questo gap"
+            "description": "La endorsement opzionale dei docenti colma questo gap"
           },
           "2": {
             "title": "Validazione dispendiosa",
@@ -3044,7 +3043,7 @@
       "pillars": {
         "0": {
           "title": "1. Competenze Verificate",
-          "description": "Competenze hard e soft verificate attraverso dati istituzionali e analisi progetti.",
+          "description": "Competenze hard e soft verificate attraverso dati accademici e analisi progetti.",
           "items": {
             "0": "Hard skills: Verificate attraverso progetti, codice, design, ricerca",
             "1": "Soft skills: Analizzate da teamwork, leadership, presentazioni",
@@ -3107,7 +3106,7 @@
         }
       },
       "institutions": {
-        "title": "Per Istituzioni",
+        "title": "Per Partner Formativi",
         "items": {
           "0": "Monitora quali aziende visualizzano gli studenti",
           "1": "Career counseling basato sui dati",
@@ -3174,15 +3173,15 @@
     },
     "student": {
       "title": "Programma Referral Studenti",
-      "subtitle": "Guadagna premi invitando la tua istituzione e altri studenti",
+      "subtitle": "Guadagna premi invitando il tuo ateneo o scuola e altri studenti",
       "programs": {
         "referInstitution": {
           "title": "Invita la Tua Istituzione",
-          "description": "Invita la tua istituzione/ITS a verificare i profili studenti",
+          "description": "Invita il tuo ateneo o scuola/ITS a verificare i profili studenti",
           "reward": "10% dei canoni Premium primo anno",
           "details": {
-            "0": "La tua istituzione si iscrive e verifica gli studenti",
-            "1": "Guadagni 10% di tutti gli abbonamenti Premium dagli studenti della tua istituzione nell'Anno 1",
+            "0": "Il tuo ateneo o scuola si iscrive e verifica gli studenti",
+            "1": "Guadagni 10% di tutti gli abbonamenti Premium dagli studenti del tuo ateneo o scuola nell'Anno 1",
             "2": "Esempio: 100 studenti passano a Premium (€9/mese) = €90/mese × 12 = €1.080/anno × 10% = €108 premio",
             "3": "Pagato trimestralmente via PayPal/bonifico",
             "4": "Tracciamento lifetime - anche studenti che si uniscono dopo contano"
@@ -3206,7 +3205,7 @@
         },
         "campusAmbassador": {
           "title": "Programma Campus Ambassador",
-          "description": "Diventa ambassador ufficiale per la tua istituzione",
+          "description": "Diventa ambassador ufficiale per il tuo ateneo o scuola",
           "reward": "€50/mese + vantaggi esclusivi",
           "details": {
             "0": "Organizza sessioni info e promuovi InTransparency nel campus",
@@ -3361,7 +3360,7 @@
         "items": {
           "0": {
             "title": "Competenze auto-dichiarate",
-            "description": "Senza verifica istituzionale, le competenze sono difficili da validare — e questo porta a mismatch da entrambi i lati."
+            "description": "Senza endorsement opzionale dei docenti, le competenze sono difficili da validare — e questo porta a mismatch da entrambi i lati."
           },
           "1": {
             "title": "Match non spiegati",
@@ -3381,8 +3380,8 @@
         "title": "Il nostro approccio",
         "items": {
           "0": {
-            "title": "Competenze verificate dall'istituzione",
-            "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) legate a progetti, corsi e dati istituzionali."
+            "title": "Competenze validate dall'docenti",
+            "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) legate a progetti, corsi e dati accademici."
           },
           "1": {
             "title": "Match spiegabili",
@@ -3419,7 +3418,7 @@
     },
     "mission": {
       "title": "La nostra missione",
-      "description": "Vorremmo contribuire a un modo europeo di assumere in cui ciò che una persona sa davvero fare sia visibile — verificato dalle istituzioni che l'hanno formata. Non al posto del CV, ma accanto al CV.",
+      "description": "Vorremmo contribuire a un modo europeo di assumere in cui ciò che una persona sa davvero fare sia visibile — verificato dai partner formativi che l'hanno formata. Non al posto del CV, ma accanto al CV.",
       "quote": "\"Lavoro che parla da solo, percorsi che si possono spiegare, decisioni di assunzione che si possono difendere.\"",
       "quoteAuthor": "— InTransparency",
       "story": {
@@ -3449,7 +3448,7 @@
         },
         "3": {
           "title": "Evidenze accanto alle parole",
-          "description": "Il lavoro verificato dall'istituzione sta accanto al racconto del candidato — insieme funzionano meglio."
+          "description": "Il lavoro validato dall'docenti sta accanto al racconto del candidato — insieme funzionano meglio."
         }
       }
     },
@@ -3734,7 +3733,7 @@
         },
         "5": {
           "q": "Come si differenzia da LinkedIn, Handshake o JobTeaser?",
-          "a": "Ogni profilo è supportato da progetti reali, voti e (quando un docente trova il tempo) endorsement — non dichiarazioni. Il fit score abbina su motivazione e cultura, non solo parole chiave del CV. E la workspace Free Core è gratis per le istituzioni, mentre Handshake costa $1K–$20K/anno."
+          "a": "Ogni profilo è supportato da progetti reali, voti e (quando un docente trova il tempo) endorsement — non dichiarazioni. Il fit score abbina su motivazione e cultura, non solo parole chiave del CV. E la workspace Free Core è gratis per i partner formativi, mentre Handshake costa $1K–$20K/anno."
         }
       }
     }
@@ -4955,7 +4954,7 @@
       },
       "university": {
         "title": "Demo Hub Ricerca Intelligente",
-        "subtitle": "Per Istituzioni (Scuole, Università e ITS)",
+        "subtitle": "Per Partner Formativi (Scuole, Università e ITS)",
         "placeholder": "Cerca studenti o lavori...",
         "initialMessage": "Ciao! Sono Transparenty, l'assistente del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
       }
@@ -5077,7 +5076,7 @@
     "hero": {
       "badge": "Talenti in Primo Piano",
       "title": "Scopri Portfolio Verificati di Studenti",
-      "description": "Esplora progetti verificati dalle istituzioni dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "description": "Esplora progetti verificati dai partner formativi dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
       "ctaStudent": "Crea il Tuo Portfolio",
       "ctaRecruiter": "Cerca come Recruiter"
     },
@@ -5681,7 +5680,7 @@
         },
         "1": {
           "title": "Competenze Verificate, Progetti Reali",
-          "description": "Crediamo che un progetto di tesi da 30/30 racconti molto di un candidato. La nostra piattaforma mette al primo posto il lavoro concreto e verificato dalle istituzioni."
+          "description": "Crediamo che un progetto di tesi da 30/30 racconti molto di un candidato. La nostra piattaforma mette al primo posto il lavoro concreto e verificato dai partner formativi."
         },
         "2": {
           "title": "Un Sistema Equo per Tutti",
@@ -6828,7 +6827,7 @@
     },
     "stats": {
       "totalStudents": "Studenti Totali",
-      "enrolledIn": "Iscritti alla tua istituzione",
+      "enrolledIn": "Iscritti al tuo ateneo o scuola",
       "verifiedStudents": "Studenti Verificati",
       "verified": "{percentage}% verificati",
       "activeProfiles": "Profili Attivi",
@@ -7052,7 +7051,7 @@
     "step2Title": "Carica i Progetti",
     "step2Desc": "Aggiungi attività PCTO, stage, lavori scolastici.",
     "step3Title": "La Scuola Verifica",
-    "step3Desc": "I docenti confermano con badge istituzionale.",
+    "step3Desc": "I docenti confermano con badge dei docenti.",
     "step4Title": "Vieni Scoperto",
     "step4Desc": "Le aziende ti trovano e ti contattano direttamente.",
     "pctoLabel": "PCTO",
@@ -7156,7 +7155,7 @@
     "pctoFullTitle": "PCTO: Percorsi per le Competenze Trasversali e l'Orientamento",
     "pctoLawText": "La legge 145/2018 prevede almeno {techHours} ore per gli istituti tecnici e {liceiHours} ore per i licei. InTransparency aiuta la tua scuola a:",
     "pctoCheck1": "Trovare aziende partner per stage e tirocini",
-    "pctoCheck2": "Documentare le competenze acquisite con verifica istituzionale",
+    "pctoCheck2": "Documentare le competenze acquisite con endorsement opzionale dei docenti",
     "pctoCheck3": "Tracciare ore e attività per il reporting MIUR",
     "pctoCheck4": "Preparare gli studenti al primo inserimento lavorativo",
     "techHoursLabel": "Ore minime Istituti Tecnici",
@@ -7171,7 +7170,7 @@
     "card1Check4": "Contatto diretto azienda-studente",
     "card2Title": "Gestione PCTO Semplificata",
     "card2Check1": "Studenti caricano progetti e attività",
-    "card2Check2": "I docenti possono validare con badge istituzionale",
+    "card2Check2": "I docenti possono validare con badge dei docenti",
     "card2Check3": "Tracciamento ore automatico",
     "card2Check4": "Report pronti per il MIUR",
     "card3Title": "Orientamento e Placement",
@@ -7180,7 +7179,7 @@
     "card3Check3": "Dati per orientare la didattica",
     "card3Check4": "Alert: \"Studente X: 0 visualizzazioni in 30 giorni\"",
     "servicesTitle": "Servizi per le Scuole Superiori",
-    "servicesSubtitle": "Piattaforma marketplace con livello di verifica istituzionale",
+    "servicesSubtitle": "Piattaforma marketplace con livello di endorsement opzionale dei docenti",
     "primaryService": "SERVIZIO PRINCIPALE",
     "service1Title": "Marketplace Stage e PCTO",
     "service1Free": "Gratuito per le scuole",
@@ -7196,7 +7195,7 @@
     "service2Item2": "Competenze verificate migliorano la visibilità",
     "service2Item3": "Le aziende vedono l'endorsement della scuola",
     "service2Item4": "Spiegazioni trasparenti del matching",
-    "verificationTitle": "Verifica Istituzionale",
+    "verificationTitle": "Endorsement Opzionale dei Docenti",
     "verificationBadge": "Livello Qualità",
     "verificationSubtitle": "Fiducia nel Marketplace",
     "verificationItem1": "Workflow di verifica manuale o API",
@@ -7254,13 +7253,13 @@
     "pctoActivities": "Attività PCTO:",
     "faqTitle": "Domande Frequenti",
     "faq1Q": "Come funziona per i PCTO?",
-    "faq1A": "Gli studenti caricano i progetti svolti durante i PCTO (stage, tirocini, attività in azienda). I docenti possono validarli con il badge istituzionale. Le aziende cercano studenti con competenze specifiche e li contattano direttamente per stage o primo impiego.",
+    "faq1A": "Gli studenti caricano i progetti svolti durante i PCTO (stage, tirocini, attività in azienda). I docenti possono validarli con il badge dei docenti. Le aziende cercano studenti con competenze specifiche e li contattano direttamente per stage o primo impiego.",
     "faq2Q": "Quanto costa per la scuola?",
     "faq2A": "Il servizio base è completamente gratuito per le scuole. Le aziende pagano per contattare gli studenti. Opzioni enterprise disponibili per istituti con esigenze avanzate.",
     "faq3Q": "Funziona anche per l'alternanza scuola-lavoro?",
     "faq3A": "Sì, la piattaforma supporta tutte le forme di alternanza: PCTO, stage curriculari, tirocini formativi e prime esperienze lavorative. Ogni attività può essere documentata e verificata dalla scuola.",
     "faq4Q": "Come funziona la verifica?",
-    "faq4A": "Gli studenti caricano i progetti e i docenti li verificano attraverso la dashboard. La verifica aggiunge un badge istituzionale che aumenta la visibilità e la credibilità dello studente nel marketplace.",
+    "faq4A": "Gli studenti caricano i progetti e i docenti li verificano attraverso la dashboard. La verifica aggiunge un badge dei docenti che aumenta la visibilità e la credibilità dello studente nel marketplace.",
     "faq5Q": "Possiamo usarlo per il RAV?",
     "faq5A": "Sì, la dashboard analytics fornisce dati esportabili utili per il Rapporto di Autovalutazione: metriche di placement, competenze più richieste, aziende che hanno contattato gli studenti.",
     "faq6Q": "Anche i licei possono usare la piattaforma?",
@@ -7274,8 +7273,8 @@
     "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Studenti",
     "heroTitle": "Connetti i Tuoi Diplomati alle",
     "heroTitleHighlight": "Aziende che Cercano Competenze Verificate",
-    "heroDescription": "Marketplace che connette i tuoi studenti ITS alle aziende che assumono. La verifica istituzionale dà ai diplomati un vantaggio competitivo. Traccia il placement con analytics.",
-    "heroSubtext": "Modello freemium per le istituzioni.",
+    "heroDescription": "Marketplace che connette i tuoi studenti ITS alle aziende che assumono. La endorsement opzionale dei docenti dà ai diplomati un vantaggio competitivo. Traccia il placement con analytics.",
+    "heroSubtext": "Modello freemium per i partner formativi.",
     "getStarted": "Inizia Ora",
     "seeHowItWorks": "Scopri Come Funziona",
     "howMarketplaceHelps": "Come il Marketplace Aiuta il Tuo ITS",
@@ -7361,7 +7360,7 @@
     "gs1Title": "Registra l'ITS",
     "gs1Desc": "Crea account gratuito → Email .edu verificata → Dashboard attiva in 5 minuti",
     "gs2Title": "Gli Studenti Caricano i Progetti",
-    "gs2Desc": "Studenti si iscrivono gratis → Caricano progetti ITS → Tu verifichi con badge istituzionale",
+    "gs2Desc": "Studenti si iscrivono gratis → Caricano progetti ITS → Tu verifichi con badge dei docenti",
     "gs3Title": "Traccia i Placement",
     "gs3Desc": "Le aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Traccia il successo",
     "quickSetup": "Setup rapido. Traccia i placement.",
@@ -7371,7 +7370,7 @@
     "skillsSeek": "Competenze Cercate dalle Aziende:",
     "faqTitle": "Domande Frequenti",
     "faq1Q": "Come aiuta il marketplace i nostri studenti?",
-    "faq1A": "Le aziende cercano tra diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo.",
+    "faq1A": "Le aziende cercano tra diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua endorsement opzionale dei docenti dà loro un vantaggio competitivo.",
     "faq2Q": "Cosa significa freemium?",
     "faq2A": "Le funzionalità core sono incluse senza costi. Le aziende pagano per contatto. Funzionalità enterprise disponibili per istituzioni più grandi.",
     "faq3Q": "Come funziona la verifica?",
@@ -7392,15 +7391,15 @@
     "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Laureati",
     "heroTitle": "Connetti i Tuoi Laureati alle",
     "heroTitleHighlight": "Aziende che Cercano Talenti Verificati",
-    "heroDescription": "Marketplace che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.",
-    "heroSubtext": "Modello freemium per le istituzioni.",
+    "heroDescription": "Marketplace che connette i tuoi studenti alle aziende. La endorsement opzionale dei docenti dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.",
+    "heroSubtext": "Modello freemium per i partner formativi.",
     "registerInstitution": "Registra la Tua Istituzione",
     "seeHowItWorks": "Scopri Come Funziona",
     "howMarketplaceHelps": "Come il Marketplace Aiuta la Tua Istituzione",
     "mp1Title": "Studenti Scoperti dalle Aziende",
     "mp1Check1": "Le aziende cercano laureati verificati",
     "mp1Check2": "Gli studenti non candidano - vengono contattati",
-    "mp1Check3": "La verifica istituzionale = segnale di fiducia",
+    "mp1Check3": "La endorsement opzionale dei docenti = segnale di fiducia",
     "mp2Title": "Matching basato su evidenze Trasparente",
     "mp2Check1": "\"Alta compatibilità: Python verificato dalla tesi\"",
     "mp2Check2": "Competenze verificate = punteggi più alti",
@@ -7438,7 +7437,7 @@
     "gs1Title": "Registra l'Istituzione",
     "gs1Desc": "Crea account gratuito → Verifica email .edu → Dashboard attiva in 5 minuti",
     "gs2Title": "Studenti Caricano Progetti",
-    "gs2Desc": "Studenti si iscrivono gratis → Caricano tesi e progetti → Tu verifichi con badge istituzionale",
+    "gs2Desc": "Studenti si iscrivono gratis → Caricano tesi e progetti → Tu verifichi con badge dei docenti",
     "gs3Title": "Monitora le Assunzioni",
     "gs3Desc": "Le aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Traccia il successo",
     "registerFree": "Registra la Tua Istituzione Gratis",
@@ -7465,7 +7464,7 @@
     "contactDescription": "Il nostro team di supporto è pronto ad aiutarti",
     "contactUs": "Contattaci",
     "sq1": "Come posso creare un account studente?",
-    "sa1": "Puoi registrarti gratuitamente cliccando su \"Registrati\" e selezionando \"Studente\". Dovrai fornire il tuo nome, email e creare una password. Dopo la registrazione, potrai completare il tuo profilo e connettere la tua istituzione.",
+    "sa1": "Puoi registrarti gratuitamente cliccando su \"Registrati\" e selezionando \"Studente\". Dovrai fornire il tuo nome, email e creare una password. Dopo la registrazione, potrai completare il tuo profilo e connettere il tuo ateneo o scuola.",
     "sq2": "Come connetto la mia istituzione?",
     "sa2": "Dalla tua dashboard, vai alla sezione \"Integrazione Università\" e clicca su \"Connetti Università\". Cerca la tua università o ITS, inserisci la tua email istituzionale e verifica il tuo account. Una volta verificato, i tuoi voti e progetti potranno essere sincronizzati automaticamente.",
     "sq3": "I miei progetti sono visibili a tutti?",
@@ -8890,7 +8889,7 @@
     },
     "settings": {
       "title": "Impostazioni",
-      "subtitle": "Gestisci le impostazioni della tua istituzione",
+      "subtitle": "Gestisci le impostazioni del tuo ateneo o scuola",
       "save": "Salva Modifiche",
       "saving": "Salvataggio...",
       "savedSuccess": "Impostazioni salvate con successo!",
@@ -8900,7 +8899,7 @@
       "privacyTab": "Privacy",
       "brandingTab": "Branding",
       "institutionInfo": "Informazioni Istituzione",
-      "institutionInfoDesc": "Gestisci le informazioni pubbliche della tua istituzione",
+      "institutionInfoDesc": "Gestisci le informazioni pubbliche del tuo ateneo o scuola",
       "uploadLogo": "Carica Logo",
       "logoFormat": "PNG, JPG fino a 2MB",
       "fullName": "Nome Completo",
@@ -8924,7 +8923,7 @@
       "privacySettings": "Impostazioni Privacy",
       "privacySettingsDesc": "Controlla quali dati sono visibili pubblicamente",
       "showInDirectory": "Mostra nella Directory",
-      "showInDirectoryDesc": "Rendi visibile la tua istituzione nella directory",
+      "showInDirectoryDesc": "Rendi visibile il tuo ateneo o scuola nella directory",
       "studentDirectory": "Directory Studenti",
       "studentDirectoryDesc": "Permetti alle aziende di cercare studenti",
       "shareAnalytics": "Condividi Analytics",
@@ -8960,7 +8959,7 @@
       "activeProfiles": "Profili Attivi",
       "recruiterViews": "Visualizzazioni Recruiter",
       "recentStudents": "Studenti Recenti",
-      "noStudentsFound": "Nessuno studente trovato. Gli studenti appariranno qui una volta registrati e associati alla tua istituzione.",
+      "noStudentsFound": "Nessuno studente trovato. Gli studenti appariranno qui una volta registrati e associati al tuo ateneo o scuola.",
       "topRecruiters": "Top Recruiter (Ultimi 30 Giorni)",
       "noRecruiterActivity": "Nessuna attivita recruiter. I recruiter che visualizzano i tuoi studenti appariranno qui.",
       "viewsContacts": "{views} visualizzazioni / {contacts} contatti",
@@ -9003,7 +9002,7 @@
       "subtitle": "Organizza eventi di carriera con prenotazione colloqui digitale e QR code CV",
       "comingSoon": "In Arrivo",
       "comingSoonTitle": "La Gestione Career Day e in Arrivo",
-      "comingSoonDesc": "Stiamo costruendo uno strumento completo di gestione career day che aiutera la tua istituzione a organizzare eventi, gestire la partecipazione aziendale e semplificare il processo di prenotazione colloqui.",
+      "comingSoonDesc": "Stiamo costruendo uno strumento completo di gestione career day che aiutera il tuo ateneo o scuola a organizzare eventi, gestire la partecipazione aziendale e semplificare il processo di prenotazione colloqui.",
       "enterpriseFirst": "Le istituzioni Enterprise saranno le prime ad avere accesso. Resta sintonizzato!",
       "whatToExpect": "Cosa Aspettarsi",
       "studentQrCodes": "QR Code Studenti",
@@ -9044,7 +9043,7 @@
       "impact2": "Aggiornamenti in tempo reale creano urgenza e riprova sociale",
       "impact3": "Visibilita del brand sul tuo sito",
       "livePreview": "Anteprima Live",
-      "tip": "Cambia i colori sopra per abbinare il branding della tua istituzione. Il widget si aggiorna in tempo reale!",
+      "tip": "Cambia i colori sopra per abbinare il branding del tuo ateneo o scuola. Il widget si aggiorna in tempo reale!",
       "copied": "Copiato!",
       "copy": "Copia"
     }
@@ -9126,7 +9125,7 @@
     "benefits": {
       "0": {
         "title": "Portfolio progetti verificato",
-        "description": "Carica i tuoi progetti universitari con verifica istituzionale. Le aziende vedono cosa hai costruito, non cosa dichiari."
+        "description": "Carica i tuoi progetti universitari con endorsement opzionale dei docenti. Le aziende vedono cosa hai costruito, non cosa dichiari."
       },
       "1": {
         "title": "I voti tradotti per tutta Europa",
@@ -10341,7 +10340,7 @@
   },
   "studentImport": {
     "title": "Aggiungi Studenti",
-    "subtitle": "Invita studenti a unirsi alla tua istituzione sulla piattaforma.",
+    "subtitle": "Invita studenti a unirsi al tuo ateneo o scuola sulla piattaforma.",
     "welcome": "Come vuoi aggiungere studenti?",
     "options": {
       "paste": "Incolla email",
@@ -10411,7 +10410,7 @@
     "degreePlaceholder": "es. Informatica",
     "send": "Invia Invito",
     "sending": "Invio...",
-    "note": "Lo studente riceverà un invito via email per unirsi alla tua istituzione e completare il profilo.",
+    "note": "Lo studente riceverà un invito via email per unirsi al tuo ateneo o scuola e completare il profilo.",
     "success": "Invito inviato!",
     "back": "Indietro"
   },
@@ -10707,13 +10706,13 @@
   },
   "conventions": {
     "title": "Convenzioni Stage",
-    "subtitle": "Gestisci gli accordi formali tra la tua istituzione, le aziende e gli studenti. Monitora firme, conformità e stato.",
+    "subtitle": "Gestisci gli accordi formali tra il tuo ateneo o scuola, le aziende e gli studenti. Monitora firme, conformità e stato.",
     "create": "Nuova Convenzione",
     "searchPlaceholder": "Cerca per azienda o studente...",
     "allStatuses": "Tutti gli stati",
     "created": "Creata",
     "empty": "Nessuna convenzione",
-    "emptyHint": "Crea la tua prima convenzione per formalizzare un accordo di stage tra la tua istituzione, un'azienda e uno studente.",
+    "emptyHint": "Crea la tua prima convenzione per formalizzare un accordo di stage tra il tuo ateneo o scuola, un'azienda e uno studente.",
     "stats": {
       "total": "Convenzioni Totali",
       "active": "Attive",
@@ -11005,7 +11004,7 @@
   },
   "universityScorecard": {
     "title": "Pagella Istituzionale",
-    "subtitle": "Valutazione basata sui dati delle performance della tua istituzione, con benchmark di piattaforma e raccomandazioni prioritizzate.",
+    "subtitle": "Valutazione basata sui dati delle performance del tuo ateneo o scuola, con benchmark di piattaforma e raccomandazioni prioritizzate.",
     "error": "Impossibile caricare i dati della pagella.",
     "retry": "Riprova",
     "overallGrade": "Voto Complessivo",
@@ -11047,7 +11046,7 @@
       "lowProjects": "Incentiva il caricamento dei progetti",
       "lowProjectsDesc": "Pochi studenti hanno progetti. I progetti sono il fattore #1 valutato dai recruiter. Richiedi la consegna di progetti come parte delle valutazioni dei corsi.",
       "lowVisibility": "Aumenta la visibilità presso le aziende",
-      "lowVisibilityDesc": "Meno di 5 aziende hanno visualizzato i tuoi studenti. Condividi la pagina pubblica della tua istituzione con partner industriali e fiere del lavoro.",
+      "lowVisibilityDesc": "Meno di 5 aziende hanno visualizzato i tuoi studenti. Condividi la pagina pubblica del tuo ateneo o scuola con partner industriali e fiere del lavoro.",
       "noAlumni": "Inizia a tracciare gli esiti degli alumni",
       "noAlumniDesc": "Nessun record alumni. I dati sull'occupazione degli alumni rafforzano la reputazione dell'istituzione e aiutano a valutare la qualità dei placement.",
       "noCourses": "Aggiungi il catalogo corsi",
@@ -11058,7 +11057,7 @@
       "lowContactsDesc": "Pochi recruiter contattano i tuoi studenti. Considera l'organizzazione di eventi di carriera virtuali o il contatto con aziende nella rete alumni."
     },
     "allGood": "Ottime performance su tutte le dimensioni",
-    "allGoodDesc": "Nessun problema critico rilevato. Continua a monitorare la pagella per mantenere la posizione competitiva della tua istituzione."
+    "allGoodDesc": "Nessun problema critico rilevato. Continua a monitorare la pagella per mantenere la posizione competitiva del tuo ateneo o scuola."
   },
   "universityDocuments": {
     "title": "Archivio Documenti",
@@ -11109,7 +11108,7 @@
   },
   "universityAddStudent": {
     "title": "Aggiungi Studente",
-    "subtitle": "Aggiungi un nuovo studente alla tua istituzione sulla piattaforma.",
+    "subtitle": "Aggiungi un nuovo studente al tuo ateneo o scuola sulla piattaforma.",
     "backToStudents": "Torna agli Studenti",
     "successTitle": "Studente Aggiunto con Successo",
     "successMessage": "{name} ({email}) è stato aggiunto e riceverà un'email di invito.",
@@ -11299,7 +11298,7 @@
     "pointsContribution": "+{points} pt",
     "rights": {
       "title": "I tuoi diritti",
-      "humanReview": "Revisione umana: se non sei d'accordo, un umano della tua istituzione può riesaminare e annullare il match.",
+      "humanReview": "Revisione umana: se non sei d'accordo, un umano del tuo ateneo o scuola può riesaminare e annullare il match.",
       "object": "Opposizione: puoi rimuoverti dai futuri match di questo recruiter.",
       "exportRight": "Esportazione: puoi esportare ogni spiegazione che ti riguarda.",
       "requestReviewButton": "Richiedi revisione umana",
@@ -13363,7 +13362,7 @@
     "welcome": "Benvenuto su InTransparency!",
     "welcomeUniversity": "Benvenuta su InTransparency!",
     "welcomeSubtitle": "Completa il tuo profilo per iniziare",
-    "welcomeSubtitleUniversity": "Configura il profilo della tua istituzione per iniziare",
+    "welcomeSubtitleUniversity": "Configura il profilo del tuo ateneo o scuola per iniziare",
     "stepOf": "Passo {current} di {total}",
     "uploading": "Caricamento...",
     "uploadPhoto": "Carica Foto",

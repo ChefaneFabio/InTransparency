@@ -151,8 +151,7 @@
         "aiTalentSearch": "AI Talent Search",
         "integrations": "Integrations"
       },
-      "search": "Search",
-      "brand": "Brand"
+      "search": "Search"
     },
     "university": {
       "workspace": "Workspace",
@@ -1045,7 +1044,7 @@
     },
     "apiOverview": {
       "title": "API Overview",
-      "description": "InTransparency provides RESTful APIs for universities to push verified student data, for companies to search and filter candidates by real skills, and for third-party platforms to build integrations. All data is institution-verified and GDPR compliant."
+      "description": "InTransparency provides RESTful APIs for universities to push verified student data, for companies to search and filter candidates by real skills, and for third-party platforms to build integrations. All data is professor-endorsed and GDPR compliant."
     },
     "endpoints": {
       "title": "API Endpoints",
@@ -1177,7 +1176,7 @@
     "companies": {
       "badge": "For Companies - Pay Only What You Use",
       "title": "Transparent Talent Sourcing Service - No Subscriptions",
-      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Contact verified candidates. Faster screening, verified accuracy.",
+      "subtitle": "Browse 100% professor-endorsed profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Contact verified candidates. Faster screening, verified accuracy.",
       "browseFree": {
         "name": "Browse Free",
         "price": "€0",
@@ -1807,7 +1806,7 @@
         },
         "3": {
           "title": "Verified Credentials",
-          "description": "Your institution's badge on every endorsed student profile"
+          "description": "Your school's badge on every endorsed student profile"
         }
       },
       "createTitle": "Create Academic Partner Account",
@@ -1993,10 +1992,10 @@
           },
           "2": {
             "title": "Track Career Outcomes",
-            "desc": "See which students get contacted, interviewed, and hired. Real-time placement data that proves your institution's impact."
+            "desc": "See which students get contacted, interviewed, and hired. Real-time placement data that proves your school's impact."
           }
         },
-        "outcome": "Demonstrate your institution's real impact on student employability — with data, not anecdotes."
+        "outcome": "Demonstrate your school's real impact on student employability — with data, not anecdotes."
       },
       "company": {
         "headline": "Find Junior Talent You Can Trust.",
@@ -2033,8 +2032,8 @@
             }
           },
           "1": {
-            "title": "Institutional Trust Score",
-            "desc": "Your institution's verification transforms your profile from a self-reported CV into verified evidence.",
+            "title": "Endorsement Trust Score",
+            "desc": "Your school's verification transforms your profile from a self-reported CV into verified evidence.",
             "features": {
               "0": "Verification badge visible to recruiters",
               "1": "Trust score based on real academic data",
@@ -2062,16 +2061,16 @@
             "features": {
               "0": "Bulk import or student self-registration",
               "1": "GDPR-compliant consent management",
-              "2": "Works with any institutional setup"
+              "2": "Works with any academic setup"
             }
           },
           "1": {
             "title": "One-Click Verification",
-            "desc": "Endorse student projects individually or in batches. Add grades, ECTS, and institutional badges effortlessly.",
+            "desc": "Endorse student projects individually or in batches. Add grades, ECTS, and professors' endorsement badges effortlessly.",
             "features": {
               "0": "Batch approval dashboard",
               "1": "ECTS and grade integration",
-              "2": "Digital institutional badges"
+              "2": "Digital professors' endorsement badges"
             }
           },
           "2": {
@@ -2091,7 +2090,7 @@
         "cards": {
           "0": {
             "title": "Verified Talent Pool",
-            "desc": "Every profile is backed by institutional data. Search by real skills, verified grades, and actual project work.",
+            "desc": "Every profile is backed by academic data. Search by real skills, verified grades, and actual project work.",
             "features": {
               "0": "250+ search filters",
               "1": "Intelligent candidate matching",
@@ -2100,7 +2099,7 @@
           },
           "1": {
             "title": "Evidence-Based Screening",
-            "desc": "Review actual project files, analysis scores, and institutional verification — before you ever reach out.",
+            "desc": "Review actual project files, analysis scores, and optional professor endorsement — before you ever reach out.",
             "features": {
               "0": "See real projects, not just keywords",
               "1": "Skill and complexity scores",
@@ -2469,7 +2468,7 @@
     "audience": {
       "0": {
         "title": "Universities",
-        "desc": "Track placement rates across departments. Verify thesis work and research projects. Prove your institution's impact on employability."
+        "desc": "Track placement rates across departments. Verify thesis work and research projects. Prove your school's impact on employability."
       },
       "1": {
         "title": "ITS Academies",
@@ -2851,7 +2850,7 @@
     "benefits": {
       "0": {
         "title": "Verified project portfolios",
-        "description": "Students upload ITS projects with your institutional verification badge. Companies see proof, not just claims."
+        "description": "Students upload ITS projects with your optional professor endorsement badge. Companies see proof, not just claims."
       },
       "1": {
         "title": "Companies discover your graduates",
@@ -3014,7 +3013,7 @@
       "badge": "Our Transparency Commitment",
       "title": "Verified Skills",
       "subtitle": "Clear Explanations",
-      "description": "Institution-verified hard and soft skills. Explainable evidence-based matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
+      "description": "Professor-endorsed hard and soft skills. Explainable evidence-based matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
       "ctas": {
         "features": "See Our Features",
         "demo": "Try Live Demo"
@@ -3034,7 +3033,7 @@
           "1": {
             "title": "30% skill mismatch",
             "subtitle": "in hires",
-            "description": "Institutional verification closes this gap"
+            "description": "Optional professor endorsement closes this gap"
           },
           "2": {
             "title": "Time-consuming validation",
@@ -3070,11 +3069,11 @@
       "pillars": {
         "0": {
           "title": "1. Verified Competencies",
-          "description": "Hard and soft skills verified through institutional data and project analysis.",
+          "description": "Hard and soft skills verified through academic data and project analysis.",
           "items": {
             "0": "Hard skills: Verified through projects, code, designs, research",
             "1": "Soft skills: Analyzed from teamwork, leadership, presentations",
-            "2": "Institution-authenticated grades, courses, and achievements",
+            "2": "Professor-endorsed grades, courses, and achievements",
             "3": "Verified data outperforms traditional self-reported methods"
           }
         },
@@ -3200,15 +3199,15 @@
     },
     "student": {
       "title": "Student Referral Program",
-      "subtitle": "Earn rewards by inviting your institution and fellow students",
+      "subtitle": "Earn rewards by inviting your school and fellow students",
       "programs": {
         "referInstitution": {
-          "title": "Refer Your Institution",
-          "description": "Invite your institution/ITS to verify student profiles",
+          "title": "Refer Your School",
+          "description": "Invite your school/ITS to verify student profiles",
           "reward": "10% of first-year Premium fees",
           "details": {
-            "0": "Your institution signs up and verifies students",
-            "1": "You earn 10% of all Premium subscriptions from your institution students in Year 1",
+            "0": "Your school signs up and verifies students",
+            "1": "You earn 10% of all Premium subscriptions from your school students in Year 1",
             "2": "Example: 100 students upgrade to Premium (€9/month) = €90/month × 12 = €1,080/year × 10% = €108 reward",
             "3": "Paid quarterly via PayPal/bank transfer",
             "4": "Lifetime tracking - even students who join later count"
@@ -3232,7 +3231,7 @@
         },
         "campusAmbassador": {
           "title": "Campus Ambassador Program",
-          "description": "Become official ambassador for your institution",
+          "description": "Become official ambassador for your school",
           "reward": "€50/month + exclusive perks",
           "details": {
             "0": "Host info sessions and promote InTransparency on campus",
@@ -3248,7 +3247,7 @@
       }
     },
     "institution": {
-      "title": "Institution Partner Program",
+      "title": "Academic Partner Program",
       "subtitle": "Earn bonuses by promoting Premium upgrades and company partnerships",
       "programs": {
         "studentUpgradeBonus": {
@@ -3258,7 +3257,7 @@
           "details": {
             "0": "When your verified students upgrade to Premium (€9/month), you earn 10%",
             "1": "Example: 50 students upgrade = €45/month × 12 = €540/year",
-            "2": "Automated tracking via your institution dashboard",
+            "2": "Automated tracking via your school dashboard",
             "3": "Promote Premium in career center emails: \"Unlock unlimited projects for €9/month\"",
             "4": "Use funds for student scholarships or career services budget"
           },
@@ -3300,7 +3299,7 @@
       "subtitle": "Earn credits by referring institutions and other companies",
       "programs": {
         "referInstitution": {
-          "title": "Refer Educational Institutions",
+          "title": "Refer Academic Partners",
           "description": "Invite universities/ITS to verify their students",
           "reward": "50 free contact credits",
           "details": {
@@ -3310,7 +3309,7 @@
             "3": "Priority access to newly verified students from that institution",
             "4": "Example: Refer 3 ITS academies = 150 credits = €1,500 in hiring"
           },
-          "cta": "Nominate Institution",
+          "cta": "Nominate Academic Partner",
           "trigger": "Post-contact: \"Hired via InTransparency? Nominate this ITS for exclusive access\""
         },
         "referCompany": {
@@ -3370,7 +3369,7 @@
     "intransparencyWay": {
       "title": "What we add",
       "items": {
-        "0": "Institution-verified projects in any format",
+        "0": "Professor-endorsed projects in any format",
         "1": "Hard and soft skills surfaced from evidence",
         "2": "A profile that complements — doesn't replace — the CV",
         "3": "Work you can actually look at, not just claims",
@@ -3387,7 +3386,7 @@
         "items": {
           "0": {
             "title": "Self-reported skills",
-            "description": "Without institutional verification, skills are hard to validate — which leads to mismatched hires on both sides."
+            "description": "Without optional professor endorsement, skills are hard to validate — which leads to mismatched hires on both sides."
           },
           "1": {
             "title": "Unexplained matches",
@@ -3475,7 +3474,7 @@
         },
         "3": {
           "title": "Proof alongside words",
-          "description": "Institution-verified work sits next to a candidate's own description — together they're better."
+          "description": "Professor-endorsed work sits next to a candidate's own description — together they're better."
         }
       }
     },
@@ -3687,7 +3686,7 @@
     "universities": {
       "title": "Universities, Schools & Training Centers",
       "subtitle": "Free Core forever · optional Premium at €39/mo when you scale. No upsell, no gotcha — transparent pricing.",
-      "premiumBadge": "Institutional Workspace",
+      "premiumBadge": "Academic Partner Workspace",
       "freeBadge": "Full Workspace · Free",
       "reassurance": "Free Core forever, Premium and add-ons available when you need them. Every AI action is logged for AI Act compliance.",
       "addonsBadge": "Optional add-ons",
@@ -3719,7 +3718,7 @@
           "price": "€39",
           "period": "/mo · or €390/yr",
           "note": "· 30-day free trial · cancel anytime",
-          "description": "Unlock unlimited AI, advanced analytics, reminder automation, and MIUR reporting. For institutions scaling past Free Core.",
+          "description": "Unlock unlimited AI, advanced analytics, reminder automation, and MIUR reporting. For academic partners scaling past Free Core.",
           "includes": "Everything in Free Core, plus:",
           "features": {
             "0": "AI Assistant unlimited (no monthly cap)",
@@ -3752,7 +3751,7 @@
         },
         "3": {
           "q": "Do universities and ITS have to pay?",
-          "a": "No, not to start. Free Core covers the full M1–M4 workspace (Inbox, Offer moderation, CRM, Placement pipeline), basic analytics + scorecard, AI Assistant up to 50 queries/month, and a 30-day audit log — forever. Institutional Premium (€39/mo · €390/yr, 30-day trial) is the optional upgrade for institutions that need unlimited AI, advanced analytics, full audit history with CSV exports, reminder automation, and basic MIUR reports. Enterprise add-ons (white-label, SSO, ATS bridge) are priced à la carte in the marketplace."
+          "a": "No, not to start. Free Core covers the full M1–M4 workspace (Inbox, Offer moderation, CRM, Placement pipeline), basic analytics + scorecard, AI Assistant up to 50 queries/month, and a 30-day audit log — forever. Institutional Premium (€39/mo · €390/yr, 30-day trial) is the optional upgrade for academic partners that need unlimited AI, advanced analytics, full audit history with CSV exports, reminder automation, and basic MIUR reports. Enterprise add-ons (white-label, SSO, ATS bridge) are priced à la carte in the marketplace."
         },
         "4": {
           "q": "Is there a contract or lock-in?",
@@ -3760,7 +3759,7 @@
         },
         "5": {
           "q": "How is this different from LinkedIn, Handshake, or JobTeaser?",
-          "a": "Every profile is backed by real projects, grades, and (when a professor takes the time) endorsements — not self-reported claims. The fit score matches on motivation and culture, not just CV keywords. And the Free Core workspace is free for institutions, while Handshake charges $1K–$20K/year."
+          "a": "Every profile is backed by real projects, grades, and (when a professor takes the time) endorsements — not self-reported claims. The fit score matches on motivation and culture, not just CV keywords. And the Free Core workspace is free for academic partners, while Handshake charges $1K–$20K/year."
         }
       }
     }
@@ -4039,7 +4038,7 @@
     "hero": {
       "badge": "Featured Talent",
       "title": "Discover Verified Student Portfolios",
-      "subtitle": "Browse institution-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "subtitle": "Browse professor-endorsed projects from top students. All portfolios are authenticated by institutional systems.",
       "createPortfolio": "Create Your Portfolio",
       "browseAsRecruiter": "Browse as Recruiter"
     },
@@ -4274,7 +4273,7 @@
       },
       "m2": {
         "title": "Offer Moderation",
-        "desc": "Job offers tied to your institution go to PENDING_APPROVAL. Block offers that violate stage rules before students see them."
+        "desc": "Job offers tied to your school go to PENDING_APPROVAL. Block offers that violate stage rules before students see them."
       },
       "m3": {
         "title": "Company CRM",
@@ -4316,7 +4315,7 @@
       "items": {
         "0": {
           "question": "Is it free for universities?",
-          "answer": "Yes. The core platform is free for all academic partners. Premium features like embeddable widgets and custom branding are available for institutions that want deeper integration."
+          "answer": "Yes. The core platform is free for all academic partners. Premium features like embeddable widgets and custom branding are available for academic partners that want deeper integration."
         },
         "1": {
           "question": "How do we verify student projects?",
@@ -4650,7 +4649,7 @@
       "features": {
         "universityVerified": {
           "title": "Institution-Verified Data",
-          "description": "Institution-verified grades and courses"
+          "description": "Professor-endorsed grades and courses"
         },
         "aiAnalysis": {
           "title": "Project Analysis",
@@ -5104,7 +5103,7 @@
     "hero": {
       "badge": "Featured Talent",
       "title": "Discover Verified Student Portfolios",
-      "description": "Browse institution-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "description": "Browse professor-endorsed projects from top students. All portfolios are authenticated by institutional systems.",
       "ctaStudent": "Create Your Portfolio",
       "ctaRecruiter": "Browse as Recruiter"
     },
@@ -5493,7 +5492,7 @@
     "viewApplications": "View my applications",
     "browseMore": "Browse more jobs",
     "trust": {
-      "verified": "Profile verified by your institution",
+      "verified": "Profile verified by your school",
       "institutional": "Backed by academic credentials"
     }
   },
@@ -5708,7 +5707,7 @@
         },
         "1": {
           "title": "Verified Skills, Real Projects",
-          "description": "We believe a 30/30 thesis project tells a lot about a candidate. Our platform puts concrete, institution-verified work first."
+          "description": "We believe a 30/30 thesis project tells a lot about a candidate. Our platform puts concrete, professor-endorsed work first."
         },
         "2": {
           "title": "A Fair System for Everyone",
@@ -5858,7 +5857,7 @@
           "skillMatch": "Skill match",
           "verifiedProject": "Has verified projects",
           "highGrade": "High academic grade",
-          "institutionVerified": "Institution-verified projects",
+          "institutionVerified": "Professor-endorsed projects",
           "locationMatch": "Location match"
         },
         "history": {
@@ -6653,7 +6652,7 @@
     "badge": "For Consulting & Professional Services",
     "hero": {
       "title": "Hire Consultants With Verified Soft Skills",
-      "subtitle": "DISC personality profiles, normalized grades, and institution-verified competencies. Stop guessing about soft skills.",
+      "subtitle": "DISC personality profiles, normalized grades, and professor-endorsed competencies. Stop guessing about soft skills.",
       "browseCta": "Browse Candidates",
       "demoCta": "Schedule a Demo"
     },
@@ -6781,7 +6780,7 @@
       "description": "Copy these pre-written messages to share on your favorite platforms"
     },
     "shareMessages": {
-      "whatsapp": "Hey! I'm using InTransparency to showcase my verified institutional projects to top companies. Join me and build your professional portfolio too! {link}",
+      "whatsapp": "Hey! I'm using InTransparency to showcase my verified real student projects to top companies. Join me and build your professional portfolio too! {link}",
       "linkedin": "Excited to be part of @InTransparency — a platform that verifies your academic projects and connects you directly with recruiters. If you're a student or recent graduate, check it out: {link}",
       "instagram": "Building my verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
       "email": "Hi! I wanted to share InTransparency with you — it's a platform where you build a portfolio of real projects (with optional professor endorsements), so companies can find you for what you actually know how to do. Sign up here: {link}"
@@ -7091,7 +7090,7 @@
     "step2Title": "Upload Projects",
     "step2Desc": "Add PCTO activities, internships, school projects.",
     "step3Title": "School Verifies",
-    "step3Desc": "Teachers confirm with institutional badge.",
+    "step3Desc": "Teachers confirm with professors' endorsement badges.",
     "step4Title": "Get Discovered",
     "step4Desc": "Companies find you and contact you directly.",
     "pctoLabel": "PCTO",
@@ -7195,7 +7194,7 @@
     "pctoFullTitle": "PCTO: Pathways for Transversal Skills and Orientation",
     "pctoLawText": "Law 145/2018 requires at least {techHours} hours for technical institutes and {liceiHours} hours for licei. InTransparency helps your school to:",
     "pctoCheck1": "Find partner companies for internships and traineeships",
-    "pctoCheck2": "Document acquired skills with institutional verification",
+    "pctoCheck2": "Document acquired skills with optional professor endorsement",
     "pctoCheck3": "Track hours and activities for MIUR reporting",
     "pctoCheck4": "Prepare students for first job placement",
     "techHoursLabel": "Min hours Technical Institutes",
@@ -7210,7 +7209,7 @@
     "card1Check4": "Direct company-student contact",
     "card2Title": "Simplified PCTO Management",
     "card2Check1": "Students upload projects and activities",
-    "card2Check2": "Teachers verify with institutional badge",
+    "card2Check2": "Teachers verify with professors' endorsement badges",
     "card2Check3": "Automatic hour tracking",
     "card2Check4": "Reports ready for MIUR",
     "card3Title": "Orientation and Placement",
@@ -7219,7 +7218,7 @@
     "card3Check3": "Data to guide curriculum",
     "card3Check4": "Alert: \"Student X: 0 views in 30 days\"",
     "servicesTitle": "Services for High Schools",
-    "servicesSubtitle": "Marketplace platform with institutional verification quality layer",
+    "servicesSubtitle": "Marketplace platform with optional professor endorsement quality layer",
     "primaryService": "PRIMARY SERVICE",
     "service1Title": "Internship & PCTO Marketplace",
     "service1Free": "Free for schools",
@@ -7293,13 +7292,13 @@
     "pctoActivities": "PCTO Activities:",
     "faqTitle": "Frequently Asked Questions",
     "faq1Q": "How does it work for PCTO?",
-    "faq1A": "Students upload projects completed during PCTO (internships, traineeships, company activities). Teachers verify with institutional badge. Companies search for students with specific skills and contact them directly for internships or first jobs.",
+    "faq1A": "Students upload projects completed during PCTO (internships, traineeships, company activities). Teachers verify with professors' endorsement badges. Companies search for students with specific skills and contact them directly for internships or first jobs.",
     "faq2Q": "How much does it cost for the school?",
-    "faq2A": "The basic service is completely free for schools. Companies pay to contact students. Enterprise options available for institutions with advanced needs.",
+    "faq2A": "The basic service is completely free for schools. Companies pay to contact students. Enterprise options available for academic partners with advanced needs.",
     "faq3Q": "Does it work for alternanza scuola-lavoro too?",
     "faq3A": "Yes, the platform supports all forms of work experience: PCTO, curricular internships, training placements, and first work experiences. Every activity can be documented and verified by the school.",
     "faq4Q": "How does verification work?",
-    "faq4A": "Students upload projects and teachers verify them through the dashboard. Verification adds an institutional badge that increases the student's visibility and credibility in the marketplace.",
+    "faq4A": "Students upload projects and teachers verify them through the dashboard. Verification adds an professors' endorsement badges that increases the student's visibility and credibility in the marketplace.",
     "faq5Q": "Can we use it for RAV?",
     "faq5A": "Yes, the analytics dashboard provides exportable data useful for the Self-Assessment Report: placement metrics, most in-demand skills, companies that contacted students.",
     "faq6Q": "Can licei use the platform too?",
@@ -7313,8 +7312,8 @@
     "heroBadge": "Free Marketplace • Get Your Students Hired",
     "heroTitle": "Connect Your Graduates to",
     "heroTitleHighlight": "Companies Seeking Verified Skills",
-    "heroDescription": "Marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with analytics.",
-    "heroSubtext": "Freemium model for institutions.",
+    "heroDescription": "Marketplace connecting your ITS students to companies actively hiring. Your optional professor endorsement gives graduates a competitive edge. Track placement success with analytics.",
+    "heroSubtext": "Freemium model for academic partners.",
     "getStarted": "Get Started",
     "seeHowItWorks": "See How It Works",
     "howMarketplaceHelps": "How the Marketplace Helps Your ITS",
@@ -7400,7 +7399,7 @@
     "gs1Title": "Register ITS",
     "gs1Desc": "Create free account → Email .edu verified → Dashboard active in 5 minutes",
     "gs2Title": "Students Upload Projects",
-    "gs2Desc": "Students join free → Upload ITS projects → You verify with your institutional badge",
+    "gs2Desc": "Students join free → Upload ITS projects → You verify with your professors' endorsement badges",
     "gs3Title": "Track Placements",
     "gs3Desc": "Companies discover students → Analytics: \"23 students contacted\" → Track hiring success",
     "quickSetup": "Quick setup. Track placements.",
@@ -7410,7 +7409,7 @@
     "skillsSeek": "Skills Companies Seek:",
     "faqTitle": "Frequently Asked Questions",
     "faq1Q": "How does the marketplace help our students?",
-    "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.",
+    "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your optional professor endorsement gives them a competitive edge.",
     "faq2Q": "What does freemium mean?",
     "faq2A": "Core features are included at no cost. Companies full access. Enterprise features available for larger institutions.",
     "faq3Q": "How does verification work?",
@@ -7431,15 +7430,15 @@
     "heroBadge": "Free Marketplace • Get Your Graduates Hired",
     "heroTitle": "Connect Your Graduates to",
     "heroTitleHighlight": "Companies Seeking Verified Talent",
-    "heroDescription": "Marketplace connecting your students to companies. Institutional verification gives graduates a competitive edge. Track success with analytics.",
-    "heroSubtext": "Freemium model for institutions.",
+    "heroDescription": "Marketplace connecting your students to companies. Optional professor endorsement gives graduates a competitive edge. Track success with analytics.",
+    "heroSubtext": "Freemium model for academic partners.",
     "registerInstitution": "Register Your Institution",
     "seeHowItWorks": "See How It Works",
     "howMarketplaceHelps": "How the Marketplace Helps Your Institution",
     "mp1Title": "Students Discovered by Companies",
     "mp1Check1": "Companies search for verified graduates",
     "mp1Check2": "Students don't apply - they get contacted",
-    "mp1Check3": "Institutional verification = trust signal",
+    "mp1Check3": "Optional professor endorsement = trust signal",
     "mp2Title": "Transparent Matching",
     "mp2Check1": "\"High compatibility: Python verified from thesis\"",
     "mp2Check2": "Verified skills = higher scores",
@@ -7477,7 +7476,7 @@
     "gs1Title": "Register the Institution",
     "gs1Desc": "Create free account → Verify .edu email → Dashboard active in 5 minutes",
     "gs2Title": "Students Upload Projects",
-    "gs2Desc": "Students join free → Upload thesis and projects → You verify with institutional badge",
+    "gs2Desc": "Students join free → Upload thesis and projects → You verify with professors' endorsement badges",
     "gs3Title": "Monitor Hiring",
     "gs3Desc": "Companies discover students → Analytics: \"23 students contacted\" → Track success",
     "registerFree": "Register Your Institution Free",
@@ -7504,7 +7503,7 @@
     "contactDescription": "Our support team is ready to help you",
     "contactUs": "Contact Us",
     "sq1": "How can I create a student account?",
-    "sa1": "You can register for free by clicking 'Register' and selecting 'Student'. You'll need to provide your name, email, and create a password. After registration, you can complete your profile and connect your institution.",
+    "sa1": "You can register for free by clicking 'Register' and selecting 'Student'. You'll need to provide your name, email, and create a password. After registration, you can complete your profile and connect your school.",
     "sq2": "How do I connect my institution?",
     "sa2": "From your dashboard, go to 'University Integration' and click 'Connect University'. Search for your university or ITS, enter your institutional email, and verify your account. Once verified, your grades and projects can be synced automatically.",
     "sq3": "Are my projects visible to everyone?",
@@ -8692,7 +8691,7 @@
       "employerPartners": "Employer Partners",
       "uniqueCompanies": "Unique confirmed companies",
       "totalStudents": "Total Students",
-      "enrolledAt": "Enrolled at your institution",
+      "enrolledAt": "Enrolled at your school",
       "placementRateTrends": "Placement Rate Trends",
       "trendDescription": "Trend of graduate placement rates over time",
       "industryDistribution": "Industry Distribution",
@@ -8929,7 +8928,7 @@
     },
     "settings": {
       "title": "Settings",
-      "subtitle": "Manage your institution settings",
+      "subtitle": "Manage your school settings",
       "save": "Save Changes",
       "saving": "Saving...",
       "savedSuccess": "Settings saved successfully!",
@@ -8939,7 +8938,7 @@
       "privacyTab": "Privacy",
       "brandingTab": "Branding",
       "institutionInfo": "Institution Information",
-      "institutionInfoDesc": "Manage your institution public information",
+      "institutionInfoDesc": "Manage your school public information",
       "uploadLogo": "Upload Logo",
       "logoFormat": "PNG, JPG up to 2MB",
       "fullName": "Full Name",
@@ -8963,7 +8962,7 @@
       "privacySettings": "Privacy Settings",
       "privacySettingsDesc": "Control which data is publicly visible",
       "showInDirectory": "Show in Directory",
-      "showInDirectoryDesc": "Make your institution visible in the directory",
+      "showInDirectoryDesc": "Make your school visible in the directory",
       "studentDirectory": "Student Directory",
       "studentDirectoryDesc": "Allow companies to search for students",
       "shareAnalytics": "Share Analytics",
@@ -8999,7 +8998,7 @@
       "activeProfiles": "Active Profiles",
       "recruiterViews": "Recruiter Views",
       "recentStudents": "Recent Students",
-      "noStudentsFound": "No students found yet. Students will appear here once they register and associate with your institution.",
+      "noStudentsFound": "No students found yet. Students will appear here once they register and associate with your school.",
       "topRecruiters": "Top Recruiters (Last 30 Days)",
       "noRecruiterActivity": "No recruiter activity yet. Recruiters viewing your students will appear here.",
       "viewsContacts": "{views} views / {contacts} contacts",
@@ -9042,7 +9041,7 @@
       "subtitle": "Organize career events with digital interview booking and CV QR codes",
       "comingSoon": "Coming Soon",
       "comingSoonTitle": "Career Day Management is Coming Soon",
-      "comingSoonDesc": "We are building a comprehensive career day management tool that will help your institution organize events, manage company participation, and streamline the interview booking process.",
+      "comingSoonDesc": "We are building a comprehensive career day management tool that will help your school organize events, manage company participation, and streamline the interview booking process.",
       "enterpriseFirst": "Enterprise institutions will be the first to get access. Stay tuned!",
       "whatToExpect": "What to Expect",
       "studentQrCodes": "Student QR Codes",
@@ -9083,7 +9082,7 @@
       "impact2": "Live updates create urgency and social proof",
       "impact3": "Brand visibility on your own website",
       "livePreview": "Live Preview",
-      "tip": "Change colors above to match your institution branding. The widget updates in real-time!",
+      "tip": "Change colors above to match your academic partner branding. The widget updates in real-time!",
       "copied": "Copied!",
       "copy": "Copy"
     }
@@ -9099,7 +9098,7 @@
     "benefits": {
       "0": {
         "title": "Verified project portfolio",
-        "description": "Upload your university projects with institutional verification. Companies see what you built, not what you claim."
+        "description": "Upload your university projects with optional professor endorsement. Companies see what you built, not what you claim."
       },
       "1": {
         "title": "Grades translated across Europe",
@@ -10314,7 +10313,7 @@
   },
   "studentImport": {
     "title": "Add Students",
-    "subtitle": "Invite students to join your institution on the platform.",
+    "subtitle": "Invite students to join your school on the platform.",
     "welcome": "How would you like to add students?",
     "options": {
       "paste": "Paste emails",
@@ -10384,16 +10383,16 @@
     "degreePlaceholder": "e.g. Computer Science",
     "send": "Send Invitation",
     "sending": "Sending...",
-    "note": "The student will receive an email invitation to join your institution and complete their profile.",
+    "note": "The student will receive an email invitation to join your school and complete their profile.",
     "success": "Invitation sent!",
     "back": "Back"
   },
   "universitySetup": {
     "chat": {
-      "welcome": "Welcome! Tell me about your institution — name, location, and what programs you offer. I'll help set up your profile.",
+      "welcome": "Welcome! Tell me about your school — name, location, and what programs you offer. I'll help set up your profile.",
       "placeholder": "e.g. We are Politecnico di Milano, a leading technical university...",
       "analyzing": "Setting up your profile...",
-      "followUp": "Tell me more about your institution.",
+      "followUp": "Tell me more about your school.",
       "error": "Something went wrong. Try again.",
       "incompleteProfile": "Please add at least an institution name and city.",
       "looksGood": "Save profile",
@@ -10680,13 +10679,13 @@
   },
   "conventions": {
     "title": "Stage Conventions",
-    "subtitle": "Manage formal agreements between your institution, companies, and students. Track signatures, compliance, and status.",
+    "subtitle": "Manage formal agreements between your school, companies, and students. Track signatures, compliance, and status.",
     "create": "New Convention",
     "searchPlaceholder": "Search by company or student...",
     "allStatuses": "All statuses",
     "created": "Created",
     "empty": "No conventions yet",
-    "emptyHint": "Create your first convention to formalize a stage agreement between your institution, a company, and a student.",
+    "emptyHint": "Create your first convention to formalize a stage agreement between your school, a company, and a student.",
     "stats": {
       "total": "Total Conventions",
       "active": "Active",
@@ -10978,7 +10977,7 @@
   },
   "universityScorecard": {
     "title": "Institutional Scorecard",
-    "subtitle": "A data-driven assessment of your institution's performance across key dimensions, with platform benchmarks and prioritized recommendations.",
+    "subtitle": "A data-driven assessment of your school's performance across key dimensions, with platform benchmarks and prioritized recommendations.",
     "error": "Failed to load scorecard data.",
     "retry": "Retry",
     "overallGrade": "Overall Grade",
@@ -11020,9 +11019,9 @@
       "lowProjects": "Encourage project uploads",
       "lowProjectsDesc": "Few students have projects. Projects are the #1 factor recruiters evaluate. Require project submissions as part of course assessments.",
       "lowVisibility": "Boost employer visibility",
-      "lowVisibilityDesc": "Fewer than 5 companies have viewed your students. Share your institution's public page with industry partners and career fairs.",
+      "lowVisibilityDesc": "Fewer than 5 companies have viewed your students. Share your school's public page with industry partners and career fairs.",
       "noAlumni": "Start tracking alumni outcomes",
-      "noAlumniDesc": "No alumni records yet. Alumni employment data strengthens your institution's reputation and helps benchmark placement quality.",
+      "noAlumniDesc": "No alumni records yet. Alumni employment data strengthens your school's reputation and helps benchmark placement quality.",
       "noCourses": "Add your course catalogue",
       "noCoursesDesc": "No courses registered. Courses help recruiters find students with specific competencies and improve curriculum alignment analysis.",
       "lowVerification": "Verify more projects",
@@ -11031,7 +11030,7 @@
       "lowContactsDesc": "Few recruiters are contacting your students. Consider hosting virtual career events or reaching out to companies in your alumni network."
     },
     "allGood": "Excellent performance across all dimensions",
-    "allGoodDesc": "No critical issues detected. Continue monitoring your scorecard to maintain your institution's competitive position."
+    "allGoodDesc": "No critical issues detected. Continue monitoring your scorecard to maintain your school's competitive position."
   },
   "universityDocuments": {
     "title": "Document Archive",
@@ -11082,7 +11081,7 @@
   },
   "universityAddStudent": {
     "title": "Add Student",
-    "subtitle": "Add a new student to your institution on the platform.",
+    "subtitle": "Add a new student to your school on the platform.",
     "backToStudents": "Back to Students",
     "successTitle": "Student Added Successfully",
     "successMessage": "{name} ({email}) has been added and will receive an invitation email.",
@@ -11272,7 +11271,7 @@
     "pointsContribution": "+{points} pts",
     "rights": {
       "title": "Your rights",
-      "humanReview": "Human review: if you disagree with this match, a human at your institution can review and override it.",
+      "humanReview": "Human review: if you disagree with this match, a human at your school can review and override it.",
       "object": "Object: you can remove yourself from future matching by this recruiter.",
       "exportRight": "Export: you can export every explanation involving you.",
       "requestReviewButton": "Request human review",
@@ -11957,7 +11956,7 @@
       "submitting": "Submitting…"
     },
     "completeForm": {
-      "heading": "Skills acquired during exchange at your institution",
+      "heading": "Skills acquired during exchange at your school",
       "description": "Add skills the student demonstrably gained. These will flow back to their home institution's verified skill graph.",
       "skillPlaceholder": "Add a skill (e.g., Machine Learning)"
     },
@@ -13336,7 +13335,7 @@
     "welcome": "Welcome to InTransparency!",
     "welcomeUniversity": "Welcome to InTransparency!",
     "welcomeSubtitle": "Complete your profile to get started",
-    "welcomeSubtitleUniversity": "Set up your institution's profile to get started",
+    "welcomeSubtitleUniversity": "Set up your school's profile to get started",
     "stepOf": "Step {current} of {total}",
     "uploading": "Uploading...",
     "uploadPhoto": "Upload Photo",
@@ -13367,7 +13366,7 @@
     "companySizeLabel": "Company Size",
     "employeesCount": "{size} employees",
     "contactAndLocationTitle": "Contact & Location",
-    "contactAndLocationDesc": "Who will manage the platform for your institution?",
+    "contactAndLocationDesc": "Who will manage the platform for your school?",
     "contactNameLabel": "Contact Name",
     "contactNamePlaceholder": "e.g. Mario Rossi",
     "contactRoleLabel": "Role",
@@ -13980,7 +13979,7 @@
       "offers": "Unlock Offer Moderation",
       "crm": "Unlock Company CRM",
       "placement": "Unlock Placement Pipeline",
-      "generic": "Unlock the Institutional Workspace"
+      "generic": "Unlock the Academic Partner Workspace"
     },
     "desc": {
       "inbox": "Preview messages from recruiters, but approving, editing, or sending replies on behalf of students requires PREMIUM.",
