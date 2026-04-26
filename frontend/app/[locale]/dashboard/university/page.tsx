@@ -189,7 +189,7 @@ export default function UniversityDashboard() {
 
       {/* Activity Banner */}
       {stats.recruiterViews > 0 && !isNewInstitution && (
-        <GlassCard delay={0.1} gradient="green" hover={false}>
+        <GlassCard delay={0.1} gradient="none" hover={false}>
           <div className="p-4 flex items-center gap-3">
             <div className="p-2 rounded-lg bg-green-100 text-green-600"><Eye className="h-4 w-4" /></div>
             <div>
@@ -202,7 +202,7 @@ export default function UniversityDashboard() {
 
       {/* Engagement Alerts */}
       {engagementData.alerts.length > 0 && !isNewInstitution && (
-        <GlassCard delay={0.12} gradient="amber" hover={false}>
+        <GlassCard delay={0.12} gradient="none" hover={false}>
           <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 rounded-lg bg-amber-100 text-amber-600"><Bell className="h-4 w-4" /></div>
@@ -246,10 +246,10 @@ export default function UniversityDashboard() {
 
       {/* Stat Cards */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StaggerItem><StatCard label={t('totalStudents')} value={stats.totalStudents} icon={<GraduationCap className="h-5 w-5" />} variant="blue" /></StaggerItem>
-        <StaggerItem><StatCard label={t('verified')} value={stats.verifiedStudents} icon={<Shield className="h-5 w-5" />} variant="green" /></StaggerItem>
-        <StaggerItem><StatCard label={t('activeProfiles')} value={stats.activeProfiles} icon={<Users className="h-5 w-5" />} variant="purple" /></StaggerItem>
-        <StaggerItem><StatCard label={t('recruiterViews')} value={stats.recruiterViews} icon={<Eye className="h-5 w-5" />} variant="amber" /></StaggerItem>
+        <StaggerItem><StatCard label={t('totalStudents')} value={stats.totalStudents} icon={<GraduationCap className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('verified')} value={stats.verifiedStudents} icon={<Shield className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('activeProfiles')} value={stats.activeProfiles} icon={<Users className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('recruiterViews')} value={stats.recruiterViews} icon={<Eye className="h-5 w-5" />} variant="slate" /></StaggerItem>
       </StaggerContainer>
 
       {/* Bento Grid */}
@@ -257,7 +257,7 @@ export default function UniversityDashboard() {
         {/* Left (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
           {/* Recruiter Views Trend */}
-          <GlassCard delay={0.2} gradient="blue">
+          <GlassCard delay={0.2} gradient="none">
             <div className="p-5">
               <div className="flex items-center justify-between">
                 <div>
@@ -276,7 +276,7 @@ export default function UniversityDashboard() {
           </GlassCard>
 
           {/* Student Activation Metrics */}
-          <GlassCard delay={0.25} gradient="green">
+          <GlassCard delay={0.25} gradient="none">
             <div className="p-5">
               <div className="flex items-center gap-2 mb-4">
                 <Zap className="h-5 w-5 text-green-600" />
@@ -397,7 +397,7 @@ export default function UniversityDashboard() {
 
           {/* Top Recruiters Bar Chart */}
           {topRecruiters.length > 0 && (
-            <GlassCard delay={0.5} gradient="purple">
+            <GlassCard delay={0.5} gradient="none">
               <div className="p-5">
                 <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">{t('activeRecruiters')}</h3>
                 <div className="space-y-2.5">

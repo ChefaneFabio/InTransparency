@@ -178,34 +178,28 @@ export default function RecruiterDashboard() {
         </div>
       </MetricHero>
 
-      {/* Upgrade Banner for free tier */}
+      {/* Upgrade Banner for free tier — quiet, bordered, no tinted icon tile */}
       {cu && cu.limit === 0 && (
-        <GlassCard delay={0.1} gradient="amber">
-          <div className="p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-amber-100 text-amber-600">
-                <Mail className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm">{t('contactCredits.title')}</p>
-                <p className="text-xs text-muted-foreground">{t('contactCredits.upgradeDescription')}</p>
-              </div>
+        <GlassCard delay={0.1} gradient="none">
+          <div className="p-4 flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <p className="font-semibold text-foreground text-sm">{t('contactCredits.title')}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{t('contactCredits.upgradeDescription')}</p>
             </div>
-            <Button size="sm" asChild>
-              <Link href="/pricing?for=recruiters">
-                <TrendingUp className="h-4 w-4 mr-1" /> {t('contactCredits.upgradePlan')}
-              </Link>
+            <Button size="sm" asChild className="shrink-0">
+              <Link href="/pricing?for=recruiters">{t('contactCredits.upgradePlan')}</Link>
             </Button>
           </div>
         </GlassCard>
       )}
 
-      {/* Stat Cards */}
+      {/* Stat Cards — uniform variant. Color signal lives in the hairline accent
+          inside StatCard, not in 4 different gradient backgrounds. */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StaggerItem><StatCard label={t('stats.activeJobs')} value={stats.activeJobs} icon={<Briefcase className="h-5 w-5" />} variant="blue" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.applications')} value={stats.totalApplications} icon={<FileText className="h-5 w-5" />} variant="purple" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.toReview')} value={stats.pendingReview} icon={<Eye className="h-5 w-5" />} variant="amber" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.shortlisted')} value={stats.shortlisted} icon={<Star className="h-5 w-5" />} variant="green" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.activeJobs')} value={stats.activeJobs} icon={<Briefcase className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.applications')} value={stats.totalApplications} icon={<FileText className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.toReview')} value={stats.pendingReview} icon={<Eye className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.shortlisted')} value={stats.shortlisted} icon={<Star className="h-5 w-5" />} variant="slate" /></StaggerItem>
       </StaggerContainer>
 
       {/* Bento Grid */}
@@ -213,7 +207,7 @@ export default function RecruiterDashboard() {
         {/* Left: chart + candidates + jobs (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
           {/* Applications Trend */}
-          <GlassCard delay={0.2} gradient="purple">
+          <GlassCard delay={0.2} gradient="none">
             <div className="p-5">
               <div className="flex items-center justify-between">
                 <div>
@@ -225,7 +219,7 @@ export default function RecruiterDashboard() {
                 <div className="text-right">
                   <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('thisWeek.newApplications')}</p>
                   <div className="flex items-baseline gap-1 mt-1 justify-end">
-                    <span className="text-2xl font-bold text-green-600">+{stats.newApplicationsThisWeek}</span>
+                    <span className="text-2xl font-bold text-foreground">+{stats.newApplicationsThisWeek}</span>
                   </div>
                 </div>
               </div>
@@ -283,13 +277,10 @@ export default function RecruiterDashboard() {
                 </div>
               ) : (
                 <div className="text-center py-10">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-7 w-7 text-primary/60" />
-                  </div>
                   <h3 className="font-medium text-foreground mb-1">{t('topCandidates.empty')}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{t('topCandidates.emptyDescription')}</p>
                   <Button asChild>
-                    <Link href="/dashboard/recruiter/candidates"><Search className="h-4 w-4 mr-2" />{t('searchCandidates')}</Link>
+                    <Link href="/dashboard/recruiter/candidates">{t('searchCandidates')}</Link>
                   </Button>
                 </div>
               )}

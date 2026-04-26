@@ -197,13 +197,13 @@ export default function StudentDashboard() {
       {/* Stat Cards Row */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <StaggerItem>
-          <StatCard label={t('stats.views')} value={stats.profileViews} icon={<Eye className="h-5 w-5" />} variant="blue" />
+          <StatCard label={t('stats.views')} value={stats.profileViews} icon={<Eye className="h-5 w-5" />} variant="slate" />
         </StaggerItem>
         <StaggerItem>
-          <StatCard label={t('stats.messages')} value={stats.unreadMessages} icon={<Mail className="h-5 w-5" />} variant="rose" />
+          <StatCard label={t('stats.messages')} value={stats.unreadMessages} icon={<Mail className="h-5 w-5" />} variant="slate" />
         </StaggerItem>
         <StaggerItem>
-          <StatCard label={t('stats.matches')} value={stats.jobMatches} icon={<Briefcase className="h-5 w-5" />} variant="green" />
+          <StatCard label={t('stats.matches')} value={stats.jobMatches} icon={<Briefcase className="h-5 w-5" />} variant="slate" />
         </StaggerItem>
       </StaggerContainer>
 
@@ -212,7 +212,7 @@ export default function StudentDashboard() {
         {/* Left: Area Chart + Projects + Jobs (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
           {/* Mini Area Chart Card */}
-          <GlassCard delay={0.2} gradient="blue">
+          <GlassCard delay={0.2} gradient="none">
             <div className="p-5">
               <div className="flex items-center justify-between">
                 <div>
@@ -361,7 +361,7 @@ export default function StudentDashboard() {
 
           {/* International Salary Benchmarks */}
           {salaryBenchmarks.length > 0 && (
-            <GlassCard delay={0.35} gradient="blue">
+            <GlassCard delay={0.35} gradient="none">
               <div className="p-4">
                 <h3 className="text-sm font-semibold mb-3">{t('sections.salaryAbroad')}</h3>
                 <div className="space-y-2">

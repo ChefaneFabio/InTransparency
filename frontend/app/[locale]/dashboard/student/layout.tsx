@@ -1,5 +1,6 @@
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
 import JourneyPanel from '@/components/journey/JourneyPanel'
+import CommandPalette from '@/components/command-palette/CommandPalette'
 
 export default function StudentDashboardLayout({
   children,
@@ -11,6 +12,7 @@ export default function StudentDashboardLayout({
       <DashboardNav role="student" />
       {children}
       <JourneyPanel segment="student" />
+      <CommandPalette role="student" />
     </>
   )
 }

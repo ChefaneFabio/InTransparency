@@ -1,5 +1,6 @@
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
 import JourneyPanel from '@/components/journey/JourneyPanel'
+import CommandPalette from '@/components/command-palette/CommandPalette'
 
 export default function RecruiterDashboardLayout({
   children,
@@ -11,6 +12,7 @@ export default function RecruiterDashboardLayout({
       <DashboardNav role="recruiter" />
       {children}
       <JourneyPanel segment="recruiter" />
+      <CommandPalette role="recruiter" />
     </div>
   )
 }
