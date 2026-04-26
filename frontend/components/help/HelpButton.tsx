@@ -1,0 +1,174 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { Link } from '@/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+import { HelpCircle, X, MessageSquare, Sparkles } from 'lucide-react'
+import { getGuideForPath, type PageGuide } from '@/lib/page-guide'
+import type { JourneySegment } from '@/lib/journeys'
+
+/**
+ * Floating "?" help button — companion to <JourneyPanel/>.
+ *
+ * - JourneyPanel (bottom-left): "Where am I in my multi-step journey?"
+ * - HelpButton (bottom-right, offset from chatbot): "What is THIS specific page?"
+ *
+ * Resolves the guide for the current pathname via lib/page-guide registry.
+ * Falls back to a generic "Use the chat for help" panel for routes that
+ * don't have a registered guide yet.
+ *
+ * Position: bottom-6 right-24 — far enough left of the chatbot launcher
+ * (bottom-6 right-6) to avoid collision while sharing the same bottom rail.
+ */
+
+interface Props {
+  segment: JourneySegment
+}
+
+const SEGMENT_THEME: Record<JourneySegment, { accent: string; ring: string }> = {
+  student:     { accent: 'text-violet-600 dark:text-violet-300', ring: 'hover:ring-violet-300' },
+  recruiter:   { accent: 'text-blue-600 dark:text-blue-300',     ring: 'hover:ring-blue-300' },
+  institution: { accent: 'text-amber-700 dark:text-amber-300',   ring: 'hover:ring-amber-300' },
+}
+
+export default function HelpButton({ segment }: Props) {
+  const pathname = usePathname() || ''
+  const [open, setOpen] = useState(false)
+  const [guide, setGuide] = useState<PageGuide | null>(null)
+  const theme = SEGMENT_THEME[segment]
+
+  // Resolve guide whenever the path changes
+  useEffect(() => {
+    setGuide(getGuideForPath(pathname))
+    setOpen(false) // close popover on navigation
+  }, [pathname])
+
+  return (
+    <>
+      {/* Floating "?" launcher — sits to the left of the chatbot launcher */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className={`fixed bottom-6 right-24 z-30 h-10 w-10 rounded-full bg-card border shadow-md flex items-center justify-center text-muted-foreground transition-all hover:shadow-lg hover:text-foreground hover:ring-2 ${theme.ring} focus:outline-none focus-visible:ring-2`}
+        aria-label="Page help"
+        aria-expanded={open}
+      >
+        <HelpCircle className="h-5 w-5" />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Click-out overlay — invisible, only on mobile feel */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-30 bg-transparent"
+              aria-hidden
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 26 }}
+              className="fixed bottom-20 right-24 z-40 w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl bg-card border shadow-2xl overflow-hidden"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between gap-3 p-4 border-b">
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">About this page</p>
+                  <h3 className="text-sm font-semibold text-foreground mt-1 leading-snug">
+                    {guide?.about || 'Need help with this page?'}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-muted-foreground hover:text-foreground p-1 -m-1 shrink-0"
+                  aria-label="Close"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="p-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                {/* Actions */}
+                {guide?.actions?.length ? (
+                  <div>
+                    <p className="text-xs font-semibold text-foreground mb-2">What you can do here</p>
+                    <ul className="space-y-1.5">
+                      {guide.actions.map((a, i) => (
+                        <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+                          <span className={`${theme.accent} mt-1.5 h-1 w-1 rounded-full bg-current shrink-0`} />
+                          <span>{a}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    No detailed guide for this page yet — open the chat below for help.
+                  </p>
+                )}
+
+                {/* Premium */}
+                {guide?.premium?.length ? (
+                  <div className="rounded-lg border border-amber-200 dark:border-amber-800/50 bg-amber-50/50 dark:bg-amber-950/20 p-3">
+                    <p className="text-[10px] uppercase tracking-widest font-semibold text-amber-700 dark:text-amber-300 flex items-center gap-1">
+                      <Sparkles className="h-3 w-3" />
+                      Premium unlocks here
+                    </p>
+                    <ul className="mt-1.5 space-y-1">
+                      {guide.premium.map((p, i) => (
+                        <li key={i} className="text-xs text-amber-900 dark:text-amber-100 leading-relaxed">
+                          · {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
+                {/* Tip */}
+                {guide?.tip ? (
+                  <div className="rounded-lg bg-muted/40 border border-border/60 p-3">
+                    <p className="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground">Tip</p>
+                    <p className="text-sm text-foreground mt-1 leading-relaxed">{guide.tip}</p>
+                  </div>
+                ) : null}
+
+                {/* Related pages */}
+                {guide?.related?.length ? (
+                  <div>
+                    <p className="text-xs font-semibold text-foreground mb-2">Related</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {guide.related.map((r, i) => (
+                        <Link
+                          key={i}
+                          href={r.href as any}
+                          className="text-xs px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted/40 transition-colors text-foreground"
+                          onClick={() => setOpen(false)}
+                        >
+                          {r.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+
+              {/* Footer — open chat fallback */}
+              <div className="p-3 border-t bg-muted/20">
+                <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                  <MessageSquare className={`h-3 w-3 ${theme.accent}`} />
+                  Need more? Use the chat (bottom-right) — it knows this page too.
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
