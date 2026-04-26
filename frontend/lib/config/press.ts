@@ -41,9 +41,9 @@ export interface PressItem {
 export const PRESS_ITEMS: PressItem[] = [
   {
     name: 'Corriere della Sera',
-    logo: '/press/corriere-della-sera.svg',
-    // href intentionally omitted — pending URL from founder. Renders as a
-    // non-clickable wordmark in the press strip.
+    logo: '/press/corriere-della-sera.png',
+    // href intentionally omitted — pending URL from founder. Renders the
+    // logo as a non-clickable image until the source article URL arrives.
     style: 'serif',
   },
   {
