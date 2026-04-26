@@ -4,6 +4,9 @@ import { authOptions } from '@/lib/auth/config'
 import { buildSystemPrompt, runConversationTurn } from '@/lib/ai-conversation'
 import { aiLimiter, getClientIp } from '@/lib/rate-limit'
 
+// AI conversation turn — long Anthropic call. 60s prevents 408 timeouts.
+export const maxDuration = 60
+
 const JOB_FIELDS = [
   { name: 'title', description: 'Job title (e.g. "Frontend Developer", "Marketing Intern")', required: true },
   { name: 'description', description: 'Full job description (2-5 sentences)', required: true },

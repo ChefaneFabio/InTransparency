@@ -4,6 +4,12 @@ import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
 import prisma from '@/lib/prisma'
 
+// Anthropic calls with 2000 max_tokens routinely take 15-30s. Without an
+// explicit maxDuration, Vercel cuts the function at the platform default
+// (10-15s on most plans), causing 408 timeouts that the UI surfaces as
+// "Request timeout" errors. 60s gives generous headroom.
+export const maxDuration = 60
+
 // POST /api/dashboard/recruiter/hiring-advisor
 export async function POST(req: NextRequest) {
   try {

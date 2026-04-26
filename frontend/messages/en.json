@@ -200,7 +200,7 @@
         "internshipTracker": "Hours Tracker",
         "board": "Board Dashboard",
         "crm": "Company CRM",
-        "inbox": "Institutional Inbox",
+        "inbox": "Mediation Inbox",
         "offers": "Offer Moderation",
         "pctoManager": "PCTO Manager",
         "pctoMarketplace": "PCTO Opportunities",
@@ -340,7 +340,7 @@
           },
           {
             "title": "Verification Badge",
-            "description": "Your institutional stamp builds trust with employers"
+            "description": "Your professors' endorsement builds trust with employers"
           },
           {
             "title": "Placement Analytics",
@@ -489,7 +489,7 @@
         "steps": [
           {
             "title": "Create Your Profile",
-            "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
+            "description": "Two ways: Academic partner integrated = automatic profile. Independent = upload projects + select courses for instant profile",
             "details": [
               "Academic partner integrated: profile created automatically from your school's data",
               "Independent: Upload projects (code, docs, presentations) + select courses"
@@ -686,7 +686,7 @@
       "higherResponse": "higher responses for students",
       "fasterScreening": "faster screening for companies",
       "matchAccuracy": "verified match accuracy",
-      "placementBoost": "institutional placement boost"
+      "placementBoost": "placement boost for academic partners"
     },
     "cta": {
       "title": "Get started with",
@@ -785,7 +785,7 @@
       "steps": [
         {
           "title": "Create Your Profile",
-          "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
+          "description": "Two ways: Academic partner integrated = automatic profile. Independent = upload projects + select courses for instant profile",
           "details": [
             "Academic partner integrated: profile created automatically from your school's data",
             "Independent: Upload projects (code, docs, presentations) + select courses",
@@ -1060,7 +1060,7 @@
       },
       "placements": {
         "title": "Placements API",
-        "description": "Track and report placement outcomes. Get real-time data on views, contacts, interviews, and hires for your institution's graduates."
+        "description": "Track and report placement outcomes. Get real-time data on views, contacts, interviews, and hires for your academic partner's students."
       },
       "webhooks": {
         "title": "Webhooks",
@@ -1106,7 +1106,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Insights on verified credentials, career development, and the future of institution-to-work transitions.",
+    "subtitle": "Insights on verified credentials, career development, and the future of school-to-work transitions.",
     "featured": "Featured",
     "readMore": "Read more",
     "backToBlog": "Back to blog",
@@ -1126,7 +1126,7 @@
         "badge": "100% Free",
         "features": {
           "uploads": "Unlimited verified project uploads",
-          "verification": "Institution verification",
+          "verification": "Optional professor endorsement",
           "portfolio": "Public portfolio page",
           "discovery": "Company discovery",
           "analytics": "Basic profile analytics",
@@ -1188,7 +1188,7 @@
           "registration": "Free registration (no credit card)",
           "unlimited": "Unlimited database exploration",
           "profiles": "See all profiles (anonymized)",
-          "filters": "Advanced filters by institution, courses, grades",
+          "filters": "Advanced filters by academic partner, courses, grades",
           "aiSearch": "Candidate Search",
           "verified": "verified skills from all project types",
           "location": "Location and availability filters",
@@ -1490,8 +1490,8 @@
     "hero": {
       "badge": "Discover Verified Talent",
       "title": "Explore Student Portfolios",
-      "subtitle": "Search student portfolios with verified skills. Projects authenticated by institutions.",
-      "searchPlaceholder": "Search by name, skill, or institution...",
+      "subtitle": "Search student portfolios with real project work. Endorsed by professors when available.",
+      "searchPlaceholder": "Search by name, skill, or school...",
       "stats": {
         "students": "Students",
         "verified": "Verified",
@@ -1708,7 +1708,7 @@
         },
         "2": {
           "title": "Verified Portfolio",
-          "description": "Institution-backed projects that employers trust"
+          "description": "Projects with optional professor endorsement that employers trust"
         },
         "3": {
           "title": "Real Challenges",
@@ -1737,12 +1737,12 @@
       "submitButton": "Start Hiring - Free to Browse",
       "submittingButton": "Creating Account...",
       "heroTitle": "Hire Verified Talent, Not Resumes",
-      "heroSubtitle": "Access institution-verified graduates. Every skill is traceable to actual coursework and projects.",
+      "heroSubtitle": "Access real student profiles, often with professor endorsement. Every skill traceable to actual coursework and projects.",
       "browseBadge": "Browse Free, Full Access",
       "benefits": {
         "0": {
           "title": "Verified Skills Only",
-          "description": "Every skill backed by institutional projects"
+          "description": "Every skill backed by real project work"
         },
         "1": {
           "title": "Evidence-Based Matching",
@@ -1774,7 +1774,7 @@
       "mobileBenefitsTitle": "Why companies choose us:",
       "mobileBenefits": {
         "0": "Browse candidates free",
-        "1": "Institution-verified skills",
+        "1": "Real skills with optional professor endorsement",
         "2": "5 free contacts/month, then €89/mo"
       },
       "noCreditCard": "No credit card required. Browse candidates immediately.",
@@ -1787,7 +1787,7 @@
       "subtitle": "Free Career Intelligence - No Subscriptions Ever",
       "cardTitle": "Create Your Academic Partner Account",
       "cardDescription": "Endorse student work and track placement outcomes",
-      "submitButton": "Create Free Institution Account",
+      "submitButton": "Create Free Academic Partner Account",
       "submittingButton": "Creating Account...",
       "heroTitle": "Connect Students with Employers",
       "heroSubtitle": "Verify student projects and help them get discovered by companies looking for real skills.",
@@ -1807,16 +1807,16 @@
         },
         "3": {
           "title": "Verified Credentials",
-          "description": "Your institutional badge on every student profile"
+          "description": "Your institution's badge on every endorsed student profile"
         }
       },
-      "createTitle": "Create Institution Account",
+      "createTitle": "Create Academic Partner Account",
       "createSubtitle": "Get started with the freemium plan",
-      "formTitle": "Institution Details",
-      "formDescription": "We'll verify your institutional email",
+      "formTitle": "Academic Partner Details",
+      "formDescription": "We'll verify your academic email",
       "freemiumNote": "Freemium Platform - No setup fees, no hidden charges",
-      "institutionalEmail": "Institutional Email",
-      "institutionName": "Institution name",
+      "institutionalEmail": "Academic Email",
+      "institutionName": "Academic Partner name",
       "institutionNamePlaceholder": "Università degli Studi di…",
       "institutionType": "Type",
       "country": "Country",
@@ -1914,7 +1914,7 @@
       "email": "Email",
       "password": "Password",
       "companyName": "Company Name",
-      "universityName": "Institution Name"
+      "universityName": "Academic Partner Name"
     },
     "messages": {
       "registrationFailed": "Registration failed",
@@ -1927,7 +1927,7 @@
     "hero": {
       "badge": "Complete Platform",
       "title": "Powerful Features for Everyone",
-      "subtitle": "From institution-verified skills to smart search, everything you need to connect students and companies."
+      "subtitle": "From real student projects with optional professor endorsement to smart search, everything you need to connect students and companies."
     },
     "filters": {
       "all": "All",
@@ -3407,7 +3407,7 @@
         "title": "Our approach",
         "items": {
           "0": {
-            "title": "Institution-verified skills",
+            "title": "Real skills with optional professor endorsement",
             "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) tied to projects, courses, and institutional records."
           },
           "1": {
@@ -5986,7 +5986,7 @@
         "departmentCategory": "Department / Category",
         "minimumGrade": "Minimum Grade",
         "anyGrade": "Any grade",
-        "institutionName": "Institution Name",
+        "institutionName": "Academic Partner Name",
         "search": "Search",
         "reset": "Reset",
         "searchStats": "Search Stats",
@@ -7024,7 +7024,7 @@
       "form": {
         "firstName": "First Name",
         "lastName": "Last Name",
-        "institutionalEmail": "Institutional Email",
+        "institutionalEmail": "Academic Email",
         "emailPlaceholder": "name.surname@polimi.it",
         "studentId": "Student ID",
         "studentIdPlaceholder": "e.g. 123456",
@@ -8978,7 +8978,7 @@
       "verifyDomain": "Verify",
       "customDomainNote": "Requires Premium Embed plan. Contact support to configure.",
       "preview": "Preview",
-      "institutionNamePreview": "Institution Name",
+      "institutionNamePreview": "Academic Partner Name",
       "learnMore": "Learn More",
       "validation": {
         "nameRequired": "Name is required",
@@ -13347,7 +13347,7 @@
     "lastNamePlaceholder": "Rossi",
     "bioLabel": "Bio",
     "bioPlaceholder": "Tell us about yourself...",
-    "institutionNameLabel": "Institution Name",
+    "institutionNameLabel": "Academic Partner Name",
     "institutionNamePlaceholder": "e.g. Politecnico di Milano",
     "institutionTypeLabel": "Institution Type",
     "websiteLabel": "Website",

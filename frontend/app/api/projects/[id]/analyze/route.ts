@@ -5,6 +5,11 @@ import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { isStudentPremium } from '@/lib/entitlements'
 
+// runAIAnalysis is fired-and-forgotten asynchronously, so the route itself
+// returns quickly. Still set a generous duration so the gate + initial
+// validation never get cut, and so any synchronous quota check has headroom.
+export const maxDuration = 30
+
 // Per-project AI analysis cap on Free tier. Marketing copy ("3 AI project
 // analyses per project") becomes a real gate here. Premium = unlimited.
 const FREE_AI_ANALYSIS_LIMIT = 3

@@ -29,6 +29,10 @@ import Anthropic from '@anthropic-ai/sdk'
 const MODEL = 'claude-sonnet-4-6'
 const MAX_TOOL_ITERATIONS = 3
 
+// Multi-turn tool-use loop can take 30-60s. Match the same generous window
+// used by hiring-advisor to avoid 408 timeouts on long sessions.
+export const maxDuration = 90
+
 // ─────────────────────────────────────────────────────────────────────────
 
 const TOOLS: Anthropic.Tool[] = [
