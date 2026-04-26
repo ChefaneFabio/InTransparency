@@ -117,7 +117,7 @@ export default function RecruiterChallengesPage() {
             </p>
           </div>
           <Button asChild>
-            <Link href="/dashboard/recruiter/challenges">
+            <Link href="/dashboard/recruiter/challenges/new">
               <Plus className="h-4 w-4 mr-2" />
               {t('createChallenge')}
             </Link>
@@ -190,17 +190,17 @@ export default function RecruiterChallengesPage() {
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by status" />
+                <SelectValue placeholder={t('filterByStatus', { defaultValue: 'Filter by status' })} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="DRAFT">Draft</SelectItem>
-                <SelectItem value="PENDING_REVIEW">Pending Review</SelectItem>
-                <SelectItem value="APPROVED">Approved</SelectItem>
-                <SelectItem value="ACTIVE">Active</SelectItem>
-                <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
-                <SelectItem value="COMPLETED">Completed</SelectItem>
-                <SelectItem value="CLOSED">Closed</SelectItem>
+                <SelectItem value="all">{t('statuses.all', { defaultValue: 'All status' })}</SelectItem>
+                <SelectItem value="DRAFT">{t('statuses.DRAFT', { defaultValue: 'Draft' })}</SelectItem>
+                <SelectItem value="PENDING_REVIEW">{t('statuses.PENDING_REVIEW', { defaultValue: 'Pending review' })}</SelectItem>
+                <SelectItem value="APPROVED">{t('statuses.APPROVED', { defaultValue: 'Approved' })}</SelectItem>
+                <SelectItem value="ACTIVE">{t('statuses.ACTIVE', { defaultValue: 'Active' })}</SelectItem>
+                <SelectItem value="IN_PROGRESS">{t('statuses.IN_PROGRESS', { defaultValue: 'In progress' })}</SelectItem>
+                <SelectItem value="COMPLETED">{t('statuses.COMPLETED', { defaultValue: 'Completed' })}</SelectItem>
+                <SelectItem value="CLOSED">{t('statuses.CLOSED', { defaultValue: 'Closed' })}</SelectItem>
               </SelectContent>
             </Select>
           </div>

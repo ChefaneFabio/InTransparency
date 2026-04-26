@@ -3704,7 +3704,8 @@
             "6": "Report formato MIUR (basic)",
             "7": "Supporto prioritario via email (SLA 24h)"
           },
-          "cta": "Inizia Premium · trial 30 giorni"
+          "cta": "Inizia Premium · trial 30 giorni",
+          "ctaAnnual": "Paga annualmente · €390/anno · risparmi 17%"
         }
       }
     },
@@ -6090,12 +6091,25 @@
         "title": "Sfide Aziendali",
         "subtitle": "Crea progetti reali su cui gli studenti possano lavorare",
         "createChallenge": "Crea Sfida",
+        "createSubtitle": "Definisci un problema reale per team di studenti. Lo inoltriamo ai corsi accademici partner per la revisione.",
+        "backToChallenges": "Torna alle sfide",
         "loading": "Caricamento sfide...",
         "totalChallenges": "Sfide Totali",
         "active": "Attive",
         "totalSubmissions": "Invii Totali",
         "universityApprovals": "Approvazioni Universitarie",
         "searchPlaceholder": "Cerca sfide...",
+        "filterByStatus": "Filtra per stato",
+        "statuses": {
+          "all": "Tutti gli stati",
+          "DRAFT": "Bozza",
+          "PENDING_REVIEW": "In revisione",
+          "APPROVED": "Approvata",
+          "ACTIVE": "Attiva",
+          "IN_PROGRESS": "In corso",
+          "COMPLETED": "Completata",
+          "CLOSED": "Chiusa"
+        },
         "emptyTitle": "Nessuna sfida ancora",
         "emptyDescription": "Crea una sfida per valutare le competenze dei candidati"
       },
@@ -10050,6 +10064,10 @@
       "jobTitle": "Titolo",
       "requiredSkills": "Competenze richieste",
       "preferredSkills": "Competenze preferite",
+      "hardSkills": "Competenze tecniche",
+      "softSkills": "Competenze trasversali",
+      "designSkills": "Competenze di design",
+      "domainKnowledge": "Conoscenza di dominio",
       "education": "Titolo di studio",
       "experience": "Esperienza",
       "languages": "Lingue",
