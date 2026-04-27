@@ -2317,118 +2317,137 @@
     }
   },
   "forCompanies": {
+    "badge": "Per aziende mid-market e team HR",
     "hero": {
-      "badge": "Per Aziende, Agenzie e Team HR — Tutti i Settori",
-      "title": "Un'Assunzione Sbagliata Costa Tempo e Denaro.",
-      "titleHighlight": "Ti Aiutiamo a Scegliere Bene.",
-      "subtitle": "Gli studenti caricano progetti reali. La nostra AI estrae le competenze dagli artefatti e ti mostra l'evidenza — codice, voti, file di progetto. Bonus opzionale: endorsement dei docenti. 5 contatti gratis ogni mese, ti abboni quando scali."
+      "title": "Il tuo ATS ti dà rumore. Noi ti diamo segnale.",
+      "subtitle": "Le aziende mid-market (50-200 dipendenti) hanno già un ATS — Greenhouse, Lever, Workday. Il problema non è gestire le candidature, è filtrarle. InTransparency è il livello di pre-verifica che alimenta il tuo ATS con candidati che hanno già dimostrato di saper fare il lavoro."
     },
-    "steps": {
-      "0": {
-        "title": "Cerca Profili Verificati con AI",
-        "desc": "Esplora portfolio studenti filtrando per competenze, università, voti, posizione e tipo di progetto. La ricerca intelligente trova il match giusto."
-      },
-      "1": {
-        "title": "Rivedi Lavori Reali",
-        "desc": "Vedi progetti reali, voti reali e analisi delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
-      },
-      "2": {
-        "title": "Connettiti Direttamente",
-        "desc": "Quando hai trovato il candidato giusto, contattalo direttamente. Nessun intermediario, nessuna agenzia, nessuna attesa."
-      },
-      "title": "Come Funziona per Te",
-      "subtitle": "Dalla ricerca all'assunzione — basato su evidenze verificate, non curriculum."
-    },
-    "features": {
-      "0": {
-        "title": "Ricerca Intelligente Candidati",
-        "desc": "Trova candidati per competenze verificate con AI — non parole chiave. Le competenze vengono comprese dal lavoro effettivo, non dai buzzword del CV."
-      },
-      "1": {
-        "title": "Pool di Talenti Verificati con AI",
-        "desc": "Ogni profilo è supportato da dati accademici. Università e scuole confermano voti, progetti e competenze."
-      },
-      "2": {
-        "title": "Screening Basato su Evidenze",
-        "desc": "Rivedi file di progetto reali, punteggi di analisi e verifica accademica prima ancora di contattare."
-      },
-      "3": {
-        "title": "Connessione Diretta",
-        "desc": "Scrivi ai candidati direttamente. Nessun recruiter in mezzo, nessun costo agenzia, nessun ritardo tra interesse e contatto."
-      },
-      "4": {
-        "title": "Decision Pack",
-        "desc": "Report di confronto candidati automatizzati che ti aiutano a valutare e decidere tra i profili selezionati."
-      },
-      "5": {
-        "title": "Analytics Assunzioni",
-        "desc": "Monitora la tua pipeline di recruiting — dalla ricerca al contatto all'assunzione. Capisci cosa funziona e ottimizza."
-      },
-      "title": "Cosa Ottieni",
-      "subtitle": "Strumenti per trovare, valutare e connetterti con talenti junior verificati."
-    },
-    "diversity": {
-      "badge": "Diversità e Inclusione",
-      "title": "Assumere Meglio Inizia da Assumere in Modo Più Equo",
-      "subtitle": "Il recruiting tradizionale premia CV curati e reti personali. L'assunzione basata sulle competenze livella il campo di gioco.",
-      "points": {
+    "practiceLabel": "In pratica:",
+    "seeIt": "Vedi",
+    "metrics": {
+      "title": "Costo del rumore vs costo del segnale",
+      "subtitle": "Numeri pensati per aziende che ricevono 200+ CV per posizione e ne convertono in offer 1.",
+      "items": {
         "0": {
-          "title": "Competenze, Non Pedigree",
-          "desc": "I candidati vengono valutati sul lavoro verificato — non su quale università hanno frequentato o chi conoscono. Le vere capacità emergono, indipendentemente dal background."
+          "value": "€4.000",
+          "label": "Costo medio di un'assunzione sbagliata in azienda mid-market",
+          "source": "Stima di settore — esclude perdita di produttività del team"
         },
         "1": {
-          "title": "Screening Resistente ai Bias",
-          "desc": "L'il sistema analizza i deliverable reali — codice, design, report, ricerche. Nessuno spazio per bias sul nome, sull'età o pattern inconsci basati sulla formattazione del CV."
+          "value": "5 / mese",
+          "label": "Contatti verificati gratis con email aziendale",
+          "source": "Reset il 1° del mese, niente carta richiesta"
         },
         "2": {
-          "title": "Talento Nascosto, Visibile",
-          "desc": "Studenti di atenei più piccoli, percorsi non tradizionali e gruppi sottorappresentati vengono scoperti alle stesse condizioni di tutti gli altri."
-        },
-        "3": {
-          "title": "Criteri Trasparenti",
-          "desc": "Ogni match è spiegabile. Vedi esattamente perché un candidato è stato proposto — nessun algoritmo black-box, nessun ranking opaco."
+          "value": "Il tuo ATS",
+          "label": "Greenhouse, Lever, Workday, SmartRecruiters via webhook",
+          "source": "ATS bridge €5.000 fee + €1.500/mese — opzionale, attivabile quando vuoi"
         }
       }
     },
     "comparison": {
-      "title": "Un Modo Migliore per Assumere Junior",
-      "subtitle": "Il recruiting tradizionale non è stato pensato per l'entry-level. InTransparency sì.",
-      "headers": {
-        "before": "Tradizionale",
-        "after": "Con InTransparency"
+      "title": "Recruiting tradizionale vs flusso pre-verificato",
+      "before": {
+        "label": "Recruiting tradizionale",
+        "items": {
+          "0": "200 CV per posizione, 80% off-target",
+          "1": "Skill auto-dichiarate da verificare a colloquio",
+          "2": "Settimane di phone screen prima del primo tech interview",
+          "3": "Bias sul nome, sull'università, sulla formattazione del CV",
+          "4": "Reportistica diversità manuale, fatta a mano in Excel"
+        }
       },
-      "rows": {
-        "0": {
-          "before": "CV auto-dichiarati",
-          "after": "Progetti verificati accademicamente"
-        },
-        "1": {
-          "before": "Algoritmi di keyword-matching",
-          "after": "Analisi automatizzata del lavoro reale"
-        },
-        "2": {
-          "before": "Settimane di screening",
-          "after": "Esplora, valuta, connettiti"
-        },
-        "3": {
-          "before": "Intermediari e agenzie",
-          "after": "Accesso diretto ai candidati"
+      "after": {
+        "label": "Con InTransparency che alimenta il tuo ATS",
+        "items": {
+          "0": "5-15 candidati pre-verificati spinti nel tuo ATS via webhook",
+          "1": "Skill estratte dall'AI da progetti, codice, file di design reali",
+          "2": "Decision Pack scaricabile prima di programmare un colloquio",
+          "3": "Match spiegabili, nessun ranking black-box, AI Act-conforme",
+          "4": "Audit log + diversity analytics esportabili — pronti per ESG report"
         }
       }
     },
-    "demo": {
-      "title": "Scopri la Piattaforma",
-      "subtitle": "Guarda come i recruiter trovano talenti verificati con AI",
-      "bullet1": "Cerca per competenze verificate con AI, non parole chiave",
-      "bullet2": "Esamina progetti e voti reali",
-      "bullet3": "Connettiti direttamente con i candidati",
-      "cta": "Prova la Demo"
+    "capabilities": {
+      "title": "Cosa ottieni dal primo giorno",
+      "items": {
+        "verified": {
+          "title": "Pool pre-verificato",
+          "description": "Profili con skill estratte dall'AI dai progetti reali — voti normalizzati tra sistemi UE, validazione opzionale dei docenti come bonus signal. Cerchi su un dato che esiste, non su una dichiarazione.",
+          "concrete": "Cerca per skill su /explore — un 28/30 italiano = 1.7 tedesco = 15/20 francese, automatico."
+        },
+        "smartSearch": {
+          "title": "Ricerca conversazionale",
+          "description": "Descrivi il profilo in linguaggio naturale — anche complesso (\"data scientist senior con esperienza farma, OK Roma o remoto, valuta cambio\"). L'AI trova match e spiega ogni decisione.",
+          "concrete": "Provala su /demo/ai-search — niente boolean search, niente filtri da configurare."
+        },
+        "decisionPack": {
+          "title": "Decision Pack per ogni candidato",
+          "description": "Portfolio + skill verificate + voti contestualizzati + (opzionale) personalità in un dossier scaricabile. Lo passi all'hiring manager, lo allega al ticket Greenhouse, lo spedisce al CEO.",
+          "concrete": "Export PDF/JSON — apri da qualsiasi browser, niente account InTransparency richiesto al lettore."
+        },
+        "atsBridge": {
+          "title": "Bridge ATS — alimenti, non sostituisci",
+          "description": "Hai già Greenhouse, Lever, Workday o SmartRecruiters? L'ATS bridge invia gli shortlist al tuo ATS via webhook. I candidati arrivano come application già pre-screened.",
+          "concrete": "Webhook events: match.created, credential.issued, stage.completed. Vedi /integrations."
+        },
+        "diversity": {
+          "title": "Hiring senza bias, con audit trail",
+          "description": "Le competenze sono estratte dal lavoro, non dal nome o dalla scuola. Studenti di atenei piccoli, percorsi non lineari e gruppi sottorappresentati emergono alle stesse condizioni. Audit log per la reportistica ESG.",
+          "concrete": "Vedi /algorithm-registry per i criteri di matching pubblicati e auditabili."
+        },
+        "compliance": {
+          "title": "AI Act-native + GDPR Art. 22",
+          "description": "Eseguire AI di valutazione candidati in casa rende TE il deployer high-risk (Annex III §4). Routendo le decisioni attraverso InTransparency, noi siamo il provider registrato — il tuo carico compliance scende.",
+          "concrete": "Vedi /eu-compliance — 17 standard UE coperti con endpoint deployati."
+        }
+      }
+    },
+    "personas": {
+      "title": "Pensata per chi recruita davvero, in azienda mid-market",
+      "items": {
+        "hr": {
+          "title": "HR Manager",
+          "description": "Hai un team HR di 2-5 persone, un ATS configurato, un budget per software ma niente per nuovi recruiter. Cerchi efficienza per posizione, non un altro tool da imparare."
+        },
+        "ta": {
+          "title": "Talent Acquisition Lead",
+          "description": "Misuri time-to-hire, quality-of-hire, source-of-hire. Pre-verifica ti dà metric migliori senza dover cambiare l'ATS — solo un canale in più, di qualità superiore."
+        },
+        "manager": {
+          "title": "Hiring Manager",
+          "description": "Vuoi smettere di fare prime call conoscitive. Vuoi leggere un Decision Pack di 2 pagine prima di decidere se vale 45 minuti del tuo tempo per il primo colloquio."
+        }
+      }
+    },
+    "process": {
+      "title": "Come si attiva un'azienda mid-market",
+      "step1": "Registrazione gratuita. Sfogli subito il pool verificato — 5 contatti gratis al mese con email aziendale.",
+      "step2": {
+        "before": "Usi la",
+        "link": "Ricerca Intelligente",
+        "after": "o costruisci shortlist filtrate per skill, voti, area, lingue."
+      },
+      "step3": "Scarichi i Decision Pack per i candidati promettenti, li passi al tuo hiring manager.",
+      "step4": {
+        "before": "Quando superi i 5 contatti/mese, abbonamento €89/mese o €890/anno con contatti illimitati. Vedi anche la nostra",
+        "link": "matrice di conformità UE",
+        "after": "se serve al team legal o al DPO."
+      },
+      "step5": "Aggiungi il bridge ATS quando vuoi che gli shortlist arrivino direttamente in Greenhouse/Lever/Workday."
     },
     "cta": {
-      "title": "Trova Talenti di cui Fidarti",
-      "subtitle": "Esplora portfolio verificato con AI gratis. Contatti fino a 5 candidati al mese senza costi. Ti serve di più? Ti abboni da €89/mese per contatti illimitati e suite AI completa.",
+      "title": "Filtra il rumore. Tieni il tuo ATS. Aggiungi il segnale.",
+      "subtitle": "Sfogli il pool verificato gratis. Contatti 5 candidati al mese a costo zero. Quando scali, abbonamento €89/mese — o ATS bridge se vuoi che entrino direttamente nel tuo workflow esistente.",
+      "primary": "Inizia gratis",
+      "secondary": "Prova la Ricerca Intelligente",
       "primaryButton": "Inizia gratis",
-      "secondaryButton": "Prova la Ricerca Intelligente"
+      "secondaryButton": "Prova la Ricerca Intelligente",
+      "trustItems": {
+        "0": "5 contatti gratis/mese (email aziendale)",
+        "1": "ATS bridge opzionale",
+        "2": "AI Act + GDPR conforme"
+      }
     },
     "faq": {
       "title": "Domande Frequenti",
@@ -9766,36 +9785,135 @@
     }
   },
   "forStartups": {
+    "badge": "Per startup e scale-up",
     "hero": {
-      "badge": "Per Startup e Scale-up",
-      "title": "Assumi velocemente con prove, non con colloqui infiniti",
-      "subtitle": "Vedi cosa i candidati hanno effettivamente costruito — progetti reali, competenze verificate con AI, personalità valutata. Riduci il tuo processo di assunzione da settimane a giorni.",
-      "cta": "Crea il Tuo Account",
-      "secondaryCta": "Prova la Ricerca Intelligente"
+      "title": "Il tuo prossimo ingegnere è già nella piattaforma. Smetti di programmare 6 phone screen.",
+      "subtitle": "Le startup non possono permettersi 30 giorni di interview-loop per junior. InTransparency mostra il codice, i progetti e i voti normalizzati prima del primo colloquio. Decidi sui dati, salti le \"prime call conoscitive\", chiudi in 5 giorni invece che in 5 settimane."
     },
-    "benefits": {
-      "0": {
-        "title": "Vedi il lavoro, non il CV",
-        "description": "Progetti reali con codice, risultati e validazione opzionale dei docenti (bonus). Sai cosa sa fare un candidato prima del primo colloquio."
+    "practiceLabel": "In pratica:",
+    "seeIt": "Vedi",
+    "metrics": {
+      "title": "Quello che cambia quando il lavoro è già visibile",
+      "subtitle": "Numeri pensati per founder con 18 mesi di runway e 1 head di prodotto da assumere.",
+      "items": {
+        "0": {
+          "value": "5 giorni",
+          "label": "Tempo medio dal primo brief alla shortlist verificata",
+          "source": "Stima interna su startup early-stage che usano la Ricerca Intelligente"
+        },
+        "1": {
+          "value": "0 phone screen",
+          "label": "Calls conoscitive prima del primo tech interview",
+          "source": "Il portfolio + voti + progetti sostituisce la prima call di filter"
+        },
+        "2": {
+          "value": "€89 / mese",
+          "label": "Quando supera 5 contatti/mese — fino ad allora gratis",
+          "source": "Cancellabile da console quando il round si chiude"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Loop classico vs flusso \"vedo il lavoro\"",
+      "before": {
+        "label": "Loop di assunzione classico",
+        "items": {
+          "0": "30+ CV ricevuti dal post LinkedIn, nessuno screening intelligente",
+          "1": "Prima call conoscitiva di 30 min — il candidato spiega cosa il CV non dice",
+          "2": "Tech interview con un founder che dovrebbe stare a costruire prodotto",
+          "3": "Take-home test in cui il candidato sparisce o mente",
+          "4": "Offer fatta a chi ha intervistato meglio, non a chi costruisce meglio"
+        }
       },
-      "1": {
-        "title": "Velocità di assunzione",
-        "description": "Ricerca Intelligente, filtri per competenze verificate con AI, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
+      "after": {
+        "label": "Flusso \"vedo il lavoro\" con InTransparency",
+        "items": {
+          "0": "5-10 candidati verificati con progetti pubblici filtrati per stack",
+          "1": "Niente prima call: leggi il Decision Pack in 10 minuti dal browser",
+          "2": "Tech interview saltato a chi ha già spedito codice equivalente al tuo",
+          "3": "Niente take-home: hai già il loro repo GitHub e i progetti accademici",
+          "4": "Offer fatta su evidenza, non su skill di self-presentation"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Cosa ottieni dal primo giorno",
+      "items": {
+        "verified": {
+          "title": "Pool pre-verificato",
+          "description": "Profili con skill estratte dall'AI dai progetti reali (codice, design, paper). Validazione opzionale dei docenti come bonus signal. Voti normalizzati tra sistemi UE.",
+          "concrete": "Cerca \"React + TypeScript + esperienza GraphQL\" — vedi il codice prima del CV."
+        },
+        "code": {
+          "title": "Il codice è nel profilo",
+          "description": "Per i ruoli engineering: repo GitHub, progetti universitari, deliverable hackathon. Niente più 'mandami i tuoi progetti via email' — sono già lì, già contestualizzati col voto del corso.",
+          "concrete": "Profilo studente espone repo + linguaggi + commit count. Vedi /explore."
+        },
+        "smartSearch": {
+          "title": "Ricerca conversazionale",
+          "description": "Descrivi il candidato in linguaggio naturale (\"founding engineer, esperienza Postgres + Rust, OK Berlino o remoto, prima esperienza ok\"). L'AI capisce e spiega ogni match.",
+          "concrete": "Provala su /demo/ai-search — niente filtri, niente boolean search."
+        },
+        "async": {
+          "title": "Screening async-first",
+          "description": "Decision Pack scaricabile per ogni candidato — portfolio, voti, progetti, (opz.) personalità in un PDF. Lo leggi alle 23 dopo il fix in produzione, decidi al mattino.",
+          "concrete": "Export PDF/JSON — condividi col co-founder via Slack senza account InTransparency."
+        },
+        "pricing": {
+          "title": "Prezzi pensati per pre-seed → Series A",
+          "description": "Sfogli gratis. 5 contatti gratis al mese (2 con email personale). €89/mese o €890/anno solo se scali oltre. Niente setup fee, niente minimo, niente lock-in. Cancella dalla console quando il round chiude.",
+          "concrete": "Vedi /pricing — VAT collection automatico per startup italiane."
+        },
+        "atsBridge": {
+          "title": "Bridge ATS opzionale",
+          "description": "Hai già Greenhouse/Lever/Ashby? Quando passi da 5 a 50 dipendenti, l'ATS bridge invia i candidati selezionati al tuo ATS via webhook. €5.000 fee + €1.500/mese — solo quando ti serve davvero.",
+          "concrete": "Webhook events: match.created, credential.issued. Vedi /integrations."
+        }
+      }
+    },
+    "personas": {
+      "title": "Pensata per il team che assume davvero, in startup",
+      "items": {
+        "founder": {
+          "title": "Founder / CEO",
+          "description": "Un'assunzione sbagliata su 5 dipendenti = 20% del team. Devi vedere il lavoro prima di rischiare 60k all'anno + equity."
+        },
+        "tech": {
+          "title": "CTO / Tech lead",
+          "description": "Vuoi smettere di fare phone screen. Vuoi codice che hai già letto prima di programmare l'interview. La piattaforma ti porta lì in 10 minuti."
+        },
+        "people": {
+          "title": "Primo head of people",
+          "description": "Sei la prima persona HR del team. Ti serve un workflow scalabile da 1 a 30 hire all'anno, senza dover bandire un RFP per scegliere un ATS."
+        }
+      }
+    },
+    "process": {
+      "title": "Come funziona, da pre-seed a Series A",
+      "step1": "Registrazione gratuita — niente carta. Account ready in 30 secondi.",
+      "step2": {
+        "before": "Usi la",
+        "link": "Ricerca Intelligente",
+        "after": "per costruire la prima shortlist (\"founding engineer Python, valuta cambio, OK Roma o remoto\")."
       },
-      "2": {
-        "title": "Nessun costo iniziale",
-        "description": "Cerca e salva candidati gratis. Cinque contatti al mese a costo zero, poi abbonamento €89/mese se ti serve scalare. Perfetto per budget startup."
+      "step3": "Scarichi i Decision Pack, li leggi async, decidi chi merita un tech interview.",
+      "step4": {
+        "before": "Contatti 5/mese gratis. Quando superi, ti abboni a €89/mese da",
+        "link": "console fatture",
+        "after": "— cancellabile quando il round si chiude o cambi strategia."
       },
-      "3": {
-        "title": "Cultural fit con dati",
-        "description": "Assessment di personalità e soft skills validati scientificamente. Assumi per fit culturale con prove, non intuizioni."
-      },
-      "title": "Perché le startup scelgono InTransparency"
+      "step5": "Scale-up phase: aggiungi il bridge ATS quando passi i 30 dipendenti."
     },
     "cta": {
-      "title": "Il tuo prossimo assunto è qui",
-      "subtitle": "Registrati in 2 minuti. Inizia a cercare talenti verificati con AI.",
-      "button": "Inizia Gratis"
+      "title": "Il tuo prossimo assunto è già visibile.",
+      "subtitle": "Registrati in 2 minuti. Sfoglia il pool verificato. Scarica un Decision Pack di prova. Decidi se vale prima ancora di programmare un meeting.",
+      "primary": "Inizia gratis",
+      "secondary": "Prova la Ricerca Intelligente",
+      "trustItems": {
+        "0": "5 contatti gratis/mese",
+        "1": "Cancellazione in qualsiasi momento",
+        "2": "ATS bridge opzionale quando scali"
+      }
     }
   },
   "offerComparison": {
@@ -12980,6 +13098,55 @@
     "hero": {
       "title": "Documentazione procurement pronta per l'UE",
       "subtitle": "Se stai acquistando per un ministero, un'agenzia nazionale, un ente regionale o un consorzio di università pubbliche — questa pagina contiene ciò che serve ai tuoi team procurement, legal e privacy. Tutto è pubblicato apertamente; quanto richiede NDA lo inviamo su richiesta entro 5 giorni lavorativi."
+    },
+    "intro": {
+      "metrics": {
+        "title": "Quello che il vostro DPO può verificare oggi",
+        "items": {
+          "0": {
+            "value": "EU Central",
+            "label": "Data residency confermata",
+            "source": "Neon Postgres in Frankfurt — nessun trasferimento extra-UE"
+          },
+          "1": {
+            "value": "≤ 72h",
+            "label": "Notifica violazione contrattualizzata",
+            "source": "GDPR Art. 33 — impegno scritto nel nostro DPA"
+          },
+          "2": {
+            "value": "17 standard",
+            "label": "Coperture UE documentate con endpoint pubblici",
+            "source": "Vedi /eu-compliance per la matrice completa"
+          }
+        }
+      },
+      "capabilities": {
+        "title": "Cosa siete chiamati a comprare",
+        "subtitle": "Quattro caratteristiche che ricorrono in ogni gara pubblica del settore — verificabili in pubblico prima ancora del primo incontro.",
+        "practiceLabel": "In pratica:",
+        "items": {
+          "verified": {
+            "title": "Candidati pre-verificati per concorsi",
+            "description": "Per concorsi pubblici, bandi PNRR e selezioni di ente: profili con titoli accademici verificati, voti normalizzati ESCO, progetti documentati. Riducono il carico della commissione esaminatrice.",
+            "concrete": "Skill mappate su tassonomia ESCO v1.2 — interoperabili con Europass e EQF."
+          },
+          "aiAct": {
+            "title": "AI Act-native, non add-on",
+            "description": "Il matching è classificato Annex III §4 (high-risk). Trasparenza, supervisione umana, tracciabilità, governance dati: tutto implementato e documentato dal day one. Voi siete deployer, noi provider.",
+            "concrete": "Public model registry su /algorithm-registry — input, pesi, esclusioni per ogni modello."
+          },
+          "consortium": {
+            "title": "Multi-tenant per consorzi",
+            "description": "Università pubbliche in consorzio, agenzie regionali con sedi distribuite, atenei in rete: ogni tenant ha audit log separato, RBAC indipendente, billing aggregato. Setup unico, governance distribuita.",
+            "concrete": "Organization model con seat limits, owner role, admin delegation. Vedi DPA per dettagli."
+          },
+          "procurement": {
+            "title": "Documentazione procurement-ready",
+            "description": "DPIA, ROPA, DPA, dichiarazioni AI Act, security questionnaire compilati. CPV codes per gara MEPA / OJEU. Risposta entro 5 giorni lavorativi a qualsiasi questionario vendor.",
+            "concrete": "Documenti scaricabili dalle sezioni qui sotto. Il resto via email entro 5 giorni."
+          }
+        }
+      }
     },
     "sections": {
       "posture": "Data posture",

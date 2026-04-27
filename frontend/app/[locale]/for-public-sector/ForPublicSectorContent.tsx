@@ -13,6 +13,9 @@ import {
   Lock,
   FileText,
   ArrowRight,
+  GraduationCap,
+  Network,
+  ScrollText,
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
@@ -85,6 +88,14 @@ function MatrixCard({
   )
 }
 
+const INTRO_METRICS = ['0', '1', '2'] as const
+const INTRO_CAPABILITIES = [
+  { key: 'verified',    icon: GraduationCap },
+  { key: 'aiAct',       icon: ShieldCheck },
+  { key: 'consortium',  icon: Network },
+  { key: 'procurement', icon: ScrollText },
+] as const
+
 export default function ForPublicSectorContent() {
   const t = useTranslations('forPublicSector')
   return (
@@ -99,6 +110,66 @@ export default function ForPublicSectorContent() {
           <h1 className="text-4xl font-bold mb-3">{t('hero.title')}</h1>
           <p className="text-lg text-muted-foreground max-w-3xl">{t('hero.subtitle')}</p>
         </div>
+
+        {/* Intro — DPO-verifiable metrics */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold tracking-tight mb-4">
+            {t('intro.metrics.title')}
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {INTRO_METRICS.map(idx => (
+              <Card key={idx}>
+                <CardContent className="pt-5">
+                  <div className="text-2xl font-bold tracking-tight text-primary tabular-nums leading-none mb-2">
+                    {t(`intro.metrics.items.${idx}.value`)}
+                  </div>
+                  <div className="text-sm font-medium text-foreground mb-2">
+                    {t(`intro.metrics.items.${idx}.label`)}
+                  </div>
+                  <div className="text-xs italic text-muted-foreground">
+                    {t(`intro.metrics.items.${idx}.source`)}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Intro — what you're procuring (4 cards with concrete) */}
+        <section className="mb-10">
+          <div className="mb-4 max-w-3xl">
+            <h2 className="text-xl font-semibold tracking-tight mb-2">
+              {t('intro.capabilities.title')}
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              {t('intro.capabilities.subtitle')}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {INTRO_CAPABILITIES.map(c => {
+              const Icon = c.icon
+              return (
+                <Card key={c.key}>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Icon className="h-5 w-5 text-primary" />
+                      {t(`intro.capabilities.items.${c.key}.title`)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {t(`intro.capabilities.items.${c.key}.description`)}
+                    </p>
+                    <p className="text-xs text-foreground/80">
+                      <span className="font-semibold">{t('intro.capabilities.practiceLabel')}</span>{' '}
+                      {t(`intro.capabilities.items.${c.key}.concrete`)}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </section>
 
         <div className="grid md:grid-cols-2 gap-5 mb-8">
           <MatrixCard title={t('sections.posture')} icon={MapPin} items={POSTURE} t={t} />

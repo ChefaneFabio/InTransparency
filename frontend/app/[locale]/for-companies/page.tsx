@@ -1,209 +1,302 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import {
+  Building2,
+  ShieldCheck,
+  MessageSquare,
+  FileText,
+  Plug,
+  Users,
+  FileCheck,
+  ArrowRight,
+  X,
+  Check,
+} from 'lucide-react'
 import { Link } from '@/navigation'
-import { FAQ } from '@/components/engagement/FAQ'
+import { motion } from 'framer-motion'
+import HeroVisual from '@/components/3d/HeroVisual'
+import HeroCTA from '@/components/ui/HeroCTA'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
-import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
-import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+import { FAQ } from '@/components/engagement/FAQ'
 
 /**
- * /for-companies — segment funnel for hiring teams.
+ * /for-companies — mid-market segment funnel.
  *
- * Editorial typography aesthetic (matches /pricing) with blue as the
- * differentiating accent — eyebrows and final-CTA tone use the recruiter
- * brand color while the rest of the page stays slate. Slimmed from 7
- * marketing sections to 6 plus hero/cta.
+ * Migrated from editorial typography to the for-enterprise
+ * card-based pattern (consistency across the company family:
+ * for-enterprise / for-sme / for-startups / for-agencies).
+ * Lead message: filter the noise of your existing ATS without
+ * replacing it. Pre-verified candidates feed Greenhouse / Lever /
+ * Workday via the optional ATS bridge. FAQ section retained from
+ * the previous editorial layout — most useful on this page given
+ * mid-market buyer hesitation.
  */
 
-const ACCENT = 'blue' as const
+interface Capability {
+  key: string
+  icon: any
+  endpoint?: string
+}
+
+const CAPABILITIES: Capability[] = [
+  { key: 'verified',     icon: ShieldCheck,   endpoint: '/explore' },
+  { key: 'smartSearch',  icon: MessageSquare, endpoint: '/demo/ai-search' },
+  { key: 'decisionPack', icon: FileText },
+  { key: 'atsBridge',    icon: Plug,          endpoint: '/integrations' },
+  { key: 'diversity',    icon: Users,         endpoint: '/algorithm-registry' },
+  { key: 'compliance',   icon: FileCheck,     endpoint: '/eu-compliance' },
+]
+
+const METRICS = ['0', '1', '2'] as const
+const PERSONAS = ['hr', 'ta', 'manager'] as const
+const COMPARE_ROWS = ['0', '1', '2', '3', '4'] as const
+const FAQ_KEYS = [0, 1, 2, 3, 4] as const
 
 export default function ForCompaniesPage() {
   const t = useTranslations('forCompanies')
-  const [showSticky, setShowSticky] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setShowSticky(window.scrollY > 600)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen bg-background">
       <Header />
-      <main>
-        <EditorialHero
-          eyebrow={t('hero.badge')}
-          title={
-            <>
+
+      {/* Hero — text + visual */}
+      <section className="container max-w-6xl mx-auto px-4 pt-28 pb-12">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge variant="outline" className="mb-4">
+              <Building2 className="h-3 w-3 mr-1" />
+              {t('badge')}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-5">
               {t('hero.title')}
-              <br />
-              <span className="text-blue-300">{t('hero.titleHighlight')}</span>
-            </>
-          }
-          lede={t('hero.subtitle')}
-          accent={ACCENT}
-          cta={
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+              {t('hero.subtitle')}
+            </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/auth/register?role=recruiter"
-                className="inline-flex items-center justify-center h-11 px-6 bg-white text-slate-900 hover:bg-slate-100 rounded-md text-sm font-medium transition-colors"
-              >
-                {t('cta.primaryButton')}
-              </Link>
-              <Link
-                href="/demo/ai-search"
-                className="inline-flex items-center justify-center h-11 px-6 border border-white/30 text-white hover:bg-white/10 rounded-md text-sm font-medium transition-colors"
-              >
-                {t('cta.secondaryButton')}
-              </Link>
+              <HeroCTA href="/auth/register/recruiter" variant="primary">
+                {t('cta.primary')}
+              </HeroCTA>
+              <HeroCTA href="/demo/ai-search" variant="secondary">
+                {t('cta.secondary')}
+              </HeroCTA>
             </div>
-          }
-        />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="hidden lg:block"
+          >
+            <HeroVisual className="max-w-[460px] ml-auto" />
+          </motion.div>
+        </div>
+      </section>
 
-        {/* How it works — 3 numbered steps, no icons */}
-        <EditorialSection
-          accent={ACCENT}
-          eyebrow={t('steps.eyebrow', { defaultValue: 'How it works' })}
-          title={t('steps.title')}
-          lede={t('steps.subtitle')}
-        >
-          <div className="grid md:grid-cols-3 gap-x-12 gap-y-10">
-            {[0, 1, 2].map(i => (
-              <div key={i}>
-                <div className="text-[42px] font-semibold tracking-tight text-blue-600 dark:text-blue-400 tabular-nums leading-none mb-4">
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <h3 className="text-[17px] font-semibold text-slate-900 dark:text-white mb-2">
-                  {t(`steps.${i}.title`)}
-                </h3>
-                <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t(`steps.${i}.desc`)}
-                </p>
-              </div>
+      <main className="container max-w-5xl mx-auto px-4 pb-16 space-y-10">
+        {/* Hard-numbers row */}
+        <section>
+          <div className="mb-6 max-w-2xl">
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">{t('metrics.title')}</h2>
+            <p className="text-sm text-muted-foreground">{t('metrics.subtitle')}</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {METRICS.map(idx => (
+              <Card key={idx}>
+                <CardContent className="pt-6">
+                  <div className="text-4xl font-bold tracking-tight text-primary tabular-nums leading-none mb-3">
+                    {t(`metrics.items.${idx}.value`)}
+                  </div>
+                  <div className="text-sm font-medium text-foreground mb-2">
+                    {t(`metrics.items.${idx}.label`)}
+                  </div>
+                  <div className="text-xs italic text-muted-foreground">
+                    {t(`metrics.items.${idx}.source`)}
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </EditorialSection>
+        </section>
 
-        {/* Features — typography grid, no icon decoration */}
-        <EditorialSection
-          tone="muted"
-          accent={ACCENT}
-          eyebrow={t('features.eyebrow', { defaultValue: 'Capabilities' })}
-          title={t('features.title')}
-          lede={t('features.subtitle')}
-        >
-          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10">
-            {[0, 1, 2, 3, 4, 5].map(i => (
-              <div key={i}>
-                <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white mb-2">
-                  {t(`features.${i}.title`)}
-                </h3>
-                <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t(`features.${i}.desc`)}
-                </p>
-              </div>
+        {/* Pain vs value */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('comparison.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card className="border-red-200 dark:border-red-900/50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm uppercase tracking-wider text-red-700 dark:text-red-400">
+                  {t('comparison.before.label')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2.5">
+                  {COMPARE_ROWS.map(i => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                      <X className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <span>{t(`comparison.before.items.${i}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-950/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                  {t('comparison.after.label')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2.5">
+                  {COMPARE_ROWS.map(i => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                      <Check className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                      <span>{t(`comparison.after.items.${i}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Capabilities */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('capabilities.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {CAPABILITIES.map(c => {
+              const Icon = c.icon
+              return (
+                <Card key={c.key} className="hover:border-primary/40 transition-colors">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Icon className="h-5 w-5 text-primary" />
+                      {t(`capabilities.items.${c.key}.title`)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {t(`capabilities.items.${c.key}.description`)}
+                    </p>
+                    <p className="text-xs text-foreground/80 mb-2">
+                      <span className="font-semibold">{t('practiceLabel')}</span>{' '}
+                      {t(`capabilities.items.${c.key}.concrete`)}
+                    </p>
+                    {c.endpoint && (
+                      <a
+                        href={c.endpoint}
+                        className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+                      >
+                        {t('seeIt')}
+                        <ArrowRight className="h-3 w-3" />
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </section>
+
+        {/* Personas */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('personas.title')}
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {PERSONAS.map(key => (
+              <Card key={key}>
+                <CardContent className="pt-6">
+                  <h3 className="text-sm font-semibold text-foreground mb-2">
+                    {t(`personas.items.${key}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t(`personas.items.${key}.description`)}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </EditorialSection>
+        </section>
 
-        {/* Diversity & inclusion — slim 4-row inline list */}
-        <EditorialSection
-          accent={ACCENT}
-          eyebrow={t('diversity.badge', { defaultValue: 'Diversity & inclusion' })}
-          title={t('diversity.title')}
-          lede={t('diversity.subtitle')}
-        >
-          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
-            {[0, 1, 2, 3].map(i => (
-              <div key={i} className="border-l-2 border-slate-200 dark:border-slate-800 pl-5">
-                <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white mb-1.5">
-                  {t(`diversity.points.${i}.title`)}
-                </h3>
-                <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
-                  {t(`diversity.points.${i}.desc`)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </EditorialSection>
+        {/* Process */}
+        <Card className="bg-primary/5 border-primary/30">
+          <CardContent className="pt-5 pb-5">
+            <h2 className="text-lg font-semibold mb-3">{t('process.title')}</h2>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm text-muted-foreground">
+              <li>{t('process.step1')}</li>
+              <li>
+                {t('process.step2.before')}{' '}
+                <Link href="/demo/ai-search" className="text-primary hover:underline">
+                  {t('process.step2.link')}
+                </Link>{' '}
+                {t('process.step2.after')}
+              </li>
+              <li>{t('process.step3')}</li>
+              <li>
+                {t('process.step4.before')}{' '}
+                <Link href="/eu-compliance" className="text-primary hover:underline">
+                  {t('process.step4.link')}
+                </Link>{' '}
+                {t('process.step4.after')}
+              </li>
+              <li>{t('process.step5')}</li>
+            </ol>
+          </CardContent>
+        </Card>
 
-        {/* Comparison — clean two-column table, muted typography */}
-        <EditorialSection
-          tone="muted"
-          accent={ACCENT}
-          eyebrow={t('comparison.eyebrow', { defaultValue: 'Before / after' })}
-          title={t('comparison.title')}
-          width="narrow"
-        >
-          <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
-            <div className="grid grid-cols-2 border-b border-slate-200 dark:border-slate-800">
-              <div className="p-4 text-[12px] font-medium uppercase tracking-[0.14em] text-slate-500 border-r border-slate-200 dark:border-slate-800">
-                {t('comparison.headers.before')}
-              </div>
-              <div className="p-4 text-[12px] font-medium uppercase tracking-[0.14em] text-blue-700 dark:text-blue-400">
-                {t('comparison.headers.after')}
-              </div>
-            </div>
-            {[0, 1, 2, 3].map(row => (
-              <div key={row} className="grid grid-cols-2 border-b last:border-b-0 border-slate-200 dark:border-slate-800">
-                <div className="p-4 text-[14px] text-slate-500 border-r border-slate-200 dark:border-slate-800">
-                  {t(`comparison.rows.${row}.before`)}
-                </div>
-                <div className="p-4 text-[14px] text-slate-900 dark:text-white">
-                  {t(`comparison.rows.${row}.after`)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </EditorialSection>
-
-        {/* FAQ */}
-        <EditorialSection
-          accent={ACCENT}
-          eyebrow="FAQ"
-          title={t('faq.title')}
-          width="narrow"
-        >
+        {/* FAQ — preserved from previous layout, useful for mid-market buyers */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('faq.title')}
+          </h2>
           <FAQ
-            items={Array.from({ length: 5 }, (_, i) => ({
+            items={FAQ_KEYS.map(i => ({
               question: t(`faq.items.${i}.question`),
               answer: t(`faq.items.${i}.answer`),
             }))}
           />
-        </EditorialSection>
-
-        {/* CTA — slim dark band, blue button */}
-        <section className="bg-slate-950 text-white">
-          <div className="container max-w-3xl mx-auto px-6 py-20 lg:py-24 text-center">
-            <h2 className="text-[34px] leading-[1.15] font-semibold tracking-tight">
-              {t('cta.title')}
-            </h2>
-            <p className="mt-5 text-[17px] leading-relaxed text-slate-300 max-w-xl mx-auto">
-              {t('cta.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/auth/register?role=recruiter"
-                className="inline-flex items-center justify-center h-11 px-6 bg-blue-600 text-white hover:bg-blue-500 rounded-md text-sm font-medium transition-colors"
-              >
-                {t('cta.primaryButton')}
-              </Link>
-              <Link
-                href="/demo/ai-search"
-                className="inline-flex items-center justify-center h-11 px-6 border border-white/30 text-white hover:bg-white/10 rounded-md text-sm font-medium transition-colors"
-              >
-                {t('cta.secondaryButton')}
-              </Link>
-            </div>
-          </div>
         </section>
+
+        {/* Final CTA */}
+        <Card className="border-primary/40">
+          <CardContent className="pt-6 pb-6">
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">{t('cta.title')}</h2>
+            <p className="text-sm text-muted-foreground mb-5 max-w-2xl">{t('cta.subtitle')}</p>
+            <div className="flex flex-wrap gap-3 mb-4">
+              <HeroCTA href="/auth/register/recruiter" variant="primary">
+                {t('cta.primary')}
+              </HeroCTA>
+              <HeroCTA href="/demo/ai-search" variant="secondary">
+                {t('cta.secondary')}
+              </HeroCTA>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[11px] text-muted-foreground uppercase tracking-[0.12em]">
+              <span>{t('cta.trustItems.0')}</span>
+              <span className="text-muted-foreground/40">·</span>
+              <span>{t('cta.trustItems.1')}</span>
+              <span className="text-muted-foreground/40">·</span>
+              <span>{t('cta.trustItems.2')}</span>
+            </div>
+          </CardContent>
+        </Card>
       </main>
+
+      <StickyCTA href="/auth/register/recruiter" text={t('cta.primary')} show />
       <Footer />
-      <StickyCTA show={showSticky} text={t('cta.primaryButton')} href="/auth/register?role=recruiter" />
     </div>
   )
 }
