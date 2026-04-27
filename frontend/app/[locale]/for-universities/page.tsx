@@ -2,30 +2,27 @@
 
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import { Link } from '@/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Inbox,
-  FileSignature,
-  Building2,
-  GraduationCap,
-  Sparkles,
-} from 'lucide-react'
+import { Link } from '@/navigation'
 import { FAQ } from '@/components/engagement/FAQ'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
 import { SavingsCalculator } from '@/components/sections/universities/SavingsCalculator'
-import HeroCTA from '@/components/ui/HeroCTA'
+import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
+import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
 
-// Slim sweep 2026-04-26 — page cut from 13 sections to 6. Dropped imports
-// (UniversityUrgency, UniversityPrestige, DecisionPackPreview, AnalyticsPreview,
-// Tabs, COUNTRY_TABS) remain available in their source files for re-use.
+/**
+ * /for-universities — academic-partner segment funnel.
+ *
+ * Editorial typography aesthetic (matches /pricing). Violet is the
+ * differentiating accent. Already structurally slim from prior pass —
+ * this revision keeps the same 6 sections (hero, social proof,
+ * workspace modules, savings calculator, grade normalizer, FAQ + CTA)
+ * and migrates them to the editorial pattern.
+ */
+
+const ACCENT = 'violet' as const
 
 export default function ForUniversitiesPage() {
   const t = useTranslations('forUniversities')
@@ -37,282 +34,195 @@ export default function ForUniversitiesPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const modules = [
+    { key: 'm1', title: t('workspaceModules.m1.title', { defaultValue: 'Mediation Inbox' }), desc: t('workspaceModules.m1.desc', { defaultValue: 'Every recruiter message to your students is reviewed by your staff first. Approve, edit, or reject. Full audit trail.' }) },
+    { key: 'm2', title: t('workspaceModules.m2.title', { defaultValue: 'Offer Moderation' }), desc: t('workspaceModules.m2.desc', { defaultValue: 'Job offers tied to your institution go to pending approval. Block offers that violate stage rules before students see them.' }) },
+    { key: 'm3', title: t('workspaceModules.m3.title', { defaultValue: 'Company CRM' }), desc: t('workspaceModules.m3.desc', { defaultValue: 'Drag-and-drop kanban from first contact to signed convention. Track every company relationship your career office manages.' }) },
+    { key: 'm4', title: t('workspaceModules.m4.title', { defaultValue: 'Placement Pipeline' }), desc: t('workspaceModules.m4.desc', { defaultValue: 'Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation.' }) },
+  ]
+
   return (
-    <div className="min-h-screen segment-university">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
-
-      {/* Hero — lead with the real pilot story */}
-      <section className="relative overflow-hidden bg-foreground text-white">
-        <img src="/images/brand/campus.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative container max-w-6xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 min-h-[420px] flex flex-col justify-center">
-          <div className="text-center max-w-3xl mx-auto">
-            <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
-              {t('hero.badge')}
-            </Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              {t('hero.title')}
-            </h1>
-            <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <HeroCTA href="/contact?subject=university-pilot" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
+      <main>
+        <EditorialHero
+          eyebrow={t('hero.badge')}
+          title={t('hero.title')}
+          lede={t('hero.subtitle')}
+          accent={ACCENT}
+          cta={
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/contact?subject=university-pilot"
+                className="inline-flex items-center justify-center h-11 px-6 bg-white text-slate-900 hover:bg-slate-100 rounded-md text-sm font-medium transition-colors"
+              >
                 {t('hero.demoCta')}
-              </HeroCTA>
-              <HeroCTA href="/auth/register/academic-partner" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
+              </Link>
+              <Link
+                href="/auth/register/academic-partner"
+                className="inline-flex items-center justify-center h-11 px-6 border border-white/30 text-white hover:bg-white/10 rounded-md text-sm font-medium transition-colors"
+              >
                 {t('hero.registerCta')}
-              </HeroCTA>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pilot Proof — real social proof first */}
-      <section className="py-12 bg-white">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('socialProof.title')}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card className="border-primary/20 border-2">
-              <CardContent className="pt-6">
-                <div className="mb-4">
-                  <h3 className="font-semibold text-lg">{t('socialProof.unibg.title')}</h3>
-                  <p className="text-sm text-gray-500">{t('socialProof.unibg.subtitle')}</p>
-                </div>
-                <p className="text-sm text-gray-700 mb-4">{t('socialProof.unibg.description')}</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">{t('socialProof.unibg.status')}</Badge>
-                  <Badge variant="secondary">2026</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-amber-200 border-2">
-              <CardContent className="pt-6">
-                <div className="mb-4">
-                  <h3 className="font-semibold text-lg">{t('socialProof.startCup.title')}</h3>
-                  <p className="text-sm text-gray-500">{t('socialProof.startCup.subtitle')}</p>
-                </div>
-                <p className="text-sm text-gray-700 mb-4">{t('socialProof.startCup.description')}</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">Start Cup Bergamo</Badge>
-                  <Badge variant="secondary">2025</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Institutional Workspace — four modules, no internal "M1-M4" jargon */}
-      <section className="py-16 bg-gradient-to-br from-amber-50/40 via-white to-blue-50/40">
-        <div className="container max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-10 max-w-3xl mx-auto"
-          >
-            <Badge className="mb-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
-              <Sparkles className="h-3 w-3 mr-1" />
-              Institutional Workspace
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              {t('workspaceModules.title', {
-                defaultValue: 'Built for the career office — not just another job board',
-              })}
-            </h2>
-            <p className="text-gray-600 text-lg">
-              {t('workspaceModules.subtitle', {
-                defaultValue:
-                  'Four modules that turn placement from spreadsheets into an auditable workflow. Free Core gets full read access; Premium unlocks automation and unlimited AI.',
-              })}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              {
-                icon: Inbox,
-                key: 'm1',
-                title: t('workspaceModules.m1.title', { defaultValue: 'Mediation Inbox' }),
-                desc: t('workspaceModules.m1.desc', {
-                  defaultValue:
-                    'Every recruiter message to your students is reviewed by your staff first. Approve, edit, or reject. Full audit trail.',
-                }),
-                color: 'text-blue-600',
-                bg: 'bg-blue-100',
-              },
-              {
-                icon: FileSignature,
-                key: 'm2',
-                title: t('workspaceModules.m2.title', { defaultValue: 'Offer Moderation' }),
-                desc: t('workspaceModules.m2.desc', {
-                  defaultValue:
-                    'Job offers tied to your institution go to pending approval. Block offers that violate stage rules before students see them.',
-                }),
-                color: 'text-purple-600',
-                bg: 'bg-purple-100',
-              },
-              {
-                icon: Building2,
-                key: 'm3',
-                title: t('workspaceModules.m3.title', { defaultValue: 'Company CRM' }),
-                desc: t('workspaceModules.m3.desc', {
-                  defaultValue:
-                    'Drag-and-drop kanban from first contact to signed convention. Track every company relationship your career office manages.',
-                }),
-                color: 'text-emerald-600',
-                bg: 'bg-emerald-100',
-              },
-              {
-                icon: GraduationCap,
-                key: 'm4',
-                title: t('workspaceModules.m4.title', { defaultValue: 'Placement Pipeline' }),
-                desc: t('workspaceModules.m4.desc', {
-                  defaultValue:
-                    'Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation. Replaces your career office spreadsheets.',
-                }),
-                color: 'text-amber-600',
-                bg: 'bg-amber-100',
-              },
-            ].map((m, i) => {
-              const Icon = m.icon
-              return (
-                <motion.div
-                  key={m.key}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-lg hover:border-primary/30 transition-all">
-                    <CardContent className="p-5">
-                      <div className={`w-10 h-10 rounded-lg ${m.bg} flex items-center justify-center mb-3`}>
-                        <Icon className={`h-5 w-5 ${m.color}`} />
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-1.5">{m.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{m.desc}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )
-            })}
-          </div>
-
-          <div className="mt-10 text-center">
-            <p className="text-sm text-gray-600 mb-4 max-w-xl mx-auto">
-              {t('workspaceModules.compliance', {
-                defaultValue:
-                  'Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.',
-              })}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/pricing?for=institutions">
-                <Button variant="default" size="lg">
-                  {t('workspaceModules.pricingCta', { defaultValue: 'See pricing' })}
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/contact?subject=institutional-demo">
-                <Button variant="outline" size="lg">
-                  {t('workspaceModules.demoCta', { defaultValue: 'Request a demo' })}
-                </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
+          }
+        />
 
-      {/* Savings calculator — hard-money value prop, the only ROI section we keep */}
-      <section className="py-20">
-        <div className="container max-w-6xl mx-auto px-4">
+        {/* Social proof — UniBg pilot + Start Cup, editorial cards */}
+        <EditorialSection
+          accent={ACCENT}
+          eyebrow={t('socialProof.eyebrow', { defaultValue: 'Real, not staged' })}
+          title={t('socialProof.title')}
+        >
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+            <div className="border-l-2 border-violet-600 dark:border-violet-400 pl-6 py-2">
+              <h3 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                {t('socialProof.unibg.title')}
+              </h3>
+              <p className="mt-1 text-[13px] text-slate-500 uppercase tracking-wider">
+                {t('socialProof.unibg.subtitle')} · 2026
+              </p>
+              <p className="mt-3 text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                {t('socialProof.unibg.description')}
+              </p>
+              <div className="mt-3 text-[12px] text-violet-700 dark:text-violet-400 uppercase tracking-[0.14em]">
+                {t('socialProof.unibg.status')}
+              </div>
+            </div>
+            <div className="border-l-2 border-amber-500 pl-6 py-2">
+              <h3 className="text-[17px] font-semibold text-slate-900 dark:text-white">
+                {t('socialProof.startCup.title')}
+              </h3>
+              <p className="mt-1 text-[13px] text-slate-500 uppercase tracking-wider">
+                {t('socialProof.startCup.subtitle')} · 2025
+              </p>
+              <p className="mt-3 text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                {t('socialProof.startCup.description')}
+              </p>
+              <div className="mt-3 text-[12px] text-amber-700 dark:text-amber-400 uppercase tracking-[0.14em]">
+                Start Cup Bergamo
+              </div>
+            </div>
+          </div>
+        </EditorialSection>
+
+        {/* Workspace modules — editorial 4-column grid, no icon ornaments */}
+        <EditorialSection
+          tone="muted"
+          accent={ACCENT}
+          eyebrow={t('workspaceModules.eyebrow', { defaultValue: 'Institutional workspace' })}
+          title={t('workspaceModules.title', { defaultValue: 'Built for the career office — not just another job board' })}
+          lede={t('workspaceModules.subtitle', { defaultValue: 'Four modules that turn placement from spreadsheets into an auditable workflow. Free Core gets full read access; Premium unlocks automation and unlimited AI.' })}
+          endNote={t('workspaceModules.compliance', { defaultValue: 'Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.' })}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 border-l border-t border-slate-200 dark:border-slate-800">
+            {modules.map((m, i) => (
+              <div
+                key={m.key}
+                className="p-6 border-r border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
+              >
+                <div className="text-[12px] font-medium uppercase tracking-[0.14em] text-violet-700 dark:text-violet-400 mb-3">
+                  M{i + 1}
+                </div>
+                <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white mb-2">
+                  {m.title}
+                </h3>
+                <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {m.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/pricing?for=institutions"
+              className="inline-flex items-center justify-center h-11 px-6 bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 rounded-md text-sm font-medium transition-colors"
+            >
+              {t('workspaceModules.pricingCta', { defaultValue: 'See pricing' })}
+            </Link>
+            <Link
+              href="/contact?subject=institutional-demo"
+              className="inline-flex items-center justify-center h-11 px-6 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-900 rounded-md text-sm font-medium transition-colors"
+            >
+              {t('workspaceModules.demoCta', { defaultValue: 'Request a demo' })}
+            </Link>
+          </div>
+        </EditorialSection>
+
+        {/* Savings calculator — keep the existing component, slim wrapper */}
+        <EditorialSection
+          accent={ACCENT}
+          eyebrow={t('savings.eyebrow', { defaultValue: 'Hard-money value' })}
+          title={t('savings.title', { defaultValue: 'What you save vs your current placement workflow' })}
+          lede={t('savings.lede', { defaultValue: 'Set your cohort size — see annual hours saved and what they cost in staff time.' })}
+        >
           <SavingsCalculator />
-        </div>
-      </section>
+        </EditorialSection>
 
-      {/* Grade Normalizer Demo — most tangible value prop */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              {t('demos.gradeNormalizer.title')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-lg">
-              {t('demos.gradeNormalizer.description')}
-            </p>
-          </motion.div>
-
+        {/* Grade normalizer demo */}
+        <EditorialSection
+          tone="muted"
+          accent={ACCENT}
+          eyebrow={t('demos.eyebrow', { defaultValue: 'Try a live tool' })}
+          title={t('demos.gradeNormalizer.title')}
+          lede={t('demos.gradeNormalizer.description')}
+          width="narrow"
+        >
           <div className="max-w-xl mx-auto">
             <GradeNormalizerDemo />
           </div>
-        </div>
-      </section>
+        </EditorialSection>
 
-      {/* Slim sweep 2026-04-26 dropped 5 sections that diluted the funnel:
-          - UniversityUrgency (vague urgency-marketing)
-          - UniversityPrestige (overlapped with hero framing)
-          - Country-specific tabs (5 countries, repetitive copy)
-          - More Demos: DecisionPack + Analytics (second-tier — Grade Normalizer leads)
-          - Co-Creation (overlap with hero/pilot proof)
-          Components remain in /components/sections/universities/ and
-          /components/demo/ for re-use if scale changes the equation. */}
-
-      {/* FAQ */}
-      <section className="py-12">
-        <div className="container max-w-5xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('faq.title')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              {t('faq.subtitle')}
-            </p>
-          </div>
-
+        {/* FAQ */}
+        <EditorialSection
+          accent={ACCENT}
+          eyebrow="FAQ"
+          title={t('faq.title')}
+          lede={t('faq.subtitle')}
+          width="narrow"
+        >
           <FAQ
             items={Array.from({ length: 5 }, (_, i) => ({
               question: t(`faq.items.${i}.question`),
               answer: t(`faq.items.${i}.answer`),
             }))}
           />
-        </div>
-      </section>
+        </EditorialSection>
 
-      {/* CTA */}
-      <section className="py-12 bg-primary text-white">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
-          <p className="text-blue-200 mb-8 max-w-xl mx-auto">
-            {t('cta.subtitle')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <HeroCTA href="/contact?subject=university-pilot" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
-              {t('cta.demoButton')}
-            </HeroCTA>
-            <HeroCTA href="/auth/register/academic-partner" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
-              {t('cta.registerButton')}
-            </HeroCTA>
+        {/* CTA — slim dark band, violet button */}
+        <section className="bg-slate-950 text-white">
+          <div className="container max-w-3xl mx-auto px-6 py-20 lg:py-24 text-center">
+            <h2 className="text-[34px] leading-[1.15] font-semibold tracking-tight">
+              {t('cta.title')}
+            </h2>
+            <p className="mt-5 text-[17px] leading-relaxed text-slate-300 max-w-xl mx-auto">
+              {t('cta.subtitle')}
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/contact?subject=university-pilot"
+                className="inline-flex items-center justify-center h-11 px-6 bg-violet-600 text-white hover:bg-violet-500 rounded-md text-sm font-medium transition-colors"
+              >
+                {t('cta.demoButton')}
+              </Link>
+              <Link
+                href="/auth/register/academic-partner"
+                className="inline-flex items-center justify-center h-11 px-6 border border-white/30 text-white hover:bg-white/10 rounded-md text-sm font-medium transition-colors"
+              >
+                {t('cta.registerButton')}
+              </Link>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-slate-400 uppercase tracking-[0.12em]">
+              <span>{t('cta.features.free')}</span>
+              <span className="text-slate-700">·</span>
+              <span>{t('cta.features.gdpr')}</span>
+              <span className="text-slate-700">·</span>
+              <span>{t('cta.features.setup')}</span>
+            </div>
           </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-blue-200">
-            <span>{t('cta.features.free')}</span>
-            <span>{t('cta.features.gdpr')}</span>
-            <span>{t('cta.features.setup')}</span>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
       <Footer />
       <StickyCTA show={showSticky} text={t('cta.demoButton')} href="/contact?subject=university-pilot" />
     </div>
