@@ -70,9 +70,9 @@ export default function StudentChallengesPage() {
       </MetricHero>
 
       <StaggerContainer className="grid grid-cols-3 gap-4">
-        <StaggerItem><StatCard label={t('stats.available')} value={challenges.length} icon={<Trophy className="h-5 w-5" />} variant="blue" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.applied')} value={applied.length} icon={<FileText className="h-5 w-5" />} variant="amber" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.completed')} value={completed} icon={<CheckCircle className="h-5 w-5" />} variant="green" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.available')} value={challenges.length} icon={<Trophy className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.applied')} value={applied.length} icon={<FileText className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.completed')} value={completed} icon={<CheckCircle className="h-5 w-5" />} variant="slate" /></StaggerItem>
       </StaggerContainer>
 
       {/* Filters */}

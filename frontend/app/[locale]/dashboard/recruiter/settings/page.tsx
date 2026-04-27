@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Settings as SettingsIcon, FileText, Plug } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import RecruiterSettingsPanel from '@/components/dashboard/recruiter/settings-tabs/GeneralPanel'
 import DocumentsPanel from '@/components/dashboard/recruiter/settings-tabs/DocumentsPanel'
@@ -38,18 +37,9 @@ export default function RecruiterSettingsPage() {
 
       <Tabs value={tab} onValueChange={handleTabChange} className="space-y-5">
         <TabsList className="grid w-full grid-cols-3 max-w-xl">
-          <TabsTrigger value="general" className="gap-2">
-            <SettingsIcon className="h-4 w-4" />
-            <span className="hidden sm:inline">General</span>
-          </TabsTrigger>
-          <TabsTrigger value="documents" className="gap-2">
-            <FileText className="h-4 w-4" />
-            <span className="hidden sm:inline">Documents</span>
-          </TabsTrigger>
-          <TabsTrigger value="integrations" className="gap-2">
-            <Plug className="h-4 w-4" />
-            <span className="hidden sm:inline">Integrations</span>
-          </TabsTrigger>
+          <TabsTrigger value="general">General</TabsTrigger>
+          <TabsTrigger value="documents">Documents</TabsTrigger>
+          <TabsTrigger value="integrations">Integrations</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="mt-0">

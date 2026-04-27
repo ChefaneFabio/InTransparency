@@ -12,22 +12,12 @@ export default function InstitutionAddonsPage() {
   return (
     <div className="space-y-6">
       <MetricHero gradient="institution">
-        <div className="flex items-center gap-4">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="p-4 rounded-2xl bg-gradient-to-br from-violet-500/30 to-blue-500/20 border border-white/10"
-          >
-            <Sparkles className="h-8 w-8 text-violet-600 dark:text-violet-300" />
-          </motion.div>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Add-on marketplace</h1>
-            <p className="text-muted-foreground mt-1 max-w-2xl">
-              Your core workspace is free — forever. Pick add-on modules à la carte when you need to scale,
-              integrate, or customize. No bundles, no lock-in.
-            </p>
-          </div>
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Add-on marketplace</h1>
+          <p className="text-muted-foreground mt-2 max-w-2xl">
+            Your core workspace is free — forever. Pick add-on modules à la carte when you need to scale,
+            integrate, or customize. No bundles, no lock-in.
+          </p>
         </div>
       </MetricHero>
 

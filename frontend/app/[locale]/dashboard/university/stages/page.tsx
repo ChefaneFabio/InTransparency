@@ -228,10 +228,10 @@ export default function StagesPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats && (
           <>
-            <StatCard label={t('stats.active')} value={stats.active} icon={<Briefcase className="h-5 w-5" />} variant="blue" />
-            <StatCard label={t('stats.completed')} value={stats.completed} icon={<CheckCircle className="h-5 w-5" />} variant="green" />
-            <StatCard label={t('stats.avgRating')} value={stats.avgRating} icon={<Star className="h-5 w-5" />} variant="amber" suffix="/5" />
-            <StatCard label={t('stats.wouldHire')} value={stats.wouldHireRate} icon={<ThumbsUp className="h-5 w-5" />} variant="purple" suffix="%" />
+            <StatCard label={t('stats.active')} value={stats.active} icon={<Briefcase className="h-5 w-5" />} variant="slate" />
+            <StatCard label={t('stats.completed')} value={stats.completed} icon={<CheckCircle className="h-5 w-5" />} variant="slate" />
+            <StatCard label={t('stats.avgRating')} value={stats.avgRating} icon={<Star className="h-5 w-5" />} variant="slate" suffix="/5" />
+            <StatCard label={t('stats.wouldHire')} value={stats.wouldHireRate} icon={<ThumbsUp className="h-5 w-5" />} variant="slate" suffix="%" />
           </>
         )}
         {!stats && loading && [1, 2, 3, 4].map(i => <Skeleton key={i} className="h-24 rounded-2xl" />)}

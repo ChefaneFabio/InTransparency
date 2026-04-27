@@ -80,10 +80,10 @@ export default function StudentApplications() {
 
       {/* Stats */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StaggerItem><StatCard label={t('stats.total')} value={applications.length} icon={<Briefcase className="h-5 w-5" />} variant="blue" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.active')} value={active.length} icon={<Clock className="h-5 w-5" />} variant="amber" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.interviews')} value={interviews.length} icon={<Calendar className="h-5 w-5" />} variant="purple" /></StaggerItem>
-        <StaggerItem><StatCard label={t('stats.offers')} value={offers.length} icon={<CheckCircle className="h-5 w-5" />} variant="green" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.total')} value={applications.length} icon={<Briefcase className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.active')} value={active.length} icon={<Clock className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.interviews')} value={interviews.length} icon={<Calendar className="h-5 w-5" />} variant="slate" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.offers')} value={offers.length} icon={<CheckCircle className="h-5 w-5" />} variant="slate" /></StaggerItem>
       </StaggerContainer>
 
       {/* Search */}

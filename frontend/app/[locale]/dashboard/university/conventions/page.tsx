@@ -222,10 +222,10 @@ export default function ConventionsPage() {
       {/* Stats */}
       {stats && (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <StatCard label={t('stats.total')} value={stats.total} icon={<FileSignature className="h-5 w-5" />} variant="blue" />
-          <StatCard label={t('stats.active')} value={stats.active} icon={<CheckCircle className="h-5 w-5" />} variant="green" />
-          <StatCard label={t('stats.pending')} value={stats.pending + stats.draft} icon={<PenTool className="h-5 w-5" />} variant="amber" />
-          <StatCard label={t('stats.completed')} value={stats.completed} icon={<Shield className="h-5 w-5" />} variant="purple" />
+          <StatCard label={t('stats.total')} value={stats.total} icon={<FileSignature className="h-5 w-5" />} variant="slate" />
+          <StatCard label={t('stats.active')} value={stats.active} icon={<CheckCircle className="h-5 w-5" />} variant="slate" />
+          <StatCard label={t('stats.pending')} value={stats.pending + stats.draft} icon={<PenTool className="h-5 w-5" />} variant="slate" />
+          <StatCard label={t('stats.completed')} value={stats.completed} icon={<Shield className="h-5 w-5" />} variant="slate" />
         </div>
       )}
 

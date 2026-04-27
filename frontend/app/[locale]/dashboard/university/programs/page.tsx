@@ -2,9 +2,7 @@
 
 import { useState } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { BookOpen, Route, Brain, Globe, GraduationCap } from 'lucide-react'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import CurriculumPanel from '@/components/dashboard/university/programs/CurriculumPanel'
 import CareerPathsPanel from '@/components/dashboard/university/programs/CareerPathsPanel'
@@ -32,42 +30,20 @@ export default function ProgramsPage() {
   return (
     <div className="space-y-6">
       <MetricHero gradient="institutionDark">
-        <div className="flex items-center gap-4">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="p-4 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 border border-white/10"
-          >
-            <GraduationCap className="h-8 w-8 text-white" />
-          </motion.div>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-white">Programs</h1>
-            <p className="text-white/60 mt-1 max-w-2xl">
-              Program-level insights: curriculum alignment, career destinations, skills intelligence, and exchanges.
-            </p>
-          </div>
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-white">Programs</h1>
+          <p className="text-white/65 mt-2 max-w-2xl">
+            Program-level insights: curriculum alignment, career destinations, skills intelligence, and exchanges.
+          </p>
         </div>
       </MetricHero>
 
       <Tabs value={tab} onValueChange={handleTabChange} className="space-y-6">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 max-w-3xl">
-          <TabsTrigger value="curriculum" className="gap-2">
-            <BookOpen className="h-4 w-4" />
-            <span className="hidden sm:inline">Curriculum</span>
-          </TabsTrigger>
-          <TabsTrigger value="careers" className="gap-2">
-            <Route className="h-4 w-4" />
-            <span className="hidden sm:inline">Career Paths</span>
-          </TabsTrigger>
-          <TabsTrigger value="skills" className="gap-2">
-            <Brain className="h-4 w-4" />
-            <span className="hidden sm:inline">Skills Intelligence</span>
-          </TabsTrigger>
-          <TabsTrigger value="exchanges" className="gap-2">
-            <Globe className="h-4 w-4" />
-            <span className="hidden sm:inline">Exchanges</span>
-          </TabsTrigger>
+          <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
+          <TabsTrigger value="careers">Career Paths</TabsTrigger>
+          <TabsTrigger value="skills">Skills Intelligence</TabsTrigger>
+          <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
         </TabsList>
 
         <TabsContent value="curriculum" className="mt-0">

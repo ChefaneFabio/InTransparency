@@ -89,19 +89,9 @@ export default function InterviewKitPage() {
   return (
     <div className="min-h-screen space-y-6">
       <MetricHero gradient="companyDark">
-        <div className="flex items-center gap-4">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/30 to-purple-500/10 border border-white/10"
-          >
-            <ClipboardList className="h-8 w-8 text-white" />
-          </motion.div>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
-            <p className="text-white/60 mt-1">{t('subtitle')}</p>
-          </div>
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
+          <p className="text-white/65 mt-2 max-w-2xl">{t('subtitle')}</p>
         </div>
       </MetricHero>
 

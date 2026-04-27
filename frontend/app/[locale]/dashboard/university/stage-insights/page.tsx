@@ -91,10 +91,10 @@ export default function StageInsightsPage() {
 
       {/* Key metrics */}
       <div className="grid gap-4 md:grid-cols-4">
-        <StatCard label={t('metrics.preparedness')} value={insights.avgPreparedness || 0} icon={<GraduationCap className="h-5 w-5" />} variant="blue" suffix="/5" />
-        <StatCard label={t('metrics.satisfaction')} value={insights.avgSatisfaction || 0} icon={<Heart className="h-5 w-5" />} variant="rose" suffix="/5" />
-        <StatCard label={t('metrics.journalEntries')} value={insights.totalEntries} icon={<BookOpen className="h-5 w-5" />} variant="purple" />
-        <StatCard label={t('metrics.stagesTracked')} value={insights.stagesWithJournals} icon={<Users className="h-5 w-5" />} variant="green" suffix={`/${insights.totalStages}`} />
+        <StatCard label={t('metrics.preparedness')} value={insights.avgPreparedness || 0} icon={<GraduationCap className="h-5 w-5" />} variant="slate" suffix="/5" />
+        <StatCard label={t('metrics.satisfaction')} value={insights.avgSatisfaction || 0} icon={<Heart className="h-5 w-5" />} variant="slate" suffix="/5" />
+        <StatCard label={t('metrics.journalEntries')} value={insights.totalEntries} icon={<BookOpen className="h-5 w-5" />} variant="slate" />
+        <StatCard label={t('metrics.stagesTracked')} value={insights.stagesWithJournals} icon={<Users className="h-5 w-5" />} variant="slate" suffix={`/${insights.totalStages}`} />
       </div>
 
       {/* Growth curve */}
