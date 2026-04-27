@@ -7,9 +7,8 @@ import { PRESS_ITEMS } from '@/lib/config/press'
  *
  * Greyscale by default, hover→color. Renders <Image> when a logo file is
  * configured and present; otherwise renders an italicised serif wordmark
- * so the section never displays broken images. Position on the homepage
- * is right after TrustMetrics, before HowItWorks — the natural social
- * proof slot.
+ * so the section never displays broken images. Sits directly after the
+ * Hero on the homepage as the social proof slot.
  */
 export async function PressSection() {
   const t = await getTranslations('pressSection')

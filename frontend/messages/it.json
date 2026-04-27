@@ -1237,9 +1237,11 @@
   },
   "contact": {
     "hero": {
+      "eyebrow": "Contatti",
       "title": "Contatti e Supporto",
       "subtitle": "Hai domande su InTransparency? Siamo qui per aiutarti."
     },
+    "iAm": "Sono",
     "segments": {
       "student": "Sono uno Studente",
       "company": "Sono un'Azienda",
@@ -1265,6 +1267,7 @@
       }
     },
     "section": {
+      "eyebrow": "Scrivici",
       "title": "Iniziamo una Conversazione",
       "subtitle": "Che tu sia uno studente, un recruiter o un'istituzione, siamo pronti ad aiutarti."
     },
@@ -3328,7 +3331,9 @@
     "hero": {
       "badge": "Per studenti, datori di lavoro e partner formativi",
       "title": "Un livello di fiducia verificato dal percorso formativo al lavoro.",
-      "description": "In tutte le discipline — tech, ingegneria, business, scienze, design — far incontrare persone e ruoli è difficile quando le competenze sono auto-dichiarate. Stiamo costruendo un livello dove le istituzioni possono verificare il lavoro degli studenti, le aziende vedono segnali più chiari e gli studenti portano con sé prove trasferibili in UE. Partiamo dall'Italia."
+      "description": "In tutte le discipline — tech, ingegneria, business, scienze, design — far incontrare persone e ruoli è difficile quando le competenze sono auto-dichiarate. Stiamo costruendo un livello dove le istituzioni possono verificare il lavoro degli studenti, le aziende vedono segnali più chiari e gli studenti portano con sé prove trasferibili in UE. Partiamo dall'Italia.",
+      "comparisonEyebrow": "Il cambiamento",
+      "comparisonTitle": "Come si decide oggi — e cosa proviamo a cambiare"
     },
     "resumeProblem": {
       "title": "Dove il CV da solo non basta",
@@ -3410,13 +3415,14 @@
           },
           "2": {
             "value": "€0",
-            "label": "Gratuito per studenti e partner formativi"
+            "label": "Gratis per studenti, Free Core per partner formativi"
           }
         },
         "tagline": "La fiducia si costruisce nel tempo. Preferiamo guadagnarla passo per passo invece di prometterla."
       }
     },
     "mission": {
+      "eyebrow": "La nostra missione",
       "title": "La nostra missione",
       "description": "Vorremmo contribuire a un modo europeo di assumere in cui ciò che una persona sa davvero fare sia visibile — verificato dai partner formativi che l'hanno formata. Non al posto del CV, ma accanto al CV.",
       "quote": "\"Lavoro che parla da solo, percorsi che si possono spiegare, decisioni di assunzione che si possono difendere.\"",
@@ -3432,6 +3438,7 @@
       }
     },
     "values": {
+      "eyebrow": "I nostri valori",
       "title": "A cosa teniamo",
       "items": {
         "0": {
@@ -3453,37 +3460,39 @@
       }
     },
     "businessModel": {
-      "title": "Perché è gratuito oggi",
+      "eyebrow": "Il nostro modello",
+      "title": "Come funziona l'accesso",
       "subtitle": "Vogliamo che il talento sia scopribile prima che commercializzabile",
       "students": {
-        "title": "Studenti: accesso completo",
-        "description": "Costruisci il tuo portfolio verificato con AI con tutte le funzionalità base.",
-        "premiumLabel": "Opzioni future:",
-        "premiumDescription": "Visibilità prioritaria, analytics avanzati"
+        "title": "Studenti: gratis, Premium €5/mese o €45/anno",
+        "description": "Tutto il portfolio verificato con AI è gratuito. Premium sblocca analisi AI illimitate per progetto, visibilità prioritaria e analytics avanzati.",
+        "premiumLabel": "Premium:",
+        "premiumDescription": "€5/mese o €45/anno · 30 giorni di prova gratuita"
       },
       "universities": {
-        "title": "Partner formativi: accesso completo",
-        "description": "Verifica i progetti degli studenti. Monitora i placement. Misura i risultati.",
-        "enterpriseLabel": "Add-on enterprise:",
-        "enterpriseDescription": "Integrazioni API, white-label, funzionalità custom"
+        "title": "Partner formativi: Free Core o Premium €39/mese",
+        "description": "Free Core: 50 query AI/mese e audit log a 30 giorni. Premium: AI illimitato, audit log completo, export CSV, automazioni reminder e report MIUR.",
+        "enterpriseLabel": "Premium:",
+        "enterpriseDescription": "€39/mese o €390/anno · add-on white-label, SSO, MIUR a parte"
       },
       "companies": {
-        "title": "Aziende: 5 contatti gratis al mese, poi €89/mese",
-        "description": "Esplora liberamente i profili verificati con AI. Ti abboni quando superi i 5 contatti al mese.",
+        "title": "Aziende: gratis fino a 5 contatti/mese, poi €89/mese",
+        "description": "Esplora liberamente i profili verificati con AI. 5 contatti/mese gratis con email aziendale (2 con email personale). Abbonamento €89/mese o €890/anno quando superi la soglia.",
         "enterpriseLabel": "Add-on enterprise:",
-        "enterpriseDescription": "Accesso API, integrazione ATS"
+        "enterpriseDescription": "Accesso API, integrazione ATS, ATS bridge"
       },
       "philosophy": {
         "title": "Come lo pensiamo",
         "studentsBold": "Gli studenti creano il valore.",
-        "studentsText": "Chi mette il lavoro dovrebbe avere accesso completo agli strumenti che lo mettono in luce. Gli studenti non pagano per essere visibili.",
+        "studentsText": "Il portfolio verificato è e resta gratuito. Premium è opzionale, per chi vuole più analisi AI per progetto e visibilità prioritaria.",
         "universitiesBold": "Università e scuole guidano la verifica.",
-        "universitiesText": "La piattaforma base è gratuita per i partner formativi. Gli add-on enterprise (API, white-label, funzionalità custom) sono disponibili se servono.",
+        "universitiesText": "Il Free Core è gratuito (50 query AI/mese, audit log 30 giorni). Premium €39/mese sblocca AI illimitato, audit completo e automazioni. Add-on enterprise (white-label, SSO, MIUR) a parte.",
         "companiesBold": "Le aziende pagano sui risultati.",
         "companiesText": "Esplori il pool verificato senza costi. Paghi quando decidi di contattare un candidato — non prima."
       }
     },
     "vision": {
+      "eyebrow": "Dove stiamo andando",
       "title": "Accesso anticipato",
       "subtitle": "Siamo in sviluppo iniziale — il momento migliore per dare forma a ciò che costruiamo",
       "stats": {

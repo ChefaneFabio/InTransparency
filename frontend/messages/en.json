@@ -1237,9 +1237,11 @@
   },
   "contact": {
     "hero": {
+      "eyebrow": "Contact",
       "title": "Contact & Support",
       "subtitle": "Have questions about InTransparency? We're here to help."
     },
+    "iAm": "I am a",
     "segments": {
       "student": "I'm a Student",
       "company": "I'm a Company",
@@ -1265,6 +1267,7 @@
       }
     },
     "section": {
+      "eyebrow": "Reach us",
       "title": "Let's Start a Conversation",
       "subtitle": "Whether you're a student, recruiter, or academic partner, we're excited to hear from you."
     },
@@ -3354,7 +3357,9 @@
     "hero": {
       "badge": "For students, employers, and academic partners",
       "title": "A verified trust layer for student-to-work.",
-      "description": "Across disciplines — tech, engineering, business, science, design — matching people to roles is hard when skills are self-reported. We're building a layer where institutions can verify student work, companies see clearer signals, and students carry portable proof across the EU. Starting in Italy."
+      "description": "Across disciplines — tech, engineering, business, science, design — matching people to roles is hard when skills are self-reported. We're building a layer where institutions can verify student work, companies see clearer signals, and students carry portable proof across the EU. Starting in Italy.",
+      "comparisonEyebrow": "The shift",
+      "comparisonTitle": "How hiring decisions are made today — and how we change it"
     },
     "resumeProblem": {
       "title": "Where a CV alone falls short",
@@ -3436,13 +3441,14 @@
           },
           "2": {
             "value": "€0",
-            "label": "Free for students and academic partners"
+            "label": "Free for students, free core for academic partners"
           }
         },
         "tagline": "Trust takes time to build. We'd rather earn it step by step than promise it upfront."
       }
     },
     "mission": {
+      "eyebrow": "Our mission",
       "title": "Our mission",
       "description": "We'd like to contribute to a European way of hiring where what a person can actually do is visible — verified by the institutions that taught them. Not a replacement for the CV; an honest complement to it.",
       "quote": "\"Work that speaks for itself, paths that can be explained, hiring decisions you can stand behind.\"",
@@ -3458,6 +3464,7 @@
       }
     },
     "values": {
+      "eyebrow": "What we stand for",
       "title": "What we care about",
       "items": {
         "0": {
@@ -3479,37 +3486,39 @@
       }
     },
     "businessModel": {
-      "title": "Why it's free today",
+      "eyebrow": "Our model",
+      "title": "How access works",
       "subtitle": "We want talent to be discoverable before it's commercial",
       "students": {
-        "title": "Students: full access",
-        "description": "Build your AI-verified portfolio with all core features included.",
-        "premiumLabel": "Future options:",
-        "premiumDescription": "Priority visibility, advanced analytics"
+        "title": "Students: free, Premium €5/mo or €45/yr",
+        "description": "The verified portfolio is free. Premium unlocks unlimited per-project AI analyses, priority visibility, and advanced analytics.",
+        "premiumLabel": "Premium:",
+        "premiumDescription": "€5/mo or €45/yr · 30-day free trial"
       },
       "universities": {
-        "title": "Academic partners: full access",
-        "description": "Verify student projects. Track placements. Measure outcomes.",
-        "enterpriseLabel": "Enterprise add-ons:",
-        "enterpriseDescription": "API integrations, white-label, custom features"
+        "title": "Academic partners: Free Core or Premium €39/mo",
+        "description": "Free Core: 50 AI queries/month and 30-day audit log. Premium: unlimited AI, full audit log, CSV exports, reminder automations, and MIUR reports.",
+        "enterpriseLabel": "Premium:",
+        "enterpriseDescription": "€39/mo or €390/yr · white-label, SSO, MIUR add-ons sold separately"
       },
       "companies": {
-        "title": "Companies: 5 free contacts/month, then €89/mo",
-        "description": "Browse AI-verified profile freely. Subscribe when you scale past 5 contacts a month.",
+        "title": "Companies: free up to 5 contacts/month, then €89/mo",
+        "description": "Browse AI-verified profiles freely. 5 contacts/month free for corporate emails (2 for personal emails). Subscribe at €89/mo or €890/yr when you scale past.",
         "enterpriseLabel": "Enterprise add-ons:",
-        "enterpriseDescription": "API access, ATS integration"
+        "enterpriseDescription": "API access, ATS integration, ATS bridge"
       },
       "philosophy": {
         "title": "How we think about it",
         "studentsBold": "Students create the value.",
-        "studentsText": "People who put the work in should have full access to the tools that showcase it. Students aren't charged just to be visible.",
+        "studentsText": "The verified portfolio stays free. Premium is optional, for people who want unlimited per-project AI analyses and priority visibility.",
         "universitiesBold": "Universities and schools drive verification.",
-        "universitiesText": "The base platform is free for academic partners. Enterprise add-ons (API, white-label, custom features) are available if you need them.",
+        "universitiesText": "Free Core is free (50 AI queries/mo, 30-day audit log). Premium €39/mo unlocks unlimited AI, full audit log, and automations. Enterprise add-ons (white-label, SSO, MIUR) on top.",
         "companiesBold": "Companies pay for outcomes.",
         "companiesText": "Browse the verified pool at no cost. Pay when you decide to contact a candidate — not upfront."
       }
     },
     "vision": {
+      "eyebrow": "Where we're going",
       "title": "Early access",
       "subtitle": "We're in early development — the best time to shape what we build",
       "stats": {
