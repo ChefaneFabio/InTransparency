@@ -11,9 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
+import { useUnsavedChanges } from '@/lib/hooks/useUnsavedChanges'
+import UnsavedChangesBar from '@/components/forms/UnsavedChangesBar'
 
 interface Settings {
   companyName: string
@@ -137,7 +138,7 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
   const u = (field: keyof Settings, value: string | boolean) =>
     setSettings(prev => ({ ...prev, [field]: value }))
 
-  const isDirty = JSON.stringify(settings) !== JSON.stringify(original)
+  const isDirty = useUnsavedChanges(settings, original, { saving })
 
   const handleSave = async () => {
     setSaving(true)
@@ -461,41 +462,13 @@ export default function RecruiterSettingsPanel({ embedded = false }: { embedded?
         </div>
       </div>
 
-      {/* ── STICKY SAVE BAR — appears when there are unsaved changes ── */}
-      <AnimatePresence>
-        {(isDirty || saveState === 'saved') && (
-          <motion.div
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 80, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-            className="fixed bottom-4 inset-x-4 sm:left-auto sm:right-4 sm:max-w-md z-40"
-          >
-            <div className="rounded-2xl border bg-white dark:bg-slate-900 shadow-2xl px-4 py-3 flex items-center gap-3">
-              {saveState === 'saved' ? (
-                <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400 flex-1">
-                  All changes saved.
-                </p>
-              ) : (
-                <>
-                  <p className="text-sm font-medium text-foreground flex-1">Unsaved changes</p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setSettings(original)}
-                    disabled={saving}
-                  >
-                    Discard
-                  </Button>
-                  <Button onClick={handleSave} disabled={saving}>
-                    {saving ? 'Saving…' : 'Save changes'}
-                  </Button>
-                </>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <UnsavedChangesBar
+        isDirty={isDirty}
+        saved={saveState === 'saved'}
+        saving={saving}
+        onDiscard={() => setSettings(original)}
+        onSave={handleSave}
+      />
     </div>
   )
 }
