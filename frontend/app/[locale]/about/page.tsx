@@ -3,590 +3,316 @@
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { FileX2, BadgeCheck, CheckCircle } from 'lucide-react'
 import { Link } from '@/navigation'
-import Image from 'next/image'
-import { IMAGES } from '@/lib/images'
-import { motion } from 'framer-motion'
+import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
+import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+
+/**
+ * /about — long-form editorial.
+ *
+ * Slate accent (no segment color — about is brand-neutral, the story
+ * page that all three segments share). Narrow column body type for the
+ * mission/story sections; wider grids for values + business model.
+ * Hero carries the two-column "resume problem vs InTransparency way"
+ * comparison as a quiet typographic split — no glassmorphism, no
+ * tinted cards.
+ */
 
 export default function AboutPage() {
   const t = useTranslations('about')
+
+  const valueItems = [0, 1, 2, 3]
+
   return (
-    <div className="min-h-screen hero-bg">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
+      <main>
+        <EditorialHero
+          eyebrow={t('hero.badge')}
+          title={t('hero.title')}
+          lede={t('hero.description')}
+          accent="slate"
+        />
 
-      <main className="pb-16">
-        {/* Hero Section - The Problem */}
-        <section className="relative overflow-hidden bg-foreground text-white">
-          <img src="/images/brand/team.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-primary/60" />
-          <div className="relative container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 min-h-[420px] flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                {t('hero.badge')}
+        {/* Resume problem vs InTransparency way — slim two-column comparison */}
+        <EditorialSection
+          tone="muted"
+          eyebrow={t('hero.comparisonEyebrow', { defaultValue: 'The shift' })}
+          title={t('hero.comparisonTitle', { defaultValue: 'How hiring decisions are made today — and how we change it' })}
+        >
+          <div className="grid md:grid-cols-2 border border-slate-200 dark:border-slate-800">
+            <div className="p-8 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800">
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+                {t('resumeProblem.title')}
               </div>
-              <h1 className="text-5xl font-bold text-white mb-6">
-                {t('hero.title')}
-              </h1>
-              <p className="text-xl text-blue-100 leading-relaxed whitespace-pre-line">
-                {t('hero.description')}
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-              <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-white mb-3">{t('resumeProblem.title')}</h3>
-                  <ul className="space-y-2 text-blue-100">
-                    <li>{t('resumeProblem.items.0')}</li>
-                    <li>{t('resumeProblem.items.1')}</li>
-                    <li>{t('resumeProblem.items.2')}</li>
-                    <li>{t('resumeProblem.items.3')}</li>
-                    <li>{t('resumeProblem.items.4')}</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-              <Card className="bg-white/15 border-white/30 backdrop-blur-sm hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-white mb-3">{t('intransparencyWay.title')}</h3>
-                  <ul className="space-y-2 text-blue-100">
-                    <li>{t('intransparencyWay.items.0')}</li>
-                    <li>{t('intransparencyWay.items.1')}</li>
-                    <li>{t('intransparencyWay.items.2')}</li>
-                    <li>{t('intransparencyWay.items.3')}</li>
-                    <li>{t('intransparencyWay.items.4')}</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              </motion.div>
+              <ul className="space-y-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
+                {[0, 1, 2, 3, 4].map(i => (
+                  <li key={i} className="border-l-2 border-slate-300 dark:border-slate-700 pl-4">
+                    {t(`resumeProblem.items.${i}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="p-8 bg-slate-50/60 dark:bg-slate-900/40">
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-900 dark:text-white mb-4">
+                {t('intransparencyWay.title')}
+              </div>
+              <ul className="space-y-3 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+                {[0, 1, 2, 3, 4].map(i => (
+                  <li key={i} className="border-l-2 border-slate-900 dark:border-white pl-4">
+                    {t(`intransparencyWay.items.${i}`)}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </section>
+        </EditorialSection>
 
-        {/* Why We're Different - Against Opaque Competitors */}
-        <section className="py-10 bg-gradient-to-br from-muted/50 to-white">
-          <div className="container max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                {t('whyDifferent.badge')}
-              </div>
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                {t('whyDifferent.title')}
-                <br />
-                <span className="text-primary font-display italic">
-                  {t('whyDifferent.titleHighlight')}
-                </span>
-              </h2>
-              <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                {t('whyDifferent.subtitle')}
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <Card className="bg-muted border-2 border-border h-full">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                      <FileX2 className="h-6 w-6" />
-                      {t('whyDifferent.challenge.title')}
-                    </h3>
-                    <ul className="space-y-4">
-                      <li className="flex items-start gap-3">
-                        <span className="text-muted-foreground font-bold">→</span>
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.challenge.items.0.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.0.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="text-muted-foreground font-bold">→</span>
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.challenge.items.1.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.1.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="text-muted-foreground font-bold">→</span>
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.challenge.items.2.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.2.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="text-muted-foreground font-bold">→</span>
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.challenge.items.3.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.3.description')}</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <Card className="bg-primary/5 border-2 border-primary/20 h-full">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                      <BadgeCheck className="h-6 w-6" />
-                      {t('whyDifferent.solution.title')}
-                    </h3>
-                    <ul className="space-y-4">
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.solution.items.0.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.solution.items.1.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.solution.items.2.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-primary" />
-                        <div>
-                          <strong className="text-foreground">{t('whyDifferent.solution.items.3.title')}</strong>
-                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.3.description')}</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
+        {/* Why we're different — challenge vs solution + metrics */}
+        <EditorialSection
+          eyebrow={t('whyDifferent.badge')}
+          title={t('whyDifferent.title')}
+          lede={t('whyDifferent.subtitle')}
+        >
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <div>
+              <h3 className="text-[18px] font-semibold text-slate-900 dark:text-white mb-5">
+                {t('whyDifferent.challenge.title')}
+              </h3>
+              <ul className="space-y-5">
+                {[0, 1, 2, 3].map(i => (
+                  <li key={i} className="border-l-2 border-slate-300 dark:border-slate-700 pl-5">
+                    <strong className="block text-[15px] font-semibold text-slate-900 dark:text-white">
+                      {t(`whyDifferent.challenge.items.${i}.title`)}
+                    </strong>
+                    <p className="mt-1 text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                      {t(`whyDifferent.challenge.items.${i}.description`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
+            <div>
+              <h3 className="text-[18px] font-semibold text-slate-900 dark:text-white mb-5">
+                {t('whyDifferent.solution.title')}
+              </h3>
+              <ul className="space-y-5">
+                {[0, 1, 2, 3].map(i => (
+                  <li key={i} className="border-l-2 border-slate-900 dark:border-white pl-5">
+                    <strong className="block text-[15px] font-semibold text-slate-900 dark:text-white">
+                      {t(`whyDifferent.solution.items.${i}.title`)}
+                    </strong>
+                    <p className="mt-1 text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                      {t(`whyDifferent.solution.items.${i}.description`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="bg-primary text-primary-foreground">
-                <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-bold mb-4">{t('whyDifferent.result.title')}</h3>
-                  <div className="grid md:grid-cols-3 gap-6 mb-6">
-                    <div>
-                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.0.value')}</div>
-                      <div className="text-white/90">{t('whyDifferent.result.metrics.0.label')}</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.1.value')}</div>
-                      <div className="text-white/90">{t('whyDifferent.result.metrics.1.label')}</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.2.value')}</div>
-                      <div className="text-white/90">{t('whyDifferent.result.metrics.2.label')}</div>
-                    </div>
+          {/* Metrics strip */}
+          <div className="border-t border-slate-200 dark:border-slate-800 pt-10">
+            <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-5">
+              {t('whyDifferent.result.title')}
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[0, 1, 2].map(i => (
+                <div key={i}>
+                  <div className="text-[40px] font-semibold tracking-tight text-slate-900 dark:text-white tabular-nums leading-none">
+                    {t(`whyDifferent.result.metrics.${i}.value`)}
                   </div>
-                  <p className="text-white/90 text-lg">
-                    {t('whyDifferent.result.tagline')}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Our Mission */}
-        <section className="py-10 hero-bg relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 opacity-5">
-            <Image
-              src={IMAGES.hero.students}
-              alt="Background pattern"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="container max-w-4xl relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                {t('mission.title')}
-              </h2>
-              <p className="text-xl text-foreground/80 leading-relaxed">
-                {t('mission.description')}
-              </p>
-            </motion.div>
-
-            <div className="bg-primary rounded-2xl p-10 text-white text-center mb-12">
-              <blockquote className="text-2xl font-medium italic mb-4">
-                {t('mission.quote')}
-              </blockquote>
-              <p className="text-white/80">
-                {t('mission.quoteAuthor')}
-              </p>
+                  <div className="mt-2 text-[14px] text-slate-600 dark:text-slate-400">
+                    {t(`whyDifferent.result.metrics.${i}.label`)}
+                  </div>
+                </div>
+              ))}
             </div>
+            <p className="mt-8 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 max-w-2xl">
+              {t('whyDifferent.result.tagline')}
+            </p>
+          </div>
+        </EditorialSection>
 
-            {/* Our Story */}
-            <div className="prose prose-lg max-w-none">
-              <h3 className="text-2xl font-bold text-foreground mb-4">{t('mission.story.title')}</h3>
-              <p className="text-foreground/80 leading-relaxed mb-4">
-                {t('mission.story.paragraphs.0')}
-              </p>
-              <p className="text-foreground/80 leading-relaxed mb-4">
-                {t('mission.story.paragraphs.1')}
-              </p>
-              <p className="text-foreground/80 leading-relaxed mb-8">
-                {t('mission.story.paragraphs.2')}
-              </p>
-              <p className="text-foreground/80 leading-relaxed font-semibold">
+        {/* Mission + Story — narrow column, serif pull-quote */}
+        <EditorialSection
+          tone="muted"
+          eyebrow={t('mission.eyebrow', { defaultValue: 'Our mission' })}
+          title={t('mission.title')}
+          lede={t('mission.description')}
+          width="narrow"
+        >
+          <blockquote className="my-10 border-l-2 border-slate-900 dark:border-white pl-6 py-2">
+            <p className="text-[22px] leading-snug font-serif italic text-slate-900 dark:text-white">
+              {t('mission.quote')}
+            </p>
+            <footer className="mt-3 text-[13px] uppercase tracking-[0.14em] text-slate-500">
+              {t('mission.quoteAuthor')}
+            </footer>
+          </blockquote>
+
+          <div className="mt-12">
+            <h3 className="text-[20px] font-semibold text-slate-900 dark:text-white mb-5">
+              {t('mission.story.title')}
+            </h3>
+            <div className="space-y-5 text-[16px] leading-[1.7] text-slate-700 dark:text-slate-300">
+              <p>{t('mission.story.paragraphs.0')}</p>
+              <p>{t('mission.story.paragraphs.1')}</p>
+              <p>{t('mission.story.paragraphs.2')}</p>
+              <p className="text-slate-900 dark:text-white font-medium">
                 {t('mission.story.paragraphs.3')}
               </p>
             </div>
           </div>
-        </section>
+        </EditorialSection>
 
-        {/* Our Values */}
-        <section className="py-10 hero-bg">
-          <div className="container max-w-6xl">
-            <h2 className="text-4xl font-bold text-foreground text-center mb-12">
-              {t('values.title')}
-            </h2>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  image: IMAGES.students.student5,
-                  title: t('values.items.0.title'),
-                  description: t('values.items.0.description')
-                },
-                {
-                  image: IMAGES.companies.office2,
-                  title: t('values.items.1.title'),
-                  description: t('values.items.1.description')
-                },
-                {
-                  image: IMAGES.features.collaboration,
-                  title: t('values.items.2.title'),
-                  description: t('values.items.2.description')
-                },
-                {
-                  image: IMAGES.success.handshake,
-                  title: t('values.items.3.title'),
-                  description: t('values.items.3.description')
-                }
-              ].map((value, idx) => {
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-
-                  >
-                  <Card className="text-center hover:shadow-lg transition-shadow h-full">
-                    <CardContent className="p-8">
-                      <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                        <Image
-                          src={value.image}
-                          alt={value.title}
-                          width={64}
-                          height={64}
-                          className="object-cover"
-                        />
-                      </div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">
-                        {value.title}
-                      </h3>
-                      <p className="text-foreground/80 leading-relaxed">
-                        {value.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Our Business Model */}
-        <section className="py-10 hero-bg">
-          <div className="container max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-            <h2 className="text-4xl font-bold text-foreground text-center mb-4">
-              {t('businessModel.title')}
-            </h2>
-            <p className="text-xl text-foreground/80 text-center mb-12">
-              {t('businessModel.subtitle')}
-            </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="bg-card">
-                <CardContent className="p-8 text-center">
-                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                    <Image
-                      src={IMAGES.students.student5}
-                      alt={t('businessModel.students.title')}
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {t('businessModel.students.title')}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed mb-4">
-                    {t('businessModel.students.description')}
-                  </p>
-                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>{t('businessModel.students.premiumLabel')}</strong> {t('businessModel.students.premiumDescription')}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card">
-                <CardContent className="p-8 text-center">
-                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                    <Image
-                      src={IMAGES.companies.office2}
-                      alt={t('businessModel.universities.title')}
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {t('businessModel.universities.title')}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed mb-4">
-                    {t('businessModel.universities.description')}
-                  </p>
-                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>{t('businessModel.universities.enterpriseLabel')}</strong> {t('businessModel.universities.enterpriseDescription')}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card">
-                <CardContent className="p-8 text-center">
-                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
-                    <Image
-                      src={IMAGES.success.handshake}
-                      alt={t('businessModel.companies.title')}
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {t('businessModel.companies.title')}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed mb-4">
-                    {t('businessModel.companies.description')}
-                  </p>
-                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>{t('businessModel.companies.enterpriseLabel')}</strong> {t('businessModel.companies.enterpriseDescription')}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card className="bg-primary text-primary-foreground">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-center">{t('businessModel.philosophy.title')}</h3>
-                <div className="space-y-4 text-white">
-                  <p className="leading-relaxed">
-                    <strong>{t('businessModel.philosophy.studentsBold')}</strong> {t('businessModel.philosophy.studentsText')}
-                  </p>
-                  <p className="leading-relaxed">
-                    <strong>{t('businessModel.philosophy.universitiesBold')}</strong> {t('businessModel.philosophy.universitiesText')}
-                  </p>
-                  <p className="leading-relaxed">
-                    <strong>{t('businessModel.philosophy.companiesBold')}</strong> {t('businessModel.philosophy.companiesText')}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Our Vision */}
-        <section className="py-10 hero-bg">
-          <div className="container max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-            <h2 className="text-4xl font-bold text-foreground text-center mb-4">
-              {t('vision.title')}
-            </h2>
-            <p className="text-xl text-foreground/80 text-center mb-12">
-              {t('vision.subtitle')}
-            </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              {[
-                { label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
-                { label: t('vision.stats.1.label'), sublabel: t('vision.stats.1.sublabel') },
-                { label: t('vision.stats.2.label'), sublabel: t('vision.stats.2.sublabel') }
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-lg font-semibold text-foreground mb-1">{stat.label}</div>
-                  <div className="text-sm text-foreground/80">{stat.sublabel}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Early Access CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-            <Card className="bg-primary/5 border-primary/20 hover:shadow-lg transition-shadow">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  {t('vision.cta.title')}
+        {/* Values — 4-column editorial grid */}
+        <EditorialSection
+          eyebrow={t('values.eyebrow', { defaultValue: 'What we stand for' })}
+          title={t('values.title')}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
+            {valueItems.map(idx => (
+              <div key={idx} className="border-t-2 border-slate-900 dark:border-white pt-5">
+                <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white mb-2">
+                  {t(`values.items.${idx}.title`)}
                 </h3>
-                <p className="text-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
-                  {t('vision.cta.description')}
+                <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {t(`values.items.${idx}.description`)}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-primary hover:bg-primary/90" asChild>
-                    <Link href="/auth/register">{t('vision.cta.primaryButton')}</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/contact">{t('vision.cta.secondaryButton')}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            </motion.div>
+              </div>
+            ))}
           </div>
-        </section>
+        </EditorialSection>
 
-        {/* The Enemy: Resumes */}
-        <section className="py-10 bg-foreground text-white">
-          <div className="container max-w-4xl text-center">
-            <h2 className="text-4xl font-bold mb-6">
-              {t('killResume.title')}
-            </h2>
-            <p className="text-xl text-gray-100 leading-relaxed mb-8 max-w-2xl mx-auto">
-              {t('killResume.description')}
-            </p>
-
-            <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm mb-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <div className="text-red-400 text-4xl font-bold mb-2">{t('killResume.oldYear')}</div>
-                  <div className="text-gray-100">{t('killResume.oldLabel')}</div>
+        {/* Business model — 3-column + philosophy */}
+        <EditorialSection
+          tone="muted"
+          eyebrow={t('businessModel.eyebrow', { defaultValue: 'How we make money' })}
+          title={t('businessModel.title')}
+          lede={t('businessModel.subtitle')}
+        >
+          <div className="grid md:grid-cols-3 border-l border-t border-slate-200 dark:border-slate-800 mb-10">
+            {([
+              { titleKey: 'students.title', descKey: 'students.description', noteLabel: 'students.premiumLabel', noteText: 'students.premiumDescription' },
+              { titleKey: 'universities.title', descKey: 'universities.description', noteLabel: 'universities.enterpriseLabel', noteText: 'universities.enterpriseDescription' },
+              { titleKey: 'companies.title', descKey: 'companies.description', noteLabel: 'companies.enterpriseLabel', noteText: 'companies.enterpriseDescription' },
+            ] as const).map((col, i) => (
+              <div key={i} className="p-6 border-r border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+                <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 mb-3">
+                  0{i + 1}
                 </div>
-                <div>
-                  <div className="text-green-400 text-4xl font-bold mb-2">{t('killResume.newYear')}</div>
-                  <div className="text-gray-100">{t('killResume.newLabel')}</div>
+                <h3 className="text-[17px] font-semibold text-slate-900 dark:text-white mb-3">
+                  {t(`businessModel.${col.titleKey}`)}
+                </h3>
+                <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400 mb-4">
+                  {t(`businessModel.${col.descKey}`)}
+                </p>
+                <div className="text-[13px] text-slate-500 border-t border-slate-200 dark:border-slate-800 pt-3">
+                  <strong className="text-slate-700 dark:text-slate-300">{t(`businessModel.${col.noteLabel}`)}</strong>{' '}
+                  {t(`businessModel.${col.noteText}`)}
                 </div>
               </div>
-            </div>
-
-            <p className="text-lg text-gray-100 mb-8">
-              {t('killResume.closing')}
-            </p>
-
-            <Button size="lg" className="bg-card text-foreground hover:bg-muted" asChild>
-              <Link href="/auth/register">
-                {t('killResume.cta')}
-              </Link>
-            </Button>
+            ))}
           </div>
-        </section>
 
-        {/* Join Us */}
-        <section className="py-10 hero-bg">
-          <div className="container max-w-4xl text-center">
-            <h2 className="text-4xl font-bold text-foreground mb-6">
+          {/* Philosophy block */}
+          <div className="border-l-2 border-slate-900 dark:border-white pl-6 py-2 max-w-3xl">
+            <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+              {t('businessModel.philosophy.title')}
+            </div>
+            <div className="space-y-4 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+              <p>
+                <strong className="text-slate-900 dark:text-white">{t('businessModel.philosophy.studentsBold')}</strong>{' '}
+                {t('businessModel.philosophy.studentsText')}
+              </p>
+              <p>
+                <strong className="text-slate-900 dark:text-white">{t('businessModel.philosophy.universitiesBold')}</strong>{' '}
+                {t('businessModel.philosophy.universitiesText')}
+              </p>
+              <p>
+                <strong className="text-slate-900 dark:text-white">{t('businessModel.philosophy.companiesBold')}</strong>{' '}
+                {t('businessModel.philosophy.companiesText')}
+              </p>
+            </div>
+          </div>
+        </EditorialSection>
+
+        {/* Vision + kill-resume merged */}
+        <EditorialSection
+          eyebrow={t('vision.eyebrow', { defaultValue: 'Where we’re going' })}
+          title={t('vision.title')}
+          lede={t('vision.subtitle')}
+        >
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {[0, 1, 2].map(idx => (
+              <div key={idx} className="border-t border-slate-200 dark:border-slate-800 pt-5">
+                <div className="text-[18px] font-semibold text-slate-900 dark:text-white">
+                  {t(`vision.stats.${idx}.label`)}
+                </div>
+                <div className="mt-1.5 text-[14px] text-slate-500">
+                  {t(`vision.stats.${idx}.sublabel`)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Resume vs portfolio — slim two-column */}
+          <div className="border border-slate-200 dark:border-slate-800 grid grid-cols-2 max-w-2xl">
+            <div className="p-6 border-r border-slate-200 dark:border-slate-800">
+              <div className="text-[40px] font-semibold tracking-tight text-slate-500 tabular-nums leading-none">
+                {t('killResume.oldYear')}
+              </div>
+              <div className="mt-2 text-[13px] text-slate-500 uppercase tracking-wider">
+                {t('killResume.oldLabel')}
+              </div>
+            </div>
+            <div className="p-6 bg-slate-50/60 dark:bg-slate-900/40">
+              <div className="text-[40px] font-semibold tracking-tight text-slate-900 dark:text-white tabular-nums leading-none">
+                {t('killResume.newYear')}
+              </div>
+              <div className="mt-2 text-[13px] text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+                {t('killResume.newLabel')}
+              </div>
+            </div>
+          </div>
+          <p className="mt-8 text-[16px] leading-relaxed text-slate-700 dark:text-slate-300 max-w-2xl">
+            {t('killResume.closing')}
+          </p>
+        </EditorialSection>
+
+        {/* Final CTA — slim dark band */}
+        <section className="bg-slate-950 text-white">
+          <div className="container max-w-3xl mx-auto px-6 py-20 lg:py-24 text-center">
+            <h2 className="text-[34px] leading-[1.15] font-semibold tracking-tight">
               {t('joinMovement.title')}
             </h2>
-            <p className="text-xl text-foreground/80 mb-12 max-w-2xl mx-auto">
+            <p className="mt-5 text-[17px] leading-relaxed text-slate-300 max-w-xl mx-auto">
               {t('joinMovement.description')}
             </p>
-
-            <div className="flex justify-center gap-4 flex-wrap">
-              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-                <Link href="/auth/register">{t('joinMovement.primaryButton')}</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/#how-it-works">{t('joinMovement.secondaryButton')}</Link>
-              </Button>
+            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/auth/register"
+                className="inline-flex items-center justify-center h-11 px-6 bg-white text-slate-900 hover:bg-slate-100 rounded-md text-sm font-medium transition-colors"
+              >
+                {t('joinMovement.primaryButton')}
+              </Link>
+              <Link
+                href="/#how-it-works"
+                className="inline-flex items-center justify-center h-11 px-6 border border-white/30 text-white hover:bg-white/10 rounded-md text-sm font-medium transition-colors"
+              >
+                {t('joinMovement.secondaryButton')}
+              </Link>
             </div>
-
-            <p className="mt-8 text-sm text-foreground/80">
-              {t('joinMovement.companiesPrefix')} <Link href="/auth/register" className="text-primary hover:underline font-medium">{t('joinMovement.companiesLink')}</Link>
+            <p className="mt-8 text-[13px] text-slate-400">
+              {t('joinMovement.companiesPrefix')}{' '}
+              <Link href="/auth/register" className="text-white underline underline-offset-4 hover:no-underline">
+                {t('joinMovement.companiesLink')}
+              </Link>
             </p>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )

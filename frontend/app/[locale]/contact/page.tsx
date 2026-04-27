@@ -3,23 +3,24 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import {
-  Send,
-  CheckCircle,
-  GraduationCap,
-  Building2,
-  School,
-  Users,
-} from 'lucide-react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { IMAGES } from '@/lib/images'
-import { useTranslations } from 'next-intl'
+import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
+import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+
+/**
+ * /contact — split layout in the editorial aesthetic.
+ *
+ * Right column: form (preserves all original state, validation, segment
+ * detection from URL params + session, success/error states). Left
+ * column: contact info, segment chips, response-time/office-hours
+ * details (slimmed from separate sections into the same grid).
+ *
+ * Slim sweep: removed the AI Conversational Search how-to-access section
+ * (it doesn't belong on /contact — it's a product tutorial; lives in
+ * the dashboard onboarding instead).
+ */
 
 type Segment = 'student' | 'company' | 'university' | 'general'
 
@@ -28,7 +29,6 @@ export default function ContactPage() {
   const searchParams = useSearchParams()
   const { data: session } = useSession()
 
-  // Detect segment from URL params or session
   const subjectParam = searchParams.get('subject') || ''
   const roleParam = searchParams.get('role') || ''
   const companyParam = searchParams.get('company') || ''
@@ -38,7 +38,6 @@ export default function ContactPage() {
   const priorityParam = searchParams.get('priority') || ''
   const roleFromSession = (session?.user as any)?.role || ''
 
-  // Normalize incoming ?role= to the select's expected values.
   const normalizedRoleParam = (() => {
     const r = roleParam.toLowerCase()
     if (['student', 'studente'].includes(r)) return 'student'
@@ -68,6 +67,7 @@ export default function ContactPage() {
 
   useEffect(() => {
     setSegment(detectSegment())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectParam, roleParam, roleFromSession])
 
   const [formData, setFormData] = useState({
@@ -77,11 +77,10 @@ export default function ContactPage() {
     role: normalizedRoleParam,
     subject: subjectParam,
     message: messageParam,
-    priority: ['low', 'medium', 'high'].includes(priorityParam) ? priorityParam : 'medium'
+    priority: ['low', 'medium', 'high'].includes(priorityParam) ? priorityParam : 'medium',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-
   const [submitError, setSubmitError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -108,444 +107,290 @@ export default function ContactPage() {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const segments: Array<{ key: Segment; label: string }> = [
+    { key: 'student',    label: t('segments.student') },
+    { key: 'company',    label: t('segments.company') },
+    { key: 'university', label: t('segments.university') },
+    { key: 'general',    label: t('segments.general') },
+  ]
+
+  const fieldClass =
+    'w-full px-3 py-2.5 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-md text-[14px] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors'
+
   return (
-    <div className="min-h-screen hero-bg">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
-
       <main>
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-foreground text-white">
-          <img src="/images/brand/office.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-primary/60" />
-          <div className="relative container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center min-h-[420px] flex flex-col justify-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
-            >
-              {t('hero.title')}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-blue-100 max-w-2xl mx-auto"
-            >
-              {t('hero.subtitle')}
-            </motion.p>
-          </div>
-        </section>
+        <EditorialHero
+          eyebrow={t('hero.eyebrow', { defaultValue: 'Contact' })}
+          title={t('hero.title')}
+          lede={t('hero.subtitle')}
+          accent="slate"
+        />
 
-        {/* Segment Selector */}
-        <section className="py-6 border-b">
-          <div className="container max-w-6xl mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              {([
-                { key: 'student' as Segment, icon: Users, label: t('segments.student') },
-                { key: 'company' as Segment, icon: Building2, label: t('segments.company') },
-                { key: 'university' as Segment, icon: School, label: t('segments.university') },
-                { key: 'general' as Segment, icon: Send, label: t('segments.general') },
-              ]).map(({ key, icon: Icon, label }) => (
+        {/* Segment chips + segment-specific message */}
+        <section className="border-b border-slate-200 dark:border-slate-800">
+          <div className="container max-w-5xl mx-auto px-6 py-10">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-2 mb-6">
+              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mr-3">
+                {t('iAm', { defaultValue: 'I am a' })}
+              </span>
+              {segments.map(({ key, label }) => (
                 <button
                   key={key}
                   onClick={() => setSegment(key)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+                  className={`inline-flex items-center h-8 px-3.5 rounded-md text-[13px] font-medium transition-colors ${
                     segment === key
-                      ? 'bg-primary text-primary-foreground shadow-md'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                      : 'bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
                   {label}
                 </button>
               ))}
             </div>
+            <p className="text-[16px] text-slate-900 dark:text-white">
+              {t(`segmentMessage.${segment}.title`)}
+            </p>
+            <p className="mt-1 text-[14px] text-slate-500">
+              {t(`segmentMessage.${segment}.subtitle`)}
+            </p>
           </div>
         </section>
 
-        {/* Segment-specific message */}
-        <section className="py-6">
-          <div className="container max-w-6xl mx-auto px-4 text-center">
-            <p className="text-lg text-foreground font-medium">{t(`segmentMessage.${segment}.title`)}</p>
-            <p className="text-sm text-muted-foreground mt-1">{t(`segmentMessage.${segment}.subtitle`)}</p>
-          </div>
-        </section>
-
-        {/* Contact Information & Form */}
-        <section className="py-10">
-          <div className="container max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-              {/* Contact Information */}
-              <div className="space-y-8">
+        {/* Split layout: contact info (left) + form (right) */}
+        <section className="border-b border-slate-200 dark:border-slate-800">
+          <div className="container max-w-6xl mx-auto px-6 py-20 lg:py-24">
+            <div className="grid lg:grid-cols-12 gap-12">
+              {/* Left column — contact info, response times, FAQ pointers */}
+              <aside className="lg:col-span-4 space-y-10">
                 <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6">
+                  <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 mb-4">
+                    {t('section.eyebrow', { defaultValue: 'Reach us' })}
+                  </div>
+                  <h2 className="text-[26px] leading-[1.2] font-semibold tracking-tight text-slate-900 dark:text-white">
                     {t('section.title')}
                   </h2>
-                  <p className="text-lg text-muted-foreground mb-8">
+                  <p className="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
                     {t('section.subtitle')}
                   </p>
                 </div>
 
-                {/* Contact Methods */}
-                <div className="space-y-6">
-                  <Card>
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div>
-                          <h3 className="font-semibold text-foreground">{t('methods.email.title')}</h3>
-                          <p className="text-muted-foreground">info@in-transparency.com</p>
-                          <p className="text-sm text-foreground/80">{t('methods.email.subtitle')}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                <dl className="space-y-6 border-t border-slate-200 dark:border-slate-800 pt-6">
+                  <div>
+                    <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">
+                      {t('methods.email.title')}
+                    </dt>
+                    <dd className="mt-1.5 text-[15px] text-slate-900 dark:text-white">
+                      <a href="mailto:info@in-transparency.com" className="underline underline-offset-4 hover:no-underline">
+                        info@in-transparency.com
+                      </a>
+                    </dd>
+                    <dd className="mt-1 text-[13px] text-slate-500">
+                      {t('methods.email.subtitle')}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">
+                      {t('methods.phone.title')}
+                    </dt>
+                    <dd className="mt-1.5 text-[15px] text-slate-900 dark:text-white">
+                      +39 344 4942399
+                    </dd>
+                    <dd className="mt-1 text-[13px] text-slate-500">
+                      {t('methods.phone.subtitle')}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">
+                      {t('methods.location.title')}
+                    </dt>
+                    <dd className="mt-1.5 text-[15px] text-slate-900 dark:text-white">
+                      {t('methods.location.value')}
+                    </dd>
+                  </div>
+                </dl>
 
-                  <Card>
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div>
-                          <h3 className="font-semibold text-foreground">{t('methods.phone.title')}</h3>
-                          <p className="text-muted-foreground">+39 344 4942399</p>
-                          <p className="text-sm text-foreground/80">{t('methods.phone.subtitle')}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div>
-                          <h3 className="font-semibold text-foreground">{t('methods.location.title')}</h3>
-                          <p className="text-muted-foreground">{t('methods.location.value')}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                <div className="border-t border-slate-200 dark:border-slate-800 pt-6">
+                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 mb-3">
+                    {t('officeHours.responseTime.title')}
+                  </div>
+                  <ul className="space-y-1.5 text-[13px] text-slate-600 dark:text-slate-400">
+                    <li>{t('officeHours.responseTime.email')}</li>
+                    <li>{t('officeHours.responseTime.phone')}</li>
+                    <li>{t('officeHours.responseTime.chat')}</li>
+                  </ul>
                 </div>
 
-                {/* Support Resources */}
-                <Card className="bg-primary/10 border-primary/20">
-                  <CardHeader>
-                    <CardTitle>
-                      {t('resources.title')}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
+                <div className="border-t border-slate-200 dark:border-slate-800 pt-6">
+                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 mb-3">
+                    {t('resources.commonQuestions')}
+                  </div>
+                  <ul className="space-y-2 text-[13px] text-slate-600 dark:text-slate-400">
+                    {[0, 1, 2, 3].map(i => (
+                      <li key={i}>{t(`resources.questions.${i}`)}</li>
+                    ))}
+                  </ul>
+                </div>
+              </aside>
+
+              {/* Right column — form */}
+              <div className="lg:col-span-8">
+                {isSubmitted ? (
+                  <div className="border border-slate-200 dark:border-slate-800 p-10 text-center">
+                    <h3 className="text-[20px] font-semibold text-slate-900 dark:text-white mb-3">
+                      {t('form.success.title')}
+                    </h3>
+                    <p className="text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                      {t('form.success.message')}
+                    </p>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="inline-flex items-center justify-center h-10 px-5 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-900 rounded-md text-[14px] font-medium transition-colors"
+                    >
+                      {t('form.success.button')}
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">
+                      {t('form.title')}
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold text-foreground mb-2">{t('resources.commonQuestions')}</h4>
-                        <ul className="space-y-2 text-sm text-foreground/80">
-                          <li>• {t('resources.questions.0')}</li>
-                          <li>• {t('resources.questions.1')}</li>
-                          <li>• {t('resources.questions.2')}</li>
-                          <li>• {t('resources.questions.3')}</li>
-                        </ul>
+                        <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                          {t('form.fullName')} *
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className={fieldClass}
+                          placeholder={t('form.placeholders.fullName')}
+                        />
                       </div>
-                      <div className="pt-4 border-t border-primary/20">
-                        <p className="text-sm text-foreground/80 mb-3">
-                          <strong>{t('resources.students')}</strong>
-                        </p>
-                        <p className="text-sm text-foreground/80">
-                          <strong>{t('resources.recruiters')}</strong>
-                        </p>
+                      <div>
+                        <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                          {t('form.emailAddress')} *
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className={fieldClass}
+                          placeholder={t('form.placeholders.email')}
+                        />
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
 
-              {/* Contact Form */}
-              <div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{t('form.title')}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {isSubmitted ? (
-                      <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle className="h-8 w-8 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-semibold text-foreground mb-2">{t('form.success.title')}</h3>
-                        <p className="text-muted-foreground mb-4">
-                          {t('form.success.message')}
-                        </p>
-                        <Button onClick={() => setIsSubmitted(false)} variant="outline">
-                          {t('form.success.button')}
-                        </Button>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                          {t('form.companyUniversity')}
+                        </label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          className={fieldClass}
+                          placeholder={t('form.placeholders.company')}
+                        />
                       </div>
-                    ) : (
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-foreground/80 mb-2">
-                              {t('form.fullName')} *
-                            </label>
-                            <input
-                              type="text"
-                              name="name"
-                              required
-                              value={formData.name}
-                              onChange={handleInputChange}
-                              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                              placeholder={t('form.placeholders.fullName')}
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-foreground/80 mb-2">
-                              {t('form.emailAddress')} *
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              required
-                              value={formData.email}
-                              onChange={handleInputChange}
-                              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                              placeholder={t('form.placeholders.email')}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-foreground/80 mb-2">
-                              {t('form.companyUniversity')}
-                            </label>
-                            <input
-                              type="text"
-                              name="company"
-                              value={formData.company}
-                              onChange={handleInputChange}
-                              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                              placeholder={t('form.placeholders.company')}
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-foreground/80 mb-2">
-                              {t('form.role')}
-                            </label>
-                            <select
-                              name="role"
-                              value={formData.role}
-                              onChange={handleInputChange}
-                              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                            >
-                              <option value="">{t('form.roleOptions.select')}</option>
-                              <option value="student">{t('form.roleOptions.student')}</option>
-                              <option value="recruiter">{t('form.roleOptions.recruiter')}</option>
-                              <option value="university-admin">{t('form.roleOptions.universityAdmin')}</option>
-                              <option value="professor">{t('form.roleOptions.professor')}</option>
-                              <option value="other">{t('form.roleOptions.other')}</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-medium text-foreground/80 mb-2">
-                            {t('form.subject')} *
-                          </label>
-                          <input
-                            type="text"
-                            name="subject"
-                            required
-                            value={formData.subject}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                            placeholder={t('form.subjectPlaceholder')}
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-medium text-foreground/80 mb-2">
-                            {t('form.priority')}
-                          </label>
-                          <select
-                            name="priority"
-                            value={formData.priority}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                          >
-                            <option value="low">{t('form.priorityOptions.low')}</option>
-                            <option value="medium">{t('form.priorityOptions.medium')}</option>
-                            <option value="high">{t('form.priorityOptions.high')}</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-medium text-foreground/80 mb-2">
-                            {t('form.message')} *
-                          </label>
-                          <textarea
-                            name="message"
-                            required
-                            value={formData.message}
-                            onChange={handleInputChange}
-                            rows={5}
-                            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                            placeholder={t('form.messagePlaceholder')}
-                          />
-                        </div>
-
-                        <Button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full"
+                      <div>
+                        <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                          {t('form.role')}
+                        </label>
+                        <select
+                          name="role"
+                          value={formData.role}
+                          onChange={handleInputChange}
+                          className={fieldClass}
                         >
-                          {isSubmitting ? (
-                            <>
-                              <div className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full" />
-                              {t('form.sending')}
-                            </>
-                          ) : (
-                            <>
-                              <Send className="h-4 w-4 mr-2" />
-                              {t('form.send')}
-                            </>
-                          )}
-                        </Button>
-                      </form>
+                          <option value="">{t('form.roleOptions.select')}</option>
+                          <option value="student">{t('form.roleOptions.student')}</option>
+                          <option value="recruiter">{t('form.roleOptions.recruiter')}</option>
+                          <option value="university-admin">{t('form.roleOptions.universityAdmin')}</option>
+                          <option value="professor">{t('form.roleOptions.professor')}</option>
+                          <option value="other">{t('form.roleOptions.other')}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                        {t('form.subject')} *
+                      </label>
+                      <input
+                        type="text"
+                        name="subject"
+                        required
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className={fieldClass}
+                        placeholder={t('form.subjectPlaceholder')}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                        {t('form.priority')}
+                      </label>
+                      <select
+                        name="priority"
+                        value={formData.priority}
+                        onChange={handleInputChange}
+                        className={fieldClass}
+                      >
+                        <option value="low">{t('form.priorityOptions.low')}</option>
+                        <option value="medium">{t('form.priorityOptions.medium')}</option>
+                        <option value="high">{t('form.priorityOptions.high')}</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                        {t('form.message')} *
+                      </label>
+                      <textarea
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={6}
+                        className={fieldClass}
+                        placeholder={t('form.messagePlaceholder')}
+                      />
+                    </div>
+
+                    {submitError && (
+                      <div className="text-[13px] text-red-600 dark:text-red-400 border-l-2 border-red-600 pl-3">
+                        {submitError}
+                      </div>
                     )}
-                  </CardContent>
-                </Card>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center h-11 px-6 bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 rounded-md text-sm font-medium transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? t('form.sending') : t('form.send')}
+                    </button>
+                  </form>
+                )}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Conversational Search - How to Access */}
-        <section className="py-10 bg-primary/10">
-          <div className="container max-w-6xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                {t('aiSearch.title')}
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('aiSearch.subtitle')}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* For Students */}
-              <Card className="bg-card border-2 border-primary/20 hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-primary">
-                    {t('aiSearch.students.title')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-foreground/80">
-                    {t('aiSearch.students.description')}
-                  </p>
-                  <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
-                    <p className="font-mono text-foreground">"Frontend developer React 2 years Milan startup"</p>
-                    <p className="font-mono text-foreground">"Data science Python remote entry-level"</p>
-                    <p className="font-mono text-foreground">"UX designer portfolio healthcare remote"</p>
-                  </div>
-                  <div className="pt-4 border-t border-primary/10">
-                    <h4 className="font-semibold text-foreground mb-2">{t('aiSearch.students.howToAccess')}</h4>
-                    <ol className="space-y-2 text-sm text-foreground/80">
-                      <li>1. {t('aiSearch.students.steps.0')}</li>
-                      <li>2. {t('aiSearch.students.steps.1')}</li>
-                      <li>3. {t('aiSearch.students.steps.2')}</li>
-                      <li>4. {t('aiSearch.students.steps.3')}</li>
-                    </ol>
-                  </div>
-                  <Button className="w-full bg-primary hover:shadow-lg" asChild>
-                    <a href="/dashboard/student/jobs">
-                      {t('aiSearch.students.button')}
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* For Recruiters */}
-              <Card className="bg-card border-2 border-primary/20 hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-primary">
-                    {t('aiSearch.recruiters.title')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-foreground/80">
-                    {t('aiSearch.recruiters.description')}
-                  </p>
-                  <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
-                    <p className="font-mono text-foreground">"Cybersecurity Roma Network Security 30/30"</p>
-                    <p className="font-mono text-foreground">"Data engineer Python Spark 27+ GPA Milan"</p>
-                    <p className="font-mono text-foreground">"Frontend React TypeScript leadership Berlin"</p>
-                  </div>
-                  <div className="mt-4 bg-primary/20 rounded-lg p-3 text-sm">
-                    <p className="text-primary">
-                      <strong>{t('aiSearch.recruiters.result')}</strong>
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-primary/10">
-                    <h4 className="font-semibold text-foreground mb-2">{t('aiSearch.recruiters.howToAccess')}</h4>
-                    <ol className="space-y-2 text-sm text-foreground/80">
-                      <li>1. {t('aiSearch.recruiters.steps.0')}</li>
-                      <li>2. {t('aiSearch.recruiters.steps.1')}</li>
-                      <li>3. {t('aiSearch.recruiters.steps.2')}</li>
-                      <li>4. {t('aiSearch.recruiters.steps.3')}</li>
-                    </ol>
-                  </div>
-                  <Button className="w-full bg-primary hover:shadow-lg" asChild>
-                    <a href="/dashboard/recruiter/ai-search">
-                      {t('aiSearch.recruiters.button')}
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center">
-              <Card className="inline-block bg-primary text-white">
-                <CardContent className="p-6">
-                  <p className="text-lg">
-                    {t('aiSearch.proTip')}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Office Hours */}
-        <section className="py-10 hero-bg">
-          <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">{t('officeHours.title')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-foreground mb-2">{t('officeHours.support.title')}</h3>
-                  <p className="text-muted-foreground">{t('officeHours.support.weekdays')}</p>
-                  <p className="text-muted-foreground">{t('officeHours.support.saturday')}</p>
-                  <p className="text-muted-foreground">{t('officeHours.support.sunday')}</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-foreground mb-2">{t('officeHours.responseTime.title')}</h3>
-                  <p className="text-muted-foreground">{t('officeHours.responseTime.email')}</p>
-                  <p className="text-muted-foreground">{t('officeHours.responseTime.phone')}</p>
-                  <p className="text-muted-foreground">{t('officeHours.responseTime.chat')}</p>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )
