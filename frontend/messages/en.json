@@ -14221,7 +14221,56 @@
   "studentProfilePublic": {
     "notFoundTitle": "Student profile not found",
     "notFoundDesc": "The student profile you are looking for does not exist or is not public.",
-    "metaDesc": "{firstName} {lastName}'s verified student portfolio — {count} projects, {score}% verified. {bio}"
+    "metaDesc": "{firstName} {lastName}'s verified student portfolio — {count} projects, {score}% verified. {bio}",
+    "hero": {
+      "classOf": "Class of {year}",
+      "verifiedBadge": "{score}% verified",
+      "ctaContact": "Sign up to contact",
+      "ctaShare": "Share profile"
+    },
+    "stats": {
+      "projects": "Public projects",
+      "verification": "Verification score",
+      "skills": "Skills tracked"
+    },
+    "evidence": {
+      "title": "What's verified",
+      "skillsExtracted": "Skills extracted from {n, plural, one {# project} other {# projects}}",
+      "gradesNormalized": "Grades normalized via ESCO",
+      "endorsementsCount": "{n, plural, one {Endorsed by # professor} other {Endorsed by # professors}}",
+      "noEndorsements": "No professor endorsement",
+      "explainer": "Verification data is published at /algorithm-registry and Ed25519-signed. Companies can audit every decision."
+    },
+    "share": {
+      "label": "Share this portfolio",
+      "shareDescription": "{degree} @ {university} — {count} verified projects"
+    },
+    "projects": {
+      "title": "Featured projects",
+      "subtitle": "Projects can carry an optional professor endorsement when a faculty member reviews and signs them — look for the verification badge.",
+      "empty": "No public projects yet",
+      "courseLine": "{name}{code, select, none {} other { ({code})}}",
+      "universityVerified": "University verified",
+      "endorsedBy": "Endorsed by {name}{title, select, none {} other {, {title}}}",
+      "endorsementsLabel": "{n, plural, one {# endorsement} other {# endorsements}}",
+      "moreTechnologies": "+{n} more",
+      "playVideo": "Play video",
+      "links": {
+        "code": "Code",
+        "live": "Live"
+      }
+    },
+    "skills": {
+      "title": "Technical skills",
+      "subtitle": "Automatically extracted from real project work, grouped by domain.",
+      "uncategorized": "Other skills"
+    },
+    "viralCta": {
+      "title": "Build your own verified portfolio",
+      "subtitle": "Join {firstName} with an institution-verified portfolio on InTransparency",
+      "button": "Create portfolio free",
+      "poweredBy": "Powered by"
+    }
   },
   "exploreCompany": {
     "loading": "Loading reviews...",

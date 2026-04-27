@@ -14249,7 +14249,56 @@
   "studentProfilePublic": {
     "notFoundTitle": "Profilo studente non trovato",
     "notFoundDesc": "Il profilo studente che stai cercando non esiste o non è pubblico.",
-    "metaDesc": "Portfolio studente verificato di {firstName} {lastName} — {count} progetti, {score}% verificati. {bio}"
+    "metaDesc": "Portfolio studente verificato di {firstName} {lastName} — {count} progetti, {score}% verificati. {bio}",
+    "hero": {
+      "classOf": "Classe del {year}",
+      "verifiedBadge": "{score}% verificato",
+      "ctaContact": "Iscriviti per contattare",
+      "ctaShare": "Condividi profilo"
+    },
+    "stats": {
+      "projects": "Progetti pubblici",
+      "verification": "Punteggio verifica",
+      "skills": "Competenze tracciate"
+    },
+    "evidence": {
+      "title": "Cosa è verificato",
+      "skillsExtracted": "Skill estratte da {n, plural, one {# progetto} other {# progetti}}",
+      "gradesNormalized": "Voti normalizzati ESCO",
+      "endorsementsCount": "{n, plural, one {Endorsement di # docente} other {Endorsement di # docenti}}",
+      "noEndorsements": "Nessun endorsement docente",
+      "explainer": "I dati di verifica sono pubblicati su /algorithm-registry e firmati Ed25519. Le aziende possono auditare ogni decisione."
+    },
+    "share": {
+      "label": "Condividi questo portfolio",
+      "shareDescription": "{degree} @ {university} — {count} progetti verificati"
+    },
+    "projects": {
+      "title": "Progetti in evidenza",
+      "subtitle": "I progetti possono avere endorsement opzionale di un docente quando viene rivisto e firmato — cerca il badge di verifica.",
+      "empty": "Ancora nessun progetto pubblico",
+      "courseLine": "{name}{code, select, none {} other { ({code})}}",
+      "universityVerified": "Verificato dall'università",
+      "endorsedBy": "Endorsement di {name}{title, select, none {} other {, {title}}}",
+      "endorsementsLabel": "{n, plural, one {# endorsement} other {# endorsement}}",
+      "moreTechnologies": "+{n} altre",
+      "playVideo": "Riproduci video",
+      "links": {
+        "code": "Codice",
+        "live": "Live"
+      }
+    },
+    "skills": {
+      "title": "Competenze tecniche",
+      "subtitle": "Estratte automaticamente dai progetti reali, raggruppate per ambito.",
+      "uncategorized": "Altre competenze"
+    },
+    "viralCta": {
+      "title": "Costruisci il tuo portfolio verificato",
+      "subtitle": "Unisciti a {firstName} con un portfolio verificato dalla tua istituzione su InTransparency",
+      "button": "Crea portfolio gratis",
+      "poweredBy": "Powered by"
+    }
   },
   "exploreCompany": {
     "loading": "Caricamento recensioni...",
