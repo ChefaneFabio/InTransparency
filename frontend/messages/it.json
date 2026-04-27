@@ -4235,6 +4235,7 @@
     },
     "demos": {
       "badge": "Demo Interattive",
+      "eyebrow": "Strumenti live",
       "title": "Guardalo in azione",
       "subtitle": "Queste sono funzionalità reali disponibili dal primo giorno. Provale ora.",
       "decisionPack": {
@@ -4251,6 +4252,7 @@
       }
     },
     "socialProof": {
+      "eyebrow": "Fatti, non slide",
       "title": "Dove siamo oggi",
       "unibg": {
         "title": "Università degli Studi di Bergamo",
@@ -4270,12 +4272,13 @@
       "registerButton": "Inizia Gratis",
       "demoButton": "Prenota una Demo",
       "features": {
-        "free": "Gratuito per i partner formativi",
+        "free": "Free Core sempre gratuito",
         "gdpr": "Conforme al GDPR",
         "setup": "Setup in 5 minuti"
       }
     },
     "workspaceModules": {
+      "eyebrow": "Workspace per le università",
       "title": "Costruita per il career office, non l'ennesima job board",
       "subtitle": "Quattro moduli che trasformano il placement da fogli Excel in un workflow auditabile. Anteprima sul Free Core; sblocca le scritture con Premium.",
       "m1": {
@@ -4297,6 +4300,43 @@
       "compliance": "Ogni scrittura è loggata per la conformità AI Act. Gli studenti mantengono i diritti GDPR Art. 22 su ogni decisione automatizzata.",
       "pricingCta": "Vedi i prezzi",
       "demoCta": "Richiedi una demo"
+    },
+    "savings": {
+      "eyebrow": "Valore in denaro",
+      "title": "Quanto risparmia il vostro ateneo rispetto al workflow attuale",
+      "lede": "Imposta la dimensione della coorte: vedi le ore liberate ogni anno e quanto costano in tempo dello staff.",
+      "calculator": {
+        "title": "Quanto risparmierebbe il vostro ateneo",
+        "subtitle": "Stima conservativa basata sulla vostra scala. Modifica gli input — ogni coefficiente è giustificabile e visibile in basso.",
+        "fields": {
+          "students": "Profili studenti attivi",
+          "staff": "Staff career service (FTE)",
+          "events": "Eventi all'anno (orientamento, recruiting, panel)",
+          "currentTool": "Spesa attuale per strumenti di placement (€/anno)"
+        },
+        "outputs": {
+          "hoursLabel": "Ore staff liberate / anno",
+          "hoursSubtitle": "≈ {fte} FTE equivalenti",
+          "laborLabel": "Costo del lavoro risparmiato",
+          "laborSubtitle": "riallocato su attività ad alto valore",
+          "totalLabel": "Risparmio annuo totale",
+          "totalSubtitle": "Include {amount} di sostituzione strumenti"
+        },
+        "math": {
+          "show": "Mostra i calcoli",
+          "hide": "Nascondi i calcoli",
+          "title": "Assunzioni",
+          "items": {
+            "0": "<strong>{hours} h/studente/anno</strong> attualmente spese in placement tracking manuale → {total} h",
+            "1": "<strong>{hours} h/evento</strong> risparmiate con check-in digitale + auto-matching → {total} h",
+            "2": "<strong>{percent}%</strong> del tempo di ogni FTE è dedicato ad attività che automatizziamo → {total} h",
+            "3": "<strong>€{cost}/h</strong> costo orario fully-loaded di un FTE career service (Italia, stipendio medio €35k + 50% costi accessori ÷ {hours} ore produttive)"
+          },
+          "footer": "I coefficienti sono volutamente conservativi. Gli atenei con cui parliamo riportano spesso più overhead manuale di quello catturato qui."
+        },
+        "ctaButton": "Stima personalizzata per il tuo ateneo",
+        "badge": "Free Core gratuito · Premium €39/mese opzionale"
+      }
     },
     "coCreation": {
       "title": "Costruiamo Con Voi, Non Per Voi",
@@ -4326,7 +4366,7 @@
       "items": {
         "0": {
           "question": "È gratuito per le università?",
-          "answer": "Sì. La piattaforma base è gratuita per tutti i partner formativi. Funzionalità premium come widget incorporabili e branding personalizzato sono disponibili per chi desidera un'integrazione più profonda."
+          "answer": "Il Free Core è gratuito per tutti i partner formativi: 50 query AI/mese, audit log a 30 giorni, accesso ai 4 moduli del workspace in lettura. Premium (€39/mese o €390/anno, 30 giorni di prova) sblocca AI illimitato, audit log completo, export CSV, automazioni reminder e report MIUR. Add-on enterprise (white-label €14k/anno, SSO €2,5k/anno, MIUR pack €2,9k/anno) a parte."
         },
         "1": {
           "question": "Come verifichiamo i progetti degli studenti?",

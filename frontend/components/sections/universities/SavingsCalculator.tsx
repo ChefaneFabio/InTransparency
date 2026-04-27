@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -14,8 +15,8 @@ import { Link } from '@/navigation'
  * placement-tracking tool cost. Outputs: estimated annual savings vs the
  * average university's current stack.
  *
- * Assumptions are conservative and surfaced. Clicking "show math" reveals
- * the exact coefficients so the deal conversation stays honest.
+ * Coefficients (`ASSUMPTIONS`) are conservative and surfaced via "show math".
+ * All copy resolves through `forUniversities.savings.calculator` (next-intl).
  */
 
 interface Inputs {
@@ -32,31 +33,20 @@ const DEFAULTS: Inputs = {
   currentToolAnnualEuros: 8000,
 }
 
-// Conservative, defensible assumptions — each has a source-citation plan.
 const ASSUMPTIONS = {
-  // Average hours/year career services spend on manual placement tracking
-  // per active student profile. Conservative — real data suggests higher.
   hoursPerStudentPerYear: 0.4,
-
-  // Hours saved per event using our digital check-in + matching tools
   hoursSavedPerEvent: 3,
-
-  // Fully-loaded hourly cost of a career-services FTE in Italy (€/hr)
-  // Based on average €35k salary + ~50% loaded cost ÷ 1800 productive hours
   hourlyCostEuros: 29,
-
-  // Share of staff time currently spent on activities we automate
   automatableShareOfFte: 0.25,
-
-  // Annual FTE hours
   hoursPerFte: 1800,
 }
 
-function currency(n: number): string {
-  return n.toLocaleString('en-EU', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+function currency(n: number, locale: string): string {
+  return n.toLocaleString(locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
 }
 
 export function SavingsCalculator() {
+  const t = useTranslations('forUniversities.savings.calculator')
   const [inputs, setInputs] = useState<Inputs>(DEFAULTS)
   const [showMath, setShowMath] = useState(false)
 
@@ -79,44 +69,43 @@ export function SavingsCalculator() {
     }
   }, [inputs])
 
+  const fmtNumber = (n: number) => Math.round(n).toLocaleString()
+
   return (
     <Card className="max-w-4xl mx-auto border-2 border-primary/20 shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl flex items-center gap-2">
           <Calculator className="h-6 w-6 text-primary" />
-          What your university would save
+          {t('title')}
         </CardTitle>
-        <p className="text-muted-foreground">
-          Conservative estimate based on your scale. Adjust the inputs; every coefficient is
-          defensible and visible below.
-        </p>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Inputs */}
         <div className="grid md:grid-cols-2 gap-4">
           <Field
-            label="Active student profiles"
+            label={t('fields.students')}
             value={inputs.students}
             onChange={n => setInputs({ ...inputs, students: n })}
             min={100}
             step={100}
           />
           <Field
-            label="Career-services staff (FTE)"
+            label={t('fields.staff')}
             value={inputs.staff}
             onChange={n => setInputs({ ...inputs, staff: n })}
             min={1}
             step={1}
           />
           <Field
-            label="Events per year (orientation, recruiting, panels)"
+            label={t('fields.events')}
             value={inputs.events}
             onChange={n => setInputs({ ...inputs, events: n })}
             min={0}
             step={5}
           />
           <Field
-            label="Current placement-tool spend (€/yr)"
+            label={t('fields.currentTool')}
             value={inputs.currentToolAnnualEuros}
             onChange={n => setInputs({ ...inputs, currentToolAnnualEuros: n })}
             min={0}
@@ -129,33 +118,35 @@ export function SavingsCalculator() {
           <div className="rounded-xl border p-4 bg-emerald-50">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase text-emerald-700 mb-2">
               <Clock className="h-3 w-3" />
-              Staff hours freed / year
+              {t('outputs.hoursLabel')}
             </div>
             <div className="text-3xl font-bold text-emerald-700">
-              {Math.round(breakdown.totalHoursSaved).toLocaleString()}
+              {fmtNumber(breakdown.totalHoursSaved)}
             </div>
             <div className="text-xs text-emerald-600 mt-1">
-              ≈ {(breakdown.totalHoursSaved / ASSUMPTIONS.hoursPerFte).toFixed(1)} FTE equivalent
+              {t('outputs.hoursSubtitle', {
+                fte: (breakdown.totalHoursSaved / ASSUMPTIONS.hoursPerFte).toFixed(1),
+              })}
             </div>
           </div>
           <div className="rounded-xl border p-4 bg-blue-50">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase text-blue-700 mb-2">
               <TrendingDown className="h-3 w-3" />
-              Labour cost saved
+              {t('outputs.laborLabel')}
             </div>
             <div className="text-3xl font-bold text-blue-700">
-              {currency(breakdown.laborSavings)}
+              {currency(breakdown.laborSavings, 'en-EU')}
             </div>
-            <div className="text-xs text-blue-600 mt-1">reallocated to high-value work</div>
+            <div className="text-xs text-blue-600 mt-1">{t('outputs.laborSubtitle')}</div>
           </div>
           <div className="rounded-xl border p-4 bg-primary/10 border-primary/30">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase text-primary mb-2">
               <Euro className="h-3 w-3" />
-              Total annual saving
+              {t('outputs.totalLabel')}
             </div>
-            <div className="text-3xl font-bold text-primary">{currency(breakdown.total)}</div>
+            <div className="text-3xl font-bold text-primary">{currency(breakdown.total, 'en-EU')}</div>
             <div className="text-xs text-primary/80 mt-1">
-              Includes {currency(breakdown.toolSavings)} tool replacement
+              {t('outputs.totalSubtitle', { amount: currency(breakdown.toolSavings, 'en-EU') })}
             </div>
           </div>
         </div>
@@ -164,33 +155,42 @@ export function SavingsCalculator() {
         <div className="pt-2">
           <Button variant="ghost" size="sm" onClick={() => setShowMath(v => !v)}>
             <BarChart3 className="h-3 w-3 mr-1" />
-            {showMath ? 'Hide' : 'Show'} the math
+            {showMath ? t('math.hide') : t('math.show')}
           </Button>
           {showMath && (
             <div className="mt-3 p-4 bg-muted/40 rounded-lg text-xs space-y-2 text-muted-foreground">
-              <div className="font-semibold text-foreground">Assumptions</div>
+              <div className="font-semibold text-foreground">{t('math.title')}</div>
               <ul className="space-y-1 list-disc pl-5">
                 <li>
-                  <strong>{ASSUMPTIONS.hoursPerStudentPerYear} hrs/student/year</strong> currently spent on manual
-                  placement tracking → {Math.round(breakdown.studentTrackingHours).toLocaleString()} hrs
+                  {t.rich('math.items.0', {
+                    hours: ASSUMPTIONS.hoursPerStudentPerYear,
+                    total: fmtNumber(breakdown.studentTrackingHours),
+                    strong: chunks => <strong>{chunks}</strong>,
+                  })}
                 </li>
                 <li>
-                  <strong>{ASSUMPTIONS.hoursSavedPerEvent} hrs/event</strong> saved via digital check-ins + auto-matching →{' '}
-                  {Math.round(breakdown.eventHours).toLocaleString()} hrs
+                  {t.rich('math.items.1', {
+                    hours: ASSUMPTIONS.hoursSavedPerEvent,
+                    total: fmtNumber(breakdown.eventHours),
+                    strong: chunks => <strong>{chunks}</strong>,
+                  })}
                 </li>
                 <li>
-                  <strong>{(ASSUMPTIONS.automatableShareOfFte * 100).toFixed(0)}%</strong> of each FTE&apos;s time is spent on
-                  activities we automate → {Math.round(breakdown.fteHoursFreed).toLocaleString()} hrs
+                  {t.rich('math.items.2', {
+                    percent: Math.round(ASSUMPTIONS.automatableShareOfFte * 100),
+                    total: fmtNumber(breakdown.fteHoursFreed),
+                    strong: chunks => <strong>{chunks}</strong>,
+                  })}
                 </li>
                 <li>
-                  <strong>€{ASSUMPTIONS.hourlyCostEuros}/hr</strong> fully-loaded career-services FTE cost
-                  (Italy, avg. €35k salary + 50% loaded cost ÷ {ASSUMPTIONS.hoursPerFte} productive hours)
+                  {t.rich('math.items.3', {
+                    cost: ASSUMPTIONS.hourlyCostEuros,
+                    hours: ASSUMPTIONS.hoursPerFte,
+                    strong: chunks => <strong>{chunks}</strong>,
+                  })}
                 </li>
               </ul>
-              <p className="pt-2 text-xs italic">
-                Coefficients are deliberately conservative. Universities we&apos;ve spoken to often
-                report higher manual overhead than these assumptions capture.
-              </p>
+              <p className="pt-2 text-xs italic">{t('math.footer')}</p>
             </div>
           )}
         </div>
@@ -198,12 +198,12 @@ export function SavingsCalculator() {
         <div className="pt-2 flex flex-wrap items-center gap-3">
           <Button size="lg" asChild>
             <Link href="/contact?role=university">
-              Get a tailored estimate for your institution
+              {t('ctaButton')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Badge variant="outline" className="text-xs">
-            Universities pay nothing — employers fund the platform
+            {t('badge')}
           </Badge>
         </div>
       </CardContent>

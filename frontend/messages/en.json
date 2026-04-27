@@ -4260,6 +4260,7 @@
     },
     "demos": {
       "badge": "Interactive Demos",
+      "eyebrow": "Try a live tool",
       "title": "See it in action",
       "subtitle": "These are real features you get on day one. Try them now.",
       "decisionPack": {
@@ -4276,6 +4277,7 @@
       }
     },
     "socialProof": {
+      "eyebrow": "Real, not staged",
       "title": "Where we are today",
       "unibg": {
         "title": "Università degli Studi di Bergamo",
@@ -4295,12 +4297,13 @@
       "registerButton": "Get Started Free",
       "demoButton": "Schedule a Demo",
       "features": {
-        "free": "Free for academic partners",
+        "free": "Free Core always included",
         "gdpr": "GDPR compliant",
         "setup": "5-minute setup"
       }
     },
     "workspaceModules": {
+      "eyebrow": "Institutional workspace",
       "title": "Built for the career office — not just another job board",
       "subtitle": "Four modules that turn placement from spreadsheets into an auditable workflow. Preview on Free Core; unlock writes with Premium.",
       "m1": {
@@ -4322,6 +4325,43 @@
       "compliance": "Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.",
       "pricingCta": "See pricing",
       "demoCta": "Request a demo"
+    },
+    "savings": {
+      "eyebrow": "Hard-money value",
+      "title": "What you save vs your current placement workflow",
+      "lede": "Set your cohort size — see annual hours saved and what they cost in staff time.",
+      "calculator": {
+        "title": "What your university would save",
+        "subtitle": "Conservative estimate based on your scale. Adjust the inputs; every coefficient is defensible and visible below.",
+        "fields": {
+          "students": "Active student profiles",
+          "staff": "Career-services staff (FTE)",
+          "events": "Events per year (orientation, recruiting, panels)",
+          "currentTool": "Current placement-tool spend (€/yr)"
+        },
+        "outputs": {
+          "hoursLabel": "Staff hours freed / year",
+          "hoursSubtitle": "≈ {fte} FTE equivalent",
+          "laborLabel": "Labour cost saved",
+          "laborSubtitle": "reallocated to high-value work",
+          "totalLabel": "Total annual saving",
+          "totalSubtitle": "Includes {amount} tool replacement"
+        },
+        "math": {
+          "show": "Show the math",
+          "hide": "Hide the math",
+          "title": "Assumptions",
+          "items": {
+            "0": "<strong>{hours} hrs/student/year</strong> currently spent on manual placement tracking → {total} hrs",
+            "1": "<strong>{hours} hrs/event</strong> saved via digital check-ins + auto-matching → {total} hrs",
+            "2": "<strong>{percent}%</strong> of each FTE's time is spent on activities we automate → {total} hrs",
+            "3": "<strong>€{cost}/hr</strong> fully-loaded career-services FTE cost (Italy, avg. €35k salary + 50% loaded cost ÷ {hours} productive hours)"
+          },
+          "footer": "Coefficients are deliberately conservative. Universities we've spoken to often report higher manual overhead than these assumptions capture."
+        },
+        "ctaButton": "Get a tailored estimate for your institution",
+        "badge": "Free Core included · Premium €39/mo optional"
+      }
     },
     "coCreation": {
       "title": "We Build With You, Not For You",
@@ -4351,7 +4391,7 @@
       "items": {
         "0": {
           "question": "Is it free for universities?",
-          "answer": "Yes. The core platform is free for all academic partners. Premium features like embeddable widgets and custom branding are available for academic partners that want deeper integration."
+          "answer": "Free Core is free for every academic partner: 50 AI queries/month, 30-day audit log, and read access to all 4 workspace modules. Premium (€39/mo or €390/yr, 30-day trial) unlocks unlimited AI, full audit log, CSV exports, reminder automations, and MIUR reports. Enterprise add-ons (white-label €14k/yr, SSO €2.5k/yr, MIUR pack €2.9k/yr) are sold separately."
         },
         "1": {
           "question": "How do we verify student projects?",
