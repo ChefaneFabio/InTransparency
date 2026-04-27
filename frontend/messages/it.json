@@ -2884,35 +2884,134 @@
   },
   "forITS": {
     "hero": {
-      "badge": "Per Direttori ITS Academy · Gratis per sempre",
-      "title": "Dai ai tuoi diplomati un vantaggio verificato — a costo zero",
-      "subtitle": "La workspace completa è gratis per gli ITS: Inbox, Moderazione Offerte, CRM, Pipeline Tirocini, AI Assistant, audit log. Nessun upsell, nessun tier bloccato. Finanziata dalle aziende che reclutano dai vostri diplomati.",
-      "cta": "Attiva la workspace — gratis",
-      "secondaryCta": "Funzionalità Università"
+      "badge": "Per Direttori e referenti placement degli ITS Academy",
+      "title": "Risultati MIUR-grade fin dalla prima coorte",
+      "subtitle": "ITS Academy: il tasso di occupabilità a 12 mesi è la metrica che decide il finanziamento. InTransparency tiene traccia di tirocinio, placement e contratto in un workflow unico — auditabile, esportabile, pronto per i decreti ministeriali.",
+      "demoCta": "Prenota una Demo",
+      "registerCta": "Attiva il Workspace ITS"
     },
-    "benefits": {
-      "0": {
-        "title": "Portfolio progetti reali",
-        "description": "Gli studenti caricano i progetti ITS con il badge di endorsement opzionale dei docenti. Le aziende vedono prove concrete, non solo dichiarazioni."
+    "socialProof": {
+      "eyebrow": "Pensato per gli ITS",
+      "title": "Costruito sui dati che vi vengono chiesti",
+      "miur": {
+        "title": "Conformità MIUR",
+        "subtitle": "Decreto 22/12/2022 · Allegato A",
+        "description": "Tasso di occupabilità a 6 e 12 mesi, coerenza tra titolo conseguito e mansione, contratti pluriennali — gli indicatori che pesano sul finanziamento. Esporti i dati nel formato che il monitoraggio nazionale ITS richiede.",
+        "status": "Indicatori coperti"
       },
-      "1": {
-        "title": "Le aziende scoprono i tuoi diplomati",
-        "description": "I recruiter cercano competenze tecniche verificate e trovano i tuoi studenti direttamente. Niente più attese per le fiere del lavoro."
+      "design": {
+        "title": "Co-progettazione con le aziende",
+        "subtitle": "Direttiva ITS · 30% docenza esterna",
+        "description": "Le aziende del comitato tecnico-scientifico vedono i progetti dei vostri studenti, suggeriscono modifiche al piano formativo e propongono tirocini. Il tutto tracciato come evidenza per la rendicontazione.",
+        "status": "CTS attivo"
+      }
+    },
+    "workspaceModules": {
+      "eyebrow": "Workspace per gli ITS",
+      "title": "Quattro moduli per il ciclo Tirocinio → Placement → MIUR",
+      "subtitle": "Il vostro Career Office gestisce l'intero ciclo dal primo contatto azienda fino al contratto post-diploma. Free Core in lettura; Premium sblocca le scritture e l'export.",
+      "m1": {
+        "title": "Mediation Inbox",
+        "desc": "Ogni messaggio aziendale ai vostri studenti passa prima dal coordinatore. Approva, modifica, rifiuta — audit trail completo per la responsabilità tutoriale."
       },
-      "2": {
-        "title": "Monitoraggio placement per il MIUR",
-        "description": "Vedi quali aziende contattano, intervistano e assumono i tuoi diplomati. Esporta dati per i report ministeriali."
+      "m2": {
+        "title": "Pipeline Tirocini Curriculari",
+        "desc": "Convenzione, registro ore, valutazioni di tutor aziendale e didattico, project work finale. Generazione automatica della modulistica MIUR."
       },
-      "3": {
-        "title": "Normalizzazione voti transfrontaliera",
-        "description": "I voti ITS italiani tradotti automaticamente per datori di lavoro tedeschi, francesi, olandesi e spagnoli."
+      "m3": {
+        "title": "MIUR Outcomes Dashboard",
+        "desc": "Tasso di occupabilità in tempo reale, coerenza titolo/mansione, durata media del primo contratto. Export CSV/JSON per il monitoraggio ITS nazionale."
       },
-      "title": "Cosa fa InTransparency per gli ITS"
+      "m4": {
+        "title": "Employer CRM",
+        "desc": "Comitato tecnico-scientifico, partner di tirocinio, aziende che hanno assunto. Kanban dal primo contatto al rinnovo della convenzione, mai più due tutor che chiamano la stessa azienda."
+      },
+      "compliance": "Ogni scrittura è loggata per la conformità AI Act. Studenti maggiorenni, ma per i tirocini infraventenni i diritti GDPR Art. 22 sono attivi su ogni decisione automatizzata.",
+      "pricingCta": "Vedi i prezzi",
+      "demoCta": "Richiedi una demo"
+    },
+    "kpi": {
+      "eyebrow": "La metrica che conta",
+      "title": "Tasso di occupabilità — il KPI da cui dipende il finanziamento",
+      "lede": "ITS finanziati a performance: il monitoraggio nazionale richiede l'80% di occupati a 12 mesi nel settore di indirizzo. Tracciate il dato cohort-by-cohort, non a fine anno.",
+      "metricLabel": "Coorte 2024 — placement a 12 mesi",
+      "metricValue": "87%",
+      "metricThreshold": "Soglia MIUR: 80%",
+      "rows": {
+        "header": {
+          "cohort": "Coorte",
+          "diplomas": "Diplomati",
+          "placement6": "6 mesi",
+          "placement12": "12 mesi",
+          "coherent": "Coerenti"
+        },
+        "0": {
+          "cohort": "2024 — Meccatronica",
+          "diplomas": "28",
+          "placement6": "79%",
+          "placement12": "89%",
+          "coherent": "82%"
+        },
+        "1": {
+          "cohort": "2024 — Digital Manufacturing",
+          "diplomas": "24",
+          "placement6": "75%",
+          "placement12": "88%",
+          "coherent": "79%"
+        },
+        "2": {
+          "cohort": "2024 — Smart Mobility",
+          "diplomas": "22",
+          "placement6": "68%",
+          "placement12": "82%",
+          "coherent": "77%"
+        }
+      },
+      "footnote": "Dati esempio. Il vostro workspace mostra le coorti reali con drill-down per studente e contratto."
+    },
+    "demo": {
+      "eyebrow": "Anteprima esportazione",
+      "title": "L'export MIUR che generate con un click",
+      "lede": "Il monitoraggio nazionale ITS richiede dati in formato strutturato. Vedi un esempio del CSV / JSON che il workspace produce — pronto per il caricamento ministeriale.",
+      "fileLabel": "monitoraggio_its_2024_meccatronica.csv",
+      "preview": "studente_id,coorte,data_diploma,data_primo_contratto,giorni_a_placement,tipo_contratto,coerenza_settore,retribuzione_lorda_mensile\nST_001,2024_MEC,2024-07-15,2024-09-02,49,indeterminato,si,1850\nST_002,2024_MEC,2024-07-15,2024-08-12,28,apprendistato,si,1620\nST_003,2024_MEC,2024-07-15,2024-10-01,78,determinato,si,1750\nST_004,2024_MEC,2024-07-15,2025-01-08,177,indeterminato,parziale,1920"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Come gli ITS Academy usano InTransparency",
+      "items": {
+        "0": {
+          "question": "Costa qualcosa al nostro ITS?",
+          "answer": "Free Core gratuito per tutti gli ITS Academy: 50 query AI/mese, audit log a 30 giorni, accesso ai 4 moduli del workspace in lettura. Premium €39/mese o €390/anno (30 giorni di prova) sblocca AI illimitato, audit log completo, export CSV/JSON e automazioni reminder. La fascia Premium è pensata su scala ITS — tipicamente 1-3 indirizzi per fondazione."
+        },
+        "1": {
+          "question": "I dati che produce il workspace bastano per il monitoraggio MIUR?",
+          "answer": "Sì. Tracciamo gli indicatori previsti dal Decreto del 22/12/2022 (Allegato A): occupabilità a 6 e 12 mesi, coerenza titolo/mansione, tipo di contratto, retribuzione. L'export è in CSV o JSON, riformattabile per qualsiasi piattaforma di rendicontazione regionale. Aggiorniamo lo schema quando il MIUR cambia gli allegati."
+        },
+        "2": {
+          "question": "Come si integra con la co-progettazione con le aziende del CTS?",
+          "answer": "Il modulo Employer CRM tiene traccia delle aziende del Comitato Tecnico-Scientifico, dei tirocini attivati e dei contratti post-diploma. Le aziende del CTS possono accedere in lettura ai project work degli studenti e suggerire modifiche al piano formativo — tutto loggato come evidenza per il 30% di docenza esterna."
+        },
+        "3": {
+          "question": "I tirocini curriculari sono coperti?",
+          "answer": "Pipeline Tirocini Curriculari gestisce convenzione, registro ore, valutazioni intermedie e finali del tutor aziendale e didattico, project work finale. La modulistica MIUR (modello convenzione, scheda tirocinante) si genera automaticamente dai campi compilati."
+        },
+        "4": {
+          "question": "Cosa succede se cambiamo gestionale a metà anno?",
+          "answer": "Export completo dei dati in CSV o JSON in qualsiasi momento — è un vostro dato, non nostro. Niente lock-in contrattuale: la fattura Premium è mensile o annuale e si disattiva da console. Il Free Core resta attivo anche dopo la disdetta del Premium."
+        }
+      }
     },
     "cta": {
-      "title": "Pronti ad attivare la workspace per il tuo ITS?",
-      "subtitle": "Costo zero, impegno zero. Dieci minuti per il setup. Ti chiamiamo volentieri per guidarti se serve.",
-      "button": "Attiva — gratis per sempre"
+      "title": "Pronti per la prossima coorte?",
+      "subtitle": "Attivate il workspace prima dell'avvio della prossima coorte. Il primo monitoraggio MIUR si chiude a 12 mesi dal diploma — meglio non partire in ritardo.",
+      "registerButton": "Inizia Gratis",
+      "demoButton": "Prenota una Demo",
+      "features": {
+        "free": "Free Core sempre gratuito",
+        "miur": "Schema MIUR sempre aggiornato",
+        "setup": "Setup in 10 minuti"
+      }
     }
   },
   "demoAISearch": {
@@ -9140,35 +9239,134 @@
   },
   "forHighSchools": {
     "hero": {
-      "badge": "Per Coordinatori dell'Orientamento · Gratis per sempre",
-      "title": "Aiuta gli studenti a scoprire il loro percorso — a costo zero per la scuola",
-      "subtitle": "Dai ai tuoi studenti un portfolio verificato con AI che li accompagna all'università o nel mondo del lavoro. Tracciamento PCTO, dati di orientamento, reportistica ministeriale — tutto gratis. Finanziato dalle aziende che reclutano dai vostri diplomati, mai dalle scuole.",
-      "cta": "Attiva — gratis per sempre",
-      "secondaryCta": "Funzionalità Università"
+      "badge": "Per coordinatori PCTO e referenti orientamento",
+      "title": "Portfolio dell'orientamento — non un altro Excel del PCTO",
+      "subtitle": "Le 90/150/210 ore di PCTO finiscono in fogli Excel che si perdono. Le scelte universitarie si fanno con la pancia. InTransparency tiene il PCTO in un registro auditabile e dà allo studente un portfolio che lo segue all'università.",
+      "demoCta": "Prenota una Demo",
+      "registerCta": "Attiva il Workspace Scuola"
     },
-    "benefits": {
-      "0": {
-        "title": "Portfolio progetti studenti",
-        "description": "Gli studenti documentano esperienze PCTO, progetti scolastici e attività extracurriculari in un portfolio digitale verificato."
+    "socialProof": {
+      "eyebrow": "Pensato per le superiori",
+      "title": "Costruito sul lavoro reale dei coordinatori",
+      "pcto": {
+        "title": "Conforme al PCTO",
+        "subtitle": "L. 145/2018 · Linee guida MIUR",
+        "description": "90 ore al liceo, 150 al tecnico, 210 al professionale. Tracciate convenzioni, ore svolte, valutazioni e progetto formativo per ogni studente — pronti per il monitoraggio dell'USR.",
+        "status": "Indicatori coperti"
       },
-      "1": {
-        "title": "Orientamento con dati reali",
-        "description": "Vedi quali competenze portano a quali percorsi universitari e sbocchi professionali. Guida gli studenti con evidenze, non supposizioni."
+      "orientation": {
+        "title": "Orientamento basato su evidenze",
+        "subtitle": "DM 328/2022 · 30 ore di orientamento",
+        "description": "Le 30 ore di orientamento (dal terzo anno) generano dati su interessi e competenze. Lo studente sceglie l'università sapendo cosa ha già fatto e quanto gli è piaciuto — non solo quanto pensa che gli piacerà.",
+        "status": "30h tracciate"
+      }
+    },
+    "workspaceModules": {
+      "eyebrow": "Workspace per le scuole",
+      "title": "Quattro moduli per il ciclo PCTO → Orientamento → Diploma",
+      "subtitle": "Non sostituisce il registro elettronico — completa la parte che il registro elettronico non fa: portfolio dello studente, lavoro reale, scelte universitarie. Free Core in lettura; Premium sblocca scritture e automazioni.",
+      "m1": {
+        "title": "PCTO Ledger",
+        "desc": "Convenzione, ore svolte, valutazioni del tutor aziendale e del tutor scolastico, progetto formativo. Generazione automatica della modulistica e calcolo automatico delle ore residue per studente."
       },
-      "2": {
-        "title": "Tracciamento e reportistica PCTO",
-        "description": "Monitora le esperienze di alternanza scuola-lavoro dal placement al completamento. Report esportabili per la conformità ministeriale."
+      "m2": {
+        "title": "Orientamento Insights",
+        "desc": "Le 30 ore di orientamento generano dati su attitudini e competenze osservate. Esporti il dossier di orientamento per i colloqui con famiglie e per il consiglio di classe."
       },
-      "3": {
-        "title": "Profili pronti per l'università",
-        "description": "Quando i tuoi studenti passano all'università, il loro portfolio verificato con AI li segue — dandogli un vantaggio."
+      "m3": {
+        "title": "Portfolio Portability",
+        "desc": "Quando lo studente si iscrive all'università, il portfolio (PCTO, progetti, lingue, certificazioni) lo segue. Le università partner del network leggono il dato verificato — la scuola continua a esistere nel CV dello studente."
       },
-      "title": "Cosa fa InTransparency per le scuole superiori"
+      "m4": {
+        "title": "Comunicazioni Famiglie",
+        "desc": "I genitori (per studenti minorenni) hanno accesso al registro PCTO e al consenso digitale per le convenzioni. Niente più moduli cartacei dimenticati nello zaino."
+      },
+      "compliance": "Per studenti minorenni: consenso parentale digitale per ogni convenzione PCTO, profilazione disattivata di default, GDPR-K (Art. 8) attivo. La scuola è il titolare del trattamento — noi siamo solo responsabili.",
+      "pricingCta": "Vedi i prezzi",
+      "demoCta": "Richiedi una demo"
+    },
+    "compliance": {
+      "eyebrow": "Compliance PCTO",
+      "title": "Le ore PCTO che non perdete più",
+      "lede": "Una scuola di 600 studenti gestisce circa 90.000 ore PCTO all'anno tra licei, tecnici e professionali. Tracciate per studente, non per classe — al colloquio universitario il dato deve essere accurato per quello specifico ragazzo.",
+      "metricLabel": "Anno scolastico in corso",
+      "metricValue": "94%",
+      "metricThreshold": "Studenti con monte ore PCTO completo",
+      "rows": {
+        "header": {
+          "track": "Indirizzo",
+          "students": "Studenti",
+          "required": "Ore richieste",
+          "completed": "Completate",
+          "missing": "Da recuperare"
+        },
+        "0": {
+          "track": "Liceo Scientifico",
+          "students": "180",
+          "required": "90 ore",
+          "completed": "97%",
+          "missing": "5 studenti"
+        },
+        "1": {
+          "track": "ITT Informatica",
+          "students": "210",
+          "required": "150 ore",
+          "completed": "92%",
+          "missing": "16 studenti"
+        },
+        "2": {
+          "track": "IPSIA Manutenzione",
+          "students": "85",
+          "required": "210 ore",
+          "completed": "88%",
+          "missing": "10 studenti"
+        }
+      },
+      "footnote": "Dati esempio. Il vostro workspace mostra le classi reali con drill-down per studente, convenzione e valutazione."
+    },
+    "demo": {
+      "eyebrow": "Anteprima Portfolio",
+      "title": "Il dossier che lo studente porta all'università",
+      "lede": "Quando il maturando si iscrive all'università, il suo portfolio verificato lo segue. Vedi un esempio di cosa l'ateneo riceve all'iscrizione — e perché cambia il colloquio di orientamento.",
+      "fileLabel": "portfolio_handoff_studente.json",
+      "preview": "{\n  \"studente\": \"Marta R.\",\n  \"diploma\": \"Liceo Scientifico — Indirizzo Scienze Applicate\",\n  \"votazione_esame\": \"94/100\",\n  \"pcto\": [\n    { \"azienda\": \"Bayer Italia\", \"ore\": 80, \"ruolo\": \"R&D shadow\", \"valutazione\": \"ottimo\" },\n    { \"azienda\": \"FabLab Bergamo\", \"ore\": 30, \"progetto\": \"Stampa 3D protesi\" }\n  ],\n  \"orientamento\": {\n    \"ore_completate\": 30,\n    \"settori_di_interesse\": [\"biotech\", \"ingegneria biomedica\"]\n  },\n  \"progetti\": [\n    { \"titolo\": \"Modello cinetica enzimatica\", \"validato_da\": \"Prof. Bianchi\" }\n  ]\n}"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Come le scuole superiori usano InTransparency",
+      "items": {
+        "0": {
+          "question": "Costa qualcosa alla scuola?",
+          "answer": "Free Core gratuito per tutte le scuole superiori: 50 query AI/mese, audit log a 30 giorni, accesso ai 4 moduli del workspace in lettura. Premium €39/mese o €390/anno (30 giorni di prova) sblocca scritture, automazioni reminder PCTO, export per il monitoraggio USR e comunicazioni famiglie. La fattura è intestabile alla scuola o al fondo PNRR Orientamento."
+        },
+        "1": {
+          "question": "Sostituisce il registro elettronico?",
+          "answer": "No, è complementare. Il registro elettronico gestisce voti, presenze e comunicazioni didattiche — bene così. InTransparency gestisce ciò che il registro non fa: portfolio dello studente, ledger PCTO, dossier di orientamento. I dati anagrafici si possono importare via CSV dal vostro registro."
+        },
+        "2": {
+          "question": "Studenti minorenni: come gestite il GDPR?",
+          "answer": "Per i minorenni applichiamo GDPR Art. 8 (GDPR-K): la scuola è titolare del trattamento, noi siamo responsabili esterni. Consenso parentale digitale obbligatorio per ogni convenzione PCTO, profilazione disattivata di default, nessuna pubblicazione del portfolio senza esplicito consenso del genitore. Per maggiorenni il consenso passa allo studente."
+        },
+        "3": {
+          "question": "Come funziona il passaggio all'università?",
+          "answer": "Lo studente decide cosa rendere portabile (Portfolio Portability, modulo M3). Le università partner del network leggono il dato verificato all'atto di iscrizione — il colloquio di orientamento parte da quello che lo studente ha effettivamente fatto, non da quello che dichiara. Il dato è esportabile in formato Europass v3."
+        },
+        "4": {
+          "question": "Le aziende del PCTO ci contattano direttamente?",
+          "answer": "No — il modulo Mediation Inbox (parte del Free Core) garantisce che ogni messaggio aziendale ai vostri studenti passi prima dal coordinatore. Voi approvate, modificate o rifiutate. Audit trail completo, responsabilità tutoriale rispettata."
+        }
+      }
     },
     "cta": {
-      "title": "Interessati a un pilota?",
-      "subtitle": "Stiamo esplorando partnership con scuole superiori innovative. Parliamo di cosa funzionerebbe per i tuoi studenti.",
-      "button": "Contattaci"
+      "title": "Pronti per il prossimo anno scolastico?",
+      "subtitle": "Attivate il workspace prima di settembre. Il primo monte ore PCTO inizia a contare dal terzo anno — meglio strutturare ora che inseguire convenzioni a maggio.",
+      "registerButton": "Inizia Gratis",
+      "demoButton": "Prenota una Demo",
+      "features": {
+        "free": "Free Core sempre gratuito",
+        "gdprk": "GDPR-K per minorenni",
+        "setup": "Setup in 10 minuti"
+      }
     }
   },
   "forTechparks": {

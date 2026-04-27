@@ -2844,68 +2844,266 @@
   },
   "forITS": {
     "hero": {
-      "badge": "For ITS Academy Directors · Free forever",
-      "title": "Give your graduates a verified advantage — at zero cost",
-      "subtitle": "The full workspace is free for ITS Academies: Inbox, Offer moderation, CRM, Placement pipeline, AI Assistant, audit log. No upsell, no tier lock. Funded by the companies that recruit from your graduates.",
-      "cta": "Activate your workspace — free",
-      "secondaryCta": "See University Features"
+      "badge": "For ITS Academy directors and placement leads",
+      "title": "MIUR-grade outcomes from the first cohort",
+      "subtitle": "ITS Academy: 12-month employment rate is the metric that decides next year's funding. InTransparency tracks tirocinio, placement, and contract in one auditable workflow — exportable, ready for ministerial reporting.",
+      "demoCta": "Schedule a Demo",
+      "registerCta": "Activate the ITS Workspace"
     },
-    "benefits": {
-      "0": {
-        "title": "Verified project portfolios",
-        "description": "Students upload ITS projects with your optional professor endorsement (bonus signal) badge. Companies see proof, not just claims."
+    "socialProof": {
+      "eyebrow": "Built for ITS Academies",
+      "title": "Built on the data they actually ask you for",
+      "miur": {
+        "title": "MIUR-compliant",
+        "subtitle": "Decreto 22/12/2022 · Allegato A",
+        "description": "6- and 12-month employment rates, alignment between diploma and job role, multi-year contracts — the indicators that drive funding. Export in the exact format the national ITS monitoring system requires.",
+        "status": "Indicators covered"
       },
-      "1": {
-        "title": "Companies discover your graduates",
-        "description": "Recruiters search for verified technical skills and find your students directly. No more waiting for career fairs."
+      "design": {
+        "title": "Co-design with companies",
+        "subtitle": "ITS directive · 30% external faculty",
+        "description": "Companies on your Comitato Tecnico-Scientifico see student projects, suggest curriculum changes, and propose tirocini. All tracked as evidence for reporting.",
+        "status": "CTS active"
+      }
+    },
+    "workspaceModules": {
+      "eyebrow": "ITS workspace",
+      "title": "Four modules for the Tirocinio → Placement → MIUR cycle",
+      "subtitle": "Your career office runs the full cycle from first company contact to post-diploma employment contract. Free Core read-only; Premium unlocks writes and exports.",
+      "m1": {
+        "title": "Mediation Inbox",
+        "desc": "Every company message to your students is reviewed by a coordinator first. Approve, edit, reject — full audit trail for tutorial accountability."
       },
-      "2": {
-        "title": "Placement tracking for MIUR",
-        "description": "See which companies contact, interview, and hire your graduates. Export data for ministry reporting."
+      "m2": {
+        "title": "Curricular Tirocinio Pipeline",
+        "desc": "Convention, hours log, tutor evaluations (company + academic), final project work. Auto-generation of MIUR forms from filled fields."
       },
-      "3": {
-        "title": "Cross-border grade normalization",
-        "description": "Italian ITS grades translated automatically for German, French, Dutch, and Spanish employers."
+      "m3": {
+        "title": "MIUR Outcomes Dashboard",
+        "desc": "Live employment rate, diploma/role alignment, average duration of first contract. CSV/JSON export for the national ITS monitoring submission."
       },
-      "title": "What InTransparency does for ITS Academies"
+      "m4": {
+        "title": "Employer CRM",
+        "desc": "Comitato Tecnico-Scientifico, internship partners, hiring companies. Kanban from first contact to renewed convention — no more two tutors calling the same firm."
+      },
+      "compliance": "Every write is logged for AI Act compliance. Students are adults, but for under-18 internships GDPR Art. 22 rights are active on every automated decision.",
+      "pricingCta": "See pricing",
+      "demoCta": "Request a demo"
+    },
+    "kpi": {
+      "eyebrow": "The metric that matters",
+      "title": "Employment rate — the KPI that drives your funding",
+      "lede": "ITS are funded on performance: national monitoring requires 80% employed within 12 months in the diploma's sector. Track the number cohort-by-cohort, not at year-end.",
+      "metricLabel": "2024 cohort — 12-month placement",
+      "metricValue": "87%",
+      "metricThreshold": "MIUR threshold: 80%",
+      "rows": {
+        "header": {
+          "cohort": "Cohort",
+          "diplomas": "Graduates",
+          "placement6": "6 months",
+          "placement12": "12 months",
+          "coherent": "Sector-aligned"
+        },
+        "0": {
+          "cohort": "2024 — Mechatronics",
+          "diplomas": "28",
+          "placement6": "79%",
+          "placement12": "89%",
+          "coherent": "82%"
+        },
+        "1": {
+          "cohort": "2024 — Digital Manufacturing",
+          "diplomas": "24",
+          "placement6": "75%",
+          "placement12": "88%",
+          "coherent": "79%"
+        },
+        "2": {
+          "cohort": "2024 — Smart Mobility",
+          "diplomas": "22",
+          "placement6": "68%",
+          "placement12": "82%",
+          "coherent": "77%"
+        }
+      },
+      "footnote": "Sample data. Your workspace shows real cohorts with drill-down per student and contract."
+    },
+    "demo": {
+      "eyebrow": "Export preview",
+      "title": "The MIUR export you generate with one click",
+      "lede": "National ITS monitoring requires structured data. Here's a sample of the CSV / JSON the workspace produces — ready for ministerial submission.",
+      "fileLabel": "monitoring_its_2024_mechatronics.csv",
+      "preview": "student_id,cohort,diploma_date,first_contract_date,days_to_placement,contract_type,sector_aligned,gross_monthly_wage\nST_001,2024_MEC,2024-07-15,2024-09-02,49,permanent,yes,1850\nST_002,2024_MEC,2024-07-15,2024-08-12,28,apprenticeship,yes,1620\nST_003,2024_MEC,2024-07-15,2024-10-01,78,fixed-term,yes,1750\nST_004,2024_MEC,2024-07-15,2025-01-08,177,permanent,partial,1920"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "How ITS Academies use InTransparency",
+      "items": {
+        "0": {
+          "question": "Does it cost our ITS anything?",
+          "answer": "Free Core is free for every ITS Academy: 50 AI queries/month, 30-day audit log, read access to all 4 workspace modules. Premium €39/mo or €390/yr (30-day trial) unlocks unlimited AI, full audit log, CSV/JSON export, and reminder automations. The Premium tier is sized for ITS scale — typically 1-3 specializations per foundation."
+        },
+        "1": {
+          "question": "Does the workspace data cover MIUR monitoring requirements?",
+          "answer": "Yes. We track the indicators required by the 22/12/2022 Decree (Allegato A): 6- and 12-month employment rates, diploma/role alignment, contract type, gross wage. Export in CSV or JSON, reformattable for any regional reporting platform. We update the schema when MIUR changes the annexes."
+        },
+        "2": {
+          "question": "How does it integrate with company co-design (CTS)?",
+          "answer": "The Employer CRM module tracks Comitato Tecnico-Scientifico companies, active tirocini, and post-diploma hiring contracts. CTS companies can read student project work and suggest curriculum changes — all logged as evidence for the 30% external-faculty requirement."
+        },
+        "3": {
+          "question": "Are curricular tirocini covered?",
+          "answer": "The Curricular Tirocinio Pipeline manages the convention, hours log, mid- and final-evaluations from both company and academic tutors, and the final project work. MIUR paperwork (convention template, intern record sheet) auto-generates from the filled fields."
+        },
+        "4": {
+          "question": "What if we change platforms mid-year?",
+          "answer": "Full data export in CSV or JSON at any time — it's your data, not ours. No contractual lock-in: Premium billing is monthly or annual and cancellable from console. Free Core stays active even after Premium cancellation."
+        }
+      }
     },
     "cta": {
-      "title": "Ready to activate your ITS workspace?",
-      "subtitle": "Zero cost, zero commitment. Ten minutes to set up. We'll reach out to walk through it if you'd like.",
-      "button": "Activate — free forever"
+      "title": "Ready for your next cohort?",
+      "subtitle": "Activate the workspace before the next cohort starts. The first MIUR monitoring window closes 12 months after diploma — better not start late.",
+      "registerButton": "Get Started Free",
+      "demoButton": "Schedule a Demo",
+      "features": {
+        "free": "Free Core always included",
+        "miur": "MIUR schema kept up to date",
+        "setup": "10-minute setup"
+      }
     }
   },
   "forHighSchools": {
     "hero": {
-      "badge": "For High School Orientation Coordinators · Free forever",
-      "title": "Help students discover their path — at no cost to the school",
-      "subtitle": "Give your students a AI-verified portfolio that follows them into university or the job market. PCTO tracking, orientation data, ministry reporting — all free. Funded by the companies that recruit from your graduates, never from schools.",
-      "cta": "Activate — free forever",
-      "secondaryCta": "See University Features"
+      "badge": "For PCTO coordinators and orientation leads",
+      "title": "An orientation portfolio — not another PCTO spreadsheet",
+      "subtitle": "The 90/150/210 hours of PCTO end up in spreadsheets that get lost. University choices get made on a hunch. InTransparency keeps PCTO in an auditable ledger and gives the student a portfolio that follows them into university.",
+      "demoCta": "Schedule a Demo",
+      "registerCta": "Activate the School Workspace"
     },
-    "benefits": {
-      "0": {
-        "title": "Student project portfolios",
-        "description": "Students document PCTO experiences, school projects, and extracurriculars in a verified digital portfolio."
+    "socialProof": {
+      "eyebrow": "Built for high schools",
+      "title": "Built on the actual work of coordinators",
+      "pcto": {
+        "title": "PCTO-compliant",
+        "subtitle": "Law 145/2018 · MIUR guidelines",
+        "description": "90 hours at liceo, 150 at tecnico, 210 at professionale. Track conventions, hours completed, evaluations, and the formative project per student — ready for USR monitoring.",
+        "status": "Indicators covered"
       },
-      "1": {
-        "title": "Orientation with real data",
-        "description": "See which skills lead to which university paths and career outcomes. Guide students with evidence, not guesswork."
+      "orientation": {
+        "title": "Evidence-based orientation",
+        "subtitle": "DM 328/2022 · 30 hours of orientation",
+        "description": "The 30 hours of orientation (from year 3) generate data on interests and skills. The student picks a university knowing what they've actually done and how much they liked it — not just what they think they'll like.",
+        "status": "30h tracked"
+      }
+    },
+    "workspaceModules": {
+      "eyebrow": "School workspace",
+      "title": "Four modules for the PCTO → Orientation → Diploma cycle",
+      "subtitle": "Doesn't replace your electronic register — it covers what the register doesn't: student portfolio, real work, university choices. Free Core read-only; Premium unlocks writes and automations.",
+      "m1": {
+        "title": "PCTO Ledger",
+        "desc": "Convention, hours completed, company tutor + school tutor evaluations, formative project. Auto-generated paperwork and per-student remaining-hours calculator."
       },
-      "2": {
-        "title": "PCTO tracking and reporting",
-        "description": "Track alternanza scuola-lavoro experiences from placement through completion. Exportable reports for ministry compliance."
+      "m2": {
+        "title": "Orientation Insights",
+        "desc": "The 30 orientation hours generate data on observed aptitudes and skills. Export the orientation dossier for family meetings and class councils."
       },
-      "3": {
-        "title": "University-ready profiles",
-        "description": "When your students move to university, their AI-verified portfolio transfers with them — giving them a head start."
+      "m3": {
+        "title": "Portfolio Portability",
+        "desc": "When the student enrols at university, the portfolio (PCTO, projects, languages, certifications) follows them. Partner universities in the network read the verified data — the high school keeps existing in the student's CV."
       },
-      "title": "What InTransparency does for high schools"
+      "m4": {
+        "title": "Family Communications",
+        "desc": "Parents (for under-18 students) get access to the PCTO ledger and digital consent for conventions. No more paper forms forgotten in backpacks."
+      },
+      "compliance": "For under-18 students: digital parental consent for every PCTO convention, profiling off by default, GDPR-K (Art. 8) active. The school is the data controller — we are processor only.",
+      "pricingCta": "See pricing",
+      "demoCta": "Request a demo"
+    },
+    "compliance": {
+      "eyebrow": "PCTO compliance",
+      "title": "PCTO hours you don't lose anymore",
+      "lede": "A 600-student high school manages around 90,000 PCTO hours per year across licei, tecnici, and professionali. Tracked per student, not per class — at the university interview the data needs to be accurate for that specific kid.",
+      "metricLabel": "Current school year",
+      "metricValue": "94%",
+      "metricThreshold": "Students with complete PCTO hours",
+      "rows": {
+        "header": {
+          "track": "Track",
+          "students": "Students",
+          "required": "Required hours",
+          "completed": "Completed",
+          "missing": "Catch-up needed"
+        },
+        "0": {
+          "track": "Liceo Scientifico",
+          "students": "180",
+          "required": "90 hrs",
+          "completed": "97%",
+          "missing": "5 students"
+        },
+        "1": {
+          "track": "ITT Computer Science",
+          "students": "210",
+          "required": "150 hrs",
+          "completed": "92%",
+          "missing": "16 students"
+        },
+        "2": {
+          "track": "IPSIA Maintenance",
+          "students": "85",
+          "required": "210 hrs",
+          "completed": "88%",
+          "missing": "10 students"
+        }
+      },
+      "footnote": "Sample data. Your workspace shows real classes with drill-down per student, convention, and evaluation."
+    },
+    "demo": {
+      "eyebrow": "Portfolio preview",
+      "title": "The dossier the student takes to university",
+      "lede": "When a graduating student enrols at university, the verified portfolio follows them. Here's an example of what the university receives at registration — and why it changes the orientation interview.",
+      "fileLabel": "portfolio_handoff_student.json",
+      "preview": "{\n  \"student\": \"Marta R.\",\n  \"diploma\": \"Liceo Scientifico — Applied Sciences track\",\n  \"final_grade\": \"94/100\",\n  \"pcto\": [\n    { \"company\": \"Bayer Italia\", \"hours\": 80, \"role\": \"R&D shadow\", \"evaluation\": \"excellent\" },\n    { \"company\": \"FabLab Bergamo\", \"hours\": 30, \"project\": \"3D-printed prosthesis\" }\n  ],\n  \"orientation\": {\n    \"hours_completed\": 30,\n    \"sectors_of_interest\": [\"biotech\", \"biomedical engineering\"]\n  },\n  \"projects\": [\n    { \"title\": \"Enzyme kinetics model\", \"validated_by\": \"Prof. Bianchi\" }\n  ]\n}"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "How high schools use InTransparency",
+      "items": {
+        "0": {
+          "question": "Does it cost the school anything?",
+          "answer": "Free Core is free for every high school: 50 AI queries/month, 30-day audit log, read access to all 4 workspace modules. Premium €39/mo or €390/yr (30-day trial) unlocks writes, PCTO reminder automations, USR-monitoring exports, and family communications. Invoices can be issued to the school or to the PNRR Orientation budget."
+        },
+        "1": {
+          "question": "Does it replace the electronic register?",
+          "answer": "No, it's complementary. The electronic register handles grades, attendance, and didactic communications — that's fine. InTransparency handles what the register doesn't: the student portfolio, PCTO ledger, orientation dossier. Anagraphic data can be imported via CSV from your register."
+        },
+        "2": {
+          "question": "Under-18 students: how do you handle GDPR?",
+          "answer": "For minors we apply GDPR Art. 8 (GDPR-K): the school is data controller, we are external processor. Mandatory digital parental consent for every PCTO convention, profiling off by default, no portfolio publication without explicit parental consent. For adults the consent passes to the student."
+        },
+        "3": {
+          "question": "How does the handoff to university work?",
+          "answer": "The student decides what to make portable (Portfolio Portability, module M3). Partner universities in the network read the verified data at enrolment — the orientation interview starts from what the student has actually done, not what they claim. Data is exportable in Europass v3 format."
+        },
+        "4": {
+          "question": "Do PCTO companies contact us directly?",
+          "answer": "No — the Mediation Inbox module (part of Free Core) ensures every company message to your students is reviewed by a coordinator first. You approve, edit, or reject. Full audit trail, tutorial accountability respected."
+        }
+      }
     },
     "cta": {
-      "title": "Interested in a pilot?",
-      "subtitle": "We're exploring partnerships with forward-thinking high schools. Let's talk about what would work for your students.",
-      "button": "Get in Touch"
+      "title": "Ready for the next school year?",
+      "subtitle": "Activate the workspace before September. The first PCTO hours start counting from year three — better to structure now than chase conventions in May.",
+      "registerButton": "Get Started Free",
+      "demoButton": "Schedule a Demo",
+      "features": {
+        "free": "Free Core always included",
+        "gdprk": "GDPR-K for minors",
+        "setup": "10-minute setup"
+      }
     }
   },
   "forTechparks": {
