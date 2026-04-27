@@ -2190,10 +2190,79 @@
   },
   "forStudents": {
     "hero": {
-      "badge": "For Students — Every Discipline, Every Path",
-      "title": "Discover What You're Really Good At.",
-      "titleHighlight": "Then Prove It.",
-      "subtitle": "Upload your projects. Our technology maps your real skills. Your university verifies them. You get a portfolio that speaks for itself — no CV rewriting, no guessing."
+      "badge": "For students — every discipline, every path",
+      "title": "Your work speaks for itself. Stop rewriting another CV.",
+      "subtitle": "Upload theses, code, reports, designs. Our AI extracts skills from the actual files, normalizes grades against ESCO, and shows your portfolio to recruiters who actually search those skills. Optional professor endorsement as a bonus signal."
+    },
+    "metrics": {
+      "title": "What changes with a verified portfolio",
+      "subtitle": "Numbers built for people who send CVs and get no reply.",
+      "items": {
+        "0": {
+          "value": "€0",
+          "label": "Always free for students",
+          "source": "Optional Premium €5/mo or €45/yr · 30-day trial"
+        },
+        "1": {
+          "value": "1 portfolio",
+          "label": "Replaces 50 cold applications",
+          "source": "Recruiters find you by skill, not the other way around"
+        },
+        "2": {
+          "value": "Every file",
+          "label": "Code, theses, design, video, presentations",
+          "source": "Multi-format upload; skills emerge automatically"
+        }
+      }
+    },
+    "comparison": {
+      "title": "CV-land vs verified portfolio",
+      "before": {
+        "label": "CV only",
+        "items": {
+          "0": "Send the same application to 50 companies",
+          "1": "Skills stay on paper — nobody verifies them",
+          "2": "First interview becomes a self-presentation test",
+          "3": "Your university projects sit in a drawer",
+          "4": "Companies don't know if you actually do what you claim"
+        }
+      },
+      "after": {
+        "label": "Verified portfolio",
+        "items": {
+          "0": "Upload once — recruiters find you by skill",
+          "1": "Skills extracted by AI from the files you actually produced",
+          "2": "First interview starts from your work, not blank slides",
+          "3": "Every project stays in the portfolio after graduation too",
+          "4": "Companies see evidence, not claims"
+        }
+      }
+    },
+    "evidence": {
+      "title": "What we extract from your projects",
+      "items": {
+        "0": "Skills mapped to the EU ESCO taxonomy",
+        "1": "Grades normalized across all European systems (28/30 = 1.7 DE = 15/20 FR)",
+        "2": "Optional professor endorsement as a bonus signal"
+      },
+      "explainer": "Everything published and auditable at /algorithm-registry. Credentials are Ed25519-signed and EU-Digital-Wallet compatible. You control what's public, what's only for verified recruiters, what's private."
+    },
+    "personas": {
+      "title": "Every student, every path",
+      "items": {
+        "0": {
+          "title": "Looking for the first experience",
+          "description": "No work experience yet? University projects count. Upload what you've built; companies see what you can do before the interview."
+        },
+        "1": {
+          "title": "Pivoting to a new field",
+          "description": "Switching industries? Transferable skills emerge from projects — you don't have to explain them in a cover letter, you show them."
+        },
+        "2": {
+          "title": "Considering moving abroad",
+          "description": "Italian grades normalized for Germany, France, Netherlands. Skills mapped to ESCO readable across all 27 EU countries. Nothing to explain to a recruiter abroad."
+        }
+      }
     },
     "steps": {
       "0": {
@@ -9416,11 +9485,53 @@
   },
   "forUniversityStudents": {
     "hero": {
-      "badge": "For University Students",
+      "badge": "For university students",
       "title": "Your academic work, verified and visible to employers",
-      "subtitle": "Build a portfolio of projects, grades, and skills that companies can actually verify. Not another CV — real proof of what you can do.",
-      "cta": "Create Your Portfolio",
-      "secondaryCta": "Try the Demo"
+      "subtitle": "Theses, research projects, graded exams. Upload once — our AI extracts skills, normalizes grades against ESCO, shows your portfolio to recruiters who actually search those skills. No CV to rewrite for every application.",
+      "cta": "Create your portfolio",
+      "secondaryCta": "Browse the pool"
+    },
+    "metrics": {
+      "title": "What changes with a verified university portfolio",
+      "subtitle": "Numbers built for people finishing university who don't want to go back to the CV.",
+      "items": {
+        "0": {
+          "value": "27 EU",
+          "label": "Countries where your grades are readable",
+          "source": "Italian 28/30 = German 1.7 = French 15/20 — automatic"
+        },
+        "1": {
+          "value": "€0",
+          "label": "Always free for students",
+          "source": "Optional Premium €5/mo or €45/yr · 30-day trial"
+        },
+        "2": {
+          "value": "Optional endorsement",
+          "label": "Professor validation as bonus signal",
+          "source": "When the professor has time — the portfolio works without it too"
+        }
+      }
+    },
+    "comparison": {
+      "title": "What changes vs 'send CVs everywhere'",
+      "before": {
+        "label": "Classic approach",
+        "items": {
+          "0": "Send 50 applications, get 2 replies",
+          "1": "Your university projects sit in a drawer",
+          "2": "Italian grades to explain to recruiters abroad",
+          "3": "Endorsement from your supervisor requested by email, received as PDF"
+        }
+      },
+      "after": {
+        "label": "With InTransparency",
+        "items": {
+          "0": "Upload once, recruiters find you by skill",
+          "1": "Theses and projects become proof of what you can do",
+          "2": "Grades normalized via ESCO, readable across Europe",
+          "3": "Optional professor endorsement directly on the platform"
+        }
+      }
     },
     "benefits": {
       "0": {
@@ -9449,11 +9560,53 @@
   },
   "forITSStudents": {
     "hero": {
-      "badge": "For ITS Academy Students",
+      "badge": "For ITS Academy students",
       "title": "Your hands-on skills deserve to be seen",
-      "subtitle": "You built real things during your ITS program. Show it to companies with a portfolio verified by your institute.",
-      "cta": "Create Your Portfolio",
-      "secondaryCta": "Try the Demo"
+      "subtitle": "Project work, curricular tirocini, production-line retrofits. What you actually built during the ITS program — visible to companies that hire ITS graduates, not lost in an attached PDF.",
+      "cta": "Create your portfolio",
+      "secondaryCta": "Browse the pool"
+    },
+    "metrics": {
+      "title": "What changes vs the usual 'I get the diploma and that's it'",
+      "subtitle": "Numbers built for ITS graduates who want to be hired within 12 months (the MIUR metric).",
+      "items": {
+        "0": {
+          "value": "87%",
+          "label": "Average ITS placement rate — above the EU average",
+          "source": "Italian ITS system data, MIUR monitoring"
+        },
+        "1": {
+          "value": "CTS companies",
+          "label": "See your project work before the interview",
+          "source": "Comitato Tecnico-Scientifico companies search the pool directly"
+        },
+        "2": {
+          "value": "€0",
+          "label": "Always free for students",
+          "source": "Optional Premium €5/mo or €45/yr · 30-day trial"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Diploma + portfolio vs diploma alone",
+      "before": {
+        "label": "ITS diploma only",
+        "items": {
+          "0": "The diploma counts, but the project work stays with you, not visible",
+          "1": "Companies know you did an ITS, not what specific problem you solved",
+          "2": "Internship done = relationship done, no continuity",
+          "3": "EU mobility: the Italian ITS system to explain to a German recruiter"
+        }
+      },
+      "after": {
+        "label": "Diploma + verified portfolio",
+        "items": {
+          "0": "The PLC you retrofitted in your tirocinio becomes an explorable case",
+          "1": "Companies see the specific problem you solved",
+          "2": "Tirocinio host companies can continue the relationship",
+          "3": "ITS grades and skills normalized to ESCO, readable across Europe"
+        }
+      }
     },
     "benefits": {
       "0": {
@@ -9482,11 +9635,53 @@
   },
   "forHighSchoolStudents": {
     "hero": {
-      "badge": "For High School Students",
-      "title": "Start building your future before university",
-      "subtitle": "Document your PCTO projects, extracurriculars, and skills in a portfolio that follows you into university and work.",
-      "cta": "Create Your Portfolio",
-      "secondaryCta": "Learn More"
+      "badge": "For high school students",
+      "title": "The portfolio that follows you to university",
+      "subtitle": "PCTO, school projects, extracurriculars. Document what you do now — the portfolio stays yours through university and the first job. No more 'lost the third-year PCTO certificate'.",
+      "cta": "Create your portfolio",
+      "secondaryCta": "Learn more"
+    },
+    "metrics": {
+      "title": "What changes if you track now, not in May of year 5",
+      "subtitle": "Numbers built for year-3/4 students accumulating PCTO hours that have to be tracked anyway.",
+      "items": {
+        "0": {
+          "value": "90/150/210h",
+          "label": "PCTO documented per student, not per class",
+          "source": "Liceo / Tecnico / Professionale — the MIUR-required hours"
+        },
+        "1": {
+          "value": "Portable",
+          "label": "The portfolio follows you to university and your first job",
+          "source": "Partner universities in the network read the data at enrolment"
+        },
+        "2": {
+          "value": "GDPR-K",
+          "label": "For under-18s: parental consent, profiling off",
+          "source": "GDPR Art. 8 · school is the data controller"
+        }
+      }
+    },
+    "comparison": {
+      "title": "PCTO in the school's Excel sheet vs PCTO you take with you",
+      "before": {
+        "label": "Without portfolio",
+        "items": {
+          "0": "PCTO hours end up in the coordinator's Excel sheet",
+          "1": "The host-company certificate arrives as PDF and gets lost in Downloads",
+          "2": "At the university interview you don't remember what exactly you did",
+          "3": "Extracurricular activities stay as one CV line"
+        }
+      },
+      "after": {
+        "label": "With InTransparency",
+        "items": {
+          "0": "PCTO hours live in your portfolio, tracked per experience",
+          "1": "The certificate is uploaded and digitally signed by the company",
+          "2": "At the university interview you bring a structured dossier",
+          "3": "Activities become documented projects, not lines of text"
+        }
+      }
     },
     "benefits": {
       "0": {

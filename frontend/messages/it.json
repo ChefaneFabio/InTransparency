@@ -2230,10 +2230,79 @@
   },
   "forStudents": {
     "hero": {
-      "badge": "Per Studenti — Ogni Disciplina, Ogni Percorso",
-      "title": "Scopri in Cosa Sei Davvero Bravo.",
-      "titleHighlight": "Poi Dimostralo.",
-      "subtitle": "Carica i tuoi progetti. La nostra AI estrae le competenze reali dal codice, dalle tesi e dai report — controllabili dagli artefatti. Bonus opzionale: un docente può aggiungere il suo endorsement quando ha tempo. Il portfolio parla da solo — niente CV da riscrivere."
+      "badge": "Per studenti — ogni disciplina, ogni percorso",
+      "title": "Il tuo lavoro parla. Non riscrivere un altro CV.",
+      "subtitle": "Carichi tesi, codice, report, design. La nostra AI estrae le skill dai file reali, normalizza i voti su ESCO, e mostra il tuo portfolio ai recruiter che cercano davvero quelle skill. Endorsement docente opzionale come segnale aggiuntivo."
+    },
+    "metrics": {
+      "title": "Quello che cambia con un portfolio verificato",
+      "subtitle": "Numeri pensati per chi spedisce CV e non riceve risposta.",
+      "items": {
+        "0": {
+          "value": "€0",
+          "label": "Sempre gratis per gli studenti",
+          "source": "Premium opzionale a €5/mese o €45/anno · 30 giorni di prova"
+        },
+        "1": {
+          "value": "1 portfolio",
+          "label": "Sostituisce 50 candidature mandate alla cieca",
+          "source": "I recruiter ti trovano per skill, non viceversa"
+        },
+        "2": {
+          "value": "Ogni file",
+          "label": "Codice, tesi, design, video, presentazioni",
+          "source": "Caricamento multi-formato; le skill emergono in automatico"
+        }
+      }
+    },
+    "comparison": {
+      "title": "CV-land vs portfolio verificato",
+      "before": {
+        "label": "Solo CV",
+        "items": {
+          "0": "Spedisci la stessa candidatura a 50 aziende",
+          "1": "Le skill restano sulla carta — nessuno le verifica",
+          "2": "Il primo colloquio diventa un test di self-presentation",
+          "3": "I tuoi progetti universitari restano nel cassetto",
+          "4": "Le aziende non sanno se sai davvero fare quello che dichiari"
+        }
+      },
+      "after": {
+        "label": "Portfolio verificato",
+        "items": {
+          "0": "Carichi una volta — i recruiter ti trovano per skill",
+          "1": "Skill estratte dall'AI dai file che hai effettivamente prodotto",
+          "2": "Il primo colloquio parte dal tuo lavoro, non da slide vuote",
+          "3": "Ogni progetto resta nel portfolio anche dopo la laurea",
+          "4": "Le aziende vedono evidenze, non dichiarazioni"
+        }
+      }
+    },
+    "evidence": {
+      "title": "Cosa estraiamo dai tuoi progetti",
+      "items": {
+        "0": "Skill mappate sulla tassonomia ESCO UE",
+        "1": "Voti normalizzati tra tutti i sistemi europei (28/30 = 1.7 DE = 15/20 FR)",
+        "2": "Endorsement docente opzionale come segnale aggiuntivo"
+      },
+      "explainer": "Tutto pubblicato e auditabile su /algorithm-registry. Le credenziali sono firmate Ed25519 e compatibili con l'EU Digital Wallet. Tu controlli cosa è pubblico, cosa è solo per recruiter verificati, cosa è privato."
+    },
+    "personas": {
+      "title": "Ogni studente, ogni percorso",
+      "items": {
+        "0": {
+          "title": "Chi sta cercando la prima esperienza",
+          "description": "Niente esperienze lavorative? I progetti universitari valgono. Carichi quello che hai costruito; le aziende vedono cosa sai fare prima del colloquio."
+        },
+        "1": {
+          "title": "Chi cambia percorso",
+          "description": "Stai virando da un settore all'altro? Le skill trasversali emergono dai progetti — non devi raccontarle in un cover letter, le mostri."
+        },
+        "2": {
+          "title": "Chi pensa di emigrare",
+          "description": "Voti italiani normalizzati per Germania, Francia, Olanda. Skill mappate ESCO leggibili in tutti i 27 paesi UE. Niente da spiegare al recruiter all'estero."
+        }
+      }
     },
     "steps": {
       "0": {
@@ -9444,11 +9513,53 @@
   },
   "forUniversityStudents": {
     "hero": {
-      "badge": "Per Studenti Universitari",
+      "badge": "Per studenti universitari",
       "title": "Il tuo lavoro accademico, verificato e visibile ai datori di lavoro",
-      "subtitle": "Costruisci un portfolio di progetti, voti e competenze che le aziende possono verificare. Non un altro CV — prove concrete di cosa sai fare.",
-      "cta": "Crea il Tuo Portfolio",
-      "secondaryCta": "Prova la Demo"
+      "subtitle": "Tesi, progetti di ricerca, esami con voto. Carichi una volta — la nostra AI estrae le skill, normalizza i voti su ESCO, mostra il tuo portfolio ai recruiter che cercano davvero quelle competenze. Niente CV da riscrivere per ogni candidatura.",
+      "cta": "Crea il tuo portfolio",
+      "secondaryCta": "Esplora il pool"
+    },
+    "metrics": {
+      "title": "Quello che cambia con un portfolio universitario verificato",
+      "subtitle": "Numeri pensati per chi sta finendo l'università e non vuole tornare al CV.",
+      "items": {
+        "0": {
+          "value": "27 UE",
+          "label": "Paesi dove i tuoi voti sono leggibili",
+          "source": "28/30 italiano = 1.7 tedesco = 15/20 francese — automatico"
+        },
+        "1": {
+          "value": "€0",
+          "label": "Sempre gratis per gli studenti",
+          "source": "Premium opzionale a €5/mese o €45/anno · 30 giorni di prova"
+        },
+        "2": {
+          "value": "Endorsement opzionale",
+          "label": "Validazione del docente come segnale aggiuntivo",
+          "source": "Quando il docente ha tempo — il portfolio funziona anche senza"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Cosa cambia rispetto a 'spedisci CV ovunque'",
+      "before": {
+        "label": "Approccio classico",
+        "items": {
+          "0": "Spedisci 50 candidature, ricevi 2 risposte",
+          "1": "I tuoi progetti universitari restano nel cassetto",
+          "2": "Voti italiani da spiegare a recruiter all'estero",
+          "3": "Endorsement del relatore richiesto via mail, ricevuto in PDF"
+        }
+      },
+      "after": {
+        "label": "Con InTransparency",
+        "items": {
+          "0": "Carichi una volta, i recruiter ti trovano per skill",
+          "1": "Tesi e progetti diventano la prova di cosa sai fare",
+          "2": "Voti normalizzati ESCO, leggibili in tutta Europa",
+          "3": "Endorsement opzionale del docente direttamente sulla piattaforma"
+        }
+      }
     },
     "benefits": {
       "0": {
@@ -9477,11 +9588,53 @@
   },
   "forITSStudents": {
     "hero": {
-      "badge": "Per Studenti ITS Academy",
+      "badge": "Per studenti ITS Academy",
       "title": "Le tue competenze pratiche meritano di essere viste",
-      "subtitle": "Hai costruito cose reali durante il tuo percorso ITS. Mostralo alle aziende con un portfolio verificato con AI dal tuo istituto.",
-      "cta": "Crea il Tuo Portfolio",
-      "secondaryCta": "Prova la Demo"
+      "subtitle": "Project work, tirocini curriculari, retrofit di linee di produzione. Cosa hai effettivamente costruito durante il percorso ITS — visibile alle aziende che assumono diplomati ITS, non perso in un PDF allegato.",
+      "cta": "Crea il tuo portfolio",
+      "secondaryCta": "Esplora il pool"
+    },
+    "metrics": {
+      "title": "Quello che cambia rispetto al solito 'consegno il diploma e basta'",
+      "subtitle": "Numeri pensati per chi diploma ITS e vuole essere assunto entro 12 mesi (la metrica MIUR).",
+      "items": {
+        "0": {
+          "value": "87%",
+          "label": "Tasso di placement medio degli ITS — sopra la media UE",
+          "source": "Dato di sistema ITS Italia, monitoraggio MIUR"
+        },
+        "1": {
+          "value": "Aziende del CTS",
+          "label": "Vedono il tuo project work prima del colloquio",
+          "source": "Le aziende del Comitato Tecnico-Scientifico ricercano direttamente sul pool"
+        },
+        "2": {
+          "value": "€0",
+          "label": "Sempre gratis per gli studenti",
+          "source": "Premium opzionale a €5/mese o €45/anno · 30 giorni di prova"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Diploma + portfolio vs solo diploma",
+      "before": {
+        "label": "Solo diploma ITS",
+        "items": {
+          "0": "Il diploma vale, ma il project work resta tuo, non visibile",
+          "1": "Le aziende sanno che hai fatto un ITS, non quale problema hai risolto",
+          "2": "Tirocinio finito = relazione finita, niente continuità",
+          "3": "Trasferta UE: il sistema ITS italiano da spiegare al recruiter tedesco"
+        }
+      },
+      "after": {
+        "label": "Diploma + portfolio verificato",
+        "items": {
+          "0": "Il PLC che hai retrofittato in stage diventa un caso esplorabile",
+          "1": "Le aziende vedono il problema specifico che hai risolto",
+          "2": "Le aziende del tirocinio possono continuare il rapporto",
+          "3": "Voti ITS e skill normalizzate ESCO, leggibili in tutta Europa"
+        }
+      }
     },
     "benefits": {
       "0": {
@@ -9510,11 +9663,53 @@
   },
   "forHighSchoolStudents": {
     "hero": {
-      "badge": "Per Studenti delle Superiori",
-      "title": "Inizia a costruire il tuo futuro prima dell'università",
-      "subtitle": "Documenta i tuoi progetti PCTO, le attività extracurriculari e le competenze in un portfolio che ti segue nell'università e nel lavoro.",
-      "cta": "Crea il Tuo Portfolio",
-      "secondaryCta": "Scopri di Più"
+      "badge": "Per studenti delle superiori",
+      "title": "Il portfolio che ti segue all'università",
+      "subtitle": "PCTO, progetti scolastici, attività extracurriculari. Documenti adesso quello che fai — il portfolio resta tuo all'università e nel primo lavoro. Niente più 'dimenticato l'attestato del PCTO in terza'.",
+      "cta": "Crea il tuo portfolio",
+      "secondaryCta": "Scopri di più"
+    },
+    "metrics": {
+      "title": "Quello che cambia se tieni traccia adesso, non a maggio del quinto",
+      "subtitle": "Numeri pensati per chi è in terza/quarta e sta accumulando ore PCTO che vanno tracciate per forza.",
+      "items": {
+        "0": {
+          "value": "90/150/210h",
+          "label": "PCTO documentate per studente, non per classe",
+          "source": "Liceo / Tecnico / Professionale — il monte ore richiesto dal MIUR"
+        },
+        "1": {
+          "value": "Portabile",
+          "label": "Il portfolio ti segue all'università e al primo lavoro",
+          "source": "Le università partner del network leggono il dato all'atto di iscrizione"
+        },
+        "2": {
+          "value": "GDPR-K",
+          "label": "Per minorenni: consenso parentale e profilazione disattivata",
+          "source": "GDPR Art. 8 · scuola titolare del trattamento"
+        }
+      }
+    },
+    "comparison": {
+      "title": "PCTO sul foglio Excel della scuola vs PCTO che ti porti dietro",
+      "before": {
+        "label": "Senza portfolio",
+        "items": {
+          "0": "Le ore PCTO finiscono in un foglio Excel del coordinatore",
+          "1": "L'attestato dell'azienda lo ricevi in PDF e lo perdi nella cartella Download",
+          "2": "Al colloquio universitario non sai esattamente cosa hai fatto",
+          "3": "Le attività extracurriculari restano scritte sul CV come una riga"
+        }
+      },
+      "after": {
+        "label": "Con InTransparency",
+        "items": {
+          "0": "Le ore PCTO sono nel tuo portfolio, tracciate per esperienza",
+          "1": "L'attestato viene caricato e firmato digitalmente dall'azienda",
+          "2": "Al colloquio universitario porti un dossier strutturato",
+          "3": "Le attività diventano progetti documentati, non righe di testo"
+        }
+      }
     },
     "benefits": {
       "0": {
