@@ -9474,69 +9474,267 @@
     }
   },
   "forSME": {
+    "badge": "For SMEs and small companies",
     "hero": {
-      "badge": "For SMEs and small companies — free up to 5 contacts a month",
-      "title": "Try the real talent pool free. Subscribe when you scale.",
-      "subtitle": "Browse all profiles free. Reach out to 5 candidates each month at no cost — quota resets on the 1st. When you need to contact more, switch to the €89/mo subscription. No credit packs, no per-contact fees, no agency middlemen.",
-      "cta": "Start free",
-      "secondaryCta": "Try Smart Search"
+      "title": "Your first hires shouldn't need a recruiter team",
+      "subtitle": "5 free verified contacts a month, then €89/mo for unlimited. No ATS to set up, no recruiter to hire, no credit pack to manage. The hiring manager is the platform's first (and only) user."
     },
-    "benefits": {
-      "0": {
-        "title": "Verified skills, not buzzwords",
-        "description": "Every project is real, often with optional professor endorsement (bonus signal). See actual grades, code, and outcomes — before you even talk to the candidate."
+    "practiceLabel": "In practice:",
+    "seeIt": "See it",
+    "metrics": {
+      "title": "The numbers that matter when you're an SME",
+      "subtitle": "Cost of one bad hire vs cost of the plan. An order of magnitude apart.",
+      "items": {
+        "0": {
+          "value": "€4,000",
+          "label": "Average cost of a bad hire for an Italian SME",
+          "source": "Industry estimate — turnover within 12 months"
+        },
+        "1": {
+          "value": "5 / mo",
+          "label": "Verified contacts free every month",
+          "source": "Resets on the 1st, no card required"
+        },
+        "2": {
+          "value": "0",
+          "label": "Recruiters or technical setup needed before you start",
+          "source": "You're hiring, you're using the platform"
+        }
+      }
+    },
+    "comparison": {
+      "title": "What you usually do vs what the platform does",
+      "before": {
+        "label": "Without InTransparency",
+        "items": {
+          "0": "LinkedIn DMs that nobody reads",
+          "1": "Stack of CVs you don't have time to screen",
+          "2": "Indeed posts that attract off-target profiles",
+          "3": "Recruiting agency: €5-15k per placement, 90-day lock-in",
+          "4": "Hiring manager spends 2 weeks writing a generic JD"
+        }
       },
-      "1": {
-        "title": "5 free contacts every month",
-        "description": "Search free. Contact up to 5 candidates per month at zero cost. Monthly reset gives you a recurring trial moment. When you need more, the path is one subscription — no credit packs to manage."
+      "after": {
+        "label": "With InTransparency",
+        "items": {
+          "0": "5 verified contacts per month, free, no card",
+          "1": "Search by what someone actually built, not what they wrote",
+          "2": "Decision Pack per candidate: portfolio + grades + projects in one document",
+          "3": "€89/mo subscription only when you exceed 5/mo",
+          "4": "The hiring manager works inside the platform — no middleman"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "What you get on day one",
+      "items": {
+        "verified": {
+          "title": "Verified candidates from day one",
+          "description": "Browse profiles with skills extracted by AI from real projects, often with optional professor endorsement as a bonus signal. Grades normalized across all EU systems.",
+          "concrete": "Search by skill on /explore — an Italian 28/30 = German 1.7 = French 15/20, automatically."
+        },
+        "noAts": {
+          "title": "No ATS to set up",
+          "description": "Shared inbox for the team, simple kanban (interesting → first contact → interview → offer). Operational in 5 minutes — no integrations, no training.",
+          "concrete": "5-minute setup from the console: invite teammates, create your first search, go."
+        },
+        "freeContacts": {
+          "title": "5 free contacts every month",
+          "description": "Browse everything, contact 5 candidates free per month. Quota visible in dashboard, resets on the 1st. No credit packs, no surprise billing.",
+          "concrete": "Monthly counter at /dashboard/recruiter. After the 5: subscribe or wait for the reset."
+        },
+        "decisionPack": {
+          "title": "Decision Pack per candidate",
+          "description": "Portfolio + AI-verified skills + contextualized grades + (optional) personality assessment in one document. Exportable as PDF or JSON.",
+          "concrete": "One click from the profile → branded PDF ready to share with decision-makers."
+        },
+        "pricing": {
+          "title": "Pricing that doesn't trap you",
+          "description": "€89/mo or €890/yr. Cancel any time from the console. No setup fee, no minimum, no per-contact fees. Corporate-domain accounts get 5/mo free; personal-email accounts get 2/mo.",
+          "concrete": "See /pricing — automatic VAT collection for Italian businesses."
+        },
+        "atsBridge": {
+          "title": "ATS bridge when you grow",
+          "description": "Already running Greenhouse, Lever, or Workday? The ATS bridge ships shortlisted candidates to your ATS via webhooks. €5,000 fee + €1,500/mo — only when you actually need it.",
+          "concrete": "Webhook events: match.created, credential.issued. See /integrations."
+        }
+      }
+    },
+    "personas": {
+      "title": "Built for the people who actually do the hiring",
+      "items": {
+        "founder": {
+          "title": "Founder / CEO",
+          "description": "You need 1-3 hires this quarter, not a recruiting org chart. The platform is the recruiter."
+        },
+        "manager": {
+          "title": "First hiring manager",
+          "description": "You're not full-time HR. You want to see real work and decide in two weeks, not in three rounds of phone calls."
+        },
+        "ops": {
+          "title": "Operations / HR-of-one",
+          "description": "Five contacts free. Subscription when I outgrow it. Cancel any time. Predictable cost, no surprises on the invoice."
+        }
+      }
+    },
+    "process": {
+      "title": "How it works, from sign-up to first hire",
+      "step1": "Free registration (no card). Browse the verified pool immediately.",
+      "step2": {
+        "before": "Use",
+        "link": "Smart Search",
+        "after": "to describe the profile in natural language (\"backend Python in Milan, 2 years experience, no remote-first\")."
       },
-      "2": {
-        "title": "Grades you understand",
-        "description": "Grades from every European system automatically normalized. An Italian 28/30 = a German 1.7 = a French 15/20."
+      "step3": "Contact up to 5 candidates per month at zero cost. Decision Pack downloadable for each.",
+      "step4": {
+        "before": "When you exceed 5/mo, subscribe at €89/mo or €890/yr. Cancel from the",
+        "link": "billing console",
+        "after": "any time."
       },
-      "3": {
-        "title": "Decision Pack for every candidate",
-        "description": "A complete dossier: portfolio, grades, personality, real skills. Everything you need to decide, in one document."
-      },
-      "title": "Why SMEs choose InTransparency"
+      "step5": "Add the ATS bridge only if and when the shared inbox stops being enough."
     },
     "cta": {
-      "title": "Start free. Subscribe when you've outgrown the free tier.",
-      "subtitle": "No card, no commitment. Five contacts every month at no cost. When you scale past that, one upgrade path: €89/mo subscription with unlimited contacts and the full AI suite.",
-      "button": "Start free"
+      "title": "Start free. Subscribe only when you actually need it.",
+      "subtitle": "No card. No commitment. Five verified contacts every month, forever. The subscription is a choice, not an obligation.",
+      "primary": "Start free",
+      "secondary": "Try Smart Search",
+      "trustItems": {
+        "0": "5 free contacts/mo (2 with personal email)",
+        "1": "GDPR + AI Act compliant",
+        "2": "Cancel any time"
+      }
     }
   },
   "forAgencies": {
+    "badge": "For agencies and HR consultancies",
     "hero": {
-      "badge": "For Agencies and HR Professionals",
-      "title": "Verified candidates for your clients, at scale",
-      "subtitle": "Access a talent pool of real student work, often with optional professor endorsement (bonus signal). Search by skills, grades, projects — present clients with evidence-backed candidates.",
-      "cta": "Create Your Account",
-      "secondaryCta": "Company Features"
+      "title": "Pre-verified candidates for your clients — without the screening hours",
+      "subtitle": "Agencies that bill on placements measure margin in time-to-shortlist. InTransparency is the pre-verification layer: search by AI-extracted skills, present Decision Packs your client trusts, keep the client relationship in your CRM."
     },
-    "benefits": {
-      "0": {
-        "title": "Screening already done",
-        "description": "Real student projects (with optional professor endorsement (bonus signal)), normalized grades, personality assessments. Present clients with data, not just CVs."
+    "practiceLabel": "In practice:",
+    "seeIt": "See it",
+    "metrics": {
+      "title": "Time-to-shortlist: the metric that decides your margin",
+      "subtitle": "Numbers built for agencies that bill per placement, not per hour.",
+      "items": {
+        "0": {
+          "value": "5x",
+          "label": "Faster from CV to shortlist than traditional sourcing",
+          "source": "Internal estimate — agencies on the platform vs manual LinkedIn flow"
+        },
+        "1": {
+          "value": "27 EU",
+          "label": "Countries covered via ESCO portability",
+          "source": "Grades automatically normalized across all EU systems"
+        },
+        "2": {
+          "value": "1 click",
+          "label": "To export a candidate's white-label Decision Pack",
+          "source": "Branded PDF with your logo, or JSON for your CRM"
+        }
+      }
+    },
+    "comparison": {
+      "title": "What burns hours vs what frees time",
+      "before": {
+        "label": "Traditional sourcing",
+        "items": {
+          "0": "Hours on LinkedIn for a single role",
+          "1": "Self-reported skills you have to re-verify by hand",
+          "2": "Client refusing candidates because 'the CV looks weak'",
+          "3": "Cross-border searches: each country a different system",
+          "4": "Half a day to prep a shortlist report for the client"
+        }
       },
-      "1": {
-        "title": "Conversational smart search",
-        "description": "Describe the ideal profile in natural language. the platform finds the best-matching candidates with transparent explanations."
+      "after": {
+        "label": "With InTransparency",
+        "items": {
+          "0": "Search verified profiles in seconds",
+          "1": "Skills extracted by AI from real projects, code, design files",
+          "2": "Decision Pack per candidate — the client sees evidence, not a promise",
+          "3": "Grades normalized across all EU systems automatically",
+          "4": "White-label export branded with your agency, in one click"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "What you get on day one",
+      "items": {
+        "pool": {
+          "title": "Pre-verified candidate pool",
+          "description": "Browse profiles with skills extracted by AI from real artifacts — normalized grades, optional professor endorsement as a bonus signal. Search on a data point that exists, not a claim.",
+          "concrete": "Search like \"Cybersecurity Roma 30/30\" and get a shortlist with the match explanation."
+        },
+        "decisionPack": {
+          "title": "White-label Decision Pack",
+          "description": "Per candidate, a complete dossier: portfolio, contextualized grades, verified skills, (optional) personality. Exportable as PDF with your logo, or JSON for your CRM.",
+          "concrete": "PDF/JSON export — the client sees 'curated by [your agency]', not InTransparency."
+        },
+        "smartSearch": {
+          "title": "Conversational Smart Search",
+          "description": "Describe the profile in natural language, even nuanced (\"senior data scientist with pharma experience, evaluating moves, OK Rome or remote\"). The AI finds matches and explains why.",
+          "concrete": "Try it on /demo/ai-search — no filters to configure."
+        },
+        "crossBorder": {
+          "title": "EU grade normalization",
+          "description": "Italian 28/30 = German 1.7 = French 15/20 = Dutch 8.5 = UK 83%. Search cross-border without translating or explaining grading systems to your client.",
+          "concrete": "See /algorithm-registry for the published, auditable normalization model."
+        },
+        "billing": {
+          "title": "Pricing built for agencies",
+          "description": "Per-seat or per-shortlist on request — we don't want you paying €89/mo per recruiter when you have 12 recruiters. Talk to us about volume and we'll build an agency-tier plan.",
+          "concrete": "Contact us for volume pricing — invoiceable to Srl/SAS, automatic VAT collection."
+        },
+        "ownership": {
+          "title": "Your CRM, your relationships",
+          "description": "We don't compete with you on client ownership. The candidate-to-client pipeline lives in your CRM. We're the verified data input; you're the relationship that closes.",
+          "concrete": "Read-only API to import candidates into your CRM. Scoped keys, audit log on every call."
+        }
+      }
+    },
+    "personas": {
+      "title": "Built for the people who live on placements",
+      "items": {
+        "founder": {
+          "title": "Founder / Agency Director",
+          "description": "You bill on placements. Time-to-shortlist is margin. Verified pool = lower COGS without diluting quality."
+        },
+        "recruiter": {
+          "title": "Senior recruiter",
+          "description": "Less LinkedIn doomscrolling, more hours in the client conversation — where the value actually gets created."
+        },
+        "account": {
+          "title": "Account / client services",
+          "description": "When the client asks 'how do you know this person can actually do the job?' you send the Decision Pack. Conversation closed."
+        }
+      }
+    },
+    "process": {
+      "title": "How an agency gets activated",
+      "step1": "Register your agency. The account is free to browse and search.",
+      "step2": {
+        "before": "Use",
+        "link": "Smart Search",
+        "after": "to build shortlists for the clients you manage."
       },
-      "2": {
-        "title": "Candidate comparison",
-        "description": "Compare up to 5 candidates side-by-side on skills, grades, projects, and personality. Export for your clients."
+      "step3": "Export Decision Packs (white-label PDF or JSON) with your branding and send them to the client.",
+      "step4": {
+        "before": "When volume scales, talk to us about an agency-tier plan — per-seat or per-shortlist. See also our",
+        "link": "EU compliance matrix",
+        "after": "if the client is in the public sector or healthcare."
       },
-      "3": {
-        "title": "Cross-border talent",
-        "description": "Search talent across Europe with grades automatically normalized between systems. One pool, all countries."
-      },
-      "title": "Why agencies use InTransparency"
+      "step5": "Optional: integrate with your CRM via API. The client relationship stays 100% yours, always."
     },
     "cta": {
-      "title": "Give your clients better candidates",
-      "subtitle": "Register for free. Search real talent. Present candidates with proof, not promises.",
-      "button": "Get Started Free"
+      "title": "Cut time-to-shortlist. Keep the client relationship.",
+      "subtitle": "Register your agency free. Browse the pool, try Smart Search, export a test Decision Pack. When volume grows, we'll talk volume pricing.",
+      "primary": "Start free — agency account",
+      "secondary": "Company features",
+      "trustItems": {
+        "0": "White-label Decision Pack",
+        "1": "Read-only API for your CRM",
+        "2": "Volume pricing on request"
+      }
     }
   },
   "forStartups": {

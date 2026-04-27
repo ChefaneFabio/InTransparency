@@ -1,75 +1,283 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Link } from '@/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRight } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import {
+  Users,
+  Layers,
+  FileText,
+  MessageSquare,
+  Globe2,
+  Receipt,
+  Database,
+  ArrowRight,
+  X,
+  Check,
+} from 'lucide-react'
+import { Link } from '@/navigation'
+import { motion } from 'framer-motion'
+import HeroVisual from '@/components/3d/HeroVisual'
 import HeroCTA from '@/components/ui/HeroCTA'
+import { StickyCTA } from '@/components/engagement/StickyCTA'
+
+/**
+ * /for-agencies — agency / HR-consultancy segment funnel.
+ *
+ * Mirrors the for-enterprise + for-sme structure (hero + metrics +
+ * pain/value comparison + capability cards + personas + process +
+ * CTA). Lead message: agencies bill on placements; time-to-shortlist
+ * is the margin. We're the verified pre-screen layer; the client
+ * relationship stays in the agency's CRM.
+ */
+
+interface Capability {
+  key: string
+  icon: any
+  endpoint?: string
+}
+
+const CAPABILITIES: Capability[] = [
+  { key: 'pool',         icon: Layers },
+  { key: 'decisionPack', icon: FileText },
+  { key: 'smartSearch',  icon: MessageSquare, endpoint: '/demo/ai-search' },
+  { key: 'crossBorder',  icon: Globe2,        endpoint: '/algorithm-registry' },
+  { key: 'billing',      icon: Receipt,       endpoint: '/contact?role=agency&subject=volume-pricing' },
+  { key: 'ownership',    icon: Database },
+]
+
+const METRICS = ['0', '1', '2'] as const
+const PERSONAS = ['founder', 'recruiter', 'account'] as const
+const COMPARE_ROWS = ['0', '1', '2', '3', '4'] as const
 
 export default function ForAgenciesPage() {
   const t = useTranslations('forAgencies')
 
-  const benefits = [
-    { title: t('benefits.0.title'), description: t('benefits.0.description') },
-    { title: t('benefits.1.title'), description: t('benefits.1.description') },
-    { title: t('benefits.2.title'), description: t('benefits.2.description') },
-    { title: t('benefits.3.title'), description: t('benefits.3.description') },
-  ]
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
-      <section className="relative overflow-hidden bg-foreground text-white">
-        <img src="/images/brand/meeting.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center min-h-[420px] flex flex-col justify-center">
-          <p className="text-sm text-blue-300 font-medium mb-4">{t('hero.badge')}</p>
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">{t('hero.title')}</h1>
-          <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">{t('hero.subtitle')}</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <HeroCTA href="/auth/register/recruiter" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
-              {t('hero.cta')}
-            </HeroCTA>
-            <HeroCTA href="/for-companies" variant="secondary" className="!border-white/30 !text-white hover:!bg-white/10">
-              {t('hero.secondaryCta')}
-            </HeroCTA>
-          </div>
+
+      {/* Hero — text + visual side-by-side */}
+      <section className="container max-w-6xl mx-auto px-4 pt-28 pb-12">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge variant="outline" className="mb-4">
+              <Users className="h-3 w-3 mr-1" />
+              {t('badge')}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-5">
+              {t('hero.title')}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+              {t('hero.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <HeroCTA href="/auth/register/recruiter?type=agency" variant="primary">
+                {t('cta.primary')}
+              </HeroCTA>
+              <HeroCTA href="/for-companies" variant="secondary">
+                {t('cta.secondary')}
+              </HeroCTA>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="hidden lg:block"
+          >
+            <HeroVisual className="max-w-[460px] ml-auto" />
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">{t('benefits.title')}</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {benefits.map((b, i) => (
-              <Card key={i} className="border-2 hover:border-primary/30 transition-colors">
+      <main className="container max-w-5xl mx-auto px-4 pb-16 space-y-10">
+        {/* Hard-numbers row */}
+        <section>
+          <div className="mb-6 max-w-2xl">
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">{t('metrics.title')}</h2>
+            <p className="text-sm text-muted-foreground">{t('metrics.subtitle')}</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {METRICS.map(idx => (
+              <Card key={idx}>
                 <CardContent className="pt-6">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold">{i + 1}</div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">{b.title}</h3>
-                      <p className="text-sm text-muted-foreground">{b.description}</p>
-                    </div>
+                  <div className="text-4xl font-bold tracking-tight text-primary tabular-nums leading-none mb-3">
+                    {t(`metrics.items.${idx}.value`)}
+                  </div>
+                  <div className="text-sm font-medium text-foreground mb-2">
+                    {t(`metrics.items.${idx}.label`)}
+                  </div>
+                  <div className="text-xs italic text-muted-foreground">
+                    {t(`metrics.items.${idx}.source`)}
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-12 bg-primary text-white">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
-          <p className="text-blue-200 mb-8 max-w-xl mx-auto">{t('cta.subtitle')}</p>
-          <HeroCTA href="/auth/register/recruiter" variant="primary" className="!bg-white !text-blue-900 !border-white hover:!bg-blue-50">
-            {t('cta.button')}
-          </HeroCTA>
-        </div>
-      </section>
+        {/* Pain vs value */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('comparison.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card className="border-red-200 dark:border-red-900/50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm uppercase tracking-wider text-red-700 dark:text-red-400">
+                  {t('comparison.before.label')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2.5">
+                  {COMPARE_ROWS.map(i => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                      <X className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <span>{t(`comparison.before.items.${i}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-950/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                  {t('comparison.after.label')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2.5">
+                  {COMPARE_ROWS.map(i => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                      <Check className="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                      <span>{t(`comparison.after.items.${i}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Capabilities */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('capabilities.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {CAPABILITIES.map(c => {
+              const Icon = c.icon
+              return (
+                <Card key={c.key} className="hover:border-primary/40 transition-colors">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Icon className="h-5 w-5 text-primary" />
+                      {t(`capabilities.items.${c.key}.title`)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {t(`capabilities.items.${c.key}.description`)}
+                    </p>
+                    <p className="text-xs text-foreground/80 mb-2">
+                      <span className="font-semibold">{t('practiceLabel')}</span>{' '}
+                      {t(`capabilities.items.${c.key}.concrete`)}
+                    </p>
+                    {c.endpoint && (
+                      <a
+                        href={c.endpoint}
+                        className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+                      >
+                        {t('seeIt')}
+                        <ArrowRight className="h-3 w-3" />
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </section>
+
+        {/* Personas */}
+        <section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
+            {t('personas.title')}
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {PERSONAS.map(key => (
+              <Card key={key}>
+                <CardContent className="pt-6">
+                  <h3 className="text-sm font-semibold text-foreground mb-2">
+                    {t(`personas.items.${key}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t(`personas.items.${key}.description`)}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Process */}
+        <Card className="bg-primary/5 border-primary/30">
+          <CardContent className="pt-5 pb-5">
+            <h2 className="text-lg font-semibold mb-3">{t('process.title')}</h2>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm text-muted-foreground">
+              <li>{t('process.step1')}</li>
+              <li>
+                {t('process.step2.before')}{' '}
+                <Link href="/demo/ai-search" className="text-primary hover:underline">
+                  {t('process.step2.link')}
+                </Link>{' '}
+                {t('process.step2.after')}
+              </li>
+              <li>{t('process.step3')}</li>
+              <li>
+                {t('process.step4.before')}{' '}
+                <Link href="/eu-compliance" className="text-primary hover:underline">
+                  {t('process.step4.link')}
+                </Link>{' '}
+                {t('process.step4.after')}
+              </li>
+              <li>{t('process.step5')}</li>
+            </ol>
+          </CardContent>
+        </Card>
+
+        {/* Final CTA */}
+        <Card className="border-primary/40">
+          <CardContent className="pt-6 pb-6">
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">{t('cta.title')}</h2>
+            <p className="text-sm text-muted-foreground mb-5 max-w-2xl">{t('cta.subtitle')}</p>
+            <div className="flex flex-wrap gap-3 mb-4">
+              <HeroCTA href="/auth/register/recruiter?type=agency" variant="primary">
+                {t('cta.primary')}
+              </HeroCTA>
+              <HeroCTA href="/for-companies" variant="secondary">
+                {t('cta.secondary')}
+              </HeroCTA>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[11px] text-muted-foreground uppercase tracking-[0.12em]">
+              <span>{t('cta.trustItems.0')}</span>
+              <span className="text-muted-foreground/40">·</span>
+              <span>{t('cta.trustItems.1')}</span>
+              <span className="text-muted-foreground/40">·</span>
+              <span>{t('cta.trustItems.2')}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
+
+      <StickyCTA href="/auth/register/recruiter?type=agency" text={t('cta.primary')} show />
       <Footer />
     </div>
   )

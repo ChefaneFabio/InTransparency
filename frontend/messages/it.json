@@ -9502,69 +9502,267 @@
     }
   },
   "forSME": {
+    "badge": "Per PMI e piccole aziende",
     "hero": {
-      "badge": "Per PMI e piccole aziende — gratis fino a 5 contatti al mese",
-      "title": "Provi il pool di talenti verificati con AI gratis. Ti abboni quando scali.",
-      "subtitle": "Sfogli tutti i profili gratis. Contatti fino a 5 candidati ogni mese senza costi — quota che si resetta il 1°. Quando ti serve di più, passi all'abbonamento da €89/mese. Niente pacchetti crediti, niente fee per contatto, niente intermediari.",
-      "cta": "Inizia gratis",
-      "secondaryCta": "Prova la Ricerca Intelligente"
+      "title": "Le tue prime assunzioni non dovrebbero richiedere un team di recruiting",
+      "subtitle": "5 contatti gratis al mese, poi €89/mese per illimitati. Niente ATS da configurare, niente recruiter da assumere, niente pacchetti crediti da gestire. Il decision-maker che assume è il primo (e unico) utente."
     },
-    "benefits": {
-      "0": {
-        "title": "Competenze verificate, non parole",
-        "description": "Ogni progetto è reale, spesso con validazione opzionale dei docenti (bonus). Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
+    "practiceLabel": "In pratica:",
+    "seeIt": "Vedi",
+    "metrics": {
+      "title": "I numeri che contano se sei una PMI",
+      "subtitle": "Costo di una cattiva assunzione vs costo del piano. Differenza di un ordine di grandezza.",
+      "items": {
+        "0": {
+          "value": "€4.000",
+          "label": "Costo medio di un'assunzione sbagliata in una PMI italiana",
+          "source": "Stima di settore — turnover entro 12 mesi"
+        },
+        "1": {
+          "value": "5 / mese",
+          "label": "Contatti verificati gratis ogni mese",
+          "source": "Reset il 1° del mese, niente carta richiesta"
+        },
+        "2": {
+          "value": "0",
+          "label": "Recruiter o setup tecnico necessari prima di iniziare",
+          "source": "Sei tu che assumi, sei tu che usi la piattaforma"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Quello che di solito fai vs quello che fa la piattaforma",
+      "before": {
+        "label": "Senza InTransparency",
+        "items": {
+          "0": "DM su LinkedIn che nessuno legge",
+          "1": "Pila di CV che non hai tempo di leggere",
+          "2": "Annunci su Indeed che attirano profili non in target",
+          "3": "Agenzia di recruiting: €5-15k a placement, vincolo 90 giorni",
+          "4": "Hiring manager spende 2 settimane a scrivere una JD generica"
+        }
       },
-      "1": {
-        "title": "5 contatti gratis ogni mese",
-        "description": "Cerchi gratis. Contatti fino a 5 candidati al mese a costo zero. Il reset mensile ti dà un momento di trial ricorrente. Quando ti serve di più, c'è un solo percorso: l'abbonamento — niente pacchetti crediti da gestire."
+      "after": {
+        "label": "Con InTransparency",
+        "items": {
+          "0": "5 contatti verificati al mese, gratis, senza carta",
+          "1": "Cerchi per quello che uno ha effettivamente costruito",
+          "2": "Decision Pack per candidato: portfolio + voti + progetti in un documento",
+          "3": "Abbonamento €89/mese solo quando superi i 5/mese",
+          "4": "L'hiring manager lavora dalla piattaforma, niente intermediari"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Cosa ottieni dal primo giorno",
+      "items": {
+        "verified": {
+          "title": "Candidati verificati dal primo giorno",
+          "description": "Sfogli profili con competenze estratte dall'AI dai progetti reali, spesso con validazione opzionale del docente. Voti normalizzati tra tutti i sistemi UE.",
+          "concrete": "Cerca per skill su /explore — un 28/30 italiano = 1.7 tedesco = 15/20 francese, automatico."
+        },
+        "noAts": {
+          "title": "Niente ATS da configurare",
+          "description": "Inbox condivisa per il team, kanban semplice (interessante → primo contatto → colloquio → offerta). Sei operativo in 5 minuti — non servono integrazioni, non serve formazione.",
+          "concrete": "Setup in 5 minuti dalla console: invita i colleghi, crea la prima ricerca, parti."
+        },
+        "freeContacts": {
+          "title": "5 contatti gratis ogni mese",
+          "description": "Sfogli tutto, contatti 5 candidati gratis al mese. Quota visibile in dashboard, reset il 1° del mese. Niente pacchetti crediti, niente surprise billing.",
+          "concrete": "Contatore mensile su /dashboard/recruiter. Dopo i 5: scegli se abbonarti o aspettare il reset."
+        },
+        "decisionPack": {
+          "title": "Decision Pack per candidato",
+          "description": "Portfolio + competenze verificate con AI + voti contestualizzati + (opzionale) assessment di personalità in un solo documento. Esportabile in PDF o JSON.",
+          "concrete": "Un click dal profilo → PDF brandato pronto da condividere con i decision-maker."
+        },
+        "pricing": {
+          "title": "Prezzi che non ti incastrano",
+          "description": "€89/mese o €890/anno. Cancellazione in qualsiasi momento dalla console. Niente setup fee, niente minimo, niente fee per contatto. Le aziende con email aziendale partono con 5/mese; le email personali con 2/mese.",
+          "concrete": "Vedi /pricing — VAT collection automatico per le partite IVA italiane."
+        },
+        "atsBridge": {
+          "title": "Bridge ATS quando cresci",
+          "description": "Hai già Greenhouse, Lever o Workday? L'ATS bridge invia i candidati selezionati al tuo ATS via webhook. €5.000 fee + €1.500/mese — solo quando ti serve davvero.",
+          "concrete": "Eventi webhook: match.created, credential.issued. Vedi /integrations."
+        }
+      }
+    },
+    "personas": {
+      "title": "Pensata per chi assume davvero",
+      "items": {
+        "founder": {
+          "title": "Founder / CEO",
+          "description": "Ti servono 1-3 assunzioni questo trimestre, non un organigramma di recruiting. La piattaforma è il recruiter."
+        },
+        "manager": {
+          "title": "Primo hiring manager",
+          "description": "Non sei HR full-time. Vuoi vedere lavoro vero e decidere in due settimane, non in tre giri di telefonate."
+        },
+        "ops": {
+          "title": "Operations / HR di una persona",
+          "description": "Cinque contatti gratis. Abbonamento quando supero. Cancellazione quando voglio. Costo prevedibile, niente sorprese in fattura."
+        }
+      }
+    },
+    "process": {
+      "title": "Come funziona, dalla registrazione alla prima assunzione",
+      "step1": "Registrazione gratuita (nessuna carta). Sfogli subito il pool verificato.",
+      "step2": {
+        "before": "Usi la",
+        "link": "Ricerca Intelligente",
+        "after": "per descrivere il profilo in linguaggio naturale (\"backend Python a Milano, 2 anni esperienza, no remote-first\")."
       },
-      "2": {
-        "title": "Voti che capisci",
-        "description": "I voti di ogni sistema europeo normalizzati automaticamente. Un 28/30 italiano = un 1.7 tedesco = un 15/20 francese."
+      "step3": "Contatti fino a 5 candidati al mese a costo zero. Decision Pack scaricabile per ognuno.",
+      "step4": {
+        "before": "Quando superi i 5/mese, ti abboni a €89/mese o €890/anno. Cancellabile dalla",
+        "link": "console fatture",
+        "after": "in qualsiasi momento."
       },
-      "3": {
-        "title": "Decision Pack per ogni candidato",
-        "description": "Un dossier completo: portfolio, voti, personalità, competenze verificate con AI. Tutto ciò che serve per decidere, in un documento."
-      },
-      "title": "Perché le PMI scelgono InTransparency"
+      "step5": "Aggiungi il bridge ATS solo se e quando l'inbox condivisa non basta più."
     },
     "cta": {
-      "title": "Inizia gratis. Ti abboni quando hai superato il piano Free.",
-      "subtitle": "Niente carta, niente impegno. Cinque contatti ogni mese a costo zero. Quando scali oltre, c'è un solo percorso: abbonamento da €89/mese con contatti illimitati e suite AI completa.",
-      "button": "Inizia gratis"
+      "title": "Inizia gratis. Ti abboni solo quando ne hai bisogno.",
+      "subtitle": "Niente carta. Niente impegno. Cinque contatti verificati ogni mese, per sempre. L'abbonamento è una scelta, non un obbligo.",
+      "primary": "Inizia gratis",
+      "secondary": "Prova la Ricerca Intelligente",
+      "trustItems": {
+        "0": "5 contatti gratis/mese (2 con email personale)",
+        "1": "Conforme GDPR + AI Act",
+        "2": "Cancellazione in qualsiasi momento"
+      }
     }
   },
   "forAgencies": {
+    "badge": "Per agenzie e società di consulenza HR",
     "hero": {
-      "badge": "Per Agenzie e Professionisti HR",
-      "title": "Candidati verificati per i tuoi clienti, su scala",
-      "subtitle": "Accedi a un pool di talenti con competenze verificate con AI dalle università. Cerca per competenze, voti, progetti — presenta ai tuoi clienti candidati già validati.",
-      "cta": "Crea il Tuo Account",
-      "secondaryCta": "Funzionalità Aziende"
+      "title": "Candidati pre-verificati per i tuoi clienti — senza ore di screening",
+      "subtitle": "Le agenzie che fatturano sui placement misurano il margine in tempo-a-shortlist. InTransparency è il livello di pre-verifica: cerchi per competenze estratte dall'AI, presenti Decision Pack che il cliente capisce, mantieni la relazione cliente nel tuo CRM."
     },
-    "benefits": {
-      "0": {
-        "title": "Screening già fatto",
-        "description": "Progetti reali (con validazione opzionale dei docenti (bonus)), voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
+    "practiceLabel": "In pratica:",
+    "seeIt": "Vedi",
+    "metrics": {
+      "title": "Tempo a shortlist: la metrica che decide il margine",
+      "subtitle": "Numeri pensati per chi fattura sul placement, non sulle ore.",
+      "items": {
+        "0": {
+          "value": "5x",
+          "label": "Più veloce dal CV alla shortlist rispetto al sourcing tradizionale",
+          "source": "Stima interna su agenzie che usano la piattaforma vs flusso LinkedIn manuale"
+        },
+        "1": {
+          "value": "27 UE",
+          "label": "Paesi coperti via portabilità ESCO",
+          "source": "Voti normalizzati automaticamente tra tutti i sistemi UE"
+        },
+        "2": {
+          "value": "1 click",
+          "label": "Per esportare il Decision Pack white-label di un candidato",
+          "source": "PDF brandato con il tuo logo o JSON per il tuo CRM"
+        }
+      }
+    },
+    "comparison": {
+      "title": "Quello che ti consuma le ore vs quello che ti libera tempo",
+      "before": {
+        "label": "Sourcing tradizionale",
+        "items": {
+          "0": "Ore su LinkedIn per un singolo ruolo",
+          "1": "Skill auto-dichiarate da ri-verificare a mano",
+          "2": "Cliente che rifiuta candidati perché 'il CV è debole'",
+          "3": "Ricerche cross-border: ogni paese un sistema diverso",
+          "4": "Mezzo giorno a preparare il report shortlist per il cliente"
+        }
       },
-      "1": {
-        "title": "Ricerca Intelligente conversazionale",
-        "description": "Descrivi il profilo ideale in linguaggio naturale. Il sistema trova i candidati più compatibili con spiegazioni trasparenti."
+      "after": {
+        "label": "Con InTransparency",
+        "items": {
+          "0": "Cerchi profili già verificati in pochi secondi",
+          "1": "Skill estratte dall'AI da progetti, codice, file di design reali",
+          "2": "Decision Pack per candidato — il cliente vede l'evidenza, non la promessa",
+          "3": "Voti normalizzati tra tutti i sistemi UE in automatico",
+          "4": "Export white-label con il tuo branding, in un click"
+        }
+      }
+    },
+    "capabilities": {
+      "title": "Cosa ottieni dal primo giorno",
+      "items": {
+        "pool": {
+          "title": "Pool candidati pre-verificato",
+          "description": "Sfogli profili con skill estratte dall'AI dai progetti reali — voti normalizzati, validazione opzionale dei docenti come bonus signal. Cerchi su un dato che esiste, non su una dichiarazione.",
+          "concrete": "Cerca tipo \"Cybersecurity Roma 30/30\" e ottieni shortlist con spiegazione del match."
+        },
+        "decisionPack": {
+          "title": "Decision Pack white-label",
+          "description": "Per ogni candidato, un dossier completo: portfolio, voti contestualizzati, competenze verificate, (opzionale) personalità. Esportabile in PDF con il tuo logo o in JSON per il tuo CRM.",
+          "concrete": "PDF/JSON export — il client vede 'a cura di [tua agenzia]', non InTransparency."
+        },
+        "smartSearch": {
+          "title": "Ricerca conversazionale",
+          "description": "Descrivi il profilo in linguaggio naturale, anche complesso (\"data scientist senior con esperienza farma, valuta carriera, OK Roma o remoto\"). L'AI trova i match e spiega perché.",
+          "concrete": "Provala su /demo/ai-search — niente filtri da configurare."
+        },
+        "crossBorder": {
+          "title": "Normalizzazione voti UE",
+          "description": "Italiano 28/30 = tedesco 1.7 = francese 15/20 = olandese 8.5 = inglese 83%. Cerchi cross-border senza dover tradurre o spiegare il sistema di voti al cliente.",
+          "concrete": "Vedi /algorithm-registry per il modello di normalizzazione, pubblicato e auditabile."
+        },
+        "billing": {
+          "title": "Pricing pensato per agenzie",
+          "description": "Per-seat o per-shortlist su richiesta — non vogliamo che paghi €89/mese a recruiter quando hai 12 recruiter. Parliamo di volumi e ti facciamo un piano agency-tier.",
+          "concrete": "Contattaci per pricing su volume — fattura intestabile a Srl/SAS, VAT collection automatico."
+        },
+        "ownership": {
+          "title": "Il tuo CRM, le tue relazioni",
+          "description": "Non competiamo sul possesso del cliente. La pipeline candidato-cliente vive nel tuo CRM. Noi siamo il dato verificato in ingresso, tu sei la relazione che chiude.",
+          "concrete": "API read-only per importare candidati nel tuo CRM. Chiavi scoped, audit log su ogni call."
+        }
+      }
+    },
+    "personas": {
+      "title": "Pensata per chi vive di placement",
+      "items": {
+        "founder": {
+          "title": "Founder / Direttore agenzia",
+          "description": "Fatturi a placement. Tempo-a-shortlist è margine. Pool verificato = abbassi il COGS senza diluire la qualità."
+        },
+        "recruiter": {
+          "title": "Senior recruiter",
+          "description": "Meno doomscrolling su LinkedIn, più ore in conversazione con il cliente — dove il valore si crea davvero."
+        },
+        "account": {
+          "title": "Account / client services",
+          "description": "Quando il cliente chiede 'come fate a sapere che questa persona può davvero farlo?' mandi il Decision Pack. Conversazione chiusa."
+        }
+      }
+    },
+    "process": {
+      "title": "Come si attiva un'agenzia",
+      "step1": "Registri l'agenzia. L'account è gratuito per sfogliare e cercare.",
+      "step2": {
+        "before": "Usi la",
+        "link": "Ricerca Intelligente",
+        "after": "per costruire shortlist sui clienti che gestisci."
       },
-      "2": {
-        "title": "Confronto candidati",
-        "description": "Confronta fino a 5 candidati fianco a fianco su competenze, voti, progetti e personalità. Esporta per i tuoi clienti."
+      "step3": "Esporti Decision Pack (PDF white-label o JSON) con il tuo branding e li mandi al cliente.",
+      "step4": {
+        "before": "Quando il volume scala, parliamo di un piano agency-tier — per-seat o per-shortlist. Vedi anche la nostra",
+        "link": "matrice di conformità UE",
+        "after": "se il cliente è del settore pubblico o della sanità."
       },
-      "3": {
-        "title": "Talento transfrontaliero",
-        "description": "Cerca talento in tutta Europa con voti automaticamente normalizzati tra sistemi. Un pool, tutti i paesi."
-      },
-      "title": "Perché le agenzie usano InTransparency"
+      "step5": "Opzionale: integri con il tuo CRM via API. La relazione cliente resta 100% tua, sempre."
     },
     "cta": {
-      "title": "Dai ai tuoi clienti candidati migliori",
-      "subtitle": "Registrati gratis. Cerca talenti verificati con AI. Presenta candidati con prove, non promesse.",
-      "button": "Inizia Gratis"
+      "title": "Riduci il tempo a shortlist. Mantieni la relazione cliente.",
+      "subtitle": "Registra la tua agenzia gratis. Sfoglia il pool, prova la Ricerca Intelligente, esporta un Decision Pack di test. Quando il volume cresce, parliamo di pricing su volume.",
+      "primary": "Inizia gratis — account agenzia",
+      "secondary": "Funzionalità Aziende",
+      "trustItems": {
+        "0": "Decision Pack white-label",
+        "1": "API read-only per il tuo CRM",
+        "2": "Pricing su volume su richiesta"
+      }
     }
   },
   "forStartups": {
