@@ -1490,19 +1490,27 @@
   },
   "explore": {
     "hero": {
-      "badge": "Scopri Talenti Verificati con AI",
-      "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca portfolio studenti con competenze verificate con AI. Progetti autenticati dai partner formativi.",
-      "searchPlaceholder": "Cerca per nome, competenza o istituzione...",
+      "badge": "Pool studenti verificati",
+      "title": "Cerca tra portfolio verificati con AI",
+      "subtitle": "Skills estratte dai progetti reali di studenti universitari, ITS e scuole superiori. Voti normalizzati ESCO. Endorsement opzionale dei docenti come bonus signal.",
+      "searchPlaceholder": "Cerca per nome, skill, università o progetto...",
       "stats": {
-        "students": "Studenti",
-        "verified": "Verificato",
-        "skills": "Competenze"
+        "students": "Profili",
+        "universities": "Atenei",
+        "skills": "Competenze tracciate"
       }
     },
     "filters": {
       "title": "Filtri",
-      "clear": "Cancella",
+      "clear": "Reset",
+      "groups": {
+        "who": "Chi",
+        "where": "Da dove",
+        "verification": "Come verificato"
+      },
+      "skillsTrigger": "Filtra per skill",
+      "skillsTriggerActive": "Skill: {skill}",
+      "skillsPopoverTitle": "Filtra per skill",
       "fieldOfStudy": "Campo di Studio",
       "allFields": "Tutti i Campi",
       "university": "Partner Formativo",
@@ -1568,7 +1576,19 @@
         "skills": "Competenze"
       },
       "topSkills": "Competenze Principali",
-      "viewPortfolio": "Visualizza Portfolio"
+      "viewPortfolio": "Visualizza Portfolio",
+      "evidence": {
+        "title": "Cosa è verificato",
+        "skillsExtracted": "Skill estratte da {n, plural, one {# progetto} other {# progetti}}",
+        "gradesNormalized": "Voti normalizzati ESCO",
+        "endorsementYes": "Endorsement docenti: sì",
+        "endorsementNo": "Endorsement docenti: no"
+      },
+      "topProject": "Progetto in evidenza",
+      "sampleBadge": "Esempio"
+    },
+    "sample": {
+      "banner": "Profili di esempio — pilota attivo all'Università di Bergamo, altri partner formativi in arrivo. Ecco com'è strutturato un profilo verificato."
     },
     "cta": {
       "title": "Pronto per Essere Scoperto?",

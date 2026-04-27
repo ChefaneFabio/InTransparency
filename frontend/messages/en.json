@@ -1490,19 +1490,27 @@
   },
   "explore": {
     "hero": {
-      "badge": "Discover AI-Verified Talent",
-      "title": "Explore Student Portfolios",
-      "subtitle": "Search student portfolios with real project work. Endorsed by professors when available.",
-      "searchPlaceholder": "Search by name, skill, or school...",
+      "badge": "Verified student pool",
+      "title": "Search verified student portfolios",
+      "subtitle": "Skills extracted from real projects across universities, ITS academies, and high schools. Grades normalized via ESCO. Optional professor endorsement as a bonus signal.",
+      "searchPlaceholder": "Search by name, skill, school, or project…",
       "stats": {
-        "students": "Students",
-        "verified": "Verified",
-        "skills": "Skills"
+        "students": "Profiles",
+        "universities": "Schools",
+        "skills": "Skills tracked"
       }
     },
     "filters": {
       "title": "Filters",
-      "clear": "Clear",
+      "clear": "Reset",
+      "groups": {
+        "who": "Who",
+        "where": "From where",
+        "verification": "How verified"
+      },
+      "skillsTrigger": "Filter by skill",
+      "skillsTriggerActive": "Skill: {skill}",
+      "skillsPopoverTitle": "Filter by skill",
       "fieldOfStudy": "Field of Study",
       "allFields": "All Fields",
       "university": "Academic Partner",
@@ -1568,7 +1576,19 @@
         "skills": "Skills"
       },
       "topSkills": "Top Skills",
-      "viewPortfolio": "View Portfolio"
+      "viewPortfolio": "View Portfolio",
+      "evidence": {
+        "title": "What's verified",
+        "skillsExtracted": "Skills extracted from {n, plural, one {# project} other {# projects}}",
+        "gradesNormalized": "Grades normalized via ESCO",
+        "endorsementYes": "Professor endorsement: yes",
+        "endorsementNo": "Professor endorsement: no"
+      },
+      "topProject": "Featured project",
+      "sampleBadge": "Sample"
+    },
+    "sample": {
+      "banner": "Sample profiles — pilot active at Università di Bergamo, more academic partners rolling in. Here's how a verified profile is structured."
     },
     "cta": {
       "title": "Ready to Get Discovered?",
