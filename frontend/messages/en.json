@@ -2321,7 +2321,7 @@
         "2": {
           "value": "Your ATS",
           "label": "Greenhouse, Lever, Workday, SmartRecruiters via webhook",
-          "source": "ATS bridge €5,000 fee + €1,500/mo — optional, switch on when ready"
+          "source": "Optional ATS bridge add-on — see /pricing"
         }
       }
     },
@@ -9594,7 +9594,7 @@
         },
         "atsBridge": {
           "title": "ATS bridge when you grow",
-          "description": "Already running Greenhouse, Lever, or Workday? The ATS bridge ships shortlisted candidates to your ATS via webhooks. €5,000 fee + €1,500/mo — only when you actually need it.",
+          "description": "Already running Greenhouse, Lever, or Workday? The ATS bridge ships shortlisted candidates to your ATS via webhooks. Optional add-on, no setup fee — see /pricing.",
           "concrete": "Webhook events: match.created, credential.issued. See /integrations."
         }
       }
@@ -9858,7 +9858,7 @@
         },
         "atsBridge": {
           "title": "Optional ATS bridge",
-          "description": "Already on Greenhouse / Lever / Ashby? When you go from 5 to 50 employees, the ATS bridge ships shortlists to your ATS via webhook. €5,000 fee + €1,500/mo — only when you actually need it.",
+          "description": "Already on Greenhouse / Lever / Ashby? When you go from 5 to 50 employees, the ATS bridge ships shortlists to your ATS via webhook. Optional add-on, no setup fee — see /pricing.",
           "concrete": "Webhook events: match.created, credential.issued. See /integrations."
         }
       }

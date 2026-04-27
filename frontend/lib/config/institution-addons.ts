@@ -22,7 +22,6 @@ export type AddonPricingModel =
   | { kind: 'annual'; euros: number; note?: string }
   | { kind: 'monthly'; euros: number; note?: string }
   | { kind: 'per-unit'; eurosPerUnit: number; unitLabel: string; note?: string }
-  | { kind: 'one-time-plus-annual'; oneTimeEuros: number; annualEuros: number; note?: string }
   | { kind: 'custom'; note?: string }
 
 export interface InstitutionAddon {
@@ -91,10 +90,9 @@ export const INSTITUTION_ADDONS: InstitutionAddon[] = [
       "Two-way integration with your student records system. Placements sync automatically, graduation data flows in, mentors get auto-assigned from your org chart. We've worked with Esse3, U-GOV, CINECA, and Workday.",
     icon: Plug,
     pricing: {
-      kind: 'one-time-plus-annual',
-      oneTimeEuros: 5000,
-      annualEuros: 1500,
-      note: 'one-time setup + annual support',
+      kind: 'annual',
+      euros: 1500,
+      note: 'no setup fee — annual support included',
     },
     target: 'Italian universities with legacy ERP',
     status: 'beta',
@@ -175,20 +173,22 @@ export function formatAddonPrice(p: AddonPricingModel, locale: string = 'en'): s
       maximumFractionDigits: 0,
     }).format(n)
 
+  const isIt = locale === 'it'
+  const yearSuffix = isIt ? '/anno' : '/yr'
+  const monthSuffix = isIt ? '/mese' : '/mo'
+
   switch (p.kind) {
     case 'annual':
-      return `${euro(p.euros)} / yr`
+      return `${euro(p.euros)} ${yearSuffix}`
     case 'monthly':
-      return `${euro(p.euros)} / mo`
+      return `${euro(p.euros)} ${monthSuffix}`
     case 'per-unit':
-      return `${new Intl.NumberFormat(locale === 'it' ? 'it-IT' : 'en-US', {
+      return `${new Intl.NumberFormat(isIt ? 'it-IT' : 'en-US', {
         style: 'currency',
         currency: 'EUR',
         minimumFractionDigits: 2,
       }).format(p.eurosPerUnit)} / ${p.unitLabel}`
-    case 'one-time-plus-annual':
-      return `${euro(p.oneTimeEuros)} setup + ${euro(p.annualEuros)}/yr`
     case 'custom':
-      return 'Custom'
+      return isIt ? 'Su misura' : 'Custom'
   }
 }
