@@ -39,9 +39,20 @@ interface Props {
    *  so visitors see only what's actually available; the auth'd dashboard
    *  add-ons page leaves it false to surface the full roadmap. */
   excludeRoadmap?: boolean
+  /** Render "Talk to us" / "Su misura" instead of the euro figure for
+   *  every add-on. Public /pricing passes this so the only euro numbers on
+   *  the public site are the freemium plan prices; the auth'd dashboard
+   *  leaves it false (paying customers see actual numbers in-product). */
+  hidePrices?: boolean
 }
 
-export default function InstitutionAddonGrid({ authenticated, locale = 'en', only, excludeRoadmap }: Props) {
+export default function InstitutionAddonGrid({
+  authenticated,
+  locale = 'en',
+  only,
+  excludeRoadmap,
+  hidePrices,
+}: Props) {
   const t = useTranslations('dashboard.addonGrid')
   const filtered = only ? INSTITUTION_ADDONS.filter(a => only.includes(a.key)) : INSTITUTION_ADDONS
   const items = excludeRoadmap ? filtered.filter(a => a.status !== 'roadmap') : filtered
@@ -88,15 +99,17 @@ export default function InstitutionAddonGrid({ authenticated, locale = 'en', onl
             <div className="md:col-span-3 md:text-right flex flex-col md:items-end justify-between gap-4">
               <div>
                 <div
-                  className={`text-[18px] font-semibold tracking-tight tabular-nums ${
-                    isComingSoon ? 'text-slate-500' : 'text-slate-900 dark:text-white'
+                  className={`text-[18px] font-semibold tracking-tight ${
+                    hidePrices || isComingSoon ? 'text-slate-500' : 'text-slate-900 dark:text-white tabular-nums'
                   }`}
                 >
-                  {isComingSoon
-                    ? t('indicativePrice', { price: formatAddonPrice(a.pricing, locale) })
-                    : formatAddonPrice(a.pricing, locale)}
+                  {hidePrices
+                    ? t('talkToUs')
+                    : isComingSoon
+                      ? t('indicativePrice', { price: formatAddonPrice(a.pricing, locale) })
+                      : formatAddonPrice(a.pricing, locale)}
                 </div>
-                {'note' in a.pricing && a.pricing.note && (
+                {!hidePrices && 'note' in a.pricing && a.pricing.note && (
                   <div className="mt-1 text-[12px] text-slate-500 leading-snug max-w-[200px] md:ml-auto">
                     {a.pricing.note}
                   </div>

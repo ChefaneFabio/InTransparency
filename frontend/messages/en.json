@@ -3736,7 +3736,7 @@
         "title": "Academic partners: Free Core or Premium €39/mo",
         "description": "Free Core: 50 AI queries/month and 30-day audit log. Premium: unlimited AI, full audit log, CSV exports, reminder automations, and MIUR reports.",
         "enterpriseLabel": "Premium:",
-        "enterpriseDescription": "€39/mo or €390/yr · white-label, SSO, MIUR add-ons sold separately"
+        "enterpriseDescription": "€39/mo or €390/yr · white-label, SSO, MIUR add-ons — talk to us"
       },
       "companies": {
         "title": "Companies: free up to 5 contacts/month, then €89/mo",
@@ -4628,7 +4628,7 @@
       "items": {
         "0": {
           "question": "Is it free for universities?",
-          "answer": "Free Core is free for every academic partner: 50 AI queries/month, 30-day audit log, and read access to all 4 workspace modules. Premium (€39/mo or €390/yr, 30-day trial) unlocks unlimited AI, full audit log, CSV exports, reminder automations, and MIUR reports. Enterprise add-ons (white-label €14k/yr, SSO €2.5k/yr, MIUR pack €2.9k/yr) are sold separately."
+          "answer": "Free Core is free for every academic partner: 50 AI queries/month, 30-day audit log, and read access to all 4 workspace modules. Premium (€39/mo or €390/yr, 30-day trial) unlocks unlimited AI, full audit log, CSV exports, reminder automations, and MIUR reports. Enterprise add-ons for larger institutions (white-label, SSO, MIUR pack, ATS bridge) — talk to us."
         },
         "1": {
           "question": "How do we verify student projects?",
@@ -6572,6 +6572,7 @@
       "statusComingSoon": "Coming soon",
       "indicativePrice": "Indicative · {price}",
       "comingSoonNote": "Pricing finalized at GA · join the waitlist for early-bird discount",
+      "talkToUs": "Talk to us",
       "ctaWaitlist": "Join waitlist",
       "ctaRequest": "Request",
       "ctaTalk": "Talk to us"

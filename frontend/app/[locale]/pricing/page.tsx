@@ -441,7 +441,7 @@ export default function PricingPage() {
                 })}
               </p>
             </div>
-            <InstitutionAddonGrid cols={2} excludeRoadmap />
+            <InstitutionAddonGrid cols={2} excludeRoadmap hidePrices />
 
             <div className="mt-8 text-sm text-slate-600 dark:text-slate-400">
               {t('universities.roadmapHint', {

@@ -3611,7 +3611,7 @@
         "title": "Partner formativi: Free Core o Premium €39/mese",
         "description": "Free Core: 50 query AI/mese e audit log a 30 giorni. Premium: AI illimitato, audit log completo, export CSV, automazioni reminder e report MIUR.",
         "enterpriseLabel": "Premium:",
-        "enterpriseDescription": "€39/mese o €390/anno · add-on white-label, SSO, MIUR a parte"
+        "enterpriseDescription": "€39/mese o €390/anno · add-on white-label, SSO, MIUR — parla con noi"
       },
       "companies": {
         "title": "Aziende: gratis fino a 5 contatti/mese, poi €89/mese",
@@ -4504,7 +4504,7 @@
       "items": {
         "0": {
           "question": "È gratuito per le università?",
-          "answer": "Il Free Core è gratuito per tutti i partner formativi: 50 query AI/mese, audit log a 30 giorni, accesso ai 4 moduli del workspace in lettura. Premium (€39/mese o €390/anno, 30 giorni di prova) sblocca AI illimitato, audit log completo, export CSV, automazioni reminder e report MIUR. Add-on enterprise (white-label €14k/anno, SSO €2,5k/anno, MIUR pack €2,9k/anno) a parte."
+          "answer": "Il Free Core è gratuito per tutti i partner formativi: 50 query AI/mese, audit log a 30 giorni, accesso ai 4 moduli del workspace in lettura. Premium (€39/mese o €390/anno, 30 giorni di prova) sblocca AI illimitato, audit log completo, export CSV, automazioni reminder e report MIUR. Add-on enterprise per istituzioni più grandi (white-label, SSO, MIUR pack, ATS bridge) — parla con noi."
         },
         "1": {
           "question": "Come verifichiamo i progetti degli studenti?",
@@ -6447,6 +6447,7 @@
       "statusComingSoon": "In arrivo",
       "indicativePrice": "Indicativo · {price}",
       "comingSoonNote": "Prezzo definitivo al GA · iscriviti alla waitlist per lo sconto early-bird",
+      "talkToUs": "Su misura",
       "ctaWaitlist": "Iscriviti alla waitlist",
       "ctaRequest": "Richiedi",
       "ctaTalk": "Contattaci"
