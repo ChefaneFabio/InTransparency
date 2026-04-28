@@ -77,6 +77,13 @@ const OnboardingIcon = ({ name, className }: { name: string; className?: string 
 }
 
 type UserRole = 'STUDENT' | 'RECRUITER' | 'UNIVERSITY'
+type InstitutionTypeStudent = 'university' | 'its' | 'highschool' | 'bootcamp' | 'self' | 'other'
+type StudentStatus = 'studying' | 'graduated' | 'pivoted'
+
+const STUDENT_INSTITUTION_TYPES: InstitutionTypeStudent[] = [
+  'university', 'its', 'highschool', 'bootcamp', 'self', 'other',
+]
+const STUDENT_STATUSES: StudentStatus[] = ['studying', 'graduated', 'pivoted']
 
 interface OnboardingData {
   // Common
@@ -90,6 +97,8 @@ interface OnboardingData {
   degree: string
   graduationYear: string
   skills: string[]
+  institutionType: InstitutionTypeStudent | ''
+  status: StudentStatus | ''
 
   // Recruiter specific
   company: string
@@ -114,7 +123,7 @@ interface OnboardingData {
 }
 
 const steps = {
-  STUDENT: ['Profilo Base', 'Istituzione', 'Competenze', 'Completa'],
+  STUDENT: ['Tu + Formazione', 'Competenze', 'Completa'],
   RECRUITER: ['Profilo Base', 'Azienda', 'Preferenze', 'Completa'],
   UNIVERSITY: ['Istituzione', 'Referente', 'Sfide Attuali', 'Obiettivi', 'Completa']
 }
@@ -552,6 +561,8 @@ export default function OnboardingPage() {
     degree: '',
     graduationYear: '',
     skills: [],
+    institutionType: '',
+    status: '',
     company: '',
     jobTitle: '',
     companySize: '',
@@ -617,9 +628,13 @@ export default function OnboardingPage() {
         photo: data.photo || undefined,
       }
       if (userRole === 'STUDENT') {
+        // `university` is the generic institution-name column the rest of
+        // the app already reads from — works for any institutionType.
         profilePayload.university = data.university
         profilePayload.degree = data.degree
         profilePayload.graduationYear = data.graduationYear
+        if (data.institutionType) profilePayload.institutionType = data.institutionType
+        if (data.status) profilePayload.studentStatus = data.status
         if (data.skills.length > 0) profilePayload.skills = data.skills
       } else if (userRole === 'RECRUITER') {
         profilePayload.company = data.company
@@ -837,8 +852,178 @@ export default function OnboardingPage() {
         {/* Step Content */}
         <Card>
           <CardContent className="p-8">
-            {/* Step 0: Basic Profile (Student/Recruiter) */}
-            {currentStep === 0 && userRole !== 'UNIVERSITY' && (
+            {/* Step 0: Combined Profile + Formazione (Student) — 3-step flow */}
+            {currentStep === 0 && userRole === 'STUDENT' && (
+              <div className="space-y-6">
+                {/* ── Profile section ─────────────────────────────── */}
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-primary mb-3">
+                    {t('studentCombined.profileEyebrow')}
+                  </div>
+                  <div className="text-center mb-5">
+                    <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                      {data.photo ? (
+                        <img src={data.photo} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                      ) : (
+                        <User className="h-10 w-10 text-gray-400" />
+                      )}
+                    </div>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      className="hidden"
+                      onChange={handlePhotoUpload}
+                    />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={photoUploading}
+                    >
+                      {photoUploading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          {t('uploading')}
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="h-4 w-4 mr-2" />
+                          {t('uploadPhoto')}
+                        </>
+                      )}
+                    </Button>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">{t('firstNameLabel')}</Label>
+                      <Input
+                        id="firstName"
+                        value={data.firstName}
+                        onChange={(e) => setData(prev => ({ ...prev, firstName: e.target.value }))}
+                        placeholder={t('firstNamePlaceholder')}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">{t('lastNameLabel')}</Label>
+                      <Input
+                        id="lastName"
+                        value={data.lastName}
+                        onChange={(e) => setData(prev => ({ ...prev, lastName: e.target.value }))}
+                        placeholder={t('lastNamePlaceholder')}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 mt-4">
+                    <Label htmlFor="bio">{t('bioLabel')}</Label>
+                    <Textarea
+                      id="bio"
+                      value={data.bio}
+                      onChange={(e) => setData(prev => ({ ...prev, bio: e.target.value }))}
+                      placeholder={t('bioPlaceholder')}
+                      rows={3}
+                    />
+                  </div>
+                </div>
+
+                {/* ── Education section ──────────────────────────── */}
+                <div className="border-t pt-6">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-primary mb-1">
+                    {t('studentCombined.educationEyebrow')}
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {t('studentCombined.educationDesc')}
+                  </p>
+
+                  {/* Institution type chips */}
+                  <div className="space-y-2 mb-4">
+                    <Label>{t('institutionTypeLabelStudent')}</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {STUDENT_INSTITUTION_TYPES.map(type => (
+                        <Button
+                          key={type}
+                          type="button"
+                          variant={data.institutionType === type ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setData(prev => ({ ...prev, institutionType: type }))}
+                        >
+                          {t(`institutionTypes.${type}`)}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Institution name (placeholder adapts to type) */}
+                  <div className="space-y-2 mb-4">
+                    <Label htmlFor="university">{t('universityLabel')}</Label>
+                    <Input
+                      id="university"
+                      value={data.university}
+                      onChange={(e) => setData(prev => ({ ...prev, university: e.target.value }))}
+                      placeholder={
+                        data.institutionType
+                          ? t(`institutionPlaceholderByType.${data.institutionType}`)
+                          : t('universityPlaceholder')
+                      }
+                    />
+                  </div>
+
+                  {/* Degree (optional, placeholder adapts to type) */}
+                  <div className="space-y-2 mb-4">
+                    <Label htmlFor="degree">{t('degreeLabel')}</Label>
+                    <Input
+                      id="degree"
+                      value={data.degree}
+                      onChange={(e) => setData(prev => ({ ...prev, degree: e.target.value }))}
+                      placeholder={
+                        data.institutionType
+                          ? t(`degreePlaceholderByType.${data.institutionType}`)
+                          : t('degreePlaceholder')
+                      }
+                    />
+                  </div>
+
+                  {/* Status radio — accommodates studying/graduated/pivoted */}
+                  <div className="space-y-2 mb-4">
+                    <Label>{t('statusLabel')}</Label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {STUDENT_STATUSES.map(s => (
+                        <Button
+                          key={s}
+                          type="button"
+                          variant={data.status === s ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setData(prev => ({ ...prev, status: s }))}
+                          className="text-xs"
+                        >
+                          {t(`statusOptions.${s}`)}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Graduation year — label adapts to status, optional when pivoted */}
+                  {data.status && (
+                    <div className="space-y-2">
+                      <Label htmlFor="graduationYear">
+                        {t(`graduationYearLabelByStatus.${data.status}`)}
+                      </Label>
+                      <Input
+                        id="graduationYear"
+                        value={data.graduationYear}
+                        onChange={(e) => setData(prev => ({ ...prev, graduationYear: e.target.value }))}
+                        placeholder={t('graduationYearPlaceholder')}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Step 0: Basic Profile (Recruiter only — STUDENT has its own combined step above) */}
+            {currentStep === 0 && userRole === 'RECRUITER' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -993,47 +1178,7 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {/* Step 1: Role-specific info */}
-            {currentStep === 1 && userRole === 'STUDENT' && (
-              <div className="space-y-6">
-                <div className="text-center mb-6">
-                  <GraduationCap className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">{t('studentInfoTitle')}</h2>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="university">{t('universityLabel')}</Label>
-                    <Input
-                      id="university"
-                      value={data.university}
-                      onChange={(e) => setData(prev => ({ ...prev, university: e.target.value }))}
-                      placeholder={t('universityPlaceholder')}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="degree">{t('degreeLabel')}</Label>
-                    <Input
-                      id="degree"
-                      value={data.degree}
-                      onChange={(e) => setData(prev => ({ ...prev, degree: e.target.value }))}
-                      placeholder={t('degreePlaceholder')}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="graduationYear">{t('graduationYearLabel')}</Label>
-                    <Input
-                      id="graduationYear"
-                      value={data.graduationYear}
-                      onChange={(e) => setData(prev => ({ ...prev, graduationYear: e.target.value }))}
-                      placeholder={t('graduationYearPlaceholder')}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* STUDENT step 1 was Istituzione — merged into step 0. STUDENT now has 3 steps total: combined / skills / complete. Skills moved from currentStep===2 → currentStep===1 below. */}
 
             {currentStep === 1 && userRole === 'RECRUITER' && (
               <div className="space-y-6">
@@ -1135,8 +1280,8 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {/* Step 2: Skills/Preferences */}
-            {currentStep === 2 && userRole === 'STUDENT' && (
+            {/* STUDENT step 1: Skills (moved from step 2 in the old 4-step flow) */}
+            {currentStep === 1 && userRole === 'STUDENT' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />

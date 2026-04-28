@@ -14307,6 +14307,47 @@
     "degreePlaceholder": "e.g. Computer Engineering",
     "graduationYearLabel": "Expected Graduation Year",
     "graduationYearPlaceholder": "e.g. 2025",
+    "studentCombined": {
+      "profileEyebrow": "Who you are",
+      "educationEyebrow": "Your learning path",
+      "educationDesc": "University, ITS, high school, bootcamp, self-taught — all welcome."
+    },
+    "institutionTypeLabelStudent": "What kind of path?",
+    "institutionTypes": {
+      "university": "University",
+      "its": "ITS Academy",
+      "highschool": "High School",
+      "bootcamp": "Bootcamp / Intensive course",
+      "self": "Self-taught",
+      "other": "Other"
+    },
+    "institutionPlaceholderByType": {
+      "university": "e.g. Politecnico di Milano",
+      "its": "e.g. ITS Academy Meccatronico Veneto",
+      "highschool": "e.g. Liceo Scientifico A. Volta",
+      "bootcamp": "e.g. Boolean Careers, Le Wagon",
+      "self": "e.g. Coursera, edX, textbooks",
+      "other": "Path name"
+    },
+    "degreePlaceholderByType": {
+      "university": "e.g. Computer Engineering",
+      "its": "e.g. Senior Mechatronics Technician",
+      "highschool": "e.g. Scientific track",
+      "bootcamp": "e.g. Full-Stack Developer",
+      "self": "e.g. Web Development",
+      "other": "Specialization (optional)"
+    },
+    "statusLabel": "Where are you now?",
+    "statusOptions": {
+      "studying": "Currently studying",
+      "graduated": "Graduated / Finished",
+      "pivoted": "I pivoted / changed paths"
+    },
+    "graduationYearLabelByStatus": {
+      "studying": "Expected completion year",
+      "graduated": "Year completed",
+      "pivoted": "Last year attended (optional)"
+    },
     "companyInfoTitle": "Company Information",
     "companyNameLabel": "Company Name",
     "companyNamePlaceholder": "e.g. BMW Italia",

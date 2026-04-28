@@ -14335,6 +14335,47 @@
     "degreePlaceholder": "es. Ingegneria Informatica",
     "graduationYearLabel": "Anno di Laurea Previsto",
     "graduationYearPlaceholder": "es. 2025",
+    "studentCombined": {
+      "profileEyebrow": "Chi sei",
+      "educationEyebrow": "Il tuo percorso formativo",
+      "educationDesc": "Università, ITS, scuola, bootcamp, autodidatta — tutti benvenuti."
+    },
+    "institutionTypeLabelStudent": "Tipo di percorso",
+    "institutionTypes": {
+      "university": "Università",
+      "its": "ITS Academy",
+      "highschool": "Scuola Superiore",
+      "bootcamp": "Bootcamp / Corso intensivo",
+      "self": "Auto-didatta",
+      "other": "Altro"
+    },
+    "institutionPlaceholderByType": {
+      "university": "es. Politecnico di Milano",
+      "its": "es. ITS Academy Meccatronico Veneto",
+      "highschool": "es. Liceo Scientifico A. Volta",
+      "bootcamp": "es. Boolean Careers, Start2Impact",
+      "self": "es. Coursera, edX, libri di testo",
+      "other": "Nome del percorso"
+    },
+    "degreePlaceholderByType": {
+      "university": "es. Ingegneria Informatica",
+      "its": "es. Tecnico Superiore in Meccatronica",
+      "highschool": "es. Indirizzo Scientifico",
+      "bootcamp": "es. Full-Stack Developer",
+      "self": "es. Web Development",
+      "other": "Specializzazione (opzionale)"
+    },
+    "statusLabel": "A che punto sei?",
+    "statusOptions": {
+      "studying": "Sto studiando",
+      "graduated": "Diplomato / Laureato",
+      "pivoted": "Ho cambiato percorso"
+    },
+    "graduationYearLabelByStatus": {
+      "studying": "Anno previsto di completamento",
+      "graduated": "Anno conseguito",
+      "pivoted": "Ultimo anno frequentato (opzionale)"
+    },
     "companyInfoTitle": "Informazioni Aziendali",
     "companyNameLabel": "Nome Azienda",
     "companyNamePlaceholder": "es. BMW Italia",
