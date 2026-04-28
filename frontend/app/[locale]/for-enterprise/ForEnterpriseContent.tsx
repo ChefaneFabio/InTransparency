@@ -8,12 +8,12 @@ import { Button } from '@/components/ui/button'
 import {
   Building2,
   Shield,
-  Users,
   Zap,
   FileCheck,
   Workflow,
   ArrowRight,
-  Lock,
+  MessageSquare,
+  Code2,
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
@@ -30,13 +30,30 @@ interface Capability {
   endpoint?: string
 }
 
+// Order matters: discovery + realEvidence lead because they articulate
+// what an ATS *can't* do. atsIntegration is intentionally last —
+// "and yes, we feed your existing ATS too" — not the headline pitch.
 const CAPABILITIES: Capability[] = [
   {
-    titleKey: 'capabilities.atsIntegration.title',
-    descriptionKey: 'capabilities.atsIntegration.description',
-    concreteKey: 'capabilities.atsIntegration.concrete',
-    endpoint: '/en/integrations/agents',
-    icon: Workflow,
+    titleKey: 'capabilities.discovery.title',
+    descriptionKey: 'capabilities.discovery.description',
+    concreteKey: 'capabilities.discovery.concrete',
+    endpoint: '/demo/ai-search',
+    icon: MessageSquare,
+  },
+  {
+    titleKey: 'capabilities.realEvidence.title',
+    descriptionKey: 'capabilities.realEvidence.description',
+    concreteKey: 'capabilities.realEvidence.concrete',
+    endpoint: '/algorithm-registry',
+    icon: Code2,
+  },
+  {
+    titleKey: 'capabilities.aiActShift.title',
+    descriptionKey: 'capabilities.aiActShift.description',
+    concreteKey: 'capabilities.aiActShift.concrete',
+    endpoint: '/algorithm-registry',
+    icon: FileCheck,
   },
   {
     titleKey: 'capabilities.internalAi.title',
@@ -49,27 +66,15 @@ const CAPABILITIES: Capability[] = [
     titleKey: 'capabilities.euSovereignty.title',
     descriptionKey: 'capabilities.euSovereignty.description',
     concreteKey: 'capabilities.euSovereignty.concrete',
-    endpoint: '/en/eu-compliance',
+    endpoint: '/eu-compliance',
     icon: Shield,
   },
   {
-    titleKey: 'capabilities.aiActShift.title',
-    descriptionKey: 'capabilities.aiActShift.description',
-    concreteKey: 'capabilities.aiActShift.concrete',
-    endpoint: '/en/algorithm-registry',
-    icon: FileCheck,
-  },
-  {
-    titleKey: 'capabilities.teamSeats.title',
-    descriptionKey: 'capabilities.teamSeats.description',
-    concreteKey: 'capabilities.teamSeats.concrete',
-    icon: Users,
-  },
-  {
-    titleKey: 'capabilities.ssoEidas.title',
-    descriptionKey: 'capabilities.ssoEidas.description',
-    concreteKey: 'capabilities.ssoEidas.concrete',
-    icon: Lock,
+    titleKey: 'capabilities.atsIntegration.title',
+    descriptionKey: 'capabilities.atsIntegration.description',
+    concreteKey: 'capabilities.atsIntegration.concrete',
+    endpoint: '/integrations/agents',
+    icon: Workflow,
   },
 ]
 

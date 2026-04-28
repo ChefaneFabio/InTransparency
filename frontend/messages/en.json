@@ -1636,32 +1636,32 @@
       "roles": {
         "recruiter": {
           "name": "Company",
-          "description": "Find real talent from universities",
+          "description": "Find AI-verified talent from academic partners",
           "benefits": {
-            "0": "Search AI-verified profile",
-            "1": "5 free contacts/month, then €89/mo",
-            "2": "ATS integration",
-            "3": "Analytics dashboard"
+            "0": "5 free contacts/month, then €89/mo when you scale",
+            "1": "Skills extracted by AI from real projects — not parsed from CVs",
+            "2": "Decision Pack downloadable per candidate",
+            "3": "Grades normalized via ESCO across all 27 EU countries"
           }
         },
         "university": {
           "name": "Academic Partner",
           "description": "Verify student projects and track placements",
           "benefits": {
-            "0": "Freemium model",
-            "1": "Student analytics",
-            "2": "Placement tracking",
-            "3": "Company visibility"
+            "0": "Free Core forever · Premium €39/mo optional",
+            "1": "M1–M4 workspace — Inbox, Offer, CRM, Placement Pipeline",
+            "2": "Live placement analytics, not annual surveys",
+            "3": "AI Act-compliant audit log on every decision"
           }
         },
         "student": {
           "name": "Student",
           "description": "Build your portfolio and get discovered by companies",
           "benefits": {
-            "0": "Freemium model",
-            "1": "Verified portfolio",
-            "2": "Company discovery",
-            "3": "Profile analytics"
+            "0": "Always free · Premium optional €5/mo",
+            "1": "AI-verified portfolio + optional professor endorsement",
+            "2": "Companies find you by skill — not the other way around",
+            "3": "Grades normalized via ESCO, readable across Europe"
           }
         },
         "techpark": {
@@ -1691,23 +1691,13 @@
       "email": "Email",
       "password": "Password",
       "trust": {
-        "0": {
-          "title": "Freemium",
-          "subtitle": "For Students"
-        },
-        "1": {
-          "title": "GDPR",
-          "subtitle": "Compliant"
-        },
-        "2": {
-          "title": "Evidence-Based",
-          "subtitle": "Matching"
-        },
-        "3": {
-          "title": "Verified",
-          "subtitle": "Credentials"
-        }
-      }
+        "0": "Always free for students",
+        "1": "GDPR + AI Act compliant",
+        "2": "Evidence-based matching",
+        "3": "Verifiable credentials, Ed25519-signed"
+      },
+      "techParkLink": "Are you a Tech Park or Innovation Hub?",
+      "techParkLinkCta": "Sign up as Tech Park"
     },
     "student": {
       "title": "Student Registration",
@@ -2368,8 +2358,8 @@
   "forCompanies": {
     "badge": "For mid-market companies and HR teams",
     "hero": {
-      "title": "Your ATS gives you noise. We give you signal.",
-      "subtitle": "Mid-market companies (50-200 employees) already have an ATS — Greenhouse, Lever, Workday. The problem isn't managing applications, it's filtering them. InTransparency is the pre-verification layer that feeds your ATS with candidates who've already proven they can do the work."
+      "title": "Your ATS files. We discover.",
+      "subtitle": "Mid-market companies (50-200 employees) already have an ATS — Greenhouse, Lever, Workday — good at filing received applications. InTransparency does what an ATS was never designed to do: find candidates with AI-verified skills from their real projects, before they ever apply. Keep your ATS, add the discovery layer."
     },
     "practiceLabel": "In practice:",
     "seeIt": "See it",
@@ -3957,7 +3947,7 @@
             "1": "Real student profiles with evidence — with optional professor endorsement as bonus",
             "2": "5 contacts every month, free (resets monthly)",
             "3": "Fit score + match reasons on every profile",
-            "4": "1 active job posting",
+            "4": "3 active job postings",
             "5": "Decision Pack preview · 1/month"
           }
         },
@@ -13197,14 +13187,14 @@
   },
   "forEnterprise": {
     "meta": {
-      "title": "For enterprise — verified skill layer for your existing ATS",
-      "description": "Enterprises don't need another ATS. You need verified candidate data feeding the ATS you already run. InTransparency integrates with Greenhouse, Lever, Workday via webhooks; exposes an agent API for your internal AI tools; and comes with the procurement documentation your legal team wants.",
-      "ogTitle": "For enterprise — verified skill layer for your ATS",
-      "ogDescription": "Feed your Greenhouse/Lever/Workday with evidence-backed candidates."
+      "title": "For enterprise — beyond the ATS, verified talent before they apply",
+      "description": "Your ATS files received applications. InTransparency is the discovery layer that surfaces verified candidates with skills extracted by AI from real artifacts — before they ever submit a CV. What an ATS was never designed to do. (And yes, we'll feed your existing Greenhouse/Lever/Workday too if you want.)",
+      "ogTitle": "For enterprise — beyond the ATS",
+      "ogDescription": "Find verified talent before they apply. Skills extracted by AI from real projects, not parsed from CVs."
     },
     "schema": {
       "name": "InTransparency for Enterprise",
-      "description": "Verified candidate data layer that feeds existing ATS systems. EU-sovereignty, AI Act-native, agent-callable."
+      "description": "AI-verified candidate discovery layer. Skills extracted from real projects, not parsed from CVs. EU-sovereignty, AI Act-native, agent-callable. Optional ATS integration."
     },
     "breadcrumb": {
       "home": "Home",
@@ -13212,41 +13202,41 @@
     },
     "badge": "For enterprise (200+ employees)",
     "hero": {
-      "title": "You don't need another ATS. You need verified data feeding the ATS you already run.",
-      "subtitle": "InTransparency is the verified-skill layer for European higher education. We don't compete with Greenhouse, Lever, or Workday — we feed them. Every candidate we send your pipeline comes with cryptographic evidence, AI Act-compliant explanations, and audit-ready provenance. Your recruiters work in the tools they already know; your compliance officers get documents they can actually use."
+      "title": "Beyond the ATS — find verified talent before they apply.",
+      "subtitle": "Your ATS files received applications. InTransparency surfaces verified candidates with skills extracted by AI from their real projects — before they ever submit a CV. It's the discovery layer an ATS was never designed to be. And yes, we integrate with your Greenhouse, Lever, or Workday — but that's the smaller story, not the reason you're here."
     },
     "practiceLabel": "What that means in practice:",
     "seeIt": "See it",
     "capabilities": {
-      "atsIntegration": {
-        "title": "ATS integration, not replacement",
-        "description": "We feed verified candidates into the ATS you already run — Greenhouse, Lever, Workday, Recruitee, SmartRecruiters. Webhooks push shortlists as applications; evidence packets attach as candidate notes.",
-        "concrete": "Webhook events: match.created, credential.issued, stage.completed."
+      "discovery": {
+        "title": "Discovery before they apply",
+        "description": "Stop waiting for the right candidate to apply to your job posting. Describe what you're looking for in natural language; InTransparency returns shortlists of verified candidates ready to contact. What your ATS can't do: find candidates who haven't applied yet.",
+        "concrete": "Smart Search at /demo/ai-search · search by skills extracted by AI from real projects."
+      },
+      "realEvidence": {
+        "title": "Skills extracted from artifacts, not parsed from CVs",
+        "description": "An ATS analyzes the CV it receives and tries to guess at skills. InTransparency analyzes GitHub code, theses, projects, design files — the artifacts that actually prove a candidate can do the work.",
+        "concrete": "Skills mapped to ESCO v1.2 taxonomy · optional professor endorsement as bonus signal."
+      },
+      "aiActShift": {
+        "title": "AI Act provider, not just deployer",
+        "description": "Running candidate-evaluation AI internally makes you the high-risk deployer (Annex III §4) — you have to document, audit, supervise. Route decisions through InTransparency and we're the registered provider. You keep control, we absorb the compliance load.",
+        "concrete": "Public model registry at /algorithm-registry · audit log · bias tests on record."
       },
       "internalAi": {
         "title": "Your internal AI can call us as a tool",
         "description": "Running a Claude-powered recruiting copilot in-house? Import our OpenAPI spec into your agent framework. Every candidate lookup returns verified evidence your copilot can cite.",
-        "concrete": "MCP + OpenAPI 3.1 + scoped API keys. Read, watchlist, webhook, write scopes."
+        "concrete": "MCP + OpenAPI 3.1 + scoped API keys (read, watchlist, webhook, write)."
       },
       "euSovereignty": {
         "title": "EU sovereignty + data residency",
         "description": "All storage in EU Central. GDPR-compliant sub-processors (Vercel, Neon, Cloudflare R2). DPIA + DPA available on request. Your data never leaves the EU.",
-        "concrete": "Full compliance matrix at /en/eu-compliance — 17 standards with deployed endpoints."
+        "concrete": "Full compliance matrix at /eu-compliance — 17 standards with deployed endpoints."
       },
-      "aiActShift": {
-        "title": "AI Act responsibility shift",
-        "description": "Running candidate-evaluation AI internally makes YOU the high-risk-AI deployer (Annex III §4). Route those decisions through InTransparency and we're the registered provider — your compliance burden drops.",
-        "concrete": "Public algorithm registry, human oversight endpoint, audit log, bias tests on record."
-      },
-      "teamSeats": {
-        "title": "Team seats with role controls",
-        "description": "Admins invite recruiters, scope access, enforce the seat limit on your plan. Audit log tracks every sensitive action. Disable accounts without losing history.",
-        "concrete": "Organization model supports billing tier, seat limit, owner role, admin delegation."
-      },
-      "ssoEidas": {
-        "title": "SSO + eIDAS 2.0 identity",
-        "description": "Italian enterprises: SPID/CIE integration for employee SSO. Pan-European: eIDAS 2.0 node support on roadmap. SAML 2.0 for generic IdP federations.",
-        "concrete": "SPID metadata at /api/auth/spid/metadata. Enterprise SSO on request."
+      "atsIntegration": {
+        "title": "And yes, we feed your existing ATS too",
+        "description": "Already running Greenhouse, Lever, or Workday? Verified shortlists can land in your ATS via webhook — candidates arrive as pre-screened applications. Your workflow doesn't change, just the quality of the inputs. But this is the smaller story: the real value is in the discovery + evidence above.",
+        "concrete": "Webhook events: match.created, credential.issued, stage.completed. See /integrations/agents."
       }
     },
     "process": {
@@ -13261,9 +13251,9 @@
         "link": "compliance matrix",
         "after": "(17 EU standards with deployed endpoints) and the sub-processor list."
       },
-      "step3": "We scope the ATS integration — typically Greenhouse / Lever / Workday webhooks. InTransparency pushes shortlists; your ATS owns the candidate record from there.",
-      "step4": "30-day technical pilot: free for up to 5 recruiter seats. At the end, you decide whether the verified-skill layer actually lifted quality of hire.",
-      "step5": "Multi-year framework agreement if you want it. Per-seat or consumption-based pricing — your choice."
+      "step3": "30-day pilot: your recruiters use the platform directly — free for up to 5 seats. See whether discovery of pre-verified candidates actually lifts quality of hire and time-to-shortlist.",
+      "step4": "If the pilot lands: choose between native InTransparency workflow, ATS bridge into Greenhouse/Lever/Workday, or both. Per-seat or consumption-based pricing — your call.",
+      "step5": "Multi-year framework agreement optional for organizations with annual procurement cycles."
     },
     "cta": {
       "pilot": "Request enterprise pilot",

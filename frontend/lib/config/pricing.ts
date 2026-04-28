@@ -66,7 +66,7 @@ export const COMPANY_TIERS = {
     price: { monthly: 0, annual: 0 },
     limits: {
       monthlyFreeContacts: 5,  // recurring; resets on the 1st of each month
-      jobPosts: 1,
+      jobPosts: 3,             // raised from 1 on 2026-04-28 — friction-free direction for company freemium
       documents: 100,           // 100 MB
       hiringAdvisor: 3,
       interviewKits: 1,
