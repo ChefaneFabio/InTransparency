@@ -23,7 +23,11 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://intransparency.eu'),
+  // Canonical domain is www.in-transparency.com (matches sitemap.ts + robots.ts).
+  // Was previously https://intransparency.eu — that mismatch was causing
+  // every page to ship a canonical tag pointing to a different domain than
+  // the sitemap, contributing to "duplicate without canonical" in Search Console.
+  metadataBase: new URL('https://www.in-transparency.com'),
   title: {
     default: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
     template: '%s | InTransparency',
@@ -52,7 +56,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'it_IT',
-    url: 'https://intransparency.eu',
+    url: 'https://www.in-transparency.com',
     siteName: 'InTransparency',
     title: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
     description: 'Hire verified graduates with institution-backed skills and evidence-based project portfolios. Browse free + 5 contacts/month, then €89/mo for unlimited.',

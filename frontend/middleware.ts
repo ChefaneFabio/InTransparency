@@ -98,6 +98,18 @@ export async function middleware(request: NextRequest) {
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self)')
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
 
+  // Block search engines from indexing non-canonical hosts (Vercel preview
+  // deploys, branch deploys, vercel.app subdomains). Without this, every
+  // preview URL serves the same content as the production domain — Google
+  // sees the production page mirrored across N preview URLs and starts
+  // flagging duplicate content. (Search Console flagged this 2026-04-28.)
+  const host = request.headers.get('host') || ''
+  const isCanonicalHost = host === 'www.in-transparency.com' || host === 'in-transparency.com'
+  const isProductionEnv = process.env.VERCEL_ENV === 'production'
+  if (!isCanonicalHost || !isProductionEnv) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  }
+
   // Handle CSP for different environments
   const isDev = process.env.NODE_ENV === 'development'
   const isVercel = process.env.VERCEL === '1'

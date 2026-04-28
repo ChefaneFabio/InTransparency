@@ -3,11 +3,30 @@ import prisma from '@/lib/prisma'
 
 /**
  * Dynamic sitemap — includes static marketing pages, public discovery surfaces,
- * published CompanyProfiles, and active Jobs. Regenerated at build time by Next.js.
+ * published CompanyProfiles, and active Jobs. Regenerated at build time.
+ *
+ * 2026-04-28: every entry now declares hreflang alternates so Google can pair
+ * /it/X and /en/X as translations rather than flagging them as duplicates.
+ * x-default points to /en (the global English fallback).
  */
 
 const BASE_URL = 'https://www.in-transparency.com'
 const LOCALES = ['en', 'it'] as const
+
+/**
+ * Build the hreflang alternates block for a given locale-less path.
+ * Each sitemap entry must list every locale variant (including itself)
+ * for Google to pair them — see https://developers.google.com/search/docs/specialty/international/localized-versions.
+ */
+function localeAlternates(path: string): { languages: Record<string, string> } {
+  return {
+    languages: {
+      en: `${BASE_URL}/en${path}`,
+      it: `${BASE_URL}/it${path}`,
+      'x-default': `${BASE_URL}/en${path}`,
+    },
+  }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -50,9 +69,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/for-public-sector', priority: 0.85, freq: 'weekly' },
     { path: '/demo/ai-search', priority: 0.6, freq: 'weekly' },
 
-    // Auth (low priority)
-    { path: '/auth/login', priority: 0.4, freq: 'monthly' },
-    { path: '/auth/register', priority: 0.5, freq: 'monthly' },
+    // Auth (low priority — these are hubs that redirect to specific signup
+    // routes when ?role= is set; without ?role= they render the chooser)
+    { path: '/auth/login', priority: 0.3, freq: 'monthly' },
+    { path: '/auth/register', priority: 0.4, freq: 'monthly' },
   ]
 
   const staticEntries: MetadataRoute.Sitemap = LOCALES.flatMap(locale =>
@@ -61,6 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: page.freq,
       priority: page.priority,
+      alternates: localeAlternates(page.path),
     }))
   )
 
@@ -79,6 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: c.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: 0.8,
+      alternates: localeAlternates(`/c/${c.slug}`),
     }))
   )
 
@@ -97,6 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: j.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
+      alternates: localeAlternates(`/explore/jobs/${j.id}`),
     }))
   )
 
