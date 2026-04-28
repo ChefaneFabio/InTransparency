@@ -1652,6 +1652,59 @@
     }
   },
   "auth": {
+    "verifyEmail": {
+      "verifying": {
+        "title": "Stiamo verificando la tua email…",
+        "subtitle": "Ci vuole solo un momento."
+      },
+      "success": {
+        "title": "Email confermata",
+        "subtitle": "Il tuo indirizzo {email} è ora verificato. Tutto pronto.",
+        "cta": "Vai alla dashboard"
+      },
+      "expired": {
+        "title": "Link scaduto",
+        "subtitle": "I link di conferma valgono 24 ore. Accedi e richiedi un nuovo link dalla dashboard.",
+        "signIn": "Accedi"
+      },
+      "invalid": {
+        "title": "Link non valido",
+        "subtitle": "Questo link è già stato usato o non è riconosciuto. Prova ad accedere oppure contattaci.",
+        "signIn": "Accedi",
+        "contact": "Contattaci"
+      },
+      "network": {
+        "title": "Errore di rete",
+        "subtitle": "Non siamo riusciti a contattare il server. Ricarica la pagina o riprova più tardi."
+      }
+    },
+    "verifyBanner": {
+      "title": "Conferma il tuo indirizzo email.",
+      "subtitle": "Abbiamo inviato un link a {email}.",
+      "resend": "Reinvia",
+      "sent": "Inviato",
+      "retry": "Riprova",
+      "dismiss": "Chiudi avviso"
+    },
+    "countries": {
+      "label": "Paese",
+      "IT": "Italia",
+      "DE": "Germania",
+      "FR": "Francia",
+      "ES": "Spagna",
+      "NL": "Paesi Bassi",
+      "PT": "Portogallo",
+      "PL": "Polonia",
+      "RO": "Romania",
+      "SE": "Svezia",
+      "AT": "Austria",
+      "BE": "Belgio",
+      "GR": "Grecia",
+      "IE": "Irlanda",
+      "DK": "Danimarca",
+      "FI": "Finlandia",
+      "other": "Altro"
+    },
     "signInToYourAccount": "Accedi al tuo account",
     "createYourAccount": "Crea il tuo account",
     "continueWithGoogle": "Continua con Google",

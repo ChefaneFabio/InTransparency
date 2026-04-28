@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, Link } from '@/navigation'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Building2, Loader2, CheckCircle, Sparkles, AlertCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
+import { CountrySelect } from '@/components/forms/CountrySelect'
 
 interface DomainEnrichment {
   skipped?: boolean
@@ -26,6 +27,7 @@ const PENDING_ENRICHMENT_KEY = 'intransparency_pending_recruiter_enrichment'
 
 export default function RecruiterRegisterPage() {
   const t = useTranslations('auth')
+  const locale = useLocale()
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -74,7 +76,7 @@ export default function RecruiterRegisterPage() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, locale })
       })
 
       const data = await response.json()
@@ -322,26 +324,11 @@ export default function RecruiterRegisterPage() {
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="country">{t('university.country', { defaultValue: 'Country' })}</Label>
-                    <select
-                      id="country"
-                      className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      value={formData.country}
-                      onChange={(e) => setFormData(prev => ({ ...prev, country: e.target.value }))}
-                      disabled={isLoading}
-                    >
-                      <option value="IT">Italia</option>
-                      <option value="DE">Deutschland</option>
-                      <option value="FR">France</option>
-                      <option value="ES">España</option>
-                      <option value="NL">Nederland</option>
-                      <option value="PT">Portugal</option>
-                      <option value="PL">Polska</option>
-                      <option value="RO">România</option>
-                      <option value="SE">Sverige</option>
-                    </select>
-                  </div>
+                  <CountrySelect
+                    value={formData.country}
+                    onChange={value => setFormData(prev => ({ ...prev, country: value }))}
+                    disabled={isLoading}
+                  />
 
                   <Button
                     type="submit"

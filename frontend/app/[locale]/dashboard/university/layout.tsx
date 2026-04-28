@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
+import { EmailVerifyBanner } from '@/components/auth/EmailVerifyBanner'
 import { InstitutionProvider } from '@/lib/institution-context'
 import JourneyPanel from '@/components/journey/JourneyPanel'
 import CommandPalette from '@/components/command-palette/CommandPalette'
@@ -30,6 +31,7 @@ export default async function UniversityDashboardLayout({
 
   return (
     <div className="segment-university">
+      <EmailVerifyBanner />
       <DashboardNav role="university" institutionType={institutionType} />
       <InstitutionProvider type={institutionType}>
         {children}

@@ -448,6 +448,65 @@ export async function sendPaymentFailedEmail(
   await sendEmail(to, `Payment failed for your ${tierLabel} subscription`, html)
 }
 
+// --- Account verification email (sent on registration) ---
+
+export async function sendAccountVerificationEmail(
+  to: string,
+  rawToken: string,
+  firstName: string,
+  locale: 'en' | 'it' = 'en'
+) {
+  const verifyUrl = `${BASE_URL}/${locale}/auth/verify-email?token=${rawToken}`
+  const isIt = locale === 'it'
+
+  const subject = isIt
+    ? 'Conferma il tuo indirizzo email — InTransparency'
+    : 'Verify your email address — InTransparency'
+
+  const heading = isIt
+    ? 'Conferma il tuo indirizzo email'
+    : 'Verify your email address'
+
+  const greeting = isIt
+    ? `Ciao ${escapeHtml(firstName)},`
+    : `Hi ${escapeHtml(firstName)},`
+
+  const lede = isIt
+    ? 'Grazie per esserti registrato a InTransparency. Per attivare l\'account, conferma il tuo indirizzo email cliccando sul pulsante qui sotto.'
+    : 'Thanks for signing up to InTransparency. To activate your account, verify your email address by clicking the button below.'
+
+  const ctaLabel = isIt ? 'Conferma email' : 'Verify email'
+  const expiry = isIt
+    ? 'Il link scade tra 24 ore.'
+    : 'This link expires in 24 hours.'
+  const fallback = isIt
+    ? 'Se il pulsante non funziona, copia e incolla questo link nel browser:'
+    : "If the button doesn't work, copy and paste this link into your browser:"
+  const ignore = isIt
+    ? "Se non hai creato un account, puoi ignorare questa email."
+    : "If you didn't create an account, you can safely ignore this email."
+
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">${heading}</h2>
+    <p>${greeting}</p>
+    <p>${lede}</p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${verifyUrl}" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        ${ctaLabel}
+      </a>
+    </div>
+    <p style="color: #64748b; font-size: 13px; text-align: center;">${expiry}</p>
+    <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 16px 0;" />
+    <p style="color: #64748b; font-size: 13px;">${fallback}</p>
+    <p style="color: #64748b; font-size: 12px; word-break: break-all;">${verifyUrl}</p>
+    <p style="color: #999; font-size: 12px; margin-top: 16px;">${ignore}</p>
+  `)
+
+  const text = `${heading}\n\n${greeting}\n\n${lede}\n\n${verifyUrl}\n\n${expiry}\n\n${ignore}`
+
+  await sendEmail(to, subject, html, text)
+}
+
 // --- Shared email wrapper ---
 
 function emailWrapper(content: string): string {
@@ -469,7 +528,7 @@ function emailWrapper(content: string): string {
       <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />
       <p style="color: #999; font-size: 12px;">
         InTransparency — Verified Student Profiles | University-to-Work Platform<br/>
-        <a href="${BASE_URL}" style="color: #4F46E5;">intransparency.eu</a>
+        <a href="${BASE_URL}" style="color: #4F46E5;">in-transparency.com</a>
       </p>
     </div>
   `

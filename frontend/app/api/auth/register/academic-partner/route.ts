@@ -122,6 +122,22 @@ export async function POST(req: NextRequest) {
       return { user, institution }
     })
 
+    // Issue verification token + send the verification email (best-effort).
+    try {
+      const { issueVerificationToken } = await import('@/lib/email-verification')
+      const { sendAccountVerificationEmail } = await import('@/lib/email')
+      const rawToken = await issueVerificationToken(result.user.email)
+      const requestedLocale = (data as any).locale === 'it' ? 'it' : 'en'
+      await sendAccountVerificationEmail(
+        result.user.email,
+        rawToken,
+        result.user.firstName,
+        requestedLocale
+      )
+    } catch (verificationErr) {
+      console.error('[register/academic-partner] email verification dispatch failed:', verificationErr)
+    }
+
     return NextResponse.json(
       {
         message: 'Academic partner registered successfully',

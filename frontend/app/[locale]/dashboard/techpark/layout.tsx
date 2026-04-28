@@ -1,4 +1,5 @@
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
+import { EmailVerifyBanner } from '@/components/auth/EmailVerifyBanner'
 
 export default function TechParkDashboardLayout({
   children,
@@ -7,6 +8,7 @@ export default function TechParkDashboardLayout({
 }) {
   return (
     <div className="segment-university">
+      <EmailVerifyBanner />
       <DashboardNav role="techpark" />
       {children}
     </div>

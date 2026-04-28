@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter, Link } from '@/navigation'
 import { signIn } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -12,6 +12,7 @@ import { BookOpen, Loader2, CheckCircle } from 'lucide-react'
 
 export default function ProfessorRegisterPage() {
   const t = useTranslations('auth')
+  const locale = useLocale()
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -37,7 +38,7 @@ export default function ProfessorRegisterPage() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, locale })
       })
 
       const data = await response.json()

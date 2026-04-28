@@ -1652,6 +1652,59 @@
     }
   },
   "auth": {
+    "verifyEmail": {
+      "verifying": {
+        "title": "Verifying your email…",
+        "subtitle": "This will just take a moment."
+      },
+      "success": {
+        "title": "Email verified",
+        "subtitle": "{email} is now verified. You're all set.",
+        "cta": "Go to dashboard"
+      },
+      "expired": {
+        "title": "Link expired",
+        "subtitle": "Verification links are valid for 24 hours. Sign in and request a fresh link from your dashboard.",
+        "signIn": "Sign in"
+      },
+      "invalid": {
+        "title": "Invalid link",
+        "subtitle": "This link has already been used or isn't recognized. Try signing in, or contact us if it persists.",
+        "signIn": "Sign in",
+        "contact": "Contact us"
+      },
+      "network": {
+        "title": "Network error",
+        "subtitle": "We couldn't reach the server. Reload the page or try again later."
+      }
+    },
+    "verifyBanner": {
+      "title": "Verify your email address.",
+      "subtitle": "We sent a link to {email}.",
+      "resend": "Resend",
+      "sent": "Sent",
+      "retry": "Retry",
+      "dismiss": "Dismiss"
+    },
+    "countries": {
+      "label": "Country",
+      "IT": "Italy",
+      "DE": "Germany",
+      "FR": "France",
+      "ES": "Spain",
+      "NL": "Netherlands",
+      "PT": "Portugal",
+      "PL": "Poland",
+      "RO": "Romania",
+      "SE": "Sweden",
+      "AT": "Austria",
+      "BE": "Belgium",
+      "GR": "Greece",
+      "IE": "Ireland",
+      "DK": "Denmark",
+      "FI": "Finland",
+      "other": "Other"
+    },
     "register": {
       "badge": "Join InTransparency",
       "title": "Choose Your Role",
