@@ -24,8 +24,49 @@ import { EditorialSection } from '@/components/sections/editorial/EditorialSecti
 
 type Segment = 'student' | 'company' | 'university' | 'general'
 
+/**
+ * Map a raw `?subject=` query string to a human-readable form value.
+ * Examples:
+ *   addon-dedicated-csm    → "Add-on request: Dedicated CSM + SLA"
+ *   university-pilot       → "University pilot request"
+ *   foo-bar (unrecognized) → "" (let the user type their own subject)
+ *
+ * The raw param is still used by detectSegment() for keyword-based
+ * routing — only the form-display value is prettified.
+ */
+function prettifySubject(
+  raw: string,
+  t: (key: string, params?: Record<string, any>) => string,
+  tAddon: { (key: string): string; has: (key: string) => boolean }
+): string {
+  if (!raw) return ''
+
+  // addon-{key} → "Add-on request: {Title}"
+  if (raw.startsWith('addon-')) {
+    const addonKey = raw.replace(/^addon-/, '')
+    if (tAddon.has(`${addonKey}.title`)) {
+      return t('subjectPretty.addon', { title: tAddon(`${addonKey}.title`) })
+    }
+    return t('subjectPretty.addon', { title: addonKey })
+  }
+
+  const map: Record<string, string> = {
+    'university-pilot':    'subjectPretty.universityPilot',
+    'high-school-pilot':   'subjectPretty.highSchoolPilot',
+    'its-pilot':           'subjectPretty.itsPilot',
+    'institutional-demo':  'subjectPretty.institutionalDemo',
+    'its-demo':            'subjectPretty.itsDemo',
+    'high-school-demo':    'subjectPretty.highSchoolDemo',
+    'founding-partner':    'subjectPretty.foundingPartner',
+    'roadmap':             'subjectPretty.roadmap',
+  }
+  const key = map[raw]
+  return key ? t(key) : raw
+}
+
 export default function ContactPage() {
   const t = useTranslations('contact')
+  const tAddon = useTranslations('dashboard.addons')
   const searchParams = useSearchParams()
   const { data: session } = useSession()
 
@@ -75,7 +116,7 @@ export default function ContactPage() {
     email: emailParam,
     company: companyParam,
     role: normalizedRoleParam,
-    subject: subjectParam,
+    subject: prettifySubject(subjectParam, t, tAddon),
     message: messageParam,
     priority: ['low', 'medium', 'high'].includes(priorityParam) ? priorityParam : 'medium',
   })
@@ -229,11 +270,18 @@ export default function ContactPage() {
                   <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 mb-3">
                     {t('resources.commonQuestions')}
                   </div>
-                  <ul className="space-y-2 text-[13px] text-slate-600 dark:text-slate-400">
+                  <dl className="space-y-4 text-[13px]">
                     {[0, 1, 2, 3].map(i => (
-                      <li key={i}>{t(`resources.questions.${i}`)}</li>
+                      <div key={i}>
+                        <dt className="font-medium text-slate-900 dark:text-white mb-1">
+                          {t(`resources.questions.${i}`)}
+                        </dt>
+                        <dd className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                          {t(`resources.answers.${i}`)}
+                        </dd>
+                      </div>
                     ))}
-                  </ul>
+                  </dl>
                 </div>
               </aside>
 

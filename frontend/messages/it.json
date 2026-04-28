@@ -1303,8 +1303,25 @@
         "2": "Come accedere alla ricerca conversazionale?",
         "3": "Quali formati sono supportati?"
       },
+      "answers": {
+        "0": "Dalla dashboard studente → Progetti → Nuovo. Supportiamo PDF, codice (zip o link GitHub), video, presentazioni.",
+        "1": "L'AI estrae le skill dai file caricati e le mappa sulla tassonomia ESCO. Puoi rivedere e modificare prima di pubblicare.",
+        "2": "Dalla dashboard recruiter → Smart Search. Descrivi il candidato in linguaggio naturale; ricevi shortlist verificate in pochi secondi.",
+        "3": "PDF, DOCX, PPTX, XLSX, codice (zip o link GitHub/GitLab), video MP4, immagini. Audio e video pre-processati per estrazione del contenuto."
+      },
       "students": "Studenti: Accedi alla Ricerca Lavoro dalla tua dashboard",
       "recruiters": "Recruiter: Accedi alla Ricerca Candidati Intelligente dalla tua dashboard"
+    },
+    "subjectPretty": {
+      "addon": "Richiesta add-on: {title}",
+      "universityPilot": "Richiesta pilota università",
+      "highSchoolPilot": "Richiesta pilota scuola superiore",
+      "itsPilot": "Richiesta pilota ITS",
+      "institutionalDemo": "Richiesta demo istituzionale",
+      "itsDemo": "Richiesta demo ITS",
+      "highSchoolDemo": "Richiesta demo scuola superiore",
+      "foundingPartner": "Diventa Partner Fondatore",
+      "roadmap": "Domanda sulla roadmap"
     },
     "form": {
       "title": "Inviaci un Messaggio",
@@ -13537,16 +13554,16 @@
     }
   },
   "comparePlatforms": {
-    "metaTitle": "InTransparency vs JobTeaser vs Handshake — confronto onesto",
-    "metaDescription": "Confronto fianco a fianco di InTransparency, JobTeaser e Handshake su verifica delle competenze, conformità all'AI Act europeo, supporto Erasmus, contesto accademico italiano e pricing per il recruiting entry-level in Europa.",
-    "ogTitle": "InTransparency vs JobTeaser vs Handshake",
-    "ogDescription": "Confronto onesto delle piattaforme europee di recruiting entry-level.",
-    "twitterDescription": "Confronto fatto per fatto delle piattaforme europee di recruiting entry-level.",
+    "metaTitle": "InTransparency vs JobTeaser vs Handshake vs LinkedIn vs Indeed — confronto onesto",
+    "metaDescription": "Confronto fianco a fianco di InTransparency, JobTeaser, Handshake, LinkedIn e Indeed su verifica delle competenze, conformità all'AI Act europeo, supporto Erasmus, contesto accademico italiano e pricing per il recruiting entry-level in Europa.",
+    "ogTitle": "InTransparency vs JobTeaser vs Handshake vs LinkedIn vs Indeed",
+    "ogDescription": "Confronto onesto delle 5 piattaforme di recruiting entry-level che atenei e aziende valutano in Europa.",
+    "twitterDescription": "Confronto fatto per fatto delle 5 piattaforme di recruiting entry-level che atenei e aziende valutano in Europa.",
     "badge": "Confronto onesto",
-    "h1": "InTransparency vs JobTeaser vs Handshake",
-    "intro": "Le tre piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-19. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.",
+    "h1": "InTransparency vs JobTeaser vs Handshake vs LinkedIn vs Indeed",
+    "intro": "Le cinque piattaforme che atenei e aziende confrontano più spesso per il recruiting entry-level in Europa. Fatto per fatto, aggiornato al 2026-04-28. Segnaliamo anche dove non siamo la scelta giusta — niente di nascosto.",
     "tldrH2": "In sintesi",
-    "tldr": "JobTeaser è una job board europea curata con forte branding aziendale. Handshake è il leader USA per effetto di rete con integrazioni ATS. InTransparency è la piattaforma del grafico di competenze verificato + matching nativo per l'AI Act europeo — progettata per il diritto del lavoro UE, basata su evidenze e non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso di recruiting conforme all'AI Act europeo. JobTeaser se cercate una job board curata. Handshake se siete negli USA.",
+    "tldr": "JobTeaser è una job board europea curata con forte branding aziendale. Handshake è il leader USA per effetto di rete con integrazioni ATS. LinkedIn è il network professionale generalista con LinkedIn Recruiter come tool premium per i recruiter. Indeed è il job board globale orientato al volume. InTransparency è la piattaforma del grafico di competenze verificato + matching nativo per l'AI Act europeo — basata su evidenze e non su auto-dichiarazioni. Scegliete noi se volete competenze di cui fidarvi e un flusso di recruiting conforme all'AI Act europeo. JobTeaser se cercate una job board europea curata. Handshake se siete negli USA. LinkedIn se vi serve un sourcing generalista. Indeed se ottimizzate per volume.",
     "featureHead": "Funzionalità",
     "honestH3": "Come manteniamo questo confronto onesto",
     "statusYes": "Sì",
@@ -13659,7 +13676,7 @@
         },
         "freeForUni": {
           "label": "Gratuito per gli atenei",
-          "detail": "Handshake fa pagare agli atenei $1K–$20K/anno."
+          "detail": "Free Core gratuito · Premium €39/mese opzionale per AI illimitata e MIUR-format. Handshake fa pagare agli atenei $1K–$20K/anno."
         }
       },
       "privacy": {
