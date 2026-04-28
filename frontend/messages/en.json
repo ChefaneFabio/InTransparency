@@ -6644,6 +6644,67 @@
       "ctaWaitlist": "Join waitlist",
       "ctaRequest": "Request",
       "ctaTalk": "Talk to us"
+    },
+    "addons": {
+      "white-label": {
+        "title": "White-label workspace",
+        "oneLine": "Your brand, your domain, your Terms of Service",
+        "description": "Host the full workspace on your own subdomain (e.g. placement.polimi.it), with your logo, colors, and Terms. Your recruiters see you, not us. Perfect for prestigious institutions that need to own the company relationship end-to-end.",
+        "target": "Prestigious universities · PoliMi-tier",
+        "note": "scales with enrollment"
+      },
+      "multi-institution": {
+        "title": "Multi-institution rollup",
+        "oneLine": "Network dashboard for consortia and groups",
+        "description": "Cross-institution analytics, shared employer CRM, consolidated reporting. Built for ITS networks (Lombardia, Piemonte), diocesan university groups, AFAM, regional consortia.",
+        "target": "Consortia · 2+ institutions",
+        "note": "up to 5 institutions included"
+      },
+      "sso": {
+        "title": "SSO / SAML / SCIM",
+        "oneLine": "Enterprise identity and user provisioning",
+        "description": "SAML 2.0 or OIDC authentication against your IdP (Azure AD, Google Workspace, Okta, Shibboleth). SCIM user provisioning so staff accounts follow your HR system.",
+        "target": "Institutions >1000 staff accounts"
+      },
+      "ats-erp-bridge": {
+        "title": "ATS / ERP bridge",
+        "oneLine": "Bidirectional sync with Esse3, U-GOV, Workday",
+        "description": "Two-way integration with your student records system. Placements sync automatically, graduation data flows in, mentors get auto-assigned from your org chart. We've worked with Esse3, U-GOV, CINECA, and Workday.",
+        "target": "Italian universities with legacy ERP",
+        "note": "no setup fee — annual support included"
+      },
+      "priority-ai": {
+        "title": "Priority AI quota",
+        "oneLine": "Bulk AI usage, dedicated queue",
+        "description": "Dedicated AI quota: bulk endorsement pass-through, faster fit-score recomputation, no shared queue. Ideal when your staff runs reminder engines and AI Assistant at high cadence.",
+        "target": "Institutions with heavy AI workload",
+        "note": "scales with concurrent users"
+      },
+      "miur-anvur-pack": {
+        "title": "MIUR / ANVUR compliance pack",
+        "oneLine": "Ministerial reports, automated",
+        "description": "Automated regulatory reporting in the formats MIUR and ANVUR actually require. Placement outcome reports, skills alignment with AVA 3.0, generation of CRUI-format exports. Annual audit-ready data room.",
+        "target": "All Italian universities"
+      },
+      "dedicated-csm": {
+        "title": "Dedicated CSM + SLA",
+        "oneLine": "Named customer success manager + priority support",
+        "description": "Named CSM who knows your placement office. Quarterly business reviews, 24h response SLA, priority data-export guarantees, integration support. Onboarding for new staff included.",
+        "target": "Strategic partners"
+      },
+      "bulk-credentials": {
+        "title": "Bulk verifiable credentials",
+        "oneLine": "Issue diplomas and transcripts as signed VCs",
+        "description": "Issue diplomas, transcripts, micro-credentials as W3C Verifiable Credentials anchored to EBSI/EDCI. Recipients get a wallet-verifiable digital diploma. Bulk issuance at scale with cryptographic proof.",
+        "target": "All institutions issuing credentials",
+        "note": "volume discounts from 5,000+ credentials"
+      },
+      "custom-reporting": {
+        "title": "Custom reporting / data room",
+        "oneLine": "Bespoke exports and board-level reports",
+        "description": "Custom report pipelines tailored to your board, your academic senate, your regional authority. Branded PDF/XLSX exports on a schedule, data room for external auditors, board-meeting packs.",
+        "target": "Multi-stakeholder institutions"
+      }
     }
   },
   "studentSettings": {

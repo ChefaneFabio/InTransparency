@@ -253,16 +253,9 @@ export default function PricingPage() {
         defaultValue:
           'Full M1–M4 placement workspace. 90% of small and mid-sized academic partners never need more.',
       }),
-      features: [
-        'M1 Mediation Inbox',
-        'M2 Offer moderation',
-        'M3 Company CRM (drag-and-drop pipeline)',
-        'M4 Placement pipeline (hours, evaluations, deadlines)',
-        'Basic analytics + Scorecard',
-        'Audit log (last 30 days)',
-        'AI Assistant — 50 queries / month',
-        'AI skill extraction + optional professor endorsement',
-      ],
+      features: Array.from({ length: 9 }, (_, i) =>
+        t(`universities.tiers.free.features.${i}`)
+      ),
       trustLine: trustFreeForever,
       cta: {
         label: t('universities.tiers.free.cta', { defaultValue: 'Activate Free Core' }),
@@ -284,16 +277,9 @@ export default function PricingPage() {
         defaultValue:
           'Unlimited AI, advanced analytics, full audit log with CSV exports, reminder automation, MIUR-format reports.',
       }),
-      features: [
-        'Unlimited AI Assistant — no monthly cap',
-        'Advanced analytics — cross-cohort, cross-program drills',
-        'Full audit log + CSV exports',
-        'Reminder engine — full automation (rules + cron)',
-        'Convention Builder — AI-personalized clauses',
-        'Skills Intelligence + Curriculum Alignment',
-        'MIUR-format reports (basic)',
-        'Priority email support — 24h response',
-      ],
+      features: Array.from({ length: 8 }, (_, i) =>
+        t(`universities.tiers.premium.features.${i}`)
+      ),
       cta: {
         label: t('universities.tiers.premium.cta', { defaultValue: 'Start Premium · 30 days free' }),
         href: '/api/checkout/institutional-premium?plan=monthly',

@@ -9,11 +9,12 @@ import {
 } from '@/lib/config/institution-addons'
 
 /**
- * Editorial-style add-on table — replaces the previous tinted-card grid.
+ * Editorial-style add-on table.
  *
- * Each row is name + status (left), description (middle), price + CTA
- * (right). No tint backgrounds, no icon circles, no decorative ornaments.
- * Status is shown as a small uppercase eyebrow next to the title.
+ * Each row: name + status (left) · description (middle) · price + CTA (right).
+ * All addon copy (title, oneLine, description, target, optional note) is
+ * resolved via dashboard.addons.{key}.{...} translation keys; the data file
+ * holds only structural metadata (key, icon, pricing, status, tint).
  */
 
 const STATUS_LABEL_KEY: Record<InstitutionAddon['status'], 'statusAvailable' | 'statusBeta' | 'statusComingSoon'> = {
@@ -54,6 +55,7 @@ export default function InstitutionAddonGrid({
   hidePrices,
 }: Props) {
   const t = useTranslations('dashboard.addonGrid')
+  const tAddon = useTranslations('dashboard.addons')
   const filtered = only ? INSTITUTION_ADDONS.filter(a => only.includes(a.key)) : INSTITUTION_ADDONS
   const items = excludeRoadmap ? filtered.filter(a => a.status !== 'roadmap') : filtered
 
@@ -62,12 +64,18 @@ export default function InstitutionAddonGrid({
       ? `/dashboard/university/billing?addon=${a.key}`
       : `/contact?subject=addon-${a.key}`
 
+  // Optional `note` per addon — not every addon defines one, so guard with
+  // tAddon.has() to avoid the next-intl missing-key throw.
+  const addonNote = (key: string): string | null =>
+    tAddon.has(`${key}.note`) ? tAddon(`${key}.note`) : null
+
   return (
     <div className="border-t border-slate-200 dark:border-slate-800">
       {items.map(a => {
         const isComingSoon = a.status === 'roadmap'
         const statusLabel = t(STATUS_LABEL_KEY[a.status])
         const statusTone = STATUS_TONE[a.status]
+        const note = addonNote(a.key)
 
         return (
           <div
@@ -80,18 +88,20 @@ export default function InstitutionAddonGrid({
                 {statusLabel}
               </div>
               <h4 className="text-[17px] font-semibold text-slate-900 dark:text-white leading-tight">
-                {a.title}
+                {tAddon(`${a.key}.title`)}
               </h4>
-              <p className="mt-1.5 text-[13px] text-slate-500 dark:text-slate-500">{a.target}</p>
+              <p className="mt-1.5 text-[13px] text-slate-500 dark:text-slate-500">
+                {tAddon(`${a.key}.target`)}
+              </p>
             </div>
 
             {/* Description */}
             <div className="md:col-span-5">
               <p className="text-[14px] font-medium text-slate-700 dark:text-slate-300 leading-snug">
-                {a.oneLine}
+                {tAddon(`${a.key}.oneLine`)}
               </p>
               <p className="mt-2 text-[14px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                {a.description}
+                {tAddon(`${a.key}.description`)}
               </p>
             </div>
 
@@ -109,9 +119,9 @@ export default function InstitutionAddonGrid({
                       ? t('indicativePrice', { price: formatAddonPrice(a.pricing, locale) })
                       : formatAddonPrice(a.pricing, locale)}
                 </div>
-                {!hidePrices && 'note' in a.pricing && a.pricing.note && (
+                {!hidePrices && note && (
                   <div className="mt-1 text-[12px] text-slate-500 leading-snug max-w-[200px] md:ml-auto">
-                    {a.pricing.note}
+                    {note}
                   </div>
                 )}
               </div>

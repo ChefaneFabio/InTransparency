@@ -6519,6 +6519,67 @@
       "ctaWaitlist": "Iscriviti alla waitlist",
       "ctaRequest": "Richiedi",
       "ctaTalk": "Contattaci"
+    },
+    "addons": {
+      "white-label": {
+        "title": "Workspace white-label",
+        "oneLine": "Il tuo brand, il tuo dominio, i tuoi Termini di Servizio",
+        "description": "Ospita la workspace completa su un sottodominio tuo (es. placement.polimi.it), con il tuo logo, i tuoi colori e i tuoi Termini. I recruiter vedono te, non noi. Perfetto per istituzioni prestigiose che vogliono possedere la relazione con le aziende dall'inizio alla fine.",
+        "target": "Università prestigiose · livello PoliMi",
+        "note": "scala in base al numero di iscritti"
+      },
+      "multi-institution": {
+        "title": "Rollup multi-istituzione",
+        "oneLine": "Dashboard di network per consorzi e gruppi",
+        "description": "Analytics cross-istituzione, CRM aziende condiviso, reporting consolidato. Pensato per network ITS (Lombardia, Piemonte), gruppi diocesani universitari, AFAM, consorzi regionali.",
+        "target": "Consorzi · 2+ istituzioni",
+        "note": "fino a 5 istituzioni incluse"
+      },
+      "sso": {
+        "title": "SSO / SAML / SCIM",
+        "oneLine": "Identità enterprise e provisioning utenti",
+        "description": "Autenticazione SAML 2.0 o OIDC contro il tuo IdP (Azure AD, Google Workspace, Okta, Shibboleth). Provisioning utenti SCIM per allineare gli account staff al tuo sistema HR.",
+        "target": "Istituzioni con oltre 1000 account staff"
+      },
+      "ats-erp-bridge": {
+        "title": "Bridge ATS / ERP",
+        "oneLine": "Sync bidirezionale con Esse3, U-GOV, Workday",
+        "description": "Integrazione two-way con il tuo sistema di registro studenti. I placement si sincronizzano automaticamente, i dati di laurea entrano, i tutor vengono assegnati in automatico dall'organigramma. Esperienza con Esse3, U-GOV, CINECA, Workday.",
+        "target": "Università italiane con ERP legacy",
+        "note": "nessun setup fee — supporto annuale incluso"
+      },
+      "priority-ai": {
+        "title": "Quota AI prioritaria",
+        "oneLine": "Uso AI bulk, coda dedicata",
+        "description": "Quota AI dedicata: pass-through endorsement bulk, ricalcolo fit-score più rapido, niente coda condivisa. Ideale quando lo staff usa reminder engine e AI Assistant ad alta frequenza.",
+        "target": "Istituzioni con workload AI elevato",
+        "note": "scala con utenti concorrenti"
+      },
+      "miur-anvur-pack": {
+        "title": "Pacchetto compliance MIUR / ANVUR",
+        "oneLine": "Report ministeriali, automatizzati",
+        "description": "Reporting regolatorio automatizzato nei formati che MIUR e ANVUR richiedono davvero. Report di placement outcome, allineamento skill con AVA 3.0, generazione export CRUI-format. Data room annuale pronta per audit.",
+        "target": "Tutte le università italiane"
+      },
+      "dedicated-csm": {
+        "title": "CSM dedicato + SLA",
+        "oneLine": "Customer success manager dedicato + supporto prioritario",
+        "description": "CSM nominato che conosce il vostro career office. Quarterly business review, SLA risposta 24h, garanzie priority sull'export dati, supporto integrazione. Onboarding nuovi staff incluso.",
+        "target": "Partner strategici"
+      },
+      "bulk-credentials": {
+        "title": "Credenziali verificabili in bulk",
+        "oneLine": "Diplomi e transcript come VC firmati",
+        "description": "Emetti diplomi, transcript, micro-credenziali come Verifiable Credentials W3C ancorate a EBSI/EDCI. I destinatari ricevono un diploma digitale verificabile da wallet. Emissione bulk su scala con prova crittografica.",
+        "target": "Tutte le istituzioni che emettono credenziali",
+        "note": "sconti volume da 5.000+ credenziali"
+      },
+      "custom-reporting": {
+        "title": "Reporting custom / data room",
+        "oneLine": "Export su misura e report a livello board",
+        "description": "Pipeline di report custom su misura per il vostro board, senato accademico, autorità regionale. Export PDF/XLSX brandizzati schedulati, data room per auditor esterni, pacchetti per riunioni di board.",
+        "target": "Istituzioni multi-stakeholder"
+      }
     }
   },
   "studentSettings": {
