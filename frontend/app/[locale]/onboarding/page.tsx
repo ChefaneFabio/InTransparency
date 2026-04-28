@@ -124,7 +124,7 @@ interface OnboardingData {
 
 const steps = {
   STUDENT: ['Tu + Formazione', 'Competenze', 'Completa'],
-  RECRUITER: ['Profilo Base', 'Azienda', 'Preferenze', 'Completa'],
+  RECRUITER: ['Profilo Base', 'Azienda', 'Completa'],
   UNIVERSITY: ['Istituzione', 'Referente', 'Sfide Attuali', 'Obiettivi', 'Completa']
 }
 
@@ -1329,18 +1329,10 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {currentStep === 2 && userRole === 'RECRUITER' && (
-              <div className="space-y-6">
-                <div className="text-center mb-6">
-                  <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">{t('preferencesTitle')}</h2>
-                </div>
-
-                <p className="text-gray-600 text-center">
-                  {t('preferencesDesc')}
-                </p>
-              </div>
-            )}
+            {/* RECRUITER step 2 was "Preferenze" — a dead step that just said
+             *  "you can configure later from the dashboard". Removed 2026-04-28
+             *  along with the steps-array trim from 4 → 3. RECRUITER step 2 is
+             *  now the shared "Complete" final screen handled below. */}
 
             {/* University Step 2: Sfide Attuali (type-specific) */}
             {currentStep === 2 && userRole === 'UNIVERSITY' && (() => {

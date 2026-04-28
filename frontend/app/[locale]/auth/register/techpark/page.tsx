@@ -18,7 +18,12 @@ export default function TechParkRegisterPage() {
     lastName: '',
     email: '',
     password: '',
-    role: 'TECHPARK'
+    role: 'TECHPARK',
+    // Org affiliation — Tech Park accounts represent a real innovation hub,
+    // not an individual. These prevent vanity registration. Backend validates
+    // the website domain matches the email domain (or queues for review).
+    orgName: '',
+    orgWebsite: '',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -166,6 +171,34 @@ export default function TechParkRegisterPage() {
                   </div>
 
                   <div>
+                    <Label htmlFor="orgName">{t('techpark.orgNameLabel')}</Label>
+                    <Input
+                      id="orgName"
+                      type="text"
+                      placeholder={t('techpark.orgNamePlaceholder')}
+                      value={formData.orgName}
+                      onChange={(e) => setFormData(prev => ({ ...prev, orgName: e.target.value }))}
+                      required
+                      aria-required="true"
+                      disabled={isLoading}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="orgWebsite">{t('techpark.orgWebsiteLabel')}</Label>
+                    <Input
+                      id="orgWebsite"
+                      type="url"
+                      placeholder={t('techpark.orgWebsitePlaceholder')}
+                      value={formData.orgWebsite}
+                      onChange={(e) => setFormData(prev => ({ ...prev, orgWebsite: e.target.value }))}
+                      required
+                      aria-required="true"
+                      disabled={isLoading}
+                    />
+                  </div>
+
+                  <div>
                     <Label htmlFor="email">{t('fields.email')}</Label>
                     <Input
                       id="email"
@@ -207,6 +240,10 @@ export default function TechParkRegisterPage() {
                       t('techpark.submitButton')
                     )}
                   </Button>
+
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    {t('techpark.approvalNotice')}
+                  </p>
                 </form>
 
                 <div className="mt-4 text-center">

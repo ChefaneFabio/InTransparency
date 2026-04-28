@@ -108,7 +108,7 @@ export default function RecruiterRegisterPage() {
       })
 
       if (signInResult?.error) {
-        setShowConfetti(true)
+        // Auto-sign-in failed — user has to log in manually. No celebration.
         router.push('/auth/login?registered=true')
       } else {
         setShowConfetti(true)
@@ -262,7 +262,7 @@ export default function RecruiterRegisterPage() {
                           className="mt-2 flex items-center gap-2 text-xs text-muted-foreground"
                         >
                           <Loader2 className="h-3 w-3 animate-spin" />
-                          Looking up your company…
+                          {t('recruiter.enrichment.lookingUp')}
                         </motion.div>
                       )}
                       {!isEnriching && enrichment && enrichment.skipped && enrichment.reason === 'free_provider' && (
@@ -296,7 +296,7 @@ export default function RecruiterRegisterPage() {
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-semibold text-blue-900 dark:text-blue-200 flex items-center gap-1">
                               <Sparkles className="h-3 w-3" />
-                              We'll set up your profile
+                              {t('recruiter.enrichment.willSetUp')}
                             </p>
                             <p className="text-[11px] text-blue-700 dark:text-blue-300 truncate">
                               {enrichment.companyName} · {enrichment.domain}

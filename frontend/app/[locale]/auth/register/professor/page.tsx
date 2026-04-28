@@ -18,7 +18,12 @@ export default function ProfessorRegisterPage() {
     lastName: '',
     email: '',
     password: '',
-    role: 'PROFESSOR'
+    role: 'PROFESSOR',
+    // University affiliation — endorsement value depends on institutional
+    // credibility, so the registration must capture it. Backend validates
+    // the email domain against the institution (or queues for review).
+    institution: '',
+    department: '',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -137,13 +142,35 @@ export default function ProfessorRegisterPage() {
                     </div>
                   </div>
                   <div>
+                    <Label htmlFor="institution">{t('professor.institutionLabel')}</Label>
+                    <Input
+                      id="institution"
+                      type="text"
+                      placeholder={t('professor.institutionPlaceholder')}
+                      required
+                      aria-required="true"
+                      value={formData.institution}
+                      onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="department">{t('professor.departmentLabel')}</Label>
+                    <Input
+                      id="department"
+                      type="text"
+                      placeholder={t('professor.departmentPlaceholder')}
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                    />
+                  </div>
+                  <div>
                     <Label htmlFor="email">{t('register.email')}</Label>
                     <Input
                       id="email"
                       type="email" autoComplete="email"
                       required
                       aria-required="true"
-                      placeholder="professor@university.edu"
+                      placeholder={t('professor.emailPlaceholder')}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
@@ -164,6 +191,9 @@ export default function ProfessorRegisterPage() {
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {t('register.signUpAs')} {t('register.roles.professor.name')}
                   </Button>
+                  <p className="text-xs text-gray-500 text-center">
+                    {t('professor.verificationNotice')}
+                  </p>
                   <p className="text-center text-sm text-gray-600">
                     {t('register.alreadyHaveAccount')}{' '}
                     <Link href="/auth/login" className="text-primary hover:underline font-semibold">

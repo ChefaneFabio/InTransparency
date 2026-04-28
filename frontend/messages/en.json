@@ -1801,13 +1801,17 @@
       "formDescription": "Create your recruiter account",
       "workEmail": "Work Email",
       "pricing": {
-        "title": "Simple, Transparent Pricing",
+        "title": "Simple, transparent pricing",
         "browse": "Browse all candidates",
-        "browseCost": "Free",
+        "browseCost": "Always free",
         "contact": "Contact a candidate",
-        "contactCost": "€0",
-        "postJobs": "Post job listings",
-        "postJobsCost": "Free"
+        "contactCost": "5 free/mo · then €89/mo",
+        "postJobs": "Active job postings",
+        "postJobsCost": "3 free · 10 with subscription"
+      },
+      "enrichment": {
+        "lookingUp": "Looking up your company…",
+        "willSetUp": "We'll set up your company profile"
       },
       "mobileBenefitsTitle": "Why companies choose us:",
       "mobileBenefits": {
@@ -1911,11 +1915,24 @@
         "3": "Zero cost for the park"
       },
       "enterpriseNote": "Start free with full access to analytics and talent pipeline. Enterprise features (white-label, API) available for larger parks.",
+      "orgNameLabel": "Tech Park / Innovation Hub name",
+      "orgNamePlaceholder": "e.g. Kilometro Rosso, Talent Garden",
+      "orgWebsiteLabel": "Official website",
+      "orgWebsitePlaceholder": "https://www.kilometrorosso.com",
+      "approvalNotice": "Tech Park registrations go through manual verification. We'll reach out within 2 business days to activate your account.",
       "submitButton": "Register Tech Park",
       "submittingButton": "Creating account...",
       "passwordPlaceholder": "Min. 8 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
+    },
+    "professor": {
+      "institutionLabel": "University / Institution",
+      "institutionPlaceholder": "e.g. Politecnico di Milano",
+      "departmentLabel": "Department (optional)",
+      "departmentPlaceholder": "e.g. Computer Engineering Department",
+      "emailPlaceholder": "e.g. firstname.lastname@polimi.it",
+      "verificationNotice": "We verify academic affiliation via email domain or manual review before activating the endorsement portal."
     },
     "login": {
       "title": "Welcome Back",

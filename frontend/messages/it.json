@@ -1739,13 +1739,17 @@
       "formDescription": "Crea il tuo account recruiter",
       "workEmail": "Email Aziendale",
       "pricing": {
-        "title": "Prezzi Semplici e Trasparenti",
+        "title": "Prezzi semplici e trasparenti",
         "browse": "Sfoglia tutti i candidati",
-        "browseCost": "Gratis",
+        "browseCost": "Sempre gratis",
         "contact": "Contatta un candidato",
-        "contactCost": "€0",
-        "postJobs": "Pubblica offerte di lavoro",
-        "postJobsCost": "Gratis"
+        "contactCost": "5/mese gratis · poi €89/mese",
+        "postJobs": "Annunci di lavoro attivi",
+        "postJobsCost": "3 gratis · 10 con abbonamento"
+      },
+      "enrichment": {
+        "lookingUp": "Stiamo cercando la tua azienda…",
+        "willSetUp": "Configureremo il tuo profilo aziendale"
       },
       "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
       "mobileBenefits": {
@@ -1939,11 +1943,24 @@
         "3": "Costo zero per il parco"
       },
       "enterpriseNote": "Inizia gratis con accesso completo ad analytics e pipeline di talenti. Funzionalita enterprise (white-label, API) disponibili per parchi piu grandi.",
+      "orgNameLabel": "Nome del Tech Park / Innovation Hub",
+      "orgNamePlaceholder": "es. Kilometro Rosso, Talent Garden",
+      "orgWebsiteLabel": "Sito web ufficiale",
+      "orgWebsitePlaceholder": "https://www.kilometrorosso.com",
+      "approvalNotice": "Le registrazioni Tech Park sono soggette a verifica manuale. Ti contattiamo entro 2 giorni lavorativi per attivare l'account.",
       "submitButton": "Registra Tech Park",
       "submittingButton": "Creazione account...",
       "passwordPlaceholder": "Min. 8 caratteri",
       "alreadyHaveAccount": "Hai gia un account?",
       "signIn": "Accedi"
+    },
+    "professor": {
+      "institutionLabel": "Università / Istituzione",
+      "institutionPlaceholder": "es. Politecnico di Milano",
+      "departmentLabel": "Dipartimento (opzionale)",
+      "departmentPlaceholder": "es. Dipartimento di Ingegneria Informatica",
+      "emailPlaceholder": "es. nome.cognome@polimi.it",
+      "verificationNotice": "Verifichiamo l'affiliazione accademica via dominio email o controllo manuale prima di attivare il portale endorsement."
     },
     "login": {
       "title": "Bentornato",

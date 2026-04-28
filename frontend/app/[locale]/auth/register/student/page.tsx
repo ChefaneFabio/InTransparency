@@ -53,11 +53,11 @@ export default function StudentRegisterPage() {
       })
 
       if (signInResult?.error) {
-        // Registration succeeded but sign-in failed - redirect to login
-        setShowConfetti(true)
+        // Registration succeeded but auto-sign-in failed — no celebration,
+        // the user has to log in manually which is friction not victory.
         router.push('/auth/login?registered=true')
       } else {
-        // Both succeeded - go to dashboard
+        // Both succeeded — fire confetti + go to onboarding.
         setShowConfetti(true)
         router.push('/onboarding')
         router.refresh()
