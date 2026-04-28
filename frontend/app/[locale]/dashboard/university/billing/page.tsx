@@ -1,6 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sparkles, Check, Mail, ArrowLeft, Info } from 'lucide-react'
@@ -18,10 +19,13 @@ import { INSTITUTION_ADDONS } from '@/lib/config/institution-addons'
 export default function UniversityBillingPage() {
   const { institution, loading } = useMyInstitution()
   const searchParams = useSearchParams()
+  const tAddon = useTranslations('dashboard.addons')
   const requestedAddon = searchParams?.get('addon')
   const matchedAddon = requestedAddon
     ? INSTITUTION_ADDONS.find(a => a.key === requestedAddon)
     : null
+  const matchedTitle = matchedAddon ? tAddon(`${matchedAddon.key}.title`) : ''
+  const matchedDescription = matchedAddon ? tAddon(`${matchedAddon.key}.description`) : ''
 
   return (
     <div className="space-y-6 pb-12 max-w-5xl mx-auto">
@@ -75,13 +79,13 @@ export default function UniversityBillingPage() {
             <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
             <div className="flex-1">
               <p className="text-sm font-semibold">
-                Request for <span className="text-primary">{matchedAddon.title}</span>
+                Request for <span className="text-primary">{matchedTitle}</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                {matchedAddon.description}
+                {matchedDescription}
               </p>
               <div className="mt-3">
-                <a href={`mailto:fabio@in-transparency.com?subject=Add-on%20request%3A%20${encodeURIComponent(matchedAddon.title)}${institution?.name ? '%20for%20' + encodeURIComponent(institution.name) : ''}`}>
+                <a href={`mailto:fabio@in-transparency.com?subject=Add-on%20request%3A%20${encodeURIComponent(matchedTitle)}${institution?.name ? '%20for%20' + encodeURIComponent(institution.name) : ''}`}>
                   <Button size="sm">
                     <Mail className="mr-2 h-4 w-4" />
                     Email us about this add-on
