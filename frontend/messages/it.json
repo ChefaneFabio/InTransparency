@@ -846,118 +846,127 @@
       "subtitle": "Un'interfaccia pulita e intuitiva progettata per studenti, partner formativi e aziende."
     },
     "comparison": {
-      "badge": "Un modo migliore",
+      "badge": "Confronto diretto",
       "cta": "Inizia Gratis",
       "students": {
-        "title": "Un Nuovo Modo di Iniziare la Carriera",
-        "subtitle": "Invece di inviare CV e aspettare, lascia che il tuo lavoro verificato parli per te.",
-        "traditionalLabel": "Prima",
-        "rows": [
-          {
-            "feature": "Visibilità",
-            "traditional": "Candidati e attendi risposte",
-            "ours": "Le aziende scoprono il tuo profilo"
+        "title": "Confrontaci con quello che usi oggi",
+        "subtitle": "LinkedIn, Indeed, JobTeaser — scegli il confronto che ti interessa. Vedi cosa cambia con un portfolio verificato.",
+        "tabsLabel": "Confronta InTransparency con",
+        "competitors": {
+          "linkedin": {
+            "name": "LinkedIn",
+            "rows": [
+              { "feature": "Profilo", "them": "Auto-dichiarato + endorsement peer", "ours": "Verificato AI dai progetti caricati" },
+              { "feature": "Visibilità", "them": "Tu cerchi e ti candidi", "ours": "Le aziende ti trovano per skill estratte" },
+              { "feature": "Costo", "them": "Premium ~€30/mese per visibilità", "ours": "Sempre gratis · Premium opzionale €5/mese" },
+              { "feature": "Skill", "them": "Lista che scegli tu", "ours": "Estratte ESCO da progetti reali" },
+              { "feature": "Endorsement", "them": "Peer (gameable)", "ours": "Docente accademico opzionale" },
+              { "feature": "Cross-EU", "them": "Stesso profilo ovunque", "ours": "Voti normalizzati ESCO 27 paesi UE" }
+            ]
           },
-          {
-            "feature": "Competenze",
-            "traditional": "Autodichiarate nel CV",
-            "ours": "Verificate dal tuo istituto"
+          "indeed": {
+            "name": "Indeed",
+            "rows": [
+              { "feature": "Profilo", "them": "Upload CV in PDF", "ours": "Portfolio verificato di progetti reali" },
+              { "feature": "Discovery", "them": "Tu candidi a ogni job posting", "ours": "Aziende ti trovano per skill" },
+              { "feature": "Skill verification", "them": "Keyword match dal CV", "ours": "AI estrae da artefatti reali" },
+              { "feature": "Costo", "them": "Gratis", "ours": "Gratis · Premium opzionale €5/mese" },
+              { "feature": "Filtro qualità", "them": "Ogni ruolo, basso filtro", "ours": "Pool università + ITS verified" },
+              { "feature": "Persistenza", "them": "CV nel mucchio", "ours": "Portfolio che resta tuo dopo la laurea" }
+            ]
           },
-          {
-            "feature": "Costo",
-            "traditional": "Job board a pagamento",
-            "ours": "Gratuito, senza carta di credito"
-          },
-          {
-            "feature": "Matching",
-            "traditional": "Ricerca manuale",
-            "ours": "Matching basato su evidenze"
-          },
-          {
-            "feature": "Tasso risposta",
-            "traditional": "Spesso basso",
-            "ours": "Contatto diretto dalle aziende"
-          },
-          {
-            "feature": "Portfolio",
-            "traditional": "PDF o profilo LinkedIn",
-            "ours": "Portfolio progetti reali"
+          "jobteaser": {
+            "name": "JobTeaser",
+            "rows": [
+              { "feature": "Italian-native", "them": "6 lingue, italiano escluso", "ours": "IT first-class" },
+              { "feature": "Verifica skill", "them": "Non verifica", "ours": "AI + endorsement docente opzionale" },
+              { "feature": "Discovery", "them": "Annunci aziendali", "ours": "Skill-search continuo dal recruiter" },
+              { "feature": "Università italiane", "them": "Pochi atenei IT", "ours": "Università + ITS italiani in primo piano" },
+              { "feature": "PCTO/MIUR", "them": "Non conforme", "ours": "ITS-ready, MIUR-format" },
+              { "feature": "Cross-EU", "them": "Marketplace job", "ours": "ESCO + Europass v3 standard" }
+            ]
           }
-        ]
+        }
       },
       "institutions": {
-        "title": "Un Approccio Moderno al Placement",
-        "subtitle": "Dai sondaggi annuali a insight in tempo reale sui percorsi di carriera dei tuoi studenti.",
-        "traditionalLabel": "Prima",
-        "rows": [
-          {
-            "feature": "Tracciamento",
-            "traditional": "Fogli Excel manuali",
-            "ours": "Dashboard in tempo reale"
+        "title": "Confrontaci con quello che usi oggi",
+        "subtitle": "AlmaLaurea, JobTeaser, fogli Excel — scegli il confronto che ti interessa. Vedi cosa cambia con un workspace nativo per il placement.",
+        "tabsLabel": "Confronta InTransparency con",
+        "competitors": {
+          "almalaurea": {
+            "name": "AlmaLaurea",
+            "rows": [
+              { "feature": "Costo", "them": "€2.500+/anno", "ours": "Free Core gratis · Premium €39/mese opzionale" },
+              { "feature": "Dati", "them": "Sondaggi annuali aggregati", "ours": "Analytics live di placement, per studente" },
+              { "feature": "Workspace", "them": "Read-only stats", "ours": "Workspace M1–M4 attivo (Inbox, CRM, Pipeline)" },
+              { "feature": "Verifica", "them": "Auto-dichiarato dallo studente", "ours": "AI dai progetti + endorsement docente" },
+              { "feature": "Output", "them": "Report statistici", "ours": "Dashboard per-student + outreach aziendale" },
+              { "feature": "AI compliance", "them": "GDPR", "ours": "GDPR + AI Act registry pubblico" }
+            ]
           },
-          {
-            "feature": "Connessioni",
-            "traditional": "Eventi career day",
-            "ours": "Marketplace tutto l'anno"
+          "jobteaser": {
+            "name": "JobTeaser",
+            "rows": [
+              { "feature": "Italian-native", "them": "Non supporta italiano", "ours": "IT first-class + ITS-ready" },
+              { "feature": "CRM aziende", "them": "Non disponibile", "ours": "Workspace M1–M4 con CRM drag-and-drop" },
+              { "feature": "Verifica skill", "them": "Non verifica", "ours": "AI + endorsement docente opzionale" },
+              { "feature": "Costo", "them": "Bundle annuo €€€", "ours": "Free Core gratis · Premium €39/mese" },
+              { "feature": "PCTO/MIUR", "them": "Non conforme", "ours": "ITS-ready, MIUR-format reports, PCTO ledger" },
+              { "feature": "Tirocini", "them": "Annunci", "ours": "Pipeline tirocini con ore + valutazioni" }
+            ]
           },
-          {
-            "feature": "Verifica",
-            "traditional": "Certificati cartacei",
-            "ours": "Badge digitali verificati"
-          },
-          {
-            "feature": "Analytics",
-            "traditional": "Sondaggi annuali",
-            "ours": "Metriche placement live"
-          },
-          {
-            "feature": "Costo",
-            "traditional": "Budget career services",
-            "ours": "Gratis per i partner formativi"
-          },
-          {
-            "feature": "Reporting",
-            "traditional": "Report MIUR manuali",
-            "ours": "Report auto-generati"
+          "excel": {
+            "name": "Excel manuali",
+            "rows": [
+              { "feature": "Tempo staff", "them": "Ore manuali per coorte", "ours": "Auto + automazione reminder" },
+              { "feature": "Tracciamento PCTO", "them": "Foglio per classe", "ours": "Per-student ledger digitale" },
+              { "feature": "Modulistica", "them": "PDF compilati a mano", "ours": "Auto-generata MIUR-format" },
+              { "feature": "Verifica progetti", "them": "PDF allegato in archivio", "ours": "Audit log digitale + AI extract" },
+              { "feature": "Reporting", "them": "Fatto a fine anno", "ours": "Report live USR/MIUR" },
+              { "feature": "Dati live", "them": "Aggiornati una volta l'anno", "ours": "Dashboard tempo reale" }
+            ]
           }
-        ]
+        }
       },
       "companies": {
-        "title": "Un Modo Più Semplice per Trovare Talenti Junior",
-        "subtitle": "Esplora profili verificati con AI da università e ITS italiani — connettiti quando sei pronto.",
-        "traditionalLabel": "Prima",
-        "rows": [
-          {
-            "feature": "Costo",
-            "traditional": "Fee agenzia o abbonamenti",
-            "ours": "gratis per iniziare, senza vincoli"
+        "title": "Confrontaci con quello che usi oggi",
+        "subtitle": "LinkedIn Recruiter, Indeed, agenzie di recruiting — scegli il confronto che ti interessa. Vedi cosa cambia con un pool verificato dall'AI.",
+        "tabsLabel": "Confronta InTransparency con",
+        "competitors": {
+          "linkedinRecruiter": {
+            "name": "LinkedIn Recruiter",
+            "rows": [
+              { "feature": "Costo", "them": "€8.000+/anno per seat", "ours": "5 contatti gratis/mese · €89/mese contatti illimitati" },
+              { "feature": "Profilo", "them": "Auto-dichiarato + endorsement peer", "ours": "Verificato AI dagli artefatti reali" },
+              { "feature": "Pool", "them": "Tutti i ruoli, dispersi", "ours": "Università + ITS focused" },
+              { "feature": "Skill verification", "them": "Peer endorsement (gameable)", "ours": "AI da progetti reali + ESCO" },
+              { "feature": "Time-to-shortlist", "them": "Ore di ricerca manuale", "ours": "Minuti con Smart Search" },
+              { "feature": "AI Act compliance", "them": "Opaque", "ours": "Public algorithm registry + audit log" }
+            ]
           },
-          {
-            "feature": "Pool candidati",
-            "traditional": "Candidature non verificate",
-            "ours": "Studenti verificati dall'istituto"
+          "indeed": {
+            "name": "Indeed",
+            "rows": [
+              { "feature": "Pool focus", "them": "Tutti i ruoli, basso filtro", "ours": "Verified university + ITS pool" },
+              { "feature": "Costo", "them": "PPC bidding imprevedibile", "ours": "Fissato €89/mese contatti illimitati" },
+              { "feature": "Quality signal", "them": "CV ranking", "ours": "Verified evidence + ESCO" },
+              { "feature": "Spam", "them": "Alto volume non in target", "ours": "Mediation Inbox per istituzioni" },
+              { "feature": "Cross-EU", "them": "Multi-country posting", "ours": "ESCO normalization automatica" },
+              { "feature": "AI compliance", "them": "Nessuna documentazione", "ours": "AI Act native con registry" }
+            ]
           },
-          {
-            "feature": "Verifica skills",
-            "traditional": "Screening CV",
-            "ours": "Progetti reali con validazione opzionale"
-          },
-          {
-            "feature": "Tempo",
-            "traditional": "Settimane di screening",
-            "ours": "Esplora e contatta direttamente"
-          },
-          {
-            "feature": "Impegno",
-            "traditional": "Contratti annuali",
-            "ours": "Paga quando vuoi"
-          },
-          {
-            "feature": "Trasparenza",
-            "traditional": "Visibilità limitata",
-            "ours": "Vedi progetti e voti reali"
+          "agencies": {
+            "name": "Agenzie (Adecco, Manpower)",
+            "rows": [
+              { "feature": "Costo per assunzione", "them": "€8-15k success fee", "ours": "€89/mese contatti illimitati" },
+              { "feature": "Tempo a placement", "them": "Settimane di shortlist", "ours": "Minuti con Smart Search" },
+              { "feature": "Qualità candidati", "them": "Screening manuale", "ours": "Verificati AI + endorsement docente opzionale" },
+              { "feature": "Lock-in", "them": "Clausola 90 giorni", "ours": "Cancelli quando vuoi" },
+              { "feature": "Trasparenza", "them": "Intermediario", "ours": "Contatto diretto col candidato" },
+              { "feature": "Database", "them": "Proprietario chiuso", "ours": "Pool università + ITS pubblico" }
+            ]
           }
-        ]
+        }
       }
     }
   },
@@ -3754,8 +3763,8 @@
       "institutions": "Scuole, ITS e Università"
     },
     "students": {
-      "title": "Studenti",
-      "subtitle": "Freemium — tutto ciò che serve per farti assumere è gratis. Le funzionalità Premium hanno un prezzo quotato su richiesta.",
+      "title": "Per gli studenti — gratis sempre, Premium quando ti serve",
+      "subtitle": "Tutto ciò che serve per farti assumere è gratis. Premium opzionale (€5/mese o €45/anno, 30 giorni di prova) per visibilità prioritaria, AI illimitata e Interview Coach.",
       "price": "Gratis",
       "period": "per sempre",
       "cta": "Inizia Gratis",
@@ -3785,7 +3794,7 @@
           "annualPrice": "€45 / anno",
           "annualSavings": "risparmi €15 (25%)",
           "studentDiscount": "· trial 30 giorni · cancelli quando vuoi",
-          "description": "Sblocca skill path completo, AI illimitata e gli strumenti di carriera che fanno la differenza. Gratis se la tua università sponsorizza Premium.",
+          "description": "Sblocca skill path completo, AI illimitata e gli strumenti di carriera che fanno la differenza. €5/mese o €45/anno, 30 giorni di prova.",
           "includes": "Tutto in Free, più:",
           "features": {
             "0": "Skill path completo con roadmap 12 mesi",
@@ -3884,7 +3893,7 @@
       }
     },
     "universities": {
-      "title": "Per scuole, ITS e università — gratis per sempre",
+      "title": "Per scuole, ITS e università — Free Core gratis, Premium opzionale",
       "subtitle": "Workspace tirocini M1–M4 completa, gratis. Premium e add-on sbloccano le funzionalità di scala solo se ti servono davvero.",
       "premiumBadge": "Workspace Istituzionale",
       "freeBadge": "Workspace Completa · Gratis",

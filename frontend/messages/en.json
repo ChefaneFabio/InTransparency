@@ -846,118 +846,127 @@
       "subtitle": "A clean, intuitive interface designed for students, academic partners, and companies."
     },
     "comparison": {
-      "badge": "A better way",
+      "badge": "Direct comparison",
       "cta": "Get Started Free",
       "students": {
-        "title": "A New Way to Start Your Career",
-        "subtitle": "Instead of sending CVs and waiting, let your real work speak for you.",
-        "traditionalLabel": "Before",
-        "rows": [
-          {
-            "feature": "Visibility",
-            "traditional": "Apply and wait for replies",
-            "ours": "Companies discover your profile"
+        "title": "Compare us to what you use today",
+        "subtitle": "LinkedIn, Indeed, JobTeaser — pick the comparison that matters to you. See what changes with a verified portfolio.",
+        "tabsLabel": "Compare InTransparency with",
+        "competitors": {
+          "linkedin": {
+            "name": "LinkedIn",
+            "rows": [
+              { "feature": "Profile basis", "them": "Self-reported + peer endorsements", "ours": "AI-verified from uploaded projects" },
+              { "feature": "Visibility", "them": "You search and apply", "ours": "Companies find you by extracted skills" },
+              { "feature": "Cost", "them": "Premium ~€30/mo for visibility", "ours": "Always free · optional Premium €5/mo" },
+              { "feature": "Skills", "them": "List you choose", "ours": "ESCO-extracted from real projects" },
+              { "feature": "Endorsement", "them": "Peer (gameable)", "ours": "Optional academic professor endorsement" },
+              { "feature": "Cross-EU", "them": "Same profile everywhere", "ours": "Grades normalized via ESCO across 27 EU countries" }
+            ]
           },
-          {
-            "feature": "Skills proof",
-            "traditional": "Self-reported on CV",
-            "ours": "Real projects with optional professor endorsement (bonus signal)"
+          "indeed": {
+            "name": "Indeed",
+            "rows": [
+              { "feature": "Profile basis", "them": "PDF CV upload", "ours": "Verified portfolio of real projects" },
+              { "feature": "Discovery", "them": "You apply to every job posting", "ours": "Companies find you by skill" },
+              { "feature": "Skill verification", "them": "Keyword match from CV", "ours": "AI extracts from real artifacts" },
+              { "feature": "Cost", "them": "Free", "ours": "Free · optional Premium €5/mo" },
+              { "feature": "Quality filter", "them": "All roles, low filter", "ours": "University + ITS verified pool" },
+              { "feature": "Persistence", "them": "CV in the pile", "ours": "Portfolio stays yours after graduation" }
+            ]
           },
-          {
-            "feature": "Cost",
-            "traditional": "Paid job boards",
-            "ours": "Free, no credit card"
-          },
-          {
-            "feature": "Matching",
-            "traditional": "Manual keyword search",
-            "ours": "evidence-based matching"
-          },
-          {
-            "feature": "Response rate",
-            "traditional": "Often low",
-            "ours": "Direct company contact"
-          },
-          {
-            "feature": "Portfolio",
-            "traditional": "PDF or LinkedIn profile",
-            "ours": "Verified project portfolio"
+          "jobteaser": {
+            "name": "JobTeaser",
+            "rows": [
+              { "feature": "Italian-native", "them": "6 languages, IT excluded", "ours": "IT first-class" },
+              { "feature": "Skill verification", "them": "Doesn't verify", "ours": "AI + optional professor endorsement" },
+              { "feature": "Discovery", "them": "Company job postings", "ours": "Continuous skill-search by recruiters" },
+              { "feature": "Italian universities", "them": "Few IT institutions", "ours": "Italian universities + ITS in foreground" },
+              { "feature": "PCTO/MIUR", "them": "Not compliant", "ours": "ITS-ready, MIUR-format" },
+              { "feature": "Cross-EU", "them": "Marketplace job", "ours": "ESCO + Europass v3 standard" }
+            ]
           }
-        ]
+        }
       },
       "institutions": {
-        "title": "A Modern Approach to Student Placement",
-        "subtitle": "Move from annual surveys to real-time insights on your students' career outcomes.",
-        "traditionalLabel": "Before",
-        "rows": [
-          {
-            "feature": "Student tracking",
-            "traditional": "Manual spreadsheets",
-            "ours": "Real-time dashboard"
+        "title": "Compare us to what you use today",
+        "subtitle": "AlmaLaurea, JobTeaser, Excel sheets — pick the comparison that matters. See what changes with a workspace built for placement.",
+        "tabsLabel": "Compare InTransparency with",
+        "competitors": {
+          "almalaurea": {
+            "name": "AlmaLaurea",
+            "rows": [
+              { "feature": "Cost", "them": "€2,500+/yr", "ours": "Free Core · optional Premium €39/mo" },
+              { "feature": "Data", "them": "Aggregated annual surveys", "ours": "Live placement analytics, per student" },
+              { "feature": "Workspace", "them": "Read-only stats", "ours": "Active M1–M4 workspace (Inbox, CRM, Pipeline)" },
+              { "feature": "Verification", "them": "Self-reported by student", "ours": "AI from projects + professor endorsement" },
+              { "feature": "Output", "them": "Statistical reports", "ours": "Per-student dashboard + company outreach" },
+              { "feature": "AI compliance", "them": "GDPR", "ours": "GDPR + public AI Act registry" }
+            ]
           },
-          {
-            "feature": "Company connections",
-            "traditional": "Career day events",
-            "ours": "Year-round marketplace"
+          "jobteaser": {
+            "name": "JobTeaser",
+            "rows": [
+              { "feature": "Italian-native", "them": "Doesn't support Italian", "ours": "IT first-class + ITS-ready" },
+              { "feature": "Company CRM", "them": "Not available", "ours": "M1–M4 workspace with drag-and-drop CRM" },
+              { "feature": "Skill verification", "them": "Doesn't verify", "ours": "AI + optional professor endorsement" },
+              { "feature": "Cost", "them": "Annual bundle €€€", "ours": "Free Core · Premium €39/mo" },
+              { "feature": "PCTO/MIUR", "them": "Not compliant", "ours": "ITS-ready, MIUR-format reports, PCTO ledger" },
+              { "feature": "Internships", "them": "Job postings", "ours": "Tirocinio pipeline with hours + evaluations" }
+            ]
           },
-          {
-            "feature": "Verification",
-            "traditional": "Paper certificates",
-            "ours": "Digital evidence badges"
-          },
-          {
-            "feature": "Analytics",
-            "traditional": "Annual surveys",
-            "ours": "Live placement metrics"
-          },
-          {
-            "feature": "Cost",
-            "traditional": "Career services budget",
-            "ours": "Free Core for academic partners"
-          },
-          {
-            "feature": "Reporting",
-            "traditional": "Manual MIUR reports",
-            "ours": "Auto-generated reports"
+          "excel": {
+            "name": "Manual spreadsheets",
+            "rows": [
+              { "feature": "Staff time", "them": "Manual hours per cohort", "ours": "Auto + reminder automation" },
+              { "feature": "PCTO tracking", "them": "Sheet per class", "ours": "Per-student digital ledger" },
+              { "feature": "Paperwork", "them": "PDFs filled by hand", "ours": "Auto-generated MIUR-format" },
+              { "feature": "Project verification", "them": "PDF in archive", "ours": "Digital audit log + AI extract" },
+              { "feature": "Reporting", "them": "Done at year-end", "ours": "Live USR/MIUR reports" },
+              { "feature": "Live data", "them": "Updated once a year", "ours": "Real-time dashboard" }
+            ]
           }
-        ]
+        }
       },
       "companies": {
-        "title": "A Simpler Way to Find Junior Talent",
-        "subtitle": "Browse AI-verified profile from Italian universities and ITS academies — connect when you're ready.",
-        "traditionalLabel": "Before",
-        "rows": [
-          {
-            "feature": "Cost",
-            "traditional": "Agency fees or subscriptions",
-            "ours": "free to start, no commitments"
+        "title": "Compare us to what you use today",
+        "subtitle": "LinkedIn Recruiter, Indeed, recruiting agencies — pick the comparison that matters. See what changes with an AI-verified pool.",
+        "tabsLabel": "Compare InTransparency with",
+        "competitors": {
+          "linkedinRecruiter": {
+            "name": "LinkedIn Recruiter",
+            "rows": [
+              { "feature": "Cost", "them": "€8,000+/yr per seat", "ours": "5 free contacts/mo · €89/mo unlimited" },
+              { "feature": "Profile basis", "them": "Self-reported + peer endorsements", "ours": "AI-verified from real artifacts" },
+              { "feature": "Pool", "them": "All roles, dispersed", "ours": "University + ITS focused" },
+              { "feature": "Skill verification", "them": "Peer endorsement (gameable)", "ours": "AI from real projects + ESCO" },
+              { "feature": "Time-to-shortlist", "them": "Hours of manual search", "ours": "Minutes with Smart Search" },
+              { "feature": "AI Act compliance", "them": "Opaque", "ours": "Public algorithm registry + audit log" }
+            ]
           },
-          {
-            "feature": "Candidate pool",
-            "traditional": "Unverified applications",
-            "ours": "Real student profiles, often with endorsement"
+          "indeed": {
+            "name": "Indeed",
+            "rows": [
+              { "feature": "Pool focus", "them": "All roles, low filter", "ours": "Verified university + ITS pool" },
+              { "feature": "Cost", "them": "Unpredictable PPC bidding", "ours": "Fixed €89/mo unlimited contacts" },
+              { "feature": "Quality signal", "them": "CV ranking", "ours": "Verified evidence + ESCO" },
+              { "feature": "Spam", "them": "High volume off-target", "ours": "Mediation Inbox per institution" },
+              { "feature": "Cross-EU", "them": "Multi-country posting", "ours": "Automatic ESCO normalization" },
+              { "feature": "AI compliance", "them": "No documentation", "ours": "AI Act native with registry" }
+            ]
           },
-          {
-            "feature": "Skills evidence",
-            "traditional": "CV screening",
-            "ours": "Real projects with optional endorsement"
-          },
-          {
-            "feature": "Time to connect",
-            "traditional": "Weeks of screening",
-            "ours": "Browse and contact directly"
-          },
-          {
-            "feature": "Commitment",
-            "traditional": "Annual contracts",
-            "ours": "Pay as you go"
-          },
-          {
-            "feature": "Transparency",
-            "traditional": "Limited visibility",
-            "ours": "See real projects and grades"
+          "agencies": {
+            "name": "Agencies (Adecco, Manpower)",
+            "rows": [
+              { "feature": "Cost per hire", "them": "€8-15k success fee", "ours": "€89/mo unlimited contacts" },
+              { "feature": "Time to placement", "them": "Weeks to shortlist", "ours": "Minutes with Smart Search" },
+              { "feature": "Candidate quality", "them": "Manual screening", "ours": "AI-verified + optional professor endorsement" },
+              { "feature": "Lock-in", "them": "90-day clause", "ours": "Cancel any time" },
+              { "feature": "Transparency", "them": "Intermediary", "ours": "Direct candidate contact" },
+              { "feature": "Database", "them": "Closed proprietary", "ours": "Public university + ITS pool" }
+            ]
           }
-        ]
+        }
       }
     }
   },
@@ -3879,7 +3888,7 @@
       "institutions": "Academic Partners"
     },
     "students": {
-      "title": "Students",
+      "title": "For students — always free, Premium when you need it",
       "subtitle": "Freemium — everything you need to get hired is free. Premium features priced per request when you need to accelerate.",
       "price": "Free",
       "period": "forever",
@@ -3910,7 +3919,7 @@
           "annualPrice": "€45 / year",
           "annualSavings": "save €15 (25%)",
           "studentDiscount": "· 30-day trial · cancel anytime",
-          "description": "Unlock the full Skill Path, unlimited AI, and the career tooling that actually moves the needle. Free if your university sponsors Premium.",
+          "description": "Unlock the full Skill Path, unlimited AI, and the career tooling that actually moves the needle. €5/mo or €45/yr, 30-day trial.",
           "includes": "Everything in Free, plus:",
           "features": {
             "0": "Full Skill Path with 12-month roadmap",
