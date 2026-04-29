@@ -18,7 +18,14 @@
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "seed:esco": "tsx scripts/seed-esco.ts"
+    "seed:esco": "tsx scripts/seed-esco.ts",
+    "seed:demo:politecnico": "npx tsx prisma/seed-demo-politecnico.ts",
+    "seed:demo:ammi": "npx tsx prisma/seed-demo-ammi-monza.ts",
+    "seed:demo:unibg": "npx tsx prisma/seed-demo-unibg.ts",
+    "seed:demo:brembo": "npx tsx prisma/seed-demo-brembo.ts",
+    "seed:demo:all": "npm run seed:demo:politecnico && npm run seed:demo:ammi && npm run seed:demo:unibg && npm run seed:demo:brembo",
+    "seed:challenges": "npx tsx prisma/seed-challenges.ts",
+    "seed:psychometric": "npx tsx prisma/seed-psychometric.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
