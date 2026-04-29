@@ -61,6 +61,8 @@ export function Footer() {
       { name: tFooter('productLinks.forStudents'), href: '/for-students' },
       { name: tFooter('productLinks.forCompanies'), href: '/for-companies' },
       { name: tFooter('productLinks.forUniversities'), href: '/for-universities' },
+      { name: tFooter('productLinks.forITS'), href: '/for-its-institutes' },
+      { name: tFooter('productLinks.forHighSchools'), href: '/for-high-schools' },
       { name: tFooter('productLinks.forEnterprise'), href: '/for-enterprise' },
       { name: tFooter('productLinks.forPublicSector'), href: '/for-public-sector' },
       { name: tFooter('productLinks.pricing'), href: '/pricing' },

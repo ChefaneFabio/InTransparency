@@ -11,6 +11,7 @@ import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
 import { SavingsCalculator } from '@/components/sections/universities/SavingsCalculator'
 import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
 import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+import { CrossTierNav } from '@/components/segments/CrossTierNav'
 
 /**
  * /for-universities — academic-partner segment funnel.
@@ -222,6 +223,7 @@ export default function ForUniversitiesPage() {
             </div>
           </div>
         </section>
+        <CrossTierNav current="universities" />
       </main>
       <Footer />
       <StickyCTA show={showSticky} text={t('cta.demoButton')} href="/contact?subject=university-pilot" />

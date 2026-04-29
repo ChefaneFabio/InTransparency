@@ -1,4 +1,22 @@
 {
+  "crossTier": {
+    "heading": "InTransparency also serves",
+    "subhead": "Same product, same pricing — adapted to three types of educational institutions.",
+    "tiers": {
+      "universities": {
+        "label": "For Universities",
+        "tagline": "Career services, curricular internships, placement analytics, ANVUR-grade reporting."
+      },
+      "its": {
+        "label": "For ITS Academy",
+        "tagline": "MIM-compliant hour logging, evaluation framework, placement reporting tied to funding."
+      },
+      "highSchools": {
+        "label": "For Secondary Schools",
+        "tagline": "PCTO without Excel: 90/150/210h tracking, student evidence, company-tutor evaluation."
+      }
+    }
+  },
   "nav": {
     "features": "Features",
     "howItWorks": "How It Works",
@@ -1004,6 +1022,8 @@
       "forStudents": "For Students",
       "forCompanies": "For Companies",
       "forUniversities": "For Universities",
+      "forITS": "For ITS Academy",
+      "forHighSchools": "For Secondary Schools",
       "pricing": "Pricing",
       "explore": "Explore Talent",
       "aiDemo": "Demo",

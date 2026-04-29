@@ -9,6 +9,7 @@ import { FAQ } from '@/components/engagement/FAQ'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
 import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+import { CrossTierNav } from '@/components/segments/CrossTierNav'
 
 /**
  * /for-high-schools — high school segment funnel.
@@ -288,6 +289,7 @@ export default function ForHighSchoolsPage() {
             </div>
           </div>
         </section>
+        <CrossTierNav current="highSchools" />
       </main>
       <Footer />
       <StickyCTA show={showSticky} text={t('cta.demoButton')} href="/contact?subject=high-school-pilot" />

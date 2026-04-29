@@ -1,4 +1,22 @@
 {
+  "crossTier": {
+    "heading": "InTransparency è anche per",
+    "subhead": "Lo stesso prodotto e lo stesso pricing si adattano a tre tipi di istituzioni formative.",
+    "tiers": {
+      "universities": {
+        "label": "Per le Università",
+        "tagline": "Career service, tirocini curricolari, analytics di placement, conformità ANVUR."
+      },
+      "its": {
+        "label": "Per gli ITS Academy",
+        "tagline": "Logging ore conforme MIM, evaluation framework, reporting placement vincolato al finanziamento."
+      },
+      "highSchools": {
+        "label": "Per le Scuole Secondarie",
+        "tagline": "PCTO senza fogli Excel: tracking ore 90/150/210h, evidenze studente, valutazione tutor aziendale."
+      }
+    }
+  },
   "nav": {
     "features": "Funzionalità",
     "howItWorks": "Come Funziona",
@@ -1004,6 +1022,8 @@
       "forStudents": "Per Studenti",
       "forCompanies": "Per Aziende",
       "forUniversities": "Per Università",
+      "forITS": "Per ITS Academy",
+      "forHighSchools": "Per Scuole Secondarie",
       "pricing": "Prezzi",
       "explore": "Esplora Talenti",
       "aiDemo": "Demo",
