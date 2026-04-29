@@ -62,7 +62,7 @@ const DETECTORS = {
     return (data?.profile?.stepsCompleted ?? 0) >= 6
   },
   studentFirstApplication: async () => {
-    const data = await fetchOk('/api/dashboard/student/applications')
+    const data = await fetchOk('/api/applications?limit=1')
     return Array.isArray(data?.applications) && data.applications.length > 0
   },
   recruiterCompanyProfile: async () => {
