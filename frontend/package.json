@@ -23,7 +23,8 @@
     "seed:demo:ammi": "npx tsx prisma/seed-demo-ammi-monza.ts",
     "seed:demo:unibg": "npx tsx prisma/seed-demo-unibg.ts",
     "seed:demo:brembo": "npx tsx prisma/seed-demo-brembo.ts",
-    "seed:demo:all": "npm run seed:demo:politecnico && npm run seed:demo:ammi && npm run seed:demo:unibg && npm run seed:demo:brembo",
+    "seed:demo:cattolica": "npx tsx prisma/seed-demo-cattolica.ts",
+    "seed:demo:all": "npm run seed:demo:politecnico && npm run seed:demo:ammi && npm run seed:demo:unibg && npm run seed:demo:brembo && npm run seed:demo:cattolica",
     "seed:challenges": "npx tsx prisma/seed-challenges.ts",
     "seed:psychometric": "npx tsx prisma/seed-psychometric.ts"
   },
