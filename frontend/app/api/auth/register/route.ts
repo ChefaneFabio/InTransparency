@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
       const { sendAccountVerificationEmail } = await import('@/lib/email')
       const rawToken = await issueVerificationToken(user.email)
       const requestedLocale: 'en' | 'it' = validatedData.locale === 'it' ? 'it' : 'en'
-      await sendAccountVerificationEmail(user.email, rawToken, user.firstName, requestedLocale)
+      await sendAccountVerificationEmail(user.email, rawToken, user.firstName ?? '', requestedLocale)
     } catch (verificationErr) {
       console.error('[register] email verification dispatch failed:', verificationErr)
     }

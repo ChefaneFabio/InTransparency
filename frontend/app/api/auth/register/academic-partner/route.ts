@@ -131,7 +131,7 @@ export async function POST(req: NextRequest) {
       await sendAccountVerificationEmail(
         result.user.email,
         rawToken,
-        result.user.firstName,
+        result.user.firstName ?? '',
         requestedLocale
       )
     } catch (verificationErr) {

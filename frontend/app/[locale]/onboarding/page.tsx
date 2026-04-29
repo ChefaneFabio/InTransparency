@@ -97,7 +97,6 @@ interface OnboardingData {
   degree: string
   graduationYear: string
   skills: string[]
-  institutionType: InstitutionTypeStudent | ''
   status: StudentStatus | ''
 
   // Recruiter specific
@@ -105,7 +104,7 @@ interface OnboardingData {
   jobTitle: string
   companySize: string
 
-  // University specific
+  // University specific (institutionType is shared with the Student branch — same field, broader type to fit both)
   institutionName: string
   institutionType: string
   institutionLogo: string
@@ -561,7 +560,6 @@ export default function OnboardingPage() {
     degree: '',
     graduationYear: '',
     skills: [],
-    institutionType: '',
     status: '',
     company: '',
     jobTitle: '',
