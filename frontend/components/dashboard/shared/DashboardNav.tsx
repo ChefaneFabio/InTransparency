@@ -49,6 +49,7 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
     group.items.some((item) => isActive(item.href))
 
   return (
+    <>
     <nav className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Desktop nav — xl so university/ITS (5+ groups) never overflow when tab is halved */}
@@ -154,7 +155,10 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
           <div className="flex items-center gap-1">
             <NotificationBell />
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
+              type="button"
+              onClick={() => setMobileOpen(o => !o)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
               className="p-2 rounded-md hover:bg-muted"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -162,10 +166,11 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
           </div>
         </div>
       </div>
+    </nav>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay — rendered outside <nav> to escape its backdrop-blur stacking context */}
       {mobileOpen && (
-        <div className="xl:hidden fixed inset-0 top-14 z-50 bg-background overflow-y-auto">
+        <div className="xl:hidden fixed inset-0 top-14 z-[60] bg-background overflow-y-auto">
           <div className="container max-w-7xl mx-auto px-4 py-4 space-y-2">
             {config.groups.map((group) => {
               const isExpanded = expandedGroup === group.labelKey
@@ -250,6 +255,6 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
           </div>
         </div>
       )}
-    </nav>
+    </>
   )
 }
