@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import RecruiterSettingsPanel from '@/components/dashboard/recruiter/settings-tabs/GeneralPanel'
@@ -15,6 +16,8 @@ export default function RecruiterSettingsPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const initial = (searchParams?.get('tab') as TabKey) || 'general'
   const [tab, setTab] = useState<TabKey>(VALID.includes(initial) ? initial : 'general')
 
@@ -29,17 +32,17 @@ export default function RecruiterSettingsPage() {
   return (
     <div className="max-w-5xl mx-auto py-8 px-4 space-y-6">
       <MetricHero gradient="company">
-        <h1 className="text-2xl font-semibold">Settings</h1>
+        <h1 className="text-2xl font-semibold">{isIt ? 'Impostazioni' : 'Settings'}</h1>
         <p className="text-muted-foreground">
-          Company profile, documents, and integrations.
+          {isIt ? 'Profilo aziendale, documenti e integrazioni.' : 'Company profile, documents, and integrations.'}
         </p>
       </MetricHero>
 
       <Tabs value={tab} onValueChange={handleTabChange} className="space-y-5">
         <TabsList className="grid w-full grid-cols-3 max-w-xl">
-          <TabsTrigger value="general">General</TabsTrigger>
-          <TabsTrigger value="documents">Documents</TabsTrigger>
-          <TabsTrigger value="integrations">Integrations</TabsTrigger>
+          <TabsTrigger value="general">{isIt ? 'Generali' : 'General'}</TabsTrigger>
+          <TabsTrigger value="documents">{isIt ? 'Documenti' : 'Documents'}</TabsTrigger>
+          <TabsTrigger value="integrations">{isIt ? 'Integrazioni' : 'Integrations'}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="mt-0">

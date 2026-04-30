@@ -46,7 +46,7 @@ export default function NewJobPage() {
   const [submitting, setSubmitting] = useState(false)
 
   const handleSendMessage = useCallback(async (text: string, attachments: Array<{ type: 'image' | 'document'; url: string; name: string }>) => {
-    const userMsg: ChatMessage = { role: 'user', content: text || 'Attached files', attachments: attachments.length > 0 ? attachments : undefined }
+    const userMsg: ChatMessage = { role: 'user', content: text || (locale === 'it' ? 'File allegati' : 'Attached files'), attachments: attachments.length > 0 ? attachments : undefined }
     setMessages(prev => [...prev, userMsg])
     setAnalyzing(true)
 
@@ -144,18 +144,20 @@ export default function NewJobPage() {
     if (parsed.jobType) summary.push(parsed.jobType.toLowerCase().replace('_', ' '))
     if (parsed.location) summary.push(parsed.location)
     if (Array.isArray(parsed.requiredSkills) && parsed.requiredSkills.length > 0) {
-      summary.push(`skills: ${parsed.requiredSkills.slice(0, 5).join(', ')}`)
+      summary.push(`${locale === 'it' ? 'competenze' : 'skills'}: ${parsed.requiredSkills.slice(0, 5).join(', ')}`)
     }
     setMessages(prev => [
       ...prev,
       {
         role: 'assistant',
         content: summary.length
-          ? `I extracted: ${summary.join(' · ')}.\n\nReview the form on the right and tell me what to add or fix.`
+          ? (locale === 'it'
+              ? `Ho estratto: ${summary.join(' · ')}.\n\nControlla il form a destra e dimmi cosa aggiungere o correggere.`
+              : `I extracted: ${summary.join(' · ')}.\n\nReview the form on the right and tell me what to add or fix.`)
           : t('chat.followUp'),
       },
     ])
-  }, [t])
+  }, [t, locale])
 
   return (
     <div className="max-w-4xl mx-auto pb-2 px-4 pt-4">

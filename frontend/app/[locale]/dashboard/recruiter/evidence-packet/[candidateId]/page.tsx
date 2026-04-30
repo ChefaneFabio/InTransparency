@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, use } from 'react'
+import { useLocale } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -90,7 +91,8 @@ interface EvidencePacket {
   generatedAt: string
 }
 
-const LEVEL_LABELS = ['—', 'Beginner', 'Intermediate', 'Advanced', 'Expert']
+const LEVEL_LABELS_EN = ['—', 'Beginner', 'Intermediate', 'Advanced', 'Expert']
+const LEVEL_LABELS_IT = ['—', 'Principiante', 'Intermedio', 'Avanzato', 'Esperto']
 
 export default function EvidencePacketPage({
   params,
@@ -98,6 +100,9 @@ export default function EvidencePacketPage({
   params: Promise<{ candidateId: string; locale: string }>
 }) {
   const { candidateId } = use(params)
+  const locale = useLocale()
+  const isIt = locale === 'it'
+  const LEVEL_LABELS = isIt ? LEVEL_LABELS_IT : LEVEL_LABELS_EN
   const [data, setData] = useState<EvidencePacket | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -122,7 +127,7 @@ export default function EvidencePacketPage({
       <div className="container max-w-3xl mx-auto py-8 px-4">
         <Card>
           <CardContent className="pt-6 text-center py-12">
-            <p className="text-muted-foreground">Candidate evidence packet unavailable.</p>
+            <p className="text-muted-foreground">{isIt ? 'Dossier evidenze candidato non disponibile.' : 'Candidate evidence packet unavailable.'}</p>
           </CardContent>
         </Card>
       </div>
@@ -136,25 +141,26 @@ export default function EvidencePacketPage({
     <div className="container max-w-4xl mx-auto py-8 px-4 print:p-0 print:max-w-full">
       {/* Print-only header */}
       <div className="hidden print:block mb-6 border-b pb-4">
-        <h1 className="text-2xl font-bold">Evidence Packet · {data.candidate.name}</h1>
+        <h1 className="text-2xl font-bold">{isIt ? 'Dossier evidenze' : 'Evidence Packet'} · {data.candidate.name}</h1>
         <p className="text-sm text-muted-foreground">
-          Generated {new Date(data.generatedAt).toLocaleString()} — InTransparency
+          {isIt ? 'Generato' : 'Generated'} {new Date(data.generatedAt).toLocaleString(locale)} — InTransparency
         </p>
       </div>
 
       {/* Header + actions */}
       <div className="mb-6 flex items-start justify-between gap-4 print:hidden">
         <div>
-          <h1 className="text-3xl font-bold mb-1">Evidence packet</h1>
+          <h1 className="text-3xl font-bold mb-1">{isIt ? 'Dossier evidenze' : 'Evidence packet'}</h1>
           <p className="text-muted-foreground">
-            Internally-shareable hiring dossier — match reasoning, verified credentials, skill
-            graph, stage outcomes, and professor endorsements in one place.
+            {isIt
+              ? 'Dossier di assunzione condivisibile internamente — motivazione del match, credenziali verificate, grafo competenze, esiti dei tirocini ed endorsement dei docenti in un unico luogo.'
+              : 'Internally-shareable hiring dossier — match reasoning, verified credentials, skill graph, stage outcomes, and professor endorsements in one place.'}
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => window.print()}>
             <Printer className="h-4 w-4 mr-1" />
-            Print / PDF
+            {isIt ? 'Stampa / PDF' : 'Print / PDF'}
           </Button>
         </div>
       </div>
@@ -180,7 +186,7 @@ export default function EvidencePacketPage({
                   </span>
                 )}
                 {data.candidate.university && <span>{data.candidate.university}</span>}
-                {data.candidate.graduationYear && <span>Class of {data.candidate.graduationYear}</span>}
+                {data.candidate.graduationYear && <span>{isIt ? `Promo ${data.candidate.graduationYear}` : `Class of ${data.candidate.graduationYear}`}</span>}
                 {data.candidate.location && (
                   <span className="flex items-center gap-1">
                     <MapPin className="h-4 w-4" />
@@ -224,7 +230,7 @@ export default function EvidencePacketPage({
             <CardTitle className="text-base flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-primary" />
-                Match reasoning
+                {isIt ? 'Motivazione del match' : 'Match reasoning'}
               </span>
               <div className="flex items-center gap-3">
                 <Badge>{data.matchExplanation.decisionLabel?.replace('_', ' ') ?? '—'}</Badge>
@@ -236,7 +242,7 @@ export default function EvidencePacketPage({
           </CardHeader>
           <CardContent>
             <p className="text-xs text-muted-foreground mb-3">
-              Computed {new Date(data.matchExplanation.createdAt).toLocaleDateString()} by model{' '}
+              {isIt ? 'Calcolato' : 'Computed'} {new Date(data.matchExplanation.createdAt).toLocaleDateString(locale)} {isIt ? 'dal modello' : 'by model'}{' '}
               {data.matchExplanation.modelVersion}
             </p>
             <div className="space-y-2">
@@ -261,26 +267,26 @@ export default function EvidencePacketPage({
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Network className="h-5 w-5 text-primary" />
-            Verified skill graph ({data.skillGraph.length} skills)
+            {isIt ? `Grafo competenze verificate (${data.skillGraph.length} competenze)` : `Verified skill graph (${data.skillGraph.length} skills)`}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-3 gap-3 mb-4 text-sm">
             <div>
               <div className="text-2xl font-bold text-emerald-600">{expertSkills.length}</div>
-              <div className="text-xs text-muted-foreground">Advanced or Expert</div>
+              <div className="text-xs text-muted-foreground">{isIt ? 'Avanzato o Esperto' : 'Advanced or Expert'}</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-blue-600">{multiSourceSkills.length}</div>
-              <div className="text-xs text-muted-foreground">Multi-source verified</div>
+              <div className="text-xs text-muted-foreground">{isIt ? 'Verificate da più fonti' : 'Multi-source verified'}</div>
             </div>
             <div>
               <div className="text-2xl font-bold">{data.skillGraph.filter(s => s.escoUri).length}</div>
-              <div className="text-xs text-muted-foreground">ESCO-mapped</div>
+              <div className="text-xs text-muted-foreground">{isIt ? 'Mappate ESCO' : 'ESCO-mapped'}</div>
             </div>
           </div>
           {data.skillGraph.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No verified skills in graph yet.</p>
+            <p className="text-sm text-muted-foreground">{isIt ? 'Nessuna competenza verificata nel grafo.' : 'No verified skills in graph yet.'}</p>
           ) : (
             <div className="flex flex-wrap gap-2">
               {data.skillGraph.slice(0, 30).map(s => (
@@ -305,7 +311,7 @@ export default function EvidencePacketPage({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
-              Verifiable credentials ({data.credentials.length})
+              {isIt ? `Credenziali verificabili (${data.credentials.length})` : `Verifiable credentials (${data.credentials.length})`}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -315,14 +321,14 @@ export default function EvidencePacketPage({
                 <div className="flex-1">
                   <div className="font-medium text-sm">{c.type.replace(/_/g, ' ')}</div>
                   <div className="text-xs text-muted-foreground">
-                    {c.issuer} · {new Date(c.issuedAt).toLocaleDateString()}
+                    {c.issuer} · {new Date(c.issuedAt).toLocaleDateString(locale)}
                   </div>
                 </div>
                 {c.shareUrl && (
                   <Button variant="outline" size="sm" asChild className="print:hidden">
                     <a href={c.shareUrl} target="_blank" rel="noreferrer">
                       <Eye className="h-3 w-3 mr-1" />
-                      Verify
+                      {isIt ? 'Verifica' : 'Verify'}
                     </a>
                   </Button>
                 )}
@@ -338,7 +344,7 @@ export default function EvidencePacketPage({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <Briefcase className="h-5 w-5 text-primary" />
-              Stage / internship history ({data.stages.length})
+              {isIt ? `Storico tirocini (${data.stages.length})` : `Stage / internship history (${data.stages.length})`}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -350,18 +356,18 @@ export default function EvidencePacketPage({
                   {s.supervisorWouldHire && (
                     <Badge variant="default" className="text-xs">
                       <CheckCircle2 className="h-3 w-3 mr-1" />
-                      Supervisor would hire
+                      {isIt ? 'Il supervisore lo assumerebbe' : 'Supervisor would hire'}
                     </Badge>
                   )}
                   {s.supervisorRating && (
                     <Badge variant="secondary" className="text-xs">
-                      Rated {s.supervisorRating}/5
+                      {isIt ? `Valutazione ${s.supervisorRating}/5` : `Rated ${s.supervisorRating}/5`}
                     </Badge>
                   )}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  {new Date(s.startDate).toLocaleDateString()}
-                  {s.endDate && ` → ${new Date(s.endDate).toLocaleDateString()}`} · {s.completedHours}h
+                  {new Date(s.startDate).toLocaleDateString(locale)}
+                  {s.endDate && ` → ${new Date(s.endDate).toLocaleDateString(locale)}`} · {s.completedHours}h
                 </div>
                 {s.supervisorStrengths && (
                   <p className="text-sm text-muted-foreground mt-1 italic">&quot;{s.supervisorStrengths}&quot;</p>
@@ -378,7 +384,7 @@ export default function EvidencePacketPage({
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
               <FileText className="h-5 w-5 text-primary" />
-              Professor endorsements ({data.endorsements.length})
+              {isIt ? `Endorsement docenti (${data.endorsements.length})` : `Professor endorsements (${data.endorsements.length})`}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -389,12 +395,12 @@ export default function EvidencePacketPage({
                     {e.professorName}
                     {e.professorTitle && <span className="text-muted-foreground font-normal"> — {e.professorTitle}</span>}
                   </h4>
-                  {e.rating && <Badge variant="secondary" className="text-xs">Rated {e.rating}/5</Badge>}
-                  {e.grade && <Badge variant="outline" className="text-xs">Grade {e.grade}</Badge>}
+                  {e.rating && <Badge variant="secondary" className="text-xs">{isIt ? `Valutazione ${e.rating}/5` : `Rated ${e.rating}/5`}</Badge>}
+                  {e.grade && <Badge variant="outline" className="text-xs">{isIt ? `Voto ${e.grade}` : `Grade ${e.grade}`}</Badge>}
                 </div>
                 <div className="text-xs text-muted-foreground">
                   {e.university}
-                  {e.courseName && ` · ${e.courseName}`} · Project: {e.projectTitle}
+                  {e.courseName && ` · ${e.courseName}`} · {isIt ? 'Progetto' : 'Project'}: {e.projectTitle}
                 </div>
                 {e.skills.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-1">
@@ -412,9 +418,9 @@ export default function EvidencePacketPage({
       )}
 
       <div className="mt-8 text-xs text-muted-foreground text-center print:hidden">
-        Generated {new Date(data.generatedAt).toLocaleString()} — InTransparency evidence packet.
-        For internal hiring decisions only. Every claim above can be independently verified via
-        cryptographic credentials.
+        {isIt ? 'Generato' : 'Generated'} {new Date(data.generatedAt).toLocaleString(locale)} — {isIt
+          ? 'Dossier evidenze InTransparency. Solo per decisioni di assunzione interne. Ogni affermazione qui sopra è verificabile in modo indipendente tramite credenziali crittografiche.'
+          : 'InTransparency evidence packet. For internal hiring decisions only. Every claim above can be independently verified via cryptographic credentials.'}
       </div>
     </div>
   )
