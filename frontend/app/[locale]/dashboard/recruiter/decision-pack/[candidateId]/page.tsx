@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -87,6 +87,8 @@ interface DecisionPackData {
 
 export default function DecisionPackPage() {
   const t = useTranslations('dashboard.recruiter.decisionPackDetail')
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const params = useParams()
   const candidateId = params.candidateId as string
   const [data, setData] = useState<DecisionPackData | null>(null)
@@ -233,10 +235,10 @@ export default function DecisionPackPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Skill</th>
-                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Industry Terms</th>
-                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Evidence</th>
-                  <th className="text-left py-2 font-medium text-muted-foreground">Level</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Competenza' : 'Skill'}</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Termini settore' : 'Industry Terms'}</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Evidenze' : 'Evidence'}</th>
+                  <th className="text-left py-2 font-medium text-muted-foreground">{isIt ? 'Livello' : 'Level'}</th>
                 </tr>
               </thead>
               <tbody>
@@ -337,9 +339,9 @@ export default function DecisionPackPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Project</th>
-                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Original</th>
-                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Normalized</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Progetto' : 'Project'}</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Originale' : 'Original'}</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">{isIt ? 'Normalizzato' : 'Normalized'}</th>
                     <th className="text-left py-2 pr-4 font-medium text-muted-foreground">IT</th>
                     <th className="text-left py-2 pr-4 font-medium text-muted-foreground">DE</th>
                     <th className="text-left py-2 font-medium text-muted-foreground">UK</th>

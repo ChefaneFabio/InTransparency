@@ -42,7 +42,7 @@ import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { exportCandidatesToCsv } from '@/lib/export-csv'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 const DISCIPLINE_KEYS = [
   { value: 'all', key: 'allDisciplines' },
@@ -121,6 +121,8 @@ function StartOutreachAction({
   templates: OutreachTemplateOption[]
   onStarted?: () => void
 }) {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [busyId, setBusyId] = useState<string | null>(null)
   const [result, setResult] = useState<'ok' | 'err' | null>(null)
   const [errorMsg, setErrorMsg] = useState<string>('')
@@ -143,7 +145,7 @@ function StartOutreachAction({
         setResult('err')
       }
     } catch (err: any) {
-      setErrorMsg(err?.message || 'Network error')
+      setErrorMsg(err?.message || (isIt ? 'Errore di rete' : 'Network error'))
       setResult('err')
     } finally {
       setBusyId(null)
@@ -153,21 +155,21 @@ function StartOutreachAction({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size="sm" variant="outline" title="Start an outreach sequence">
+        <Button size="sm" variant="outline" title={isIt ? 'Avvia una sequenza di outreach' : 'Start an outreach sequence'}>
           <Send className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-72 p-0" align="end">
         <div className="p-3 border-b">
-          <div className="text-sm font-semibold">Start outreach sequence</div>
-          <p className="text-xs text-muted-foreground">Pick a template. Step 1 goes out on the next cron tick.</p>
+          <div className="text-sm font-semibold">{isIt ? 'Avvia sequenza outreach' : 'Start outreach sequence'}</div>
+          <p className="text-xs text-muted-foreground">{isIt ? 'Scegli un template. Lo step 1 parte al prossimo cron tick.' : 'Pick a template. Step 1 goes out on the next cron tick.'}</p>
         </div>
         <div className="p-2 max-h-72 overflow-y-auto">
           {templates.length === 0 ? (
             <div className="p-3 text-xs text-muted-foreground">
-              No templates yet.{' '}
+              {isIt ? 'Nessun template ancora.' : 'No templates yet.'}{' '}
               <Link href="/dashboard/recruiter/outreach" className="text-primary underline">
-                Create one
+                {isIt ? 'Creane uno' : 'Create one'}
               </Link>
               .
             </div>
@@ -181,7 +183,7 @@ function StartOutreachAction({
               >
                 <div>
                   <div className="font-medium">{t.name}</div>
-                  <div className="text-muted-foreground text-[11px]">{t.stepCount} steps</div>
+                  <div className="text-muted-foreground text-[11px]">{t.stepCount} {isIt ? 'step' : 'steps'}</div>
                 </div>
                 {busyId === t.id ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
@@ -194,11 +196,11 @@ function StartOutreachAction({
         </div>
         {result === 'ok' && (
           <div className="p-3 border-t bg-emerald-50 text-emerald-800 text-xs flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4" /> Sequence started.
+            <CheckCircle2 className="h-4 w-4" /> {isIt ? 'Sequenza avviata.' : 'Sequence started.'}
           </div>
         )}
         {result === 'err' && (
-          <div className="p-3 border-t bg-red-50 text-red-800 text-xs">Failed: {errorMsg}</div>
+          <div className="p-3 border-t bg-red-50 text-red-800 text-xs">{isIt ? 'Errore' : 'Failed'}: {errorMsg}</div>
         )}
       </PopoverContent>
     </Popover>
@@ -206,6 +208,8 @@ function StartOutreachAction({
 }
 
 function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const s = match.matchScore
   // Quiet match-score chip — bordered, not filled. Color signals tier subtly.
   const tone =
@@ -218,7 +222,7 @@ function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) 
       <PopoverTrigger asChild>
         <button
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ring-1 ${tone.bg} ${tone.text} ${tone.ring} text-xs font-semibold hover:ring-2 transition-all`}
-          title="Click to see match factors"
+          title={isIt ? 'Clicca per vedere i fattori di match' : 'Click to see match factors'}
         >
           <Sparkles className="h-3 w-3" />
           {s}%
@@ -230,11 +234,13 @@ function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) 
           <div className="flex items-center justify-between">
             <div className="text-sm font-semibold">{s}% match · {match.decisionLabel.replace('_', ' ').toLowerCase()}</div>
             <Badge variant="outline" className="text-[10px]">
-              {match.verifiedCount}/{match.totalProjects} verified projects
+              {match.verifiedCount}/{match.totalProjects} {isIt ? 'progetti verificati' : 'verified projects'}
             </Badge>
           </div>
           <p className="text-xs text-muted-foreground mt-1">
-            Evidence-weighted score. Verified skills count 1.0×, self-declared 0.6×.
+            {isIt
+              ? 'Punteggio pesato per evidenze. Competenze verificate contano 1.0×, autodichiarate 0.6×.'
+              : 'Evidence-weighted score. Verified skills count 1.0×, self-declared 0.6×.'}
           </p>
         </div>
         <div className="p-4 space-y-3 max-h-80 overflow-y-auto">
@@ -264,7 +270,7 @@ function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) 
                   ))}
                   {f.evidence.length > 6 && (
                     <span className="text-[10px] text-muted-foreground self-center">
-                      +{f.evidence.length - 6} more
+                      +{f.evidence.length - 6} {isIt ? 'altri' : 'more'}
                     </span>
                   )}
                 </div>
@@ -273,7 +279,7 @@ function MatchScoreBadge({ match }: { match: NonNullable<Candidate['match']> }) 
           ))}
           {match.missingSkills.length > 0 && (
             <div className="pt-2 border-t text-xs">
-              <div className="font-medium text-amber-700 mb-1">Gaps to close:</div>
+              <div className="font-medium text-amber-700 mb-1">{isIt ? 'Gap da colmare:' : 'Gaps to close:'}</div>
               <div className="flex flex-wrap gap-1">
                 {match.missingSkills.slice(0, 8).map(sk => (
                   <Badge key={sk} variant="outline" className="text-[10px] h-5 border-amber-200 text-amber-800">
