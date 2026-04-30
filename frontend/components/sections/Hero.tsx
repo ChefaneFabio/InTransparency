@@ -38,7 +38,7 @@ export function Hero() {
   const cta = segmentCTAs[activeSegment]
 
   return (
-    <section className="relative py-16 sm:py-20 overflow-hidden">
+    <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden">
       <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           {/* Social proof — earned, not decorative */}
