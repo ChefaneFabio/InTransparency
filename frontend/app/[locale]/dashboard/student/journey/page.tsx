@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
@@ -151,6 +152,8 @@ function fmtDate(iso: string | null): string {
 
 export default function StudentJourneyPage() {
   const { data: session } = useSession()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [data, setData] = useState<JourneyData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -178,12 +181,12 @@ export default function StudentJourneyPage() {
   if (!data) {
     return (
       <div className="py-12 text-center max-w-md mx-auto">
-        <p className="text-muted-foreground">Impossibile caricare il tuo journey.</p>
+        <p className="text-muted-foreground">{isIt ? 'Impossibile caricare il tuo journey.' : 'Unable to load your journey.'}</p>
       </div>
     )
   }
 
-  const firstName = data.user.firstName || 'Studente'
+  const firstName = data.user.firstName || (isIt ? 'Studente' : 'Student')
   const hasCompleted = data.milestones.filter(m => m.done).length
   const milestonePct = Math.round((hasCompleted / data.milestones.length) * 100)
 
@@ -197,13 +200,13 @@ export default function StudentJourneyPage() {
         <div className="relative">
           <div className="flex items-center gap-2 mb-3 text-sm text-white/80">
             <Sparkles className="h-4 w-4" />
-            <span>Il tuo percorso</span>
+            <span>{isIt ? 'Il tuo percorso' : 'Your journey'}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold mb-1">
-            Ciao, {firstName}
+            {isIt ? `Ciao, ${firstName}` : `Hi, ${firstName}`}
           </h1>
           <p className="text-white/80 text-sm sm:text-base mb-5">
-            {data.affiliation?.program || data.user.degree || 'Il tuo corso di studi'}
+            {data.affiliation?.program || data.user.degree || (isIt ? 'Il tuo corso di studi' : 'Your degree program')}
             {data.affiliation?.institution.name && (
               <>
                 {' · '}

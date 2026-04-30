@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UserCog, FileText, Sparkles } from 'lucide-react'
@@ -12,6 +13,8 @@ type TabKey = 'edit' | 'cv' | 'fit'
 const VALID: TabKey[] = ['edit', 'cv', 'fit']
 
 export default function ProfilePage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -32,7 +35,7 @@ export default function ProfilePage() {
         <TabsList className="grid w-full grid-cols-3 max-w-xl">
           <TabsTrigger value="edit" className="gap-2">
             <UserCog className="h-4 w-4" />
-            <span className="hidden sm:inline">Profile</span>
+            <span className="hidden sm:inline">{isIt ? 'Profilo' : 'Profile'}</span>
           </TabsTrigger>
           <TabsTrigger value="cv" className="gap-2">
             <FileText className="h-4 w-4" />
@@ -40,7 +43,7 @@ export default function ProfilePage() {
           </TabsTrigger>
           <TabsTrigger value="fit" className="gap-2">
             <Sparkles className="h-4 w-4" />
-            <span className="hidden sm:inline">Fit Profile</span>
+            <span className="hidden sm:inline">{isIt ? 'Profilo Fit' : 'Fit Profile'}</span>
           </TabsTrigger>
         </TabsList>
 

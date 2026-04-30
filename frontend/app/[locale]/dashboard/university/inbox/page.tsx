@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -44,13 +45,15 @@ interface InboxData {
   summary: { pending: number; approved: number; rejected: number; overdue: number }
 }
 
-function ageLabel(hours: number): string {
+function ageLabel(hours: number, isIt: boolean = true): string {
   if (hours < 1) return '<1h'
   if (hours < 24) return `${hours}h`
-  return `${Math.round(hours / 24)}g`
+  return isIt ? `${Math.round(hours / 24)}g` : `${Math.round(hours / 24)}d`
 }
 
 export default function InstitutionInboxPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [institutionId, setInstitutionId] = useState<string | null>(null)
   const [institutionName, setInstitutionName] = useState<string | null>(null)
   const [institutionPlan, setInstitutionPlan] = useState<'CORE' | 'PREMIUM' | null>(null)
@@ -154,20 +157,20 @@ export default function InstitutionInboxPage() {
   }) || []
 
   const STATUS_META: Record<string, { label: string; color: string; icon: typeof CheckCircle2 }> = {
-    PENDING_REVIEW: { label: 'In attesa', color: 'bg-amber-100 text-amber-700', icon: Clock },
-    APPROVED: { label: 'Approvato', color: 'bg-green-100 text-green-700', icon: CheckCircle2 },
-    EDITED: { label: 'Modificato', color: 'bg-indigo-100 text-indigo-700', icon: Edit3 },
-    DELIVERED: { label: 'Consegnato', color: 'bg-blue-100 text-blue-700', icon: Mail },
-    READ: { label: 'Letto', color: 'bg-blue-100 text-blue-700', icon: CheckCircle2 },
-    REPLIED: { label: 'Risposto', color: 'bg-emerald-100 text-emerald-700', icon: MessageSquare },
-    REJECTED: { label: 'Rifiutato', color: 'bg-red-100 text-red-700', icon: XCircle },
+    PENDING_REVIEW: { label: isIt ? 'In attesa' : 'Pending', color: 'bg-amber-100 text-amber-700', icon: Clock },
+    APPROVED: { label: isIt ? 'Approvato' : 'Approved', color: 'bg-green-100 text-green-700', icon: CheckCircle2 },
+    EDITED: { label: isIt ? 'Modificato' : 'Edited', color: 'bg-indigo-100 text-indigo-700', icon: Edit3 },
+    DELIVERED: { label: isIt ? 'Consegnato' : 'Delivered', color: 'bg-blue-100 text-blue-700', icon: Mail },
+    READ: { label: isIt ? 'Letto' : 'Read', color: 'bg-blue-100 text-blue-700', icon: CheckCircle2 },
+    REPLIED: { label: isIt ? 'Risposto' : 'Replied', color: 'bg-emerald-100 text-emerald-700', icon: MessageSquare },
+    REJECTED: { label: isIt ? 'Rifiutato' : 'Rejected', color: 'bg-red-100 text-red-700', icon: XCircle },
   }
 
   if (!institutionId && !loading) {
     return (
       <div className="max-w-4xl mx-auto p-12 text-center">
         <Shield className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-        <h3 className="font-semibold">Accesso riservato allo staff dell'istituzione</h3>
+        <h3 className="font-semibold">{isIt ? 'Accesso riservato allo staff dell\'istituzione' : 'Institution staff access only'}</h3>
       </div>
     )
   }
@@ -178,10 +181,10 @@ export default function InstitutionInboxPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-              <Inbox className="h-6 w-6" /> Inbox Istituzionale
+              <Inbox className="h-6 w-6" /> {isIt ? 'Inbox Istituzionale' : 'Institutional Inbox'}
             </h1>
             <p className="text-muted-foreground mt-1">
-              Modera i messaggi delle aziende verso i tuoi studenti. Approva, edita, o rifiuta — ogni azione è tracciata.
+              {isIt ? 'Modera i messaggi delle aziende verso i tuoi studenti. Approva, edita, o rifiuta — ogni azione è tracciata.' : 'Moderate messages from companies to your students. Approve, edit, or reject — every action is tracked.'}
             </p>
           </div>
           {data && (
@@ -190,7 +193,7 @@ export default function InstitutionInboxPage() {
                 <div className="px-4 py-2.5 flex items-center gap-2">
                   <Clock className="h-4 w-4 text-amber-600" />
                   <div>
-                    <div className="text-xs text-muted-foreground leading-none">In attesa</div>
+                    <div className="text-xs text-muted-foreground leading-none">{isIt ? 'In attesa' : 'Pending'}</div>
                     <div className="text-lg font-bold">{data.summary.pending}</div>
                   </div>
                 </div>
@@ -199,7 +202,7 @@ export default function InstitutionInboxPage() {
                 <div className="px-4 py-2.5 flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                   <div>
-                    <div className="text-xs text-muted-foreground leading-none">Approvati</div>
+                    <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Approvati' : 'Approved'}</div>
                     <div className="text-lg font-bold">{data.summary.approved}</div>
                   </div>
                 </div>
@@ -209,7 +212,7 @@ export default function InstitutionInboxPage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4 text-red-500" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Oltre 48h</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Oltre 48h' : 'Over 48h'}</div>
                       <div className="text-lg font-bold text-red-600">{data.summary.overdue}</div>
                     </div>
                   </div>
@@ -226,7 +229,7 @@ export default function InstitutionInboxPage() {
           <Input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Cerca per azienda, studente, soggetto…"
+            placeholder={isIt ? 'Cerca per azienda, studente, soggetto…' : 'Search by company, student, subject…'}
             className="pl-9"
           />
         </div>
@@ -235,11 +238,11 @@ export default function InstitutionInboxPage() {
       <Tabs value={statusFilter} onValueChange={setStatusFilter}>
         <TabsList className="w-full justify-start overflow-x-auto">
           <TabsTrigger value="PENDING_REVIEW" className="text-xs">
-            In attesa {data?.summary.pending ? `(${data.summary.pending})` : ''}
+            {isIt ? 'In attesa' : 'Pending'} {data?.summary.pending ? `(${data.summary.pending})` : ''}
           </TabsTrigger>
-          <TabsTrigger value="APPROVED" className="text-xs">Approvati</TabsTrigger>
-          <TabsTrigger value="REJECTED" className="text-xs">Rifiutati</TabsTrigger>
-          <TabsTrigger value="all" className="text-xs">Tutti</TabsTrigger>
+          <TabsTrigger value="APPROVED" className="text-xs">{isIt ? 'Approvati' : 'Approved'}</TabsTrigger>
+          <TabsTrigger value="REJECTED" className="text-xs">{isIt ? 'Rifiutati' : 'Rejected'}</TabsTrigger>
+          <TabsTrigger value="all" className="text-xs">{isIt ? 'Tutti' : 'All'}</TabsTrigger>
         </TabsList>
       </Tabs>
 
@@ -255,10 +258,10 @@ export default function InstitutionInboxPage() {
               tone="institution"
               title={
                 statusFilter === 'PENDING_REVIEW'
-                  ? 'Nessun messaggio in attesa'
-                  : 'Nessun messaggio'
+                  ? (isIt ? 'Nessun messaggio in attesa' : 'No pending messages')
+                  : (isIt ? 'Nessun messaggio' : 'No messages')
               }
-              description="Quando un'azienda contatterà uno studente mediato, il messaggio apparirà qui per la tua revisione."
+              description={isIt ? 'Quando un\'azienda contatterà uno studente mediato, il messaggio apparirà qui per la tua revisione.' : 'When a company contacts a mediated student, the message will appear here for your review.'}
             />
           </CardContent>
         </Card>
@@ -288,9 +291,9 @@ export default function InstitutionInboxPage() {
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="font-semibold text-sm truncate">{m.company?.name || 'Azienda'}</span>
+                      <span className="font-semibold text-sm truncate">{m.company?.name || (isIt ? 'Azienda' : 'Company')}</span>
                       <span className="text-muted-foreground text-xs">→</span>
-                      <span className="text-sm truncate">{m.student?.name || 'Studente'}</span>
+                      <span className="text-sm truncate">{m.student?.name || (isIt ? 'Studente' : 'Student')}</span>
                       <Badge className={`text-[10px] border-0 ml-auto ${meta.color}`}>
                         <Icon className="h-2.5 w-2.5 mr-0.5" /> {meta.label}
                       </Badge>
@@ -303,7 +306,7 @@ export default function InstitutionInboxPage() {
                     <div className="text-xs font-medium mb-1">{m.subject}</div>
                     <p className="text-xs text-muted-foreground line-clamp-2">{m.bodyOriginal}</p>
                     <div className="flex items-center gap-3 text-[10px] text-muted-foreground mt-1">
-                      <span>{ageLabel(m.ageHours)} fa</span>
+                      <span>{ageLabel(m.ageHours, isIt)} {isIt ? 'fa' : 'ago'}</span>
                       {m.student?.degree && <span>· {m.student.degree}</span>}
                     </div>
                   </div>
@@ -322,14 +325,14 @@ export default function InstitutionInboxPage() {
               <DialogHeader>
                 <DialogTitle>{selected.subject}</DialogTitle>
                 <DialogDescription>
-                  Da <span className="font-medium">{selected.company?.name}</span> per{' '}
-                  <span className="font-medium">{selected.student?.name}</span> — {ageLabel(selected.ageHours)} fa
+                  {isIt ? 'Da' : 'From'} <span className="font-medium">{selected.company?.name}</span> {isIt ? 'per' : 'to'}{' '}
+                  <span className="font-medium">{selected.student?.name}</span> — {ageLabel(selected.ageHours, isIt)} {isIt ? 'fa' : 'ago'}
                 </DialogDescription>
               </DialogHeader>
 
               <div className="space-y-3">
                 <div>
-                  <Label className="text-xs text-muted-foreground mb-1 block">Testo originale</Label>
+                  <Label className="text-xs text-muted-foreground mb-1 block">{isIt ? 'Testo originale' : 'Original text'}</Label>
                   <div className="rounded-md border bg-muted/20 p-3 text-sm whitespace-pre-wrap">
                     {selected.bodyOriginal}
                   </div>
@@ -338,7 +341,7 @@ export default function InstitutionInboxPage() {
                 {selected.status === 'PENDING_REVIEW' && (
                   <div>
                     <Label className="text-xs text-muted-foreground mb-1 block">
-                      Testo da approvare (modifica se necessario)
+                      {isIt ? 'Testo da approvare (modifica se necessario)' : 'Text to approve (edit if needed)'}
                     </Label>
                     <Textarea
                       value={editBody}
@@ -348,7 +351,7 @@ export default function InstitutionInboxPage() {
                     />
                     {editBody !== selected.bodyOriginal && (
                       <p className="text-[11px] text-indigo-600 mt-1 flex items-center gap-1">
-                        <Edit3 className="h-3 w-3" /> La versione modificata verrà consegnata allo studente.
+                        <Edit3 className="h-3 w-3" /> {isIt ? 'La versione modificata verrà consegnata allo studente.' : 'The edited version will be delivered to the student.'}
                       </p>
                     )}
                   </div>
@@ -356,7 +359,7 @@ export default function InstitutionInboxPage() {
 
                 {selected.bodyApproved && selected.status !== 'PENDING_REVIEW' && selected.bodyApproved !== selected.bodyOriginal && (
                   <div>
-                    <Label className="text-xs text-muted-foreground mb-1 block">Testo consegnato (editato)</Label>
+                    <Label className="text-xs text-muted-foreground mb-1 block">{isIt ? 'Testo consegnato (editato)' : 'Delivered text (edited)'}</Label>
                     <div className="rounded-md border bg-indigo-50 dark:bg-indigo-950/30 p-3 text-sm whitespace-pre-wrap">
                       {selected.bodyApproved}
                     </div>
@@ -365,7 +368,7 @@ export default function InstitutionInboxPage() {
 
                 {selected.rejectionReason && (
                   <div>
-                    <Label className="text-xs text-muted-foreground mb-1 block">Motivo del rifiuto</Label>
+                    <Label className="text-xs text-muted-foreground mb-1 block">{isIt ? 'Motivo del rifiuto' : 'Rejection reason'}</Label>
                     <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm whitespace-pre-wrap">
                       {selected.rejectionReason}
                     </div>
@@ -376,12 +379,12 @@ export default function InstitutionInboxPage() {
               {selected.status === 'PENDING_REVIEW' && (
                 <DialogFooter>
                   <Button variant="outline" onClick={() => setRejectOpen(true)} disabled={acting}>
-                    <XCircle className="h-4 w-4 mr-1.5" /> Rifiuta
+                    <XCircle className="h-4 w-4 mr-1.5" /> {isIt ? 'Rifiuta' : 'Reject'}
                   </Button>
                   <Button onClick={() => approve(true)} disabled={acting}>
                     {acting ? <Loader2 className="h-4 w-4 animate-spin" /> : <>
                       <CheckCircle2 className="h-4 w-4 mr-1.5" />
-                      {editBody !== selected.bodyOriginal ? 'Salva & invia modifica' : 'Approva & invia'}
+                      {editBody !== selected.bodyOriginal ? (isIt ? 'Salva & invia modifica' : 'Save & send edit') : (isIt ? 'Approva & invia' : 'Approve & send')}
                     </>}
                   </Button>
                 </DialogFooter>
@@ -395,22 +398,21 @@ export default function InstitutionInboxPage() {
       <Dialog open={rejectOpen} onOpenChange={setRejectOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Motiva il rifiuto</DialogTitle>
+            <DialogTitle>{isIt ? 'Motiva il rifiuto' : 'Reason for rejection'}</DialogTitle>
             <DialogDescription>
-              Il motivo non verrà mostrato allo studente, ma verrà inviato all'azienda
-              e tracciato nell'audit trail.
+              {isIt ? 'Il motivo non verrà mostrato allo studente, ma verrà inviato all\'azienda e tracciato nell\'audit trail.' : 'The reason will not be shown to the student, but will be sent to the company and tracked in the audit trail.'}
             </DialogDescription>
           </DialogHeader>
           <Textarea
             value={rejectReason}
             onChange={e => setRejectReason(e.target.value)}
             rows={4}
-            placeholder="Es. Linguaggio non conforme; richiesta informazioni fuori ambito; …"
+            placeholder={isIt ? 'Es. Linguaggio non conforme; richiesta informazioni fuori ambito; …' : 'E.g. Inappropriate language; out-of-scope request; …'}
           />
           <DialogFooter>
-            <Button variant="outline" onClick={() => setRejectOpen(false)} disabled={acting}>Annulla</Button>
+            <Button variant="outline" onClick={() => setRejectOpen(false)} disabled={acting}>{isIt ? 'Annulla' : 'Cancel'}</Button>
             <Button onClick={reject} disabled={acting || !rejectReason.trim()} variant="destructive">
-              {acting ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Conferma rifiuto'}
+              {acting ? <Loader2 className="h-4 w-4 animate-spin" /> : (isIt ? 'Conferma rifiuto' : 'Confirm rejection')}
             </Button>
           </DialogFooter>
         </DialogContent>

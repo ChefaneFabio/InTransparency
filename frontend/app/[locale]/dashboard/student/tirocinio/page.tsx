@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -51,6 +52,8 @@ interface Placement {
  * the active one.
  */
 export default function StudentPlacementPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [placements, setPlacements] = useState<Placement[]>([])
   const [loading, setLoading] = useState(true)
   const [quickHoursOpen, setQuickHoursOpen] = useState(false)
@@ -134,19 +137,20 @@ export default function StudentPlacementPage() {
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-5">
         <MetricHero gradient="student">
           <div>
-            <h1 className="text-2xl font-bold">Il mio tirocinio</h1>
-            <p className="text-muted-foreground mt-1">Traccia il tuo stage, le ore, le valutazioni.</p>
+            <h1 className="text-2xl font-bold">{isIt ? 'Il mio tirocinio' : 'My internship'}</h1>
+            <p className="text-muted-foreground mt-1">{isIt ? 'Traccia il tuo stage, le ore, le valutazioni.' : 'Track your internship, hours and evaluations.'}</p>
           </div>
         </MetricHero>
         <Card>
           <CardContent className="p-12 text-center">
             <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Nessun tirocinio attivo</h3>
+            <h3 className="font-semibold mb-1">{isIt ? 'Nessun tirocinio attivo' : 'No active internship'}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Quando candidarti a un'offerta e l'istituzione approverà il matching,
-              il tirocinio apparirà qui con tutte le informazioni per registrare le ore.
+              {isIt
+                ? 'Quando candidarti a un\'offerta e l\'istituzione approverà il matching, il tirocinio apparirà qui con tutte le informazioni per registrare le ore.'
+                : 'Once you apply to an opportunity and your institution approves the match, the internship will appear here with all the info to log hours.'}
             </p>
-            <Button asChild><Link href="/dashboard/student/jobs">Cerca opportunità</Link></Button>
+            <Button asChild><Link href="/dashboard/student/jobs">{isIt ? 'Cerca opportunità' : 'Browse opportunities'}</Link></Button>
           </CardContent>
         </Card>
       </div>
@@ -157,9 +161,9 @@ export default function StudentPlacementPage() {
     <div className="max-w-5xl mx-auto px-4 py-6 space-y-5 pb-12">
       <MetricHero gradient="student">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Il mio tirocinio</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">{isIt ? 'Il mio tirocinio' : 'My internship'}</h1>
           <p className="text-muted-foreground mt-1">
-            Registra le ore settimanali in 10 secondi. Invia la tua valutazione a fine stage.
+            {isIt ? 'Registra le ore settimanali in 10 secondi. Invia la tua valutazione a fine stage.' : 'Log your weekly hours in 10 seconds. Submit your evaluation at the end of the internship.'}
           </p>
         </div>
       </MetricHero>
@@ -180,13 +184,13 @@ export default function StudentPlacementPage() {
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1.5">
                   <Calendar className="h-3 w-3" />
-                  {new Date(active.startDate).toLocaleDateString('it-IT')}
-                  {active.endDate && ` — ${new Date(active.endDate).toLocaleDateString('it-IT')}`}
+                  {new Date(active.startDate).toLocaleDateString(locale)}
+                  {active.endDate && ` — ${new Date(active.endDate).toLocaleDateString(locale)}`}
                   {active.endDate && (() => {
                     const days = Math.max(0, Math.ceil((new Date(active.endDate).getTime() - Date.now()) / 86_400_000))
                     return (
                       <span className={`ml-1 text-[11px] font-medium ${days <= 7 ? 'text-amber-600' : 'text-muted-foreground'}`}>
-                        · {days} days left
+                        · {days} {isIt ? 'giorni rimanenti' : 'days left'}
                       </span>
                     )
                   })()}
@@ -194,11 +198,11 @@ export default function StudentPlacementPage() {
               </div>
               <div className="flex gap-2">
                 <Button onClick={() => openQuickHours(active.id)}>
-                  <Zap className="h-4 w-4 mr-1.5" /> Log ore
+                  <Zap className="h-4 w-4 mr-1.5" /> {isIt ? 'Log ore' : 'Log hours'}
                 </Button>
                 <Button variant="outline" asChild>
                   <Link href={`/dashboard/university/placement-pipeline/${active.id}`}>
-                    Dettaglio
+                    {isIt ? 'Dettaglio' : 'Details'}
                   </Link>
                 </Button>
               </div>
@@ -211,14 +215,14 @@ export default function StudentPlacementPage() {
               <div className="rounded-lg border bg-muted/30 p-4 space-y-3">
                 <div className="flex items-baseline justify-between">
                   <div>
-                    <div className="text-xs text-muted-foreground">Ore completate</div>
+                    <div className="text-xs text-muted-foreground">{isIt ? 'Ore completate' : 'Hours completed'}</div>
                     <div className="text-3xl font-bold">
                       {active.completedHours}
                       <span className="text-lg text-muted-foreground">/{active.plannedHours}</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs text-muted-foreground">Progresso</div>
+                    <div className="text-xs text-muted-foreground">{isIt ? 'Progresso' : 'Progress'}</div>
                     <div className="text-2xl font-bold text-primary">{active.hoursPct || 0}%</div>
                   </div>
                 </div>
@@ -226,7 +230,9 @@ export default function StudentPlacementPage() {
                 {active.daysSinceHoursLogged !== null && active.daysSinceHoursLogged > 7 && (
                   <div className="flex items-center gap-2 text-xs text-red-600 bg-red-50 p-2 rounded">
                     <AlertTriangle className="h-3.5 w-3.5" />
-                    Ultimo log {active.daysSinceHoursLogged} giorni fa — registra le ore ora per non perdere la scadenza ministeriale.
+                    {isIt
+                      ? `Ultimo log ${active.daysSinceHoursLogged} giorni fa — registra le ore ora per non perdere la scadenza ministeriale.`
+                      : `Last log ${active.daysSinceHoursLogged} days ago — log your hours now to avoid missing the deadline.`}
                   </div>
                 )}
               </div>
@@ -238,7 +244,7 @@ export default function StudentPlacementPage() {
                 <GlassCard hover={false}>
                   <div className="p-3">
                     <div className="text-xs text-muted-foreground flex items-center gap-1">
-                      <GraduationCap className="h-3 w-3" /> Tutor accademico
+                      <GraduationCap className="h-3 w-3" /> {isIt ? 'Tutor accademico' : 'Academic tutor'}
                     </div>
                     <div className="font-medium text-sm mt-0.5">{active.academicTutor.name}</div>
                   </div>
@@ -248,7 +254,7 @@ export default function StudentPlacementPage() {
                 <GlassCard hover={false}>
                   <div className="p-3">
                     <div className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Building2 className="h-3 w-3" /> Tutor aziendale
+                      <Building2 className="h-3 w-3" /> {isIt ? 'Tutor aziendale' : 'Company tutor'}
                     </div>
                     <div className="font-medium text-sm mt-0.5">{active.companyTutor.name}</div>
                   </div>
@@ -259,13 +265,13 @@ export default function StudentPlacementPage() {
             {/* Secondary counts */}
             <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap pt-2 border-t">
               <span className="inline-flex items-center gap-1">
-                <FileText className="h-3 w-3" /> {active.counts.evaluations} valutazioni
+                <FileText className="h-3 w-3" /> {active.counts.evaluations} {isIt ? 'valutazioni' : 'evaluations'}
               </span>
               <span className="inline-flex items-center gap-1">
-                <Clock className="h-3 w-3" /> {active.counts.hoursLogs} log ore
+                <Clock className="h-3 w-3" /> {active.counts.hoursLogs} {isIt ? 'log ore' : 'hour logs'}
               </span>
               <span className="inline-flex items-center gap-1">
-                <Calendar className="h-3 w-3" /> {active.counts.deadlines} scadenze
+                <Calendar className="h-3 w-3" /> {active.counts.deadlines} {isIt ? 'scadenze' : 'deadlines'}
               </span>
             </div>
           </CardContent>
@@ -275,7 +281,7 @@ export default function StudentPlacementPage() {
       {/* History */}
       {history.length > 0 && (
         <div>
-          <h2 className="font-semibold text-sm mb-2">Storico tirocini</h2>
+          <h2 className="font-semibold text-sm mb-2">{isIt ? 'Storico tirocini' : 'Internship history'}</h2>
           <div className="space-y-2">
             {history.map(p => (
               <Link
@@ -291,7 +297,7 @@ export default function StudentPlacementPage() {
                         <Badge variant="outline" className="text-[10px]">{p.stage?.name || p.status}</Badge>
                         {p.outcome && <Badge className="text-[10px] bg-emerald-100 text-emerald-700 border-0">{p.outcome}</Badge>}
                       </div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{p.jobTitle} · {new Date(p.startDate).toLocaleDateString('it-IT')}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{p.jobTitle} · {new Date(p.startDate).toLocaleDateString(locale)}</div>
                     </div>
                     {p.plannedHours && p.hoursPct !== null && (
                       <div className="text-xs text-muted-foreground">{p.hoursPct}%</div>
@@ -308,41 +314,41 @@ export default function StudentPlacementPage() {
       <Dialog open={quickHoursOpen} onOpenChange={setQuickHoursOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Registra ore settimanali</DialogTitle>
+            <DialogTitle>{isIt ? 'Registra ore settimanali' : 'Log weekly hours'}</DialogTitle>
             <DialogDescription>
-              Conferma o modifica il periodo e le ore. Il tutor aziendale confermerà al fine mese.
+              {isIt ? 'Conferma o modifica il periodo e le ore. Il tutor aziendale confermerà al fine mese.' : 'Confirm or edit the period and hours. The company tutor will confirm at end of month.'}
             </DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label>Dal</Label>
+              <Label>{isIt ? 'Dal' : 'From'}</Label>
               <Input type="date" value={form.periodStart} onChange={e => setForm(f => ({ ...f, periodStart: e.target.value }))} />
             </div>
             <div>
-              <Label>Al</Label>
+              <Label>{isIt ? 'Al' : 'To'}</Label>
               <Input type="date" value={form.periodEnd} onChange={e => setForm(f => ({ ...f, periodEnd: e.target.value }))} />
             </div>
             <div className="col-span-2">
-              <Label>Ore totali del periodo</Label>
+              <Label>{isIt ? 'Ore totali del periodo' : 'Total hours for the period'}</Label>
               <Input type="number" min={0} max={168} value={form.hours} onChange={e => setForm(f => ({ ...f, hours: e.target.value }))} />
               <p className="text-[11px] text-muted-foreground mt-1">
-                Settimana tipo: 5 giorni × 8h = 40h
+                {isIt ? 'Settimana tipo: 5 giorni × 8h = 40h' : 'Typical week: 5 days × 8h = 40h'}
               </p>
             </div>
             <div className="col-span-2">
-              <Label>Attività svolte (opzionale)</Label>
+              <Label>{isIt ? 'Attività svolte (opzionale)' : 'Activities performed (optional)'}</Label>
               <Textarea
                 rows={3}
                 value={form.notes}
                 onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
-                placeholder="Es. Analisi dati vendite, riunione di team, preparazione campagna social…"
+                placeholder={isIt ? 'Es. Analisi dati vendite, riunione di team, preparazione campagna social…' : 'E.g. Sales data analysis, team meeting, social campaign prep…'}
               />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setQuickHoursOpen(false)} disabled={saving}>Annulla</Button>
+            <Button variant="outline" onClick={() => setQuickHoursOpen(false)} disabled={saving}>{isIt ? 'Annulla' : 'Cancel'}</Button>
             <Button onClick={submitHours} disabled={saving || !form.periodStart || !form.periodEnd || !form.hours}>
-              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <><CheckCircle2 className="h-4 w-4 mr-1.5" /> Registra {form.hours}h</>}
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <><CheckCircle2 className="h-4 w-4 mr-1.5" /> {isIt ? `Registra ${form.hours}h` : `Log ${form.hours}h`}</>}
             </Button>
           </DialogFooter>
         </DialogContent>

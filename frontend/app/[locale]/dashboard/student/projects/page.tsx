@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
@@ -29,6 +29,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 export default function ProjectsPage() {
   const { data: session } = useSession()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [projects, setProjects] = useState<any[]>([])
   const [filteredProjects, setFilteredProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -124,7 +126,7 @@ export default function ProjectsPage() {
   }
 
   const deleteProject = async (projectId: string) => {
-    if (!confirm('Are you sure you want to delete this project? This cannot be undone.')) return
+    if (!confirm(isIt ? 'Sei sicuro di voler eliminare questo progetto? Questa azione non puo essere annullata.' : 'Are you sure you want to delete this project? This cannot be undone.')) return
 
     try {
       const response = await fetch(`/api/projects/${projectId}`, {
@@ -150,27 +152,27 @@ export default function ProjectsPage() {
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/student/projects/${project.id}`}>
             <Eye className="mr-2 h-4 w-4" />
-            View Details
+            {isIt ? 'Vedi dettagli' : 'View Details'}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/student/projects/${project.id}/edit`}>
             <Edit3 className="mr-2 h-4 w-4" />
-            Edit Project
+            {isIt ? 'Modifica progetto' : 'Edit Project'}
           </Link>
         </DropdownMenuItem>
         {project.repositoryUrl && (
           <DropdownMenuItem asChild>
             <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" />
-              View Repository
+              {isIt ? 'Vedi repository' : 'View Repository'}
             </a>
           </DropdownMenuItem>
         )}
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/student/projects/${project.id}/analytics`}>
             <Eye className="mr-2 h-4 w-4" />
-            View Analytics
+            {isIt ? 'Vedi analytics' : 'View Analytics'}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -178,7 +180,7 @@ export default function ProjectsPage() {
           onClick={() => deleteProject(project.id)}
         >
           <Trash2 className="mr-2 h-4 w-4" />
-          Delete
+          {isIt ? 'Elimina' : 'Delete'}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -189,12 +191,12 @@ export default function ProjectsPage() {
       <div className="min-h-screen bg-background space-y-8">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Projects</h1>
-            <p className="text-foreground/80">Manage and showcase your work</p>
+            <h1 className="text-3xl font-bold text-foreground">{isIt ? 'Progetti' : 'Projects'}</h1>
+            <p className="text-foreground/80">{isIt ? 'Gestisci e mostra il tuo lavoro' : 'Manage and showcase your work'}</p>
           </div>
           <Button disabled>
             <Plus className="mr-2 h-4 w-4" />
-            New Project
+            {isIt ? 'Nuovo progetto' : 'New Project'}
           </Button>
         </div>
         
@@ -219,15 +221,15 @@ export default function ProjectsPage() {
       <MetricHero gradient="student">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold">Your Projects</h1>
+            <h1 className="text-2xl font-bold">{isIt ? 'I tuoi progetti' : 'Your Projects'}</h1>
             <p className="text-sm text-muted-foreground mt-1">
-              Manage and showcase your academic and personal projects
+              {isIt ? 'Gestisci e mostra i tuoi progetti accademici e personali' : 'Manage and showcase your academic and personal projects'}
             </p>
           </div>
           <Button asChild>
             <Link href="/dashboard/student/projects/new">
               <Plus className="mr-2 h-4 w-4" />
-              New Project
+              {isIt ? 'Nuovo progetto' : 'New Project'}
             </Link>
           </Button>
         </div>
@@ -239,7 +241,7 @@ export default function ProjectsPage() {
           <div className="p-5">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-foreground">{projects.length}</div>
-              <div className="ml-2 text-sm text-foreground/80 font-medium">Total Projects</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">{isIt ? 'Progetti totali' : 'Total Projects'}</div>
             </div>
           </div>
         </GlassCard>
@@ -249,7 +251,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {projects.filter(p => p.status === 'analyzed').length}
               </div>
-              <div className="ml-2 text-sm text-foreground/80 font-medium">Analyzed</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">{isIt ? 'Analizzati' : 'Analyzed'}</div>
             </div>
           </div>
         </GlassCard>
@@ -259,7 +261,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {projects.length > 0 ? Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) : 0}
               </div>
-              <div className="ml-2 text-sm text-foreground/80 font-medium">Avg Score</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">{isIt ? 'Punteggio medio' : 'Avg Score'}</div>
             </div>
           </div>
         </GlassCard>
@@ -269,7 +271,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {new Set(projects.flatMap(p => p.skills || p.technologies || [])).size}
               </div>
-              <div className="ml-2 text-sm text-foreground/80 font-medium">Skills</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">{isIt ? 'Competenze' : 'Skills'}</div>
             </div>
           </div>
         </GlassCard>
@@ -284,7 +286,7 @@ export default function ProjectsPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
-                  placeholder="Search projects..."
+                  placeholder={isIt ? 'Cerca progetti...' : 'Search projects...'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -296,46 +298,46 @@ export default function ProjectsPage() {
             <div className="flex gap-2">
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Category" />
+                  <SelectValue placeholder={isIt ? 'Categoria' : 'Category'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="web-development">Web Development</SelectItem>
-                  <SelectItem value="mobile-development">Mobile Development</SelectItem>
+                  <SelectItem value="all">{isIt ? 'Tutte le categorie' : 'All Categories'}</SelectItem>
+                  <SelectItem value="web-development">{isIt ? 'Sviluppo web' : 'Web Development'}</SelectItem>
+                  <SelectItem value="mobile-development">{isIt ? 'Sviluppo mobile' : 'Mobile Development'}</SelectItem>
                   <SelectItem value="data-science">Data Science</SelectItem>
                   <SelectItem value="machine-learning">Machine Learning</SelectItem>
                   <SelectItem value="ai">AI</SelectItem>
                   <SelectItem value="blockchain">Blockchain</SelectItem>
-                  <SelectItem value="game-development">Game Development</SelectItem>
+                  <SelectItem value="game-development">{isIt ? 'Sviluppo giochi' : 'Game Development'}</SelectItem>
                   <SelectItem value="iot">IoT</SelectItem>
-                  <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="cybersecurity">{isIt ? 'Cybersecurity' : 'Cybersecurity'}</SelectItem>
+                  <SelectItem value="other">{isIt ? 'Altro' : 'Other'}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-[150px]">
-                  <SelectValue placeholder="Status" />
+                  <SelectValue placeholder={isIt ? 'Stato' : 'Status'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="pending_analysis">Pending</SelectItem>
-                  <SelectItem value="analyzing">Analyzing</SelectItem>
-                  <SelectItem value="analyzed">Analyzed</SelectItem>
-                  <SelectItem value="failed">Failed</SelectItem>
+                  <SelectItem value="all">{isIt ? 'Tutti gli stati' : 'All Status'}</SelectItem>
+                  <SelectItem value="pending_analysis">{isIt ? 'In attesa' : 'Pending'}</SelectItem>
+                  <SelectItem value="analyzing">{isIt ? 'In analisi' : 'Analyzing'}</SelectItem>
+                  <SelectItem value="analyzed">{isIt ? 'Analizzato' : 'Analyzed'}</SelectItem>
+                  <SelectItem value="failed">{isIt ? 'Fallito' : 'Failed'}</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-[150px]">
-                  <SelectValue placeholder="Sort by" />
+                  <SelectValue placeholder={isIt ? 'Ordina per' : 'Sort by'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="created_at">Created Date</SelectItem>
-                  <SelectItem value="updated_at">Updated Date</SelectItem>
-                  <SelectItem value="title">Title</SelectItem>
-                  <SelectItem value="innovation_score">Innovation Score</SelectItem>
-                  <SelectItem value="complexity_level">Complexity</SelectItem>
+                  <SelectItem value="created_at">{isIt ? 'Data creazione' : 'Created Date'}</SelectItem>
+                  <SelectItem value="updated_at">{isIt ? 'Data aggiornamento' : 'Updated Date'}</SelectItem>
+                  <SelectItem value="title">{isIt ? 'Titolo' : 'Title'}</SelectItem>
+                  <SelectItem value="innovation_score">{isIt ? 'Punteggio innovazione' : 'Innovation Score'}</SelectItem>
+                  <SelectItem value="complexity_level">{isIt ? 'Complessita' : 'Complexity'}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -379,15 +381,15 @@ export default function ProjectsPage() {
                   <Plus className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  No projects yet
+                  {isIt ? 'Nessun progetto ancora' : 'No projects yet'}
                 </h3>
                 <p className="text-foreground/80 mb-6">
-                  Start showcasing your work by uploading your first project.
+                  {isIt ? 'Inizia a mostrare il tuo lavoro caricando il primo progetto.' : 'Start showcasing your work by uploading your first project.'}
                 </p>
                 <Button asChild>
                   <Link href="/dashboard/student/projects/new">
                     <Plus className="mr-2 h-4 w-4" />
-                    Upload First Project
+                    {isIt ? 'Carica primo progetto' : 'Upload First Project'}
                   </Link>
                 </Button>
               </div>
@@ -397,20 +399,20 @@ export default function ProjectsPage() {
                   <Search className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  No projects found
+                  {isIt ? 'Nessun progetto trovato' : 'No projects found'}
                 </h3>
                 <p className="text-foreground/80 mb-6">
-                  Try adjusting your search or filter criteria.
+                  {isIt ? 'Prova a modificare i criteri di ricerca o filtro.' : 'Try adjusting your search or filter criteria.'}
                 </p>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => {
                     setSearchQuery('')
                     setCategoryFilter('all')
                     setStatusFilter('all')
                   }}
                 >
-                  Clear Filters
+                  {isIt ? 'Pulisci filtri' : 'Clear Filters'}
                 </Button>
               </div>
             )}
@@ -481,7 +483,7 @@ export default function ProjectsPage() {
                           <div className="text-lg font-semibold text-primary">
                             {project.innovationScore}/100
                           </div>
-                          <div className="text-xs text-foreground font-medium">Innovation</div>
+                          <div className="text-xs text-foreground font-medium">{isIt ? 'Innovazione' : 'Innovation'}</div>
                         </div>
                         <ProjectActions project={project} />
                       </div>

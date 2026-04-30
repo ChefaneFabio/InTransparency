@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
@@ -65,13 +66,15 @@ const TYPE_ICONS: Record<string, typeof MessageCircle> = {
   STAGE_CHANGE: TrendingUp,
 }
 
-function personName(u: { firstName: string | null; lastName: string | null } | null): string {
-  if (!u) return 'Sistema'
-  return [u.firstName, u.lastName].filter(Boolean).join(' ') || 'Staff'
+function personName(u: { firstName: string | null; lastName: string | null } | null, isIt: boolean = true): string {
+  if (!u) return isIt ? 'Sistema' : 'System'
+  return [u.firstName, u.lastName].filter(Boolean).join(' ') || (isIt ? 'Staff' : 'Staff')
 }
 
 export default function CompanyLeadDetailPage() {
   const params = useParams()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const leadId = params?.id as string
 
   const [lead, setLead] = useState<Lead | null>(null)
@@ -146,9 +149,9 @@ export default function CompanyLeadDetailPage() {
   if (!lead) {
     return (
       <div className="max-w-4xl mx-auto p-12 text-center">
-        <p className="text-muted-foreground">Lead non trovato o non autorizzato.</p>
+        <p className="text-muted-foreground">{isIt ? 'Lead non trovato o non autorizzato.' : 'Lead not found or unauthorized.'}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link href="/dashboard/university/crm"><ArrowLeft className="h-4 w-4 mr-2" /> Torna al CRM</Link>
+          <Link href="/dashboard/university/crm"><ArrowLeft className="h-4 w-4 mr-2" /> {isIt ? 'Torna al CRM' : 'Back to CRM'}</Link>
         </Button>
       </div>
     )
@@ -183,17 +186,17 @@ export default function CompanyLeadDetailPage() {
                 <Badge>{lead.currentStage.name}</Badge>
                 {lead.nextActionAt && new Date(lead.nextActionAt) < new Date() && (
                   <Badge className="bg-red-100 text-red-700 border-0 text-[10px]">
-                    Next action scaduta
+                    {isIt ? 'Next action scaduta' : 'Overdue next action'}
                   </Badge>
                 )}
               </div>
             </div>
           </div>
           <div>
-            <Label className="text-[11px] text-muted-foreground">Sposta a</Label>
+            <Label className="text-[11px] text-muted-foreground">{isIt ? 'Sposta a' : 'Move to'}</Label>
             <Select onValueChange={transitionStage}>
               <SelectTrigger className="w-full sm:w-48">
-                <SelectValue placeholder="Cambia stage…" />
+                <SelectValue placeholder={isIt ? 'Cambia stage…' : 'Change stage…'} />
               </SelectTrigger>
               <SelectContent>
                 {stages.filter(s => s.id !== lead.currentStageId).map(s => (
@@ -210,7 +213,7 @@ export default function CompanyLeadDetailPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-1.5">
-              <User className="h-4 w-4" /> Contatto principale
+              <User className="h-4 w-4" /> {isIt ? 'Contatto principale' : 'Primary contact'}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-1 text-xs">
@@ -229,7 +232,7 @@ export default function CompanyLeadDetailPage() {
                 )}
               </>
             ) : (
-              <span className="text-muted-foreground italic">Da compilare</span>
+              <span className="text-muted-foreground italic">{isIt ? 'Da compilare' : 'To be filled in'}</span>
             )}
           </CardContent>
         </Card>
@@ -238,18 +241,18 @@ export default function CompanyLeadDetailPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-1.5">
-              <MapPin className="h-4 w-4" /> Sede
+              <MapPin className="h-4 w-4" /> {isIt ? 'Sede' : 'Location'}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-xs space-y-0.5">
             {(lead.city || lead.region) ? (
               <div>{[lead.city, lead.region].filter(Boolean).join(', ')}</div>
             ) : (
-              <span className="text-muted-foreground italic">Non specificata</span>
+              <span className="text-muted-foreground italic">{isIt ? 'Non specificata' : 'Not specified'}</span>
             )}
             {lead.source && (
               <div className="text-muted-foreground pt-1 border-t mt-1">
-                Fonte: <span className="font-medium">{lead.source}</span>
+                {isIt ? 'Fonte:' : 'Source:'} <span className="font-medium">{lead.source}</span>
               </div>
             )}
           </CardContent>
@@ -259,22 +262,22 @@ export default function CompanyLeadDetailPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-1.5">
-              <Target className="h-4 w-4" /> Ownership
+              <Target className="h-4 w-4" /> {isIt ? 'Ownership' : 'Ownership'}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-xs space-y-1">
             <div>
-              <span className="text-muted-foreground">Owner:</span>{' '}
-              <span className="font-medium">{personName(lead.ownerStaff)}</span>
+              <span className="text-muted-foreground">{isIt ? 'Owner:' : 'Owner:'}</span>{' '}
+              <span className="font-medium">{personName(lead.ownerStaff, isIt)}</span>
             </div>
             <div>
-              <span className="text-muted-foreground">In stage da:</span>{' '}
-              {Math.max(0, Math.round((Date.now() - new Date(lead.stageEnteredAt).getTime()) / 86_400_000))}g
+              <span className="text-muted-foreground">{isIt ? 'In stage da:' : 'In stage for:'}</span>{' '}
+              {Math.max(0, Math.round((Date.now() - new Date(lead.stageEnteredAt).getTime()) / 86_400_000))}{isIt ? 'g' : 'd'}
             </div>
             {lead.nextActionAt && (
               <div>
-                <span className="text-muted-foreground">Next action:</span>{' '}
-                <span className="font-medium">{new Date(lead.nextActionAt).toLocaleDateString('it-IT')}</span>
+                <span className="text-muted-foreground">{isIt ? 'Next action:' : 'Next action:'}</span>{' '}
+                <span className="font-medium">{new Date(lead.nextActionAt).toLocaleDateString(locale)}</span>
               </div>
             )}
           </CardContent>
@@ -285,7 +288,7 @@ export default function CompanyLeadDetailPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
-            <MessageCircle className="h-4 w-4" /> Attività
+            <MessageCircle className="h-4 w-4" /> {isIt ? 'Attività' : 'Activity'}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -295,24 +298,24 @@ export default function CompanyLeadDetailPage() {
               <Select value={activityType} onValueChange={setActivityType}>
                 <SelectTrigger className="w-36"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="NOTE">Nota</SelectItem>
-                  <SelectItem value="EMAIL">Email</SelectItem>
-                  <SelectItem value="CALL">Chiamata</SelectItem>
-                  <SelectItem value="MEETING">Meeting</SelectItem>
-                  <SelectItem value="DOCUMENT">Documento</SelectItem>
+                  <SelectItem value="NOTE">{isIt ? 'Nota' : 'Note'}</SelectItem>
+                  <SelectItem value="EMAIL">{isIt ? 'Email' : 'Email'}</SelectItem>
+                  <SelectItem value="CALL">{isIt ? 'Chiamata' : 'Call'}</SelectItem>
+                  <SelectItem value="MEETING">{isIt ? 'Meeting' : 'Meeting'}</SelectItem>
+                  <SelectItem value="DOCUMENT">{isIt ? 'Documento' : 'Document'}</SelectItem>
                 </SelectContent>
               </Select>
               <Textarea
                 value={activityContent}
                 onChange={e => setActivityContent(e.target.value)}
-                placeholder="Descrivi l'attività, allegare decisioni o prossimi step…"
+                placeholder={isIt ? 'Descrivi l\'attività, allegare decisioni o prossimi step…' : 'Describe the activity, decisions, next steps…'}
                 rows={2}
                 className="flex-1"
               />
             </div>
             <div className="flex justify-end">
               <Button size="sm" onClick={addActivity} disabled={activitySaving || !activityContent.trim()}>
-                {activitySaving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Plus className="h-3.5 w-3.5 mr-1" /> Aggiungi</>}
+                {activitySaving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Plus className="h-3.5 w-3.5 mr-1" /> {isIt ? 'Aggiungi' : 'Add'}</>}
               </Button>
             </div>
           </div>
@@ -320,7 +323,7 @@ export default function CompanyLeadDetailPage() {
           {/* Timeline */}
           {lead.activities.length === 0 && lead.transitions.length === 0 ? (
             <div className="text-center py-8 text-xs text-muted-foreground italic">
-              Nessuna attività. Aggiungi la prima sopra.
+              {isIt ? 'Nessuna attività. Aggiungi la prima sopra.' : 'No activity yet. Add the first one above.'}
             </div>
           ) : (
             <div className="space-y-2">
@@ -338,15 +341,15 @@ export default function CompanyLeadDetailPage() {
                         <TrendingUp className="h-3.5 w-3.5 text-primary flex-shrink-0 mt-0.5" />
                         <div className="flex-1 min-w-0">
                           <div>
-                            <span className="font-medium">{personName(t.staff)}</span>
-                            <span className="text-muted-foreground"> ha spostato il lead: </span>
+                            <span className="font-medium">{personName(t.staff, isIt)}</span>
+                            <span className="text-muted-foreground"> {isIt ? 'ha spostato il lead:' : 'moved the lead:'} </span>
                             {t.fromStage && <Badge variant="outline" className="text-[10px] mr-1">{t.fromStage.name}</Badge>}
                             <span className="text-muted-foreground">→</span>
                             <Badge className="text-[10px] ml-1">{t.toStage.name}</Badge>
                           </div>
                           {t.note && <p className="text-muted-foreground mt-1">{t.note}</p>}
                           <div className="text-[10px] text-muted-foreground mt-0.5">
-                            {new Date(t.createdAt).toLocaleString('it-IT')}
+                            {new Date(t.createdAt).toLocaleString(locale)}
                           </div>
                         </div>
                       </div>
@@ -362,9 +365,9 @@ export default function CompanyLeadDetailPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <Badge variant="outline" className="text-[10px]">{a.type}</Badge>
-                          <span className="font-medium">{personName(a.staff)}</span>
+                          <span className="font-medium">{personName(a.staff, isIt)}</span>
                           <span className="text-[10px] text-muted-foreground ml-auto">
-                            {new Date(a.createdAt).toLocaleString('it-IT')}
+                            {new Date(a.createdAt).toLocaleString(locale)}
                           </span>
                         </div>
                         <p className="text-muted-foreground whitespace-pre-wrap mt-1">{a.content}</p>

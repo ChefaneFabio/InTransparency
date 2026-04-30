@@ -31,7 +31,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface UniversitySettingsData {
@@ -60,6 +60,8 @@ interface UniversitySettingsData {
 
 export default function UniversitySettingsPage() {
   const t = useTranslations('universityDashboard.settings')
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [settings, setSettings] = useState<UniversitySettingsData>({
     name: '', shortName: '', description: '', website: '', email: '', phone: '',
     address: '', city: '', region: '', logo: '',
@@ -165,7 +167,7 @@ export default function UniversitySettingsPage() {
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
     } catch (err) {
-      setError('Errore durante il salvataggio delle impostazioni')
+      setError(isIt ? 'Errore durante il salvataggio delle impostazioni' : 'Failed to save settings')
     } finally {
       setIsSaving(false)
     }
@@ -235,11 +237,11 @@ export default function UniversitySettingsPage() {
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="profile" className="flex items-center gap-2">
               <Building2 className="h-4 w-4" />
-              Profilo
+              {isIt ? 'Profilo' : 'Profile'}
             </TabsTrigger>
             <TabsTrigger value="notifications" className="flex items-center gap-2">
               <Bell className="h-4 w-4" />
-              Notifiche
+              {isIt ? 'Notifiche' : 'Notifications'}
             </TabsTrigger>
             <TabsTrigger value="privacy" className="flex items-center gap-2">
               <Shield className="h-4 w-4" />
@@ -254,8 +256,8 @@ export default function UniversitySettingsPage() {
           <TabsContent value="profile">
             <GlassCard delay={0.1}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold">Informazioni Istituzione</h3>
-                <p className="text-sm text-muted-foreground mb-4">Gestisci le informazioni pubbliche della tua istituzione</p>
+                <h3 className="text-lg font-semibold">{isIt ? 'Informazioni Istituzione' : 'Institution information'}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{isIt ? 'Gestisci le informazioni pubbliche della tua istituzione' : 'Manage your institution\'s public information'}</p>
                 <div className="space-y-6">
                 <div className="flex items-center gap-6">
                   <div className="w-24 h-24 bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-border">
@@ -268,29 +270,29 @@ export default function UniversitySettingsPage() {
                   <div>
                     <Button variant="outline" size="sm">
                       <Upload className="h-4 w-4 mr-2" />
-                      Carica Logo
+                      {isIt ? 'Carica Logo' : 'Upload Logo'}
                     </Button>
-                    <p className="text-xs text-muted-foreground mt-2">PNG, JPG fino a 2MB</p>
+                    <p className="text-xs text-muted-foreground mt-2">{isIt ? 'PNG, JPG fino a 2MB' : 'PNG, JPG up to 2MB'}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nome Completo</Label>
+                    <Label htmlFor="name">{isIt ? 'Nome Completo' : 'Full name'}</Label>
                     <Input id="name" value={settings.name} onChange={(e) => updateSetting('name', e.target.value)} className={fieldErrors.name ? 'border-red-500' : ''} />
                     {fieldErrors.name && <p className="text-sm text-red-500 mt-1">{fieldErrors.name}</p>}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="shortName">Nome Breve</Label>
+                    <Label htmlFor="shortName">{isIt ? 'Nome Breve' : 'Short name'}</Label>
                     <Input id="shortName" value={settings.shortName} onChange={(e) => updateSetting('shortName', e.target.value)} />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="description">Descrizione</Label>
+                  <Label htmlFor="description">{isIt ? 'Descrizione' : 'Description'}</Label>
                   <Textarea id="description" value={settings.description} onChange={(e) => updateSetting('description', e.target.value)} rows={3} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="website">Sito Web</Label>
+                    <Label htmlFor="website">{isIt ? 'Sito Web' : 'Website'}</Label>
                     <div className="relative">
                       <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="website" value={settings.website} onChange={(e) => updateSetting('website', e.target.value)} className={`pl-10 ${fieldErrors.website ? 'border-red-500' : ''}`} />
@@ -308,14 +310,14 @@ export default function UniversitySettingsPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Telefono</Label>
+                    <Label htmlFor="phone">{isIt ? 'Telefono' : 'Phone'}</Label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="phone" value={settings.phone} onChange={(e) => updateSetting('phone', e.target.value)} className="pl-10" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="city">Città</Label>
+                    <Label htmlFor="city">{isIt ? 'Città' : 'City'}</Label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="city" value={settings.city} onChange={(e) => updateSetting('city', e.target.value)} className="pl-10" />
@@ -323,7 +325,7 @@ export default function UniversitySettingsPage() {
                   </div>
                 </div>
                   <div className="space-y-2">
-                    <Label htmlFor="address">Indirizzo</Label>
+                    <Label htmlFor="address">{isIt ? 'Indirizzo' : 'Address'}</Label>
                     <Input id="address" value={settings.address} onChange={(e) => updateSetting('address', e.target.value)} />
                   </div>
                 </div>
@@ -334,34 +336,34 @@ export default function UniversitySettingsPage() {
           <TabsContent value="notifications">
             <GlassCard delay={0.1}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold">Preferenze Notifiche</h3>
-                <p className="text-sm text-muted-foreground mb-4">Scegli quali notifiche ricevere via email</p>
+                <h3 className="text-lg font-semibold">{isIt ? 'Preferenze Notifiche' : 'Notification preferences'}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{isIt ? 'Scegli quali notifiche ricevere via email' : 'Choose which notifications to receive by email'}</p>
                 <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="font-medium">Nuovo Studente Iscritto</Label>
-                    <p className="text-sm text-muted-foreground">Ricevi una notifica quando uno studente si registra</p>
+                    <Label className="font-medium">{isIt ? 'Nuovo Studente Iscritto' : 'New student enrolled'}</Label>
+                    <p className="text-sm text-muted-foreground">{isIt ? 'Ricevi una notifica quando uno studente si registra' : 'Get a notification when a student registers'}</p>
                   </div>
                   <Switch checked={settings.notifyNewStudents} onCheckedChange={(checked) => setSettings({ ...settings, notifyNewStudents: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="font-medium">Nuovi Progetti</Label>
-                    <p className="text-sm text-muted-foreground">Notifica quando uno studente carica un progetto</p>
+                    <Label className="font-medium">{isIt ? 'Nuovi Progetti' : 'New projects'}</Label>
+                    <p className="text-sm text-muted-foreground">{isIt ? 'Notifica quando uno studente carica un progetto' : 'Notify when a student uploads a project'}</p>
                   </div>
                   <Switch checked={settings.notifyProjectSubmissions} onCheckedChange={(checked) => setSettings({ ...settings, notifyProjectSubmissions: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="font-medium">Attività Recruiter</Label>
-                    <p className="text-sm text-muted-foreground">Notifica quando un recruiter visualizza i tuoi studenti</p>
+                    <Label className="font-medium">{isIt ? 'Attività Recruiter' : 'Recruiter activity'}</Label>
+                    <p className="text-sm text-muted-foreground">{isIt ? 'Notifica quando un recruiter visualizza i tuoi studenti' : 'Notify when a recruiter views your students'}</p>
                   </div>
                   <Switch checked={settings.notifyRecruiterActivity} onCheckedChange={(checked) => setSettings({ ...settings, notifyRecruiterActivity: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="font-medium">Nuovo Placement</Label>
-                    <p className="text-sm text-muted-foreground">Notifica quando uno studente trova lavoro</p>
+                    <Label className="font-medium">{isIt ? 'Nuovo Placement' : 'New placement'}</Label>
+                    <p className="text-sm text-muted-foreground">{isIt ? 'Notifica quando uno studente trova lavoro' : 'Notify when a student gets placed'}</p>
                   </div>
                     <Switch checked={settings.notifyPlacements} onCheckedChange={(checked) => setSettings({ ...settings, notifyPlacements: checked })} />
                   </div>
@@ -373,15 +375,15 @@ export default function UniversitySettingsPage() {
           <TabsContent value="privacy">
             <GlassCard delay={0.1}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold">Impostazioni Privacy</h3>
-                <p className="text-sm text-muted-foreground mb-4">Controlla quali dati sono visibili pubblicamente</p>
+                <h3 className="text-lg font-semibold">{isIt ? 'Impostazioni Privacy' : 'Privacy settings'}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{isIt ? 'Controlla quali dati sono visibili pubblicamente' : 'Control which data is publicly visible'}</p>
                 <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Eye className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <Label className="font-medium">Mostra nella Directory</Label>
-                      <p className="text-sm text-muted-foreground">Rendi visibile la tua istituzione nella directory</p>
+                      <Label className="font-medium">{isIt ? 'Mostra nella Directory' : 'Show in directory'}</Label>
+                      <p className="text-sm text-muted-foreground">{isIt ? 'Rendi visibile la tua istituzione nella directory' : 'Make your institution visible in the directory'}</p>
                     </div>
                   </div>
                   <Switch checked={settings.showInDirectory} onCheckedChange={(checked) => setSettings({ ...settings, showInDirectory: checked })} />
@@ -390,8 +392,8 @@ export default function UniversitySettingsPage() {
                   <div className="flex items-center gap-3">
                     <Users className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <Label className="font-medium">Directory Studenti</Label>
-                      <p className="text-sm text-muted-foreground">Permetti alle aziende di cercare studenti</p>
+                      <Label className="font-medium">{isIt ? 'Directory Studenti' : 'Student directory'}</Label>
+                      <p className="text-sm text-muted-foreground">{isIt ? 'Permetti alle aziende di cercare studenti' : 'Allow companies to search students'}</p>
                     </div>
                   </div>
                   <Switch checked={settings.allowStudentDiscovery} onCheckedChange={(checked) => setSettings({ ...settings, allowStudentDiscovery: checked })} />
@@ -400,8 +402,8 @@ export default function UniversitySettingsPage() {
                   <div className="flex items-center gap-3">
                     <Eye className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <Label className="font-medium">Condividi Analytics</Label>
-                      <p className="text-sm text-muted-foreground">Condividi dati aggregati per benchmark</p>
+                      <Label className="font-medium">{isIt ? 'Condividi Analytics' : 'Share analytics'}</Label>
+                      <p className="text-sm text-muted-foreground">{isIt ? 'Condividi dati aggregati per benchmark' : 'Share aggregated data for benchmarking'}</p>
                     </div>
                   </div>
                   <Switch checked={settings.shareAnalytics} onCheckedChange={(checked) => setSettings({ ...settings, shareAnalytics: checked })} />
@@ -410,8 +412,8 @@ export default function UniversitySettingsPage() {
                   <div className="flex items-center gap-3">
                     <Lock className="h-5 w-5 text-muted-foreground" />
                     <div>
-                      <Label className="font-medium">Verifica Email Richiesta</Label>
-                      <p className="text-sm text-muted-foreground">Richiedi verifica email istituzionale per gli studenti</p>
+                      <Label className="font-medium">{isIt ? 'Verifica Email Richiesta' : 'Email verification required'}</Label>
+                      <p className="text-sm text-muted-foreground">{isIt ? 'Richiedi verifica email istituzionale per gli studenti' : 'Require institutional email verification for students'}</p>
                     </div>
                   </div>
                     <Switch checked={settings.requireEmailVerification} onCheckedChange={(checked) => setSettings({ ...settings, requireEmailVerification: checked })} />
@@ -424,12 +426,12 @@ export default function UniversitySettingsPage() {
           <TabsContent value="branding">
             <GlassCard delay={0.1}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold">Personalizzazione</h3>
-                <p className="text-sm text-muted-foreground mb-4">Personalizza l'aspetto della tua pagina istituzionale</p>
+                <h3 className="text-lg font-semibold">{isIt ? 'Personalizzazione' : 'Customization'}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{isIt ? 'Personalizza l\'aspetto della tua pagina istituzionale' : 'Customize the look of your institution page'}</p>
                 <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="primaryColor">Colore Primario</Label>
+                    <Label htmlFor="primaryColor">{isIt ? 'Colore Primario' : 'Primary color'}</Label>
                     <div className="flex gap-2">
                       <Input id="primaryColor" type="color" value={settings.primaryColor} onChange={(e) => updateSetting('primaryColor', e.target.value)} className="w-12 h-10 p-1 cursor-pointer" />
                       <Input value={settings.primaryColor} onChange={(e) => updateSetting('primaryColor', e.target.value)} className={`flex-1 ${fieldErrors.primaryColor ? 'border-red-500' : ''}`} />
@@ -437,7 +439,7 @@ export default function UniversitySettingsPage() {
                     {fieldErrors.primaryColor && <p className="text-sm text-red-500 mt-1">{fieldErrors.primaryColor}</p>}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="accentColor">Colore Accento</Label>
+                    <Label htmlFor="accentColor">{isIt ? 'Colore Accento' : 'Accent color'}</Label>
                     <div className="flex gap-2">
                       <Input id="accentColor" type="color" value={settings.accentColor} onChange={(e) => updateSetting('accentColor', e.target.value)} className="w-12 h-10 p-1 cursor-pointer" />
                       <Input value={settings.accentColor} onChange={(e) => updateSetting('accentColor', e.target.value)} className={`flex-1 ${fieldErrors.accentColor ? 'border-red-500' : ''}`} />
@@ -446,30 +448,30 @@ export default function UniversitySettingsPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="customDomain">Dominio Personalizzato</Label>
+                  <Label htmlFor="customDomain">{isIt ? 'Dominio Personalizzato' : 'Custom domain'}</Label>
                   <div className="flex gap-2">
                     <Input id="customDomain" value={settings.customDomain} onChange={(e) => updateSetting('customDomain', e.target.value)} placeholder="careers.polimi.it" />
                     <Button variant="outline">
                       <Code className="h-4 w-4 mr-2" />
-                      Verifica
+                      {isIt ? 'Verifica' : 'Verify'}
                     </Button>
                   </div>
-                  <p className="text-xs text-muted-foreground">Richiede piano Premium Embed. Contatta il supporto per configurare.</p>
+                  <p className="text-xs text-muted-foreground">{isIt ? 'Richiede piano Premium Embed. Contatta il supporto per configurare.' : 'Requires the Premium Embed plan. Contact support to configure.'}</p>
                 </div>
                 <div className="border rounded-lg p-6 mt-6">
-                  <h4 className="font-medium text-foreground mb-4">Anteprima</h4>
+                  <h4 className="font-medium text-foreground mb-4">{isIt ? 'Anteprima' : 'Preview'}</h4>
                   <div className="p-4 rounded-lg" style={{ backgroundColor: settings.primaryColor + '10' }}>
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold" style={{ backgroundColor: settings.primaryColor }}>
                         {(settings.shortName || settings.name || '').slice(0, 2)}
                       </div>
                       <div>
-                        <h3 className="font-semibold" style={{ color: settings.primaryColor }}>{settings.name || 'Nome Istituzione'}</h3>
-                        <p className="text-sm text-muted-foreground">{settings.city || 'Città'}</p>
+                        <h3 className="font-semibold" style={{ color: settings.primaryColor }}>{settings.name || (isIt ? 'Nome Istituzione' : 'Institution name')}</h3>
+                        <p className="text-sm text-muted-foreground">{settings.city || (isIt ? 'Città' : 'City')}</p>
                       </div>
                     </div>
                     <Button size="sm" style={{ backgroundColor: settings.accentColor }} className="text-white">
-                      Scopri di più
+                      {isIt ? 'Scopri di più' : 'Learn more'}
                     </Button>
                     </div>
                   </div>

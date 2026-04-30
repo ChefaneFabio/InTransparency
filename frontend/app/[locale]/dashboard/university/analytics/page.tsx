@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 import { Button } from '@/components/ui/button'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import ScorecardPanel from '@/components/dashboard/university/analytics/ScorecardPanel'
 import PremiumBadge from '@/components/shared/PremiumBadge'
 
@@ -169,6 +169,8 @@ function EmptyState({ message }: { message: string }) {
 
 export default function UniversityAnalytics() {
   const t = useTranslations('universityDashboard.analytics')
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const searchParams = useSearchParams()
   const initialTab = searchParams?.get('tab') || 'overview'
   const [activeTab, setActiveTab] = useState(initialTab)
@@ -188,7 +190,7 @@ export default function UniversityAnalytics() {
       const json = await res.json()
       setData((prev) => ({ ...prev, ...json }))
     } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred')
+      setError(err.message || (isIt ? 'Si è verificato un errore inatteso' : 'An unexpected error occurred'))
     } finally {
       setLoading(false)
     }
@@ -219,13 +221,13 @@ export default function UniversityAnalytics() {
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select time range" />
+            <SelectValue placeholder={isIt ? 'Seleziona intervallo' : 'Select time range'} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="6months">Last 6 Months</SelectItem>
-            <SelectItem value="1year">Last Year</SelectItem>
-            <SelectItem value="2years">Last 2 Years</SelectItem>
-            <SelectItem value="5years">Last 5 Years</SelectItem>
+            <SelectItem value="6months">{isIt ? 'Ultimi 6 mesi' : 'Last 6 Months'}</SelectItem>
+            <SelectItem value="1year">{isIt ? 'Ultimo anno' : 'Last Year'}</SelectItem>
+            <SelectItem value="2years">{isIt ? 'Ultimi 2 anni' : 'Last 2 Years'}</SelectItem>
+            <SelectItem value="5years">{isIt ? 'Ultimi 5 anni' : 'Last 5 Years'}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -242,26 +244,26 @@ export default function UniversityAnalytics() {
         {/* Free Core: Overview + Placement basics. Everything else is Premium
             (advanced analytics: cross-cohort, market benchmark, scorecard etc.) */}
         <TabsList className="grid w-full grid-cols-7">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="placement">Placement</TabsTrigger>
+          <TabsTrigger value="overview">{isIt ? 'Panoramica' : 'Overview'}</TabsTrigger>
+          <TabsTrigger value="placement">{isIt ? 'Placement' : 'Placement'}</TabsTrigger>
           <TabsTrigger value="skills" className="gap-1">
-            Skills Gap
+            {isIt ? 'Gap competenze' : 'Skills Gap'}
             <PremiumBadge audience="institution" variant="lock" static />
           </TabsTrigger>
           <TabsTrigger value="employers" className="gap-1">
-            Employers
+            {isIt ? 'Aziende' : 'Employers'}
             <PremiumBadge audience="institution" variant="lock" static />
           </TabsTrigger>
           <TabsTrigger value="salary" className="gap-1">
-            Salary
+            {isIt ? 'Stipendi' : 'Salary'}
             <PremiumBadge audience="institution" variant="lock" static />
           </TabsTrigger>
           <TabsTrigger value="benchmark" className="gap-1">
-            Benchmark
+            {isIt ? 'Benchmark' : 'Benchmark'}
             <PremiumBadge audience="institution" variant="lock" static />
           </TabsTrigger>
           <TabsTrigger value="scorecard" className="gap-1">
-            Scorecard
+            {isIt ? 'Scorecard' : 'Scorecard'}
             <PremiumBadge audience="institution" variant="lock" static />
           </TabsTrigger>
         </TabsList>
@@ -284,47 +286,47 @@ export default function UniversityAnalytics() {
               <>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Placement Rate</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Tasso di placement' : 'Placement Rate'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{overview?.placementRate ?? 0}%</div>
                     <p className="text-xs text-muted-foreground">
-                      Based on confirmed placements
+                      {isIt ? 'Basato sui placement confermati' : 'Based on confirmed placements'}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Avg. Starting Salary</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Stipendio medio iniziale' : 'Avg. Starting Salary'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
                       ${(overview?.avgSalary ?? 0).toLocaleString()}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      From confirmed full-time placements
+                      {isIt ? 'Da placement full-time confermati' : 'From confirmed full-time placements'}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Employer Partners</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Aziende partner' : 'Employer Partners'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{overview?.employerPartners ?? 0}</div>
                     <p className="text-xs text-muted-foreground">
-                      Unique confirmed companies
+                      {isIt ? 'Aziende uniche confermate' : 'Unique confirmed companies'}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Studenti totali' : 'Total Students'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{overview?.totalStudents ?? 0}</div>
                     <p className="text-xs text-muted-foreground">
-                      Enrolled at your institution
+                      {isIt ? 'Iscritti alla tua istituzione' : 'Enrolled at your institution'}
                     </p>
                   </CardContent>
                 </Card>
@@ -335,16 +337,16 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Placement Rate Trends</CardTitle>
+                <CardTitle>{isIt ? 'Trend del tasso di placement' : 'Placement Rate Trends'}</CardTitle>
                 <CardDescription>
-                  Trend of graduate placement rates over time
+                  {isIt ? 'Andamento dei tassi di placement nel tempo' : 'Trend of graduate placement rates over time'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ChartSkeleton />
                 ) : placementTrends.length === 0 ? (
-                  <EmptyState message="No placement trend data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sui trend di placement' : 'No placement trend data available'} />
                 ) : (
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={placementTrends}>
@@ -361,16 +363,16 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Industry Distribution</CardTitle>
+                <CardTitle>{isIt ? 'Distribuzione per settore' : 'Industry Distribution'}</CardTitle>
                 <CardDescription>
-                  Where our graduates are being placed
+                  {isIt ? 'Dove vengono inseriti i nostri laureati' : 'Where our graduates are being placed'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ChartSkeleton />
                 ) : industryDistribution.length === 0 ? (
-                  <EmptyState message="No industry distribution data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sulla distribuzione per settore' : 'No industry distribution data available'} />
                 ) : (
                   <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
@@ -401,23 +403,23 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Placement Summary</CardTitle>
+                <CardTitle>{isIt ? 'Riepilogo placement' : 'Placement Summary'}</CardTitle>
                 <CardDescription>
-                  Breakdown of placement statuses
+                  {isIt ? 'Distribuzione degli stati di placement' : 'Breakdown of placement statuses'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={4} />
                 ) : !placement ? (
-                  <EmptyState message="No placement data available" />
+                  <EmptyState message={isIt ? 'Nessun dato di placement disponibile' : 'No placement data available'} />
                 ) : (
                   <div className="space-y-4">
                     {[
-                      { label: 'Total Placements', value: placement.totalPlacements },
-                      { label: 'Confirmed', value: placement.confirmed },
-                      { label: 'Pending', value: placement.pending },
-                      { label: 'Declined', value: placement.declined },
+                      { label: isIt ? 'Placement totali' : 'Total Placements', value: placement.totalPlacements },
+                      { label: isIt ? 'Confermati' : 'Confirmed', value: placement.confirmed },
+                      { label: isIt ? 'In attesa' : 'Pending', value: placement.pending },
+                      { label: isIt ? 'Rifiutati' : 'Declined', value: placement.declined },
                     ].map((item) => (
                       <div key={item.label} className="space-y-2">
                         <div className="flex items-center justify-between">
@@ -432,11 +434,11 @@ export default function UniversityAnalytics() {
                     ))}
                     <div className="pt-2 border-t">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium">Placement Rate</span>
+                        <span className="font-medium">{isIt ? 'Tasso di placement' : 'Placement Rate'}</span>
                         <span className="text-sm font-bold">{placement.placementRate}%</span>
                       </div>
                       <div className="flex items-center justify-between mt-1">
-                        <span className="font-medium">Average Salary</span>
+                        <span className="font-medium">{isIt ? 'Stipendio medio' : 'Average Salary'}</span>
                         <span className="text-sm font-bold">${placement.avgSalary.toLocaleString()}</span>
                       </div>
                     </div>
@@ -447,16 +449,16 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Placement Rate Over Time</CardTitle>
+                <CardTitle>{isIt ? 'Tasso di placement nel tempo' : 'Placement Rate Over Time'}</CardTitle>
                 <CardDescription>
-                  Yearly placement rate progression
+                  {isIt ? 'Andamento annuale del tasso di placement' : 'Yearly placement rate progression'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ChartSkeleton />
                 ) : placementTrends.length === 0 ? (
-                  <EmptyState message="No trend data available" />
+                  <EmptyState message={isIt ? 'Nessun dato di trend disponibile' : 'No trend data available'} />
                 ) : (
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={placementTrends}>
@@ -474,16 +476,16 @@ export default function UniversityAnalytics() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Graduate Outcomes Over Time</CardTitle>
+              <CardTitle>{isIt ? 'Esiti dei laureati nel tempo' : 'Graduate Outcomes Over Time'}</CardTitle>
               <CardDescription>
-                Placement rate and average salary progression for recent graduates
+                {isIt ? 'Andamento del tasso di placement e dello stipendio medio dei laureati recenti' : 'Placement rate and average salary progression for recent graduates'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <ChartSkeleton />
               ) : placementTrends.length === 0 ? (
-                <EmptyState message="No graduate outcome data available" />
+                <EmptyState message={isIt ? 'Nessun dato sugli esiti disponibile' : 'No graduate outcome data available'} />
               ) : (
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={placementTrends}>
@@ -506,16 +508,16 @@ export default function UniversityAnalytics() {
           <>
           <Card>
             <CardHeader>
-              <CardTitle>Skills Gap Analysis</CardTitle>
+              <CardTitle>{isIt ? 'Analisi gap competenze' : 'Skills Gap Analysis'}</CardTitle>
               <CardDescription>
-                Market demand vs student proficiency in key technologies
+                {isIt ? 'Domanda di mercato vs preparazione degli studenti nelle tecnologie chiave' : 'Market demand vs student proficiency in key technologies'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <ListSkeleton rows={6} />
               ) : skillsGap.length === 0 ? (
-                <EmptyState message="No skills gap data available" />
+                <EmptyState message={isIt ? 'Nessun dato sul gap competenze' : 'No skills gap data available'} />
               ) : (
                 <div className="space-y-6">
                   {skillsGap.map((skill) => (
@@ -523,20 +525,20 @@ export default function UniversityAnalytics() {
                       <div className="flex items-center justify-between">
                         <h3 className="font-medium">{skill.skill}</h3>
                         <Badge variant={skill.gap > 30 ? 'destructive' : skill.gap > 15 ? 'default' : 'secondary'}>
-                          {skill.gap}% gap
+                          {skill.gap}% {isIt ? 'gap' : 'gap'}
                         </Badge>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
-                            <span>Market Demand</span>
+                            <span>{isIt ? 'Domanda di mercato' : 'Market Demand'}</span>
                             <span>{skill.demand}%</span>
                           </div>
                           <Progress value={skill.demand} className="h-2" />
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
-                            <span>Student Proficiency</span>
+                            <span>{isIt ? 'Preparazione studenti' : 'Student Proficiency'}</span>
                             <span>{skill.students}%</span>
                           </div>
                           <Progress value={skill.students} className="h-2" />
@@ -552,16 +554,16 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Curriculum Recommendations</CardTitle>
+                <CardTitle>{isIt ? 'Raccomandazioni curriculari' : 'Curriculum Recommendations'}</CardTitle>
                 <CardDescription>
-                  Suggested improvements based on market gaps
+                  {isIt ? 'Miglioramenti suggeriti in base ai gap di mercato' : 'Suggested improvements based on market gaps'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : skillsGap.length === 0 ? (
-                  <EmptyState message="No recommendations available" />
+                  <EmptyState message={isIt ? 'Nessuna raccomandazione disponibile' : 'No recommendations available'} />
                 ) : (
                   <div className="space-y-4">
                     {skillsGap
@@ -569,16 +571,23 @@ export default function UniversityAnalytics() {
                       .slice(0, 5)
                       .map((s) => {
                         const priority = s.gap > 30 ? 'High' : s.gap > 15 ? 'Medium' : 'Low'
+                        const priorityLabel = isIt
+                          ? (priority === 'High' ? 'Alta' : priority === 'Medium' ? 'Media' : 'Bassa')
+                          : priority
                         return (
                           <div key={s.skill} className="flex items-start gap-3">
                             <Badge variant={
                               priority === 'High' ? 'destructive' :
                               priority === 'Medium' ? 'default' : 'secondary'
                             }>
-                              {priority}
+                              {priorityLabel}
                             </Badge>
                             <p className="text-sm flex-1">
-                              Improve curriculum coverage for <strong>{s.skill}</strong> ({s.gap}% gap between demand and student proficiency)
+                              {isIt ? (
+                                <>Migliora la copertura curriculare per <strong>{s.skill}</strong> ({s.gap}% gap fra domanda e preparazione studenti)</>
+                              ) : (
+                                <>Improve curriculum coverage for <strong>{s.skill}</strong> ({s.gap}% gap between demand and student proficiency)</>
+                              )}
                             </p>
                           </div>
                         )
@@ -590,16 +599,16 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Top Skills in Demand</CardTitle>
+                <CardTitle>{isIt ? 'Competenze più richieste' : 'Top Skills in Demand'}</CardTitle>
                 <CardDescription>
-                  Highest market demand skills from job postings
+                  {isIt ? 'Competenze con maggiore domanda dagli annunci di lavoro' : 'Highest market demand skills from job postings'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : skillsGap.length === 0 ? (
-                  <EmptyState message="No demand data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sulla domanda disponibile' : 'No demand data available'} />
                 ) : (
                   <div className="space-y-4">
                     {skillsGap
@@ -609,17 +618,17 @@ export default function UniversityAnalytics() {
                         <div key={s.skill} className="space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="font-medium">{s.skill}</span>
-                            <Badge variant="outline">{s.demand}% demand</Badge>
+                            <Badge variant="outline">{s.demand}% {isIt ? 'domanda' : 'demand'}</Badge>
                           </div>
                           <div className="flex flex-wrap gap-1">
                             <Badge variant="secondary" className="text-xs">
-                              Students: {s.students}%
+                              {isIt ? 'Studenti' : 'Students'}: {s.students}%
                             </Badge>
                             <Badge
                               variant={s.gap > 20 ? 'destructive' : 'secondary'}
                               className="text-xs"
                             >
-                              Gap: {s.gap}%
+                              {isIt ? 'Gap' : 'Gap'}: {s.gap}%
                             </Badge>
                           </div>
                         </div>
@@ -646,29 +655,29 @@ export default function UniversityAnalytics() {
               <>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Total Profile Views</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Visualizzazioni profilo totali' : 'Total Profile Views'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{employers?.totalViews ?? 0}</div>
-                    <p className="text-xs text-muted-foreground">By recruiters in last 6 months</p>
+                    <p className="text-xs text-muted-foreground">{isIt ? 'Da recruiter negli ultimi 6 mesi' : 'By recruiters in last 6 months'}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Total Contacts Made</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Contatti totali' : 'Total Contacts Made'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{employers?.totalContacts ?? 0}</div>
-                    <p className="text-xs text-muted-foreground">Recruiters reaching out to students</p>
+                    <p className="text-xs text-muted-foreground">{isIt ? 'Recruiter che hanno contattato studenti' : 'Recruiters reaching out to students'}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Unique Companies</CardTitle>
+                    <CardTitle className="text-sm font-medium">{isIt ? 'Aziende uniche' : 'Unique Companies'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{employers?.uniqueCompanies ?? 0}</div>
-                    <p className="text-xs text-muted-foreground">Engaging with your students</p>
+                    <p className="text-xs text-muted-foreground">{isIt ? 'In contatto con i tuoi studenti' : 'Engaging with your students'}</p>
                   </CardContent>
                 </Card>
               </>
@@ -677,16 +686,16 @@ export default function UniversityAnalytics() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Top Engaging Companies</CardTitle>
+              <CardTitle>{isIt ? 'Aziende più attive' : 'Top Engaging Companies'}</CardTitle>
               <CardDescription>
-                Companies most actively viewing and contacting your students
+                {isIt ? 'Aziende che visualizzano e contattano di più i tuoi studenti' : 'Companies most actively viewing and contacting your students'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <ChartSkeleton />
               ) : !employers || employers.topCompanies.length === 0 ? (
-                <EmptyState message="No employer engagement data available" />
+                <EmptyState message={isIt ? 'Nessun dato di interazione disponibile' : 'No employer engagement data available'} />
               ) : (
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={employers.topCompanies.slice(0, 8)} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -705,26 +714,26 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Top Companies by Views</CardTitle>
+                <CardTitle>{isIt ? 'Top aziende per visualizzazioni' : 'Top Companies by Views'}</CardTitle>
                 <CardDescription>
-                  Companies with highest student profile engagement
+                  {isIt ? 'Aziende con maggiore interazione sui profili studenti' : 'Companies with highest student profile engagement'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : !employers || employers.topCompanies.length === 0 ? (
-                  <EmptyState message="No company data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sulle aziende disponibile' : 'No company data available'} />
                 ) : (
                   <div className="space-y-4">
                     {employers.topCompanies.slice(0, 5).map((company) => (
                       <div key={company.company} className="flex items-center justify-between">
                         <div>
                           <p className="font-medium">{company.company}</p>
-                          <p className="text-sm text-muted-foreground">{company.views} views, {company.contacts} contacts</p>
+                          <p className="text-sm text-muted-foreground">{company.views} {isIt ? 'visualizzazioni' : 'views'}, {company.contacts} {isIt ? 'contatti' : 'contacts'}</p>
                         </div>
                         <Badge variant="default">
-                          {company.views} views
+                          {company.views} {isIt ? 'visualizzazioni' : 'views'}
                         </Badge>
                       </div>
                     ))}
@@ -735,35 +744,35 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Engagement Summary</CardTitle>
+                <CardTitle>{isIt ? 'Riepilogo engagement' : 'Engagement Summary'}</CardTitle>
                 <CardDescription>
-                  Overall recruiter activity metrics
+                  {isIt ? 'Metriche complessive di attività dei recruiter' : 'Overall recruiter activity metrics'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={3} />
                 ) : !employers ? (
-                  <EmptyState message="No engagement data available" />
+                  <EmptyState message={isIt ? 'Nessun dato di engagement disponibile' : 'No engagement data available'} />
                 ) : (
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium">Profile Views</span>
+                        <span className="font-medium">{isIt ? 'Visualizzazioni profilo' : 'Profile Views'}</span>
                         <span className="text-sm text-muted-foreground">{employers.totalViews}</span>
                       </div>
                       <Progress value={Math.min(employers.totalViews, 100)} className="h-2" />
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium">Contacts Made</span>
+                        <span className="font-medium">{isIt ? 'Contatti effettuati' : 'Contacts Made'}</span>
                         <span className="text-sm text-muted-foreground">{employers.totalContacts}</span>
                       </div>
                       <Progress value={Math.min(employers.totalContacts, 100)} className="h-2" />
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium">Unique Companies</span>
+                        <span className="font-medium">{isIt ? 'Aziende uniche' : 'Unique Companies'}</span>
                         <span className="text-sm text-muted-foreground">{employers.uniqueCompanies}</span>
                       </div>
                       <Progress value={Math.min(employers.uniqueCompanies, 100)} className="h-2" />
@@ -771,7 +780,9 @@ export default function UniversityAnalytics() {
                     {employers.totalViews > 0 && (
                       <div className="pt-2 border-t">
                         <p className="text-sm text-muted-foreground">
-                          Contact rate: {((employers.totalContacts / employers.totalViews) * 100).toFixed(1)}% of views led to contact
+                          {isIt
+                            ? `Tasso di contatto: ${((employers.totalContacts / employers.totalViews) * 100).toFixed(1)}% delle visualizzazioni ha portato a un contatto`
+                            : `Contact rate: ${((employers.totalContacts / employers.totalViews) * 100).toFixed(1)}% of views led to contact`}
                         </p>
                       </div>
                     )}
@@ -788,16 +799,16 @@ export default function UniversityAnalytics() {
           <>
           <Card>
             <CardHeader>
-              <CardTitle>Salary by Major / Degree</CardTitle>
+              <CardTitle>{isIt ? 'Stipendi per corso di laurea' : 'Salary by Major / Degree'}</CardTitle>
               <CardDescription>
-                Average, minimum, and maximum salary across programs
+                {isIt ? 'Stipendio medio, minimo e massimo per corso' : 'Average, minimum, and maximum salary across programs'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <ChartSkeleton height={400} />
               ) : salary.length === 0 ? (
-                <EmptyState message="No salary data available" />
+                <EmptyState message={isIt ? 'Nessun dato sugli stipendi disponibile' : 'No salary data available'} />
               ) : (
                 <ResponsiveContainer width="100%" height={400}>
                   <BarChart data={salary} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -817,16 +828,16 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Salary Details by Major</CardTitle>
+                <CardTitle>{isIt ? 'Dettagli stipendi per corso' : 'Salary Details by Major'}</CardTitle>
                 <CardDescription>
-                  Detailed breakdown per program
+                  {isIt ? 'Dettaglio per ogni corso di studio' : 'Detailed breakdown per program'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : salary.length === 0 ? (
-                  <EmptyState message="No salary data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sugli stipendi disponibile' : 'No salary data available'} />
                 ) : (
                   <div className="space-y-4">
                     {salary.map((item) => (
@@ -836,11 +847,11 @@ export default function UniversityAnalytics() {
                           <span className="text-sm font-bold">${item.avg.toLocaleString()}</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <span>Min: ${item.min.toLocaleString()}</span>
+                          <span>{isIt ? 'Min' : 'Min'}: ${item.min.toLocaleString()}</span>
                           <span>|</span>
-                          <span>Max: ${item.max.toLocaleString()}</span>
+                          <span>{isIt ? 'Max' : 'Max'}: ${item.max.toLocaleString()}</span>
                           <span>|</span>
-                          <span>{item.count} placements</span>
+                          <span>{item.count} {isIt ? 'placement' : 'placements'}</span>
                         </div>
                         <Progress
                           value={salary[0] ? (item.avg / salary[0].avg) * 100 : 0}
@@ -855,16 +866,16 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Salary Range Distribution</CardTitle>
+                <CardTitle>{isIt ? 'Distribuzione range stipendi' : 'Salary Range Distribution'}</CardTitle>
                 <CardDescription>
-                  Spread between minimum and maximum salaries
+                  {isIt ? 'Differenza fra stipendio minimo e massimo' : 'Spread between minimum and maximum salaries'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : salary.length === 0 ? (
-                  <EmptyState message="No salary data available" />
+                  <EmptyState message={isIt ? 'Nessun dato sugli stipendi disponibile' : 'No salary data available'} />
                 ) : (
                   <div className="space-y-4">
                     {salary.map((item) => {
@@ -878,7 +889,7 @@ export default function UniversityAnalytics() {
                             </p>
                           </div>
                           <Badge className="bg-primary">
-                            ${(range / 1000).toFixed(0)}k range
+                            {isIt ? `range $${(range / 1000).toFixed(0)}k` : `$${(range / 1000).toFixed(0)}k range`}
                           </Badge>
                         </div>
                       )
@@ -896,16 +907,16 @@ export default function UniversityAnalytics() {
           <>
           <Card>
             <CardHeader>
-              <CardTitle>Competitive Analysis</CardTitle>
+              <CardTitle>{isIt ? 'Analisi competitiva' : 'Competitive Analysis'}</CardTitle>
               <CardDescription>
-                How we compare to peer institutions
+                {isIt ? 'Come ci posizioniamo rispetto ad altre istituzioni' : 'How we compare to peer institutions'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <ListSkeleton rows={5} />
               ) : benchmark.length === 0 ? (
-                <EmptyState message="No benchmark data available" />
+                <EmptyState message={isIt ? 'Nessun dato di benchmark disponibile' : 'No benchmark data available'} />
               ) : (
                 <div className="space-y-4">
                   {benchmark.map((university) => (
@@ -918,24 +929,24 @@ export default function UniversityAnalytics() {
                           <div>
                             <h3 className="font-medium">{university.university}</h3>
                             <p className="text-sm text-muted-foreground">
-                              {university.isOwn ? 'Current Institution' : 'Competitor'} - {university.placements} placements
+                              {university.isOwn ? (isIt ? 'Tua istituzione' : 'Current Institution') : (isIt ? 'Competitor' : 'Competitor')} - {university.placements} {isIt ? 'placement' : 'placements'}
                             </p>
                           </div>
                         </div>
                         {university.isOwn && (
-                          <Badge variant="outline">Us</Badge>
+                          <Badge variant="outline">{isIt ? 'Tu' : 'Us'}</Badge>
                         )}
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <p className="text-sm text-muted-foreground">Placement Rate</p>
+                          <p className="text-sm text-muted-foreground">{isIt ? 'Tasso di placement' : 'Placement Rate'}</p>
                           <div className="flex items-center gap-2">
                             <p className="font-medium text-lg">{university.placementRate}%</p>
                             <Progress value={university.placementRate} className="flex-1 h-2" />
                           </div>
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground">Average Salary</p>
+                          <p className="text-sm text-muted-foreground">{isIt ? 'Stipendio medio' : 'Average Salary'}</p>
                           <p className="font-medium text-lg">${(university.avgSalary / 1000).toFixed(0)}k</p>
                         </div>
                       </div>
@@ -949,16 +960,16 @@ export default function UniversityAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Benchmark Chart</CardTitle>
+                <CardTitle>{isIt ? 'Grafico benchmark' : 'Benchmark Chart'}</CardTitle>
                 <CardDescription>
-                  Placement rate comparison across institutions
+                  {isIt ? 'Confronto del tasso di placement fra istituzioni' : 'Placement rate comparison across institutions'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ChartSkeleton />
                 ) : benchmark.length === 0 ? (
-                  <EmptyState message="No benchmark data available" />
+                  <EmptyState message={isIt ? 'Nessun dato di benchmark disponibile' : 'No benchmark data available'} />
                 ) : (
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={benchmark} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -979,16 +990,16 @@ export default function UniversityAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Ranking Overview</CardTitle>
+                <CardTitle>{isIt ? 'Panoramica ranking' : 'Ranking Overview'}</CardTitle>
                 <CardDescription>
-                  Key metrics compared to other institutions
+                  {isIt ? 'Metriche chiave a confronto con altre istituzioni' : 'Key metrics compared to other institutions'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <ListSkeleton rows={5} />
                 ) : benchmark.length === 0 ? (
-                  <EmptyState message="No ranking data available" />
+                  <EmptyState message={isIt ? 'Nessun dato di ranking disponibile' : 'No ranking data available'} />
                 ) : (() => {
                   const own = benchmark.find((b) => b.isOwn)
                   const topRate = benchmark.length > 0 ? benchmark[0].placementRate : 0
@@ -1006,20 +1017,20 @@ export default function UniversityAnalytics() {
                     <div className="space-y-4">
                       {own && (
                         <div className="space-y-2 pb-3 border-b">
-                          <p className="text-sm font-medium">Your Position</p>
-                          <p className="text-2xl font-bold">Rank #{own.rank} of {benchmark.length}</p>
+                          <p className="text-sm font-medium">{isIt ? 'La tua posizione' : 'Your Position'}</p>
+                          <p className="text-2xl font-bold">{isIt ? `Posizione #${own.rank} su ${benchmark.length}` : `Rank #${own.rank} of ${benchmark.length}`}</p>
                         </div>
                       )}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm">Top Placement Rate</span>
+                          <span className="text-sm">{isIt ? 'Tasso di placement migliore' : 'Top Placement Rate'}</span>
                           <span className="text-sm font-medium">{topRate}%</span>
                         </div>
                         <Progress value={topRate} className="h-2" />
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm">Average Placement Rate</span>
+                          <span className="text-sm">{isIt ? 'Tasso di placement medio' : 'Average Placement Rate'}</span>
                           <span className="text-sm font-medium">{avgRate}%</span>
                         </div>
                         <Progress value={avgRate} className="h-2" />
@@ -1027,14 +1038,14 @@ export default function UniversityAnalytics() {
                       {own && (
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm">Your Placement Rate</span>
+                            <span className="text-sm">{isIt ? 'Il tuo tasso di placement' : 'Your Placement Rate'}</span>
                             <span className="text-sm font-medium">{own.placementRate}%</span>
                           </div>
                           <Progress value={own.placementRate} className="h-2" />
                         </div>
                       )}
                       <div className="pt-2 border-t text-sm text-muted-foreground">
-                        <p>Top salary: ${(topSalary / 1000).toFixed(0)}k | Average: ${(avgSalary / 1000).toFixed(0)}k</p>
+                        <p>{isIt ? `Stipendio top: $${(topSalary / 1000).toFixed(0)}k | Media: $${(avgSalary / 1000).toFixed(0)}k` : `Top salary: $${(topSalary / 1000).toFixed(0)}k | Average: $${(avgSalary / 1000).toFixed(0)}k`}</p>
                       </div>
                     </div>
                   )

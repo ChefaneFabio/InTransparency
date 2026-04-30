@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
@@ -13,6 +14,8 @@ type TabKey = 'curriculum' | 'careers' | 'skills' | 'exchanges'
 const VALID: TabKey[] = ['curriculum', 'careers', 'skills', 'exchanges']
 
 export default function ProgramsPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -31,9 +34,11 @@ export default function ProgramsPage() {
     <div className="space-y-6">
       <MetricHero gradient="institutionDark">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Programs</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-white">{isIt ? 'Corsi di Studio' : 'Programs'}</h1>
           <p className="text-white/65 mt-2 max-w-2xl">
-            Program-level insights: curriculum alignment, career destinations, skills intelligence, and exchanges.
+            {isIt
+              ? 'Insight a livello di corso: allineamento curriculum, destinazioni di carriera, skills intelligence e scambi.'
+              : 'Program-level insights: curriculum alignment, career destinations, skills intelligence, and exchanges.'}
           </p>
         </div>
       </MetricHero>
@@ -41,9 +46,9 @@ export default function ProgramsPage() {
       <Tabs value={tab} onValueChange={handleTabChange} className="space-y-6">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 max-w-3xl">
           <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
-          <TabsTrigger value="careers">Career Paths</TabsTrigger>
+          <TabsTrigger value="careers">{isIt ? 'Percorsi di Carriera' : 'Career Paths'}</TabsTrigger>
           <TabsTrigger value="skills">Skills Intelligence</TabsTrigger>
-          <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
+          <TabsTrigger value="exchanges">{isIt ? 'Scambi' : 'Exchanges'}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="curriculum" className="mt-0">

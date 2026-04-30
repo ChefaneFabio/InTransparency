@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -100,6 +100,8 @@ interface FormData {
 export default function UniversityCourseDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const courseId = params.id as string
 
   const [course, setCourse] = useState<CourseDetail | null>(null)
@@ -143,9 +145,9 @@ export default function UniversityCourseDetailPage() {
       const res = await fetch(`/api/dashboard/university/courses/${courseId}`)
       if (!res.ok) {
         if (res.status === 404) {
-          setError('Corso non trovato.')
+          setError(isIt ? 'Corso non trovato.' : 'Course not found.')
         } else {
-          setError('Errore nel caricamento del corso.')
+          setError(isIt ? 'Errore nel caricamento del corso.' : 'Failed to load course.')
         }
         setCourse(null)
         return
@@ -154,7 +156,7 @@ export default function UniversityCourseDetailPage() {
       setCourse(data.course)
       populateForm(data.course)
     } catch {
-      setError('Errore di connessione al server.')
+      setError(isIt ? 'Errore di connessione al server.' : 'Server connection error.')
       setCourse(null)
     } finally {
       setLoading(false)
@@ -204,13 +206,13 @@ export default function UniversityCourseDetailPage() {
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
-        setError(data.error || 'Errore nel salvataggio.')
+        setError(data.error || (isIt ? 'Errore nel salvataggio.' : 'Failed to save.'))
         return
       }
       await fetchCourse()
       setEditMode(false)
     } catch {
-      setError('Errore di connessione.')
+      setError(isIt ? 'Errore di connessione.' : 'Connection error.')
     } finally {
       setSaving(false)
     }
@@ -228,11 +230,11 @@ export default function UniversityCourseDetailPage() {
         router.push('/dashboard/university/courses')
       } else {
         const data = await res.json().catch(() => ({}))
-        setError(data.error || 'Errore durante l\'eliminazione.')
+        setError(data.error || (isIt ? 'Errore durante l\'eliminazione.' : 'Failed to delete.'))
         setDeleteDialogOpen(false)
       }
     } catch {
-      setError('Errore di connessione.')
+      setError(isIt ? 'Errore di connessione.' : 'Connection error.')
       setDeleteDialogOpen(false)
     } finally {
       setDeleting(false)
@@ -281,21 +283,21 @@ export default function UniversityCourseDetailPage() {
         return (
           <Badge className="bg-primary/10 text-primary text-xs gap-1">
             <CheckCircle className="h-3 w-3" />
-            Verificato
+            {isIt ? 'Verificato' : 'Verified'}
           </Badge>
         )
       case 'REJECTED':
         return (
           <Badge className="bg-red-100 text-red-700 text-xs gap-1">
             <X className="h-3 w-3" />
-            Rifiutato
+            {isIt ? 'Rifiutato' : 'Rejected'}
           </Badge>
         )
       default:
         return (
           <Badge variant="outline" className="text-muted-foreground text-xs gap-1">
             <Clock className="h-3 w-3" />
-            In attesa
+            {isIt ? 'In attesa' : 'Pending'}
           </Badge>
         )
     }
@@ -386,15 +388,15 @@ export default function UniversityCourseDetailPage() {
         <div className="container mx-auto px-4 max-w-4xl text-center py-20">
           <BookOpen className="h-16 w-16 text-muted-foreground/40 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-foreground mb-2">
-            {error || 'Corso non trovato'}
+            {error || (isIt ? 'Corso non trovato' : 'Course not found')}
           </h2>
           <p className="text-muted-foreground mb-6">
-            Il corso che cerchi non esiste o non hai i permessi per visualizzarlo.
+            {isIt ? 'Il corso che cerchi non esiste o non hai i permessi per visualizzarlo.' : 'The course you\'re looking for doesn\'t exist or you don\'t have permission to view it.'}
           </p>
           <Button asChild>
             <Link href="/dashboard/university/courses">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Torna ai corsi
+              {isIt ? 'Torna ai corsi' : 'Back to courses'}
             </Link>
           </Button>
         </div>
@@ -413,13 +415,13 @@ export default function UniversityCourseDetailPage() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Modifica Corso</h1>
+              <h1 className="text-2xl font-bold text-foreground">{isIt ? 'Modifica Corso' : 'Edit Course'}</h1>
               <p className="text-muted-foreground mt-1">{course.courseCode} &mdash; {course.courseName}</p>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleCancelEdit} disabled={saving}>
                 <X className="h-4 w-4 mr-2" />
-                Annulla
+                {isIt ? 'Annulla' : 'Cancel'}
               </Button>
               <Button onClick={handleSave} disabled={saving}>
                 {saving ? (
@@ -427,7 +429,7 @@ export default function UniversityCourseDetailPage() {
                 ) : (
                   <Save className="h-4 w-4 mr-2" />
                 )}
-                Salva
+                {isIt ? 'Salva' : 'Save'}
               </Button>
             </div>
           </div>
@@ -443,12 +445,12 @@ export default function UniversityCourseDetailPage() {
             {/* Basic info */}
             <Card>
               <CardHeader>
-                <CardTitle>Informazioni Generali</CardTitle>
+                <CardTitle>{isIt ? 'Informazioni Generali' : 'General information'}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="courseName">Nome del Corso *</Label>
+                    <Label htmlFor="courseName">{isIt ? 'Nome del Corso *' : 'Course name *'}</Label>
                     <Input
                       id="courseName"
                       value={form.courseName}
@@ -457,7 +459,7 @@ export default function UniversityCourseDetailPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="courseCode">Codice Corso *</Label>
+                    <Label htmlFor="courseCode">{isIt ? 'Codice Corso *' : 'Course code *'}</Label>
                     <Input
                       id="courseCode"
                       value={form.courseCode}
@@ -469,7 +471,7 @@ export default function UniversityCourseDetailPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <Label htmlFor="department">Dipartimento</Label>
+                    <Label htmlFor="department">{isIt ? 'Dipartimento' : 'Department'}</Label>
                     <Input
                       id="department"
                       value={form.department}
@@ -478,23 +480,23 @@ export default function UniversityCourseDetailPage() {
                     />
                   </div>
                   <div>
-                    <Label>Semestre *</Label>
+                    <Label>{isIt ? 'Semestre *' : 'Semester *'}</Label>
                     <Select
                       value={form.semester}
                       onValueChange={(v) => setForm({ ...form, semester: v })}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Seleziona" />
+                        <SelectValue placeholder={isIt ? 'Seleziona' : 'Select'} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1">1 Semestre</SelectItem>
-                        <SelectItem value="2">2 Semestre</SelectItem>
-                        <SelectItem value="Annuale">Annuale</SelectItem>
+                        <SelectItem value="1">{isIt ? '1 Semestre' : '1st Semester'}</SelectItem>
+                        <SelectItem value="2">{isIt ? '2 Semestre' : '2nd Semester'}</SelectItem>
+                        <SelectItem value="Annuale">{isIt ? 'Annuale' : 'Yearly'}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="academicYear">Anno Accademico *</Label>
+                    <Label htmlFor="academicYear">{isIt ? 'Anno Accademico *' : 'Academic year *'}</Label>
                     <Input
                       id="academicYear"
                       value={form.academicYear}
@@ -506,7 +508,7 @@ export default function UniversityCourseDetailPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="credits">Crediti (CFU)</Label>
+                    <Label htmlFor="credits">{isIt ? 'Crediti (CFU)' : 'Credits (CFU)'}</Label>
                     <Input
                       id="credits"
                       type="number"
@@ -516,19 +518,19 @@ export default function UniversityCourseDetailPage() {
                     />
                   </div>
                   <div>
-                    <Label>Livello</Label>
+                    <Label>{isIt ? 'Livello' : 'Level'}</Label>
                     <Select
                       value={form.level}
                       onValueChange={(v) => setForm({ ...form, level: v })}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Seleziona livello" />
+                        <SelectValue placeholder={isIt ? 'Seleziona livello' : 'Select level'} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Triennale">Triennale</SelectItem>
-                        <SelectItem value="Magistrale">Magistrale</SelectItem>
-                        <SelectItem value="Dottorato">Dottorato</SelectItem>
-                        <SelectItem value="Master">Master</SelectItem>
+                        <SelectItem value="Triennale">{isIt ? 'Triennale' : 'Bachelor'}</SelectItem>
+                        <SelectItem value="Magistrale">{isIt ? 'Magistrale' : 'Master'}</SelectItem>
+                        <SelectItem value="Dottorato">{isIt ? 'Dottorato' : 'PhD'}</SelectItem>
+                        <SelectItem value="Master">{isIt ? 'Master' : 'Master\'s'}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -539,12 +541,12 @@ export default function UniversityCourseDetailPage() {
             {/* Professor */}
             <Card>
               <CardHeader>
-                <CardTitle>Docente</CardTitle>
+                <CardTitle>{isIt ? 'Docente' : 'Professor'}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="professorName">Nome Docente</Label>
+                    <Label htmlFor="professorName">{isIt ? 'Nome Docente' : 'Professor name'}</Label>
                     <Input
                       id="professorName"
                       value={form.professorName}
@@ -553,7 +555,7 @@ export default function UniversityCourseDetailPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="professorEmail">Email Docente</Label>
+                    <Label htmlFor="professorEmail">{isIt ? 'Email Docente' : 'Professor email'}</Label>
                     <Input
                       id="professorEmail"
                       type="email"
@@ -569,13 +571,13 @@ export default function UniversityCourseDetailPage() {
             {/* Description */}
             <Card>
               <CardHeader>
-                <CardTitle>Descrizione</CardTitle>
+                <CardTitle>{isIt ? 'Descrizione' : 'Description'}</CardTitle>
               </CardHeader>
               <CardContent>
                 <Textarea
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  placeholder="Descrizione del corso, obiettivi formativi, contenuti principali..."
+                  placeholder={isIt ? 'Descrizione del corso, obiettivi formativi, contenuti principali...' : 'Course description, learning objectives, main contents...'}
                   rows={5}
                 />
               </CardContent>
@@ -584,14 +586,14 @@ export default function UniversityCourseDetailPage() {
             {/* Competencies */}
             <Card>
               <CardHeader>
-                <CardTitle>Competenze</CardTitle>
+                <CardTitle>{isIt ? 'Competenze' : 'Competencies'}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex gap-2">
                   <Input
                     value={competencyInput}
                     onChange={(e) => setCompetencyInput(e.target.value)}
-                    placeholder="Aggiungi una competenza..."
+                    placeholder={isIt ? 'Aggiungi una competenza...' : 'Add a competency...'}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault()
@@ -625,14 +627,14 @@ export default function UniversityCourseDetailPage() {
             {/* Learning outcomes */}
             <Card>
               <CardHeader>
-                <CardTitle>Risultati di Apprendimento</CardTitle>
+                <CardTitle>{isIt ? 'Risultati di Apprendimento' : 'Learning outcomes'}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex gap-2">
                   <Input
                     value={outcomeInput}
                     onChange={(e) => setOutcomeInput(e.target.value)}
-                    placeholder="Aggiungi un risultato di apprendimento..."
+                    placeholder={isIt ? 'Aggiungi un risultato di apprendimento...' : 'Add a learning outcome...'}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault()
@@ -680,13 +682,13 @@ export default function UniversityCourseDetailPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/university/courses">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Torna ai corsi
+              {isIt ? 'Torna ai corsi' : 'Back to courses'}
             </Link>
           </Button>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={() => setEditMode(true)}>
               <Edit className="h-4 w-4 mr-2" />
-              Modifica
+              {isIt ? 'Modifica' : 'Edit'}
             </Button>
           </div>
         </div>
@@ -709,7 +711,7 @@ export default function UniversityCourseDetailPage() {
             {course.universityVerified && (
               <Badge className="bg-primary/10 text-primary text-xs gap-1">
                 <CheckCircle className="h-3 w-3" />
-                Verificato
+                {isIt ? 'Verificato' : 'Verified'}
               </Badge>
             )}
           </div>
@@ -726,7 +728,7 @@ export default function UniversityCourseDetailPage() {
               <div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <Calendar className="h-4 w-4" />
-                  Semestre
+                  {isIt ? 'Semestre' : 'Semester'}
                 </div>
                 <p className="font-medium text-foreground">{course.semester}</p>
               </div>
@@ -735,7 +737,7 @@ export default function UniversityCourseDetailPage() {
               <div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <Calendar className="h-4 w-4" />
-                  Anno Accademico
+                  {isIt ? 'Anno Accademico' : 'Academic year'}
                 </div>
                 <p className="font-medium text-foreground">{course.academicYear}</p>
               </div>
@@ -745,7 +747,7 @@ export default function UniversityCourseDetailPage() {
                 <div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <BookOpen className="h-4 w-4" />
-                    Crediti (CFU)
+                    {isIt ? 'Crediti (CFU)' : 'Credits (CFU)'}
                   </div>
                   <p className="font-medium text-foreground">{course.credits}</p>
                 </div>
@@ -756,7 +758,7 @@ export default function UniversityCourseDetailPage() {
                 <div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <GraduationCap className="h-4 w-4" />
-                    Livello
+                    {isIt ? 'Livello' : 'Level'}
                   </div>
                   <p className="font-medium text-foreground">{course.level}</p>
                 </div>
@@ -767,7 +769,7 @@ export default function UniversityCourseDetailPage() {
                 <div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <Users className="h-4 w-4" />
-                    Docente
+                    {isIt ? 'Docente' : 'Professor'}
                   </div>
                   <p className="font-medium text-foreground">{course.professorName}</p>
                   {course.professorEmail && (
@@ -780,7 +782,7 @@ export default function UniversityCourseDetailPage() {
               <div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <FileText className="h-4 w-4" />
-                  Progetti
+                  {isIt ? 'Progetti' : 'Projects'}
                 </div>
                 <p className="font-medium text-foreground">{course._count.projects}</p>
               </div>
@@ -792,7 +794,7 @@ export default function UniversityCourseDetailPage() {
         {course.description && (
           <GlassCard hover={false} className="mb-6">
             <div className="p-5">
-              <h3 className="text-lg font-semibold mb-3">Descrizione</h3>
+              <h3 className="text-lg font-semibold mb-3">{isIt ? 'Descrizione' : 'Description'}</h3>
               <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
                 {course.description}
               </p>
@@ -804,7 +806,7 @@ export default function UniversityCourseDetailPage() {
         {course.competencies.length > 0 && (
           <GlassCard hover={false} className="mb-6">
             <div className="p-5">
-              <h3 className="text-lg font-semibold mb-3">Competenze</h3>
+              <h3 className="text-lg font-semibold mb-3">{isIt ? 'Competenze' : 'Competencies'}</h3>
               <div className="flex flex-wrap gap-2">
                 {course.competencies.map((comp, i) => (
                   <Badge key={i} variant="secondary" className="bg-primary/5 text-primary">
@@ -820,7 +822,7 @@ export default function UniversityCourseDetailPage() {
         {course.learningOutcomes.length > 0 && (
           <GlassCard hover={false} className="mb-6">
             <div className="p-5">
-              <h3 className="text-lg font-semibold mb-3">Risultati di Apprendimento</h3>
+              <h3 className="text-lg font-semibold mb-3">{isIt ? 'Risultati di Apprendimento' : 'Learning outcomes'}</h3>
               <ol className="list-decimal list-inside space-y-2">
                 {course.learningOutcomes.map((outcome, i) => (
                   <li key={i} className="text-foreground/80 leading-relaxed">
@@ -837,7 +839,7 @@ export default function UniversityCourseDetailPage() {
           <div className="p-5">
             <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <FileText className="h-5 w-5 text-muted-foreground" />
-              Progetti collegati
+              {isIt ? 'Progetti collegati' : 'Linked projects'}
               <Badge variant="outline" className="ml-1 text-xs font-normal">
                 {course._count.projects}
               </Badge>
@@ -846,7 +848,7 @@ export default function UniversityCourseDetailPage() {
               <div className="text-center py-8">
                 <FileText className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
                 <p className="text-muted-foreground text-sm">
-                  Nessun progetto collegato a questo corso.
+                  {isIt ? 'Nessun progetto collegato a questo corso.' : 'No projects linked to this course.'}
                 </p>
               </div>
             ) : (
@@ -854,7 +856,7 @@ export default function UniversityCourseDetailPage() {
                 {course.projects.map((project) => {
                   const studentName = [project.user.firstName, project.user.lastName]
                     .filter(Boolean)
-                    .join(' ') || 'Studente'
+                    .join(' ') || (isIt ? 'Studente' : 'Student')
                   return (
                     <Link
                       key={project.id}
@@ -903,7 +905,7 @@ export default function UniversityCourseDetailPage() {
                             )}
                           </div>
                           <span className="text-xs text-muted-foreground/60 ml-3 flex-shrink-0">
-                            {new Date(project.createdAt).toLocaleDateString('it-IT', {
+                            {new Date(project.createdAt).toLocaleDateString(locale, {
                               day: 'numeric',
                               month: 'short',
                               year: 'numeric',
@@ -924,9 +926,9 @@ export default function UniversityCourseDetailPage() {
           <div className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-foreground">Elimina Corso</h3>
+                <h3 className="font-semibold text-foreground">{isIt ? 'Elimina Corso' : 'Delete Course'}</h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Questa azione e irreversibile. Il corso verra rimosso dal sistema.
+                  {isIt ? 'Questa azione e irreversibile. Il corso verra rimosso dal sistema.' : 'This action is irreversible. The course will be removed from the system.'}
                 </p>
               </div>
               <Button
@@ -935,7 +937,7 @@ export default function UniversityCourseDetailPage() {
                 onClick={() => setDeleteDialogOpen(true)}
               >
                 <Trash2 className="h-4 w-4 mr-2" />
-                Elimina
+                {isIt ? 'Elimina' : 'Delete'}
               </Button>
             </div>
           </div>
@@ -945,11 +947,13 @@ export default function UniversityCourseDetailPage() {
         <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Conferma eliminazione</DialogTitle>
+              <DialogTitle>{isIt ? 'Conferma eliminazione' : 'Confirm deletion'}</DialogTitle>
               <DialogDescription>
-                Sei sicuro di voler eliminare il corso <strong>{course.courseName}</strong> ({course.courseCode})?
-                Questa azione non puo essere annullata. I progetti collegati non verranno eliminati,
-                ma perderanno il riferimento a questo corso.
+                {isIt ? (
+                  <>Sei sicuro di voler eliminare il corso <strong>{course.courseName}</strong> ({course.courseCode})? Questa azione non puo essere annullata. I progetti collegati non verranno eliminati, ma perderanno il riferimento a questo corso.</>
+                ) : (
+                  <>Are you sure you want to delete <strong>{course.courseName}</strong> ({course.courseCode})? This action cannot be undone. Linked projects will not be deleted, but they will lose their reference to this course.</>
+                )}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -958,7 +962,7 @@ export default function UniversityCourseDetailPage() {
                 onClick={() => setDeleteDialogOpen(false)}
                 disabled={deleting}
               >
-                Annulla
+                {isIt ? 'Annulla' : 'Cancel'}
               </Button>
               <Button
                 variant="destructive"
@@ -970,7 +974,7 @@ export default function UniversityCourseDetailPage() {
                 ) : (
                   <Trash2 className="h-4 w-4 mr-2" />
                 )}
-                Elimina corso
+                {isIt ? 'Elimina corso' : 'Delete course'}
               </Button>
             </DialogFooter>
           </DialogContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -13,6 +14,8 @@ type TabKey = 'graph' | 'path'
 const VALID: TabKey[] = ['graph', 'path']
 
 export default function SkillsPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -39,9 +42,9 @@ export default function SkillsPage() {
             <Sparkles className="h-6 w-6 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-2xl font-bold">Skills</h1>
+            <h1 className="text-2xl font-bold">{isIt ? 'Competenze' : 'Skills'}</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
-              Your verified skill graph + AI-recommended growth path, in one workspace.
+              {isIt ? 'Il tuo skill graph verificato + un percorso di crescita raccomandato dall\'AI, in un unico spazio.' : 'Your verified skill graph + AI-recommended growth path, in one workspace.'}
             </p>
           </div>
         </div>
@@ -51,11 +54,11 @@ export default function SkillsPage() {
         <TabsList className="grid w-full grid-cols-2 max-w-md">
           <TabsTrigger value="graph" className="gap-2">
             <Network className="h-4 w-4" />
-            Skill Graph
+            {isIt ? 'Skill Graph' : 'Skill Graph'}
           </TabsTrigger>
           <TabsTrigger value="path" className="gap-2">
             <TrendingUp className="h-4 w-4" />
-            Growth Path
+            {isIt ? 'Percorso di crescita' : 'Growth Path'}
           </TabsTrigger>
         </TabsList>
 

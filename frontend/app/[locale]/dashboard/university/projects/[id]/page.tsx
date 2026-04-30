@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -122,6 +122,8 @@ interface Project {
 export default function ProjectVerificationDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const projectId = params.id as string
 
   const [project, setProject] = useState<Project | null>(null)
@@ -186,28 +188,28 @@ export default function ProjectVerificationDetailPage() {
         return (
           <Badge className="bg-primary/10 text-primary">
             <CheckCircle className="h-3 w-3 mr-1" />
-            Verified
+            {isIt ? 'Verificato' : 'Verified'}
           </Badge>
         )
       case 'REJECTED':
         return (
           <Badge className="bg-red-100 text-red-700">
             <XCircle className="h-3 w-3 mr-1" />
-            Rejected
+            {isIt ? 'Rifiutato' : 'Rejected'}
           </Badge>
         )
       case 'NEEDS_INFO':
         return (
           <Badge className="bg-orange-100 text-orange-700">
             <AlertCircle className="h-3 w-3 mr-1" />
-            Needs Info
+            {isIt ? 'Servono info' : 'Needs Info'}
           </Badge>
         )
       default:
         return (
           <Badge className="bg-yellow-100 text-yellow-700">
             <Clock className="h-3 w-3 mr-1" />
-            Pending Review
+            {isIt ? 'In revisione' : 'Pending Review'}
           </Badge>
         )
     }
@@ -224,9 +226,9 @@ export default function ProjectVerificationDetailPage() {
   if (!project || !student) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-xl font-semibold">Project not found</h2>
+        <h2 className="text-xl font-semibold">{isIt ? 'Progetto non trovato' : 'Project not found'}</h2>
         <Button asChild className="mt-4">
-          <Link href="/dashboard/university/projects">Back to Projects</Link>
+          <Link href="/dashboard/university/projects">{isIt ? 'Torna ai progetti' : 'Back to Projects'}</Link>
         </Button>
       </div>
     )
@@ -244,7 +246,7 @@ export default function ProjectVerificationDetailPage() {
             <Button variant="ghost" size="sm" asChild>
               <Link href="/dashboard/university/projects">
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back
+                {isIt ? 'Indietro' : 'Back'}
               </Link>
             </Button>
             <div className="flex items-start gap-4">
@@ -278,16 +280,16 @@ export default function ProjectVerificationDetailPage() {
           {/* Project Details */}
           <GlassCard hover={false}>
             <div className="p-5">
-              <h3 className="text-lg font-semibold mb-4">Project Details</h3>
+              <h3 className="text-lg font-semibold mb-4">{isIt ? 'Dettagli del progetto' : 'Project Details'}</h3>
               <div className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-1">Description</h4>
+                <h4 className="text-sm font-medium text-muted-foreground mb-1">{isIt ? 'Descrizione' : 'Description'}</h4>
                 <p className="text-foreground/80 whitespace-pre-wrap">{project.description}</p>
               </div>
 
               {project.outcome && (
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-1">Outcome</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">{isIt ? 'Risultato' : 'Outcome'}</h4>
                   <p className="text-foreground/80">{project.outcome}</p>
                 </div>
               )}
@@ -310,7 +312,7 @@ export default function ProjectVerificationDetailPage() {
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
-                      View Code
+                      {isIt ? 'Vedi codice' : 'View Code'}
                     </a>
                   </Button>
                 )}
@@ -318,7 +320,7 @@ export default function ProjectVerificationDetailPage() {
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      {isIt ? 'Demo live' : 'Live Demo'}
                     </a>
                   </Button>
                 )}
@@ -335,7 +337,7 @@ export default function ProjectVerificationDetailPage() {
                 {project.teamSize && (
                   <div className="flex items-center gap-2 text-sm">
                     <Users className="h-4 w-4 text-muted-foreground/60" />
-                    <span>{project.teamSize} {project.teamSize === 1 ? 'person' : 'people'}</span>
+                    <span>{project.teamSize} {isIt ? (project.teamSize === 1 ? 'persona' : 'persone') : (project.teamSize === 1 ? 'person' : 'people')}</span>
                   </div>
                 )}
                 {project.role && (
@@ -352,15 +354,15 @@ export default function ProjectVerificationDetailPage() {
           {/* Academic Context */}
           <GlassCard hover={false}>
             <div className="p-5">
-              <h3 className="text-lg font-semibold">Academic Context</h3>
+              <h3 className="text-lg font-semibold">{isIt ? 'Contesto accademico' : 'Academic Context'}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Course and academic information for verification
+                {isIt ? 'Informazioni di corso e accademiche per la verifica' : 'Course and academic information for verification'}
               </p>
               <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 {(project.courseName || course?.courseName) && (
                   <div>
-                    <h4 className="text-sm font-medium text-muted-foreground">Course</h4>
+                    <h4 className="text-sm font-medium text-muted-foreground">{isIt ? 'Corso' : 'Course'}</h4>
                     <p className="text-foreground">
                       {project.courseCode || course?.courseCode}
                       {' - '}
@@ -370,19 +372,19 @@ export default function ProjectVerificationDetailPage() {
                 )}
                 {(project.semester || course?.semester) && (
                   <div>
-                    <h4 className="text-sm font-medium text-muted-foreground">Semester</h4>
+                    <h4 className="text-sm font-medium text-muted-foreground">{isIt ? 'Semestre' : 'Semester'}</h4>
                     <p className="text-foreground">{project.semester || course?.semester}</p>
                   </div>
                 )}
                 {(project.professor || course?.professorName) && (
                   <div>
-                    <h4 className="text-sm font-medium text-muted-foreground">Professor</h4>
+                    <h4 className="text-sm font-medium text-muted-foreground">{isIt ? 'Docente' : 'Professor'}</h4>
                     <p className="text-foreground">{project.professor || course?.professorName}</p>
                   </div>
                 )}
                 {project.grade && (
                   <div>
-                    <h4 className="text-sm font-medium text-muted-foreground">Grade</h4>
+                    <h4 className="text-sm font-medium text-muted-foreground">{isIt ? 'Voto' : 'Grade'}</h4>
                     <p className="text-foreground font-semibold">{project.grade}</p>
                   </div>
                 )}
@@ -397,7 +399,7 @@ export default function ProjectVerificationDetailPage() {
               <div className="p-5">
                 <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
                   <Award className="h-5 w-5 text-primary" />
-                  Professor Endorsements
+                  {isIt ? 'Endorsement docenti' : 'Professor Endorsements'}
                 </h3>
                 <div className="space-y-4">
                 {verifiedEndorsements.map((endorsement) => (
@@ -413,7 +415,7 @@ export default function ProjectVerificationDetailPage() {
                       </div>
                       <Badge className="bg-primary/10 text-primary">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        Verified
+                        {isIt ? 'Verificato' : 'Verified'}
                       </Badge>
                     </div>
                     {endorsement.endorsementText && (
@@ -441,7 +443,7 @@ export default function ProjectVerificationDetailPage() {
           {files.length > 0 && (
             <GlassCard hover={false}>
               <div className="p-5">
-                <h3 className="text-lg font-semibold mb-4">Attached Files</h3>
+                <h3 className="text-lg font-semibold mb-4">{isIt ? 'File allegati' : 'Attached Files'}</h3>
                 <div className="space-y-2">
                   {files.map((file) => (
                     <a
@@ -472,7 +474,7 @@ export default function ProjectVerificationDetailPage() {
           {/* Student Info */}
           <GlassCard hover={false}>
             <div className="p-5">
-              <h3 className="text-base font-semibold mb-3">Student</h3>
+              <h3 className="text-base font-semibold mb-3">{isIt ? 'Studente' : 'Student'}</h3>
               <div className="flex items-center gap-3 mb-4">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={student.photo || undefined} />
@@ -488,13 +490,13 @@ export default function ProjectVerificationDetailPage() {
               <div className="space-y-2 text-sm">
                 {student.degree && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Degree</span>
+                    <span className="text-muted-foreground">{isIt ? 'Laurea' : 'Degree'}</span>
                     <span className="text-foreground">{student.degree}</span>
                   </div>
                 )}
                 {student.graduationYear && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Graduation</span>
+                    <span className="text-muted-foreground">{isIt ? 'Anno laurea' : 'Graduation'}</span>
                     <span className="text-foreground">{student.graduationYear}</span>
                   </div>
                 )}
@@ -512,23 +514,23 @@ export default function ProjectVerificationDetailPage() {
           <GlassCard hover={false}>
             <div className="p-5">
               <h3 className="text-base font-semibold">
-                {isVerified ? 'Verification Status' : 'Verify Project'}
+                {isVerified ? (isIt ? 'Stato verifica' : 'Verification Status') : (isIt ? 'Verifica progetto' : 'Verify Project')}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 {isVerified
-                  ? 'This project has been verified'
-                  : 'Review and verify this project for the student\'s portfolio'
+                  ? (isIt ? 'Questo progetto e stato verificato' : 'This project has been verified')
+                  : (isIt ? 'Rivedi e verifica questo progetto per il portfolio dello studente' : 'Review and verify this project for the student\'s portfolio')
                 }
               </p>
               <div className="space-y-4">
               {!isVerified && (
                 <>
                   <div className="space-y-2">
-                    <Label>Message (optional)</Label>
+                    <Label>{isIt ? 'Messaggio (opzionale)' : 'Message (optional)'}</Label>
                     <Textarea
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Add feedback or reason for rejection..."
+                      placeholder={isIt ? 'Aggiungi feedback o motivo del rifiuto...' : 'Add feedback or reason for rejection...'}
                       rows={3}
                     />
                   </div>
@@ -541,7 +543,7 @@ export default function ProjectVerificationDetailPage() {
                     >
                       {actionLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Verify Project
+                      {isIt ? 'Verifica progetto' : 'Verify Project'}
                     </Button>
                     <div className="grid grid-cols-2 gap-2">
                       <Button
@@ -549,7 +551,7 @@ export default function ProjectVerificationDetailPage() {
                         onClick={() => handleAction('request_info')}
                         disabled={actionLoading}
                       >
-                        Request Info
+                        {isIt ? 'Chiedi info' : 'Request Info'}
                       </Button>
                       <Button
                         variant="outline"
@@ -557,7 +559,7 @@ export default function ProjectVerificationDetailPage() {
                         disabled={actionLoading}
                         className="text-red-600 hover:text-red-700"
                       >
-                        Reject
+                        {isIt ? 'Rifiuta' : 'Reject'}
                       </Button>
                     </div>
                   </div>
@@ -567,9 +569,9 @@ export default function ProjectVerificationDetailPage() {
               {isVerified && project.verifiedAt && (
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Verified on</span>
+                    <span className="text-muted-foreground">{isIt ? 'Verificato il' : 'Verified on'}</span>
                     <span className="text-foreground">
-                      {new Date(project.verifiedAt).toLocaleDateString()}
+                      {new Date(project.verifiedAt).toLocaleDateString(locale)}
                     </span>
                   </div>
                 </div>
@@ -577,7 +579,7 @@ export default function ProjectVerificationDetailPage() {
 
               {project.verificationMessage && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm font-medium text-muted-foreground mb-1">Message</p>
+                  <p className="text-sm font-medium text-muted-foreground mb-1">{isIt ? 'Messaggio' : 'Message'}</p>
                   <p className="text-sm text-foreground/80">{project.verificationMessage}</p>
                 </div>
               )}
@@ -589,12 +591,12 @@ export default function ProjectVerificationDetailPage() {
           {(project.complexityScore || project.innovationScore || project.marketRelevance) && (
             <GlassCard hover={false}>
               <div className="p-5">
-                <h3 className="text-base font-semibold mb-3">AI Analysis</h3>
+                <h3 className="text-base font-semibold mb-3">{isIt ? 'Analisi AI' : 'AI Analysis'}</h3>
                 <div className="space-y-3">
                   {project.complexityScore && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">Complexity</span>
+                        <span className="text-muted-foreground">{isIt ? 'Complessita' : 'Complexity'}</span>
                         <span className="font-medium">{project.complexityScore}/100</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -608,7 +610,7 @@ export default function ProjectVerificationDetailPage() {
                   {project.innovationScore && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">Innovation</span>
+                        <span className="text-muted-foreground">{isIt ? 'Innovazione' : 'Innovation'}</span>
                         <span className="font-medium">{project.innovationScore}/100</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -622,7 +624,7 @@ export default function ProjectVerificationDetailPage() {
                   {project.marketRelevance && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">Market Relevance</span>
+                        <span className="text-muted-foreground">{isIt ? 'Rilevanza di mercato' : 'Market Relevance'}</span>
                         <span className="font-medium">{project.marketRelevance}/100</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">

@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sparkles, Check, Mail, ArrowLeft, Info } from 'lucide-react'
@@ -17,6 +17,8 @@ import { INSTITUTION_ADDONS } from '@/lib/config/institution-addons'
  * (deep-link from the /add-ons grid), highlight that card.
  */
 export default function UniversityBillingPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const { institution, loading } = useMyInstitution()
   const searchParams = useSearchParams()
   const tAddon = useTranslations('dashboard.addons')
@@ -47,27 +49,29 @@ export default function UniversityBillingPage() {
             <Sparkles className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Billing & add-ons</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">{isIt ? 'Fatturazione e add-on' : 'Billing & add-ons'}</h1>
             <p className="text-sm text-muted-foreground">
-              Your core workspace is free, forever. Add modules when you're ready to scale.
+              {isIt
+                ? 'Il tuo workspace core è gratuito, per sempre. Aggiungi moduli quando sei pronto a scalare.'
+                : "Your core workspace is free, forever. Add modules when you're ready to scale."}
             </p>
           </div>
         </div>
 
         <div className="relative mt-6 inline-flex items-center gap-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur border rounded-full px-3 py-1.5 text-sm">
           {loading ? (
-            <span className="text-muted-foreground">Loading…</span>
+            <span className="text-muted-foreground">{isIt ? 'Caricamento…' : 'Loading…'}</span>
           ) : institution ? (
             <>
               <Check className="h-4 w-4 text-emerald-600" />
               <span className="font-medium">{institution.name}</span>
               <span className="text-muted-foreground">·</span>
               <span className="text-emerald-700 dark:text-emerald-300 font-medium">
-                Full workspace active
+                {isIt ? 'Workspace completo attivo' : 'Full workspace active'}
               </span>
             </>
           ) : (
-            <span className="text-muted-foreground">No institution linked</span>
+            <span className="text-muted-foreground">{isIt ? 'Nessuna istituzione collegata' : 'No institution linked'}</span>
           )}
         </div>
       </div>
@@ -79,7 +83,7 @@ export default function UniversityBillingPage() {
             <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
             <div className="flex-1">
               <p className="text-sm font-semibold">
-                Request for <span className="text-primary">{matchedTitle}</span>
+                {isIt ? 'Richiesta per' : 'Request for'} <span className="text-primary">{matchedTitle}</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 {matchedDescription}
@@ -88,7 +92,7 @@ export default function UniversityBillingPage() {
                 <a href={`mailto:fabio@in-transparency.com?subject=Add-on%20request%3A%20${encodeURIComponent(matchedTitle)}${institution?.name ? '%20for%20' + encodeURIComponent(institution.name) : ''}`}>
                   <Button size="sm">
                     <Mail className="mr-2 h-4 w-4" />
-                    Email us about this add-on
+                    {isIt ? 'Scrivici per questo add-on' : 'Email us about this add-on'}
                   </Button>
                 </a>
               </div>
@@ -101,26 +105,27 @@ export default function UniversityBillingPage() {
       <div className="rounded-xl border bg-muted/30 p-4 flex items-start gap-3">
         <Info className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
         <p className="text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">Nothing to pay for Core.</span>{' '}
-          Inbox, offer moderation, CRM, placement pipeline, AI Assistant, audit log,
-          reminder engine — all included. The marketplace below is for optional modules
-          that help you scale, integrate with your existing systems, or extend tools to every student.
+          <span className="font-medium text-foreground">{isIt ? 'Niente da pagare per il Core.' : 'Nothing to pay for Core.'}</span>{' '}
+          {isIt
+            ? 'Inbox, moderazione offerte, CRM, pipeline placement, AI Assistant, audit log, motore reminder — tutto incluso. Il marketplace qui sotto è per moduli opzionali che aiutano a scalare, integrare con i tuoi sistemi esistenti o estendere strumenti a ogni studente.'
+            : 'Inbox, offer moderation, CRM, placement pipeline, AI Assistant, audit log, reminder engine — all included. The marketplace below is for optional modules that help you scale, integrate with your existing systems, or extend tools to every student.'}
         </p>
       </div>
 
       {/* Add-on marketplace — same grid as /dashboard/university/add-ons */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Optional add-ons</h2>
+        <h2 className="text-xl font-bold mb-4">{isIt ? 'Add-on opzionali' : 'Optional add-ons'}</h2>
         <InstitutionAddonGrid authenticated cols={2} />
       </div>
 
       {/* Contact */}
       <Card>
         <CardContent className="p-6 sm:p-8 text-center">
-          <h2 className="text-lg font-bold mb-1">Anything else?</h2>
+          <h2 className="text-lg font-bold mb-1">{isIt ? 'Altro?' : 'Anything else?'}</h2>
           <p className="text-sm text-muted-foreground mb-4 max-w-xl mx-auto">
-            Not seeing what your institution needs? Tell us — every module above started
-            as a real institutional ask.
+            {isIt
+              ? 'Non vedi quello di cui ha bisogno la tua istituzione? Scrivici — ogni modulo qui sopra è nato da una vera richiesta istituzionale.'
+              : 'Not seeing what your institution needs? Tell us — every module above started as a real institutional ask.'}
           </p>
           <a href="mailto:fabio@in-transparency.com?subject=Institution%20add-on%20inquiry">
             <Button variant="outline">

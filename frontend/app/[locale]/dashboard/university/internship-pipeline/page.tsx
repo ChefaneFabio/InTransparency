@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -359,6 +360,8 @@ function DealForm({ values, onChange, onSubmit, onCancel, saving, editing }: Dea
 }
 
 export default function InternshipPipelinePage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [data, setData] = useState<Pipeline | null>(null)
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('')
@@ -488,7 +491,7 @@ export default function InternshipPipelinePage() {
   }
 
   const handleDelete = async (card: PipelineCard) => {
-    if (!confirm(`Eliminare "${card.company}" dalla pipeline?`)) return
+    if (!confirm(isIt ? `Eliminare "${card.company}" dalla pipeline?` : `Delete "${card.company}" from pipeline?`)) return
     try {
       const res = await fetch(`/api/dashboard/university/internship-pipeline/deals/${card.id}`, {
         method: 'DELETE',
@@ -536,9 +539,9 @@ export default function InternshipPipelinePage() {
       <MetricHero gradient="institution">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Pipeline Tirocini</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">{isIt ? 'Pipeline Tirocini' : 'Internship Pipeline'}</h1>
             <p className="text-muted-foreground mt-1">
-              Dal primo contatto all'assunzione — trascina le card tra le colonne per aggiornare lo stato.
+              {isIt ? 'Dal primo contatto all\'assunzione — trascina le card tra le colonne per aggiornare lo stato.' : 'From first contact to hire — drag cards between columns to update status.'}
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -548,7 +551,7 @@ export default function InternshipPipelinePage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-primary" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Opportunità</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Opportunità' : 'Opportunities'}</div>
                       <div className="text-lg font-bold">{data.summary.total}</div>
                     </div>
                   </div>
@@ -557,7 +560,7 @@ export default function InternshipPipelinePage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <TrendingUp className="h-4 w-4 text-emerald-600" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Conversione</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Conversione' : 'Conversion'}</div>
                       <div className="text-lg font-bold">{data.summary.conversionRate}%</div>
                     </div>
                   </div>
@@ -566,7 +569,7 @@ export default function InternshipPipelinePage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <Clock className="h-4 w-4 text-purple-600" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Stage attivi</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Stage attivi' : 'Active'}</div>
                       <div className="text-lg font-bold">{data.summary.activeStages}</div>
                     </div>
                   </div>
@@ -576,7 +579,7 @@ export default function InternshipPipelinePage() {
                     <div className="px-4 py-2.5 flex items-center gap-2">
                       <AlertTriangle className="h-4 w-4 text-red-500" />
                       <div>
-                        <div className="text-xs text-muted-foreground leading-none">A rischio</div>
+                        <div className="text-xs text-muted-foreground leading-none">{isIt ? 'A rischio' : 'At risk'}</div>
                         <div className="text-lg font-bold text-red-600">{data.summary.atRisk}</div>
                       </div>
                     </div>
@@ -592,7 +595,7 @@ export default function InternshipPipelinePage() {
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Filtra per azienda, ruolo o studente…"
+            placeholder={isIt ? 'Filtra per azienda, ruolo o studente…' : 'Filter by company, role, or student…'}
             value={filter}
             onChange={e => setFilter(e.target.value)}
             className="pl-9"
@@ -601,18 +604,18 @@ export default function InternshipPipelinePage() {
         <Dialog open={modalOpen} onOpenChange={setModalOpen}>
           <DialogTrigger asChild>
             <Button onClick={openCreate}>
-              <Plus className="h-4 w-4 mr-1.5" /> Nuova opportunità
+              <Plus className="h-4 w-4 mr-1.5" /> {isIt ? 'Nuova opportunità' : 'New opportunity'}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
-                {editingCard ? 'Modifica opportunità' : 'Nuova opportunità'}
+                {editingCard ? (isIt ? 'Modifica opportunità' : 'Edit opportunity') : (isIt ? 'Nuova opportunità' : 'New opportunity')}
               </DialogTitle>
               <DialogDescription>
                 {editingCard
-                  ? 'Aggiorna i dettagli del tirocinio — i cambi di stage sono tracciati.'
-                  : 'Traccia un nuovo contatto azienda o convenzione. Puoi aggiungere lo studente in seguito.'}
+                  ? (isIt ? 'Aggiorna i dettagli del tirocinio — i cambi di stage sono tracciati.' : 'Update internship details — stage changes are tracked.')
+                  : (isIt ? 'Traccia un nuovo contatto azienda o convenzione. Puoi aggiungere lo studente in seguito.' : 'Track a new company contact or convention. You can add the student later.')}
               </DialogDescription>
             </DialogHeader>
             <DealForm
@@ -640,12 +643,12 @@ export default function InternshipPipelinePage() {
         <Card>
           <CardContent className="p-12 text-center">
             <Briefcase className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Nessuna opportunità in pipeline</h3>
+            <h3 className="font-semibold mb-1">{isIt ? 'Nessuna opportunità in pipeline' : 'No opportunities in the pipeline'}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Crea la prima opportunità o attendi che un'azienda visualizzi un profilo studente.
+              {isIt ? 'Crea la prima opportunità o attendi che un\'azienda visualizzi un profilo studente.' : 'Create your first opportunity or wait for a company to view a student profile.'}
             </p>
             <Button onClick={openCreate} variant="outline">
-              <Plus className="h-4 w-4 mr-1.5" /> Nuova opportunità
+              <Plus className="h-4 w-4 mr-1.5" /> {isIt ? 'Nuova opportunità' : 'New opportunity'}
             </Button>
           </CardContent>
         </Card>
@@ -681,7 +684,7 @@ export default function InternshipPipelinePage() {
                 >
                   {filtered.cards.length === 0 ? (
                     <div className="text-center text-[11px] text-muted-foreground py-6 italic">
-                      {filter ? 'Nessun risultato' : isTarget ? 'Rilascia qui' : 'Trascina qui o aggiungi una card'}
+                      {filter ? (isIt ? 'Nessun risultato' : 'No results') : isTarget ? (isIt ? 'Rilascia qui' : 'Drop here') : (isIt ? 'Trascina qui o aggiungi una card' : 'Drag here or add a card')}
                     </div>
                   ) : (
                     filtered.cards.map(card => (
@@ -696,7 +699,7 @@ export default function InternshipPipelinePage() {
                   )}
                   {stage.count > stage.cards.length && !filter && (
                     <div className="text-center text-[11px] text-muted-foreground pt-1">
-                      +{stage.count - stage.cards.length} altre
+                      +{stage.count - stage.cards.length} {isIt ? 'altre' : 'more'}
                     </div>
                   )}
                 </div>

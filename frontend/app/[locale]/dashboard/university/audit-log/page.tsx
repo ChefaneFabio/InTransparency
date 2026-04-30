@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -82,14 +83,15 @@ function actionVerb(action: string): string {
   return verbs[suffix] || `ha eseguito ${suffix}`
 }
 
-function formatTime(iso: string): string {
+function formatTime(iso: string, locale: string = 'it'): string {
+  const isIt = locale === 'it'
   const d = new Date(iso)
   const diff = Date.now() - d.getTime()
-  if (diff < 60_000) return 'pochi secondi fa'
-  if (diff < 3600_000) return `${Math.floor(diff / 60_000)}m fa`
-  if (diff < 86_400_000) return `${Math.floor(diff / 3600_000)}h fa`
-  if (diff < 30 * 86_400_000) return `${Math.floor(diff / 86_400_000)}g fa`
-  return d.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })
+  if (diff < 60_000) return isIt ? 'pochi secondi fa' : 'a few seconds ago'
+  if (diff < 3600_000) return isIt ? `${Math.floor(diff / 60_000)}m fa` : `${Math.floor(diff / 60_000)}m ago`
+  if (diff < 86_400_000) return isIt ? `${Math.floor(diff / 3600_000)}h fa` : `${Math.floor(diff / 3600_000)}h ago`
+  if (diff < 30 * 86_400_000) return isIt ? `${Math.floor(diff / 86_400_000)}g fa` : `${Math.floor(diff / 86_400_000)}d ago`
+  return d.toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })
 }
 
 function entityDetailUrl(e: AuditEvent): string | null {
@@ -102,17 +104,20 @@ function entityDetailUrl(e: AuditEvent): string | null {
   }
 }
 
-const ACTION_GROUPS = [
-  { value: 'all',        label: 'Tutte le azioni' },
+const getActionGroups = (isIt: boolean) => [
+  { value: 'all',        label: isIt ? 'Tutte le azioni' : 'All actions' },
   { value: 'assistant',  label: 'AI Assistant' },
   { value: 'placement',  label: 'Placement' },
   { value: 'mediation',  label: 'Mediation Inbox' },
-  { value: 'job',        label: 'Offerte' },
+  { value: 'job',        label: isIt ? 'Offerte' : 'Offers' },
   { value: 'lead',       label: 'CRM' },
-  { value: 'convention', label: 'Convenzioni' },
+  { value: 'convention', label: isIt ? 'Convenzioni' : 'Conventions' },
 ]
 
 export default function AuditLogPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
+  const ACTION_GROUPS = getActionGroups(isIt)
   const { institution } = useMyInstitution()
   const [data, setData] = useState<AuditData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -194,10 +199,13 @@ export default function AuditLogPage() {
                 <PremiumBadge audience="institution" variant="chip" label="Premium · full export" />
               </h1>
               <p className="text-sm text-muted-foreground">
-                Ogni azione scritta o query AI, tracciata con actor + timestamp. Evidenza
-                riproducibile per AI Act Art. 86 e GDPR Art. 22.
+                {isIt
+                  ? 'Ogni azione scritta o query AI, tracciata con actor + timestamp. Evidenza riproducibile per AI Act Art. 86 e GDPR Art. 22.'
+                  : 'Every write action or AI query, tracked with actor + timestamp. Reproducible evidence for AI Act Art. 86 and GDPR Art. 22.'}
                 <span className="block mt-1 text-xs">
-                  Free Core: ultimi 30 giorni · Premium: storia completa + export CSV.
+                  {isIt
+                    ? 'Free Core: ultimi 30 giorni · Premium: storia completa + export CSV.'
+                    : 'Free Core: last 30 days · Premium: full history + CSV export.'}
                 </span>
               </p>
             </div>
@@ -214,7 +222,7 @@ export default function AuditLogPage() {
         <div className="flex items-center gap-2 flex-wrap">
           <GlassCard hover={false}>
             <div className="px-3 py-2 text-sm">
-              <span className="text-muted-foreground">Totale eventi:</span>{' '}
+              <span className="text-muted-foreground">{isIt ? 'Totale eventi:' : 'Total events:'}</span>{' '}
               <span className="font-bold font-mono">{data.totalForInstitution}</span>
             </div>
           </GlassCard>
@@ -246,7 +254,7 @@ export default function AuditLogPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Cerca per attore, azione, entityId…"
+              placeholder={isIt ? 'Cerca per attore, azione, entityId…' : 'Search by actor, action, entityId…'}
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="pl-9"
@@ -268,7 +276,7 @@ export default function AuditLogPage() {
             value={since}
             onChange={e => setSince(e.target.value)}
             className="w-full sm:w-[160px]"
-            title="Dal"
+            title={isIt ? 'Dal' : 'From'}
           />
         </CardContent>
       </Card>
@@ -284,8 +292,10 @@ export default function AuditLogPage() {
             <EmptyState
               icon={Shield}
               tone="institution"
-              title="Nessun evento nell'intervallo selezionato"
-              description="Prova ad allargare l'intervallo di date o a rimuovere i filtri."
+              title={isIt ? "Nessun evento nell'intervallo selezionato" : 'No events in the selected range'}
+              description={isIt
+                ? "Prova ad allargare l'intervallo di date o a rimuovere i filtri."
+                : 'Try widening the date range or removing filters.'}
             />
           </CardContent>
         </Card>
@@ -306,7 +316,7 @@ export default function AuditLogPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2 flex-wrap">
                     <span className="text-sm font-medium">
-                      {e.actor?.name || 'Sistema'}
+                      {e.actor?.name || (isIt ? 'Sistema' : 'System')}
                     </span>
                     <span className="text-sm text-muted-foreground">
                       {actionVerb(e.action)}
@@ -322,7 +332,7 @@ export default function AuditLogPage() {
                   </div>
                   <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
                     <Clock className="h-3 w-3" />
-                    <span>{formatTime(e.createdAt)}</span>
+                    <span>{formatTime(e.createdAt, locale)}</span>
                     <span>·</span>
                     <span className="font-mono truncate">
                       {e.entityId.slice(0, 16)}…
@@ -331,7 +341,7 @@ export default function AuditLogPage() {
                   {e.payload && typeof e.payload === 'object' && Object.keys(e.payload).length > 0 && (
                     <details className="mt-1.5 group">
                       <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground">
-                        Dettagli payload
+                        {isIt ? 'Dettagli payload' : 'Payload details'}
                       </summary>
                       <pre className="mt-1 text-[10px] bg-muted p-2 rounded overflow-x-auto max-h-40">
                         {JSON.stringify(e.payload, null, 2)}
@@ -355,7 +365,9 @@ export default function AuditLogPage() {
 
       <p className="text-[11px] text-muted-foreground text-center flex items-center justify-center gap-1.5">
         <Shield className="h-3 w-3" />
-        Log immutabile. Esportabile per i diritti dell'interessato (GDPR Art. 15, 20).
+        {isIt
+          ? "Log immutabile. Esportabile per i diritti dell'interessato (GDPR Art. 15, 20)."
+          : "Immutable log. Exportable for data subject rights (GDPR Art. 15, 20)."}
       </p>
     </div>
   )

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { Link, useRouter } from '@/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -45,13 +46,13 @@ interface Placement {
   status: string
 }
 
-const OFFER_LABELS: Record<string, string> = {
-  TIROCINIO_CURRICULARE: 'Curriculare',
-  TIROCINIO_EXTRA: 'Extracurricolare',
-  APPRENDISTATO: 'Apprendistato',
+const getOfferLabels = (isIt: boolean): Record<string, string> => ({
+  TIROCINIO_CURRICULARE: isIt ? 'Curriculare' : 'Curricular',
+  TIROCINIO_EXTRA: isIt ? 'Extracurricolare' : 'Extracurricular',
+  APPRENDISTATO: isIt ? 'Apprendistato' : 'Apprenticeship',
   PLACEMENT: 'Placement',
   PART_TIME: 'Part-time',
-}
+})
 
 const STAGE_COLORS: Record<string, string> = {
   APPLICATION: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
@@ -73,6 +74,9 @@ function daysSince(date: string | null): number | null {
 
 export default function PlacementPipelinePage() {
   const router = useRouter()
+  const locale = useLocale()
+  const isIt = locale === 'it'
+  const OFFER_LABELS = getOfferLabels(isIt)
   const { institution } = useMyInstitution()
   const [placements, setPlacements] = useState<Placement[]>([])
   const [stages, setStages] = useState<Stage[]>([])
@@ -138,14 +142,18 @@ export default function PlacementPipelinePage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-              Pipeline Placement
+              {isIt ? 'Pipeline Placement' : 'Placement Pipeline'}
               <PremiumBadge audience="institution" variant="chip" label="Premium · automation" />
             </h1>
             <p className="text-muted-foreground mt-1">
-              Dalla candidatura all'esito occupazionale. Tracciamento orario, valutazioni, scadenze — visibile a te, ai tutor, allo studente e all'azienda.
+              {isIt
+                ? "Dalla candidatura all'esito occupazionale. Tracciamento orario, valutazioni, scadenze — visibile a te, ai tutor, allo studente e all'azienda."
+                : 'From application to employment outcome. Hours tracking, evaluations, deadlines — visible to you, tutors, the student and the company.'}
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              Free Core: tracciamento manuale fino a 50 placement attivi · Premium: reminder automatici (7/30/60gg), notifiche tutor/studente, esiti occupazionali e export.
+              {isIt
+                ? 'Free Core: tracciamento manuale fino a 50 placement attivi · Premium: reminder automatici (7/30/60gg), notifiche tutor/studente, esiti occupazionali e export.'
+                : 'Free Core: manual tracking up to 50 active placements · Premium: automated reminders (7/30/60d), tutor/student notifications, employment outcomes and export.'}
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -153,7 +161,7 @@ export default function PlacementPipelinePage() {
               <div className="px-4 py-2.5 flex items-center gap-2">
                 <Briefcase className="h-4 w-4 text-primary" />
                 <div>
-                  <div className="text-xs text-muted-foreground leading-none">Totale</div>
+                  <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Totale' : 'Total'}</div>
                   <div className="text-lg font-bold">{stats.total}</div>
                 </div>
               </div>
@@ -162,7 +170,7 @@ export default function PlacementPipelinePage() {
               <div className="px-4 py-2.5 flex items-center gap-2">
                 <Clock className="h-4 w-4 text-purple-600" />
                 <div>
-                  <div className="text-xs text-muted-foreground leading-none">In corso</div>
+                  <div className="text-xs text-muted-foreground leading-none">{isIt ? 'In corso' : 'In progress'}</div>
                   <div className="text-lg font-bold">{stats.active}</div>
                 </div>
               </div>
@@ -171,7 +179,7 @@ export default function PlacementPipelinePage() {
               <div className="px-4 py-2.5 flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-teal-600" />
                 <div>
-                  <div className="text-xs text-muted-foreground leading-none">Conclusi</div>
+                  <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Conclusi' : 'Completed'}</div>
                   <div className="text-lg font-bold">{stats.completed}</div>
                 </div>
               </div>
@@ -180,7 +188,7 @@ export default function PlacementPipelinePage() {
               <div className="px-4 py-2.5 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-emerald-600" />
                 <div>
-                  <div className="text-xs text-muted-foreground leading-none">Assunti</div>
+                  <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Assunti' : 'Hired'}</div>
                   <div className="text-lg font-bold">{stats.hiredConverted}</div>
                 </div>
               </div>
@@ -190,7 +198,7 @@ export default function PlacementPipelinePage() {
                 <div className="px-4 py-2.5 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-red-500" />
                   <div>
-                    <div className="text-xs text-muted-foreground leading-none">A rischio</div>
+                    <div className="text-xs text-muted-foreground leading-none">{isIt ? 'A rischio' : 'At risk'}</div>
                     <div className="text-lg font-bold text-red-600">{stats.atRisk}</div>
                   </div>
                 </div>
@@ -206,7 +214,7 @@ export default function PlacementPipelinePage() {
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Cerca per studente, azienda, ruolo…"
+              placeholder={isIt ? 'Cerca per studente, azienda, ruolo…' : 'Search by student, company, role…'}
               value={filter}
               onChange={e => setFilter(e.target.value)}
               className="pl-9"
@@ -218,14 +226,14 @@ export default function PlacementPipelinePage() {
             onClick={() => setAtRiskOnly(v => !v)}
           >
             <AlertTriangle className="h-3.5 w-3.5 mr-1.5" />
-            Solo a rischio
+            {isIt ? 'Solo a rischio' : 'At risk only'}
           </Button>
         </div>
 
         {stages.length > 0 && (
           <Tabs value={stageFilter} onValueChange={setStageFilter}>
             <TabsList className="w-full justify-start overflow-x-auto h-auto flex-wrap">
-              <TabsTrigger value="all" className="text-xs">Tutti ({placements.length})</TabsTrigger>
+              <TabsTrigger value="all" className="text-xs">{isIt ? 'Tutti' : 'All'} ({placements.length})</TabsTrigger>
               {stages.map(s => {
                 const count = placements.filter(p => p.stage?.id === s.id).length
                 return (
@@ -248,8 +256,10 @@ export default function PlacementPipelinePage() {
         <GlassCard hover={false}>
           <EmptyState
             icon={Briefcase}
-            title="Nessun placement corrispondente"
-            description="Prova a modificare i filtri, oppure crea un nuovo placement da un'applicazione accettata."
+            title={isIt ? 'Nessun placement corrispondente' : 'No matching placements'}
+            description={isIt
+              ? "Prova a modificare i filtri, oppure crea un nuovo placement da un'applicazione accettata."
+              : 'Try changing the filters, or create a new placement from an accepted application.'}
           />
         </GlassCard>
       ) : (
@@ -284,7 +294,7 @@ export default function PlacementPipelinePage() {
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="font-semibold text-sm truncate">
-                            {p.student?.name || 'Studente non assegnato'}
+                            {p.student?.name || (isIt ? 'Studente non assegnato' : 'Unassigned student')}
                           </span>
                           {p.stage && (
                             <Badge variant="outline" className={`text-[10px] border-0 ${stageColor}`}>
@@ -297,7 +307,9 @@ export default function PlacementPipelinePage() {
                           {isAtRisk && (
                             <Badge className="bg-red-100 text-red-700 border-0 text-[10px]">
                               <AlertTriangle className="h-2.5 w-2.5 mr-0.5" />
-                              {p.daysSinceHoursLogged !== null ? `${p.daysSinceHoursLogged}g no ore` : 'Nessun log'}
+                              {p.daysSinceHoursLogged !== null
+                                ? (isIt ? `${p.daysSinceHoursLogged}g no ore` : `${p.daysSinceHoursLogged}d no hours`)
+                                : (isIt ? 'Nessun log' : 'No log')}
                             </Badge>
                           )}
                         </div>
@@ -331,20 +343,20 @@ export default function PlacementPipelinePage() {
                         <div className="flex items-center gap-3 text-[11px] text-muted-foreground flex-wrap">
                           {p.academicTutor && (
                             <span className="inline-flex items-center gap-1">
-                              <GraduationCap className="h-3 w-3" />Acc: {p.academicTutor.name}
+                              <GraduationCap className="h-3 w-3" />{isIt ? 'Acc' : 'Acad'}: {p.academicTutor.name}
                             </span>
                           )}
                           {p.companyTutor && (
                             <span className="inline-flex items-center gap-1">
-                              <Building2 className="h-3 w-3" />Az: {p.companyTutor.name}
+                              <Building2 className="h-3 w-3" />{isIt ? 'Az' : 'Co'}: {p.companyTutor.name}
                             </span>
                           )}
                         </div>
                         {/* Dates */}
                         <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                           <Calendar className="h-3 w-3" />
-                          {new Date(p.startDate).toLocaleDateString('it-IT')}
-                          {p.endDate && ` — ${new Date(p.endDate).toLocaleDateString('it-IT')}`}
+                          {new Date(p.startDate).toLocaleDateString(locale)}
+                          {p.endDate && ` — ${new Date(p.endDate).toLocaleDateString(locale)}`}
                         </div>
                       </div>
                     </div>

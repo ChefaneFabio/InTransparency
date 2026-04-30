@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
@@ -78,8 +79,8 @@ function initials(s: string): string {
   return s.split(' ').map(x => x[0]).slice(0, 2).join('').toUpperCase() || '?'
 }
 
-function fmtDate(d: string): string {
-  return new Date(d).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })
+function fmtDate(d: string, locale: string = 'it'): string {
+  return new Date(d).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })
 }
 
 const OFFER_TYPE_LABEL: Record<string, string> = {
@@ -92,6 +93,8 @@ const OFFER_TYPE_LABEL: Record<string, string> = {
 
 export default function PlacementDetailPage() {
   const params = useParams()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const placementId = params?.id as string
 
   const [data, setData] = useState<Detail | null>(null)
@@ -203,11 +206,11 @@ export default function PlacementDetailPage() {
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
           <AlertTriangle className="h-8 w-8 text-muted-foreground" />
         </div>
-        <h2 className="text-lg font-semibold mb-1">Placement non trovato</h2>
-        <p className="text-muted-foreground mb-4">Il tirocinio non esiste o non hai i permessi per visualizzarlo.</p>
+        <h2 className="text-lg font-semibold mb-1">{isIt ? 'Placement non trovato' : 'Placement not found'}</h2>
+        <p className="text-muted-foreground mb-4">{isIt ? 'Il tirocinio non esiste o non hai i permessi per visualizzarlo.' : 'This internship does not exist or you don\'t have permission to view it.'}</p>
         <Button asChild variant="outline">
           <Link href="/dashboard/university/placement-pipeline">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Torna alla pipeline
+            <ArrowLeft className="h-4 w-4 mr-2" /> {isIt ? 'Torna alla pipeline' : 'Back to pipeline'}
           </Link>
         </Button>
       </div>
@@ -221,7 +224,7 @@ export default function PlacementDetailPage() {
     : null
   const overdueDeadlines = p.deadlines.filter(d => !d.completedAt && new Date(d.dueAt) < new Date())
   const upcomingDeadlines = p.deadlines.filter(d => !d.completedAt && new Date(d.dueAt) >= new Date())
-  const studentName = fullName(p.student, 'Studente non assegnato')
+  const studentName = fullName(p.student, isIt ? 'Studente non assegnato' : 'Student not assigned')
   const currentOrder = p.currentStage?.order || 0
 
   return (
@@ -313,7 +316,7 @@ export default function PlacementDetailPage() {
               {/* Placement */}
               <div className="space-y-1.5 pt-3 border-t text-sm">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                  <Briefcase className="h-3 w-3" /> Ruolo
+                  <Briefcase className="h-3 w-3" /> {isIt ? 'Ruolo' : 'Role'}
                 </div>
                 <div className="font-medium">{p.jobTitle}</div>
                 <div className="text-xs text-muted-foreground">
@@ -323,7 +326,7 @@ export default function PlacementDetailPage() {
 
               <div className="space-y-1.5 pt-3 border-t text-sm">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                  <Building2 className="h-3 w-3" /> Azienda
+                  <Building2 className="h-3 w-3" /> {isIt ? 'Azienda' : 'Company'}
                 </div>
                 <div className="font-medium">{p.companyName}</div>
               </div>
@@ -331,7 +334,7 @@ export default function PlacementDetailPage() {
               {p.currentStage && (
                 <div className="pt-3 border-t">
                   <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium mb-1">
-                    <Target className="h-3 w-3" /> Stage
+                    <Target className="h-3 w-3" /> {isIt ? 'Stage' : 'Stage'}
                   </div>
                   <Badge className="font-medium">{p.currentStage.name}</Badge>
                 </div>
@@ -345,10 +348,10 @@ export default function PlacementDetailPage() {
                     variant="outline"
                     className="w-full justify-start"
                     asChild
-                    title="Scarica la bozza di convenzione di tirocinio (PDF)"
+                    title={isIt ? 'Scarica la bozza di convenzione di tirocinio (PDF)' : 'Download the internship convention draft (PDF)'}
                   >
                     <a href={`/api/placements/${p.id}/convention`} target="_blank" rel="noopener">
-                      <Download className="h-3.5 w-3.5 mr-2" /> Convenzione PDF
+                      <Download className="h-3.5 w-3.5 mr-2" /> {isIt ? 'Convenzione PDF' : 'Convention PDF'}
                     </a>
                   </Button>
                   <Button
@@ -357,10 +360,10 @@ export default function PlacementDetailPage() {
                     className="w-full justify-start"
                     onClick={() => setStageOpen(true)}
                   >
-                    <TrendingUp className="h-3.5 w-3.5 mr-2" /> Cambia stage
+                    <TrendingUp className="h-3.5 w-3.5 mr-2" /> {isIt ? 'Cambia stage' : 'Change stage'}
                   </Button>
                   <Button size="sm" className="w-full justify-start" onClick={() => setHoursOpen(true)}>
-                    <Clock className="h-3.5 w-3.5 mr-2" /> Log ore
+                    <Clock className="h-3.5 w-3.5 mr-2" /> {isIt ? 'Log ore' : 'Log hours'}
                   </Button>
                   <Button
                     size="sm"
@@ -368,7 +371,7 @@ export default function PlacementDetailPage() {
                     className="w-full justify-start"
                     onClick={() => setEvalOpen(true)}
                   >
-                    <FileText className="h-3.5 w-3.5 mr-2" /> Valutazione
+                    <FileText className="h-3.5 w-3.5 mr-2" /> {isIt ? 'Valutazione' : 'Evaluation'}
                   </Button>
                 </div>
               )}
@@ -379,10 +382,10 @@ export default function PlacementDetailPage() {
           <Card>
             <CardContent className="p-4 space-y-3">
               <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                <Users className="h-3 w-3" /> Tutor
+                <Users className="h-3 w-3" /> {isIt ? 'Tutor' : 'Tutor'}
               </div>
               <div>
-                <div className="text-xs text-muted-foreground">Accademico</div>
+                <div className="text-xs text-muted-foreground">{isIt ? 'Accademico' : 'Academic'}</div>
                 <div className="text-sm font-medium">{fullName(p.academicTutor)}</div>
                 {p.academicTutor?.email && (
                   <a href={`mailto:${p.academicTutor.email}`} className="text-xs text-muted-foreground hover:text-primary">
@@ -391,7 +394,7 @@ export default function PlacementDetailPage() {
                 )}
               </div>
               <div className="pt-2 border-t">
-                <div className="text-xs text-muted-foreground">Aziendale</div>
+                <div className="text-xs text-muted-foreground">{isIt ? 'Aziendale' : 'Company'}</div>
                 <div className="text-sm font-medium">{fullName(p.companyTutor)}</div>
                 {p.companyTutor?.email && (
                   <a href={`mailto:${p.companyTutor.email}`} className="text-xs text-muted-foreground hover:text-primary">
@@ -407,7 +410,7 @@ export default function PlacementDetailPage() {
             <Card>
               <CardContent className="p-4 space-y-2">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                  <FileText className="h-3 w-3" /> Convenzione
+                  <FileText className="h-3 w-3" /> {isIt ? 'Convenzione' : 'Convention'}
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge variant="outline" className="text-[10px]">{p.convention.status}</Badge>
@@ -423,11 +426,11 @@ export default function PlacementDetailPage() {
           <Tabs value={tab} onValueChange={setTab} className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="overview">
-                <span>Panoramica</span>
+                <span>{isIt ? 'Panoramica' : 'Overview'}</span>
               </TabsTrigger>
               <TabsTrigger value="hours">
                 <Clock className="h-3.5 w-3.5 mr-1.5" />
-                Ore
+                {isIt ? 'Ore' : 'Hours'}
                 {p.hoursLogs.length > 0 && (
                   <span className="ml-1.5 text-[10px] font-mono bg-muted rounded px-1">
                     {p.hoursLogs.length}
@@ -436,7 +439,7 @@ export default function PlacementDetailPage() {
               </TabsTrigger>
               <TabsTrigger value="evaluations">
                 <FileText className="h-3.5 w-3.5 mr-1.5" />
-                Valutazioni
+                {isIt ? 'Valutazioni' : 'Evaluations'}
                 {p.evaluations.length > 0 && (
                   <span className="ml-1.5 text-[10px] font-mono bg-muted rounded px-1">
                     {p.evaluations.length}
@@ -445,7 +448,7 @@ export default function PlacementDetailPage() {
               </TabsTrigger>
               <TabsTrigger value="deadlines">
                 <AlertTriangle className="h-3.5 w-3.5 mr-1.5" />
-                Scadenze
+                {isIt ? 'Scadenze' : 'Deadlines'}
                 {overdueDeadlines.length > 0 && (
                   <span className="ml-1.5 text-[10px] font-mono bg-red-100 text-red-700 rounded px-1">
                     {overdueDeadlines.length}
@@ -461,7 +464,7 @@ export default function PlacementDetailPage() {
                 <Card>
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                      <Target className="h-3 w-3" /> Ore
+                      <Target className="h-3 w-3" /> {isIt ? 'Ore' : 'Hours'}
                     </div>
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-2xl font-bold">{p.completedHours}</span>
@@ -477,7 +480,7 @@ export default function PlacementDetailPage() {
                         }`}
                       >
                         {daysSinceHours > 7 && <AlertTriangle className="inline h-3 w-3 mr-1" />}
-                        Ultimo log: {daysSinceHours === 0 ? 'oggi' : `${daysSinceHours}g fa`}
+                        {isIt ? `Ultimo log: ${daysSinceHours === 0 ? 'oggi' : `${daysSinceHours}g fa`}` : `Last log: ${daysSinceHours === 0 ? 'today' : `${daysSinceHours}d ago`}`}
                       </p>
                     )}
                   </CardContent>
@@ -487,12 +490,12 @@ export default function PlacementDetailPage() {
                 <Card>
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                      <Calendar className="h-3 w-3" /> Date
+                      <Calendar className="h-3 w-3" /> {isIt ? 'Date' : 'Dates'}
                     </div>
                     <div className="text-sm">
-                      <div className="font-medium">{fmtDate(p.startDate)}</div>
+                      <div className="font-medium">{fmtDate(p.startDate, locale)}</div>
                       {p.endDate && (
-                        <div className="text-xs text-muted-foreground">→ {fmtDate(p.endDate)}</div>
+                        <div className="text-xs text-muted-foreground">→ {fmtDate(p.endDate, locale)}</div>
                       )}
                     </div>
                   </CardContent>
@@ -502,7 +505,7 @@ export default function PlacementDetailPage() {
                 <Card>
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wide font-medium">
-                      <CheckCircle2 className="h-3 w-3" /> Esito
+                      <CheckCircle2 className="h-3 w-3" /> {isIt ? 'Esito' : 'Outcome'}
                     </div>
                     {p.outcome ? (
                       <Badge className="font-medium">{p.outcome}</Badge>
@@ -519,13 +522,15 @@ export default function PlacementDetailPage() {
                   <CardContent className="p-4">
                     <div className="flex items-center gap-2 mb-2 text-red-700 font-medium text-sm">
                       <AlertTriangle className="h-4 w-4" />
-                      {overdueDeadlines.length} scadenz{overdueDeadlines.length === 1 ? 'a' : 'e'} scaduta{overdueDeadlines.length === 1 ? '' : 'e'}
+                      {isIt
+                        ? `${overdueDeadlines.length} scadenz${overdueDeadlines.length === 1 ? 'a' : 'e'} scaduta${overdueDeadlines.length === 1 ? '' : 'e'}`
+                        : `${overdueDeadlines.length} overdue deadline${overdueDeadlines.length === 1 ? '' : 's'}`}
                     </div>
                     <div className="space-y-1">
                       {overdueDeadlines.slice(0, 3).map(d => (
                         <div key={d.id} className="flex items-center gap-2 text-xs">
                           <span className="flex-1">{d.label}</span>
-                          <span className="text-red-600 font-medium">{fmtDate(d.dueAt)}</span>
+                          <span className="text-red-600 font-medium">{fmtDate(d.dueAt, locale)}</span>
                         </div>
                       ))}
                     </div>
@@ -536,7 +541,7 @@ export default function PlacementDetailPage() {
               {p.outcomeNotes && (
                 <Card>
                   <CardContent className="p-4 space-y-1.5">
-                    <div className="text-xs uppercase tracking-wide font-medium text-muted-foreground">Note esito</div>
+                    <div className="text-xs uppercase tracking-wide font-medium text-muted-foreground">{isIt ? 'Note esito' : 'Outcome notes'}</div>
                     <p className="text-sm whitespace-pre-wrap">{p.outcomeNotes}</p>
                   </CardContent>
                 </Card>
@@ -550,10 +555,10 @@ export default function PlacementDetailPage() {
                   {p.hoursLogs.length === 0 ? (
                     <div className="py-12 text-center">
                       <Clock className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                      <p className="text-sm text-muted-foreground mb-1">Nessuna registrazione ore</p>
+                      <p className="text-sm text-muted-foreground mb-1">{isIt ? 'Nessuna registrazione ore' : 'No hours logged'}</p>
                       {data.canEdit && (
                         <p className="text-xs text-muted-foreground">
-                          Usa il pulsante "Log ore" per registrare la prima settimana.
+                          {isIt ? 'Usa il pulsante "Log ore" per registrare la prima settimana.' : 'Use the "Log hours" button to record the first week.'}
                         </p>
                       )}
                     </div>
@@ -563,11 +568,11 @@ export default function PlacementDetailPage() {
                         <div key={h.id} className="flex items-center gap-3 py-2.5 text-sm">
                           <Clock className="h-4 w-4 text-muted-foreground shrink-0" />
                           <span className="text-muted-foreground tabular-nums">
-                            {fmtDate(h.periodStart)} → {fmtDate(h.periodEnd)}
+                            {fmtDate(h.periodStart, locale)} → {fmtDate(h.periodEnd, locale)}
                           </span>
                           <span className="font-semibold tabular-nums">{h.hours}h</span>
                           {h.confirmedByTutor && (
-                            <span title="Confermato dal tutor">
+                            <span title={isIt ? 'Confermato dal tutor' : 'Confirmed by tutor'}>
                               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                             </span>
                           )}
@@ -589,10 +594,10 @@ export default function PlacementDetailPage() {
                   {p.evaluations.length === 0 ? (
                     <div className="py-12 text-center">
                       <FileText className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                      <p className="text-sm text-muted-foreground mb-1">Nessuna valutazione</p>
+                      <p className="text-sm text-muted-foreground mb-1">{isIt ? 'Nessuna valutazione' : 'No evaluations'}</p>
                       {data.canEdit && (
                         <p className="text-xs text-muted-foreground">
-                          Submit una valutazione intermedia o finale dal pulsante laterale.
+                          {isIt ? 'Invia una valutazione intermedia o finale dal pulsante laterale.' : 'Submit a mid or final evaluation from the sidebar button.'}
                         </p>
                       )}
                     </div>
@@ -604,7 +609,7 @@ export default function PlacementDetailPage() {
                             <Badge variant="outline" className="text-[10px]">{e.kind}</Badge>
                             <span className="text-sm font-medium">{fullName(e.submittedBy)}</span>
                             <span className="text-xs text-muted-foreground">({e.submitterRole})</span>
-                            <span className="text-xs text-muted-foreground ml-auto">{fmtDate(e.submittedAt)}</span>
+                            <span className="text-xs text-muted-foreground ml-auto">{fmtDate(e.submittedAt, locale)}</span>
                           </div>
                           {e.comments && (
                             <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
@@ -626,14 +631,14 @@ export default function PlacementDetailPage() {
                   {p.deadlines.length === 0 ? (
                     <div className="py-12 text-center">
                       <Calendar className="h-10 w-10 mx-auto mb-3 text-muted-foreground/40" />
-                      <p className="text-sm text-muted-foreground">Nessuna scadenza</p>
+                      <p className="text-sm text-muted-foreground">{isIt ? 'Nessuna scadenza' : 'No deadlines'}</p>
                     </div>
                   ) : (
                     <div className="space-y-4">
                       {overdueDeadlines.length > 0 && (
                         <div>
                           <div className="text-xs uppercase tracking-wide font-semibold text-red-600 mb-2">
-                            Scadute ({overdueDeadlines.length})
+                            {isIt ? 'Scadute' : 'Overdue'} ({overdueDeadlines.length})
                           </div>
                           <div className="space-y-1.5">
                             {overdueDeadlines.map(d => (
@@ -643,7 +648,7 @@ export default function PlacementDetailPage() {
                               >
                                 <AlertTriangle className="h-4 w-4 text-red-600 shrink-0" />
                                 <span className="flex-1">{d.label}</span>
-                                <span className="text-red-600 font-medium text-xs">{fmtDate(d.dueAt)}</span>
+                                <span className="text-red-600 font-medium text-xs">{fmtDate(d.dueAt, locale)}</span>
                               </div>
                             ))}
                           </div>
@@ -652,7 +657,7 @@ export default function PlacementDetailPage() {
                       {upcomingDeadlines.length > 0 && (
                         <div>
                           <div className="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-2">
-                            Prossime ({upcomingDeadlines.length})
+                            {isIt ? 'Prossime' : 'Upcoming'} ({upcomingDeadlines.length})
                           </div>
                           <div className="space-y-1.5">
                             {upcomingDeadlines.map(d => (
@@ -662,7 +667,7 @@ export default function PlacementDetailPage() {
                               >
                                 <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
                                 <span className="flex-1">{d.label}</span>
-                                <span className="text-xs text-muted-foreground">{fmtDate(d.dueAt)}</span>
+                                <span className="text-xs text-muted-foreground">{fmtDate(d.dueAt, locale)}</span>
                               </div>
                             ))}
                           </div>
@@ -681,14 +686,14 @@ export default function PlacementDetailPage() {
       <Dialog open={stageOpen} onOpenChange={setStageOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Cambia stage</DialogTitle>
-            <DialogDescription>Sposta il tirocinio a una nuova fase.</DialogDescription>
+            <DialogTitle>{isIt ? 'Cambia stage' : 'Change stage'}</DialogTitle>
+            <DialogDescription>{isIt ? 'Sposta il tirocinio a una nuova fase.' : 'Move the internship to a new phase.'}</DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
             <div>
-              <Label>Nuovo stage</Label>
+              <Label>{isIt ? 'Nuovo stage' : 'New stage'}</Label>
               <Select value={stageTarget} onValueChange={setStageTarget}>
-                <SelectTrigger><SelectValue placeholder="Seleziona…" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder={isIt ? 'Seleziona…' : 'Select…'} /></SelectTrigger>
                 <SelectContent>
                   {data.stages.filter(s => s.id !== p.currentStage?.id).map(s => (
                     <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
@@ -697,14 +702,14 @@ export default function PlacementDetailPage() {
               </Select>
             </div>
             <div>
-              <Label>Nota (opzionale)</Label>
+              <Label>{isIt ? 'Nota (opzionale)' : 'Note (optional)'}</Label>
               <Textarea value={stageNote} onChange={e => setStageNote(e.target.value)} rows={2} />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setStageOpen(false)} disabled={stageSaving}>Annulla</Button>
+            <Button variant="outline" onClick={() => setStageOpen(false)} disabled={stageSaving}>{isIt ? 'Annulla' : 'Cancel'}</Button>
             <Button onClick={changeStage} disabled={stageSaving || !stageTarget}>
-              {stageSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Conferma'}
+              {stageSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : (isIt ? 'Conferma' : 'Confirm')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -713,31 +718,31 @@ export default function PlacementDetailPage() {
       <Dialog open={hoursOpen} onOpenChange={setHoursOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Registra ore settimanali</DialogTitle>
-            <DialogDescription>Le ore inserite dai tutor sono auto-confermate.</DialogDescription>
+            <DialogTitle>{isIt ? 'Registra ore settimanali' : 'Log weekly hours'}</DialogTitle>
+            <DialogDescription>{isIt ? 'Le ore inserite dai tutor sono auto-confermate.' : 'Hours entered by tutors are auto-confirmed.'}</DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label>Dal</Label>
+              <Label>{isIt ? 'Dal' : 'From'}</Label>
               <Input type="date" value={hoursForm.periodStart} onChange={e => setHoursForm(f => ({ ...f, periodStart: e.target.value }))} />
             </div>
             <div>
-              <Label>Al</Label>
+              <Label>{isIt ? 'Al' : 'To'}</Label>
               <Input type="date" value={hoursForm.periodEnd} onChange={e => setHoursForm(f => ({ ...f, periodEnd: e.target.value }))} />
             </div>
             <div>
-              <Label>Ore totali</Label>
+              <Label>{isIt ? 'Ore totali' : 'Total hours'}</Label>
               <Input type="number" min={0} max={168} value={hoursForm.hours} onChange={e => setHoursForm(f => ({ ...f, hours: e.target.value }))} placeholder="40" />
             </div>
             <div className="col-span-2">
-              <Label>Note (opzionale)</Label>
+              <Label>{isIt ? 'Note (opzionale)' : 'Notes (optional)'}</Label>
               <Textarea rows={2} value={hoursForm.notes} onChange={e => setHoursForm(f => ({ ...f, notes: e.target.value }))} />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setHoursOpen(false)} disabled={hoursSaving}>Annulla</Button>
+            <Button variant="outline" onClick={() => setHoursOpen(false)} disabled={hoursSaving}>{isIt ? 'Annulla' : 'Cancel'}</Button>
             <Button onClick={logHours} disabled={hoursSaving || !hoursForm.periodStart || !hoursForm.periodEnd || !hoursForm.hours}>
-              {hoursSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Registra'}
+              {hoursSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : (isIt ? 'Registra' : 'Log')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -746,29 +751,29 @@ export default function PlacementDetailPage() {
       <Dialog open={evalOpen} onOpenChange={setEvalOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Submit valutazione</DialogTitle>
+            <DialogTitle>{isIt ? 'Invia valutazione' : 'Submit evaluation'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
             <div>
-              <Label>Tipo</Label>
+              <Label>{isIt ? 'Tipo' : 'Type'}</Label>
               <Select value={evalForm.kind} onValueChange={v => setEvalForm(f => ({ ...f, kind: v }))}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="MID">Intermedia</SelectItem>
-                  <SelectItem value="FINAL">Finale</SelectItem>
-                  {data.viewerRole !== 'STUDENT' && <SelectItem value="INCIDENT">Incident</SelectItem>}
+                  <SelectItem value="MID">{isIt ? 'Intermedia' : 'Mid'}</SelectItem>
+                  <SelectItem value="FINAL">{isIt ? 'Finale' : 'Final'}</SelectItem>
+                  {data.viewerRole !== 'STUDENT' && <SelectItem value="INCIDENT">{isIt ? 'Incident' : 'Incident'}</SelectItem>}
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label>Commenti</Label>
-              <Textarea rows={4} value={evalForm.comments} onChange={e => setEvalForm(f => ({ ...f, comments: e.target.value }))} placeholder="Punti di forza, aree di miglioramento, raccomandazioni…" />
+              <Label>{isIt ? 'Commenti' : 'Comments'}</Label>
+              <Textarea rows={4} value={evalForm.comments} onChange={e => setEvalForm(f => ({ ...f, comments: e.target.value }))} placeholder={isIt ? 'Punti di forza, aree di miglioramento, raccomandazioni…' : 'Strengths, areas for improvement, recommendations…'} />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setEvalOpen(false)} disabled={evalSaving}>Annulla</Button>
+            <Button variant="outline" onClick={() => setEvalOpen(false)} disabled={evalSaving}>{isIt ? 'Annulla' : 'Cancel'}</Button>
             <Button onClick={submitEvaluation} disabled={evalSaving}>
-              {evalSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Invia'}
+              {evalSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : (isIt ? 'Invia' : 'Submit')}
             </Button>
           </DialogFooter>
         </DialogContent>

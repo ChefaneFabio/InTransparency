@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -27,6 +28,8 @@ interface PCTOOpportunity {
 }
 
 export default function PCTOMarketplacePage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [opportunities, setOpportunities] = useState<PCTOOpportunity[]>([])
   const [loading, setLoading] = useState(true)
   const [total, setTotal] = useState(0)
@@ -76,12 +79,12 @@ export default function PCTOMarketplacePage() {
         body: JSON.stringify({
           opportunityId: opp.id,
           studentIds: ['placeholder'],
-          message: `Interesse per: ${opp.title}`,
+          message: isIt ? `Interesse per: ${opp.title}` : `Interest in: ${opp.title}`,
         }),
       })
       if (res.ok) {
         setSelectedOpp(null)
-        alert('Interesse inviato con successo!')
+        alert(isIt ? 'Interesse inviato con successo!' : 'Interest sent successfully!')
       }
     } catch (err) {
       console.error('Failed to express interest:', err)
@@ -91,22 +94,22 @@ export default function PCTOMarketplacePage() {
   }
 
   const activityTypeLabels: Record<string, string> = {
-    stage: 'Stage',
-    project: 'Progetto',
+    stage: isIt ? 'Stage' : 'Internship',
+    project: isIt ? 'Progetto' : 'Project',
     workshop: 'Workshop',
   }
 
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return '-'
-    return new Date(dateStr).toLocaleDateString('it-IT')
+    return new Date(dateStr).toLocaleDateString(locale)
   }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Marketplace PCTO</h1>
+        <h1 className="text-2xl font-bold">{isIt ? 'Marketplace PCTO' : 'PCTO Marketplace'}</h1>
         <p className="text-muted-foreground mt-1">
-          Esplora le opportunità PCTO offerte dalle aziende partner
+          {isIt ? 'Esplora le opportunità PCTO offerte dalle aziende partner' : 'Explore PCTO opportunities offered by partner companies'}
         </p>
       </div>
 
@@ -117,30 +120,30 @@ export default function PCTOMarketplacePage() {
             <div className="flex items-center gap-2 flex-1 min-w-[200px]">
               <Search className="h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Cerca per località..."
+                placeholder={isIt ? 'Cerca per località...' : 'Search by location...'}
                 value={locationSearch}
                 onChange={(e) => { setLocationSearch(e.target.value); setPage(1) }}
               />
             </div>
             <Select value={activityType} onValueChange={(v) => { setActivityType(v === 'all' ? '' : v); setPage(1) }}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Tipo attività" />
+                <SelectValue placeholder={isIt ? 'Tipo attività' : 'Activity type'} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tutti i tipi</SelectItem>
-                <SelectItem value="stage">Stage</SelectItem>
-                <SelectItem value="project">Progetto</SelectItem>
+                <SelectItem value="all">{isIt ? 'Tutti i tipi' : 'All types'}</SelectItem>
+                <SelectItem value="stage">{isIt ? 'Stage' : 'Internship'}</SelectItem>
+                <SelectItem value="project">{isIt ? 'Progetto' : 'Project'}</SelectItem>
                 <SelectItem value="workshop">Workshop</SelectItem>
               </SelectContent>
             </Select>
             <Select value={isRemote} onValueChange={(v) => { setIsRemote(v === 'all' ? '' : v); setPage(1) }}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Modalità" />
+                <SelectValue placeholder={isIt ? 'Modalità' : 'Mode'} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tutte le modalità</SelectItem>
-                <SelectItem value="true">Da remoto</SelectItem>
-                <SelectItem value="false">In sede</SelectItem>
+                <SelectItem value="all">{isIt ? 'Tutte le modalità' : 'All modes'}</SelectItem>
+                <SelectItem value="true">{isIt ? 'Da remoto' : 'Remote'}</SelectItem>
+                <SelectItem value="false">{isIt ? 'In sede' : 'On-site'}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -148,7 +151,7 @@ export default function PCTOMarketplacePage() {
       </Card>
 
       {/* Results count */}
-      <p className="text-sm text-muted-foreground">{total} opportunità trovate</p>
+      <p className="text-sm text-muted-foreground">{total} {isIt ? 'opportunità trovate' : 'opportunities found'}</p>
 
       {/* Opportunity Cards */}
       {loading ? (
@@ -160,7 +163,7 @@ export default function PCTOMarketplacePage() {
       ) : opportunities.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">Nessuna opportunità PCTO disponibile al momento.</p>
+            <p className="text-muted-foreground">{isIt ? 'Nessuna opportunità PCTO disponibile al momento.' : 'No PCTO opportunities available at the moment.'}</p>
           </CardContent>
         </Card>
       ) : (
@@ -187,14 +190,14 @@ export default function PCTOMarketplacePage() {
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
-                      <Clock className="h-3.5 w-3.5" /> {opp.hoursOffered} ore
+                      <Clock className="h-3.5 w-3.5" /> {opp.hoursOffered} {isIt ? 'ore' : 'hours'}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Users className="h-3.5 w-3.5" /> Max {opp.maxStudents} studenti
+                      <Users className="h-3.5 w-3.5" /> {isIt ? 'Max' : 'Max'} {opp.maxStudents} {isIt ? 'studenti' : 'students'}
                     </span>
                     {opp.isRemote ? (
                       <span className="flex items-center gap-1">
-                        <Wifi className="h-3.5 w-3.5" /> Da remoto
+                        <Wifi className="h-3.5 w-3.5" /> {isIt ? 'Da remoto' : 'Remote'}
                       </span>
                     ) : opp.location ? (
                       <span className="flex items-center gap-1">
@@ -203,7 +206,7 @@ export default function PCTOMarketplacePage() {
                     ) : null}
                     {opp.applicationDeadline && (
                       <span className="flex items-center gap-1">
-                        <Calendar className="h-3.5 w-3.5" /> Scadenza: {formatDate(opp.applicationDeadline)}
+                        <Calendar className="h-3.5 w-3.5" /> {isIt ? 'Scadenza:' : 'Deadline:'} {formatDate(opp.applicationDeadline)}
                       </span>
                     )}
                   </div>
@@ -224,7 +227,7 @@ export default function PCTOMarketplacePage() {
                   disabled={submitting}
                   className="w-full"
                 >
-                  Proponi Studenti
+                  {isIt ? 'Proponi Studenti' : 'Propose Students'}
                 </Button>
               </CardContent>
             </Card>
@@ -236,13 +239,13 @@ export default function PCTOMarketplacePage() {
       {totalPages > 1 && (
         <div className="flex justify-center gap-2">
           <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => setPage(page - 1)}>
-            Precedente
+            {isIt ? 'Precedente' : 'Previous'}
           </Button>
           <span className="flex items-center text-sm text-muted-foreground">
-            Pagina {page} di {totalPages}
+            {isIt ? `Pagina ${page} di ${totalPages}` : `Page ${page} of ${totalPages}`}
           </span>
           <Button variant="outline" size="sm" disabled={page >= totalPages} onClick={() => setPage(page + 1)}>
-            Successiva
+            {isIt ? 'Successiva' : 'Next'}
           </Button>
         </div>
       )}

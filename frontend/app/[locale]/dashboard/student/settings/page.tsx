@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Settings as SettingsIcon, Shield } from 'lucide-react'
@@ -12,6 +13,8 @@ type TabKey = 'general' | 'privacy'
 const VALID: TabKey[] = ['general', 'privacy']
 
 export default function StudentSettingsPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -29,9 +32,9 @@ export default function StudentSettingsPage() {
   return (
     <div className="max-w-3xl mx-auto py-8 px-4 space-y-6">
       <MetricHero gradient="student">
-        <h1 className="text-2xl font-bold">Settings</h1>
+        <h1 className="text-2xl font-bold">{isIt ? 'Impostazioni' : 'Settings'}</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Your account, preferences, and privacy controls.
+          {isIt ? 'Account, preferenze e controlli sulla privacy.' : 'Your account, preferences, and privacy controls.'}
         </p>
       </MetricHero>
 
@@ -39,7 +42,7 @@ export default function StudentSettingsPage() {
         <TabsList className="grid w-full grid-cols-2 max-w-md">
           <TabsTrigger value="general" className="gap-2">
             <SettingsIcon className="h-4 w-4" />
-            General
+            {isIt ? 'Generale' : 'General'}
           </TabsTrigger>
           <TabsTrigger value="privacy" className="gap-2">
             <Shield className="h-4 w-4" />

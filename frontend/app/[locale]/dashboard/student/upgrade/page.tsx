@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
@@ -42,6 +43,8 @@ const PREMIUM_FEATURES = [
 ]
 
 export default function StudentUpgradePage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [entitlement, setEntitlement] = useState<PremiumEntitlement | null>(null)
   const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
@@ -85,19 +88,19 @@ export default function StudentUpgradePage() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-500/40 mb-4">
             <Sparkles className="h-7 w-7 text-white" />
           </div>
-          <h1 className="text-2xl font-bold">You already have Premium</h1>
+          <h1 className="text-2xl font-bold">{isIt ? 'Hai già Premium' : 'You already have Premium'}</h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             <span className="font-semibold text-foreground">{entitlement.sponsoringInstitution.name}</span>{' '}
-            sponsors Premium for every active student. All tools below are already unlocked for you.
+            {isIt ? 'sponsorizza Premium per ogni studente attivo. Tutti gli strumenti qui sotto sono già sbloccati.' : 'sponsors Premium for every active student. All tools below are already unlocked for you.'}
           </p>
           <Link href="/dashboard/student/profile?tab=fit" className="inline-block mt-4">
             <Button>
-              Explore Premium features
+              {isIt ? 'Esplora le funzionalità Premium' : 'Explore Premium features'}
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
         </motion.div>
-        <FeatureList />
+        <FeatureList isIt={isIt} />
       </div>
     )
   }
@@ -114,18 +117,18 @@ export default function StudentUpgradePage() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/30 mb-4">
             <Check className="h-7 w-7 text-white" />
           </div>
-          <h1 className="text-2xl font-bold">Premium active</h1>
+          <h1 className="text-2xl font-bold">{isIt ? 'Premium attivo' : 'Premium active'}</h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-            Thanks for supporting the work. Manage your subscription from your account settings.
+            {isIt ? 'Grazie del supporto. Gestisci il tuo abbonamento dalle impostazioni dell\'account.' : 'Thanks for supporting the work. Manage your subscription from your account settings.'}
           </p>
           <Link href="/dashboard/student/settings" className="inline-block mt-4">
             <Button variant="outline">
-              Manage subscription
+              {isIt ? 'Gestisci abbonamento' : 'Manage subscription'}
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
         </motion.div>
-        <FeatureList />
+        <FeatureList isIt={isIt} />
       </div>
     )
   }
@@ -142,9 +145,9 @@ export default function StudentUpgradePage() {
         >
           <Check className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
           <div className="text-sm">
-            <p className="font-semibold text-emerald-800 dark:text-emerald-200">Subscription active</p>
+            <p className="font-semibold text-emerald-800 dark:text-emerald-200">{isIt ? 'Abbonamento attivo' : 'Subscription active'}</p>
             <p className="text-emerald-700/80 dark:text-emerald-300/80 text-xs mt-0.5">
-              Premium features will unlock within a minute once the webhook confirms. Refresh any page.
+              {isIt ? 'Le funzionalità Premium si attiveranno entro un minuto dalla conferma del webhook. Aggiorna la pagina.' : 'Premium features will unlock within a minute once the webhook confirms. Refresh any page.'}
             </p>
           </div>
         </motion.div>
@@ -157,9 +160,9 @@ export default function StudentUpgradePage() {
         >
           <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
           <div className="text-sm">
-            <p className="font-semibold text-amber-800 dark:text-amber-200">Checkout canceled</p>
+            <p className="font-semibold text-amber-800 dark:text-amber-200">{isIt ? 'Checkout annullato' : 'Checkout canceled'}</p>
             <p className="text-amber-700/80 dark:text-amber-300/80 text-xs mt-0.5">
-              No charge was made. You can restart the flow anytime from the buttons below.
+              {isIt ? 'Nessun addebito effettuato. Puoi ricominciare in qualsiasi momento dai pulsanti qui sotto.' : 'No charge was made. You can restart the flow anytime from the buttons below.'}
             </p>
           </div>
         </motion.div>
@@ -172,9 +175,9 @@ export default function StudentUpgradePage() {
         >
           <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
           <div className="text-sm">
-            <p className="font-semibold text-amber-800 dark:text-amber-200">Checkout temporarily unavailable</p>
+            <p className="font-semibold text-amber-800 dark:text-amber-200">{isIt ? 'Checkout temporaneamente non disponibile' : 'Checkout temporarily unavailable'}</p>
             <p className="text-amber-700/80 dark:text-amber-300/80 text-xs mt-0.5">
-              Our team is finalizing payment setup. Premium features are coming very soon — thanks for your patience.
+              {isIt ? 'Il nostro team sta finalizzando la configurazione dei pagamenti. Le funzionalità Premium arrivano presto — grazie per la pazienza.' : 'Our team is finalizing payment setup. Premium features are coming very soon — thanks for your patience.'}
             </p>
           </div>
         </motion.div>
@@ -195,52 +198,53 @@ export default function StudentUpgradePage() {
               <Sparkles className="h-3 w-3" />
               Premium
             </div>
-            <h1 className="text-3xl font-bold">Accelerate your career</h1>
+            <h1 className="text-3xl font-bold">{isIt ? 'Accelera la tua carriera' : 'Accelerate your career'}</h1>
             <p className="text-muted-foreground mt-2 max-w-xl">
-              One subscription, every growth tool unlocked. Deep skill path, advanced analytics,
-              unlimited AI, priority visibility, interview coach, signed credentials.
+              {isIt
+                ? 'Un abbonamento, ogni strumento di crescita sbloccato. Skill path approfondito, analytics avanzate, AI illimitata, visibilità prioritaria, coach di colloqui, credenziali firmate.'
+                : 'One subscription, every growth tool unlocked. Deep skill path, advanced analytics, unlimited AI, priority visibility, interview coach, signed credentials.'}
             </p>
           </div>
           <div className="shrink-0 text-right">
             <div className="flex items-baseline gap-1">
               <span className="text-4xl font-bold tracking-tight">€5</span>
-              <span className="text-sm text-muted-foreground">/mo</span>
+              <span className="text-sm text-muted-foreground">{isIt ? '/mese' : '/mo'}</span>
             </div>
             <p className="text-xs text-emerald-700 dark:text-emerald-400 font-medium mt-1">
-              30-day free trial · cancel anytime
+              {isIt ? '30 giorni di prova gratis · disdici quando vuoi' : '30-day free trial · cancel anytime'}
             </p>
             <p className="text-[11px] text-muted-foreground mt-0.5">
-              or €45/yr · save 25%
+              {isIt ? 'oppure €45/anno · risparmi il 25%' : 'or €45/yr · save 25%'}
             </p>
           </div>
         </div>
         <div className="relative mt-6 flex flex-col sm:flex-row gap-3">
           <a href="/api/checkout/student-premium?plan=monthly" className="flex-1">
             <Button className="w-full bg-gradient-to-br from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white shadow-lg shadow-primary/25" size="lg">
-              Start free 30-day trial
+              {isIt ? 'Inizia la prova gratuita di 30 giorni' : 'Start free 30-day trial'}
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           </a>
           <a href="/api/checkout/student-premium?plan=annual" className="flex-1">
             <Button variant="outline" className="w-full" size="lg">
-              Pay annually · €45/yr
+              {isIt ? 'Paga annualmente · €45/anno' : 'Pay annually · €45/yr'}
             </Button>
           </a>
         </div>
         <p className="relative text-xs text-muted-foreground mt-3 text-center">
-          Wait — is your university a partner? If so, Premium is free for you. Ask your career office.
+          {isIt ? 'Aspetta — la tua università è partner? Se sì, Premium è gratis per te. Chiedi all\'ufficio carriere.' : 'Wait — is your university a partner? If so, Premium is free for you. Ask your career office.'}
         </p>
       </motion.div>
 
-      <FeatureList />
+      <FeatureList isIt={isIt} />
     </div>
   )
 }
 
-function FeatureList() {
+function FeatureList({ isIt }: { isIt: boolean }) {
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-4">What Premium unlocks</h2>
+      <h2 className="text-lg font-semibold mb-4">{isIt ? 'Cosa sblocca Premium' : 'What Premium unlocks'}</h2>
       <div className="grid sm:grid-cols-2 gap-3">
         {PREMIUM_FEATURES.map((f, i) => {
           const Icon = f.icon

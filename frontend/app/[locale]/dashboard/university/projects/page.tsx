@@ -24,7 +24,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface Student {
   id: string
@@ -65,6 +65,8 @@ interface Stats {
 
 export default function UniversityProjectsPage() {
   const t = useTranslations('universityDashboard.projects')
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [projects, setProjects] = useState<Project[]>([])
   const [stats, setStats] = useState<Stats>({
     total: 0,
@@ -253,14 +255,14 @@ export default function UniversityProjectsPage() {
                     <SelectValue placeholder={t('discipline')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="TECHNOLOGY">Technology</SelectItem>
+                    <SelectItem value="all">{isIt ? 'Tutte' : 'All'}</SelectItem>
+                    <SelectItem value="TECHNOLOGY">{isIt ? 'Tecnologia' : 'Technology'}</SelectItem>
                     <SelectItem value="BUSINESS">Business</SelectItem>
-                    <SelectItem value="ENGINEERING">Engineering</SelectItem>
+                    <SelectItem value="ENGINEERING">{isIt ? 'Ingegneria' : 'Engineering'}</SelectItem>
                     <SelectItem value="DESIGN">Design</SelectItem>
-                    <SelectItem value="SCIENCE">Science</SelectItem>
-                    <SelectItem value="HEALTHCARE">Healthcare</SelectItem>
-                    <SelectItem value="LAW">Law</SelectItem>
+                    <SelectItem value="SCIENCE">{isIt ? 'Scienze' : 'Science'}</SelectItem>
+                    <SelectItem value="HEALTHCARE">{isIt ? 'Sanità' : 'Healthcare'}</SelectItem>
+                    <SelectItem value="LAW">{isIt ? 'Diritto' : 'Law'}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -293,6 +295,8 @@ function ProjectsList({
   getStatusBadge: (status: string) => JSX.Element
 }) {
   const t = useTranslations('universityDashboard.projects')
+  const locale = useLocale()
+  const isIt = locale === 'it'
   if (projects.length === 0) {
     return (
       <div className="text-center py-12">
@@ -377,7 +381,7 @@ function ProjectsList({
                 {/* Grade */}
                 {project.grade && (
                   <Badge variant="secondary" className="text-xs">
-                    Grade: {project.grade}
+                    {(isIt ? 'Voto' : 'Grade')}: {project.grade}
                   </Badge>
                 )}
               </div>

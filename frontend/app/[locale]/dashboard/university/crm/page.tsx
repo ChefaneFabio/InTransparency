@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { useLocale } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Badge } from '@/components/ui/badge'
@@ -85,6 +86,8 @@ const DEFAULT_FORM = {
 
 export default function InstitutionCrmPage() {
   const router = useRouter()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [institutionId, setInstitutionId] = useState<string | null>(null)
   const [institutionName, setInstitutionName] = useState<string | null>(null)
   const [institutionPlan, setInstitutionPlan] = useState<'CORE' | 'PREMIUM' | null>(null)
@@ -228,9 +231,9 @@ export default function InstitutionCrmPage() {
     return (
       <div className="max-w-4xl mx-auto p-12 text-center">
         <Building2 className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-        <h3 className="font-semibold mb-1">Accesso solo per staff istituzione</h3>
+        <h3 className="font-semibold mb-1">{isIt ? 'Accesso solo per staff istituzione' : 'Institution staff access only'}</h3>
         <p className="text-sm text-muted-foreground">
-          Questa sezione è per career service e admin dell'istituzione.
+          {isIt ? 'Questa sezione è per career service e admin dell\'istituzione.' : 'This section is for career services and institution admins.'}
         </p>
       </div>
     )
@@ -241,9 +244,9 @@ export default function InstitutionCrmPage() {
       <MetricHero gradient="institution">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">CRM Aziende</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">{isIt ? 'CRM Aziende' : 'Company CRM'}</h1>
             <p className="text-muted-foreground mt-1">
-              Pipeline di acquisizione: dal primo contatto alla convenzione firmata. Trascina per aggiornare lo stato.
+              {isIt ? 'Pipeline di acquisizione: dal primo contatto alla convenzione firmata. Trascina per aggiornare lo stato.' : 'Acquisition pipeline: from first contact to signed agreement. Drag to update status.'}
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -253,7 +256,7 @@ export default function InstitutionCrmPage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <Target className="h-4 w-4 text-primary" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Lead</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Lead' : 'Leads'}</div>
                       <div className="text-lg font-bold">{pipeline.summary.totalLeads}</div>
                     </div>
                   </div>
@@ -262,7 +265,7 @@ export default function InstitutionCrmPage() {
                   <div className="px-4 py-2.5 flex items-center gap-2">
                     <FileSignature className="h-4 w-4 text-emerald-600" />
                     <div>
-                      <div className="text-xs text-muted-foreground leading-none">Firmate</div>
+                      <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Firmate' : 'Signed'}</div>
                       <div className="text-lg font-bold">{pipeline.summary.signed}</div>
                     </div>
                   </div>
@@ -272,7 +275,7 @@ export default function InstitutionCrmPage() {
                     <div className="px-4 py-2.5 flex items-center gap-2">
                       <AlertTriangle className="h-4 w-4 text-red-500" />
                       <div>
-                        <div className="text-xs text-muted-foreground leading-none">Next action scaduta</div>
+                        <div className="text-xs text-muted-foreground leading-none">{isIt ? 'Next action scaduta' : 'Overdue next action'}</div>
                         <div className="text-lg font-bold text-red-600">{pipeline.summary.atRisk}</div>
                       </div>
                     </div>
@@ -288,7 +291,7 @@ export default function InstitutionCrmPage() {
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Cerca per azienda, settore, città, owner…"
+            placeholder={isIt ? 'Cerca per azienda, settore, città, owner…' : 'Search by company, sector, city, owner…'}
             value={filter}
             onChange={e => setFilter(e.target.value)}
             className="pl-9"
@@ -297,33 +300,33 @@ export default function InstitutionCrmPage() {
         <Dialog open={createOpen} onOpenChange={setCreateOpen}>
           <DialogTrigger asChild>
             <Button>
-              <Plus className="h-4 w-4 mr-1.5" /> Nuovo lead
+              <Plus className="h-4 w-4 mr-1.5" /> {isIt ? 'Nuovo lead' : 'New lead'}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Nuovo lead azienda</DialogTitle>
+              <DialogTitle>{isIt ? 'Nuovo lead azienda' : 'New company lead'}</DialogTitle>
               <DialogDescription>
-                Aggiungi un'azienda che vuoi contattare per una convenzione. Puoi completare i dettagli in seguito.
+                {isIt ? 'Aggiungi un\'azienda che vuoi contattare per una convenzione. Puoi completare i dettagli in seguito.' : 'Add a company you want to reach out to. You can complete the details later.'}
               </DialogDescription>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
-                <Label>Nome azienda *</Label>
+                <Label>{isIt ? 'Nome azienda *' : 'Company name *'}</Label>
                 <Input value={form.externalName} onChange={e => setForm(f => ({ ...f, externalName: e.target.value }))} placeholder="Evoca Group" />
               </div>
               <div>
-                <Label>Dominio</Label>
+                <Label>{isIt ? 'Dominio' : 'Domain'}</Label>
                 <Input value={form.externalDomain} onChange={e => setForm(f => ({ ...f, externalDomain: e.target.value }))} placeholder="evocagroup.com" />
               </div>
               <div>
-                <Label>Settore</Label>
+                <Label>{isIt ? 'Settore' : 'Sector'}</Label>
                 <Input value={form.sector} onChange={e => setForm(f => ({ ...f, sector: e.target.value }))} placeholder="Food & Beverage" />
               </div>
               <div>
-                <Label>Dimensione</Label>
+                <Label>{isIt ? 'Dimensione' : 'Size'}</Label>
                 <Select value={form.sizeRange} onValueChange={v => setForm(f => ({ ...f, sizeRange: v }))}>
-                  <SelectTrigger><SelectValue placeholder="N. dipendenti" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder={isIt ? 'N. dipendenti' : 'Employees'} /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="1-10">1-10</SelectItem>
                     <SelectItem value="11-50">11-50</SelectItem>
@@ -334,37 +337,37 @@ export default function InstitutionCrmPage() {
                 </Select>
               </div>
               <div>
-                <Label>Regione</Label>
+                <Label>{isIt ? 'Regione' : 'Region'}</Label>
                 <Input value={form.region} onChange={e => setForm(f => ({ ...f, region: e.target.value }))} placeholder="Lombardia" />
               </div>
               <div>
-                <Label>Città</Label>
+                <Label>{isIt ? 'Città' : 'City'}</Label>
                 <Input value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} placeholder="Milano" />
               </div>
               <div className="col-span-2">
-                <Label>Fonte</Label>
+                <Label>{isIt ? 'Fonte' : 'Source'}</Label>
                 <Input value={form.source} onChange={e => setForm(f => ({ ...f, source: e.target.value }))} placeholder="career-day, referral, LinkedIn…" />
               </div>
               <div className="col-span-2 pt-2 border-t">
-                <div className="text-xs font-semibold mb-2">Contatto principale</div>
+                <div className="text-xs font-semibold mb-2">{isIt ? 'Contatto principale' : 'Primary contact'}</div>
               </div>
               <div>
-                <Label>Nome</Label>
+                <Label>{isIt ? 'Nome' : 'Name'}</Label>
                 <Input value={form.primaryContactName} onChange={e => setForm(f => ({ ...f, primaryContactName: e.target.value }))} />
               </div>
               <div>
-                <Label>Ruolo email</Label>
+                <Label>{isIt ? 'Email' : 'Email'}</Label>
                 <Input type="email" value={form.primaryContactEmail} onChange={e => setForm(f => ({ ...f, primaryContactEmail: e.target.value }))} />
               </div>
               <div className="col-span-2">
-                <Label>Telefono</Label>
+                <Label>{isIt ? 'Telefono' : 'Phone'}</Label>
                 <Input value={form.primaryContactPhone} onChange={e => setForm(f => ({ ...f, primaryContactPhone: e.target.value }))} />
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setCreateOpen(false)} disabled={saving}>Annulla</Button>
+              <Button variant="outline" onClick={() => setCreateOpen(false)} disabled={saving}>{isIt ? 'Annulla' : 'Cancel'}</Button>
               <Button onClick={createLead} disabled={saving || !form.externalName.trim()}>
-                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Crea lead'}
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : (isIt ? 'Crea lead' : 'Create lead')}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -384,12 +387,12 @@ export default function InstitutionCrmPage() {
         <Card>
           <CardContent className="p-12 text-center">
             <Target className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Pipeline vuota</h3>
+            <h3 className="font-semibold mb-1">{isIt ? 'Pipeline vuota' : 'Empty pipeline'}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Aggiungi il primo lead per iniziare a tracciare l'acquisizione.
+              {isIt ? 'Aggiungi il primo lead per iniziare a tracciare l\'acquisizione.' : 'Add your first lead to start tracking acquisition.'}
             </p>
             <Button onClick={() => setCreateOpen(true)}>
-              <Plus className="h-4 w-4 mr-1.5" /> Nuovo lead
+              <Plus className="h-4 w-4 mr-1.5" /> {isIt ? 'Nuovo lead' : 'New lead'}
             </Button>
           </CardContent>
         </Card>
@@ -424,10 +427,10 @@ export default function InstitutionCrmPage() {
                     <div className="flex items-center justify-center h-[240px]">
                       <p className="text-center text-xs text-muted-foreground px-3">
                         {filter
-                          ? 'Nessun lead corrisponde al filtro'
+                          ? (isIt ? 'Nessun lead corrisponde al filtro' : 'No leads match the filter')
                           : isTarget
-                            ? 'Rilascia qui per spostare'
-                            : 'Nessun lead in questa fase'}
+                            ? (isIt ? 'Rilascia qui per spostare' : 'Drop here to move')
+                            : (isIt ? 'Nessun lead in questa fase' : 'No leads in this stage')}
                       </p>
                     </div>
                   ) : (
@@ -462,8 +465,8 @@ export default function InstitutionCrmPage() {
                           <div className="flex items-center justify-between pt-1.5 border-t text-[10px] text-muted-foreground mt-1">
                             {l.owner ? (
                               <span className="truncate">👤 {l.owner.name}</span>
-                            ) : <span className="italic">No owner</span>}
-                            <span>{l.daysInStage}g</span>
+                            ) : <span className="italic">{isIt ? 'No owner' : 'No owner'}</span>}
+                            <span>{l.daysInStage}{isIt ? 'g' : 'd'}</span>
                           </div>
                         </Link>
                       )

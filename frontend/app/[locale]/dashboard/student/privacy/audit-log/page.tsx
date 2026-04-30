@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -102,6 +103,8 @@ function fmtTime(iso: string): string {
 }
 
 export default function StudentAuditLogPage() {
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const [data, setData] = useState<AuditData | null>(null)
   const [loading, setLoading] = useState(true)
   const [since, setSince] = useState(() => {
@@ -165,10 +168,10 @@ export default function StudentAuditLogPage() {
           </div>
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Chi ha visto i tuoi dati
+              {isIt ? 'Chi ha visto i tuoi dati' : 'Who saw your data'}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Ogni volta che qualcuno interagisce con il tuo profilo, è qui — GDPR Art. 15.
+              {isIt ? 'Ogni volta che qualcuno interagisce con il tuo profilo, è qui — GDPR Art. 15.' : 'Every time someone interacts with your profile, it\'s here — GDPR Art. 15.'}
             </p>
           </div>
         </div>
@@ -176,11 +179,23 @@ export default function StudentAuditLogPage() {
         <div className="flex items-start gap-2 p-3 rounded-lg bg-white/60 border border-emerald-100 mt-4">
           <Info className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
           <p className="text-xs text-gray-700 leading-relaxed">
-            Questa pagina mostra ogni azione tracciata sui tuoi dati negli ultimi{' '}
-            <span className="font-medium">90 giorni</span>: ricerche AI che ti hanno
-            incluso, messaggi da aziende, aggiornamenti al tuo tirocinio, e ogni
-            decisione del tuo ateneo che ti riguarda. Puoi scaricare tutto in CSV e
-            farne quello che vuoi.
+            {isIt ? (
+              <>
+                Questa pagina mostra ogni azione tracciata sui tuoi dati negli ultimi{' '}
+                <span className="font-medium">90 giorni</span>: ricerche AI che ti hanno
+                incluso, messaggi da aziende, aggiornamenti al tuo tirocinio, e ogni
+                decisione del tuo ateneo che ti riguarda. Puoi scaricare tutto in CSV e
+                farne quello che vuoi.
+              </>
+            ) : (
+              <>
+                This page shows every action tracked on your data over the last{' '}
+                <span className="font-medium">90 days</span>: AI searches that included
+                you, messages from companies, internship updates, and every decision your
+                institution makes about you. You can download everything as CSV and do
+                what you want with it.
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -222,7 +237,7 @@ export default function StudentAuditLogPage() {
               d.setDate(d.getDate() - days)
               return (
                 <option key={days} value={d.toISOString().slice(0, 10)}>
-                  Ultimi {days} giorni
+                  {isIt ? `Ultimi ${days} giorni` : `Last ${days} days`}
                 </option>
               )
             })}
@@ -243,10 +258,11 @@ export default function StudentAuditLogPage() {
         <Card>
           <CardContent className="p-10 text-center">
             <Shield className="h-10 w-10 mx-auto mb-3 text-emerald-500" />
-            <h3 className="font-semibold mb-1">Nessun evento tracciato</h3>
+            <h3 className="font-semibold mb-1">{isIt ? 'Nessun evento tracciato' : 'No tracked events'}</h3>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Nessuno ha ancora interagito con i tuoi dati nell'intervallo selezionato.
-              Quando un recruiter ti cercherà o il tuo ateneo aggiornerà qualcosa, apparirà qui.
+              {isIt
+                ? 'Nessuno ha ancora interagito con i tuoi dati nell\'intervallo selezionato. Quando un recruiter ti cercherà o il tuo ateneo aggiornerà qualcosa, apparirà qui.'
+                : 'No one has interacted with your data in the selected range yet. When a recruiter searches for you or your institution updates something, it will appear here.'}
             </p>
           </CardContent>
         </Card>

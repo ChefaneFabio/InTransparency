@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -62,6 +62,8 @@ interface ThreadMessage {
 
 export default function StudentMessages() {
   const { data: session } = useSession()
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const currentUserId = session?.user?.id
 
   const [conversations, setConversations] = useState<Conversation[]>([])
@@ -140,11 +142,11 @@ export default function StudentMessages() {
     const diffHours = Math.floor(diffMs / 3600000)
     const diffDays = Math.floor(diffMs / 86400000)
 
-    if (diffMins < 1) return 'Now'
-    if (diffMins < 60) return `${diffMins}m ago`
-    if (diffHours < 24) return `${diffHours}h ago`
-    if (diffDays < 7) return `${diffDays}d ago`
-    return date.toLocaleDateString()
+    if (diffMins < 1) return isIt ? 'Ora' : 'Now'
+    if (diffMins < 60) return isIt ? `${diffMins}m fa` : `${diffMins}m ago`
+    if (diffHours < 24) return isIt ? `${diffHours}h fa` : `${diffHours}h ago`
+    if (diffDays < 7) return isIt ? `${diffDays}g fa` : `${diffDays}d ago`
+    return date.toLocaleDateString(locale)
   }
 
   const handleSelectConversation = (conv: Conversation) => {
@@ -178,7 +180,7 @@ export default function StudentMessages() {
       fetchThread(selectedConversation.threadId)
       fetchConversations()
     } catch {
-      alert('Failed to send message. Please try again.')
+      alert(isIt ? 'Errore nell\'invio del messaggio. Riprova.' : 'Failed to send message. Please try again.')
     } finally {
       setSendingReply(false)
     }
@@ -191,14 +193,14 @@ export default function StudentMessages() {
         <MetricHero gradient="student">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
+              <h1 className="text-3xl font-bold tracking-tight">{isIt ? 'Messaggi' : 'Messages'}</h1>
               <p className="text-muted-foreground">
-                Communicate with recruiters and potential employers
+                {isIt ? 'Comunica con recruiter e potenziali datori di lavoro' : 'Communicate with recruiters and potential employers'}
               </p>
             </div>
             <Button variant="outline" onClick={fetchConversations}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh
+              {isIt ? 'Aggiorna' : 'Refresh'}
             </Button>
           </div>
         </MetricHero>
@@ -230,7 +232,7 @@ export default function StudentMessages() {
                 <div className="relative mt-4">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                   <Input
-                    placeholder="Search conversations..."
+                    placeholder={isIt ? 'Cerca conversazioni...' : 'Search conversations...'}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -258,13 +260,13 @@ export default function StudentMessages() {
                       <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
                       <p className="text-sm">{errorConversations}</p>
                       <Button variant="outline" size="sm" className="mt-2" onClick={fetchConversations}>
-                        Try Again
+                        {isIt ? 'Riprova' : 'Try Again'}
                       </Button>
                     </div>
                   ) : filteredConversations.length === 0 ? (
                     <div className="text-center py-8 text-muted-foreground">
                       <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                      <p>No conversations yet</p>
+                      <p>{isIt ? 'Nessuna conversazione ancora' : 'No conversations yet'}</p>
                     </div>
                   ) : (
                     filteredConversations.map(conv => {
@@ -394,13 +396,13 @@ export default function StudentMessages() {
                       </div>
                     ) : threadMessages.length === 0 ? (
                       <div className="text-center py-8 text-muted-foreground">
-                        <p>No messages in this conversation</p>
+                        <p>{isIt ? 'Nessun messaggio in questa conversazione' : 'No messages in this conversation'}</p>
                       </div>
                     ) : (
                       threadMessages.map(msg => {
                         const isMe = msg.senderId === currentUserId
                         const senderName = isMe
-                          ? 'You'
+                          ? (isIt ? 'Tu' : 'You')
                           : `${msg.sender.firstName} ${msg.sender.lastName}`
                         return (
                           <div
@@ -430,7 +432,7 @@ export default function StudentMessages() {
                   {/* Reply */}
                   <div className="border-t pt-4">
                     <Textarea
-                      placeholder="Type your reply..."
+                      placeholder={isIt ? 'Scrivi la tua risposta...' : 'Type your reply...'}
                       value={replyContent}
                       onChange={(e) => setReplyContent(e.target.value)}
                       rows={3}
@@ -448,7 +450,7 @@ export default function StudentMessages() {
                         disabled={!replyContent.trim() || sendingReply}
                       >
                         <Send className="h-4 w-4 mr-2" />
-                        {sendingReply ? 'Sending...' : 'Send'}
+                        {sendingReply ? (isIt ? 'Invio in corso...' : 'Sending...') : (isIt ? 'Invia' : 'Send')}
                       </Button>
                     </div>
                   </div>
@@ -459,10 +461,10 @@ export default function StudentMessages() {
                 <div className="text-center py-16">
                   <MessageSquare className="h-16 w-16 text-muted-foreground/40 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    Select a conversation
+                    {isIt ? 'Seleziona una conversazione' : 'Select a conversation'}
                   </h3>
                   <p className="text-muted-foreground">
-                    Choose a conversation from the list to view messages
+                    {isIt ? 'Scegli una conversazione dall\'elenco per vedere i messaggi' : 'Choose a conversation from the list to view messages'}
                   </p>
                 </div>
               </Card>

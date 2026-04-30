@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Card, CardContent } from '@/components/ui/card'
@@ -67,7 +68,7 @@ interface CompanyDetail {
   placements: Array<{ jobTitle: string | null; salaryAmount: number | null; salaryCurrency: string | null; startDate: string | null; status: string }>
 }
 
-function MessageComposer({ contact, onSent }: { contact: Contact; onSent?: () => void }) {
+function MessageComposer({ contact, onSent, isIt }: { contact: Contact; onSent?: () => void; isIt: boolean }) {
   const [subject, setSubject] = useState('')
   const [body, setBody] = useState('')
   const [sending, setSending] = useState(false)
@@ -109,26 +110,26 @@ function MessageComposer({ contact, onSent }: { contact: Contact; onSent?: () =>
     <Popover>
       <PopoverTrigger asChild>
         <Button size="sm" variant="default">
-          <Send className="h-3.5 w-3.5 mr-1.5" /> Messaggia
+          <Send className="h-3.5 w-3.5 mr-1.5" /> {isIt ? 'Messaggia' : 'Message'}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-96 p-4" align="end">
         <div className="space-y-2">
           <div className="text-xs text-muted-foreground">
-            A: <span className="font-medium text-foreground">{[contact.firstName, contact.lastName].filter(Boolean).join(' ')} ({contact.email})</span>
+            {isIt ? 'A:' : 'To:'} <span className="font-medium text-foreground">{[contact.firstName, contact.lastName].filter(Boolean).join(' ')} ({contact.email})</span>
           </div>
-          <Input placeholder="Oggetto" value={subject} onChange={e => setSubject(e.target.value)} disabled={sending} />
-          <Textarea placeholder="Scrivi un messaggio…" value={body} onChange={e => setBody(e.target.value)} rows={5} disabled={sending} />
+          <Input placeholder={isIt ? 'Oggetto' : 'Subject'} value={subject} onChange={e => setSubject(e.target.value)} disabled={sending} />
+          <Textarea placeholder={isIt ? 'Scrivi un messaggio…' : 'Write a message…'} value={body} onChange={e => setBody(e.target.value)} rows={5} disabled={sending} />
           <Button onClick={send} disabled={sending || !body.trim()} className="w-full">
             {sending ? <Loader2 className="h-4 w-4 animate-spin mr-1.5" /> : <Send className="h-4 w-4 mr-1.5" />}
-            Invia
+            {isIt ? 'Invia' : 'Send'}
           </Button>
           {result === 'ok' && (
             <div className="text-xs text-emerald-700 flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5" /> Messaggio inviato.
+              <CheckCircle2 className="h-3.5 w-3.5" /> {isIt ? 'Messaggio inviato.' : 'Message sent.'}
             </div>
           )}
-          {result === 'err' && <div className="text-xs text-red-700">Errore: {error}</div>}
+          {result === 'err' && <div className="text-xs text-red-700">{isIt ? 'Errore' : 'Error'}: {error}</div>}
         </div>
       </PopoverContent>
     </Popover>
@@ -137,6 +138,8 @@ function MessageComposer({ contact, onSent }: { contact: Contact; onSent?: () =>
 
 export default function EmployerCompanyDetailPage() {
   const params = useParams() as { company?: string }
+  const locale = useLocale()
+  const isIt = locale === 'it'
   const companyParam = params?.company || ''
   const [data, setData] = useState<CompanyDetail | null>(null)
   const [loading, setLoading] = useState(true)
@@ -168,9 +171,9 @@ export default function EmployerCompanyDetailPage() {
   if (!data) {
     return (
       <div className="max-w-6xl mx-auto py-8 text-center">
-        <p className="text-muted-foreground">Azienda non trovata.</p>
+        <p className="text-muted-foreground">{isIt ? 'Azienda non trovata.' : 'Company not found.'}</p>
         <Button asChild className="mt-4">
-          <Link href="/dashboard/university/employer-crm"><ArrowLeft className="h-4 w-4 mr-1.5" /> Torna alle aziende</Link>
+          <Link href="/dashboard/university/employer-crm"><ArrowLeft className="h-4 w-4 mr-1.5" /> {isIt ? 'Torna alle aziende' : 'Back to companies'}</Link>
         </Button>
       </div>
     )
@@ -184,7 +187,7 @@ export default function EmployerCompanyDetailPage() {
       {/* Back */}
       <Button variant="ghost" size="sm" asChild>
         <Link href="/dashboard/university/employer-crm">
-          <ArrowLeft className="h-4 w-4 mr-1.5" /> Torna alle aziende convenzionate
+          <ArrowLeft className="h-4 w-4 mr-1.5" /> {isIt ? 'Torna alle aziende convenzionate' : 'Back to partner companies'}
         </Link>
       </Button>
 
@@ -200,14 +203,14 @@ export default function EmployerCompanyDetailPage() {
             <div>
               <div className="flex items-center gap-2 flex-wrap">
                 <h1 className="text-2xl md:text-3xl font-bold text-foreground">{company.name}</h1>
-                {p?.verified && <Badge variant="outline" className="text-xs">Verificata</Badge>}
-                {!p && <Badge variant="secondary" className="text-xs">Profilo non registrato</Badge>}
+                {p?.verified && <Badge variant="outline" className="text-xs">{isIt ? 'Verificata' : 'Verified'}</Badge>}
+                {!p && <Badge variant="secondary" className="text-xs">{isIt ? 'Profilo non registrato' : 'Profile not registered'}</Badge>}
               </div>
               {p?.tagline && <p className="text-muted-foreground mt-1">{p.tagline}</p>}
               <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground flex-wrap">
                 {p?.headquarters && <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{p.headquarters}</span>}
-                {p?.sizeCategory && <span>{p.sizeCategory} dipendenti</span>}
-                {p?.foundedYear && <span>Fondata nel {p.foundedYear}</span>}
+                {p?.sizeCategory && <span>{p.sizeCategory} {isIt ? 'dipendenti' : 'employees'}</span>}
+                {p?.foundedYear && <span>{isIt ? `Fondata nel ${p.foundedYear}` : `Founded in ${p.foundedYear}`}</span>}
                 {(p?.industries || []).slice(0, 3).map(i => (
                   <Badge key={i} variant="outline" className="text-[10px]">{i}</Badge>
                 ))}
@@ -217,7 +220,7 @@ export default function EmployerCompanyDetailPage() {
           <div className="flex gap-2 flex-wrap">
             {p?.websiteUrl && (
               <Button size="sm" variant="outline" asChild>
-                <a href={p.websiteUrl} target="_blank" rel="noopener noreferrer"><Globe className="h-3.5 w-3.5 mr-1" /> Sito</a>
+                <a href={p.websiteUrl} target="_blank" rel="noopener noreferrer"><Globe className="h-3.5 w-3.5 mr-1" /> {isIt ? 'Sito' : 'Website'}</a>
               </Button>
             )}
             {p?.linkedinUrl && (
@@ -227,7 +230,7 @@ export default function EmployerCompanyDetailPage() {
             )}
             {p?.published && p?.slug && (
               <Button size="sm" variant="outline" asChild>
-                <Link href={`/companies/${p.slug}`}><ExternalLink className="h-3.5 w-3.5 mr-1" /> Profilo pubblico</Link>
+                <Link href={`/companies/${p.slug}`}><ExternalLink className="h-3.5 w-3.5 mr-1" /> {isIt ? 'Profilo pubblico' : 'Public profile'}</Link>
               </Button>
             )}
           </div>
@@ -238,32 +241,32 @@ export default function EmployerCompanyDetailPage() {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         <GlassCard hover={false}>
           <div className="p-4">
-            <div className="text-xs text-muted-foreground">Visualizzazioni</div>
+            <div className="text-xs text-muted-foreground">{isIt ? 'Visualizzazioni' : 'Views'}</div>
             <div className="text-xl font-bold">{metrics.totalViews}</div>
-            <div className="text-[11px] text-muted-foreground">{metrics.recentViews} ultimi 30 gg</div>
+            <div className="text-[11px] text-muted-foreground">{metrics.recentViews} {isIt ? 'ultimi 30 gg' : 'last 30 days'}</div>
           </div>
         </GlassCard>
         <GlassCard hover={false}>
           <div className="p-4">
-            <div className="text-xs text-muted-foreground">Contatti</div>
+            <div className="text-xs text-muted-foreground">{isIt ? 'Contatti' : 'Contacts'}</div>
             <div className="text-xl font-bold">{metrics.totalContacts}</div>
           </div>
         </GlassCard>
         <GlassCard hover={false}>
           <div className="p-4">
-            <div className="text-xs text-muted-foreground">Assunzioni</div>
+            <div className="text-xs text-muted-foreground">{isIt ? 'Assunzioni' : 'Hires'}</div>
             <div className="text-xl font-bold">{metrics.confirmedHires}</div>
           </div>
         </GlassCard>
         <GlassCard hover={false}>
           <div className="p-4">
-            <div className="text-xs text-muted-foreground">RAL media</div>
+            <div className="text-xs text-muted-foreground">{isIt ? 'RAL media' : 'Avg salary'}</div>
             <div className="text-xl font-bold">{metrics.avgSalary ? `€${metrics.avgSalary.toLocaleString()}` : '—'}</div>
           </div>
         </GlassCard>
         <GlassCard hover={false}>
           <div className="p-4">
-            <div className="text-xs text-muted-foreground">Studenti coinvolti</div>
+            <div className="text-xs text-muted-foreground">{isIt ? 'Studenti coinvolti' : 'Engaged students'}</div>
             <div className="text-xl font-bold">{metrics.engagedCount} <span className="text-sm text-muted-foreground font-normal">/ {metrics.studentsTotal}</span></div>
           </div>
         </GlassCard>
@@ -274,14 +277,14 @@ export default function EmployerCompanyDetailPage() {
         <Card className="md:col-span-2">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Referenti</h2>
-              <span className="text-xs text-muted-foreground">{contacts.length} {contacts.length === 1 ? 'referente' : 'referenti'}</span>
+              <h2 className="text-lg font-semibold">{isIt ? 'Referenti' : 'Contacts'}</h2>
+              <span className="text-xs text-muted-foreground">{contacts.length} {isIt ? (contacts.length === 1 ? 'referente' : 'referenti') : (contacts.length === 1 ? 'contact' : 'contacts')}</span>
             </div>
             {contacts.length === 0 ? (
               <div className="text-center py-8 text-sm text-muted-foreground">
-                Nessun referente attivo su InTransparency per questa azienda.
+                {isIt ? 'Nessun referente attivo su InTransparency per questa azienda.' : 'No active contacts on InTransparency for this company.'}
                 <br />
-                <span className="text-xs">Quando un recruiter di {company.name} crea un account, apparirà qui.</span>
+                <span className="text-xs">{isIt ? `Quando un recruiter di ${company.name} crea un account, apparirà qui.` : `When a recruiter from ${company.name} creates an account, they'll appear here.`}</span>
               </div>
             ) : (
               <div className="space-y-3">
@@ -296,7 +299,7 @@ export default function EmployerCompanyDetailPage() {
                         {[c.firstName, c.lastName].filter(Boolean).join(' ') || c.email}
                       </div>
                       <div className="text-xs text-muted-foreground truncate">
-                        {c.jobTitle || 'Recruiter'}
+                        {c.jobTitle || (isIt ? 'Recruiter' : 'Recruiter')}
                       </div>
                       <div className="flex items-center gap-2 mt-1 text-[11px] text-muted-foreground flex-wrap">
                         <span className="inline-flex items-center gap-0.5"><Mail className="h-3 w-3" />{c.email}</span>
@@ -308,7 +311,7 @@ export default function EmployerCompanyDetailPage() {
                         {c.location && <span className="inline-flex items-center gap-0.5"><MapPin className="h-3 w-3" />{c.location}</span>}
                       </div>
                     </div>
-                    <MessageComposer contact={c} />
+                    <MessageComposer contact={c} isIt={isIt} />
                   </div>
                 ))}
               </div>
@@ -319,9 +322,9 @@ export default function EmployerCompanyDetailPage() {
         {/* Engaged students */}
         <Card>
           <CardContent className="p-5">
-            <h2 className="text-lg font-semibold mb-4">Studenti coinvolti</h2>
+            <h2 className="text-lg font-semibold mb-4">{isIt ? 'Studenti coinvolti' : 'Engaged students'}</h2>
             {engagedStudents.length === 0 ? (
-              <div className="text-sm text-muted-foreground">Nessuno studente coinvolto ancora.</div>
+              <div className="text-sm text-muted-foreground">{isIt ? 'Nessuno studente coinvolto ancora.' : 'No engaged students yet.'}</div>
             ) : (
               <div className="space-y-2">
                 {engagedStudents.map(s => (
@@ -353,9 +356,9 @@ export default function EmployerCompanyDetailPage() {
       {/* Recent activity */}
       <Card>
         <CardContent className="p-5">
-          <h2 className="text-lg font-semibold mb-4">Attività recente</h2>
+          <h2 className="text-lg font-semibold mb-4">{isIt ? 'Attività recente' : 'Recent activity'}</h2>
           {recentActivity.length === 0 ? (
-            <div className="text-sm text-muted-foreground">Nessuna attività recente con questa azienda.</div>
+            <div className="text-sm text-muted-foreground">{isIt ? 'Nessuna attività recente con questa azienda.' : 'No recent activity with this company.'}</div>
           ) : (
             <div className="space-y-2">
               {recentActivity.map((a, i) => (
@@ -365,12 +368,12 @@ export default function EmployerCompanyDetailPage() {
                   {a.type === 'placement' && <Briefcase className="h-4 w-4 text-emerald-600 flex-shrink-0" />}
                   {a.type === 'event_rsvp' && <Users className="h-4 w-4 text-purple-600 flex-shrink-0" />}
                   <div className="flex-1 min-w-0">
-                    {a.type === 'view' && <span>Profilo visualizzato di <span className="font-medium">{a.studentName}</span></span>}
-                    {a.type === 'contact' && <span>Contatto inviato a <span className="font-medium">{a.studentName}</span></span>}
-                    {a.type === 'placement' && <span>Assunzione: <span className="font-medium">{a.studentName}</span> come <span className="font-medium">{a.jobTitle}</span></span>}
-                    {a.type === 'event_rsvp' && <span>RSVP <span className="font-medium">{a.status}</span> a "{a.title}"</span>}
+                    {a.type === 'view' && <span>{isIt ? 'Profilo visualizzato di' : 'Profile viewed of'} <span className="font-medium">{a.studentName}</span></span>}
+                    {a.type === 'contact' && <span>{isIt ? 'Contatto inviato a' : 'Contact sent to'} <span className="font-medium">{a.studentName}</span></span>}
+                    {a.type === 'placement' && <span>{isIt ? 'Assunzione:' : 'Hire:'} <span className="font-medium">{a.studentName}</span> {isIt ? 'come' : 'as'} <span className="font-medium">{a.jobTitle}</span></span>}
+                    {a.type === 'event_rsvp' && <span>RSVP <span className="font-medium">{a.status}</span> {isIt ? 'a' : 'to'} "{a.title}"</span>}
                   </div>
-                  <span className="text-xs text-muted-foreground flex-shrink-0">{new Date(a.at).toLocaleDateString('it-IT')}</span>
+                  <span className="text-xs text-muted-foreground flex-shrink-0">{new Date(a.at).toLocaleDateString(locale)}</span>
                 </div>
               ))}
             </div>
