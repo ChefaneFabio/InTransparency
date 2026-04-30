@@ -168,10 +168,17 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
       </div>
     </nav>
 
-      {/* Mobile overlay — rendered outside <nav> to escape its backdrop-blur stacking context */}
+      {/* Mobile overlay — rendered outside <nav> to escape its backdrop-blur stacking context.
+          Tapping the overlay's empty area (anywhere not on a menu item) closes the menu. */}
       {mobileOpen && (
-        <div className="xl:hidden fixed inset-0 top-14 z-[60] bg-background overflow-y-auto">
-          <div className="container max-w-7xl mx-auto px-4 py-4 space-y-2">
+        <div
+          className="xl:hidden fixed inset-0 top-14 z-[60] bg-background overflow-y-auto"
+          onClick={() => setMobileOpen(false)}
+        >
+          <div
+            className="container max-w-7xl mx-auto px-4 py-4 space-y-2"
+            onClick={(e) => e.stopPropagation()}
+          >
             {config.groups.map((group) => {
               const isExpanded = expandedGroup === group.labelKey
 
