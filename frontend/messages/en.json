@@ -2030,6 +2030,7 @@
       "mfaHint": "Enter the 6-digit code from your authenticator app, or a backup code.",
       "verifyMfa": "Verify",
       "unexpectedError": "An unexpected error occurred. Please try again.",
+      "existingAccountNotice": "An account with this email already exists. Sign in below to continue.",
       "roles": {
         "student": "Student",
         "university": "Academic Partner",

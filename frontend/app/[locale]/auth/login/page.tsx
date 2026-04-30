@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
@@ -49,11 +49,15 @@ const segmentConfig = {
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const t = useTranslations('auth')
   const { segment, setSegment } = useSegment()
 
+  const prefilledEmail = searchParams?.get('email') ?? ''
+  const existingAccount = searchParams?.get('existing') === '1'
+
   const [formData, setFormData] = useState({
-    email: '',
+    email: prefilledEmail,
     password: ''
   })
   const [showPassword, setShowPassword] = useState(false)
@@ -274,6 +278,19 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Existing-account redirect from /auth/register */}
+                {existingAccount && !loginError && (
+                  <Alert>
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>
+                      {t('login.existingAccountNotice', {
+                        defaultValue:
+                          'An account with this email already exists. Sign in below to continue.',
+                      })}
+                    </AlertDescription>
+                  </Alert>
+                )}
+
                 {/* Login Error */}
                 {loginError && (
                   <Alert variant="destructive">

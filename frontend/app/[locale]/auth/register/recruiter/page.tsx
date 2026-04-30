@@ -82,6 +82,10 @@ export default function RecruiterRegisterPage() {
       const data = await response.json()
 
       if (!response.ok) {
+        if (data.code === 'EMAIL_EXISTS') {
+          router.push(`/auth/login?email=${encodeURIComponent(formData.email)}&existing=1` as any)
+          return
+        }
         throw new Error(data.error || 'Registration failed')
       }
 

@@ -75,7 +75,10 @@ export async function POST(req: NextRequest) {
     const existingUser = await prisma.user.findUnique({ where: { email }, select: { id: true } })
     if (existingUser) {
       return NextResponse.json(
-        { error: 'Unable to create account. Please try a different email or sign in.' },
+        {
+          error: 'Unable to create account. Please try a different email or sign in.',
+          code: 'EMAIL_EXISTS',
+        },
         { status: 400 }
       )
     }

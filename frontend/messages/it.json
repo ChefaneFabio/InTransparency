@@ -2058,6 +2058,7 @@
       "mfaHint": "Inserisci il codice a 6 cifre dalla tua app di autenticazione, o un codice di backup.",
       "verifyMfa": "Verifica",
       "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
+      "existingAccountNotice": "Esiste già un account con questa email. Accedi qui sotto per continuare.",
       "roles": {
         "student": "Studente",
         "university": "Partner Formativo",
