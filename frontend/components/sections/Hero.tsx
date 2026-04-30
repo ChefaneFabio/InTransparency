@@ -82,24 +82,6 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Trust signals — segment-specific */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            {[0, 1, 2].map((index) => (
-              <span key={`${activeSegment}-${index}`} className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                {t(`segments.${activeSegment}.benefits.${index}`)}
-              </span>
-            ))}
-          </div>
-
-          {/* Social proof — specific achievements */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">
-              {t('socialProof.startCup')}
-            </span>
-            <span className="hidden sm:inline text-border">|</span>
-            <span>{t('socialProof.unibgPilot')}</span>
-          </div>
         </div>
 
         {/* Hero scene — product shot per segment. The HeroVisual photoreal
