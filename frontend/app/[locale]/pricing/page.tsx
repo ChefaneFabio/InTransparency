@@ -144,6 +144,7 @@ function SectionHeader({
 
 export default function PricingPage() {
   const t = useTranslations('pricingPage')
+  const tBrand = useTranslations('brand')
   const vatLabel = t('vatNote', { defaultValue: 'VAT excl.' })
   const trustNoCard = t('trustNoCardTrial', { defaultValue: 'No card required · 30-day trial · cancel anytime' })
   const trustFreeForever = t('trustFreeForever', { defaultValue: 'Free forever · no card required' })
@@ -304,6 +305,9 @@ export default function PricingPage() {
           </h1>
           <p className="mt-6 text-[19px] leading-relaxed text-slate-300 max-w-2xl">
             {t('hero.subtitle')}
+          </p>
+          <p className="mt-8 text-[14px] italic text-slate-400 max-w-2xl">
+            {tBrand('tagline')}
           </p>
 
           <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm text-slate-400">

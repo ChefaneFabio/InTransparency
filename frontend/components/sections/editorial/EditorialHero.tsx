@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
 
 /**
  * Editorial hero — dark slate, eyebrow + display H1 + lede.
@@ -7,6 +8,10 @@ import { ReactNode } from 'react'
  * highlight class returned for inline use in the title). Everything else
  * stays slate, so segment pages feel coherent with /pricing while having
  * a single moment of brand differentiation.
+ *
+ * Brand spine: by default the hero stamps the brand tagline as a thin
+ * italic line under the lede. Pass `showTagline={false}` to opt out for
+ * pages where the brand line would compete with above-the-fold messaging.
  */
 
 export type Accent = 'slate' | 'blue' | 'emerald' | 'violet' | 'amber'
@@ -28,6 +33,9 @@ interface Props {
   cta?: ReactNode
   /** Optional trust strip — small uppercase chips beneath the hero. */
   trustItems?: string[]
+  /** Brand-spine tagline below the lede. Defaults to true; opt out only
+   *  if the page already carries the brand line elsewhere above the fold. */
+  showTagline?: boolean
 }
 
 export function EditorialHero({
@@ -37,7 +45,9 @@ export function EditorialHero({
   accent = 'slate',
   cta,
   trustItems,
+  showTagline = true,
 }: Props) {
+  const tBrand = useTranslations('brand')
   return (
     <section className="bg-slate-950 text-white">
       <div className="container max-w-5xl mx-auto px-6 pt-32 pb-16 lg:pt-40 lg:pb-20">
@@ -50,6 +60,11 @@ export function EditorialHero({
         {lede && (
           <p className="mt-6 text-[19px] leading-relaxed text-slate-300 max-w-2xl">
             {lede}
+          </p>
+        )}
+        {showTagline && (
+          <p className="mt-8 text-[14px] italic text-slate-400 max-w-2xl">
+            {tBrand('tagline')}
           </p>
         )}
         {cta && <div className="mt-10">{cta}</div>}

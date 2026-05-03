@@ -92,6 +92,7 @@ const FAQ_KEYS = [0, 1, 2, 3, 4] as const
 
 export default function ForCompaniesPage() {
   const t = useTranslations('forCompanies')
+  const tBrand = useTranslations('brand')
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,8 +113,11 @@ export default function ForCompaniesPage() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-5">
               {t('hero.title')}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-xl mb-3 leading-relaxed">
               {t('hero.subtitle')}
+            </p>
+            <p className="text-sm italic text-muted-foreground/70 mb-8">
+              {tBrand('tagline')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <HeroCTA href="/auth/register/recruiter" variant="primary">

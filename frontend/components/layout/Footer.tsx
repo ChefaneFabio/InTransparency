@@ -12,6 +12,7 @@ export function Footer() {
   const t = useTranslations()
   const tNav = useTranslations('nav')
   const tFooter = useTranslations('footer')
+  const tBrand = useTranslations('brand')
   const { toast } = useToast()
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [isSubscribing, setIsSubscribing] = useState(false)
@@ -113,8 +114,8 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <Logo size="md" />
-            <p className="text-sm text-white/60 mt-3 max-w-xs">
-              {tFooter('tagline')}
+            <p className="text-sm text-white/70 mt-3 max-w-xs italic">
+              {tBrand('tagline')}
             </p>
             <div className="flex items-center gap-3 mt-4 text-xs text-white/40">
               <span>{tFooter('compliance.gdpr')}</span>

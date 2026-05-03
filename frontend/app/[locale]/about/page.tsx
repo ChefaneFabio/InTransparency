@@ -33,6 +33,7 @@ export default function AboutPage() {
           title={t('hero.title')}
           lede={t('hero.description')}
           accent="slate"
+          showTagline={false}
         />
 
         {/* Brand spine — quiet display band carrying the tagline */}
