@@ -112,8 +112,8 @@ export function Header() {
               <Link href={'/eu-compliance' as any} className="hover:text-white/80 transition-colors hidden md:inline">
                 Compliance
               </Link>
-              <Link href={'/integrations/agents' as any} className="hover:text-white/80 transition-colors hidden md:inline">
-                Agents
+              <Link href={'/integrations' as any} className="hover:text-white/80 transition-colors hidden md:inline">
+                Integrations
               </Link>
               <Link href={'/glossary' as any} className="hover:text-white/80 transition-colors hidden lg:inline">
                 Glossary
