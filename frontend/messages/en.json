@@ -2388,50 +2388,6 @@
       "title": "How It Works for You",
       "subtitle": "Three steps from project to AI-verified portfolio."
     },
-    "features": {
-      "0": {
-        "title": "Automatic Skill Mapping",
-        "desc": "Your actual files — code, PDFs, presentations — are analyzed to reveal the competencies you've built, even ones you didn't realize you had."
-      },
-      "1": {
-        "title": "AI-Verified Portfolio",
-        "desc": "Your projects carry your university's verification badge. A portfolio backed by your school, not just your own words."
-      },
-      "2": {
-        "title": "Be Discoverable",
-        "desc": "Instead of sending CVs everywhere, your real work speaks for itself. The right opportunities can find you."
-      },
-      "3": {
-        "title": "Trust Score",
-        "desc": "Academic verification, automated analysis, and project quality build a trust score that shows the depth and credibility of your work."
-      },
-      "4": {
-        "title": "Multi-Format Upload",
-        "desc": "Code repositories, PDFs, videos, Word documents, Excel files, presentations — upload anything you've worked on."
-      },
-      "5": {
-        "title": "Skill Insights",
-        "desc": "See which skills are trending in your field, how your portfolio compares, and where you can grow next."
-      },
-      "title": "What You Get",
-      "subtitle": "Tools designed to help you understand your strengths and make them visible."
-    },
-    "audience": {
-      "0": {
-        "title": "High School Students",
-        "desc": "Showcase your first projects and alternanza scuola-lavoro experiences. Start building your AI-verified portfolio early."
-      },
-      "1": {
-        "title": "ITS Academy Students",
-        "desc": "Your hands-on technical projects are your strongest asset. Make them visible and verifiable beyond your classroom."
-      },
-      "2": {
-        "title": "University Students",
-        "desc": "Thesis work, research projects, and capstone assignments — verified by your department and visible across Italy and Europe."
-      },
-      "title": "Built for Every Student",
-      "subtitle": "Whether you're in high school, ITS, or university — your work deserves to be seen."
-    },
     "demo": {
       "title": "See It In Action",
       "subtitle": "Watch how students build real portfolios",
@@ -4692,21 +4648,10 @@
       "valueLabel": "With InTransparency"
     },
     "demos": {
-      "badge": "Interactive Demos",
       "eyebrow": "Try a live tool",
-      "title": "See it in action",
-      "subtitle": "These are real features you get on day one. Try them now.",
-      "decisionPack": {
-        "title": "Decision Pack",
-        "description": "Recruiters see a complete, verified dossier for every student — grades, projects, endorsements, and placement prediction."
-      },
       "gradeNormalizer": {
         "title": "Grade Normalizer",
         "description": "Instantly translate grades across all European systems. Enter a grade below and see it converted."
-      },
-      "analytics": {
-        "title": "Placement Analytics",
-        "description": "See exactly which companies view, contact, and hire your students — in real time."
       }
     },
     "socialProof": {
@@ -4826,28 +4771,6 @@
         },
         "ctaButton": "Get a tailored estimate for your institution",
         "badge": "Free Core included · Premium €39/mo optional"
-      }
-    },
-    "coCreation": {
-      "title": "We Build With You, Not For You",
-      "subtitle": "InTransparency is not a product you install. It's a partnership you shape.",
-      "points": {
-        "0": {
-          "title": "Your Input Shapes the Platform",
-          "desc": "Every feature we build starts with real feedback from career services, faculty, and administrators. Your needs drive the roadmap."
-        },
-        "1": {
-          "title": "Custom Integration, Not One-Size-Fits-All",
-          "desc": "Connect to your student information system, embed widgets in your career portal, or use our API to build your own tools. We adapt to your infrastructure."
-        },
-        "2": {
-          "title": "Ongoing Partnership, Not a Vendor Contract",
-          "desc": "Regular co-design sessions, shared analytics reviews, and a direct line to our team. You're not a customer — you're a collaborator."
-        },
-        "3": {
-          "title": "Pilot, Iterate, Scale",
-          "desc": "Start with one department or cohort. See results. Then expand at your pace. No lock-in, no pressure, no risk."
-        }
       }
     },
     "faq": {
@@ -7549,11 +7472,11 @@
       "employabilityDescription": "Distribution of student employability ratings",
       "students": "{count} students ({percentage}%)",
       "gpaRanges": {
-        "3.8-4.0": "3.8 - 4.0",
-        "3.5-3.79": "3.5 - 3.79",
-        "3.0-3.49": "3.0 - 3.49",
-        "2.5-2.99": "2.5 - 2.99",
-        "below2.5": "Below 2.5"
+        "top": "Top range",
+        "high": "High range",
+        "mid": "Mid range",
+        "low": "Low range",
+        "pass": "Pass range"
       },
       "scoreRanges": {
         "90-100": "90-100",

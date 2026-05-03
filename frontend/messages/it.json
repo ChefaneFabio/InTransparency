@@ -2428,50 +2428,6 @@
       "title": "Come Funziona per Te",
       "subtitle": "Tre passi dal progetto al portfolio verificato con AI."
     },
-    "features": {
-      "0": {
-        "title": "Mappa Automatica delle Competenze",
-        "desc": "I tuoi file — codice, PDF, presentazioni — vengono analizzati per mostrarti le competenze che hai costruito, anche quelle che non sapevi di avere."
-      },
-      "1": {
-        "title": "Portfolio Verificato con AI",
-        "desc": "I tuoi progetti portano il badge di verifica della tua università. Un portfolio sostenuto dalla tua scuola, non solo dalle tue parole."
-      },
-      "2": {
-        "title": "Diventa Visibile",
-        "desc": "Invece di inviare CV ovunque, il tuo lavoro verificato parla da solo. Le opportunità giuste possono trovarti."
-      },
-      "3": {
-        "title": "Trust Score",
-        "desc": "Verifica accademica, analisi automatizzata e qualità dei progetti costruiscono un punteggio di fiducia che mostra la profondità e la credibilità del tuo lavoro."
-      },
-      "4": {
-        "title": "Upload Multi-Formato",
-        "desc": "Repository di codice, PDF, video, documenti Word, file Excel, presentazioni — carica qualsiasi cosa tu abbia realizzato."
-      },
-      "5": {
-        "title": "Insights sulle Competenze",
-        "desc": "Scopri quali competenze sono in tendenza nel tuo settore, come si posiziona il tuo portfolio e dove puoi crescere."
-      },
-      "title": "Cosa Ottieni",
-      "subtitle": "Strumenti per capire i tuoi punti di forza e renderli visibili."
-    },
-    "audience": {
-      "0": {
-        "title": "Studenti delle Superiori",
-        "desc": "Mostra i tuoi primi progetti e le esperienze di alternanza scuola-lavoro. Inizia a costruire il tuo portfolio verificato con AI presto."
-      },
-      "1": {
-        "title": "Studenti ITS Academy",
-        "desc": "I tuoi progetti tecnici pratici sono il tuo punto di forza. Rendili visibili e verificabili oltre la tua classe."
-      },
-      "2": {
-        "title": "Studenti Universitari",
-        "desc": "Tesi, progetti di ricerca e lavori finali — verificati dal tuo dipartimento e visibili in tutta Italia e in Europa."
-      },
-      "title": "Per Ogni Tipo di Studente",
-      "subtitle": "Che tu sia alle superiori, all'ITS o all'università — il tuo lavoro merita di essere visto."
-    },
     "demo": {
       "title": "Guardalo in Azione",
       "subtitle": "Scopri come gli studenti costruiscono portfolio verificato con AI",
@@ -4568,21 +4524,10 @@
       "valueLabel": "Con InTransparency"
     },
     "demos": {
-      "badge": "Demo Interattive",
       "eyebrow": "Strumenti live",
-      "title": "Guardalo in azione",
-      "subtitle": "Queste sono funzionalità reali disponibili dal primo giorno. Provale ora.",
-      "decisionPack": {
-        "title": "Decision Pack",
-        "description": "I recruiter vedono un dossier completo e verificato per ogni studente — voti, progetti, referenze e previsione di placement."
-      },
       "gradeNormalizer": {
         "title": "Normalizzatore Voti",
         "description": "Traduci istantaneamente i voti tra tutti i sistemi europei. Inserisci un voto qui sotto e vedi la conversione."
-      },
-      "analytics": {
-        "title": "Analytics Placement",
-        "description": "Vedi esattamente quali aziende visualizzano, contattano e assumono i tuoi studenti — in tempo reale."
       }
     },
     "socialProof": {
@@ -4702,28 +4647,6 @@
         },
         "ctaButton": "Stima personalizzata per il tuo ateneo",
         "badge": "Free Core gratuito · Premium €39/mese opzionale"
-      }
-    },
-    "coCreation": {
-      "title": "Costruiamo Con Voi, Non Per Voi",
-      "subtitle": "InTransparency non è un prodotto da installare. È una partnership da costruire insieme.",
-      "points": {
-        "0": {
-          "title": "Il Vostro Contributo Guida la Piattaforma",
-          "desc": "Ogni funzionalità nasce da feedback reali di servizi di carriera, docenti e amministratori. Le vostre esigenze guidano la roadmap."
-        },
-        "1": {
-          "title": "Integrazione Su Misura, Non Soluzione Unica",
-          "desc": "Connettete il vostro sistema informativo studenti, integrate widget nel portale carriere, o usate la nostra API per costruire i vostri strumenti. Ci adattiamo alla vostra infrastruttura."
-        },
-        "2": {
-          "title": "Partnership Continua, Non Contratto Fornitore",
-          "desc": "Sessioni di co-design regolari, revisioni condivise degli analytics e un canale diretto con il nostro team. Non siete clienti — siete collaboratori."
-        },
-        "3": {
-          "title": "Pilota, Itera, Scala",
-          "desc": "Partite con un dipartimento o una coorte. Vedete i risultati. Poi espandete ai vostri tempi. Nessun vincolo, nessuna pressione, nessun rischio."
-        }
       }
     },
     "faq": {
@@ -7412,11 +7335,11 @@
       "employabilityDescription": "Distribuzione dei punteggi di occupabilità degli studenti",
       "students": "{count} studenti ({percentage}%)",
       "gpaRanges": {
-        "3.8-4.0": "3.8 - 4.0",
-        "3.5-3.79": "3.5 - 3.79",
-        "3.0-3.49": "3.0 - 3.49",
-        "2.5-2.99": "2.5 - 2.99",
-        "below2.5": "Sotto 2.5"
+        "top": "Fascia top",
+        "high": "Fascia alta",
+        "mid": "Fascia media",
+        "low": "Fascia bassa",
+        "pass": "Fascia minima"
       },
       "scoreRanges": {
         "90-100": "90-100",
