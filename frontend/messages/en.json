@@ -3303,35 +3303,77 @@
   },
   "forTechparks": {
     "hero": {
-      "badge": "For Innovation Hub Managers",
-      "title": "Connect your ecosystem's talent to opportunity",
-      "subtitle": "Match startups and companies in your tech park with verified graduates from partner universities. Track talent flow across your innovation ecosystem.",
-      "cta": "Explore Partnership",
-      "secondaryCta": "See Company Features"
+      "eyebrow": "Innovation hubs and tech parks",
+      "title": "Bring verified talent into your ecosystem",
+      "subtitle": "Tech parks host the companies that hire, but the companies are scattered, the talent feed is fragmented, and the data on who hires whom rarely makes it back to the hub. InTransparency connects resident companies to verified graduates from partner universities, with the placement data flowing back to your dashboard.",
+      "primaryCta": "Start a partnership conversation",
+      "secondaryCta": "See company features"
     },
     "benefits": {
-      "0": {
-        "title": "Talent pipeline for resident companies",
-        "description": "Your startups and scale-ups get access to verified graduates from partner universities — pre-screened with real project data."
-      },
-      "1": {
-        "title": "Ecosystem analytics",
-        "description": "See hiring patterns, skill demand, and talent flow across your innovation district. Prove your ecosystem's impact with data."
-      },
-      "2": {
-        "title": "University partnership bridge",
-        "description": "Connect your tech park companies directly with university career services. One platform, shared talent pool."
-      },
-      "3": {
-        "title": "Event and career day tools",
-        "description": "Run talent matching events with AI-verified profile. Companies meet pre-qualified candidates, not random attendees."
-      },
-      "title": "What InTransparency does for tech parks"
+      "eyebrow": "What you bring to your ecosystem",
+      "title": "Four pieces that turn a tenancy into a placement engine",
+      "lede": "Each module is independent — you can pilot one and add the rest later. None require your residents to install anything; they get web access under your brand.",
+      "items": {
+        "0": {
+          "title": "Verified talent pool for resident companies",
+          "desc": "Resident startups and scale-ups search a pool of graduates whose skills were extracted from real projects, not self-declared on a CV. Grades normalized across EU systems so a Politecnico 28/30 reads the same as a TU Munich 1.7."
+        },
+        "1": {
+          "title": "Ecosystem placement analytics",
+          "desc": "See where your residents hire from, which skills they look for, and where the matches actually convert. Quarterly export for the report you owe your regional authority — without chasing residents for survey responses."
+        },
+        "2": {
+          "title": "University partnership bridge",
+          "desc": "Wire your existing university partners (career services, ITS Academies, technical schools) into the same workspace your residents already use. One platform, shared talent pool, both sides see the same evidence."
+        },
+        "3": {
+          "title": "Career-day and matching event tools",
+          "desc": "Run talent days where residents meet pre-qualified candidates whose work they already saw. The AI-verified profile replaces the stack of CVs and the awkward intro round."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "How a partnership starts",
+      "title": "Pilot first, expand only if it works",
+      "lede": "We don't ask innovation hubs to commit before they see results. Three phases, no lock-in between them.",
+      "steps": {
+        "0": {
+          "title": "Pilot with one cohort",
+          "desc": "Pick one resident company and one university partner. Run for a quarter, measure time-to-shortlist and hire conversion against your current channel."
+        },
+        "1": {
+          "title": "Open to all residents",
+          "desc": "If the pilot works, the workspace opens to every resident under your brand. They keep their independence; you get the aggregated placement view."
+        },
+        "2": {
+          "title": "Add analytics and events",
+          "desc": "Layer on the ecosystem analytics dashboard and the career-day tooling once the basics are landing."
+        }
+      }
+    },
+    "audience": {
+      "eyebrow": "Who this fits",
+      "title": "Three kinds of innovation hub",
+      "items": {
+        "0": {
+          "title": "University-affiliated tech parks",
+          "desc": "You already share governance with a university. The platform formalizes the talent flow that's been ad-hoc emails and PDFs."
+        },
+        "1": {
+          "title": "Regional innovation hubs",
+          "desc": "Your residents come from multiple universities and ITS Academies. We aggregate the talent across your partner institutions."
+        },
+        "2": {
+          "title": "Corporate or accelerator programs",
+          "desc": "Start Cup partners, vertical accelerators, corporate-led innovation hubs. Your portfolio companies hire often but each is too small for an enterprise ATS."
+        }
+      }
     },
     "cta": {
-      "title": "Let's explore a partnership",
-      "subtitle": "We're building relationships with innovation hubs across Italy and Europe. Tell us about your ecosystem.",
-      "button": "Start a Conversation"
+      "title": "Let's see if there's a fit",
+      "subtitle": "We're building partnerships with innovation hubs across Italy and Europe. Tell us about your ecosystem and the residents who would benefit first.",
+      "primary": "Start a partnership conversation",
+      "secondary": "See pricing for residents"
     }
   },
   "demoAISearch": {

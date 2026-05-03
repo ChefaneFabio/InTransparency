@@ -9634,35 +9634,77 @@
   },
   "forTechparks": {
     "hero": {
-      "badge": "Per Manager di Hub d'Innovazione",
-      "title": "Connetti il talento del tuo ecosistema alle opportunità",
-      "subtitle": "Abbina startup e aziende nel tuo tech park con laureati verificati delle università partner. Monitora il flusso di talenti nel tuo ecosistema d'innovazione.",
-      "cta": "Esplora Partnership",
-      "secondaryCta": "Funzionalità Aziende"
+      "eyebrow": "Hub d'innovazione e tech park",
+      "title": "Porta talento verificato nel tuo ecosistema",
+      "subtitle": "I tech park ospitano le aziende che assumono, ma le aziende sono sparse, il flusso di talento è frammentato e i dati su chi assume chi raramente tornano all'hub. InTransparency collega le aziende residenti a laureati verificati delle università partner, con i dati di placement che rientrano nella tua dashboard.",
+      "primaryCta": "Avvia una conversazione di partnership",
+      "secondaryCta": "Funzionalità per le aziende"
     },
     "benefits": {
-      "0": {
-        "title": "Pipeline di talenti per le aziende residenti",
-        "description": "Le tue startup e scale-up accedono a laureati verificati dalle università partner — pre-selezionati con dati di progetti reali."
-      },
-      "1": {
-        "title": "Analytics dell'ecosistema",
-        "description": "Vedi pattern di assunzione, domanda di competenze e flusso di talenti nel tuo distretto d'innovazione. Dimostra l'impatto con i dati."
-      },
-      "2": {
-        "title": "Ponte con le partnership universitarie",
-        "description": "Connetti le aziende del tech park direttamente con i servizi di carriera universitari. Una piattaforma, pool di talenti condiviso."
-      },
-      "3": {
-        "title": "Strumenti per eventi e career day",
-        "description": "Organizza eventi di talent matching con profili verificati con AI. Le aziende incontrano candidati pre-qualificati, non partecipanti casuali."
-      },
-      "title": "Cosa fa InTransparency per i tech park"
+      "eyebrow": "Cosa porti al tuo ecosistema",
+      "title": "Quattro pezzi che trasformano una tenancy in un motore di placement",
+      "lede": "Ogni modulo è indipendente — puoi pilotarne uno e aggiungere il resto dopo. Nessuno richiede ai residenti di installare nulla; accedono via web sotto il tuo brand.",
+      "items": {
+        "0": {
+          "title": "Pool di talenti verificato per le aziende residenti",
+          "desc": "Startup e scale-up residenti cercano in un pool di laureati le cui competenze sono state estratte da progetti reali, non auto-dichiarate sul CV. Voti normalizzati tra i sistemi UE: un 28/30 del Politecnico legge come un 1.7 della TU München."
+        },
+        "1": {
+          "title": "Analytics di placement dell'ecosistema",
+          "desc": "Scopri da dove i tuoi residenti assumono, quali competenze cercano e dove i match convertono davvero. Export trimestrale per il report che devi all'ente regionale — senza inseguire i residenti per i questionari."
+        },
+        "2": {
+          "title": "Ponte con i partner formativi",
+          "desc": "Collega i partner che hai già (career service universitari, ITS Academy, scuole tecniche) allo stesso workspace che usano i residenti. Una piattaforma, un pool condiviso, entrambe le parti vedono le stesse evidenze."
+        },
+        "3": {
+          "title": "Strumenti per career day e matching",
+          "desc": "Organizza giornate dove i residenti incontrano candidati pre-qualificati di cui hanno già visto il lavoro. Il profilo verificato con AI sostituisce la pila di CV e il giro di presentazioni."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "Come parte una partnership",
+      "title": "Prima un pilota, espansione solo se funziona",
+      "lede": "Non chiediamo agli hub d'innovazione di impegnarsi prima di vedere risultati. Tre fasi, nessun lock-in tra l'una e l'altra.",
+      "steps": {
+        "0": {
+          "title": "Pilota con una coorte",
+          "desc": "Scegli una azienda residente e un partner formativo. Tre mesi, misuri tempo-a-shortlist e tasso di conversione contro il canale che usi oggi."
+        },
+        "1": {
+          "title": "Apri a tutti i residenti",
+          "desc": "Se il pilota funziona, il workspace si apre a ogni residente sotto il tuo brand. Mantengono la loro indipendenza; tu ottieni la vista aggregata sul placement."
+        },
+        "2": {
+          "title": "Aggiungi analytics ed eventi",
+          "desc": "Quando le basi atterrano, sopra metti la dashboard di analytics dell'ecosistema e il tooling per i career day."
+        }
+      }
+    },
+    "audience": {
+      "eyebrow": "A chi serve",
+      "title": "Tre tipi di hub d'innovazione",
+      "items": {
+        "0": {
+          "title": "Tech park universitari",
+          "desc": "Condividi già la governance con un'università. La piattaforma formalizza il flusso di talento che oggi vive di email e PDF."
+        },
+        "1": {
+          "title": "Hub d'innovazione regionali",
+          "desc": "I tuoi residenti vengono da più atenei e ITS Academy. Aggreghiamo il talento sui partner formativi che hai."
+        },
+        "2": {
+          "title": "Programmi corporate o acceleratori",
+          "desc": "Start Cup, acceleratori verticali, hub corporate. Le portfolio company assumono spesso ma sono troppo piccole per un ATS enterprise."
+        }
+      }
     },
     "cta": {
-      "title": "Esploriamo una partnership",
-      "subtitle": "Stiamo costruendo relazioni con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema.",
-      "button": "Inizia una Conversazione"
+      "title": "Vediamo se c'è un fit",
+      "subtitle": "Stiamo costruendo partnership con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema e dei residenti che ne beneficerebbero per primi.",
+      "primary": "Avvia una conversazione di partnership",
+      "secondary": "Pricing per i residenti"
     }
   },
   "forUniversityStudents": {
