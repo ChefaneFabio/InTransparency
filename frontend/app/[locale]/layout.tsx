@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { locales } from '@/i18n'
@@ -27,6 +27,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const tBrand = await getTranslations({ locale, namespace: 'brand' })
+  const tagline = tBrand('tagline')
+  const taglineLong = tBrand('taglineLong')
   return {
     alternates: {
       languages: {
@@ -35,9 +38,19 @@ export async function generateMetadata({
         'x-default': `${BASE_URL}/en`,
       },
     },
+    description: taglineLong,
     openGraph: {
+      siteName: 'InTransparency',
+      title: `InTransparency — ${tagline}`,
+      description: taglineLong,
       locale: locale === 'it' ? 'it_IT' : 'en_US',
       alternateLocale: locale === 'it' ? 'en_US' : 'it_IT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `InTransparency — ${tagline}`,
+      description: taglineLong,
     },
   }
 }
