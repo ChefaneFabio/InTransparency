@@ -15213,6 +15213,12 @@
       "title": "What we plug into. What we don't.",
       "subtitle": "Honest list of what ships today, what's on the way, what we hand off to partners, and what we deliberately stay out of. We export at the boundaries — we don't try to be the systems on the other side."
     },
+    "payload": {
+      "eyebrow": "Worked example",
+      "title": "What an ATS payload actually looks like",
+      "lede": "When a recruiter shortlists a candidate on the platform, the bridge fires a match.created webhook. Below is a real payload your ATS receives — the same shape every time. Greenhouse / Lever / Workday all ingest the same JSON.",
+      "noteLabel": "Webhook is signed with HMAC-SHA256. Idempotency key in the X-Idempotency-Key header guarantees safe retries. Full event reference at /integrations/ats."
+    },
     "shipping": {
       "eyebrow": "Available today",
       "title": "Shipping now",

@@ -74,9 +74,62 @@ export default function IntegrationsIndexPage() {
           </div>
         </EditorialSection>
 
-        {/* Planned */}
+        {/* Worked example — actual webhook payload */}
         <EditorialSection
           tone="muted"
+          accent={ACCENT}
+          eyebrow={t('payload.eyebrow')}
+          title={t('payload.title')}
+          lede={t('payload.lede')}
+        >
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-3 text-[11px] uppercase tracking-[0.14em] text-slate-500">
+              <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 font-medium">POST</span>
+              <span className="font-mono normal-case tracking-normal text-slate-700 dark:text-slate-300">https://your-ats.example.com/webhooks/intransparency</span>
+            </div>
+            <pre className="text-[12px] leading-relaxed font-mono p-5 rounded-lg bg-slate-950 text-slate-200 overflow-x-auto">
+{`{
+  "event": "match.created",
+  "id": "evt_8c2f4a91-b6e5-4d12-9e3b-7a8c2f4a91b6",
+  "occurred_at": "2026-05-03T14:22:08Z",
+  "data": {
+    "match_id": "mat_a3f51e9d",
+    "job_id": "job_brembo_qa_engineer_2026",
+    "candidate": {
+      "id": "cnd_marco_colombo",
+      "first_name": "Marco",
+      "last_name": "Colombo",
+      "email": "marco.colombo@example.com",
+      "university": "Politecnico di Milano",
+      "degree": "MSc Computer Engineering",
+      "graduation_year": 2025,
+      "country": "IT"
+    },
+    "verification": {
+      "verified_projects": 4,
+      "total_projects": 5,
+      "endorsements": 2,
+      "trust_score": 0.87
+    },
+    "skills": [
+      { "name": "Python",   "level": "advanced",    "evidence_count": 3 },
+      { "name": "Kafka",    "level": "intermediate","evidence_count": 1 },
+      { "name": "PyTorch",  "level": "intermediate","evidence_count": 1 }
+    ],
+    "decision_pack_url": "https://app.in-transparency.com/dp/cnd_marco_colombo.pdf",
+    "match_score": 0.91,
+    "match_explanation": "Thesis maps directly to Brembo QA-line role; Python+Kafka+PyTorch align with stack."
+  }
+}`}
+            </pre>
+            <p className="mt-6 text-[12px] text-slate-500 italic">
+              {t('payload.noteLabel')}
+            </p>
+          </div>
+        </EditorialSection>
+
+        {/* Planned */}
+        <EditorialSection
           accent={ACCENT}
           eyebrow={t('planned.eyebrow')}
           title={t('planned.title')}
@@ -101,6 +154,7 @@ export default function IntegrationsIndexPage() {
 
         {/* Partners */}
         <EditorialSection
+          tone="muted"
           accent={ACCENT}
           eyebrow={t('partners.eyebrow')}
           title={t('partners.title')}
@@ -125,7 +179,6 @@ export default function IntegrationsIndexPage() {
 
         {/* Stay out */}
         <EditorialSection
-          tone="muted"
           accent={ACCENT}
           eyebrow={t('stayOut.eyebrow')}
           title={t('stayOut.title')}
