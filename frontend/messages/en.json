@@ -3358,31 +3358,31 @@
   "forTechparks": {
     "hero": {
       "eyebrow": "Innovation hubs and tech parks",
-      "title": "Your residents hire on their own. Now you see the pattern.",
-      "subtitle": "The companies in your tech park hire constantly — from LinkedIn, referrals, scattered university channels. The aggregate placement view rarely lands on your desk. InTransparency lets resident companies hire verified graduates through one workspace, and brings the ecosystem-level placement data back to yours.",
+      "title": "The companies in your park hire on their own. Now you see the pattern.",
+      "subtitle": "Your tenant companies hire constantly — from LinkedIn, referrals, scattered university channels. The aggregate placement view rarely lands on your desk. InTransparency lets the companies in your park hire verified graduates through one workspace, and brings the ecosystem-level placement data back to yours.",
       "primaryCta": "Start a partnership conversation",
       "secondaryCta": "See company features"
     },
     "benefits": {
       "eyebrow": "What you bring to your ecosystem",
       "title": "Four pieces that turn a tenancy into a placement engine",
-      "lede": "Each module is independent — you can pilot one and add the rest later. None require your residents to install anything; they get web access under your brand.",
+      "lede": "Each module is independent — you can pilot one and add the rest later. None require your tenant companies to install anything; they get web access under your brand.",
       "items": {
         "0": {
-          "title": "Verified talent pool for resident companies",
-          "desc": "Resident startups and scale-ups search a pool of graduates whose skills were extracted from real projects, not self-declared on a CV. Grades normalized across EU systems so a Politecnico 28/30 reads the same as a TU Munich 1.7."
+          "title": "Verified talent pool for the companies in your park",
+          "desc": "Startups and scale-ups in your park search a pool of graduates whose skills were extracted from real projects, not self-declared on a CV. Grades normalized across EU systems so a Politecnico 28/30 reads the same as a TU Munich 1.7."
         },
         "1": {
           "title": "Ecosystem placement analytics",
-          "desc": "See where your residents hire from, which skills they look for, and where the matches actually convert. Quarterly export for the report you owe your regional authority — without chasing residents for survey responses."
+          "desc": "See where your companies hire from, which skills they look for, and where the matches actually convert. Quarterly export for the report you owe your regional authority — without chasing companies for survey responses."
         },
         "2": {
           "title": "University partnership bridge",
-          "desc": "Wire your existing university partners (career services, ITS Academies, technical schools) into the same workspace your residents already use. One platform, shared talent pool, both sides see the same evidence."
+          "desc": "Wire your existing university partners (career services, ITS Academies, technical schools) into the same workspace your companies already use. One platform, shared talent pool, both sides see the same evidence."
         },
         "3": {
           "title": "Career-day and matching event tools",
-          "desc": "Run talent days where residents meet pre-qualified candidates whose work they already saw. The AI-verified profile replaces the stack of CVs and the awkward intro round."
+          "desc": "Run talent days where the companies in your park meet pre-qualified candidates whose work they already saw. The AI-verified profile replaces the stack of CVs and the awkward intro round."
         }
       }
     },
@@ -3393,11 +3393,11 @@
       "steps": {
         "0": {
           "title": "Pilot with one cohort",
-          "desc": "Pick one resident company and one university partner. Run for a quarter, measure time-to-shortlist and hire conversion against your current channel."
+          "desc": "Pick one company in your park and one university partner. Run for a quarter, measure time-to-shortlist and hire conversion against your current channel."
         },
         "1": {
-          "title": "Open to all residents",
-          "desc": "If the pilot works, the workspace opens to every resident under your brand. They keep their independence; you get the aggregated placement view."
+          "title": "Open to every company in your park",
+          "desc": "If the pilot works, the workspace opens to every company under your brand. They keep their independence; you get the aggregated placement view."
         },
         "2": {
           "title": "Add analytics and events",
@@ -3415,7 +3415,7 @@
         },
         "1": {
           "title": "Regional innovation hubs",
-          "desc": "Your residents come from multiple universities and ITS Academies. We aggregate the talent across your partner institutions."
+          "desc": "Your tenant companies hire from multiple universities and ITS Academies. We aggregate the talent across all your partner institutions."
         },
         "2": {
           "title": "Corporate or accelerator programs",
@@ -3425,9 +3425,9 @@
     },
     "cta": {
       "title": "Let's see if there's a fit",
-      "subtitle": "We're building partnerships with innovation hubs across Italy and Europe. Tell us about your ecosystem and the residents who would benefit first.",
+      "subtitle": "We're building partnerships with innovation hubs across Italy and Europe. Tell us about your ecosystem and the companies that would benefit first.",
       "primary": "Start a partnership conversation",
-      "secondary": "See pricing for residents"
+      "secondary": "See pricing for companies"
     }
   },
   "demoAISearch": {

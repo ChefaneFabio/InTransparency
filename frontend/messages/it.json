@@ -9704,31 +9704,31 @@
   "forTechparks": {
     "hero": {
       "eyebrow": "Hub d'innovazione e tech park",
-      "title": "I tuoi residenti assumono per conto loro. Ora vedi il pattern.",
-      "subtitle": "Le aziende del tuo tech park assumono di continuo — da LinkedIn, da referenze, da canali universitari sparsi. La vista aggregata raramente arriva sulla tua scrivania. InTransparency permette ai residenti di assumere laureati verificati da un solo workspace, e riporta i dati di placement dell'ecosistema sul tuo.",
+      "title": "Le aziende del tuo park assumono per conto loro. Ora vedi il pattern.",
+      "subtitle": "Le aziende del tuo tech park assumono di continuo — da LinkedIn, da referenze, da canali universitari sparsi. La vista aggregata raramente arriva sulla tua scrivania. InTransparency permette alle aziende del tuo park di assumere laureati verificati da un solo workspace, e riporta i dati di placement dell'ecosistema sul tuo.",
       "primaryCta": "Avvia una conversazione di partnership",
       "secondaryCta": "Funzionalità per le aziende"
     },
     "benefits": {
       "eyebrow": "Cosa porti al tuo ecosistema",
       "title": "Quattro pezzi che trasformano una tenancy in un motore di placement",
-      "lede": "Ogni modulo è indipendente — puoi pilotarne uno e aggiungere il resto dopo. Nessuno richiede ai residenti di installare nulla; accedono via web sotto il tuo brand.",
+      "lede": "Ogni modulo è indipendente — puoi pilotarne uno e aggiungere il resto dopo. Nessuno richiede alle aziende del tuo park di installare nulla; accedono via web sotto il tuo brand.",
       "items": {
         "0": {
-          "title": "Pool di talenti verificato per le aziende residenti",
-          "desc": "Startup e scale-up residenti cercano in un pool di laureati le cui competenze sono state estratte da progetti reali, non auto-dichiarate sul CV. Voti normalizzati tra i sistemi UE: un 28/30 del Politecnico legge come un 1.7 della TU München."
+          "title": "Pool di talenti verificato per le aziende del tuo park",
+          "desc": "Startup e scale-up del tuo park cercano in un pool di laureati le cui competenze sono state estratte da progetti reali, non auto-dichiarate sul CV. Voti normalizzati tra i sistemi UE: un 28/30 del Politecnico legge come un 1.7 della TU München."
         },
         "1": {
           "title": "Analytics di placement dell'ecosistema",
-          "desc": "Scopri da dove i tuoi residenti assumono, quali competenze cercano e dove i match convertono davvero. Export trimestrale per il report che devi all'ente regionale — senza inseguire i residenti per i questionari."
+          "desc": "Scopri da dove le tue aziende assumono, quali competenze cercano e dove i match convertono davvero. Export trimestrale per il report che devi all'ente regionale — senza inseguire le aziende per i questionari."
         },
         "2": {
           "title": "Ponte con i partner formativi",
-          "desc": "Collega i partner che hai già (career service universitari, ITS Academy, scuole tecniche) allo stesso workspace che usano i residenti. Una piattaforma, un pool condiviso, entrambe le parti vedono le stesse evidenze."
+          "desc": "Collega i partner che hai già (career service universitari, ITS Academy, scuole tecniche) allo stesso workspace che usano le tue aziende. Una piattaforma, un pool condiviso, entrambe le parti vedono le stesse evidenze."
         },
         "3": {
           "title": "Strumenti per career day e matching",
-          "desc": "Organizza giornate dove i residenti incontrano candidati pre-qualificati di cui hanno già visto il lavoro. Il profilo verificato con AI sostituisce la pila di CV e il giro di presentazioni."
+          "desc": "Organizza giornate dove le aziende del tuo park incontrano candidati pre-qualificati di cui hanno già visto il lavoro. Il profilo verificato con AI sostituisce la pila di CV e il giro di presentazioni."
         }
       }
     },
@@ -9739,11 +9739,11 @@
       "steps": {
         "0": {
           "title": "Pilota con una coorte",
-          "desc": "Scegli una azienda residente e un partner formativo. Tre mesi, misuri tempo-a-shortlist e tasso di conversione contro il canale che usi oggi."
+          "desc": "Scegli un'azienda del tuo park e un partner formativo. Tre mesi, misuri tempo-a-shortlist e tasso di conversione contro il canale che usi oggi."
         },
         "1": {
-          "title": "Apri a tutti i residenti",
-          "desc": "Se il pilota funziona, il workspace si apre a ogni residente sotto il tuo brand. Mantengono la loro indipendenza; tu ottieni la vista aggregata sul placement."
+          "title": "Apri a ogni azienda del tuo park",
+          "desc": "Se il pilota funziona, il workspace si apre a ogni azienda sotto il tuo brand. Mantengono la loro indipendenza; tu ottieni la vista aggregata sul placement."
         },
         "2": {
           "title": "Aggiungi analytics ed eventi",
@@ -9761,7 +9761,7 @@
         },
         "1": {
           "title": "Hub d'innovazione regionali",
-          "desc": "I tuoi residenti vengono da più atenei e ITS Academy. Aggreghiamo il talento sui partner formativi che hai."
+          "desc": "Le aziende del tuo park assumono da più atenei e ITS Academy. Aggreghiamo il talento su tutti i partner formativi che hai."
         },
         "2": {
           "title": "Programmi corporate o acceleratori",
@@ -9771,9 +9771,9 @@
     },
     "cta": {
       "title": "Vediamo se c'è un fit",
-      "subtitle": "Stiamo costruendo partnership con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema e dei residenti che ne beneficerebbero per primi.",
+      "subtitle": "Stiamo costruendo partnership con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema e delle aziende che ne beneficerebbero per prime.",
       "primary": "Avvia una conversazione di partnership",
-      "secondary": "Pricing per i residenti"
+      "secondary": "Pricing per le aziende"
     }
   },
   "forUniversityStudents": {
