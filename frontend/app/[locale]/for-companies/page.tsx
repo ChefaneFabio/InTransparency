@@ -47,17 +47,42 @@ interface Capability {
   endpoint?: string
 }
 
-const CAPABILITIES: Capability[] = [
-  { key: 'verified',       icon: ShieldCheck,   endpoint: '/explore' },
-  { key: 'smartSearch',    icon: MessageSquare, endpoint: '/demo/ai-search' },
-  { key: 'decisionPack',   icon: FileText },
-  { key: 'hiringAdvisor',  icon: Bot },
-  { key: 'interviewKit',   icon: ClipboardList },
-  { key: 'outreach',       icon: Send },
-  { key: 'outcomes',       icon: Activity },
-  { key: 'atsBridge',      icon: Plug,          endpoint: '/integrations' },
-  { key: 'diversity',      icon: Users,         endpoint: '/algorithm-registry' },
-  { key: 'compliance',     icon: FileCheck,     endpoint: '/eu-compliance' },
+interface Phase {
+  key: 'find' | 'decide' | 'reach' | 'measure'
+  items: Capability[]
+}
+
+const PHASES: Phase[] = [
+  {
+    key: 'find',
+    items: [
+      { key: 'verified',    icon: ShieldCheck,   endpoint: '/explore' },
+      { key: 'smartSearch', icon: MessageSquare, endpoint: '/demo/ai-search' },
+    ],
+  },
+  {
+    key: 'decide',
+    items: [
+      { key: 'decisionPack',  icon: FileText },
+      { key: 'hiringAdvisor', icon: Bot },
+      { key: 'interviewKit',  icon: ClipboardList },
+    ],
+  },
+  {
+    key: 'reach',
+    items: [
+      { key: 'outreach',  icon: Send },
+      { key: 'atsBridge', icon: Plug, endpoint: '/integrations' },
+    ],
+  },
+  {
+    key: 'measure',
+    items: [
+      { key: 'outcomes',   icon: Activity },
+      { key: 'diversity',  icon: Users,     endpoint: '/algorithm-registry' },
+      { key: 'compliance', icon: FileCheck, endpoint: '/eu-compliance' },
+    ],
+  },
 ]
 
 const METRICS = ['0', '1', '2'] as const
@@ -179,43 +204,68 @@ export default function ForCompaniesPage() {
           </div>
         </section>
 
-        {/* Capabilities */}
+        {/* Capabilities — grouped into 4 phases */}
         <section>
-          <h2 className="text-2xl font-semibold tracking-tight mb-6 max-w-2xl">
-            {t('capabilities.title')}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {CAPABILITIES.map(c => {
-              const Icon = c.icon
-              return (
-                <Card key={c.key} className="hover:border-primary/40 transition-colors">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-base flex items-center gap-2">
-                      <Icon className="h-5 w-5 text-primary" />
-                      {t(`capabilities.items.${c.key}.title`)}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {t(`capabilities.items.${c.key}.description`)}
-                    </p>
-                    <p className="text-xs text-foreground/80 mb-2">
-                      <span className="font-semibold">{t('practiceLabel')}</span>{' '}
-                      {t(`capabilities.items.${c.key}.concrete`)}
-                    </p>
-                    {c.endpoint && (
-                      <a
-                        href={c.endpoint}
-                        className="text-xs text-primary hover:underline inline-flex items-center gap-1"
-                      >
-                        {t('seeIt')}
-                        <ArrowRight className="h-3 w-3" />
-                      </a>
-                    )}
-                  </CardContent>
-                </Card>
-              )
-            })}
+          <div className="mb-8 max-w-2xl">
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">
+              {t('capabilities.title')}
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              {t('capabilities.lede')}
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            {PHASES.map((phase, phaseIdx) => (
+              <div key={phase.key}>
+                {/* Phase header — number + title + lede */}
+                <div className="flex items-baseline gap-3 mb-1">
+                  <span className="text-xs font-mono uppercase tracking-[0.18em] text-primary">
+                    {`Phase ${String(phaseIdx + 1).padStart(2, '0')}`}
+                  </span>
+                  <h3 className="text-xl font-semibold tracking-tight">
+                    {t(`capabilities.${phase.key}.title`)}
+                  </h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
+                  {t(`capabilities.${phase.key}.lede`)}
+                </p>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {phase.items.map(c => {
+                    const Icon = c.icon
+                    return (
+                      <Card key={c.key} className="hover:border-primary/40 transition-colors">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-base flex items-center gap-2">
+                            <Icon className="h-5 w-5 text-primary" />
+                            {t(`capabilities.${phase.key}.items.${c.key}.title`)}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            {t(`capabilities.${phase.key}.items.${c.key}.description`)}
+                          </p>
+                          <p className="text-xs text-foreground/80 mb-2">
+                            <span className="font-semibold">{t('practiceLabel')}</span>{' '}
+                            {t(`capabilities.${phase.key}.items.${c.key}.concrete`)}
+                          </p>
+                          {c.endpoint && (
+                            <a
+                              href={c.endpoint}
+                              className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+                            >
+                              {t('seeIt')}
+                              <ArrowRight className="h-3 w-3" />
+                            </a>
+                          )}
+                        </CardContent>
+                      </Card>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

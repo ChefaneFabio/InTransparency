@@ -6,8 +6,65 @@ import { Footer } from '@/components/layout/Footer'
 import { Link } from '@/navigation'
 import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
 import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
+import type { DecisionPackData } from '@/lib/decision-pack'
 
 const ACCENT = 'blue' as const
+
+const SAMPLE_PACK: DecisionPackData = {
+  candidate: {
+    id: 'sample',
+    firstName: 'Marco',
+    lastName: 'Colombo',
+    university: 'Politecnico di Milano',
+    degree: 'MSc Computer Engineering',
+    country: 'IT',
+    tagline: 'Backend + ML, two-year hackathon track record',
+    bio: null,
+  },
+  trustScore: { verifiedProjects: 4, totalProjects: 5, endorsementCount: 2, universityVerified: true },
+  skills: [
+    { name: 'Python', industryTerms: [], evidenceSources: ['Thesis', 'GitHub repo', 'Course project'], verifiedLevel: 'Advanced' },
+    { name: 'PostgreSQL', industryTerms: [], evidenceSources: ['Thesis', 'Stage project'], verifiedLevel: 'Advanced' },
+    { name: 'Machine Learning', industryTerms: [], evidenceSources: ['Thesis', 'Hackathon win'], verifiedLevel: 'Intermediate' },
+    { name: 'Docker', industryTerms: [], evidenceSources: ['Stage project'], verifiedLevel: 'Intermediate' },
+  ],
+  projects: [
+    {
+      id: 'p1',
+      title: 'Real-time anomaly detection for industrial sensors',
+      discipline: 'TECHNOLOGY',
+      grade: '30L',
+      normalizedGrade: 4.0,
+      gradeDisplay: '30 cum laude / 30',
+      innovationScore: 8.4,
+      complexityScore: 9.1,
+      marketRelevance: 8.7,
+      aiInsights: null,
+      verificationStatus: 'VERIFIED',
+      skills: ['Python', 'PostgreSQL', 'Machine Learning'],
+      endorsements: [
+        {
+          professorName: 'Prof. Anna Rossi',
+          rating: 5,
+          endorsementText: 'Marco delivered a production-ready system, not a coursework prototype. The architecture choices were sound under load.',
+        },
+      ],
+    },
+  ],
+  grades: [],
+  prediction: {
+    probability: 0.87,
+    topFactors: [
+      { factor: 'Verified projects', impact: 0.34, description: '4 of 5 projects independently verified by faculty.' },
+      { factor: 'Industrial relevance', impact: 0.28, description: 'Thesis topic maps to active demand in 3 sectors.' },
+      { factor: 'Endorsement quality', impact: 0.18, description: 'Endorsement cites delivery, not just attendance.' },
+    ],
+  },
+  softSkills: null,
+  matchScore: null,
+  generatedAt: new Date().toISOString(),
+}
 
 export default function DecisionPackPage() {
   const t = useTranslations('decisionPack')
@@ -73,6 +130,22 @@ export default function DecisionPackPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </EditorialSection>
+
+        {/* Live preview — render the actual component the recruiter sees */}
+        <EditorialSection
+          tone="muted"
+          accent={ACCENT}
+          eyebrow={t('preview.eyebrow')}
+          title={t('preview.title')}
+          lede={t('preview.lede')}
+        >
+          <div className="max-w-2xl mx-auto">
+            <DecisionPackPreview data={SAMPLE_PACK} />
+            <p className="mt-6 text-xs text-slate-500 text-center italic">
+              {t('preview.note')}
+            </p>
           </div>
         </EditorialSection>
 

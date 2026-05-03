@@ -107,6 +107,97 @@ export default function SkillExtractionPage() {
           </div>
         </EditorialSection>
 
+        {/* Worked example — input README excerpt → typed-bucket badges */}
+        <EditorialSection
+          accent={ACCENT}
+          eyebrow={t('proof.eyebrow')}
+          title={t('proof.title')}
+          lede={t('proof.lede')}
+        >
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Input column */}
+            <div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 mb-3">
+                {t('proof.inputLabel')}
+              </div>
+              <pre className="text-[12px] leading-relaxed font-mono p-5 rounded-lg bg-slate-950 text-slate-200 overflow-x-auto whitespace-pre-wrap">
+{`# Real-time anomaly detection for industrial sensors
+
+Master thesis project · Politecnico di Milano · 2025
+
+Built a streaming pipeline that ingests telemetry from
+Brembo's brake-disc QA line (~3,200 events/sec) and flags
+defective batches before they leave the cell.
+
+Stack: Python 3.11, FastAPI, PostgreSQL + TimescaleDB,
+Apache Kafka, Docker, GitHub Actions. Forecasting model:
+LSTM autoencoder (PyTorch), trained on 14 months of
+historical sensor data.
+
+Worked with Brembo's manufacturing team for the spec.
+Wrote the architecture doc, ran two design reviews with
+the QA leads, presented the final report in English to
+the operations director.`}
+              </pre>
+            </div>
+
+            {/* Output column — typed buckets with badges */}
+            <div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-400 mb-3">
+                {t('proof.outputLabel')}
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Hard skills</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Python', 'FastAPI', 'PostgreSQL', 'TimescaleDB', 'Kafka', 'Docker', 'PyTorch', 'CI/CD'].map(s => (
+                      <span key={s} className="text-[11px] px-2 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Soft skills</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Stakeholder collaboration', 'Architecture documentation', 'Design review facilitation', 'Technical presentation'].map(s => (
+                      <span key={s} className="text-[11px] px-2 py-1 rounded bg-slate-50 text-slate-700 border border-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-700">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Design skills</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="text-[11px] px-2 py-1 rounded bg-slate-50 text-slate-500 border border-slate-200 dark:bg-slate-900 dark:text-slate-500 dark:border-slate-700 italic">none extracted</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Domain knowledge</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Industrial QA / manufacturing', 'Streaming telemetry', 'Time-series anomaly detection'].map(s => (
+                      <span key={s} className="text-[11px] px-2 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Languages</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Italian (native)', 'English (B2+, presentations)'].map(s => (
+                      <span key={s} className="text-[11px] px-2 py-1 rounded bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-900">{s}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-8 text-[12px] text-slate-500 italic max-w-3xl">
+            {t('proof.noteLabel')}
+          </p>
+        </EditorialSection>
+
         {/* Evidence + limits — two columns, plain section since each column has its own header */}
         <section className="scroll-mt-24 border-b border-slate-200 dark:border-slate-800">
           <div className="container max-w-5xl mx-auto px-6 py-20 lg:py-24">

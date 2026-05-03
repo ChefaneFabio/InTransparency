@@ -128,6 +128,68 @@ export default function ConventionsPage() {
     </span>
   )
 
+  /**
+   * Horizontal 4-step timeline showing the convention lifecycle.
+   * Draft → Pending → Active → Completed. REVOKED/EXPIRED are
+   * terminal side-states that stop the timeline at the current
+   * step with a red marker.
+   */
+  const STATUS_FLOW = ['DRAFT', 'PENDING_SIGNATURES', 'ACTIVE', 'COMPLETED'] as const
+  const StatusTimeline = ({ status }: { status: string }) => {
+    const isStopped = status === 'REVOKED' || status === 'EXPIRED'
+    // For terminal side-states, show the timeline stuck at the previous main state
+    const effectiveIdx = isStopped
+      ? Math.max(0, STATUS_FLOW.indexOf('ACTIVE')) // assume revoked/expired interrupted between Active and Completed
+      : STATUS_FLOW.indexOf(status as typeof STATUS_FLOW[number])
+    const currentIdx = effectiveIdx === -1 ? 0 : effectiveIdx
+
+    return (
+      <div className="flex items-center gap-1 mt-3" aria-label={`Status: ${t(`status.${status.toLowerCase()}`)}`}>
+        {STATUS_FLOW.map((step, i) => {
+          const isPast = i < currentIdx
+          const isCurrent = i === currentIdx
+          const stopped = isStopped && isCurrent
+          const dotClass = stopped
+            ? 'bg-red-500 ring-2 ring-red-200 dark:ring-red-900/40'
+            : isPast
+            ? 'bg-emerald-500'
+            : isCurrent
+            ? 'bg-primary ring-2 ring-primary/20'
+            : 'bg-muted-foreground/20'
+          const labelClass = stopped
+            ? 'text-red-600 font-medium'
+            : isPast
+            ? 'text-emerald-600'
+            : isCurrent
+            ? 'text-foreground font-medium'
+            : 'text-muted-foreground/50'
+          const lineClass = i < currentIdx
+            ? 'bg-emerald-500'
+            : isStopped && i === currentIdx
+            ? 'bg-red-300'
+            : 'bg-muted-foreground/15'
+
+          return (
+            <div key={step} className="flex items-center gap-1 first:pl-0">
+              <div className="flex flex-col items-center min-w-[60px]">
+                <div className={`w-2.5 h-2.5 rounded-full ${dotClass}`} />
+                <span className={`text-[10px] mt-1 uppercase tracking-wider ${labelClass}`}>
+                  {t(`timeline.${step.toLowerCase()}`)}
+                </span>
+              </div>
+              {i < STATUS_FLOW.length - 1 && <div className={`flex-1 h-0.5 min-w-[20px] ${lineClass}`} />}
+            </div>
+          )
+        })}
+        {isStopped && (
+          <span className="ml-2 text-[10px] uppercase tracking-wider text-red-600 font-medium">
+            {t(`timeline.${status.toLowerCase()}Tag`)}
+          </span>
+        )}
+      </div>
+    )
+  }
+
   const [pendingAction, setPendingAction] = useState<string | null>(null)
   const handleTransition = async (id: string, action: string) => {
     if (action === 'revoke' && !window.confirm(t('actions.confirmRevoke'))) return
@@ -313,7 +375,10 @@ export default function ConventionsPage() {
 
                         {conv.objectives && <p className="text-sm text-muted-foreground mt-2 line-clamp-1">{conv.objectives}</p>}
 
-                        {/* Signature status */}
+                        {/* Status timeline — visual lifecycle position */}
+                        <StatusTimeline status={conv.status} />
+
+                        {/* Signature row */}
                         <div className="flex items-center gap-4 mt-3">
                           <SignatureIndicator signed={conv.signedByUniversity} label={t('signatures.university')} />
                           <SignatureIndicator signed={conv.signedByCompany} label={t('signatures.company')} />

@@ -2525,57 +2525,80 @@
       }
     },
     "capabilities": {
-      "title": "Cosa ottieni dal primo giorno",
-      "items": {
-        "verified": {
-          "title": "Pool pre-verificato",
-          "description": "Hard skill estratte dall'AI da artefatti reali (codice, tesi, file di design). Soft skill mappate attraverso il flusso Self-Discovery del candidato e confrontate con il record verificato. Voti normalizzati tra sistemi UE. La validazione opzionale del docente aggiunge un trust signal quando presente.",
-          "concrete": "Cerca per skill su /explore — un 28/30 italiano = 1.7 tedesco = 15/20 francese, automatico."
-        },
-        "smartSearch": {
-          "title": "Ricerca conversazionale",
-          "description": "Descrivi il profilo in linguaggio naturale — anche complesso (\"data scientist senior con esperienza farma, OK Roma o remoto, valuta cambio\"). L'AI trova match e spiega ogni decisione.",
-          "concrete": "Provala su /demo/ai-search — niente boolean search, niente filtri da configurare."
-        },
-        "decisionPack": {
-          "title": "Decision Pack per ogni candidato",
-          "description": "Portfolio + skill verificate + voti contestualizzati + (opzionale) personalità in un dossier scaricabile. Lo passi all'hiring manager, lo allega al ticket Greenhouse, lo spedisce al CEO.",
-          "concrete": "Export PDF/JSON — apri da qualsiasi browser, niente account InTransparency richiesto al lettore."
-        },
-        "atsBridge": {
-          "title": "Bridge ATS — alimenti, non sostituisci",
-          "description": "Hai già Greenhouse, Lever, Workday o SmartRecruiters? L'ATS bridge invia gli shortlist al tuo ATS via webhook. I candidati arrivano come application già pre-screened.",
-          "concrete": "Webhook events: match.created, credential.issued, stage.completed. Vedi /integrations."
-        },
-        "diversity": {
-          "title": "Hiring senza bias, con audit trail",
-          "description": "Le competenze sono estratte dal lavoro, non dal nome o dalla scuola. Studenti di atenei piccoli, percorsi non lineari e gruppi sottorappresentati emergono alle stesse condizioni. Audit log per la reportistica ESG.",
-          "concrete": "Vedi /algorithm-registry per i criteri di matching pubblicati e auditabili."
-        },
-        "compliance": {
-          "title": "Pronti per AI Act, GDPR Art. 22 coperto",
-          "description": "L'AI di valutazione candidati è high-risk sotto Annex III §4. Forniamo l'algorithm registry, l'audit log e gli endpoint right-to-explanation che l'Annex III richiede — la tua esposizione AI Act resta gestibile.",
-          "concrete": "Vedi /eu-compliance — 17 standard UE mappati su endpoint deployati."
-        },
-        "hiringAdvisor": {
-          "title": "AI Hiring Advisor",
-          "description": "Un assistente conversazionale che ti aiuta a ragionare sulle decisioni di hiring — quando intervistare, come pesare le evidenze, cosa chiedere. Backed by Anthropic, con il record verificato del candidato come contesto.",
-          "concrete": "Chiedi \"dovrei intervistare Marco per questo ruolo?\" — ottieni una risposta ragionata che cita le evidenze."
-        },
-        "interviewKit": {
-          "title": "AI Interview Kit per posizione",
-          "description": "Genera un interview kit su misura per ogni posizione — domande, rubric di valutazione, allocazione tempo — basato sui requisiti del ruolo e sul profilo del candidato. Un click dalla pagina del job.",
-          "concrete": "Passa il kit all'hiring manager così entra con una struttura, non con un foglio bianco."
-        },
-        "outreach": {
-          "title": "Sequenze di contatto e dossier per ogni fase",
-          "description": "Dopo la shortlist resta da contattare i candidati e preparare chi farà il colloquio. Sequenze multi-touch con tracking delle risposte. Dossier per fase, così chi intervista non parte da zero.",
-          "concrete": "Imposta una cadenza in 3 step, vedi le risposte arrivare, poi consegna il dossier alla persona successiva."
-        },
-        "outcomes": {
-          "title": "Esiti di assunzione tracciati",
-          "description": "Segna ogni contatto come assunto, intervistato, nessuna risposta, rifiutato o ritirato. La dashboard mostra response rate e hire rate reali per ruolo — e la piattaforma impara quali segnali predicono le tue assunzioni.",
-          "concrete": "Review trimestrale: scopri quali job description, quali profili, quali atenei convertono davvero."
+      "title": "Come i recruiter usano la piattaforma davvero",
+      "lede": "Quattro fasi. Ognuna sta in piedi da sola — puoi partire da Find e aggiungere Reach dopo, o pilotare solo Decide. Non ti chiediamo di adottare l'intero stack al primo giorno.",
+      "find": {
+        "title": "Find",
+        "lede": "Fai emergere chi potrebbe candidarsi, non solo chi l'ha fatto.",
+        "items": {
+          "verified": {
+            "title": "Pool pre-verificato",
+            "description": "Hard skill estratte dall'AI da artefatti reali (codice, tesi, file di design). Soft skill mappate attraverso il flusso Self-Discovery del candidato e confrontate con il record verificato. Voti normalizzati tra sistemi UE. La validazione opzionale del docente aggiunge un trust signal quando presente.",
+            "concrete": "Cerca per skill su /explore — un 28/30 italiano = 1.7 tedesco = 15/20 francese, automatico."
+          },
+          "smartSearch": {
+            "title": "Ricerca conversazionale",
+            "description": "Descrivi il profilo in linguaggio naturale — anche complesso (\"data scientist senior con esperienza farma, OK Roma o remoto, valuta cambio\"). L'AI trova match e spiega ogni decisione.",
+            "concrete": "Provala su /demo/ai-search — niente boolean search, niente filtri da configurare."
+          }
+        }
+      },
+      "decide": {
+        "title": "Decide",
+        "lede": "Leggi le evidenze prima di prenotare una chiamata. Dai struttura a chi farà il colloquio.",
+        "items": {
+          "decisionPack": {
+            "title": "Decision Pack per ogni candidato",
+            "description": "Portfolio + skill verificate + voti contestualizzati + (opzionale) personalità in un dossier scaricabile. Lo passi all'hiring manager, lo allega al ticket Greenhouse, lo spedisce al CEO.",
+            "concrete": "Export PDF/JSON — apri da qualsiasi browser, niente account InTransparency richiesto al lettore."
+          },
+          "hiringAdvisor": {
+            "title": "AI Hiring Advisor",
+            "description": "Un assistente conversazionale che ti aiuta a ragionare sulle decisioni di hiring — quando intervistare, come pesare le evidenze, cosa chiedere. Backed by Anthropic, con il record verificato del candidato come contesto.",
+            "concrete": "Chiedi \"dovrei intervistare Marco per questo ruolo?\" — ottieni una risposta ragionata che cita le evidenze."
+          },
+          "interviewKit": {
+            "title": "AI Interview Kit per posizione",
+            "description": "Genera un interview kit su misura per ogni posizione — domande, rubric di valutazione, allocazione tempo — basato sui requisiti del ruolo e sul profilo del candidato. Un click dalla pagina del job.",
+            "concrete": "Passa il kit all'hiring manager così entra con una struttura, non con un foglio bianco."
+          }
+        }
+      },
+      "reach": {
+        "title": "Reach",
+        "lede": "Contatta chi conta, consegna gli shortlist dove il lavoro vive già.",
+        "items": {
+          "outreach": {
+            "title": "Sequenze di contatto e dossier per ogni fase",
+            "description": "Dopo la shortlist resta da contattare i candidati e preparare chi farà il colloquio. Sequenze multi-touch con tracking delle risposte. Dossier per fase, così chi intervista non parte da zero.",
+            "concrete": "Imposta una cadenza in 3 step, vedi le risposte arrivare, poi consegna il dossier alla persona successiva."
+          },
+          "atsBridge": {
+            "title": "Bridge ATS — alimenti, non sostituisci",
+            "description": "Hai già Greenhouse, Lever, Workday o SmartRecruiters? L'ATS bridge invia gli shortlist al tuo ATS via webhook. I candidati arrivano come application già pre-screened.",
+            "concrete": "Webhook events: match.created, credential.issued, stage.completed. Vedi /integrations."
+          }
+        }
+      },
+      "measure": {
+        "title": "Measure",
+        "lede": "Closed loop: quali segnali predicono le tue assunzioni, con l'audit trail che il tuo DPO chiede.",
+        "items": {
+          "outcomes": {
+            "title": "Esiti di assunzione tracciati",
+            "description": "Segna ogni contatto come assunto, intervistato, nessuna risposta, rifiutato o ritirato. La dashboard mostra response rate e hire rate reali per ruolo — e la piattaforma impara quali segnali predicono le tue assunzioni.",
+            "concrete": "Review trimestrale: scopri quali job description, quali profili, quali atenei convertono davvero."
+          },
+          "diversity": {
+            "title": "Hiring senza bias, con audit trail",
+            "description": "Le competenze sono estratte dal lavoro, non dal nome o dalla scuola. Studenti di atenei piccoli, percorsi non lineari e gruppi sottorappresentati emergono alle stesse condizioni. Audit log per la reportistica ESG.",
+            "concrete": "Vedi /algorithm-registry per i criteri di matching pubblicati e auditabili."
+          },
+          "compliance": {
+            "title": "Pronti per AI Act, GDPR Art. 22 coperto",
+            "description": "L'AI di valutazione candidati è high-risk sotto Annex III §4. Forniamo l'algorithm registry, l'audit log e gli endpoint right-to-explanation che l'Annex III richiede — la tua esposizione AI Act resta gestibile.",
+            "concrete": "Vedi /eu-compliance — 17 standard UE mappati su endpoint deployati."
+          }
         }
       }
     },
@@ -11768,6 +11791,14 @@
       "company": "Azienda",
       "student": "Studente"
     },
+    "timeline": {
+      "draft": "Bozza",
+      "pending_signatures": "In attesa",
+      "active": "Attiva",
+      "completed": "Completata",
+      "revokedTag": "Revocata",
+      "expiredTag": "Scaduta"
+    },
     "actions": {
       "send": "Invia per firma",
       "signUniversity": "Segna firma ateneo",
@@ -15312,6 +15343,12 @@
         }
       }
     },
+    "preview": {
+      "eyebrow": "Anteprima live",
+      "title": "Ecco com'è fatto davvero un Decision Pack",
+      "lede": "Candidato sintetico, componente reale. Lo stesso layout React che renderizza per un profilo shortlistato — badge delle skill verificate, scoring del top project, citazione dell'endorsement, fascia di prediction.",
+      "note": "Dati di esempio. I Decision Pack reali prendono dal profilo effettivo del candidato, dagli artefatti dei progetti e (quando presenti) dagli endorsement dei docenti."
+    },
     "whoUses": {
       "eyebrow": "Chi legge un Decision Pack",
       "title": "Lettori diversi, stesso documento",
@@ -15404,6 +15441,14 @@
           "desc": "Lingue di lavoro, livelli certificati, evidenza nel lavoro del candidato. Allineate al CEFR dove possibile."
         }
       }
+    },
+    "proof": {
+      "eyebrow": "Esempio reale",
+      "title": "Un README in entrata, cinque bucket tipizzati in uscita",
+      "lede": "Logica di estrazione reale eseguita su un frammento di una tesi Politecnico. Frammento a sinistra, output dell'AI a destra.",
+      "inputLabel": "Input — estratto del README di progetto",
+      "outputLabel": "Output — bucket skill tipizzati",
+      "noteLabel": "Ogni badge è cliccabile nel prodotto reale — porta alla riga dell'artefatto dove l'evidenza è stata trovata."
     },
     "evidence": {
       "eyebrow": "Cosa mostriamo",
