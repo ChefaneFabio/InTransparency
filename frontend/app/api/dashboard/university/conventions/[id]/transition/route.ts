@@ -32,8 +32,10 @@ const TERMINAL = new Set(['COMPLETED', 'REVOKED', 'EXPIRED'])
  */
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
+
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -57,7 +59,7 @@ export async function POST(
 
   const universityName = user.company || ''
   const conv = await prisma.stageConvention.findFirst({
-    where: { id: params.id, universityName },
+    where: { id, universityName },
   })
   if (!conv) {
     return NextResponse.json({ error: 'Convention not found' }, { status: 404 })
