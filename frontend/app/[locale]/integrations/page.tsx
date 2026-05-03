@@ -94,31 +94,31 @@ export default function IntegrationsIndexPage() {
   "occurred_at": "2026-05-03T14:22:08Z",
   "data": {
     "match_id": "mat_a3f51e9d",
-    "job_id": "job_brembo_qa_engineer_2026",
+    "job_id": "job_lvmh_brand_strategy_2026",
     "candidate": {
-      "id": "cnd_marco_colombo",
-      "first_name": "Marco",
-      "last_name": "Colombo",
-      "email": "marco.colombo@example.com",
-      "university": "Politecnico di Milano",
-      "degree": "MSc Computer Engineering",
+      "id": "cnd_giulia_ferrari",
+      "first_name": "Giulia",
+      "last_name": "Ferrari",
+      "email": "giulia.ferrari@example.com",
+      "university": "Università Bocconi",
+      "degree": "MSc Marketing Management",
       "graduation_year": 2025,
       "country": "IT"
     },
     "verification": {
-      "verified_projects": 4,
-      "total_projects": 5,
-      "endorsements": 2,
-      "trust_score": 0.87
+      "verified_projects": 3,
+      "total_projects": 4,
+      "endorsements": 1,
+      "trust_score": 0.84
     },
     "skills": [
-      { "name": "Python",   "level": "advanced",    "evidence_count": 3 },
-      { "name": "Kafka",    "level": "intermediate","evidence_count": 1 },
-      { "name": "PyTorch",  "level": "intermediate","evidence_count": 1 }
+      { "name": "Brand positioning",     "level": "advanced",    "evidence_count": 3 },
+      { "name": "Quantitative research", "level": "advanced",    "evidence_count": 2 },
+      { "name": "Competitive analysis",  "level": "intermediate","evidence_count": 2 }
     ],
-    "decision_pack_url": "https://app.in-transparency.com/dp/cnd_marco_colombo.pdf",
-    "match_score": 0.91,
-    "match_explanation": "Thesis maps directly to Brembo QA-line role; Python+Kafka+PyTorch align with stack."
+    "decision_pack_url": "https://app.in-transparency.com/dp/cnd_giulia_ferrari.pdf",
+    "match_score": 0.89,
+    "match_explanation": "Thesis on premium-segment repositioning maps directly to the brand-strategy junior role; quant-research evidence covers consumer segmentation."
   }
 }`}
             </pre>

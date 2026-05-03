@@ -121,23 +121,29 @@ export default function SkillExtractionPage() {
                 {t('proof.inputLabel')}
               </div>
               <pre className="text-[12px] leading-relaxed font-mono p-5 rounded-lg bg-slate-950 text-slate-200 overflow-x-auto whitespace-pre-wrap">
-{`# Real-time anomaly detection for industrial sensors
+{`# Adaptive reuse of the ex-Falck industrial site
 
-Master thesis project · Politecnico di Milano · 2025
+Master thesis · Politecnico di Milano · Architecture · 2025
 
-Built a streaming pipeline that ingests telemetry from
-Brembo's brake-disc QA line (~3,200 events/sec) and flags
-defective batches before they leave the cell.
+Designed a mixed-use intervention on 12,000 m² of the
+former Falck steelworks in Sesto San Giovanni. The plan
+keeps three of the original blast-furnace structures
+(listed under Italian heritage law D.Lgs. 42/2004) and
+inserts new residential, retail, and public-space programs
+around them.
 
-Stack: Python 3.11, FastAPI, PostgreSQL + TimescaleDB,
-Apache Kafka, Docker, GitHub Actions. Forecasting model:
-LSTM autoencoder (PyTorch), trained on 14 months of
-historical sensor data.
+Deliverables: 1:200 master plan, 1:50 sectional studies of
+the heritage shells, full sustainability assessment under
+LEED v4 BD+C, structural feasibility study with FEM
+analysis on the reused frames.
 
-Worked with Brembo's manufacturing team for the spec.
-Wrote the architecture doc, ran two design reviews with
-the QA leads, presented the final report in English to
-the operations director.`}
+Software: Revit (BIM model), AutoCAD, Grasshopper + Rhino,
+Adobe InDesign for the boards. Worked with two structural
+engineers on the FEM model and with the municipality's
+heritage office on the listed-element constraints.
+
+Final review: presented to the jury in English; final PDF
+set in Italian for the regional planning authority.`}
               </pre>
             </div>
 
@@ -150,7 +156,7 @@ the operations director.`}
                 <div>
                   <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Hard skills</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Python', 'FastAPI', 'PostgreSQL', 'TimescaleDB', 'Kafka', 'Docker', 'PyTorch', 'CI/CD'].map(s => (
+                    {['Revit (BIM)', 'AutoCAD', 'Grasshopper', 'Rhino', 'FEM analysis', 'Adobe InDesign'].map(s => (
                       <span key={s} className="text-[11px] px-2 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900">{s}</span>
                     ))}
                   </div>
@@ -159,7 +165,7 @@ the operations director.`}
                 <div>
                   <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Soft skills</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Stakeholder collaboration', 'Architecture documentation', 'Design review facilitation', 'Technical presentation'].map(s => (
+                    {['Cross-disciplinary collaboration', 'Heritage-office negotiation', 'Public review presentation', 'Multi-stakeholder coordination'].map(s => (
                       <span key={s} className="text-[11px] px-2 py-1 rounded bg-slate-50 text-slate-700 border border-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-700">{s}</span>
                     ))}
                   </div>
@@ -168,14 +174,16 @@ the operations director.`}
                 <div>
                   <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Design skills</div>
                   <div className="flex flex-wrap gap-1.5">
-                    <span className="text-[11px] px-2 py-1 rounded bg-slate-50 text-slate-500 border border-slate-200 dark:bg-slate-900 dark:text-slate-500 dark:border-slate-700 italic">none extracted</span>
+                    {['Master planning (urban scale)', 'Sectional design', 'Adaptive reuse', 'Material composition'].map(s => (
+                      <span key={s} className="text-[11px] px-2 py-1 rounded bg-violet-50 text-violet-800 border border-violet-200 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-900">{s}</span>
+                    ))}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Domain knowledge</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Industrial QA / manufacturing', 'Streaming telemetry', 'Time-series anomaly detection'].map(s => (
+                    {['Italian heritage law (D.Lgs. 42/2004)', 'LEED v4 BD+C', 'Industrial heritage / brownfield reuse'].map(s => (
                       <span key={s} className="text-[11px] px-2 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900">{s}</span>
                     ))}
                   </div>
@@ -184,7 +192,7 @@ the operations director.`}
                 <div>
                   <div className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 mb-2">Languages</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Italian (native)', 'English (B2+, presentations)'].map(s => (
+                    {['Italian (native)', 'English (B2+, jury presentation)'].map(s => (
                       <span key={s} className="text-[11px] px-2 py-1 rounded bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-900">{s}</span>
                     ))}
                   </div>
