@@ -10048,6 +10048,11 @@
           "title": "Bridge ATS quando cresci",
           "description": "Hai già Greenhouse, Lever o Workday? L'ATS bridge invia i candidati selezionati al tuo ATS via webhook. Add-on opzionale, nessun setup — vedi /pricing.",
           "concrete": "Eventi webhook: match.created, credential.issued. Vedi /integrations."
+        },
+        "interviewKit": {
+          "title": "Interview kit per l'hiring manager",
+          "description": "Quando chi fa il colloquio non è un recruiter, un kit strutturato fa la differenza. Genera domande, rubric di valutazione e allocazione dei tempi su misura per ruolo e candidato.",
+          "concrete": "Passa il kit all'hiring manager: entra con una struttura, non con un foglio bianco."
         }
       }
     },
@@ -10180,6 +10185,11 @@
           "title": "Il tuo CRM, le tue relazioni",
           "description": "Non competiamo sul possesso del cliente. La pipeline candidato-cliente vive nel tuo CRM. Noi siamo il dato verificato in ingresso, tu sei la relazione che chiude.",
           "concrete": "API read-only per importare candidati nel tuo CRM. Chiavi scoped, audit log su ogni call."
+        },
+        "outreach": {
+          "title": "Outreach multi-touch con tracking delle risposte",
+          "description": "Le agenzie vivono di response rate. Costruisci una sequenza (primo contatto → follow-up → ultimo tentativo), guardi le risposte arrivare, e porti hire rate per fonte nel tuo reporting.",
+          "concrete": "Cadenza in 3 step per ruolo; la dashboard mostra reply rate, hire rate e tempo-a-shortlist."
         }
       }
     },
@@ -10312,6 +10322,11 @@
           "title": "Bridge ATS opzionale",
           "description": "Hai già Greenhouse/Lever/Ashby? Quando passi da 5 a 50 dipendenti, l'ATS bridge invia i candidati selezionati al tuo ATS via webhook. Add-on opzionale, nessun setup — vedi /pricing.",
           "concrete": "Webhook events: match.created, credential.issued. Vedi /integrations."
+        },
+        "hiringAdvisor": {
+          "title": "AI hiring advisor per founder senza HR",
+          "description": "Quando assumi senza un recruiter, un advisor conversazionale ti aiuta a ragionare sulla decisione: chi intervistare, come pesare le evidenze, cosa chiedere. Il record verificato del candidato è il contesto.",
+          "concrete": "Chiedi \"dovrei intervistare Marco per founding engineer?\" — ottieni una risposta ragionata che cita le evidenze."
         }
       }
     },

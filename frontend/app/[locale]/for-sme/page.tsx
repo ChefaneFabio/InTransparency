@@ -13,6 +13,7 @@ import {
   FileText,
   CreditCard,
   Plug,
+  ClipboardList,
   ArrowRight,
   X,
   Check,
@@ -41,12 +42,13 @@ interface Capability {
 }
 
 const CAPABILITIES: Capability[] = [
-  { key: 'verified',     icon: ShieldCheck, endpoint: '/explore' },
+  { key: 'verified',     icon: ShieldCheck,    endpoint: '/explore' },
   { key: 'noAts',        icon: Inbox },
-  { key: 'freeContacts', icon: Search,      endpoint: '/dashboard/recruiter' },
+  { key: 'freeContacts', icon: Search,         endpoint: '/dashboard/recruiter' },
   { key: 'decisionPack', icon: FileText },
-  { key: 'pricing',      icon: CreditCard,  endpoint: '/pricing' },
-  { key: 'atsBridge',    icon: Plug,        endpoint: '/integrations' },
+  { key: 'interviewKit', icon: ClipboardList },
+  { key: 'pricing',      icon: CreditCard,     endpoint: '/pricing' },
+  { key: 'atsBridge',    icon: Plug,           endpoint: '/integrations' },
 ]
 
 const METRICS = ['0', '1', '2'] as const

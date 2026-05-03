@@ -10020,6 +10020,11 @@
           "title": "ATS bridge when you grow",
           "description": "Already running Greenhouse, Lever, or Workday? The ATS bridge ships shortlisted candidates to your ATS via webhooks. Optional add-on, no setup fee — see /pricing.",
           "concrete": "Webhook events: match.created, credential.issued. See /integrations."
+        },
+        "interviewKit": {
+          "title": "Interview kit for the hiring manager",
+          "description": "When the person running the interview isn't a recruiter, a structured kit makes the difference. Generate questions, evaluation rubric, and time allocation tailored to the role and the candidate.",
+          "concrete": "Hand the kit to the hiring manager so they walk in with structure, not a blank slate."
         }
       }
     },
@@ -10152,6 +10157,11 @@
           "title": "Your CRM, your relationships",
           "description": "We don't compete with you on client ownership. The candidate-to-client pipeline lives in your CRM. We're the verified data input; you're the relationship that closes.",
           "concrete": "Read-only API to import candidates into your CRM. Scoped keys, audit log on every call."
+        },
+        "outreach": {
+          "title": "Multi-touch outreach with response tracking",
+          "description": "Agencies live on response rates. Build a sequence (initial → follow-up → final), watch replies come back, and roll closed-loop hire rates per source into your reporting.",
+          "concrete": "3-step cadence per role; the dashboard shows reply rate, hire rate, and time-to-shortlist."
         }
       }
     },
@@ -10284,6 +10294,11 @@
           "title": "Optional ATS bridge",
           "description": "Already on Greenhouse / Lever / Ashby? When you go from 5 to 50 employees, the ATS bridge ships shortlists to your ATS via webhook. Optional add-on, no setup fee — see /pricing.",
           "concrete": "Webhook events: match.created, credential.issued. See /integrations."
+        },
+        "hiringAdvisor": {
+          "title": "AI hiring advisor for founders without HR",
+          "description": "When you're hiring without a recruiter, a conversational advisor helps you reason through the call: who to interview, how to weigh evidence, what to ask. The candidate's verified record is the context.",
+          "concrete": "Ask \"should I interview Marco for founding engineer?\" — get a reasoned answer that cites the evidence."
         }
       }
     },

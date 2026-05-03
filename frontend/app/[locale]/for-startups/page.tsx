@@ -13,6 +13,7 @@ import {
   Moon,
   CreditCard,
   Plug,
+  Bot,
   ArrowRight,
   X,
   Check,
@@ -41,12 +42,13 @@ interface Capability {
 }
 
 const CAPABILITIES: Capability[] = [
-  { key: 'verified',    icon: ShieldCheck,    endpoint: '/explore' },
-  { key: 'code',        icon: Code2,          endpoint: '/explore' },
-  { key: 'smartSearch', icon: MessageSquare,  endpoint: '/demo/ai-search' },
-  { key: 'async',       icon: Moon },
-  { key: 'pricing',     icon: CreditCard,     endpoint: '/pricing' },
-  { key: 'atsBridge',   icon: Plug,           endpoint: '/integrations' },
+  { key: 'verified',      icon: ShieldCheck,    endpoint: '/explore' },
+  { key: 'code',          icon: Code2,          endpoint: '/explore' },
+  { key: 'smartSearch',   icon: MessageSquare,  endpoint: '/demo/ai-search' },
+  { key: 'async',         icon: Moon },
+  { key: 'hiringAdvisor', icon: Bot },
+  { key: 'pricing',       icon: CreditCard,     endpoint: '/pricing' },
+  { key: 'atsBridge',     icon: Plug,           endpoint: '/integrations' },
 ]
 
 const METRICS = ['0', '1', '2'] as const
