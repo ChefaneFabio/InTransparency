@@ -9689,8 +9689,8 @@
   "forTechparks": {
     "hero": {
       "eyebrow": "Hub d'innovazione e tech park",
-      "title": "Porta talento verificato nel tuo ecosistema",
-      "subtitle": "I tech park ospitano le aziende che assumono, ma le aziende sono sparse, il flusso di talento è frammentato e i dati su chi assume chi raramente tornano all'hub. InTransparency collega le aziende residenti a laureati verificati delle università partner, con i dati di placement che rientrano nella tua dashboard.",
+      "title": "I tuoi residenti assumono per conto loro. Ora vedi il pattern.",
+      "subtitle": "Le aziende del tuo tech park assumono di continuo — da LinkedIn, da referenze, da canali universitari sparsi. La vista aggregata raramente arriva sulla tua scrivania. InTransparency permette ai residenti di assumere laureati verificati da un solo workspace, e riporta i dati di placement dell'ecosistema sul tuo.",
       "primaryCta": "Avvia una conversazione di partnership",
       "secondaryCta": "Funzionalità per le aziende"
     },
