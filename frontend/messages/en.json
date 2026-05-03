@@ -11695,6 +11695,16 @@
       "company": "Company",
       "student": "Student"
     },
+    "actions": {
+      "send": "Send for signatures",
+      "signUniversity": "Mark university signed",
+      "signCompany": "Mark company signed",
+      "signStudent": "Mark student signed",
+      "complete": "Mark complete",
+      "revoke": "Revoke",
+      "confirmRevoke": "Revoke this convention? This cannot be undone.",
+      "error": "Action failed. Please try again."
+    },
     "form": {
       "title": "New Stage Convention",
       "company": "Company Information",

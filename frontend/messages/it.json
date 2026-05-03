@@ -11723,6 +11723,16 @@
       "company": "Azienda",
       "student": "Studente"
     },
+    "actions": {
+      "send": "Invia per firma",
+      "signUniversity": "Segna firma ateneo",
+      "signCompany": "Segna firma azienda",
+      "signStudent": "Segna firma studente",
+      "complete": "Segna completata",
+      "revoke": "Revoca",
+      "confirmRevoke": "Revocare questa convenzione? L'azione non è reversibile.",
+      "error": "Azione fallita. Riprova."
+    },
     "form": {
       "title": "Nuova Convenzione Stage",
       "company": "Dati Azienda",

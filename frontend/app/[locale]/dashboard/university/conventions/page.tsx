@@ -15,7 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import {
   Search, FileSignature, Plus, Building2, Users, Calendar,
   Clock, CheckCircle, AlertCircle, Loader2, FileText,
-  Send, PenTool, Shield
+  Send, PenTool, Shield, Ban
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
@@ -127,6 +127,28 @@ export default function ConventionsPage() {
       {label}
     </span>
   )
+
+  const [pendingAction, setPendingAction] = useState<string | null>(null)
+  const handleTransition = async (id: string, action: string) => {
+    if (action === 'revoke' && !window.confirm(t('actions.confirmRevoke'))) return
+    setPendingAction(`${id}:${action}`)
+    try {
+      const res = await fetch(`/api/dashboard/university/conventions/${id}/transition`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action }),
+      })
+      if (res.ok) {
+        await fetchData()
+      } else {
+        window.alert(t('actions.error'))
+      }
+    } catch {
+      window.alert(t('actions.error'))
+    } finally {
+      setPendingAction(null)
+    }
+  }
 
   return (
     <div className="min-h-screen space-y-6">
@@ -297,6 +319,63 @@ export default function ConventionsPage() {
                           <SignatureIndicator signed={conv.signedByCompany} label={t('signatures.company')} />
                           <SignatureIndicator signed={conv.signedByStudent} label={t('signatures.student')} />
                         </div>
+
+                        {/* Lifecycle actions */}
+                        {!['COMPLETED', 'REVOKED', 'EXPIRED'].includes(conv.status) && (
+                          <div className="flex items-center gap-2 mt-3 flex-wrap">
+                            {conv.status === 'DRAFT' && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                disabled={pendingAction === `${conv.id}:send`}
+                                onClick={() => handleTransition(conv.id, 'send')}
+                              >
+                                {pendingAction === `${conv.id}:send`
+                                  ? <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" />
+                                  : <Send className="h-3.5 w-3.5 mr-1" />}
+                                {t('actions.send')}
+                              </Button>
+                            )}
+                            {conv.status === 'PENDING_SIGNATURES' && (
+                              <>
+                                {!conv.signedByUniversity && (
+                                  <Button size="sm" variant="outline"
+                                    disabled={pendingAction === `${conv.id}:signUniversity`}
+                                    onClick={() => handleTransition(conv.id, 'signUniversity')}>
+                                    <PenTool className="h-3.5 w-3.5 mr-1" />{t('actions.signUniversity')}
+                                  </Button>
+                                )}
+                                {!conv.signedByCompany && (
+                                  <Button size="sm" variant="outline"
+                                    disabled={pendingAction === `${conv.id}:signCompany`}
+                                    onClick={() => handleTransition(conv.id, 'signCompany')}>
+                                    <PenTool className="h-3.5 w-3.5 mr-1" />{t('actions.signCompany')}
+                                  </Button>
+                                )}
+                                {!conv.signedByStudent && (
+                                  <Button size="sm" variant="outline"
+                                    disabled={pendingAction === `${conv.id}:signStudent`}
+                                    onClick={() => handleTransition(conv.id, 'signStudent')}>
+                                    <PenTool className="h-3.5 w-3.5 mr-1" />{t('actions.signStudent')}
+                                  </Button>
+                                )}
+                              </>
+                            )}
+                            {conv.status === 'ACTIVE' && (
+                              <Button size="sm" variant="outline"
+                                disabled={pendingAction === `${conv.id}:complete`}
+                                onClick={() => handleTransition(conv.id, 'complete')}>
+                                <CheckCircle className="h-3.5 w-3.5 mr-1" />{t('actions.complete')}
+                              </Button>
+                            )}
+                            <Button size="sm" variant="ghost"
+                              className="text-destructive hover:text-destructive"
+                              disabled={pendingAction === `${conv.id}:revoke`}
+                              onClick={() => handleTransition(conv.id, 'revoke')}>
+                              <Ban className="h-3.5 w-3.5 mr-1" />{t('actions.revoke')}
+                            </Button>
+                          </div>
+                        )}
                       </div>
 
                       <div className="text-right flex-shrink-0 hidden sm:block">
