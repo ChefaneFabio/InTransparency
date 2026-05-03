@@ -1,4 +1,8 @@
 {
+  "brand": {
+    "tagline": "Connettiamo persone e valori.",
+    "taglineLong": "Connettiamo persone e valori — evidenze verificate da una parte, opportunità reali dall'altra."
+  },
   "crossTier": {
     "heading": "InTransparency è anche per",
     "subhead": "Lo stesso prodotto e lo stesso pricing si adattano a tre tipi di istituzioni formative.",
@@ -989,7 +993,7 @@
     }
   },
   "footer": {
-    "tagline": "Trasforma i tuoi progetti accademici in opportunità di carriera con analisi automatizzata, matching intelligente e storytelling professionale.",
+    "tagline": "Connettiamo persone e valori.",
     "contact": "Contattaci",
     "product": "Prodotto",
     "company": "Azienda",

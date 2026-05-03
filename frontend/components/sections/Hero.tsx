@@ -26,6 +26,7 @@ const segmentToTranslationKey = {
 export function Hero() {
   const { segment: activeSegment, setSegment } = useSegment()
   const t = useTranslations('home.hero')
+  const tBrand = useTranslations('brand')
 
   const segment = segmentToTranslationKey[activeSegment]
 
@@ -41,6 +42,11 @@ export function Hero() {
     <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden">
       <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
+          {/* Brand spine — same line across the site (footer, hero, about) */}
+          <p className="mb-3 text-lg sm:text-xl font-display italic text-foreground/85">
+            {tBrand('tagline')}
+          </p>
+
           {/* Social proof — earned, not decorative */}
           <p className="mb-8 text-sm font-medium tracking-widest text-primary uppercase">
             {t('serviceBadge')}

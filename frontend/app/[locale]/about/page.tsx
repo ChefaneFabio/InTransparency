@@ -20,6 +20,7 @@ import { EditorialSection } from '@/components/sections/editorial/EditorialSecti
 
 export default function AboutPage() {
   const t = useTranslations('about')
+  const tBrand = useTranslations('brand')
 
   const valueItems = [0, 1, 2, 3]
 
@@ -33,6 +34,18 @@ export default function AboutPage() {
           lede={t('hero.description')}
           accent="slate"
         />
+
+        {/* Brand spine — quiet display band carrying the tagline */}
+        <section className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+          <div className="container max-w-4xl mx-auto px-6 py-16 lg:py-20 text-center">
+            <p className="text-[28px] sm:text-[36px] leading-[1.2] font-display italic text-slate-900 dark:text-white">
+              {tBrand('tagline')}
+            </p>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              {tBrand('taglineLong')}
+            </p>
+          </div>
+        </section>
 
         {/* Resume problem vs InTransparency way — slim two-column comparison */}
         <EditorialSection

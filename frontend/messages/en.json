@@ -1,4 +1,8 @@
 {
+  "brand": {
+    "tagline": "We connect people and values.",
+    "taglineLong": "We connect people and values — verified evidence on one side, real opportunities on the other."
+  },
   "crossTier": {
     "heading": "InTransparency also serves",
     "subhead": "Same product, same pricing — adapted to three types of educational institutions.",
@@ -989,7 +993,7 @@
     }
   },
   "footer": {
-    "tagline": "Transform your academic projects into career opportunities with automated analysis, intelligent matching, and professional storytelling.",
+    "tagline": "We connect people and values.",
     "contact": "Contact Us",
     "product": "Product",
     "company": "Company",
