@@ -27,6 +27,7 @@ import HeroVisual from '@/components/3d/HeroVisual'
 import HeroCTA from '@/components/ui/HeroCTA'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import { FAQ } from '@/components/engagement/FAQ'
+import { TrustStrip } from '@/components/sections/TrustStrip'
 
 /**
  * /for-companies — mid-market segment funnel.
@@ -139,7 +140,9 @@ export default function ForCompaniesPage() {
         </div>
       </section>
 
-      <main className="container max-w-5xl mx-auto px-4 pb-16 space-y-10">
+      <TrustStrip compact />
+
+      <main className="container max-w-5xl mx-auto px-4 pb-16 space-y-10 pt-12">
         {/* Hard-numbers row */}
         <section>
           <div className="mb-6 max-w-2xl">

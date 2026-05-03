@@ -9,6 +9,7 @@ import { FAQ } from '@/components/engagement/FAQ'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
 import { EditorialHero } from '@/components/sections/editorial/EditorialHero'
 import { EditorialSection } from '@/components/sections/editorial/EditorialSection'
+import { TrustStrip } from '@/components/sections/TrustStrip'
 import { Check, X } from 'lucide-react'
 
 /**
@@ -68,6 +69,8 @@ export default function ForStudentsPage() {
             </div>
           }
         />
+
+        <TrustStrip compact />
 
         {/* Hard-numbers row */}
         <EditorialSection

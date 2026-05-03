@@ -3,6 +3,34 @@
     "tagline": "Connettiamo persone e valori.",
     "taglineLong": "Connettiamo persone e valori — evidenze verificate da una parte, opportunità reali dall'altra."
   },
+  "trustStrip": {
+    "eyebrow": "Dove siamo oggi",
+    "title": "Conversazioni reali, raccontate onestamente.",
+    "lede": "Non mettiamo loghi che non ci siamo guadagnati. Qui sotto lo stato vero delle nostre relazioni con gli atenei — pilot in discussione, incontri in corso, riconoscimenti ricevuti.",
+    "status": {
+      "prize": "Premio",
+      "pilot": "Pilot in discussione",
+      "meeting": "In conversazione"
+    },
+    "items": {
+      "startCup": {
+        "name": "Start Cup Bergamo",
+        "note": "Due premi ricevuti alla competizione italiana per startup universitarie."
+      },
+      "unibg": {
+        "name": "Università di Bergamo",
+        "note": "Pilot career-services definito: sostituire i questionari di fine anno con analytics di placement in tempo reale."
+      },
+      "polimi": {
+        "name": "Politecnico di Milano",
+        "note": "Conversazioni su placement engineering e white-label in corso."
+      },
+      "cattolica": {
+        "name": "Università Cattolica",
+        "note": "Conversazioni multi-campus su placement e misurazione skills-gap."
+      }
+    }
+  },
   "crossTier": {
     "heading": "InTransparency è anche per",
     "subhead": "Lo stesso prodotto e lo stesso pricing si adattano a tre tipi di istituzioni formative.",

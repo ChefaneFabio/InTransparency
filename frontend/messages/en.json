@@ -3,6 +3,34 @@
     "tagline": "We connect people and values.",
     "taglineLong": "We connect people and values — verified evidence on one side, real opportunities on the other."
   },
+  "trustStrip": {
+    "eyebrow": "Where we are today",
+    "title": "Real conversations, named honestly.",
+    "lede": "We don't list logos we haven't earned. Below is the actual state of our institutional relationships — pilots in discussion, meetings underway, recognitions received.",
+    "status": {
+      "prize": "Prize",
+      "pilot": "Pilot in discussion",
+      "meeting": "In conversation"
+    },
+    "items": {
+      "startCup": {
+        "name": "Start Cup Bergamo",
+        "note": "Two prizes received at Italy's university startup competition."
+      },
+      "unibg": {
+        "name": "Università di Bergamo",
+        "note": "Career-services pilot scoped: replacing end-of-year surveys with real-time placement analytics."
+      },
+      "polimi": {
+        "name": "Politecnico di Milano",
+        "note": "Engineering placement and white-label conversations underway."
+      },
+      "cattolica": {
+        "name": "Università Cattolica",
+        "note": "Multi-campus placement and skills-gap measurement conversations."
+      }
+    }
+  },
   "crossTier": {
     "heading": "InTransparency also serves",
     "subhead": "Same product, same pricing — adapted to three types of educational institutions.",
