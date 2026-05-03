@@ -3850,6 +3850,21 @@
       "comparisonEyebrow": "The shift",
       "comparisonTitle": "How hiring decisions are made today — and how we change it"
     },
+    "manifesto": {
+      "eyebrow": "What we believe",
+      "title": "People are worth more than the way they're currently described.",
+      "p1": "A CV is a translation of work that already happened — usually translated badly. A LinkedIn profile is a self-description optimized for search. Neither tells you whether someone can actually do the job. Both let bias travel further than it should.",
+      "p2": "We built InTransparency to put the work back in front of the decision. Skills extracted from real artifacts. Grades read in their original system, normalized for everyone else. Optional verification from the institution that knows. Outcomes tracked back to the signal that predicted them.",
+      "wontTitle": "What we won't do",
+      "wonts": {
+        "0": "We won't pretend a logo strip is a customer base. If it's a conversation, we'll say it's a conversation.",
+        "1": "We won't gate hiring on prestige. The whole point of measuring skills is that the school stops being the headline.",
+        "2": "We won't sell fear. No \"talent shortage\" landing pages, no cost-of-bad-hire countdowns to push a subscription.",
+        "3": "We won't replace your ATS, your HRIS, or the interviewer's judgment. We feed the systems that already work, and we hand off where someone else does the job better."
+      },
+      "nameTitle": "Why \"InTransparency\"",
+      "nameBody": "The opposite of opaque hiring isn't more rules. It's more visible work. The name is a promise: what's measured is shown — and what isn't shown isn't measured. We built the company on that distinction."
+    },
     "resumeProblem": {
       "title": "Where a CV alone falls short",
       "items": {

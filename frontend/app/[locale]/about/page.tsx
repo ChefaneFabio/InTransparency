@@ -48,6 +48,44 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Manifesto — what we believe, what we won't do, why the name */}
+        <EditorialSection
+          tone="muted"
+          eyebrow={t('manifesto.eyebrow')}
+          title={t('manifesto.title')}
+          width="narrow"
+        >
+          <div className="space-y-5 text-[16px] leading-[1.7] text-slate-700 dark:text-slate-300">
+            <p>{t('manifesto.p1')}</p>
+            <p>{t('manifesto.p2')}</p>
+          </div>
+
+          <div className="mt-12">
+            <h3 className="text-[18px] font-semibold text-slate-900 dark:text-white mb-5">
+              {t('manifesto.wontTitle')}
+            </h3>
+            <ul className="space-y-4">
+              {[0, 1, 2, 3].map(i => (
+                <li
+                  key={i}
+                  className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300 pl-5 border-l-2 border-slate-900 dark:border-white"
+                >
+                  {t(`manifesto.wonts.${i}`)}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h3 className="text-[18px] font-semibold text-slate-900 dark:text-white mb-3">
+              {t('manifesto.nameTitle')}
+            </h3>
+            <p className="text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+              {t('manifesto.nameBody')}
+            </p>
+          </div>
+        </EditorialSection>
+
         {/* Resume problem vs InTransparency way — slim two-column comparison */}
         <EditorialSection
           tone="muted"

@@ -3683,6 +3683,21 @@
       "comparisonEyebrow": "Il cambiamento",
       "comparisonTitle": "Come si decide oggi — e cosa proviamo a cambiare"
     },
+    "manifesto": {
+      "eyebrow": "Cosa crediamo",
+      "title": "Le persone valgono più di come vengono descritte oggi.",
+      "p1": "Un CV è la traduzione di un lavoro già fatto — di solito tradotta male. Un profilo LinkedIn è un'autodescrizione ottimizzata per la ricerca. Nessuno dei due ti dice se quella persona può davvero fare il lavoro. Entrambi lasciano viaggiare il bias più di quanto dovrebbe.",
+      "p2": "Abbiamo costruito InTransparency per rimettere il lavoro davanti alla decisione. Competenze estratte da artefatti reali. Voti letti nel loro sistema originale, normalizzati per gli altri. Verifica opzionale dell'istituzione che conosce. Esiti tracciati fino al segnale che li ha predetti.",
+      "wontTitle": "Cosa non faremo",
+      "wonts": {
+        "0": "Non fingiamo che una striscia di loghi sia una base clienti. Se è una conversazione, lo diciamo.",
+        "1": "Non leghiamo l'hiring al prestigio. Il senso di misurare le competenze è che la scuola smette di essere il titolo.",
+        "2": "Non vendiamo paura. Niente landing page sulla \"talent shortage\", niente conto alla rovescia sul costo del cattivo hire per spingere un abbonamento.",
+        "3": "Non sostituiamo il tuo ATS, il tuo HRIS, o il giudizio di chi intervista. Alimentiamo i sistemi che già funzionano, e passiamo la mano dove qualcun altro fa meglio il lavoro."
+      },
+      "nameTitle": "Perché \"InTransparency\"",
+      "nameBody": "L'opposto dell'hiring opaco non è più regole. È più lavoro visibile. Il nome è una promessa: ciò che si misura si mostra — e ciò che non si mostra non si misura. La società è costruita su questa distinzione."
+    },
     "resumeProblem": {
       "title": "Dove il CV da solo non basta",
       "items": {
