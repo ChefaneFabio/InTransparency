@@ -277,7 +277,7 @@ export default function PricingPage() {
         defaultValue:
           'Unlimited AI, advanced analytics, full audit log with CSV exports, reminder automation, MIUR-format reports.',
       }),
-      features: Array.from({ length: 8 }, (_, i) =>
+      features: Array.from({ length: 7 }, (_, i) =>
         t(`universities.tiers.premium.features.${i}`)
       ),
       cta: {

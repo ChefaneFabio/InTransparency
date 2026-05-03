@@ -30,7 +30,7 @@ const ACCENT = 'emerald' as const
 const METRICS = ['0', '1', '2'] as const
 const PERSONAS = ['0', '1', '2'] as const
 const COMPARE_ROWS = ['0', '1', '2', '3', '4'] as const
-const EVIDENCE_ITEMS = ['0', '1', '2'] as const
+const EVIDENCE_ITEMS = ['0', '1', '2', '3'] as const
 
 export default function ForStudentsPage() {
   const t = useTranslations('forStudents')

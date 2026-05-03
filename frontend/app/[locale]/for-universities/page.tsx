@@ -42,6 +42,11 @@ export default function ForUniversitiesPage() {
     { key: 'm4', title: t('workspaceModules.m4.title', { defaultValue: 'Placement Pipeline' }), desc: t('workspaceModules.m4.desc', { defaultValue: 'Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation.' }) },
   ]
 
+  const vsItems = Array.from({ length: 6 }, (_, i) => ({
+    title: t(`vsAlmaLaurea.items.${i}.title`),
+    desc: t(`vsAlmaLaurea.items.${i}.desc`),
+  }))
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
@@ -104,6 +109,34 @@ export default function ForUniversitiesPage() {
                 Start Cup Bergamo
               </div>
             </div>
+          </div>
+        </EditorialSection>
+
+        {/* vs AlmaLaurea — explicit comparison block */}
+        <EditorialSection
+          accent={ACCENT}
+          eyebrow={t('vsAlmaLaurea.eyebrow')}
+          title={t('vsAlmaLaurea.title')}
+          lede={t('vsAlmaLaurea.lede')}
+          endNote={t('vsAlmaLaurea.endNote')}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-l border-t border-slate-200 dark:border-slate-800">
+            {vsItems.map((item, i) => (
+              <div
+                key={i}
+                className="p-6 border-r border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
+              >
+                <div className="text-[12px] font-medium uppercase tracking-[0.14em] text-violet-700 dark:text-violet-400 mb-3">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <h3 className="text-[15px] font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </EditorialSection>
 
@@ -184,7 +217,7 @@ export default function ForUniversitiesPage() {
           width="narrow"
         >
           <FAQ
-            items={Array.from({ length: 5 }, (_, i) => ({
+            items={Array.from({ length: 7 }, (_, i) => ({
               question: t(`faq.items.${i}.question`),
               answer: t(`faq.items.${i}.answer`),
             }))}

@@ -2299,7 +2299,7 @@
     "hero": {
       "badge": "For students — every discipline, every path",
       "title": "Your work speaks for itself. Stop rewriting another CV.",
-      "subtitle": "Upload theses, code, reports, designs. Our AI extracts skills from the actual files, normalizes grades against ESCO, and shows your portfolio to recruiters who actually search those skills. Optional professor endorsement as a bonus signal."
+      "subtitle": "Upload theses, code, reports, designs. Our AI reads each file the way its discipline needs it read — across 15 fields, from engineering to law to design. Skills extracted from real work, grades normalized across European systems, portfolio searchable by what you've actually built. Optional professor endorsement adds a trust signal."
     },
     "metrics": {
       "title": "What changes with a verified portfolio",
@@ -2350,7 +2350,8 @@
       "items": {
         "0": "Skills mapped to the EU ESCO taxonomy",
         "1": "Grades normalized across all European systems (28/30 = 1.7 DE = 15/20 FR)",
-        "2": "Optional professor endorsement as a bonus signal"
+        "2": "Optional professor endorsement as a bonus signal",
+        "3": "Optional Big Five, DISC, and competency assessments — your working style framed by validated frameworks, then reconciled against your verified record"
       },
       "explainer": "Everything published and auditable at /algorithm-registry. Credentials are Ed25519-signed and EU-Digital-Wallet compatible. You control what's public, what's only for verified recruiters, what's private."
     },
@@ -2382,7 +2383,7 @@
       },
       "2": {
         "title": "Get Noticed",
-        "desc": "Your portfolio becomes visible to the right people. Endorsed work carries an extra trust signal. No more sending applications into the void — let your work open doors for you."
+        "desc": "Your portfolio becomes visible to the right people. See how many recruiters viewed your profile each week and how many opened your projects. Endorsed work carries an extra trust signal."
       },
       "title": "How It Works for You",
       "subtitle": "Three steps from project to AI-verified portfolio."
@@ -2475,8 +2476,8 @@
   "forCompanies": {
     "badge": "For mid-market companies and HR teams",
     "hero": {
-      "title": "Your ATS files. We discover.",
-      "subtitle": "Mid-market companies (50-200 employees) already have an ATS — Greenhouse, Lever, Workday — good at filing received applications. InTransparency does what an ATS was never designed to do: find candidates with AI-verified skills from their real projects, before they ever apply. Keep your ATS, add the discovery layer."
+      "title": "Your ATS organizes who applied. We surface who could.",
+      "subtitle": "Students from European institutions — universities, ITS Academy, technical schools — with skills extracted from their actual projects, grades normalized across EU systems, ready to be contacted before they hit your inbox. Match in days, not weeks. Plugs into Greenhouse, Lever, or Workday."
     },
     "practiceLabel": "In practice:",
     "seeIt": "See it",
@@ -2529,7 +2530,7 @@
       "items": {
         "verified": {
           "title": "Pre-verified pool",
-          "description": "Profiles with skills extracted by AI from real artifacts — grades normalized across EU systems, optional professor endorsement as a bonus signal. Search on data that exists, not on a claim.",
+          "description": "Hard skills extracted by AI from real artifacts (code, theses, design files). Soft skills mapped through the candidate's Self-Discovery flow and cross-referenced against the verified record. Grades normalized across EU systems. Optional professor endorsement adds a trust signal when present.",
           "concrete": "Search by skill on /explore — Italian 28/30 = German 1.7 = French 15/20, automatically."
         },
         "smartSearch": {
@@ -2553,9 +2554,29 @@
           "concrete": "See /algorithm-registry for the published, auditable matching criteria."
         },
         "compliance": {
-          "title": "AI Act-native + GDPR Art. 22",
-          "description": "Running candidate-evaluation AI in-house makes YOU the high-risk-AI deployer (Annex III §4). Routing decisions through InTransparency, we are the registered provider — your compliance burden drops.",
-          "concrete": "See /eu-compliance — 17 EU standards covered with deployed endpoints."
+          "title": "AI Act-ready, GDPR Art. 22 covered",
+          "description": "Candidate-evaluation AI is high-risk under Annex III §4. We ship the algorithm registry, audit log, and right-to-explanation endpoints that Annex III asks for — your AI Act exposure stays manageable.",
+          "concrete": "See /eu-compliance — 17 EU standards mapped to deployed endpoints."
+        },
+        "hiringAdvisor": {
+          "title": "AI Hiring Advisor",
+          "description": "A conversational assistant that helps you reason through hiring decisions — when to interview, how to weigh evidence, what to ask. Anthropic-backed, with the candidate's verified record as context.",
+          "concrete": "Ask \"should I interview Marco for this role?\" — get a reasoned answer that cites the evidence."
+        },
+        "interviewKit": {
+          "title": "AI Interview Kit per job",
+          "description": "Generate a tailored interview kit for any job — questions, evaluation rubric, time allocation — based on the role's requirements and the candidate's profile. One click from the job page.",
+          "concrete": "Hand the kit to your hiring manager so they walk in with structure, not a blank slate."
+        },
+        "outreach": {
+          "title": "Outreach sequences and per-stage evidence packets",
+          "description": "After the shortlist, you still need to actually contact candidates and brief whoever interviews next. Multi-touch sequences with response tracking. Per-stage evidence packets so the next interviewer doesn't go in blind.",
+          "concrete": "Set a 3-step cadence, watch responses come back, then hand a packet to the next interviewer."
+        },
+        "outcomes": {
+          "title": "Closed-loop hiring outcomes",
+          "description": "Mark each contact as hired, interviewed, no-response, rejected, or withdrawn. Your dashboard reads back real response rate and hire rate per role — and the platform learns which signals predict your hires.",
+          "concrete": "Quarterly review: see which job descriptions, which skill profiles, which schools actually convert."
         }
       }
     },
@@ -2594,7 +2615,7 @@
     },
     "cta": {
       "title": "Filter the noise. Keep your ATS. Add the signal.",
-      "subtitle": "Browse the verified pool free. Contact 5 candidates per month at zero cost. When you scale, subscribe at €89/mo — or use the ATS bridge if you want them to land in your existing workflow.",
+      "subtitle": "Browse the verified pool free. 5 contacts per month at no cost. Subscribe at €89/mo when you need more, or send shortlists straight into your ATS via webhook.",
       "primary": "Start free",
       "secondary": "Try Smart Search",
       "primaryButton": "Start free",
@@ -2610,8 +2631,8 @@
       "subtitle": "How real talent changes your hiring process",
       "items": {
         "0": {
-          "question": "How is this different from LinkedIn?",
-          "answer": "Every profile is backed by real student projects and grades. Professors can optionally endorse projects when they review them — endorsed work carries an extra trust signal, but you always see the underlying evidence, not buzzwords."
+          "question": "How is this different from LinkedIn or CV databases like AlmaLaurea?",
+          "answer": "LinkedIn profiles are self-declared text. AlmaLaurea is a CV warehouse — graduates upload their own CVs, the database is batch-published three times a year, and the data is explicitly not certified by AlmaLaurea beyond degree information (it's stated in their own contract). We extract skills from the candidate's real artifacts — code, theses, design files, project work — and surface them in real time. You search on what they've actually built, not on what they've typed. Optional professor endorsement adds an extra trust layer when present, but the evidence is in the work itself, not in the badge."
         },
         "1": {
           "question": "What does it cost?",
@@ -3084,7 +3105,7 @@
     "workspaceModules": {
       "eyebrow": "ITS workspace",
       "title": "Four modules for the Tirocinio → Placement → MIUR cycle",
-      "subtitle": "Your career office runs the full cycle from first company contact to post-diploma employment contract. Free Core read-only; Premium unlocks writes and exports.",
+      "subtitle": "Your career office runs the full cycle from first company contact to post-diploma employment contract. Discipline-aware AI reads project work the way each specialization needs it read — mechatronics differently from biotech, digital manufacturing differently from smart mobility. Free Core read-only; Premium unlocks writes and exports.",
       "m1": {
         "title": "Mediation Inbox",
         "desc": "Every company message to your students is reviewed by a coordinator first. Approve, edit, reject — full audit trail for tutorial accountability."
@@ -3216,7 +3237,7 @@
     "workspaceModules": {
       "eyebrow": "School workspace",
       "title": "Four modules for the PCTO → Orientation → Diploma cycle",
-      "subtitle": "Doesn't replace your electronic register — it covers what the register doesn't: student portfolio, real work, university choices. Free Core read-only; Premium unlocks writes and automations.",
+      "subtitle": "Doesn't replace your electronic register — it covers what the register doesn't: student portfolio, real work, university choices. Discipline-aware AI reads project work the way each track needs — liceo humanities and science differently from tecnico engineering, differently from professionale trades. Free Core read-only; Premium unlocks writes and automations.",
       "m1": {
         "title": "PCTO Ledger",
         "desc": "Convention, hours completed, company tutor + school tutor evaluations, formative project. Auto-generated paperwork and per-student remaining-hours calculator."
@@ -4150,11 +4171,11 @@
             "1": "M2 Offer moderation",
             "2": "M3 Company CRM (drag-and-drop pipeline)",
             "3": "M4 Placement pipeline (hours, evaluations, deadlines)",
-            "4": "Basic analytics + Scorecard",
-            "5": "Audit log (last 30 days)",
-            "6": "AI Assistant (50 queries/month)",
-            "7": "AI skill extraction from real projects + optional professor bonus",
-            "8": "Convention Builder (template-based)"
+            "4": "Convention Builder — PDF draft + lifecycle (signatures tracked)",
+            "5": "Basic analytics + Scorecard",
+            "6": "Audit log (last 30 days)",
+            "7": "AI Assistant (50 queries/month)",
+            "8": "AI skill extraction from real projects + optional professor bonus"
           }
         },
         "premium": {
@@ -4174,10 +4195,9 @@
             "1": "Advanced analytics: cross-cohort, cross-program drills",
             "2": "Audit log: full history + CSV exports",
             "3": "Reminder engine: full automation (rules + cron)",
-            "4": "Convention Builder: AI-personalized clauses",
-            "5": "Skills Intelligence + Curriculum Alignment",
-            "6": "MIUR-format reports (basic)",
-            "7": "Priority email support (24h response)"
+            "4": "Skills Intelligence + Curriculum Alignment",
+            "5": "MIUR-format reports (basic)",
+            "6": "Priority email support (24h response)"
           },
           "cta": "Start Premium · 30-day trial"
         }
@@ -4659,9 +4679,9 @@
   },
   "forUniversities": {
     "hero": {
-      "badge": "Pilot at Università di Bergamo · available across the EU",
-      "title": "Replace surveys with real-time placement proof",
-      "subtitle": "Live placement analytics, cross-border grade normalization, and verified student profiles. Available for universities, ITS, and high schools across the EU. Pilot underway at Università di Bergamo.",
+      "badge": "European career-service infrastructure · pilot at Università di Bergamo",
+      "title": "Career-service infrastructure your students actually need",
+      "subtitle": "Built for universities, ITS Academy, and technical schools. Flat €390/yr replaces per-graduate consortium fees. Discipline-aware AI reads student work across 15 fields, placement visible in real time, grades normalized across European systems, every action audited. Pilot underway at Università di Bergamo.",
       "registerCta": "Create Your Partner Account",
       "demoCta": "Schedule a Demo"
     },
@@ -4715,10 +4735,42 @@
         "setup": "5-minute setup"
       }
     },
+    "vsAlmaLaurea": {
+      "eyebrow": "Comparison",
+      "title": "What AlmaLaurea wasn't designed to do",
+      "lede": "AlmaLaurea was built in 1994 as a CV warehouse for graduates. It still works that way. The full institutional landscape needs more than a laurea-only database.",
+      "items": {
+        "0": {
+          "title": "Real-time visibility",
+          "desc": "Students visible from the day they upload — not in batches three times a year (March, July, November)."
+        },
+        "1": {
+          "title": "Evidence over declarations",
+          "desc": "Our AI extracts skills from real artifacts — code, theses, project files — using discipline-aware logic across 15 fields. AlmaLaurea CVs are explicitly self-declared by the student in their own contract."
+        },
+        "2": {
+          "title": "Workflow, not warehouse",
+          "desc": "Mediation Inbox, Stage CRM, convention drafting, evaluation framework, decision packs, placement analytics. AlmaLaurea is a database; we handle the workflow."
+        },
+        "3": {
+          "title": "Three institutional tiers",
+          "desc": "Universities, ITS Academy, technical and professional secondary schools — one platform. AlmaLaurea is post-laurea only and serves no other tier."
+        },
+        "4": {
+          "title": "Predictable flat pricing",
+          "desc": "€390/yr for the institution — no per-graduate scaling, no plafond credits to manage, no unused CVs lost at renewal."
+        },
+        "5": {
+          "title": "Soft-skills evidence",
+          "desc": "Optional Big Five, DISC, and competency assessments reconciled against each student's verified record. AlmaLaurea offers self-declared CVs; we offer working-style evidence framed by validated frameworks."
+        }
+      },
+      "endNote": "Many institutions run both: AlmaLaurea for the benchmark reports they're contractually committed to, InTransparency for the workflow it was never designed to handle."
+    },
     "workspaceModules": {
       "eyebrow": "Institutional workspace",
-      "title": "Built for the career office — not just another job board",
-      "subtitle": "Four modules that turn placement from spreadsheets into an auditable workflow. Preview on Free Core; unlock writes with Premium.",
+      "title": "Built for the career office of universities, ITS, and technical schools",
+      "subtitle": "Four modules that turn placement from spreadsheets — or from a CV-warehouse subscription — into an auditable workflow. Preview on Free Core; unlock writes with Premium.",
       "m1": {
         "title": "Mediation Inbox",
         "desc": "Every recruiter message to your students is reviewed by your staff first. Approve, edit, or reject. Full audit trail."
@@ -4733,7 +4785,7 @@
       },
       "m4": {
         "title": "Placement Pipeline",
-        "desc": "Full tirocinio lifecycle — hours log, mid/final evaluations, deadlines, convention auto-generation. Replaces your career office spreadsheets."
+        "desc": "Tirocinio tracking from start to placement — hours log, mid/final evaluations, deadlines, convention PDF generation. Replaces your career office spreadsheets."
       },
       "compliance": "Every write is logged for AI Act compliance. Students retain GDPR Art. 22 rights on every automated decision.",
       "pricingCta": "See pricing",
@@ -4821,6 +4873,14 @@
         "4": {
           "question": "Is it GDPR compliant?",
           "answer": "Fully compliant. Students control their own data, consent is managed per-feature, and all data is stored in EU data centers."
+        },
+        "5": {
+          "question": "We already pay AlmaLaurea. Why us as well?",
+          "answer": "AlmaLaurea is a CV database with annual per-graduate fees and a three-times-a-year publishing cycle. We're an operations layer — Mediation Inbox, Stage CRM, evaluation framework, AI-extracted skill evidence, real-time placement analytics, decision packs. Many institutions run both: AlmaLaurea for the benchmark reports they're contractually committed to, InTransparency for the day-to-day workflow that AlmaLaurea was never designed to handle. Premium starts at €39/mo flat — no per-graduate scaling."
+        },
+        "6": {
+          "question": "Do you serve ITS Academy and technical schools, or only universities?",
+          "answer": "All three tiers. The platform is built for the full Italian institutional landscape — universities, ITS Academy, and technical and professional secondary schools. Same Free Core, same workflow modules, same flat €39/mo Premium pricing. AlmaLaurea is post-laurea only; we cover everyone."
         }
       }
     }
@@ -12331,7 +12391,7 @@
   "selfDiscovery": {
     "badge": "Self-Discovery",
     "title": "Capire chi sei, prima di mostrarti",
-    "intro": "Six steps to understand yourself before companies see your profile. There are no wrong answers. Everything here is yours — you choose what to share.",
+    "intro": "Six steps to map your soft skills, values, and working style — and to cross-reference them against what your verified record actually shows. The output becomes a soft-skills section on your profile, visible to you first, then to the companies you choose to share it with. There are no wrong answers.",
     "progress": "Progress",
     "progressCount": "Step {current} of {total} — {percent}%",
     "nav": {
@@ -15121,6 +15181,234 @@
       "crm": "You can browse the company pipeline, but adding leads or moving them between stages requires PREMIUM.",
       "placement": "You can view tirocini, but creating new placements, logging hours, or transitioning stages requires PREMIUM.",
       "generic": "Reads are free — writes, approvals, and automations require a PREMIUM plan."
+    }
+  },
+  "integrationsIndex": {
+    "hero": {
+      "eyebrow": "Integrations",
+      "title": "What we plug into. What we don't.",
+      "subtitle": "Honest list of what ships today, what's on the way, what we hand off to partners, and what we deliberately stay out of. We export at the boundaries — we don't try to be the systems on the other side."
+    },
+    "shipping": {
+      "eyebrow": "Available today",
+      "title": "Shipping now",
+      "lede": "Live integrations you can wire up today.",
+      "items": {
+        "0": {
+          "title": "ATS bridge",
+          "desc": "Push verified candidates into Greenhouse, Lever, Workday, SmartRecruiters via webhook. Beta. Webhook events: match.created, credential.issued, stage.completed.",
+          "linkLabel": "ATS integration guide",
+          "linkHref": "/integrations/ats"
+        },
+        "1": {
+          "title": "Agentic clients (MCP + OpenAPI)",
+          "desc": "ChatGPT, Claude, and other workspace agents read InTransparency as a verified data layer. MCP server + OpenAPI spec + ai-plugin.json all shipped.",
+          "linkLabel": "Agent integration guide",
+          "linkHref": "/integrations/agents"
+        }
+      }
+    },
+    "planned": {
+      "eyebrow": "On the way",
+      "title": "Small bridges in the roadmap",
+      "lede": "Both ride on the same export pattern. The natural moment is the hire itself — when an offer is signed, data shouldn't have to be re-entered downstream.",
+      "items": {
+        "0": {
+          "title": "HRIS export",
+          "desc": "One-way push of hired-candidate data to Personio, BambooHR, HiBob. Removes re-entry at the hire moment. We export to your HRIS — we are not your HRIS."
+        },
+        "1": {
+          "title": "Onboarding handoff",
+          "desc": "Send the new hire's Decision Pack and Self-Discovery summary to your onboarding tool, so the first day starts with context. Same export pattern as HRIS."
+        }
+      }
+    },
+    "partners": {
+      "eyebrow": "Integrate, don't build",
+      "title": "Where we partner",
+      "lede": "Some signals are better delivered by specialists. We integrate rather than try to be both.",
+      "items": {
+        "0": {
+          "title": "Skills assessments",
+          "desc": "Controlled-test signal complements artifact evidence — useful for senior roles where artifacts may be NDA-protected, or for roles where reasoning under timed conditions matters. Planned partners: TestGorilla, CodeSignal."
+        }
+      }
+    },
+    "stayOut": {
+      "eyebrow": "What we don't do",
+      "title": "Where we stay out, on purpose",
+      "lede": "Transparency works in both directions. Here's what we deliberately don't try to be.",
+      "items": {
+        "0": "HRIS / payroll replacement — we're pre-hire, we hand off to your HRIS at the moment of hire",
+        "1": "Performance management — we have no employee data, no review cycle, no calibration",
+        "2": "Full onboarding workflow product — we hand off; we don't try to be Sapling or Enboarder",
+        "3": "Reference automation beyond professor endorsement — covered for early-career; if we go upmarket, we'll integrate (Crosschq, Xref) rather than build"
+      }
+    },
+    "cta": {
+      "title": "Need an integration that isn't here?",
+      "subtitle": "Tell us what you're trying to plug into. We'll be honest about whether it's a bridge we'd build, a partner we'd integrate with, or a scope we'd stay out of.",
+      "primary": "Contact us",
+      "secondary": "See the API"
+    }
+  },
+  "decisionPack": {
+    "hero": {
+      "eyebrow": "The artifact that decides interviews",
+      "title": "A two-page candidate dossier. Generated automatically. Read in five minutes.",
+      "subtitle": "Verified skills, normalized grades, links to the actual project artifacts, optional personality summary. The Decision Pack is what a hiring manager reads instead of a first call — and what a career-services tutor sends a student to read before one.",
+      "registerCta": "Start free",
+      "demoCta": "See a sample"
+    },
+    "contents": {
+      "eyebrow": "What's in it",
+      "title": "Six sections, two pages, no padding",
+      "lede": "Every Decision Pack has the same structure. The data comes from the candidate's profile, the AI extraction, and (optionally) their professor's endorsement. Nothing the candidate writes themselves.",
+      "items": {
+        "0": {
+          "title": "Verified skill list",
+          "desc": "Skills extracted by discipline-aware AI across 15 fields — code parsed differently from a thesis, design files differently from a business case. Each skill has a confidence score and a link to the artifact it came from. Recruiters click through to the source."
+        },
+        "1": {
+          "title": "Normalized grades",
+          "desc": "Italian 30/30, German 1.0, French 20/20, ECTS — all translated to a comparable scale automatically. A non-Italian recruiter doesn't need to know the Italian system."
+        },
+        "2": {
+          "title": "Institutional context",
+          "desc": "Program name, tutor, stage company, completion year. The institutional grounding that anchors the rest of the document."
+        },
+        "3": {
+          "title": "Soft skills + working style (optional)",
+          "desc": "Output of the candidate's Self-Discovery flow plus optional Big Five, DISC, and competency assessments — values, strengths, motivations, working style. Cross-referenced against their verified record so recruiters see what aligns and what doesn't. Always visible to the candidate first."
+        },
+        "4": {
+          "title": "Employability prediction",
+          "desc": "A predicted fit score against common role categories, with the assumptions visible. No black-box ranking — the inputs are listed."
+        },
+        "5": {
+          "title": "Endorsement badge (optional)",
+          "desc": "If a professor has endorsed the project, a small clickable badge with the professor's name, the course, and the term. A bonus trust signal — never required."
+        }
+      }
+    },
+    "whoUses": {
+      "eyebrow": "Who reads a Decision Pack",
+      "title": "Different reader, same document",
+      "lede": "The Decision Pack works because it's the same artifact for everyone in the hiring chain. The recruiter shortlists. The hiring manager decides. The candidate prepares. Nobody is reading a different version.",
+      "items": {
+        "0": {
+          "title": "Talent acquisition",
+          "desc": "Generates the Decision Pack from the shortlist, sends to the hiring manager, attaches to the ATS ticket, archives in the audit log."
+        },
+        "1": {
+          "title": "Hiring manager",
+          "desc": "Reads the Decision Pack in five minutes before deciding whether to schedule an interview. Clicks through to the artifact links to verify what matters."
+        },
+        "2": {
+          "title": "The candidate",
+          "desc": "Reads their own Decision Pack to understand what an outside observer sees in their work. Often the first time they see themselves framed by an external system."
+        },
+        "3": {
+          "title": "Career services tutor",
+          "desc": "Pulls a student's Decision Pack before a recruiter call to coach the conversation. Sends it to the student to read before the call."
+        }
+      }
+    },
+    "speed": {
+      "eyebrow": "Speed",
+      "title": "Generated automatically. Available the day a profile is complete.",
+      "lede": "There is no waiting for a Decision Pack. The moment a candidate has uploaded their projects and the AI extraction has run, the Decision Pack exists. A recruiter generates one in a click. Export to PDF or JSON, send to anyone."
+    },
+    "cta": {
+      "title": "Read what a hiring decision looks like.",
+      "subtitle": "Free to browse, free to download up to five Decision Packs per month with a corporate email. Subscribe at €89/mo for unlimited.",
+      "primary": "Start free",
+      "secondary": "See a sample"
+    }
+  },
+  "skillExtraction": {
+    "hero": {
+      "eyebrow": "How the AI sees a candidate",
+      "title": "Skills extracted from what a candidate built. Not from what they wrote.",
+      "subtitle": "Our AI reads the project files — code, thesis, design assets, internship reports — and produces a structured skill list with evidence links. The skill graph is a function of what the student has actually produced. Auditable, explainable, AI Act-compliant.",
+      "registerCta": "Try the AI search",
+      "demoCta": "See the algorithm registry"
+    },
+    "howItWorks": {
+      "eyebrow": "How it works",
+      "title": "Artifact in, structured skills out",
+      "lede": "Four stages, fully automated. The candidate uploads, the AI extracts, the platform shows evidence, the recruiter searches. No manual tagging.",
+      "steps": {
+        "0": {
+          "title": "Upload",
+          "desc": "The candidate uploads project files: source code, thesis PDF, design files, internship reports, lab notebooks. One paragraph of description in the candidate's own language."
+        },
+        "1": {
+          "title": "Extract",
+          "desc": "The AI reads the artifacts. It parses code, summarizes documents, transcribes video walkthroughs. It produces a structured skill list across five typed buckets."
+        },
+        "2": {
+          "title": "Evidence",
+          "desc": "Each extracted skill is stored with a confidence score and a link back to the artifact it came from. The recruiter clicks the skill, sees the actual code or document where it was demonstrated."
+        },
+        "3": {
+          "title": "Search",
+          "desc": "Recruiters search by skill, role, location, or in natural language. Matches are ranked on the extracted evidence, not on keyword overlap with the CV."
+        }
+      }
+    },
+    "buckets": {
+      "eyebrow": "What gets extracted",
+      "title": "Five typed skill buckets",
+      "lede": "Skills are never a flat list. Every extraction categorizes into the same five buckets, so a recruiter searching for soft skills doesn't have to wade through SQL queries.",
+      "items": {
+        "0": {
+          "title": "Hard skills",
+          "desc": "Programming languages, frameworks, databases, tools. Extracted from code repositories and technical artifacts."
+        },
+        "1": {
+          "title": "Soft skills",
+          "desc": "Communication, collaboration, project management. Extracted from documentation quality, README structure, internship evaluations."
+        },
+        "2": {
+          "title": "Design skills",
+          "desc": "UI/UX, mechanical CAD, architectural drawing, graphic design. Extracted from design files, sketches, prototypes."
+        },
+        "3": {
+          "title": "Domain knowledge",
+          "desc": "Industry-specific competence: finance, biotech, manufacturing, education, public sector. Extracted from project context and applied work."
+        },
+        "4": {
+          "title": "Languages",
+          "desc": "Working languages, certified levels, evidence in the candidate's own work. CEFR-aligned where possible."
+        }
+      }
+    },
+    "evidence": {
+      "eyebrow": "What we show",
+      "title": "Every claim links back to the proof",
+      "lede": "We don't ask anyone to trust the AI on its word. Every skill on a candidate's profile is clickable. The recruiter sees the artifact the skill was extracted from.",
+      "items": {
+        "0": "Confidence score per skill — visible to recruiters and to the candidate",
+        "1": "Link to the source artifact (code repository, document, file) for every extracted skill",
+        "2": "Public algorithm registry explaining how the matching engine ranks candidates"
+      }
+    },
+    "limits": {
+      "eyebrow": "What we don't claim",
+      "title": "What the AI can't do",
+      "lede": "We're transparent about the limits because trust comes from honesty about both. Here's what artifact-based extraction is not.",
+      "items": {
+        "0": "It doesn't measure a candidate's potential — only the skills evidenced in what they've already built",
+        "1": "It doesn't replace the interview — it removes the screening step that should never have been an interview",
+        "2": "It doesn't certify the work was the candidate's own — that's where the optional professor endorsement adds a trust layer"
+      }
+    },
+    "cta": {
+      "title": "Search candidates on evidence, not on claims.",
+      "subtitle": "Free to browse the verified pool, contact 5 candidates per month with a corporate email. Try the AI search before signing up.",
+      "primary": "Start free",
+      "secondary": "Try the AI search"
     }
   }
 }

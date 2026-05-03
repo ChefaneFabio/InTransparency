@@ -13,6 +13,10 @@ import {
   Plug,
   Users,
   FileCheck,
+  Bot,
+  ClipboardList,
+  Send,
+  Activity,
   ArrowRight,
   X,
   Check,
@@ -44,12 +48,16 @@ interface Capability {
 }
 
 const CAPABILITIES: Capability[] = [
-  { key: 'verified',     icon: ShieldCheck,   endpoint: '/explore' },
-  { key: 'smartSearch',  icon: MessageSquare, endpoint: '/demo/ai-search' },
-  { key: 'decisionPack', icon: FileText },
-  { key: 'atsBridge',    icon: Plug,          endpoint: '/integrations' },
-  { key: 'diversity',    icon: Users,         endpoint: '/algorithm-registry' },
-  { key: 'compliance',   icon: FileCheck,     endpoint: '/eu-compliance' },
+  { key: 'verified',       icon: ShieldCheck,   endpoint: '/explore' },
+  { key: 'smartSearch',    icon: MessageSquare, endpoint: '/demo/ai-search' },
+  { key: 'decisionPack',   icon: FileText },
+  { key: 'hiringAdvisor',  icon: Bot },
+  { key: 'interviewKit',   icon: ClipboardList },
+  { key: 'outreach',       icon: Send },
+  { key: 'outcomes',       icon: Activity },
+  { key: 'atsBridge',      icon: Plug,          endpoint: '/integrations' },
+  { key: 'diversity',      icon: Users,         endpoint: '/algorithm-registry' },
+  { key: 'compliance',     icon: FileCheck,     endpoint: '/eu-compliance' },
 ]
 
 const METRICS = ['0', '1', '2'] as const

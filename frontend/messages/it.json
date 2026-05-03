@@ -2339,7 +2339,7 @@
     "hero": {
       "badge": "Per studenti — ogni disciplina, ogni percorso",
       "title": "Il tuo lavoro parla. Non riscrivere un altro CV.",
-      "subtitle": "Carichi tesi, codice, report, design. La nostra AI estrae le skill dai file reali, normalizza i voti su ESCO, e mostra il tuo portfolio ai recruiter che cercano davvero quelle skill. Endorsement docente opzionale come segnale aggiuntivo."
+      "subtitle": "Carica tesi, codice, report, design. La nostra AI legge ogni file come la sua disciplina richiede — su 15 ambiti, dall'ingegneria al diritto al design. Skill estratte dal lavoro reale, voti normalizzati tra sistemi europei, portfolio cercabile per quello che hai effettivamente costruito. L'endorsement docente opzionale aggiunge un trust signal."
     },
     "metrics": {
       "title": "Quello che cambia con un portfolio verificato",
@@ -2390,7 +2390,8 @@
       "items": {
         "0": "Skill mappate sulla tassonomia ESCO UE",
         "1": "Voti normalizzati tra tutti i sistemi europei (28/30 = 1.7 DE = 15/20 FR)",
-        "2": "Endorsement docente opzionale come segnale aggiuntivo"
+        "2": "Endorsement docente opzionale come segnale aggiuntivo",
+        "3": "Assessment opzionali Big Five, DISC e competency — il tuo stile di lavoro inquadrato da framework validati, poi confrontato con il tuo record verificato"
       },
       "explainer": "Tutto pubblicato e auditabile su /algorithm-registry. Le credenziali sono firmate Ed25519 e compatibili con l'EU Digital Wallet. Tu controlli cosa è pubblico, cosa è solo per recruiter verificati, cosa è privato."
     },
@@ -2422,7 +2423,7 @@
       },
       "2": {
         "title": "Fatti Notare",
-        "desc": "Il tuo portfolio verificato con AI diventa visibile alle persone giuste. Basta inviare candidature nel vuoto — lascia che il tuo lavoro apra le porte per te."
+        "desc": "Il tuo portfolio diventa visibile alle persone giuste. Vedi quanti recruiter hanno guardato il tuo profilo ogni settimana e quanti hanno aperto i tuoi progetti. L'endorsement aggiunge un trust signal in più."
       },
       "title": "Come Funziona per Te",
       "subtitle": "Tre passi dal progetto al portfolio verificato con AI."
@@ -2515,8 +2516,8 @@
   "forCompanies": {
     "badge": "Per aziende mid-market e team HR",
     "hero": {
-      "title": "Il tuo ATS archivia. Noi facciamo discovery.",
-      "subtitle": "Le aziende mid-market (50-200 dipendenti) hanno già un ATS — Greenhouse, Lever, Workday — bravi ad archiviare le candidature ricevute. InTransparency fa quello che un ATS non è stato progettato per fare: trova candidati con skill verificate dall'AI dai loro progetti reali, prima ancora che si candidino. Tieni il tuo ATS, aggiungi il discovery."
+      "title": "Il tuo ATS organizza chi si è candidato. Noi mostriamo chi potrebbe.",
+      "subtitle": "Studenti da istituzioni europee — università, ITS Academy, scuole tecniche — con competenze estratte dai loro progetti reali, voti normalizzati tra sistemi UE, pronti per essere contattati prima ancora che arrivino nella tua inbox. Match in giorni, non settimane. Si integra con Greenhouse, Lever o Workday."
     },
     "practiceLabel": "In pratica:",
     "seeIt": "Vedi",
@@ -2569,7 +2570,7 @@
       "items": {
         "verified": {
           "title": "Pool pre-verificato",
-          "description": "Profili con skill estratte dall'AI dai progetti reali — voti normalizzati tra sistemi UE, validazione opzionale dei docenti come bonus signal. Cerchi su un dato che esiste, non su una dichiarazione.",
+          "description": "Hard skill estratte dall'AI da artefatti reali (codice, tesi, file di design). Soft skill mappate attraverso il flusso Self-Discovery del candidato e confrontate con il record verificato. Voti normalizzati tra sistemi UE. La validazione opzionale del docente aggiunge un trust signal quando presente.",
           "concrete": "Cerca per skill su /explore — un 28/30 italiano = 1.7 tedesco = 15/20 francese, automatico."
         },
         "smartSearch": {
@@ -2593,9 +2594,29 @@
           "concrete": "Vedi /algorithm-registry per i criteri di matching pubblicati e auditabili."
         },
         "compliance": {
-          "title": "AI Act-native + GDPR Art. 22",
-          "description": "Eseguire AI di valutazione candidati in casa rende TE il deployer high-risk (Annex III §4). Routendo le decisioni attraverso InTransparency, noi siamo il provider registrato — il tuo carico compliance scende.",
-          "concrete": "Vedi /eu-compliance — 17 standard UE coperti con endpoint deployati."
+          "title": "Pronti per AI Act, GDPR Art. 22 coperto",
+          "description": "L'AI di valutazione candidati è high-risk sotto Annex III §4. Forniamo l'algorithm registry, l'audit log e gli endpoint right-to-explanation che l'Annex III richiede — la tua esposizione AI Act resta gestibile.",
+          "concrete": "Vedi /eu-compliance — 17 standard UE mappati su endpoint deployati."
+        },
+        "hiringAdvisor": {
+          "title": "AI Hiring Advisor",
+          "description": "Un assistente conversazionale che ti aiuta a ragionare sulle decisioni di hiring — quando intervistare, come pesare le evidenze, cosa chiedere. Backed by Anthropic, con il record verificato del candidato come contesto.",
+          "concrete": "Chiedi \"dovrei intervistare Marco per questo ruolo?\" — ottieni una risposta ragionata che cita le evidenze."
+        },
+        "interviewKit": {
+          "title": "AI Interview Kit per posizione",
+          "description": "Genera un interview kit su misura per ogni posizione — domande, rubric di valutazione, allocazione tempo — basato sui requisiti del ruolo e sul profilo del candidato. Un click dalla pagina del job.",
+          "concrete": "Passa il kit all'hiring manager così entra con una struttura, non con un foglio bianco."
+        },
+        "outreach": {
+          "title": "Sequenze di contatto e dossier per ogni fase",
+          "description": "Dopo la shortlist resta da contattare i candidati e preparare chi farà il colloquio. Sequenze multi-touch con tracking delle risposte. Dossier per fase, così chi intervista non parte da zero.",
+          "concrete": "Imposta una cadenza in 3 step, vedi le risposte arrivare, poi consegna il dossier alla persona successiva."
+        },
+        "outcomes": {
+          "title": "Esiti di assunzione tracciati",
+          "description": "Segna ogni contatto come assunto, intervistato, nessuna risposta, rifiutato o ritirato. La dashboard mostra response rate e hire rate reali per ruolo — e la piattaforma impara quali segnali predicono le tue assunzioni.",
+          "concrete": "Review trimestrale: scopri quali job description, quali profili, quali atenei convertono davvero."
         }
       }
     },
@@ -2634,7 +2655,7 @@
     },
     "cta": {
       "title": "Filtra il rumore. Tieni il tuo ATS. Aggiungi il segnale.",
-      "subtitle": "Sfogli il pool verificato gratis. Contatti 5 candidati al mese a costo zero. Quando scali, abbonamento €89/mese — o ATS bridge se vuoi che entrino direttamente nel tuo workflow esistente.",
+      "subtitle": "Sfoglia il pool verificato gratis. 5 contatti al mese senza costi. Abbonamento €89/mese quando ti serve di più, oppure manda gli shortlist direttamente nel tuo ATS via webhook.",
       "primary": "Inizia gratis",
       "secondary": "Prova la Ricerca Intelligente",
       "primaryButton": "Inizia gratis",
@@ -2650,8 +2671,8 @@
       "subtitle": "Come i talenti verificati con AI cambiano il tuo processo di assunzione",
       "items": {
         "0": {
-          "question": "In cosa è diverso da LinkedIn?",
-          "answer": "Ogni profilo è supportato da progetti e voti reali. I docenti possono validare i progetti quando li revisionano — il lavoro validato porta un segnale di fiducia in più, ma vedi sempre l'evidenza sottostante, non parole chiave."
+          "question": "In cosa è diverso da LinkedIn o dai database CV come AlmaLaurea?",
+          "answer": "I profili LinkedIn sono testo auto-dichiarato. AlmaLaurea è un magazzino CV — i laureati caricano il proprio CV, il database viene pubblicato in batch tre volte l'anno, e i dati sono esplicitamente non certificati da AlmaLaurea oltre le informazioni del titolo di studio (è scritto nel loro stesso contratto). Noi estraiamo le competenze dagli artefatti reali del candidato — codice, tesi, file di design, lavori di progetto — e le mostriamo in tempo reale. Cerchi su cosa ha effettivamente costruito, non su cosa ha scritto. La validazione opzionale del docente aggiunge un livello di fiducia in più quando presente, ma l'evidenza è nel lavoro stesso, non nel badge."
         },
         "1": {
           "question": "Quanto costa?",
@@ -3124,7 +3145,7 @@
     "workspaceModules": {
       "eyebrow": "Workspace per gli ITS",
       "title": "Quattro moduli per il ciclo Tirocinio → Placement → MIUR",
-      "subtitle": "Il vostro Career Office gestisce l'intero ciclo dal primo contatto azienda fino al contratto post-diploma. Free Core in lettura; Premium sblocca le scritture e l'export.",
+      "subtitle": "Il vostro Career Office gestisce l'intero ciclo dal primo contatto azienda fino al contratto post-diploma. AI discipline-aware legge il lavoro di progetto come ogni specializzazione richiede — meccatronica diversamente da biotech, digital manufacturing diversamente da smart mobility. Free Core in lettura; Premium sblocca le scritture e l'export.",
       "m1": {
         "title": "Mediation Inbox",
         "desc": "Ogni messaggio aziendale ai vostri studenti passa prima dal coordinatore. Approva, modifica, rifiuta — audit trail completo per la responsabilità tutoriale."
@@ -4025,11 +4046,11 @@
             "1": "M2 Moderazione Offerte",
             "2": "M3 CRM Aziende (kanban drag-and-drop)",
             "3": "M4 Pipeline Tirocini (ore, valutazioni, scadenze)",
-            "4": "Analytics di base + Scorecard",
-            "5": "Audit log (ultimi 30 giorni)",
-            "6": "AI Assistant (50 query / mese)",
-            "7": "Verifica progetti + endorsement",
-            "8": "Convention Builder (template-based)"
+            "4": "Convention Builder — PDF + lifecycle (firme tracciate)",
+            "5": "Analytics di base + Scorecard",
+            "6": "Audit log (ultimi 30 giorni)",
+            "7": "AI Assistant (50 query / mese)",
+            "8": "Verifica progetti + endorsement"
           }
         },
         "premium": {
@@ -4049,10 +4070,9 @@
             "1": "Analytics avanzate: cross-cohort, drill multi-corso",
             "2": "Audit log completo + export CSV",
             "3": "Reminder engine: automazione full (regole + cron)",
-            "4": "Convention Builder: clausole AI-personalizzate",
-            "5": "Skills Intelligence + allineamento curricula",
-            "6": "Report formato MIUR (basic)",
-            "7": "Supporto prioritario via email (SLA 24h)"
+            "4": "Skills Intelligence + allineamento curricula",
+            "5": "Report formato MIUR (basic)",
+            "6": "Supporto prioritario via email (SLA 24h)"
           },
           "cta": "Inizia Premium · trial 30 giorni",
           "ctaAnnual": "Paga annualmente · €390/anno · risparmi 17%"
@@ -4535,9 +4555,9 @@
   },
   "forUniversities": {
     "hero": {
-      "badge": "Pilota all'Università di Bergamo · disponibile in tutta la UE",
-      "title": "Sostituisci i sondaggi con prove di placement in tempo reale",
-      "subtitle": "Analytics di placement in tempo reale, normalizzazione dei voti tra sistemi europei e profili studenti verificati. Disponibile per università, ITS e scuole in tutta la UE. Pilota in corso all'Università di Bergamo.",
+      "badge": "Infrastruttura career service europea · pilota all'Università di Bergamo",
+      "title": "L'infrastruttura career service che serve davvero ai tuoi studenti",
+      "subtitle": "Costruita per università, ITS Academy e scuole tecniche. €390/anno flat al posto delle quote per laureato dei consorzi. AI discipline-aware legge il lavoro degli studenti su 15 ambiti, placement visibile in tempo reale, voti normalizzati tra sistemi europei, ogni azione tracciata. Pilota in corso all'Università di Bergamo.",
       "registerCta": "Crea il Tuo Account Partner",
       "demoCta": "Prenota una Demo"
     },
@@ -4591,10 +4611,42 @@
         "setup": "Setup in 5 minuti"
       }
     },
+    "vsAlmaLaurea": {
+      "eyebrow": "Confronto",
+      "title": "Cosa AlmaLaurea non è stata progettata per fare",
+      "lede": "AlmaLaurea nasce nel 1994 come banca dati CV. Funziona ancora così. L'intero panorama formativo italiano ha bisogno di più di un consorzio solo post-laurea.",
+      "items": {
+        "0": {
+          "title": "Visibilità in tempo reale",
+          "desc": "Studenti visibili dal giorno del caricamento — non in batch tre volte l'anno (marzo, luglio, novembre)."
+        },
+        "1": {
+          "title": "Evidenze, non dichiarazioni",
+          "desc": "La nostra AI estrae le competenze da artefatti reali — codice, tesi, file di progetto — usando logica discipline-aware su 15 ambiti. I CV AlmaLaurea sono esplicitamente auto-dichiarati dallo studente nel loro stesso contratto."
+        },
+        "2": {
+          "title": "Workflow, non solo banca dati",
+          "desc": "Mediation Inbox, CRM tirocini, drafting convenzioni, framework di valutazione, decision pack, analytics di placement. AlmaLaurea è un database; noi gestiamo il workflow."
+        },
+        "3": {
+          "title": "Tre tier formativi",
+          "desc": "Università, ITS Academy, scuole tecniche e professionali secondarie — una sola piattaforma. AlmaLaurea è solo post-laurea e non serve gli altri tier."
+        },
+        "4": {
+          "title": "Prezzo flat, prevedibile",
+          "desc": "€390/anno per l'istituzione — niente scaling per laureato, niente plafond da gestire, nessun CV inutilizzato perso al rinnovo."
+        },
+        "5": {
+          "title": "Evidenza soft-skill",
+          "desc": "Assessment opzionali Big Five, DISC e competency confrontati con il record verificato di ogni studente. AlmaLaurea offre CV auto-dichiarati; noi offriamo evidenza dello stile di lavoro inquadrata da framework validati."
+        }
+      },
+      "endNote": "Molti atenei usano entrambi: AlmaLaurea per i report di benchmark a cui sono vincolati, InTransparency per il workflow quotidiano che AlmaLaurea non è stato progettato per gestire."
+    },
     "workspaceModules": {
       "eyebrow": "Workspace per le università",
-      "title": "Costruita per il career office, non l'ennesima job board",
-      "subtitle": "Quattro moduli che trasformano il placement da fogli Excel in un workflow auditabile. Anteprima sul Free Core; sblocca le scritture con Premium.",
+      "title": "Costruita per il career office di università, ITS e scuole tecniche",
+      "subtitle": "Quattro moduli che trasformano il placement da fogli Excel — o da un abbonamento a database CV — in un workflow auditabile. Anteprima sul Free Core; sblocca le scritture con Premium.",
       "m1": {
         "title": "Mediation Inbox",
         "desc": "Ogni messaggio dei recruiter ai vostri studenti passa prima dal vostro staff. Approva, modifica o rifiuta. Audit trail completo."
@@ -4609,7 +4661,7 @@
       },
       "m4": {
         "title": "Pipeline Tirocini",
-        "desc": "Ciclo di vita completo del tirocinio — registro ore, valutazioni intermedie/finali, scadenze, generazione automatica convenzioni. Sostituisce i fogli Excel del career office."
+        "desc": "Tracciamento tirocini dall'inizio al placement — registro ore, valutazioni intermedie/finali, scadenze, generazione PDF convenzioni. Sostituisce i fogli Excel del career office."
       },
       "compliance": "Ogni scrittura è loggata per la conformità AI Act. Gli studenti mantengono i diritti GDPR Art. 22 su ogni decisione automatizzata.",
       "pricingCta": "Vedi i prezzi",
@@ -4697,6 +4749,14 @@
         "4": {
           "question": "È conforme al GDPR?",
           "answer": "Pienamente conforme. Gli studenti controllano i propri dati, il consenso è gestito per funzionalità e tutti i dati sono archiviati in data center nell'UE."
+        },
+        "5": {
+          "question": "Paghiamo già AlmaLaurea. Perché anche voi?",
+          "answer": "AlmaLaurea è un database CV con quote annuali per laureato e un ciclo di pubblicazione tre volte l'anno. Noi siamo un layer di operations — Mediation Inbox, CRM tirocini, framework di valutazione, evidenze di competenze estratte dall'AI, analytics di placement in tempo reale, decision pack. Molti atenei usano entrambi: AlmaLaurea per i report di benchmark a cui sono vincolati, InTransparency per il workflow quotidiano che AlmaLaurea non è stato progettato per gestire. Premium parte da €39/mese flat — nessuno scaling per laureato."
+        },
+        "6": {
+          "question": "Servite anche ITS Academy e scuole tecniche o solo università?",
+          "answer": "Tutti e tre i tier. La piattaforma è costruita per tutto il panorama formativo italiano — università, ITS Academy e scuole secondarie tecniche e professionali. Stesso Free Core, stessi moduli di workflow, stesso prezzo Premium flat €39/mese. AlmaLaurea è solo post-laurea; noi copriamo tutti."
         }
       }
     }
@@ -9541,7 +9601,7 @@
     "workspaceModules": {
       "eyebrow": "Workspace per le scuole",
       "title": "Quattro moduli per il ciclo PCTO → Orientamento → Diploma",
-      "subtitle": "Non sostituisce il registro elettronico — completa la parte che il registro elettronico non fa: portfolio dello studente, lavoro reale, scelte universitarie. Free Core in lettura; Premium sblocca scritture e automazioni.",
+      "subtitle": "Non sostituisce il registro elettronico — completa la parte che il registro elettronico non fa: portfolio dello studente, lavoro reale, scelte universitarie. AI discipline-aware legge il lavoro di progetto come ogni indirizzo richiede — liceo umanistico e scientifico diversamente da tecnico ingegneria, diversamente da professionale. Free Core in lettura; Premium sblocca scritture e automazioni.",
       "m1": {
         "title": "PCTO Ledger",
         "desc": "Convenzione, ore svolte, valutazioni del tutor aziendale e del tutor scolastico, progetto formativo. Generazione automatica della modulistica e calcolo automatico delle ore residue per studente."
@@ -12359,7 +12419,7 @@
   "selfDiscovery": {
     "badge": "Auto-Esplorazione",
     "title": "Capire chi sei, prima di mostrarti",
-    "intro": "Sei passi per capire te stesso prima che le aziende vedano il tuo profilo. Non ci sono risposte sbagliate. Tutto qui è tuo — scegli tu cosa condividere.",
+    "intro": "Sei passi per mappare le tue soft skill, valori e stile di lavoro — e per confrontarli con quello che il tuo record verificato mostra davvero. L'output diventa una sezione soft skill sul tuo profilo, visibile prima a te e poi alle aziende a cui scegli di condividerlo. Non ci sono risposte sbagliate.",
     "progress": "Progresso",
     "progressCount": "Passo {current} di {total} — {percent}%",
     "nav": {
@@ -15149,6 +15209,234 @@
       "crm": "Puoi navigare la pipeline aziende, ma aggiungere lead o spostarli tra fasi richiede PREMIUM.",
       "placement": "Puoi vedere i tirocini, ma creare nuovi stage, registrare ore o cambiare fase richiede PREMIUM.",
       "generic": "Le letture sono gratuite — scritture, approvazioni e automazioni richiedono il piano PREMIUM."
+    }
+  },
+  "integrationsIndex": {
+    "hero": {
+      "eyebrow": "Integrazioni",
+      "title": "Cosa integriamo. Cosa no.",
+      "subtitle": "Lista onesta di cosa è già live, cosa è in arrivo, cosa passiamo a partner e cosa lasciamo deliberatamente fuori. Esportiamo ai confini — non proviamo a essere i sistemi dall'altra parte."
+    },
+    "shipping": {
+      "eyebrow": "Disponibili oggi",
+      "title": "Live ora",
+      "lede": "Integrazioni che puoi collegare oggi.",
+      "items": {
+        "0": {
+          "title": "Bridge ATS",
+          "desc": "Manda candidati verificati in Greenhouse, Lever, Workday, SmartRecruiters via webhook. Beta. Eventi webhook: match.created, credential.issued, stage.completed.",
+          "linkLabel": "Guida integrazione ATS",
+          "linkHref": "/integrations/ats"
+        },
+        "1": {
+          "title": "Client agentici (MCP + OpenAPI)",
+          "desc": "ChatGPT, Claude e altri agent workspace leggono InTransparency come layer di dati verificati. MCP server + spec OpenAPI + ai-plugin.json già rilasciati.",
+          "linkLabel": "Guida integrazione agent",
+          "linkHref": "/integrations/agents"
+        }
+      }
+    },
+    "planned": {
+      "eyebrow": "In arrivo",
+      "title": "Piccoli bridge in roadmap",
+      "lede": "Entrambi viaggiano sullo stesso pattern di export. Il momento naturale è l'assunzione stessa — quando si firma un'offerta, i dati non dovrebbero dover essere reinseriti a valle.",
+      "items": {
+        "0": {
+          "title": "Export HRIS",
+          "desc": "Push one-way dei dati del candidato assunto a Personio, BambooHR, HiBob. Toglie il reinserimento al momento dell'assunzione. Esportiamo verso il tuo HRIS — non siamo il tuo HRIS."
+        },
+        "1": {
+          "title": "Handoff onboarding",
+          "desc": "Manda il Decision Pack e la sintesi Self-Discovery del nuovo assunto al tuo strumento di onboarding, così il primo giorno parte con contesto. Stesso pattern di export dell'HRIS."
+        }
+      }
+    },
+    "partners": {
+      "eyebrow": "Integrare, non costruire",
+      "title": "Dove facciamo da partner",
+      "lede": "Alcuni segnali sono meglio forniti da specialisti. Integriamo invece di provare a essere entrambi.",
+      "items": {
+        "0": {
+          "title": "Skills assessment",
+          "desc": "Il segnale del test controllato complementa l'evidenza degli artefatti — utile per ruoli senior dove gli artefatti possono essere coperti da NDA, o per ruoli dove conta il ragionamento sotto pressione di tempo. Partner pianificati: TestGorilla, CodeSignal."
+        }
+      }
+    },
+    "stayOut": {
+      "eyebrow": "Cosa non facciamo",
+      "title": "Dove restiamo fuori, di proposito",
+      "lede": "La trasparenza funziona in entrambe le direzioni. Ecco cosa deliberatamente non proviamo a essere.",
+      "items": {
+        "0": "Sostituto HRIS / payroll — siamo pre-assunzione, passiamo al tuo HRIS al momento dell'assunzione",
+        "1": "Performance management — non abbiamo dati employee, ciclo di review, calibrazione",
+        "2": "Prodotto onboarding completo — facciamo handoff; non proviamo a essere Sapling o Enboarder",
+        "3": "Reference automation oltre l'endorsement docente — coperto per early-career; se andiamo upmarket, integreremo (Crosschq, Xref) invece di costruire"
+      }
+    },
+    "cta": {
+      "title": "Ti serve un'integrazione che non è qui?",
+      "subtitle": "Dicci cosa stai cercando di collegare. Saremo onesti su se è un bridge che costruiremmo, un partner con cui integreremmo, o uno scope da cui resteremmo fuori.",
+      "primary": "Contattaci",
+      "secondary": "Vedi l'API"
+    }
+  },
+  "decisionPack": {
+    "hero": {
+      "eyebrow": "L'artefatto che decide i colloqui",
+      "title": "Un dossier candidato di due pagine. Generato automaticamente. Letto in cinque minuti.",
+      "subtitle": "Skill verificate, voti normalizzati, link diretti agli artefatti del progetto, sintesi di personalità opzionale. Il Decision Pack è quello che un hiring manager legge invece di una prima call — e quello che un tutor del career service manda allo studente prima di una.",
+      "registerCta": "Inizia gratis",
+      "demoCta": "Vedi un esempio"
+    },
+    "contents": {
+      "eyebrow": "Cosa contiene",
+      "title": "Sei sezioni, due pagine, niente padding",
+      "lede": "Ogni Decision Pack ha la stessa struttura. I dati vengono dal profilo del candidato, dall'estrazione AI e (opzionalmente) dall'endorsement del docente. Niente di scritto dal candidato.",
+      "items": {
+        "0": {
+          "title": "Lista skill verificate",
+          "desc": "Skill estratte da AI discipline-aware su 15 ambiti — codice analizzato diversamente da una tesi, file di design diversamente da un business case. Ogni skill ha un confidence score e un link all'artefatto da cui è stata estratta. I recruiter cliccano e vedono la fonte."
+        },
+        "1": {
+          "title": "Voti normalizzati",
+          "desc": "30/30 italiano, 1.0 tedesco, 20/20 francese, ECTS — tutti tradotti automaticamente su una scala comparabile. Un recruiter non italiano non deve conoscere il sistema italiano."
+        },
+        "2": {
+          "title": "Contesto istituzionale",
+          "desc": "Nome del corso, tutor, azienda dello stage, anno di completamento. L'ancoraggio istituzionale che dà fondamento al resto del documento."
+        },
+        "3": {
+          "title": "Soft skill + stile di lavoro (opzionale)",
+          "desc": "Output del flusso Self-Discovery del candidato più assessment opzionali Big Five, DISC e competency — valori, punti di forza, motivazioni, stile di lavoro. Confrontato con il record verificato così i recruiter vedono cosa si allinea e cosa no. Sempre visibile prima al candidato."
+        },
+        "4": {
+          "title": "Previsione employability",
+          "desc": "Un punteggio di fit predetto verso categorie di ruoli comuni, con le assunzioni visibili. Nessun ranking black-box — gli input sono elencati."
+        },
+        "5": {
+          "title": "Badge endorsement (opzionale)",
+          "desc": "Se un docente ha endorsato il progetto, un piccolo badge cliccabile con nome del docente, corso e semestre. Un trust signal in più — mai obbligatorio."
+        }
+      }
+    },
+    "whoUses": {
+      "eyebrow": "Chi legge un Decision Pack",
+      "title": "Lettori diversi, stesso documento",
+      "lede": "Il Decision Pack funziona perché è lo stesso artefatto per tutti nella catena di hiring. Il recruiter shortlista. L'hiring manager decide. Il candidato si prepara. Nessuno legge una versione diversa.",
+      "items": {
+        "0": {
+          "title": "Talent acquisition",
+          "desc": "Genera il Decision Pack dalla shortlist, lo manda all'hiring manager, lo allega al ticket ATS, lo archivia nell'audit log."
+        },
+        "1": {
+          "title": "Hiring manager",
+          "desc": "Legge il Decision Pack in cinque minuti prima di decidere se programmare un colloquio. Clicca sui link agli artefatti per verificare ciò che conta."
+        },
+        "2": {
+          "title": "Il candidato",
+          "desc": "Legge il proprio Decision Pack per capire cosa un osservatore esterno vede nel suo lavoro. Spesso la prima volta che si vede inquadrato da un sistema esterno."
+        },
+        "3": {
+          "title": "Tutor career service",
+          "desc": "Tira fuori il Decision Pack di uno studente prima di una call con un recruiter per preparare la conversazione. Lo manda allo studente da leggere prima."
+        }
+      }
+    },
+    "speed": {
+      "eyebrow": "Velocità",
+      "title": "Generato automaticamente. Disponibile dal giorno in cui il profilo è completo.",
+      "lede": "Non si aspetta un Decision Pack. Nel momento in cui un candidato ha caricato i suoi progetti e l'estrazione AI è partita, il Decision Pack esiste. Un recruiter ne genera uno con un click. Esporta in PDF o JSON, manda a chiunque."
+    },
+    "cta": {
+      "title": "Leggi com'è una decisione di hiring.",
+      "subtitle": "Gratis sfogliare, gratis scaricare fino a cinque Decision Pack al mese con email aziendale. Abbonamento €89/mese per illimitati.",
+      "primary": "Inizia gratis",
+      "secondary": "Vedi un esempio"
+    }
+  },
+  "skillExtraction": {
+    "hero": {
+      "eyebrow": "Come l'AI vede un candidato",
+      "title": "Skill estratte da quello che un candidato ha costruito. Non da quello che ha scritto.",
+      "subtitle": "La nostra AI legge i file di progetto — codice, tesi, asset di design, report di tirocinio — e produce una lista skill strutturata con link alle evidenze. Il grafo skill è funzione di ciò che lo studente ha effettivamente prodotto. Auditabile, spiegabile, conforme AI Act.",
+      "registerCta": "Prova la ricerca AI",
+      "demoCta": "Vedi l'algorithm registry"
+    },
+    "howItWorks": {
+      "eyebrow": "Come funziona",
+      "title": "Artefatto in entrata, skill strutturate in uscita",
+      "lede": "Quattro fasi, completamente automatiche. Il candidato carica, l'AI estrae, la piattaforma mostra l'evidenza, il recruiter cerca. Niente tagging manuale.",
+      "steps": {
+        "0": {
+          "title": "Caricamento",
+          "desc": "Il candidato carica i file di progetto: codice sorgente, PDF della tesi, file di design, report di tirocinio, quaderni di laboratorio. Un paragrafo di descrizione nella propria lingua."
+        },
+        "1": {
+          "title": "Estrazione",
+          "desc": "L'AI legge gli artefatti. Parsa il codice, sintetizza i documenti, trascrive i video walkthrough. Produce una lista skill strutturata su cinque bucket tipizzati."
+        },
+        "2": {
+          "title": "Evidenza",
+          "desc": "Ogni skill estratta è memorizzata con un confidence score e un link all'artefatto da cui proviene. Il recruiter clicca sulla skill, vede il codice o documento dove è stata dimostrata."
+        },
+        "3": {
+          "title": "Ricerca",
+          "desc": "I recruiter cercano per skill, ruolo, sede, o in linguaggio naturale. I match sono ranked sull'evidenza estratta, non sull'overlap di parole chiave con il CV."
+        }
+      }
+    },
+    "buckets": {
+      "eyebrow": "Cosa viene estratto",
+      "title": "Cinque bucket skill tipizzati",
+      "lede": "Le skill non sono mai una lista piatta. Ogni estrazione categorizza negli stessi cinque bucket, così un recruiter che cerca soft skill non deve filtrare query SQL.",
+      "items": {
+        "0": {
+          "title": "Hard skill",
+          "desc": "Linguaggi di programmazione, framework, database, strumenti. Estratte da repository di codice e artefatti tecnici."
+        },
+        "1": {
+          "title": "Soft skill",
+          "desc": "Comunicazione, collaborazione, project management. Estratte dalla qualità della documentazione, struttura del README, valutazioni di tirocinio."
+        },
+        "2": {
+          "title": "Skill di design",
+          "desc": "UI/UX, CAD meccanico, disegno architettonico, design grafico. Estratte da file di design, sketch, prototipi."
+        },
+        "3": {
+          "title": "Conoscenza di dominio",
+          "desc": "Competenza specifica di settore: finance, biotech, manifattura, istruzione, settore pubblico. Estratta dal contesto del progetto e dal lavoro applicato."
+        },
+        "4": {
+          "title": "Lingue",
+          "desc": "Lingue di lavoro, livelli certificati, evidenza nel lavoro del candidato. Allineate al CEFR dove possibile."
+        }
+      }
+    },
+    "evidence": {
+      "eyebrow": "Cosa mostriamo",
+      "title": "Ogni claim ha un link alla prova",
+      "lede": "Non chiediamo a nessuno di fidarsi dell'AI sulla parola. Ogni skill sul profilo di un candidato è cliccabile. Il recruiter vede l'artefatto da cui è stata estratta.",
+      "items": {
+        "0": "Confidence score per ogni skill — visibile ai recruiter e al candidato",
+        "1": "Link all'artefatto sorgente (repository codice, documento, file) per ogni skill estratta",
+        "2": "Algorithm registry pubblico che spiega come il motore di matching ranka i candidati"
+      }
+    },
+    "limits": {
+      "eyebrow": "Cosa non affermiamo",
+      "title": "Cosa l'AI non può fare",
+      "lede": "Siamo trasparenti sui limiti perché la fiducia viene dall'onestà su entrambi. Ecco cosa l'estrazione basata su artefatti non è.",
+      "items": {
+        "0": "Non misura il potenziale di un candidato — solo le skill evidenziate in ciò che ha già costruito",
+        "1": "Non sostituisce il colloquio — toglie lo screening che non avrebbe mai dovuto essere un colloquio",
+        "2": "Non certifica che il lavoro sia del candidato — è qui che l'endorsement opzionale del docente aggiunge un livello di fiducia"
+      }
+    },
+    "cta": {
+      "title": "Cerca candidati su evidenze, non su dichiarazioni.",
+      "subtitle": "Sfogli il pool verificato gratis, contatti 5 candidati al mese con email aziendale. Prova la ricerca AI prima di iscriverti.",
+      "primary": "Inizia gratis",
+      "secondary": "Prova la ricerca AI"
     }
   }
 }
