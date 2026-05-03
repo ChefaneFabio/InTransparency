@@ -1043,7 +1043,9 @@
       "facts": "Facts & benchmarks",
       "changelog": "Changelog",
       "whyNow": "Why now",
-      "comparePlatforms": "Compare platforms"
+      "comparePlatforms": "Compare platforms",
+      "decisionPack": "Decision Pack",
+      "skillExtraction": "Skill extraction"
     },
     "companyLinks": {
       "about": "About",
@@ -1055,6 +1057,7 @@
       "apiOverview": "API Overview",
       "documentation": "Documentation",
       "apiAccess": "Request API Access",
+      "integrations": "All integrations",
       "agents": "Agent integration",
       "ats": "ATS integration",
       "openApi": "OpenAPI spec",

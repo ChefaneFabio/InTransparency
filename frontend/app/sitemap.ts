@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import prisma from '@/lib/prisma'
+import { getPostSlugs } from '@/lib/blog'
 
 /**
  * Dynamic sitemap — includes static marketing pages, public discovery surfaces,
@@ -63,8 +64,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/glossary', priority: 0.75, freq: 'monthly' },
     { path: '/facts', priority: 0.75, freq: 'monthly' },
     { path: '/changelog', priority: 0.85, freq: 'daily' },
+    { path: '/integrations', priority: 0.85, freq: 'weekly' },
     { path: '/integrations/agents', priority: 0.85, freq: 'weekly' },
     { path: '/integrations/ats', priority: 0.85, freq: 'weekly' },
+    { path: '/decision-pack', priority: 0.85, freq: 'weekly' },
+    { path: '/skill-extraction', priority: 0.85, freq: 'weekly' },
+    { path: '/blog', priority: 0.8, freq: 'daily' },
     { path: '/eu-compliance', priority: 0.9, freq: 'weekly' },
     { path: '/for-public-sector', priority: 0.85, freq: 'weekly' },
     { path: '/demo/ai-search', priority: 0.6, freq: 'weekly' },
@@ -123,5 +128,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  return [...staticEntries, ...companyEntries, ...jobEntries]
+  // Blog posts — each slug is locale-specific (EN and IT slugs differ),
+  // so we list each post as a standalone entry without hreflang alternates.
+  // The /blog index page above carries the locale alternates.
+  const blogEntries: MetadataRoute.Sitemap = LOCALES.flatMap(locale =>
+    getPostSlugs(locale).map(slug => ({
+      url: `${BASE_URL}/${locale}/blog/${slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  )
+
+  return [...staticEntries, ...companyEntries, ...jobEntries, ...blogEntries]
 }

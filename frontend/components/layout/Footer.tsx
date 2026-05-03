@@ -76,6 +76,8 @@ export function Footer() {
       { name: tFooter('resourceLinks.changelog'), href: '/changelog' },
       { name: tFooter('resourceLinks.whyNow'), href: '/why-now' },
       { name: tFooter('resourceLinks.comparePlatforms'), href: '/compare/platforms' },
+      { name: tFooter('resourceLinks.decisionPack'), href: '/decision-pack' },
+      { name: tFooter('resourceLinks.skillExtraction'), href: '/skill-extraction' },
       { name: tFooter('resourceLinks.blog'), href: '/blog' },
       { name: tFooter('resourceLinks.contact'), href: '/contact' },
     ],
@@ -87,6 +89,7 @@ export function Footer() {
       { name: tFooter('cookies'), href: '/legal#cookies' },
     ],
     developers: [
+      { name: tFooter('developerLinks.integrations'), href: '/integrations' },
       { name: tFooter('developerLinks.agents'), href: '/integrations/agents' },
       { name: tFooter('developerLinks.ats'), href: '/integrations/ats' },
       // Static files at site root — bypass locale-prefixed routing.
