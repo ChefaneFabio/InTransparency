@@ -838,38 +838,70 @@ async function main() {
 
   // ── 13. Showcase demo accounts — predictable creds for handoff ─────────
   // The generic Studente / Azienda accounts shared with prospective
-  // customers. Always populated with curated data so the dashboard isn't
-  // empty on first login. Idempotent via upsert.
+  // customers. Always populated with curated data so the dashboard
+  // doesn't look empty: complete profile, verified university connection,
+  // professor endorsement, applications, profile views, messages.
+  // Idempotent via upsert.
+
+  const studentProfile = {
+    firstName: 'Marco',
+    lastName: 'Bianchi',
+    username: 'marco-bianchi-polimi',
+    photo: 'https://api.dicebear.com/9.x/avataaars/svg?seed=marco-bianchi-polimi&backgroundColor=b6e3f4',
+    tagline: 'Sistemi distribuiti + ML inference · in cerca di stage primavera 2026',
+    bio: "Studente Computer Science & Engineering al Politecnico di Milano (M.Sc., laurea prevista luglio 2026). Tesi su inferenza ML on-device con modelli quantizzati. Maintainer di una piccola libreria SQL type-safe in TypeScript (~600 ⭐ GitHub). Cerco uno stage curriculare di 6 mesi su backend distribuiti o ML systems, preferibilmente Milano o EU remote.",
+    linkedinUrl: 'https://linkedin.com/in/marco-bianchi-polimi-demo',
+    githubUrl: 'https://github.com/marco-bianchi-polimi',
+    skills: [
+      'Python', 'TypeScript', 'Go', 'React', 'Next.js', 'PostgreSQL',
+      'Docker', 'Kubernetes', 'Redis', 'PyTorch', 'TensorFlow', 'CUDA',
+      'gRPC', 'REST APIs', 'Distributed Systems', 'CI/CD',
+    ],
+    interests: ['AI', 'Startup', 'Cloud Computing', 'Open Source', 'Sistemi distribuiti'],
+    workExperience: [
+      {
+        company: 'Vodafone Italia',
+        role: 'Backend Engineer Intern',
+        startDate: '2025-06-01',
+        endDate: '2025-09-30',
+        description: 'Stage estivo nel team Network Analytics. Ho contribuito al refactor di una pipeline Spark per metriche di rete (riduzione runtime 35%). Stack: Python, Spark, Kafka, Airflow.',
+        current: false,
+      },
+    ],
+  }
 
   const showcaseStudent = await prisma.user.upsert({
     where: { email: `studente@${INSTITUTION_DOMAIN}` },
     update: {
-      firstName: 'Demo',
-      lastName: 'Studente',
+      ...studentProfile,
       university: INSTITUTION_NAME,
       degree: 'Computer Science & Engineering (Laurea Magistrale)',
       profilePublic: true,
       jobSearchStatus: 'ACTIVELY_LOOKING',
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+      // workExperience needs JSON cast in update
+      workExperience: studentProfile.workExperience as any,
     },
     create: {
       email: `studente@${INSTITUTION_DOMAIN}`,
       passwordHash,
       role: 'STUDENT',
-      firstName: 'Demo',
-      lastName: 'Studente',
+      ...studentProfile,
+      workExperience: studentProfile.workExperience as any,
       university: INSTITUTION_NAME,
       degree: 'Computer Science & Engineering (Laurea Magistrale)',
       graduationYear: '2026',
       gpa: '28/30',
       gpaPublic: true,
-      skills: ['Python', 'TypeScript', 'React', 'Next.js', 'Docker', 'Kubernetes', 'PostgreSQL', 'TensorFlow'],
-      bio: "Studente Computer Science & Engineering al Politecnico di Milano. Tesi su sistemi distribuiti applicati a inferenza ML. In cerca di stage curriculare per primavera 2026.",
       location: 'Milano',
+      country: 'IT',
       emailVerified: true,
+      emailVerifiedAt: new Date(),
       profilePublic: true,
       jobSearchStatus: 'ACTIVELY_LOOKING',
+      availabilityFrom: new Date(Date.now() + 60 * 86_400_000),
       lastLoginAt: new Date(),
-      interests: ['AI', 'Startup', 'Cloud Computing', 'Open Source'],
     },
   })
 
@@ -912,8 +944,9 @@ async function main() {
       innovationScore: 82,
     },
   ]
+  const studentProjectIds: string[] = []
   for (const p of showcaseProjects) {
-    await prisma.project.create({
+    const created = await prisma.project.create({
       data: {
         userId: showcaseStudent.id,
         title: p.title,
@@ -930,27 +963,88 @@ async function main() {
         createdAt: randDate(180),
       },
     })
+    studentProjectIds.push(created.id)
+  }
+
+  // Verified university email connection — closes the "Collega email
+  // universitaria" onboarding tappa
+  await prisma.universityConnection.upsert({
+    where: { userId: showcaseStudent.id },
+    update: {
+      verificationStatus: 'VERIFIED',
+      verifiedAt: randDate(120),
+      universityName: INSTITUTION_NAME,
+    },
+    create: {
+      userId: showcaseStudent.id,
+      universityId: 'polimi',
+      universityName: INSTITUTION_NAME,
+      universityType: 'university',
+      city: 'Milano',
+      country: 'IT',
+      institutionalEmail: 'marco.bianchi@studenti.polimi.it',
+      verificationStatus: 'VERIFIED',
+      verifiedAt: randDate(120),
+    },
+  })
+
+  // Professor endorsement — closes the "Richiedi referenza professore"
+  // tappa and unlocks the Professor Endorsed achievement
+  await prisma.professorEndorsement.deleteMany({
+    where: { studentId: showcaseStudent.id },
+  })
+  if (studentProjectIds.length > 0) {
+    await prisma.professorEndorsement.create({
+      data: {
+        studentId: showcaseStudent.id,
+        projectId: studentProjectIds[0],
+        professorName: 'Prof. Andrea Rossi',
+        professorEmail: 'andrea.rossi@polimi.it',
+        professorTitle: 'Associate Professor',
+        department: 'DEIB — Dipartimento di Elettronica, Informazione e Bioingegneria',
+        university: INSTITUTION_NAME,
+        courseName: 'Distributed Systems',
+        courseCode: '054321',
+        semester: 'Fall 2025',
+        grade: '30L',
+        endorsementText:
+          "Marco ha mostrato un'ottima padronanza dei concetti di consistent hashing e replication. Il progetto di tesi triennale era in linea con il livello atteso da un esame di Sistemi Distribuiti magistrale. Lo raccomando con convinzione per posizioni R&D in ambito backend o ML systems.",
+        skills: ['Distributed Systems', 'Go', 'Redis', 'System Design', 'Problem Solving'],
+        rating: 5,
+        verified: true,
+        verifiedAt: randDate(45),
+        status: 'VERIFIED',
+      },
+    })
+  }
+
+  const recruiterProfile = {
+    firstName: 'Laura',
+    lastName: 'Conti',
+    username: 'laura-conti-azienda-demo',
+    photo: 'https://api.dicebear.com/9.x/avataaars/svg?seed=laura-conti-azienda-demo&backgroundColor=ffd5dc',
+    company: 'Azienda Demo Spa',
+    jobTitle: 'Head of Engineering Recruiting',
+    bio: 'Engineering recruiter con 8 anni di esperienza nel matching tra studenti STEM e ruoli backend / ML systems. Partner attivo del Career Service Politecnico dal 2024.',
+    linkedinUrl: 'https://linkedin.com/in/laura-conti-azienda-demo',
   }
 
   const showcaseRecruiter = await prisma.user.upsert({
     where: { email: `azienda@${INSTITUTION_DOMAIN}` },
     update: {
-      firstName: 'Demo',
-      lastName: 'Recruiter',
-      company: 'Azienda Demo Spa',
-      jobTitle: 'Head of Engineering Recruiting',
+      ...recruiterProfile,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
     },
     create: {
       email: `azienda@${INSTITUTION_DOMAIN}`,
       passwordHash,
       role: 'RECRUITER',
-      firstName: 'Demo',
-      lastName: 'Recruiter',
-      company: 'Azienda Demo Spa',
-      jobTitle: 'Head of Engineering Recruiting',
-      bio: "Account demo recruiter — esempio di profilo aziendale per il workspace Politecnico di Milano.",
+      ...recruiterProfile,
       location: 'Milano',
+      country: 'IT',
       emailVerified: true,
+      emailVerifiedAt: new Date(),
       profilePublic: true,
       lastLoginAt: new Date(),
     },
@@ -985,8 +1079,10 @@ async function main() {
     },
   })
 
-  // Save 3 real students so the recruiter's "Saved candidates" tab is populated
-  const candidatesToSave = pickN(studentIds, 3)
+  // Save 3 real students + the showcase student so the recruiter's
+  // "Saved candidates" tab is populated and the showcase student has
+  // recruiter signal too
+  const candidatesToSave = [showcaseStudent.id, ...pickN(studentIds, 3)]
   for (const candidateId of candidatesToSave) {
     await prisma.savedCandidate.create({
       data: {
@@ -997,7 +1093,74 @@ async function main() {
     })
   }
 
+  // Showcase student → 3 applications across active jobs (kills "0 candidature")
+  const allActiveJobs = await prisma.job.findMany({
+    where: { institutionId: admin.id, status: 'ACTIVE' },
+    select: { id: true, title: true, companyName: true },
+    take: 6,
+  })
+  const appsToCreate = allActiveJobs.slice(0, 3)
+  const appStatuses: Array<'PENDING' | 'REVIEWING' | 'INTERVIEW'> = ['REVIEWING', 'PENDING', 'INTERVIEW']
+  for (let i = 0; i < appsToCreate.length; i++) {
+    try {
+      await prisma.application.create({
+        data: {
+          applicantId: showcaseStudent.id,
+          jobId: appsToCreate[i].id,
+          status: appStatuses[i],
+          coverLetter:
+            "Gentile team, sono Marco Bianchi, studente magistrale al Politecnico di Milano (Computer Science & Engineering). La posizione è perfettamente in linea con la mia tesi su sistemi distribuiti e con il mio progetto open source di SQL builder type-safe. Sarei felice di approfondire in un colloquio.",
+          selectedProjects: studentProjectIds.slice(0, 2),
+          createdAt: randDate(20),
+        },
+      })
+    } catch {
+      // duplicate (jobId, applicantId) — skip
+    }
+  }
+
+  // Profile views from the showcase recruiter + a few partner recruiters →
+  // "Sei nel radar" lights up
+  await prisma.profileView.deleteMany({ where: { profileUserId: showcaseStudent.id } })
+  const viewerSources = [
+    { id: showcaseRecruiter.id, role: 'RECRUITER' as const, company: 'Azienda Demo Spa' },
+    ...recruiters.slice(0, 4).map(r => ({ id: r.id, role: 'RECRUITER' as const, company: r.company })),
+  ]
+  for (const v of viewerSources) {
+    await prisma.profileView.create({
+      data: {
+        profileUserId: showcaseStudent.id,
+        viewerId: v.id,
+        viewerRole: v.role,
+        viewerCompany: v.company,
+        createdAt: randDate(7),
+      },
+    })
+  }
+
+  // Inbound message from showcase recruiter → student (1 message thread)
+  await prisma.message.deleteMany({
+    where: {
+      senderId: showcaseRecruiter.id,
+      recipientId: showcaseStudent.id,
+    },
+  })
+  await prisma.message.create({
+    data: {
+      senderId: showcaseRecruiter.id,
+      recipientId: showcaseStudent.id,
+      recipientEmail: showcaseStudent.email,
+      subject: 'Stage backend — Azienda Demo Spa',
+      content:
+        "Ciao Marco,\n\nho visto il tuo profilo e in particolare il progetto sulla cache distribuita in Go — molto interessante. Stiamo cercando un tirocinante backend per il nostro team Platform e penso che il tuo background si adatti bene.\n\nSaresti disponibile per una breve call conoscitiva nei prossimi giorni?\n\nA presto,\nLaura Conti — Head of Engineering Recruiting, Azienda Demo Spa",
+      threadId: `demo-thread-${showcaseStudent.id}-${showcaseRecruiter.id}`,
+      read: false,
+      createdAt: new Date(Date.now() - 3 * 86_400_000),
+    },
+  })
+
   console.log(`✅ Showcase accounts: studente@${INSTITUTION_DOMAIN} + azienda@${INSTITUTION_DOMAIN}`)
+  console.log(`   Studente: 3 progetti verificati, 3 applications, 5 profile views, 1 messaggio, university+endorsement verificati`)
 
   console.log(`\n✨ ${INSTITUTION_NAME} demo ready!`)
   console.log(`\n   Università: career@${INSTITUTION_DOMAIN}    / demo2024!`)
