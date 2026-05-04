@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { auditFromRequest } from '@/lib/audit'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 
 export async function GET(
   request: NextRequest,
@@ -99,6 +102,17 @@ export async function GET(
 
     // Remove sensitive data
     const { email, ...publicUserData } = user
+
+    const session = await getServerSession(authOptions).catch(() => null)
+    void auditFromRequest(request, {
+      actorId: session?.user?.id ?? null,
+      actorEmail: session?.user?.email ?? null,
+      actorRole: session?.user?.role ?? 'PUBLIC',
+      action: 'VIEW_PROFILE',
+      targetType: 'User',
+      targetId: user.id,
+      context: { username: user.username, projectsCount },
+    })
 
     return NextResponse.json({
       ...publicUserData,

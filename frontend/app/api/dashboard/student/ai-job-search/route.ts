@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
+import { auditFromRequest } from '@/lib/audit'
 
 /**
  * POST /api/dashboard/student/ai-job-search
@@ -20,6 +21,14 @@ export async function POST(req: NextRequest) {
     if (!query || typeof query !== 'string') {
       return NextResponse.json({ error: 'Query is required' }, { status: 400 })
     }
+
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'SEARCH_JOBS',
+      context: { endpoint: 'student/ai-job-search', query: { naturalLanguage: query } },
+    })
 
     // Use AI to extract search criteria from natural language
     let filters: any = {}

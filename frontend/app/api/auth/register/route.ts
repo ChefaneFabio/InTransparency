@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import { z } from "zod"
 import { authLimiter, getClientIp } from "@/lib/rate-limit"
+import { auditFromRequest } from "@/lib/audit"
 
 // Validation schema. Country is optional; the User model defaults it to 'IT'
 // for backward compatibility, but the registration form passes the user's
@@ -141,6 +142,20 @@ export async function POST(req: NextRequest) {
     } catch (verificationErr) {
       console.error('[register] email verification dispatch failed:', verificationErr)
     }
+
+    void auditFromRequest(req, {
+      actorId: user.id,
+      actorEmail: user.email,
+      actorRole: user.role,
+      action: 'REGISTER',
+      targetType: 'User',
+      targetId: user.id,
+      context: {
+        country: validatedData.country ?? null,
+        locale: validatedData.locale ?? null,
+        affiliation: roleSpecificData,
+      },
+    })
 
     return NextResponse.json(
       {

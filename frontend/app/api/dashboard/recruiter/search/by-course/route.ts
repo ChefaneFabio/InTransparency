@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { auditFromRequest } from '@/lib/audit'
 
 /**
  * GET /api/dashboard/recruiter/search/by-course
@@ -24,6 +25,17 @@ export async function GET(req: NextRequest) {
     const institutionType = searchParams.get('institutionType') || ''
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)))
+
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'SEARCH_CANDIDATES',
+      context: {
+        endpoint: 'recruiter/search/by-course',
+        query: { courseCategory, minGrade, institutionType, page, limit },
+      },
+    })
 
     // Build Course where clause
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

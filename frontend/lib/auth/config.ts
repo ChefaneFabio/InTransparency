@@ -42,10 +42,20 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email and password required")
         }
 
-        // Find user by email (case-insensitive)
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email.toLowerCase() }
-        })
+        // Find user by email (case-insensitive). Wrap DB access so Prisma's
+        // raw connection-error messages (which leak the host) never bubble
+        // up to the client via NextAuth's `result.error`.
+        let user
+        try {
+          user = await prisma.user.findUnique({
+            where: { email: credentials.email.toLowerCase() }
+          })
+        } catch (dbErr) {
+          console.error('[auth.authorize] DB unreachable:', dbErr)
+          // Generic, safe message — login page maps anything non-credentials
+          // to a friendly "please try again" notice.
+          throw new Error('SERVICE_UNAVAILABLE')
+        }
 
         if (!user || !user.passwordHash) {
           throw new Error("Invalid credentials")
@@ -242,6 +252,18 @@ export const authOptions: NextAuthOptions = {
   events: {
     async signIn({ user, account, isNewUser }) {
       console.log(`User signed in: ${user.email} via ${account?.provider}`)
+
+      const { audit } = await import('@/lib/audit')
+      await audit({
+        actorId: user.id,
+        actorEmail: user.email ?? null,
+        actorRole: (user as { role?: string }).role ?? null,
+        action: 'LOGIN',
+        context: {
+          provider: account?.provider ?? null,
+          isNewUser: Boolean(isNewUser),
+        },
+      })
 
       if (isNewUser) {
         console.log(`New user created: ${user.email}`)

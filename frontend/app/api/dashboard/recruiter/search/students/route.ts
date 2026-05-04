@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { buildExpandedSkillSet, buildStudentDisciplines, computeJobMatch } from '@/lib/job-matching'
 import { decisionLabel, type MatchFactor } from '@/lib/match-explanation'
 import { compileSkillQuery, extractPositiveTerms } from '@/lib/boolean-skill-match'
+import { auditFromRequest } from '@/lib/audit'
 
 /**
  * GET /api/dashboard/recruiter/search/students
@@ -34,6 +35,17 @@ export async function GET(req: NextRequest) {
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)))
     const skip = (page - 1) * limit
+
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'SEARCH_CANDIDATES',
+      context: {
+        endpoint: 'recruiter/search/students',
+        query: { search, university, skills: skillsParam, gpaMin: gpaMinParam, minProjects: minProjectsParam, graduationYear, location, major, jobId, page, limit },
+      },
+    })
 
     // If a jobId is provided, load the job to compute evidence-weighted matches per candidate.
     type MatchContext = {

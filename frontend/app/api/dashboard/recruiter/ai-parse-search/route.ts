@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
+import { auditFromRequest } from '@/lib/audit'
 
 /**
  * POST /api/dashboard/recruiter/ai-parse-search
@@ -19,6 +20,14 @@ export async function POST(req: NextRequest) {
     if (!query || typeof query !== 'string') {
       return NextResponse.json({ error: 'Query required' }, { status: 400 })
     }
+
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'SEARCH_CANDIDATES',
+      context: { endpoint: 'recruiter/ai-parse-search', query: { naturalLanguage: query } },
+    })
 
     const response = await anthropic.messages.create({
       model: AI_MODEL,

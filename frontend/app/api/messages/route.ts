@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createNotification } from '@/lib/notifications'
+import { auditFromRequest } from '@/lib/audit'
 
 const sendMessageSchema = z.object({
   recipientId: z.string().optional().nullable(),
@@ -304,6 +305,21 @@ export async function POST(req: NextRequest) {
           groupKey: `msg-${threadId}`,
         }).catch(() => {})
       }
+
+      void auditFromRequest(req, {
+        actorId: session.user.id,
+        actorEmail: session.user.email ?? null,
+        actorRole: session.user.role ?? null,
+        action: 'CONTACT_STUDENT',
+        targetType: 'User',
+        targetId: recipientId,
+        context: {
+          messageId: message.id,
+          threadId,
+          subject: validatedData.subject ?? null,
+          recipientEmail: validatedData.recipientEmail,
+        },
+      })
 
       return NextResponse.json({
         success: true,

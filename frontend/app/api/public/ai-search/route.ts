@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import { createRateLimit, getClientIp } from '@/lib/rate-limit'
+import { auditFromRequest } from '@/lib/audit'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
 const AI_SERVICE_API_KEY = process.env.AI_SERVICE_API_KEY || ''
@@ -763,6 +766,20 @@ export async function POST(request: NextRequest) {
     }
 
     const sessionId = incomingSessionId || generateSessionId()
+
+    const session = await getServerSession(authOptions).catch(() => null)
+    void auditFromRequest(request, {
+      actorId: session?.user?.id ?? null,
+      actorEmail: session?.user?.email ?? null,
+      actorRole: session?.user?.role ?? 'PUBLIC',
+      action: type === 'company' ? 'SEARCH_CANDIDATES' : 'SEARCH_JOBS',
+      context: {
+        endpoint: 'public/ai-search',
+        type,
+        sessionId,
+        query: { naturalLanguage: query },
+      },
+    })
 
     // 0. Detect conversational follow-ups and gibberish
     const aiResult = await callAIService(query, type, sessionId)
