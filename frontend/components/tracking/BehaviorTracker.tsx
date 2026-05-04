@@ -33,7 +33,7 @@ const FLUSH_MS = 5000
 const FLUSH_MAX_EVENTS = 20
 const TRACK_ENDPOINT = '/api/track'
 
-type EventType = 'page_view' | 'click'
+type EventType = 'page_view' | 'click' | 'scroll_depth' | 'form_focus' | 'form_submit'
 
 interface QueuedEvent {
   type: EventType
@@ -44,8 +44,11 @@ interface QueuedEvent {
   y?: number
   vw?: number
   vh?: number
+  value?: number
   referrer?: string
 }
+
+const SCROLL_THRESHOLDS = [25, 50, 75, 100]
 
 function getOrCreateSessionId(): string {
   try {
@@ -107,11 +110,45 @@ function isPrivacySensitive(el: Element | null): boolean {
   return false
 }
 
+/**
+ * Build a selector that pairs the field with its enclosing form, e.g.
+ * `form#signup input[name="email"]`. Used for form_focus / form_submit
+ * events — never captures field VALUES, only structural metadata.
+ */
+function buildFormSelector(el: Element): string | null {
+  const form = el.closest('form')
+  const formPart = form
+    ? form.id
+      ? `form#${form.id}`
+      : form.getAttribute('name')
+        ? `form[name="${form.getAttribute('name')}"]`
+        : 'form'
+    : ''
+  const tag = el.tagName.toLowerCase()
+  const name = el.getAttribute('name')
+  const inputType = el.getAttribute('type')
+  let fieldPart = tag
+  if (name) fieldPart += `[name="${name.slice(0, 60)}"]`
+  else if (inputType) fieldPart += `[type="${inputType}"]`
+  if (!formPart && !name) return null
+  return [formPart, fieldPart].filter(Boolean).join(' ').slice(0, 200)
+}
+
+function buildSubmitFormSelector(form: HTMLFormElement): string {
+  if (form.id) return `form#${form.id}`
+  const name = form.getAttribute('name')
+  if (name) return `form[name="${name.slice(0, 60)}"]`
+  const action = form.getAttribute('action')
+  if (action) return `form[action="${action.slice(0, 80)}"]`
+  return 'form'
+}
+
 export function BehaviorTracker() {
   const pathname = usePathname()
   const queueRef = useRef<QueuedEvent[]>([])
   const sessionIdRef = useRef<string>('')
   const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const scrollFiredRef = useRef<Set<number>>(new Set())
 
   // Set up session id once
   useEffect(() => {
@@ -161,9 +198,10 @@ export function BehaviorTracker() {
     flushTimerRef.current = setTimeout(() => flush(), FLUSH_MS)
   }
 
-  // page_view on every pathname change
+  // page_view on every pathname change + reset scroll-depth tracking
   useEffect(() => {
     if (!pathname) return
+    scrollFiredRef.current = new Set()
     enqueue({
       type: 'page_view',
       pagePath: pathname,
@@ -172,7 +210,7 @@ export function BehaviorTracker() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
-  // Global click capture
+  // Global event capture: clicks, scroll-depth, form focus/submit
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -197,18 +235,71 @@ export function BehaviorTracker() {
       })
     }
 
+    let scrollRafPending = false
+    const onScroll = () => {
+      if (scrollRafPending) return
+      scrollRafPending = true
+      requestAnimationFrame(() => {
+        scrollRafPending = false
+        const scrolled = window.scrollY + window.innerHeight
+        const total = Math.max(document.documentElement.scrollHeight, 1)
+        const pct = Math.min(100, Math.round((scrolled / total) * 100))
+        for (const threshold of SCROLL_THRESHOLDS) {
+          if (pct >= threshold && !scrollFiredRef.current.has(threshold)) {
+            scrollFiredRef.current.add(threshold)
+            enqueue({
+              type: 'scroll_depth',
+              pagePath: pathname || window.location.pathname,
+              value: threshold,
+            })
+          }
+        }
+      })
+    }
+
+    const onFocusIn = (ev: FocusEvent) => {
+      const target = ev.target as Element | null
+      if (!target) return
+      const tag = target.tagName.toLowerCase()
+      if (tag !== 'input' && tag !== 'textarea' && tag !== 'select') return
+      const selector = buildFormSelector(target)
+      if (!selector) return
+      enqueue({
+        type: 'form_focus',
+        pagePath: pathname || window.location.pathname,
+        selector,
+      })
+    }
+
+    const onSubmit = (ev: SubmitEvent) => {
+      const form = ev.target as HTMLFormElement | null
+      if (!form || form.tagName.toLowerCase() !== 'form') return
+      enqueue({
+        type: 'form_submit',
+        pagePath: pathname || window.location.pathname,
+        selector: buildSubmitFormSelector(form),
+      })
+    }
+
     const onVisibility = () => {
       if (document.visibilityState === 'hidden') flush(true)
     }
+    const onPageHide = () => flush(true)
 
     document.addEventListener('click', onClick, { capture: true, passive: true })
+    document.addEventListener('focusin', onFocusIn, { capture: true })
+    document.addEventListener('submit', onSubmit, { capture: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     document.addEventListener('visibilitychange', onVisibility)
-    window.addEventListener('pagehide', () => flush(true))
+    window.addEventListener('pagehide', onPageHide)
 
     return () => {
       document.removeEventListener('click', onClick, { capture: true })
+      document.removeEventListener('focusin', onFocusIn, { capture: true })
+      document.removeEventListener('submit', onSubmit, { capture: true })
+      window.removeEventListener('scroll', onScroll)
       document.removeEventListener('visibilitychange', onVisibility)
-      // pagehide listener is attached anonymously; replaced on next mount
+      window.removeEventListener('pagehide', onPageHide)
       if (flushTimerRef.current) clearTimeout(flushTimerRef.current)
       flush(true) // try to drain on unmount
     }

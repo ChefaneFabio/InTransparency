@@ -31,8 +31,15 @@ const MAX_STR = 200
 const MAX_TEXT = 80
 const MAX_PATH = 300
 
+type IncomingEventType =
+  | 'page_view'
+  | 'click'
+  | 'scroll_depth'
+  | 'form_focus'
+  | 'form_submit'
+
 interface IncomingEvent {
-  type: 'page_view' | 'click'
+  type: IncomingEventType
   pagePath: string
   selector?: string
   text?: string
@@ -40,8 +47,17 @@ interface IncomingEvent {
   y?: number
   vw?: number
   vh?: number
+  value?: number
   referrer?: string
 }
+
+const VALID_TYPES: IncomingEventType[] = [
+  'page_view',
+  'click',
+  'scroll_depth',
+  'form_focus',
+  'form_submit',
+]
 
 function clip(s: unknown, n: number): string | null {
   if (typeof s !== 'string') return null
@@ -95,7 +111,7 @@ export async function POST(req: NextRequest) {
 
   const rows = events
     .map(e => {
-      if (!e || (e.type !== 'page_view' && e.type !== 'click')) return null
+      if (!e || !VALID_TYPES.includes(e.type)) return null
       const pagePath = clip(e.pagePath, MAX_PATH)
       if (!pagePath) return null
       return {
@@ -109,6 +125,7 @@ export async function POST(req: NextRequest) {
         y: clipInt(e.y),
         vw: clipInt(e.vw, 10000),
         vh: clipInt(e.vh, 10000),
+        value: clipInt(e.value, 100000),
         referrer: clip(e.referrer, MAX_STR),
         userAgent,
         ip: anonIp,

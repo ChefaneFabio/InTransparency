@@ -3870,16 +3870,21 @@ model TrackingEvent {
   user      User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
   sessionId String  // browser-local session id, persists across pageviews
 
-  type      String  // 'page_view' | 'click'
+  type      String  // 'page_view' | 'click' | 'scroll_depth' | 'form_focus' | 'form_submit'
   pagePath  String
 
-  // Click-specific
-  selector  String? // 'button.signup' or '[data-track="..."]'
-  text      String? // first 80 chars of element's visible text
+  // Click + form: element selector
+  selector  String? // 'button.signup' or 'form#signup input[name="email"]'
+  text      String? // first 80 chars of element's visible text (clicks only)
+
+  // Click position
   x         Int?    // viewport-relative px
   y         Int?    // viewport-relative px
   vw        Int?    // viewport width at click time
   vh        Int?    // viewport height at click time
+
+  // Numeric payload — currently used by scroll_depth (25 / 50 / 75 / 100)
+  value     Int?
 
   // Page-view-specific
   referrer  String?
