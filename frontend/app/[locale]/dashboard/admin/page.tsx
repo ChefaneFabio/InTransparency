@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { AdminSubNav } from './_components/AdminSubNav'
 
 type AuditRow = {
   id: string
@@ -48,8 +49,14 @@ type TopQuery = { query: string; action: string; count: number; uniqueUsers: num
 
 const ACTION_BADGE: Record<string, string> = {
   LOGIN: 'bg-emerald-100 text-emerald-800',
+  REGISTER: 'bg-teal-100 text-teal-800',
   SEARCH_CANDIDATES: 'bg-blue-100 text-blue-800',
   SEARCH_JOBS: 'bg-indigo-100 text-indigo-800',
+  CONTACT_STUDENT: 'bg-purple-100 text-purple-800',
+  VIEW_PROFILE: 'bg-slate-100 text-slate-700',
+  PROJECT_CREATED: 'bg-cyan-100 text-cyan-800',
+  JOB_POSTED: 'bg-fuchsia-100 text-fuchsia-800',
+  APPLICATION_SUBMITTED: 'bg-pink-100 text-pink-800',
   ADMIN_LOGIN: 'bg-amber-100 text-amber-800',
   DELETE_USER: 'bg-rose-100 text-rose-800',
   EXPORT_USER_DATA: 'bg-orange-100 text-orange-800',
@@ -164,6 +171,8 @@ export default function AdminDashboard() {
           Login + search activity across the platform. Read-only.
         </p>
       </div>
+
+      <AdminSubNav />
 
       {/* Stat cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">

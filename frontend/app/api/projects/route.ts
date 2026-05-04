@@ -6,6 +6,7 @@ import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { normalizeGrade } from '@/lib/grades/ects-normalization'
 import { onProjectCreated } from '@/lib/cross-segment-connections'
 import { writeProjectDeltas } from '@/lib/skill-delta'
+import { auditFromRequest } from '@/lib/audit'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -177,6 +178,20 @@ export async function POST(request: NextRequest) {
           projectType: project.projectType
         }
       }
+    })
+
+    void auditFromRequest(request, {
+      actorId: userId,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'PROJECT_CREATED',
+      targetType: 'Project',
+      targetId: project.id,
+      context: {
+        title: project.title,
+        discipline: project.discipline,
+        projectType: project.projectType,
+      },
     })
 
     return NextResponse.json({

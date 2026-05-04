@@ -126,6 +126,21 @@ export async function POST(
 
     // TODO: Send email notification to recruiter
 
+    const { auditFromRequest } = await import('@/lib/audit')
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'APPLICATION_SUBMITTED',
+      targetType: 'Job',
+      targetId: jobId,
+      context: {
+        applicationId: application.id,
+        jobTitle: application.job.title,
+        companyName: application.job.companyName,
+      },
+    })
+
     return NextResponse.json({
       success: true,
       application,

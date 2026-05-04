@@ -200,6 +200,21 @@ export async function POST(req: NextRequest) {
       }
     })
 
+    const { auditFromRequest } = await import('@/lib/audit')
+    void auditFromRequest(req, {
+      actorId: session.user.id,
+      actorEmail: session.user.email ?? null,
+      actorRole: session.user.role ?? null,
+      action: 'JOB_POSTED',
+      targetType: 'Job',
+      targetId: job.id,
+      context: {
+        title: job.title,
+        companyName: job.companyName,
+        location: job.location,
+      },
+    })
+
     return NextResponse.json({
       success: true,
       job,

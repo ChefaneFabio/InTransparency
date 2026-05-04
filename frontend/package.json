@@ -26,7 +26,8 @@
     "seed:demo:cattolica": "npx tsx prisma/seed-demo-cattolica.ts",
     "seed:demo:all": "npm run seed:demo:politecnico && npm run seed:demo:ammi && npm run seed:demo:unibg && npm run seed:demo:brembo && npm run seed:demo:cattolica",
     "seed:challenges": "npx tsx prisma/seed-challenges.ts",
-    "seed:psychometric": "npx tsx prisma/seed-psychometric.ts"
+    "seed:psychometric": "npx tsx prisma/seed-psychometric.ts",
+    "backfill:audit": "npx tsx scripts/backfill-audit-logs.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
