@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { Link, usePathname } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
@@ -11,7 +11,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
-import { Menu, X, ChevronDown, ChevronRight, Home, LogOut } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight, Home, LogOut, Shield } from 'lucide-react'
+
+const FOUNDER_EMAIL = 'chefane.fabio@gmail.com'
 import { dashboardNavConfig, getUniversityNavForType, type DashboardRole, type NavGroup } from '@/lib/dashboard-nav-config'
 import NotificationBell from '@/components/notifications/NotificationBell'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
@@ -35,6 +37,10 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
   const pathname = usePathname()
   const t = useTranslations('dashboardNav')
   const tNav = useTranslations('nav')
+  const { data: session } = useSession()
+  const isPlatformAdmin =
+    session?.user?.role === 'ADMIN' ||
+    session?.user?.email?.toLowerCase() === FOUNDER_EMAIL
   const config = (role === 'university' || role === 'institution') && institutionType
     ? getUniversityNavForType(institutionType)
     : dashboardNavConfig[role]
@@ -126,6 +132,20 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
           })}
 
           <div className="ml-auto flex items-center gap-1.5">
+            {isPlatformAdmin && (
+              <Link
+                href="/dashboard/admin"
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md border transition-colors ${
+                  isActive('/dashboard/admin')
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-amber-200 bg-amber-50 text-amber-900 hover:bg-amber-100'
+                }`}
+                title="Platform observability"
+              >
+                <Shield className="h-3.5 w-3.5" />
+                Admin
+              </Link>
+            )}
             {ROLE_TO_HELP_SEGMENT[role] && (
               <HelpButton segment={ROLE_TO_HELP_SEGMENT[role]!} />
             )}
@@ -246,6 +266,21 @@ export function DashboardNav({ role, institutionType }: DashboardNavProps) {
                 </div>
               )
             })}
+
+            {isPlatformAdmin && (
+              <Link
+                href="/dashboard/admin"
+                onClick={() => setMobileOpen(false)}
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium border transition-colors ${
+                  isActive('/dashboard/admin')
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-amber-200 bg-amber-50 text-amber-900 hover:bg-amber-100'
+                }`}
+              >
+                <Shield className="h-4 w-4" />
+                Admin
+              </Link>
+            )}
 
             <div className="pt-4 border-t space-y-2">
               <div className="px-4 py-2">
