@@ -836,10 +836,174 @@ async function main() {
     console.log(`✅ ${appsCreated} applications across students' journey`)
   }
 
+  // ── 13. Showcase demo accounts — predictable creds for handoff ─────────
+  // The generic Studente / Azienda accounts shared with prospective
+  // customers. Always populated with curated data so the dashboard isn't
+  // empty on first login. Idempotent via upsert.
+
+  const showcaseStudent = await prisma.user.upsert({
+    where: { email: `studente@${INSTITUTION_DOMAIN}` },
+    update: {
+      firstName: 'Demo',
+      lastName: 'Studente',
+      university: INSTITUTION_NAME,
+      degree: 'Computer Science & Engineering (Laurea Magistrale)',
+      profilePublic: true,
+      jobSearchStatus: 'ACTIVELY_LOOKING',
+    },
+    create: {
+      email: `studente@${INSTITUTION_DOMAIN}`,
+      passwordHash,
+      role: 'STUDENT',
+      firstName: 'Demo',
+      lastName: 'Studente',
+      university: INSTITUTION_NAME,
+      degree: 'Computer Science & Engineering (Laurea Magistrale)',
+      graduationYear: '2026',
+      gpa: '28/30',
+      gpaPublic: true,
+      skills: ['Python', 'TypeScript', 'React', 'Next.js', 'Docker', 'Kubernetes', 'PostgreSQL', 'TensorFlow'],
+      bio: "Studente Computer Science & Engineering al Politecnico di Milano. Tesi su sistemi distribuiti applicati a inferenza ML. In cerca di stage curriculare per primavera 2026.",
+      location: 'Milano',
+      emailVerified: true,
+      profilePublic: true,
+      jobSearchStatus: 'ACTIVELY_LOOKING',
+      lastLoginAt: new Date(),
+      interests: ['AI', 'Startup', 'Cloud Computing', 'Open Source'],
+    },
+  })
+
+  // Reset projects + affiliation so re-seeds give a clean slate
+  await prisma.project.deleteMany({ where: { userId: showcaseStudent.id } })
+  await prisma.institutionAffiliation.deleteMany({
+    where: { studentId: showcaseStudent.id, institutionId: admin.id },
+  })
+
+  await prisma.institutionAffiliation.create({
+    data: {
+      studentId: showcaseStudent.id,
+      institutionId: admin.id,
+      program: 'Computer Science & Engineering',
+      status: 'ACTIVE',
+      startDate: new Date(Date.now() - 365 * 86_400_000),
+    },
+  })
+
+  const showcaseProjects = [
+    {
+      title: 'Distributed cache with consistent hashing — Go + Redis',
+      description: "Sistema di cache distribuito con consistent hashing implementato in Go, deploy su Kubernetes con sharding automatico e replication. Benchmark vs Redis Cluster su workload realistici. Tesi triennale, voto 30L.",
+      skills: ['Go', 'Redis', 'Docker', 'Kubernetes', 'Distributed Systems'],
+      grade: '30/30L',
+      innovationScore: 88,
+    },
+    {
+      title: 'On-device LLM inference — quantized Llama on M1',
+      description: "Esperimento di inferenza LLM on-device usando quantizzazione GPTQ a 4-bit per Llama 3 8B su Apple Silicon. Misurazione throughput (tok/s) vs cloud baseline e analisi qualità output. Progetto del corso di Deep Learning.",
+      skills: ['Python', 'PyTorch', 'TensorFlow', 'CUDA', 'LLM'],
+      grade: '29/30',
+      innovationScore: 84,
+    },
+    {
+      title: 'Type-safe SQL builder for TypeScript — open source',
+      description: "Libreria open source per query SQL fortemente tipizzate in TypeScript, ispirata a Drizzle e Kysely. Compilazione delle query a tempo di compilazione, supporto Postgres + MySQL. Progetto personale, ~600 stelle GitHub.",
+      skills: ['TypeScript', 'PostgreSQL', 'Open Source', 'SQL'],
+      grade: null,
+      innovationScore: 82,
+    },
+  ]
+  for (const p of showcaseProjects) {
+    await prisma.project.create({
+      data: {
+        userId: showcaseStudent.id,
+        title: p.title,
+        description: p.description,
+        skills: p.skills,
+        technologies: p.skills.slice(0, 3),
+        discipline: 'TECHNOLOGY',
+        verificationStatus: 'VERIFIED',
+        verifiedBy: admin.id,
+        verifiedAt: randDate(60),
+        innovationScore: p.innovationScore,
+        grade: p.grade,
+        isPublic: true,
+        createdAt: randDate(180),
+      },
+    })
+  }
+
+  const showcaseRecruiter = await prisma.user.upsert({
+    where: { email: `azienda@${INSTITUTION_DOMAIN}` },
+    update: {
+      firstName: 'Demo',
+      lastName: 'Recruiter',
+      company: 'Azienda Demo Spa',
+      jobTitle: 'Head of Engineering Recruiting',
+    },
+    create: {
+      email: `azienda@${INSTITUTION_DOMAIN}`,
+      passwordHash,
+      role: 'RECRUITER',
+      firstName: 'Demo',
+      lastName: 'Recruiter',
+      company: 'Azienda Demo Spa',
+      jobTitle: 'Head of Engineering Recruiting',
+      bio: "Account demo recruiter — esempio di profilo aziendale per il workspace Politecnico di Milano.",
+      location: 'Milano',
+      emailVerified: true,
+      profilePublic: true,
+      lastLoginAt: new Date(),
+    },
+  })
+
+  // Reset showcase recruiter's saved candidates + jobs to keep deterministic
+  await prisma.savedCandidate.deleteMany({ where: { recruiterId: showcaseRecruiter.id } })
+  await prisma.job.deleteMany({ where: { recruiterId: showcaseRecruiter.id } })
+
+  await prisma.job.create({
+    data: {
+      recruiterId: showcaseRecruiter.id,
+      institutionId: admin.id,
+      slug: `software-engineer-intern-backend-demo-${Date.now()}`,
+      title: 'Software Engineer Intern — Backend',
+      description: "Stage curriculare 6 mesi, sede Milano, modalità ibrida. Cerchiamo studenti magistrali in Computer Science / Ingegneria Informatica con interesse per sistemi distribuiti, API design e cloud-native development. Possibilità di assunzione post-stage.",
+      companyName: 'Azienda Demo Spa',
+      location: 'Milano, Italia',
+      jobType: 'INTERNSHIP',
+      workLocation: 'HYBRID',
+      salaryMin: 1000,
+      salaryMax: 1500,
+      salaryCurrency: 'EUR',
+      salaryPeriod: 'MONTHLY',
+      requiredSkills: ['Python', 'PostgreSQL', 'Docker', 'REST APIs', 'Git'],
+      status: 'ACTIVE',
+      isPublic: true,
+      offerType: 'TIROCINIO_EXTRA',
+      approvedByStaffId: admin.id,
+      approvedAt: randDate(14),
+      postedAt: randDate(14),
+    },
+  })
+
+  // Save 3 real students so the recruiter's "Saved candidates" tab is populated
+  const candidatesToSave = pickN(studentIds, 3)
+  for (const candidateId of candidatesToSave) {
+    await prisma.savedCandidate.create({
+      data: {
+        recruiterId: showcaseRecruiter.id,
+        candidateId,
+        createdAt: randDate(30),
+      },
+    })
+  }
+
+  console.log(`✅ Showcase accounts: studente@${INSTITUTION_DOMAIN} + azienda@${INSTITUTION_DOMAIN}`)
+
   console.log(`\n✨ ${INSTITUTION_NAME} demo ready!`)
-  console.log(`\n   Login: career@${INSTITUTION_DOMAIN}`)
-  console.log(`   Pass:  demo2024!`)
-  console.log(`   URL:   /dashboard/university\n`)
+  console.log(`\n   Università: career@${INSTITUTION_DOMAIN}    / demo2024!`)
+  console.log(`   Studente:   studente@${INSTITUTION_DOMAIN}  / demo2024!`)
+  console.log(`   Azienda:    azienda@${INSTITUTION_DOMAIN}   / demo2024!`)
+  console.log(`   URL:        /dashboard/{university,student,recruiter}\n`)
 }
 
 main()
