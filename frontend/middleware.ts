@@ -38,6 +38,29 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith('/api/') ||
     pathname.match(/\.(png|jpg|jpeg|gif|svg|ico|webp|js|css|woff|woff2|ttf|eot)$/)
 
+  // Geo-based locale picking — runs BEFORE next-intl so we can route
+  // Italian visitors to /it and everyone else to /en when they arrive
+  // without a locale prefix. Honors NEXT_LOCALE cookie if the user has
+  // explicitly switched via the LanguageSwitcher.
+  if (!isStaticFile) {
+    const hasLocalePrefix = locales.some(
+      l => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
+    )
+    if (!hasLocalePrefix) {
+      const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
+      let preferred: 'it' | 'en' = 'en'
+      if (cookieLocale && (locales as readonly string[]).includes(cookieLocale)) {
+        preferred = cookieLocale as 'it' | 'en'
+      } else {
+        const country = request.headers.get('x-vercel-ip-country')
+        if (country === 'IT') preferred = 'it'
+      }
+      const url = request.nextUrl.clone()
+      url.pathname = pathname === '/' ? `/${preferred}` : `/${preferred}${pathname}`
+      return NextResponse.redirect(url)
+    }
+  }
+
   // Check authentication for protected routes (remove locale prefix for checking)
   const pathnameWithoutLocale = pathname.replace(/^\/(it|en)/, '') || '/'
   const isProtectedRoute = protectedRoutes.some(route =>
