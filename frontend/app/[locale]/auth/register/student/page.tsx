@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { GraduationCap, Loader2, CheckCircle } from 'lucide-react'
 import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
 import { CountrySelect } from '@/components/forms/CountrySelect'
+import { TurnstileWidget } from '@/components/security/TurnstileWidget'
 
 export default function StudentRegisterPage() {
   const t = useTranslations('auth')
@@ -27,6 +28,7 @@ export default function StudentRegisterPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,7 +40,7 @@ export default function StudentRegisterPage() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, locale })
+        body: JSON.stringify({ ...formData, locale, turnstileToken }),
       })
 
       const data = await response.json()
@@ -206,6 +208,8 @@ export default function StudentRegisterPage() {
                 onChange={value => setFormData(prev => ({ ...prev, country: value }))}
                 disabled={isLoading}
               />
+
+              <TurnstileWidget onToken={setTurnstileToken} />
 
               <Button
                 type="submit"

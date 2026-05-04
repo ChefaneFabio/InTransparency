@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { z } from "zod"
 import { authLimiter, getClientIp } from "@/lib/rate-limit"
 import { auditFromRequest } from "@/lib/audit"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 // Validation schema. Country is optional; the User model defaults it to 'IT'
 // for backward compatibility, but the registration form passes the user's
@@ -28,6 +29,8 @@ const registerSchema = z.object({
   // PROFESSOR fields (institution affiliation — required by the professor register form)
   institution: z.string().max(200).optional(),
   department: z.string().max(200).optional(),
+  // Bot protection — token from Cloudflare Turnstile widget
+  turnstileToken: z.string().optional(),
 })
 
 // Roles that anyone can self-assign through THIS generic endpoint.
@@ -58,6 +61,15 @@ export async function POST(req: NextRequest) {
 
     // Validate input
     const validatedData = registerSchema.parse(body)
+
+    // Bot protection — fail-open if TURNSTILE_SECRET_KEY isn't configured
+    const turnstile = await verifyTurnstile(validatedData.turnstileToken, ip)
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { error: "Bot challenge failed. Please refresh and try again." },
+        { status: 403 }
+      )
+    }
 
     // Security: Only allow STUDENT and RECRUITER roles at registration.
     // UNIVERSITY, TECHPARK, and PROFESSOR roles require admin approval or

@@ -453,6 +453,17 @@ export default function PrivacyPage() {
                 <p className="text-sm text-gray-600 mt-4">
                   Response time: Within 30 days as required by GDPR
                 </p>
+                <p className="text-sm text-gray-600 mt-2">
+                  For DPA-grade detail (sub-processors, retention periods,
+                  cross-border transfers, legal bases), see our{' '}
+                  <Link
+                    href="/privacy/processing"
+                    className="text-primary underline hover:no-underline"
+                  >
+                    Data Processing Details
+                  </Link>{' '}
+                  page.
+                </p>
               </CardContent>
             </Card>
           </motion.div>

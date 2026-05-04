@@ -5,6 +5,8 @@ import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createNotification } from '@/lib/notifications'
 import { auditFromRequest } from '@/lib/audit'
+import { verifyTurnstile } from '@/lib/turnstile'
+import { getClientIp } from '@/lib/rate-limit'
 
 const sendMessageSchema = z.object({
   recipientId: z.string().optional().nullable(),
@@ -13,6 +15,7 @@ const sendMessageSchema = z.object({
   content: z.string().min(1, 'Message content is required'),
   threadId: z.string().optional().nullable(),
   replyToId: z.string().optional().nullable(),
+  turnstileToken: z.string().optional(),
 })
 
 /**
@@ -116,6 +119,15 @@ export async function POST(req: NextRequest) {
     // Parse and validate request body
     const body = await req.json()
     const validatedData = sendMessageSchema.parse(body)
+
+    // Bot protection (fail-open without TURNSTILE_SECRET_KEY)
+    const turnstile = await verifyTurnstile(validatedData.turnstileToken, getClientIp(req))
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { error: 'Bot challenge failed. Please refresh and try again.' },
+        { status: 403 }
+      )
+    }
 
     // For recruiters, check contact limits based on new tier model
     const isRecruiter = session.user.role === 'RECRUITER'

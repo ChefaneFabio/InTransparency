@@ -35,11 +35,21 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
-        totpCode: { label: "MFA Code", type: "text" }
+        totpCode: { label: "MFA Code", type: "text" },
+        turnstileToken: { label: "Turnstile token", type: "text" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email and password required")
+        }
+
+        // Bot protection — fail-open if TURNSTILE_SECRET_KEY isn't configured.
+        // Runs before bcrypt to keep the timing channel small (token check is
+        // cheap compared to password compare).
+        const { verifyTurnstile } = await import("@/lib/turnstile")
+        const turnstile = await verifyTurnstile(credentials.turnstileToken)
+        if (!turnstile.ok) {
+          throw new Error("BOT_CHALLENGE_FAILED")
         }
 
         // Find user by email (case-insensitive). Wrap DB access so Prisma's

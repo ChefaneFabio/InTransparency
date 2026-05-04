@@ -13,6 +13,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { motion } from 'framer-motion'
 import { useSegment } from '@/lib/segment-context'
 import { BRAND_IMAGES } from '@/lib/brand-images'
+import { TurnstileWidget } from '@/components/security/TurnstileWidget'
 import {
   Eye,
   EyeOff,
@@ -67,6 +68,7 @@ export default function LoginPage() {
   const [mfaRequired, setMfaRequired] = useState(false)
   const [mfaUserId, setMfaUserId] = useState('')
   const [totpCode, setTotpCode] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   const config = segmentConfig[segment]
   const SegmentIcon = config.icon
@@ -114,6 +116,7 @@ export default function LoginPage() {
         email: formData.email,
         password: formData.password,
         totpCode: mfaRequired ? totpCode : undefined,
+        turnstileToken,
         redirect: false,
       })
 
@@ -129,7 +132,9 @@ export default function LoginPage() {
             ? t('login.invalidMfaCode')
             : t('login.invalidCredentials'))
         } else {
-          setLoginError(result.error)
+          // Never surface raw server/DB errors to the user
+          console.error('[login] unexpected signIn error:', result.error)
+          setLoginError(t('login.unexpectedError'))
         }
       } else if (result?.ok) {
         router.push('/dashboard')
@@ -374,6 +379,9 @@ export default function LoginPage() {
                     <p className="text-xs text-muted-foreground">{t('login.mfaHint')}</p>
                   </div>
                 )}
+
+                {/* Bot challenge — invisible if Turnstile keys are unset */}
+                <TurnstileWidget onToken={setTurnstileToken} />
 
                 {/* Submit Button */}
                 <Button

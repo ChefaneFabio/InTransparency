@@ -4,6 +4,7 @@ import { createRateLimit, getClientIp } from '@/lib/rate-limit'
 import { auditFromRequest } from '@/lib/audit'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
+import { verifyTurnstile } from '@/lib/turnstile'
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
 const AI_SERVICE_API_KEY = process.env.AI_SERVICE_API_KEY || ''
@@ -749,12 +750,21 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { query, type, sessionId: incomingSessionId } = body
+    const { query, type, sessionId: incomingSessionId, turnstileToken } = body
 
     if (!query || typeof query !== 'string' || !query.trim()) {
       return NextResponse.json(
         { error: 'query is required' },
         { status: 400 }
+      )
+    }
+
+    // Bot protection — anonymous endpoint, primary abuse vector
+    const turnstile = await verifyTurnstile(turnstileToken, clientIp)
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { error: 'Bot challenge failed. Please refresh and try again.' },
+        { status: 403 }
       )
     }
 
