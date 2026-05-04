@@ -853,9 +853,316 @@ async function main() {
   }
   console.log(`✅ ${dealCount} internship deals seeded across kanban pipeline`)
 
+  // ── 13. Showcase demo accounts — predictable creds for handoff ─────────
+  // Generic Studente / Azienda accounts shared with prospective customers.
+  // NOTE: real unicatt.it domain by explicit choice (option A on
+  // 2026-05-04). The downside — possible collision with real Cattolica
+  // mailboxes + outbound email risk — is accepted to keep the pattern
+  // visually uniform with cattolica@unicatt.it (already shared 2026-04-20).
+  // Idempotent via upsert.
+
+  const cattStudentProfile = {
+    firstName: 'Sofia',
+    lastName: 'Conti',
+    username: 'sofia-conti-cattolica',
+    photo: 'https://api.dicebear.com/9.x/avataaars/svg?seed=sofia-conti-cattolica&backgroundColor=ffd5dc',
+    tagline: 'M.Sc. Banking and Finance · ESG + valuation · in cerca di stage estate 2026',
+    bio: "Studentessa M.Sc. Banking and Finance al Cattolica — campus Milano, laurea prevista luglio 2026. Tesi su framework ESG comparati (SFDR vs ISSB). Esperienza estiva in M&A boutique. Cerco stage curriculare di 6 mesi in investment banking, M&A advisory o ESG strategy, preferibilmente Milano o Londra.",
+    linkedinUrl: 'https://linkedin.com/in/sofia-conti-cattolica-demo',
+    skills: [
+      'Financial Modeling', 'DCF Valuation', 'M&A',
+      'Excel Avanzato', 'VBA', 'Bloomberg Terminal', 'Capital IQ',
+      'Power BI', 'Python (data analysis)', 'SQL',
+      'IFRS', 'Corporate Finance', 'ESG Reporting',
+      'SFDR', 'Pitch Book Production',
+    ],
+    interests: ['Investment Banking', 'ESG', 'Sustainable Finance', 'Private Equity', 'Consulting'],
+    workExperience: [
+      {
+        company: 'Lazard Italia',
+        role: 'Summer Analyst — M&A',
+        startDate: '2025-06-15',
+        endDate: '2025-08-31',
+        description: 'Stage estivo nel team M&A Italia. Supporto su 2 deal mid-cap (industrial + healthcare): research di mercato, analisi precedenti M&A multipli, contribuito a draft del pitch book. Stack: Excel, PowerPoint, Bloomberg.',
+        current: false,
+      },
+    ],
+  }
+
+  const cattShowcaseStudent = await prisma.user.upsert({
+    where: { email: 'studente@unicatt.it' },
+    update: {
+      ...cattStudentProfile,
+      university: INSTITUTION_FULL,
+      degree: 'Banking and Finance (Laurea Magistrale)',
+      profilePublic: true,
+      jobSearchStatus: 'ACTIVELY_LOOKING',
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+      workExperience: cattStudentProfile.workExperience as any,
+    },
+    create: {
+      email: 'studente@unicatt.it',
+      passwordHash,
+      role: 'STUDENT',
+      ...cattStudentProfile,
+      workExperience: cattStudentProfile.workExperience as any,
+      university: INSTITUTION_FULL,
+      degree: 'Banking and Finance (Laurea Magistrale)',
+      graduationYear: '2026',
+      gpa: '29/30',
+      gpaPublic: true,
+      location: 'Milano',
+      country: 'IT',
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+      profilePublic: true,
+      jobSearchStatus: 'ACTIVELY_LOOKING',
+      availabilityFrom: new Date(Date.now() + 60 * 86_400_000),
+      lastLoginAt: new Date(),
+    },
+  })
+
+  // Reset previous showcase data so re-seeds give a clean slate
+  await prisma.project.deleteMany({ where: { userId: cattShowcaseStudent.id } })
+  await prisma.application.deleteMany({ where: { applicantId: cattShowcaseStudent.id } })
+  await prisma.profileView.deleteMany({ where: { profileUserId: cattShowcaseStudent.id } })
+  await prisma.professorEndorsement.deleteMany({ where: { studentId: cattShowcaseStudent.id } })
+
+  const cattProjects = [
+    {
+      title: 'DCF valuation di Spotify — sensitivity su churn e ARPU',
+      description: "Analisi DCF su Spotify Technology SA (NYSE: SPOT) con costruzione del WACC bottom-up, sensitivity matrix su churn rate e ARPU per piano premium, comparable analysis con Apple Music + Sirius XM. Voto 30L. Tesi triennale, ora citata in un paper del corso M&A.",
+      skills: ['DCF Valuation', 'Financial Modeling', 'Excel Avanzato', 'Capital IQ', 'Bloomberg Terminal'],
+      grade: '30/30L',
+      innovationScore: 86,
+    },
+    {
+      title: 'ESG reporting framework — SFDR vs ISSB analisi comparativa',
+      description: "Tesi magistrale in corso. Confronto strutturato tra il framework SFDR (UE) e ISSB (IFRS Foundation) per il reporting di sostenibilità. Mapping dei requisiti, gap analysis su un campione di 12 corporate europee, raccomandazioni operative per il CFO. Relatore: Prof. Capizzi (Banking and Finance).",
+      skills: ['ESG Reporting', 'SFDR', 'IFRS', 'Sustainability Metrics', 'Corporate Finance'],
+      grade: null,
+      innovationScore: 88,
+    },
+    {
+      title: 'Forecasting tassi BCE 2026-27 — modello VAR su dati Bloomberg',
+      description: "Progetto del corso di Econometrics. Modello VAR multivariato per il forecasting dei tassi di policy BCE su orizzonte 2026-27, con variabili esogene HICP, output gap, M3. Validazione out-of-sample su 2024-25. Implementazione in Python (statsmodels).",
+      skills: ['Python (data analysis)', 'Bloomberg Terminal', 'Risk Management'],
+      grade: '29/30',
+      innovationScore: 82,
+    },
+  ]
+  const cattProjectIds: string[] = []
+  for (const p of cattProjects) {
+    const created = await prisma.project.create({
+      data: {
+        userId: cattShowcaseStudent.id,
+        title: p.title,
+        description: p.description,
+        skills: p.skills,
+        technologies: p.skills.slice(0, 3),
+        discipline: 'BUSINESS',
+        verificationStatus: 'VERIFIED',
+        verifiedBy: admin.id,
+        verifiedAt: randomDate(60),
+        innovationScore: p.innovationScore,
+        grade: p.grade,
+        isPublic: true,
+        createdAt: randomDate(180),
+      },
+    })
+    cattProjectIds.push(created.id)
+  }
+
+  // Verified university email connection
+  await prisma.universityConnection.upsert({
+    where: { userId: cattShowcaseStudent.id },
+    update: {
+      verificationStatus: 'VERIFIED',
+      verifiedAt: randomDate(120),
+      universityName: INSTITUTION_FULL,
+    },
+    create: {
+      userId: cattShowcaseStudent.id,
+      universityId: 'unicatt',
+      universityName: INSTITUTION_FULL,
+      universityType: 'university',
+      city: 'Milano',
+      country: 'IT',
+      institutionalEmail: 'sofia.conti@studenti.unicatt.it',
+      verificationStatus: 'VERIFIED',
+      verifiedAt: randomDate(120),
+    },
+  })
+
+  // Professor endorsement
+  if (cattProjectIds.length > 0) {
+    await prisma.professorEndorsement.create({
+      data: {
+        studentId: cattShowcaseStudent.id,
+        projectId: cattProjectIds[1], // ESG paper — most relevant for endorsement
+        professorName: 'Prof. Giuseppe Capizzi',
+        professorEmail: 'giuseppe.capizzi@unicatt.it',
+        professorTitle: 'Full Professor',
+        department: 'Banking and Finance',
+        university: INSTITUTION_FULL,
+        courseName: 'Sustainable Finance',
+        courseCode: 'BFC-432',
+        semester: 'Fall 2025',
+        grade: '30L',
+        endorsementText:
+          "Sofia ha dimostrato capacità eccezionali nell'analisi comparativa dei framework di sustainability reporting. La tesi su SFDR vs ISSB è già materiale citabile per i nostri corsi avanzati. Forte attitudine analitica, comunicazione chiara, eccellente per ruoli M&A o ESG advisory.",
+        skills: ['ESG Reporting', 'Financial Modeling', 'Critical Analysis', 'Communication', 'Research'],
+        rating: 5,
+        verified: true,
+        verifiedAt: randomDate(45),
+        status: 'VERIFIED',
+      },
+    })
+  }
+
+  // Showcase recruiter
+  const cattRecruiterProfile = {
+    firstName: 'Alessandro',
+    lastName: 'Greco',
+    username: 'alessandro-greco-azienda-demo',
+    photo: 'https://api.dicebear.com/9.x/avataaars/svg?seed=alessandro-greco-azienda&backgroundColor=c0aede',
+    company: 'Studio Demo Consulting',
+    jobTitle: 'Talent Acquisition Lead',
+    bio: "Talent acquisition con 10 anni di esperienza nel matching tra laureandi Economia / Business e ruoli di consulting, M&A, ESG advisory. Partner del Servizio Stage e Placement Cattolica dal 2023.",
+    linkedinUrl: 'https://linkedin.com/in/alessandro-greco-demo',
+  }
+
+  const cattShowcaseRecruiter = await prisma.user.upsert({
+    where: { email: 'azienda@unicatt.it' },
+    update: {
+      ...cattRecruiterProfile,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+    create: {
+      email: 'azienda@unicatt.it',
+      passwordHash,
+      role: 'RECRUITER',
+      ...cattRecruiterProfile,
+      location: 'Milano',
+      country: 'IT',
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+      profilePublic: true,
+      lastLoginAt: new Date(),
+    },
+  })
+
+  await prisma.savedCandidate.deleteMany({ where: { recruiterId: cattShowcaseRecruiter.id } })
+  await prisma.job.deleteMany({ where: { recruiterId: cattShowcaseRecruiter.id } })
+  await prisma.message.deleteMany({
+    where: { senderId: cattShowcaseRecruiter.id, recipientId: cattShowcaseStudent.id },
+  })
+
+  // Active job from showcase recruiter, attached to Cattolica workspace
+  const cattShowcaseJob = await prisma.job.create({
+    data: {
+      recruiterId: cattShowcaseRecruiter.id,
+      institutionId: admin.id,
+      slug: `summer-analyst-ma-advisory-demo-${Date.now()}`,
+      title: 'Summer Analyst — M&A Advisory',
+      description: "Stage curriculare 3-6 mesi presso il team M&A Advisory di Studio Demo Consulting, sede Milano. Cerchiamo studenti laureandi magistrali in Banking and Finance / Economics con forte attitudine analitica, padronanza di Excel/PowerPoint e interesse per il mondo deal-making. Possibilità di estensione e graduate offer post-stage.",
+      companyName: 'Studio Demo Consulting',
+      location: 'Milano, Italia',
+      jobType: 'INTERNSHIP',
+      workLocation: 'ON_SITE',
+      salaryMin: 1200,
+      salaryMax: 1800,
+      salaryCurrency: 'EUR',
+      salaryPeriod: 'MONTHLY',
+      requiredSkills: ['Financial Modeling', 'Excel Avanzato', 'PowerPoint', 'M&A', 'DCF Valuation'],
+      status: 'ACTIVE',
+      isPublic: true,
+      offerType: 'TIROCINIO_EXTRA',
+      approvedByStaffId: admin.id,
+      approvedAt: randomDate(14),
+      postedAt: randomDate(14),
+    },
+  })
+
+  // Save showcase student + 3 real students
+  const cattCandidatesToSave = [cattShowcaseStudent.id, ...pickN(studentIds, 3)]
+  for (const candidateId of cattCandidatesToSave) {
+    await prisma.savedCandidate.create({
+      data: {
+        recruiterId: cattShowcaseRecruiter.id,
+        candidateId,
+        createdAt: randomDate(30),
+      },
+    })
+  }
+
+  // 3 applications: one to showcase recruiter's job, two to other active jobs
+  const cattActiveJobs = await prisma.job.findMany({
+    where: { institutionId: admin.id, status: 'ACTIVE', NOT: { id: cattShowcaseJob.id } },
+    select: { id: true },
+    take: 2,
+  })
+  const cattAppTargets = [cattShowcaseJob.id, ...cattActiveJobs.map(j => j.id)]
+  const cattAppStatuses: Array<'PENDING' | 'REVIEWING' | 'INTERVIEW'> = ['INTERVIEW', 'REVIEWING', 'PENDING']
+  for (let i = 0; i < cattAppTargets.length; i++) {
+    try {
+      await prisma.application.create({
+        data: {
+          applicantId: cattShowcaseStudent.id,
+          jobId: cattAppTargets[i],
+          status: cattAppStatuses[i],
+          coverLetter:
+            "Gentile team, sono Sofia Conti, studentessa M.Sc. Banking and Finance al Cattolica. Ho fatto stage estivo in M&A boutique e la mia tesi su framework ESG è in linea con il vostro approccio. Sarei felice di approfondire in un colloquio.",
+          selectedProjects: cattProjectIds.slice(0, 2),
+          createdAt: randomDate(20),
+        },
+      })
+    } catch {
+      // duplicate (jobId, applicantId) — skip
+    }
+  }
+
+  // Profile views
+  const cattViewers = [
+    { id: cattShowcaseRecruiter.id, role: 'RECRUITER' as const, company: 'Studio Demo Consulting' },
+    ...recruiterIds.slice(0, 4).map(r => ({ id: r.id, role: 'RECRUITER' as const, company: r.company })),
+  ]
+  for (const v of cattViewers) {
+    await prisma.profileView.create({
+      data: {
+        profileUserId: cattShowcaseStudent.id,
+        viewerId: v.id,
+        viewerRole: v.role,
+        viewerCompany: v.company,
+        createdAt: randomDate(7),
+      },
+    })
+  }
+
+  // Inbound message
+  await prisma.message.create({
+    data: {
+      senderId: cattShowcaseRecruiter.id,
+      recipientId: cattShowcaseStudent.id,
+      recipientEmail: cattShowcaseStudent.email,
+      subject: 'Summer Analyst M&A — Studio Demo Consulting',
+      content:
+        "Ciao Sofia,\n\nho visto il tuo profilo e in particolare la tesi su SFDR vs ISSB — molto interessante e in linea con un mandato che stiamo seguendo nel settore industrial. Stiamo cercando un summer analyst per il nostro team M&A Advisory e penso che il tuo background si adatti perfettamente.\n\nSaresti disponibile per una breve call conoscitiva nei prossimi giorni?\n\nA presto,\nAlessandro Greco — Talent Acquisition Lead, Studio Demo Consulting",
+      threadId: `demo-thread-cat-${cattShowcaseStudent.id}-${cattShowcaseRecruiter.id}`,
+      read: false,
+      createdAt: new Date(Date.now() - 2 * 86_400_000),
+    },
+  })
+
+  console.log(`✅ Showcase accounts: studente@unicatt.it + azienda@unicatt.it`)
+  console.log(`   Studente: 3 progetti verificati, 3 applications, 5 profile views, 1 messaggio, university+endorsement verificati`)
+
   console.log(`\n🎉 Cattolica demo ready.`)
-  console.log(`   Login: cattolica@unicatt.it`)
-  console.log(`   Pass:  demo2024!\n`)
+  console.log(`   Università: cattolica@unicatt.it / demo2024!`)
+  console.log(`   Studente:   studente@unicatt.it  / demo2024!`)
+  console.log(`   Azienda:    azienda@unicatt.it   / demo2024!\n`)
   console.log(`   Demo surface area:`)
   console.log(`   - Multi-campus (Milano, Roma, Brescia, Piacenza, Cremona)`)
   console.log(`   - 30 students across ${TRACKS.length} programs / 8 faculties`)
