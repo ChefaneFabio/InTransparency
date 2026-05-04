@@ -76,10 +76,12 @@ export default async function LocaleLayout({
   // Dynamic import to avoid SSR issues with engagement components
   const { GlobalEngagement } = await import('@/components/engagement/GlobalEngagement')
   const { CookieConsentBanner } = await import('@/components/legal/CookieConsent')
+  const { BehaviorTracker } = await import('@/components/tracking/BehaviorTracker')
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       {children}
+      <BehaviorTracker />
       <GlobalEngagement />
       <CookieConsentBanner />
     </NextIntlClientProvider>

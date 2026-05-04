@@ -300,6 +300,7 @@ model User {
   referrals            Referral[]             @relation("ReferredUsers")
   referrer             Referral?              @relation("Referrer")
   analytics            Analytics[]
+  trackingEvents       TrackingEvent[]
   messages             Message[]
   endorsements         ProfessorEndorsement[] @relation("StudentEndorsements")
   jobs                 Job[]                  @relation("RecruiterJobs")
@@ -3854,6 +3855,45 @@ model AuditLog {
   @@index([actorId, createdAt])
   @@index([action, createdAt])
   @@index([targetType, targetId])
+  @@index([createdAt])
+}
+
+// ============================================
+// TrackingEvent — behavior analytics (page views + clicks).
+// Separate from AuditLog so audit feed stays compliance-clean.
+// Only written when user has consented to analytics cookies.
+// ============================================
+model TrackingEvent {
+  id String @id @default(cuid())
+
+  userId    String?
+  user      User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  sessionId String  // browser-local session id, persists across pageviews
+
+  type      String  // 'page_view' | 'click'
+  pagePath  String
+
+  // Click-specific
+  selector  String? // 'button.signup' or '[data-track="..."]'
+  text      String? // first 80 chars of element's visible text
+  x         Int?    // viewport-relative px
+  y         Int?    // viewport-relative px
+  vw        Int?    // viewport width at click time
+  vh        Int?    // viewport height at click time
+
+  // Page-view-specific
+  referrer  String?
+
+  // Common
+  userAgent String?
+  ip        String?
+  locale    String?
+
+  createdAt DateTime @default(now())
+
+  @@index([pagePath, type, createdAt])
+  @@index([userId, createdAt])
+  @@index([sessionId])
   @@index([createdAt])
 }
 

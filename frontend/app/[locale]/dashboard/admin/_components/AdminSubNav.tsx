@@ -1,11 +1,12 @@
 'use client'
 
 import { Link, usePathname } from '@/navigation'
-import { Activity, Users } from 'lucide-react'
+import { Activity, Users, MousePointer2 } from 'lucide-react'
 
 const TABS = [
   { href: '/dashboard/admin', label: 'Activity', icon: Activity },
   { href: '/dashboard/admin/users', label: 'Users', icon: Users },
+  { href: '/dashboard/admin/behavior', label: 'Behavior', icon: MousePointer2 },
 ] as const
 
 export function AdminSubNav() {
@@ -13,7 +14,11 @@ export function AdminSubNav() {
   return (
     <div className="flex gap-1 border-b">
       {TABS.map(tab => {
-        const active = pathname === tab.href
+        // Exact match for /dashboard/admin (Activity), prefix match for the others
+        const active =
+          tab.href === '/dashboard/admin'
+            ? pathname === tab.href
+            : pathname === tab.href || pathname.startsWith(tab.href + '/')
         const Icon = tab.icon
         return (
           <Link
