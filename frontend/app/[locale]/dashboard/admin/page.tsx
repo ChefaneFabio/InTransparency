@@ -44,6 +44,7 @@ type Stats = {
 }
 
 type ActionFacet = { action: string; count: number }
+type RoleFacet = { role: string; count: number }
 
 type TopQuery = { query: string; action: string; count: number; uniqueUsers: number }
 
@@ -67,6 +68,7 @@ export default function AdminDashboard() {
   const [rows, setRows] = useState<AuditRow[]>([])
   const [stats, setStats] = useState<Stats | null>(null)
   const [actionFacets, setActionFacets] = useState<ActionFacet[]>([])
+  const [roleFacets, setRoleFacets] = useState<RoleFacet[]>([])
   const [topQueries, setTopQueries] = useState<TopQuery[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
@@ -77,6 +79,7 @@ export default function AdminDashboard() {
   // Filters
   const [emailFilter, setEmailFilter] = useState('')
   const [actionFilter, setActionFilter] = useState<string>('all')
+  const [roleFilter, setRoleFilter] = useState<string>('all')
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
 
@@ -86,12 +89,13 @@ export default function AdminDashboard() {
     const p = new URLSearchParams()
     if (emailFilter) p.set('email', emailFilter)
     if (actionFilter && actionFilter !== 'all') p.set('action', actionFilter)
+    if (roleFilter && roleFilter !== 'all') p.set('role', roleFilter)
     if (dateFrom) p.set('dateFrom', dateFrom)
     if (dateTo) p.set('dateTo', dateTo)
     p.set('page', String(page))
     p.set('limit', String(limit))
     return p.toString()
-  }, [emailFilter, actionFilter, dateFrom, dateTo, page, limit])
+  }, [emailFilter, actionFilter, roleFilter, dateFrom, dateTo, page, limit])
 
   useEffect(() => {
     if (status !== 'authenticated') return
@@ -108,6 +112,7 @@ export default function AdminDashboard() {
         setRows(data.rows)
         setTotal(data.total)
         setActionFacets(data.actionFacets || [])
+        setRoleFacets(data.roleFacets || [])
       })
       .catch(err => {
         if (!aborted) setError(String(err.message || err))
@@ -158,6 +163,7 @@ export default function AdminDashboard() {
   const resetFilters = () => {
     setEmailFilter('')
     setActionFilter('all')
+    setRoleFilter('all')
     setDateFrom('')
     setDateTo('')
     setPage(1)
@@ -189,7 +195,7 @@ export default function AdminDashboard() {
           <CardTitle className="text-base">Filters</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-3 items-end">
             <div className="md:col-span-2">
               <label className="text-xs text-muted-foreground">Email contains</label>
               <Input
@@ -200,6 +206,28 @@ export default function AdminDashboard() {
                   setPage(1)
                 }}
               />
+            </div>
+            <div>
+              <label className="text-xs text-muted-foreground">Segment</label>
+              <Select
+                value={roleFilter}
+                onValueChange={v => {
+                  setRoleFilter(v)
+                  setPage(1)
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="All segments" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All segments</SelectItem>
+                  {roleFacets.map(f => (
+                    <SelectItem key={f.role} value={f.role}>
+                      {f.role} ({f.count})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <label className="text-xs text-muted-foreground">Action</label>
@@ -345,26 +373,46 @@ export default function AdminDashboard() {
                   </TableCell>
                   <TableCell>
                     {row.actorEmail ? (
-                      <button
-                        type="button"
-                        className="text-blue-700 hover:underline text-left"
-                        onClick={() => {
-                          setEmailFilter(row.actorEmail || '')
-                          setPage(1)
-                        }}
-                        title="Filter to this user"
-                      >
-                        {row.actorEmail}
-                      </button>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          className="text-blue-700 hover:underline text-left"
+                          onClick={() => {
+                            setEmailFilter(row.actorEmail || '')
+                            setPage(1)
+                          }}
+                          title="Filter to this user"
+                        >
+                          {row.actorEmail}
+                        </button>
+                        {row.actorId && (
+                          <a
+                            href={`/dashboard/admin/users/${row.actorId}`}
+                            className="text-xs text-muted-foreground hover:text-foreground"
+                            title="Open user profile"
+                          >
+                            ↗
+                          </a>
+                        )}
+                      </div>
                     ) : (
                       <em className="text-muted-foreground">anon</em>
                     )}
                   </TableCell>
                   <TableCell>
                     {row.actorRole && (
-                      <Badge variant="outline" className="text-xs">
-                        {row.actorRole}
-                      </Badge>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setRoleFilter(row.actorRole as string)
+                          setPage(1)
+                        }}
+                        title="Filter to this segment"
+                      >
+                        <Badge variant="outline" className="text-xs hover:bg-muted">
+                          {row.actorRole}
+                        </Badge>
+                      </button>
                     )}
                   </TableCell>
                   <TableCell>

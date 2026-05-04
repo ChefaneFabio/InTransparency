@@ -20,6 +20,8 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const email = searchParams.get('email')?.trim() || ''
   const action = searchParams.get('action')?.trim() || ''
+  const role = searchParams.get('role')?.trim() || ''
+  const actorId = searchParams.get('actorId')?.trim() || ''
   const dateFrom = searchParams.get('dateFrom') || ''
   const dateTo = searchParams.get('dateTo') || ''
   const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
@@ -33,6 +35,12 @@ export async function GET(req: NextRequest) {
   if (action) {
     where.action = action
   }
+  if (role) {
+    where.actorRole = role
+  }
+  if (actorId) {
+    where.actorId = actorId
+  }
   if (dateFrom || dateTo) {
     const range: Record<string, Date> = {}
     if (dateFrom) range.gte = new Date(dateFrom)
@@ -44,7 +52,7 @@ export async function GET(req: NextRequest) {
     where.createdAt = range
   }
 
-  const [rows, total, actionFacets] = await Promise.all([
+  const [rows, total, actionFacets, roleFacets] = await Promise.all([
     prisma.auditLog.findMany({
       where,
       orderBy: { createdAt: 'desc' },
@@ -69,6 +77,11 @@ export async function GET(req: NextRequest) {
       orderBy: { _count: { action: 'desc' } },
       take: 20,
     }),
+    prisma.auditLog.groupBy({
+      by: ['actorRole'],
+      _count: { _all: true },
+      orderBy: { _count: { actorRole: 'desc' } },
+    }),
   ])
 
   return NextResponse.json({
@@ -78,5 +91,8 @@ export async function GET(req: NextRequest) {
     limit,
     totalPages: Math.ceil(total / limit),
     actionFacets: actionFacets.map(f => ({ action: f.action, count: f._count._all })),
+    roleFacets: roleFacets
+      .filter(f => f.actorRole)
+      .map(f => ({ role: f.actorRole as string, count: f._count._all })),
   })
 }

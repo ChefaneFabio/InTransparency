@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Link } from '@/navigation'
 import { AdminSubNav } from '../_components/AdminSubNav'
 
 type UserRow = {
@@ -277,8 +278,26 @@ export default function AdminUsersPage() {
               )}
               {rows.map(u => (
                 <TableRow key={u.id}>
-                  <TableCell className="font-mono text-xs">{u.email}</TableCell>
-                  <TableCell className="text-sm">{u.name || <em className="text-muted-foreground">—</em>}</TableCell>
+                  <TableCell className="font-mono text-xs">
+                    <Link
+                      href={`/dashboard/admin/users/${u.id}`}
+                      className="text-blue-700 hover:underline"
+                    >
+                      {u.email}
+                    </Link>
+                  </TableCell>
+                  <TableCell className="text-sm">
+                    {u.name ? (
+                      <Link
+                        href={`/dashboard/admin/users/${u.id}`}
+                        className="hover:underline"
+                      >
+                        {u.name}
+                      </Link>
+                    ) : (
+                      <em className="text-muted-foreground">—</em>
+                    )}
+                  </TableCell>
                   <TableCell>
                     <span
                       className={`inline-flex items-center rounded px-2 py-0.5 text-xs font-medium ${
