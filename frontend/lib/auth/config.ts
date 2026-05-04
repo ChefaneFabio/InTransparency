@@ -79,9 +79,10 @@ export const authOptions: NextAuthOptions = {
             throw new Error(`MFA_REQUIRED:${user.id}`)
           }
 
-          // Verify TOTP code
+          // Verify TOTP code (secret is AES-256-GCM encrypted at rest)
           const { verifyToken } = await import('@/lib/auth/totp')
-          const isValidTotp = await verifyToken(totpCode, user.totpSecret)
+          const { decryptSecret } = await import('@/lib/encryption')
+          const isValidTotp = await verifyToken(totpCode, decryptSecret(user.totpSecret))
 
           if (!isValidTotp) {
             // Try backup codes

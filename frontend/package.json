@@ -27,7 +27,8 @@
     "seed:demo:all": "npm run seed:demo:politecnico && npm run seed:demo:ammi && npm run seed:demo:unibg && npm run seed:demo:brembo && npm run seed:demo:cattolica",
     "seed:challenges": "npx tsx prisma/seed-challenges.ts",
     "seed:psychometric": "npx tsx prisma/seed-psychometric.ts",
-    "backfill:audit": "npx tsx scripts/backfill-audit-logs.ts"
+    "backfill:audit": "npx tsx scripts/backfill-audit-logs.ts",
+    "backfill:totp-encryption": "npx tsx scripts/backfill-totp-encryption.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

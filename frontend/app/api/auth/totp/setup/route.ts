@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { generateSecret, keyuri } from '@/lib/auth/totp'
 import QRCode from 'qrcode'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
+import { encryptSecret } from '@/lib/encryption'
 
 /**
  * POST /api/auth/totp/setup
@@ -40,10 +41,10 @@ export async function POST(req: NextRequest) {
     // Generate secret
     const secret = generateSecret()
 
-    // Store secret (not yet enabled — user must verify first)
+    // Store encrypted secret (not yet enabled — user must verify first)
     await prisma.user.update({
       where: { id: session.user.id },
-      data: { totpSecret: secret, totpEnabled: false },
+      data: { totpSecret: encryptSecret(secret), totpEnabled: false },
     })
 
     // Generate QR code

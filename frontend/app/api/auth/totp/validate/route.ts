@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { verifyToken } from '@/lib/auth/totp'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
+import { decryptSecret } from '@/lib/encryption'
 
 /**
  * POST /api/auth/totp/validate
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Try TOTP code first
-    const isValidTotp = await verifyToken(code, user.totpSecret)
+    const isValidTotp = await verifyToken(code, decryptSecret(user.totpSecret))
     if (isValidTotp) {
       return NextResponse.json({ success: true })
     }

@@ -6,6 +6,7 @@ import { verifyToken } from '@/lib/auth/totp'
 import bcrypt from 'bcryptjs'
 import crypto from 'crypto'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
+import { decryptSecret } from '@/lib/encryption'
 
 /**
  * POST /api/auth/totp/verify
@@ -44,8 +45,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'MFA is already enabled' }, { status: 400 })
     }
 
-    // Verify the code against the stored secret
-    const isValid = await verifyToken(code, user.totpSecret)
+    // Verify the code against the (decrypted) stored secret
+    const isValid = await verifyToken(code, decryptSecret(user.totpSecret))
     if (!isValid) {
       return NextResponse.json({ error: 'Invalid code. Please try again.' }, { status: 400 })
     }

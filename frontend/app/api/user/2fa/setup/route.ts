@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { generateTotpSecret, buildOtpauthUrl, verifyTotp, generateBackupCodes } from '@/lib/totp'
 import { authLimiter, enforceRateLimit } from '@/lib/rate-limit'
+import { encryptSecret, decryptSecret } from '@/lib/encryption'
 
 /**
  * POST /api/user/2fa/setup
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
   const secret = generateTotpSecret()
   await prisma.user.update({
     where: { id: session.user.id },
-    data: { totpSecret: secret, totpEnabled: false, totpEnrolledAt: null },
+    data: { totpSecret: encryptSecret(secret), totpEnabled: false, totpEnrolledAt: null },
   })
 
   const otpauthUrl = buildOtpauthUrl({
@@ -51,7 +52,7 @@ export async function PATCH(req: NextRequest) {
   const user = await prisma.user.findUnique({ where: { id: session.user.id } })
   if (!user?.totpSecret) return NextResponse.json({ error: '2FA setup not started' }, { status: 400 })
 
-  if (!verifyTotp(user.totpSecret, code)) {
+  if (!verifyTotp(decryptSecret(user.totpSecret), code)) {
     return NextResponse.json({ error: 'Invalid code' }, { status: 400 })
   }
 
@@ -91,7 +92,7 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: '2FA is not enabled' }, { status: 400 })
   }
 
-  if (!code || !verifyTotp(user.totpSecret, code)) {
+  if (!code || !verifyTotp(decryptSecret(user.totpSecret), code)) {
     return NextResponse.json({ error: 'Invalid code — cannot disable without proof' }, { status: 400 })
   }
 
