@@ -3,9 +3,18 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
+    // Public-facing stats — count REAL users only, never demo seeds.
     const [jobCount, studentCount] = await Promise.all([
-      prisma.job.count({ where: { isPublic: true, status: 'ACTIVE' } }),
-      prisma.user.count({ where: { role: 'STUDENT', profilePublic: true } }),
+      prisma.job.count({
+        where: {
+          isPublic: true,
+          status: 'ACTIVE',
+          recruiter: { isDemo: false },
+        },
+      }),
+      prisma.user.count({
+        where: { role: 'STUDENT', profilePublic: true, isDemo: false },
+      }),
     ])
 
     return NextResponse.json(

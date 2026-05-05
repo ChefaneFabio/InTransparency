@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { persistMatchExplanation, legacyReasonsToFactors, MATCH_MODEL_VERSION } from '@/lib/match-explanation'
 import { createNotification } from '@/lib/notifications'
 import { dispatchWebhook } from '@/lib/webhooks'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 /**
  * POST /api/dashboard/recruiter/talent-match
@@ -44,11 +45,17 @@ export async function POST(req: NextRequest) {
 
     const allTargetSkills = Array.from(new Set([...skills, ...preferred]))
 
-    // Find students with matching skills, public profiles, and projects
+    // Find students with matching skills, public profiles, and projects.
+    // Demo filter: real recruiters never see demo students.
     const where: any = {
       role: 'STUDENT',
       profilePublic: true,
       skills: { hasSome: allTargetSkills },
+      ...userDemoFilter({
+        id: session.user.id,
+        role: user.role,
+        isDemo: user.isDemo,
+      }),
     }
     if (maxGradYear) where.graduationYear = { lte: String(maxGradYear) }
     if (locations && locations.length > 0) {

@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { canRecruiterAccessStudent } from '@/lib/access-grants'
 import { shapeProjectForViewer } from '@/lib/project-visibility'
+import { viewerScope } from '@/lib/demo-visibility'
 
 export async function GET(
   request: NextRequest,
@@ -32,6 +33,7 @@ export async function GET(
         degree: true,
         graduationYear: true,
         profilePublic: true,
+        isDemo: true,
         projects: {
           where: {
             isPublic: true
@@ -85,10 +87,31 @@ export async function GET(
       )
     }
 
+    const session = await getServerSession(authOptions).catch(() => null)
+
+    // Demo / real segregation. Real (or anonymous) viewers cannot reach a
+    // demo profile; demo viewers cannot reach a real profile. Owner +
+    // admin bypass. Returns 404 to avoid leaking the existence of the
+    // profile.
+    const viewerForDemo = session?.user
+      ? {
+          id: (session.user as { id?: string }).id ?? null,
+          role: (session.user as { role?: string }).role ?? null,
+          isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+        }
+      : null
+    const scope = viewerScope(viewerForDemo)
+    const isOwner = viewerForDemo?.id === user.id
+    if (!isOwner && scope !== 'admin') {
+      const wantDemo = scope === 'demo'
+      if (Boolean(user.isDemo) !== wantDemo) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 })
+      }
+    }
+
     // Admin-managed access grants — when a recruiter is restricted, they can
     // only open profiles of students at granted institutions. Other roles
     // (admin, university staff, public visitors, the student themselves) bypass.
-    const session = await getServerSession(authOptions).catch(() => null)
     if (session?.user?.role === 'RECRUITER' && session.user.id !== user.id) {
       const access = await canRecruiterAccessStudent(session.user.id, user.id, 'profile')
       if (!access.ok) {

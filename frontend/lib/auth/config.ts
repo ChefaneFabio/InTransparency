@@ -226,6 +226,7 @@ export const authOptions: NextAuthOptions = {
           token.degree = dbUser.degree || undefined
           token.photo = dbUser.photo || undefined
           token.emailVerified = dbUser.emailVerified
+          token.isDemo = dbUser.isDemo
         }
       }
 
@@ -254,6 +255,8 @@ export const authOptions: NextAuthOptions = {
         session.user.photo = token.photo as string | undefined
         ;(session.user as { emailVerified?: boolean }).emailVerified =
           token.emailVerified as boolean | undefined
+        ;(session.user as { isDemo?: boolean }).isDemo =
+          token.isDemo as boolean | undefined
       }
 
       return session

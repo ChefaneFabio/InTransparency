@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,10 +13,20 @@ export async function GET(request: NextRequest) {
     const skill = searchParams.get('skill') || ''
     const availability = searchParams.get('availability') || ''
 
+    const session = await getServerSession(authOptions).catch(() => null)
+    const viewer = session?.user
+      ? {
+          id: (session.user as { id?: string }).id ?? null,
+          role: (session.user as { role?: string }).role ?? null,
+          isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+        }
+      : null
+
     // Build where clause for filtering
     const whereClause: any = {
       role: 'STUDENT',
       profilePublic: true,
+      ...userDemoFilter(viewer),
     }
 
     // Search filter (name or username)

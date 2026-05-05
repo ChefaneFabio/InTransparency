@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { calculateSkillMatch, normalizeSkill } from '@/lib/skills-intelligence'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 type MatchedCandidate = {
   id: string
@@ -54,11 +55,17 @@ export async function POST(req: NextRequest) {
     // Normalize requested skills to lowercase for matching
     const requestedSkills = skills.map((s: string) => s.toLowerCase().trim())
 
-    // Fetch all student users with their projects
+    // Fetch all student users with their projects.
+    // Demo filter: real recruiters never see demo students.
     const students = await prisma.user.findMany({
       where: {
         role: 'STUDENT',
         profilePublic: true,
+        ...userDemoFilter({
+          id: session.user.id,
+          role: session.user.role ?? null,
+          isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+        }),
       },
       select: {
         id: true,

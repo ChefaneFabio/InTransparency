@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { normalizeGrade } from '@/lib/grades/ects-normalization'
 import { shapeProjectForViewer, decideProjectVisibility } from '@/lib/project-visibility'
+import { viewerScope } from '@/lib/demo-visibility'
 
 // GET /api/projects/[id] - Get a single project by ID
 export async function GET(
@@ -28,7 +29,8 @@ export async function GET(
             graduationYear: true,
             photo: true,
             subscriptionTier: true,
-            country: true
+            country: true,
+            isDemo: true,
           }
         },
         endorsements: {
@@ -66,6 +68,24 @@ export async function GET(
     // Return consistent 404 for both not-found and access-denied (prevents enumeration)
     if (!project || (!project.isPublic && project.userId !== requestingUserId)) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+    }
+
+    // Demo / real segregation. Real viewers cannot reach a project owned
+    // by a demo user, and vice versa. Owner + admin bypass.
+    const viewerForDemoGate = session?.user
+      ? {
+          id: requestingUserId as string,
+          role: ((session.user as { role?: string }).role) ?? null,
+          isDemo: ((session.user as { isDemo?: boolean }).isDemo) ?? false,
+        }
+      : null
+    const demoScope = viewerScope(viewerForDemoGate)
+    const isProjectOwner = viewerForDemoGate?.id === project.userId
+    if (!isProjectOwner && demoScope !== 'admin') {
+      const wantDemo = demoScope === 'demo'
+      if (Boolean(project.user?.isDemo) !== wantDemo) {
+        return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+      }
     }
 
     // Peer visibility gate. Free students browsing a peer's PREMIUM_ONLY

@@ -7,6 +7,7 @@ import { decisionLabel, type MatchFactor } from '@/lib/match-explanation'
 import { compileSkillQuery, extractPositiveTerms } from '@/lib/boolean-skill-match'
 import { auditFromRequest } from '@/lib/audit'
 import { buildRecruiterSearchFilter } from '@/lib/access-grants'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 /**
  * GET /api/dashboard/recruiter/search/students
@@ -97,6 +98,13 @@ export async function GET(req: NextRequest) {
     const where: any = {
       role: 'STUDENT',
       profilePublic: true,
+      // Demo / real segregation: real recruiters see real students only,
+      // demo accounts see demo students. Admins bypass.
+      ...userDemoFilter({
+        id: session.user.id,
+        role: session.user.role ?? null,
+        isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+      }),
     }
 
     // Admin-managed access grants. Returns null when the recruiter is

@@ -5,6 +5,7 @@ import { auditFromRequest } from '@/lib/audit'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { verifyTurnstile } from '@/lib/turnstile'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
 const AI_SERVICE_API_KEY = process.env.AI_SERVICE_API_KEY || ''
@@ -256,8 +257,22 @@ async function searchJobs(
   entities: NonNullable<AIResponse['entities']>,
   searchTerms: string[] = []
 ) {
+  const session = await getServerSession(authOptions).catch(() => null)
+  const viewer = session?.user
+    ? {
+        id: (session.user as { id?: string }).id ?? null,
+        role: (session.user as { role?: string }).role ?? null,
+        isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+      }
+    : null
+  // Filter jobs by recruiter's isDemo. Real visitors see only real jobs.
+  const recruiterFilter = userDemoFilter(viewer)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const where: any = { isPublic: true, status: 'ACTIVE' }
+  const where: any = {
+    isPublic: true,
+    status: 'ACTIVE',
+    ...(Object.keys(recruiterFilter).length > 0 ? { recruiter: recruiterFilter } : {}),
+  }
 
   const hasEntityFilters =
     (entities.skills && entities.skills.length > 0) ||
@@ -368,8 +383,16 @@ async function searchCandidates(
   entities: NonNullable<AIResponse['entities']>,
   searchTerms: string[] = []
 ) {
+  const session = await getServerSession(authOptions).catch(() => null)
+  const viewer = session?.user
+    ? {
+        id: (session.user as { id?: string }).id ?? null,
+        role: (session.user as { role?: string }).role ?? null,
+        isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+      }
+    : null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const where: any = { role: 'STUDENT', profilePublic: true }
+  const where: any = { role: 'STUDENT', profilePublic: true, ...userDemoFilter(viewer) }
 
   const hasEntityFilters =
     (entities.skills && entities.skills.length > 0) ||

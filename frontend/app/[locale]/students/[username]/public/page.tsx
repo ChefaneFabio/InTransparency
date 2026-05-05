@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { shapeProjectForViewer } from '@/lib/project-visibility'
+import { viewerScope } from '@/lib/demo-visibility'
 
 interface PageProps {
   params: Promise<{
@@ -28,6 +29,7 @@ async function getPublicPortfolio(username: string) {
         university: true,
         degree: true,
         graduationYear: true,
+        isDemo: true,
         profilePublic: true,
         projects: {
           where: { isPublic: true },
@@ -66,6 +68,25 @@ async function getPublicPortfolio(username: string) {
 
     if (!user || !user.profilePublic) {
       return null
+    }
+
+    // Demo / real segregation. Hide demo profiles from real viewers and
+    // vice versa; admin and the owner bypass.
+    const sessionForDemoGate = await getServerSession(authOptions).catch(() => null)
+    const viewerForDemoGate = sessionForDemoGate?.user
+      ? {
+          id: (sessionForDemoGate.user as { id?: string }).id ?? null,
+          role: (sessionForDemoGate.user as { role?: string }).role ?? null,
+          isDemo: (sessionForDemoGate.user as { isDemo?: boolean }).isDemo ?? false,
+        }
+      : null
+    const scope = viewerScope(viewerForDemoGate)
+    const isOwner = viewerForDemoGate?.id === user.id
+    if (!isOwner && scope !== 'admin') {
+      const wantDemo = scope === 'demo'
+      if (Boolean(user.isDemo) !== wantDemo) {
+        return null
+      }
     }
 
     const projectsCount = user.projects.length

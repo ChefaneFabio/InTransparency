@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { auditFromRequest } from '@/lib/audit'
 import { buildRecruiterSearchFilter } from '@/lib/access-grants'
+import { userDemoFilter } from '@/lib/demo-visibility'
 
 /**
  * GET /api/dashboard/recruiter/search/by-course
@@ -59,6 +60,11 @@ export async function GET(req: NextRequest) {
     const userWhere: any = {
       role: 'STUDENT',
       profilePublic: true,
+      ...userDemoFilter({
+        id: session.user.id,
+        role: session.user.role ?? null,
+        isDemo: (session.user as { isDemo?: boolean }).isDemo ?? false,
+      }),
     }
     if (accessFilter) {
       userWhere.AND = [accessFilter]
