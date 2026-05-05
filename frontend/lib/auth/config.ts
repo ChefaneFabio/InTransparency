@@ -43,6 +43,15 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email and password required")
         }
 
+        // Per-email account lockout — defense against credential-stuffing
+        // from distributed proxies that bypass per-IP rate limiting.
+        const { checkAccountLock, recordFailedAttempt, clearFailedAttempts } =
+          await import("@/lib/account-lockout")
+        const lock = checkAccountLock(credentials.email)
+        if (lock.locked) {
+          throw new Error(`ACCOUNT_LOCKED:${lock.retryAfterSec}`)
+        }
+
         // Bot protection — fail-open if TURNSTILE_SECRET_KEY isn't configured.
         // Runs before bcrypt to keep the timing channel small (token check is
         // cheap compared to password compare).
@@ -68,6 +77,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         if (!user || !user.passwordHash) {
+          recordFailedAttempt(credentials.email)
           throw new Error("Invalid credentials")
         }
 
@@ -78,6 +88,7 @@ export const authOptions: NextAuthOptions = {
         )
 
         if (!isValid) {
+          recordFailedAttempt(credentials.email)
           throw new Error("Invalid credentials")
         }
 
@@ -112,12 +123,14 @@ export const authOptions: NextAuthOptions = {
               }
             }
             if (!backupValid) {
+              recordFailedAttempt(credentials.email)
               throw new Error("Invalid MFA code")
             }
           }
         }
 
-        // Update last login
+        // Successful authentication — clear lockout counter and stamp login.
+        clearFailedAttempts(credentials.email)
         await prisma.user.update({
           where: { id: user.id },
           data: { lastLoginAt: new Date() }

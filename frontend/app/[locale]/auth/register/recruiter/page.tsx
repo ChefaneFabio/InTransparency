@@ -12,6 +12,7 @@ import { Building2, Loader2, CheckCircle, Sparkles, AlertCircle } from 'lucide-r
 import { motion, AnimatePresence } from 'framer-motion'
 import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
 import { CountrySelect } from '@/components/forms/CountrySelect'
+import { TurnstileWidget } from '@/components/security/TurnstileWidget'
 
 interface DomainEnrichment {
   skipped?: boolean
@@ -42,6 +43,7 @@ export default function RecruiterRegisterPage() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [enrichment, setEnrichment] = useState<DomainEnrichment | null>(null)
   const [isEnriching, setIsEnriching] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   // Debounced domain enrichment as the recruiter types their email
   useEffect(() => {
@@ -76,7 +78,7 @@ export default function RecruiterRegisterPage() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, locale })
+        body: JSON.stringify({ ...formData, locale, turnstileToken }),
       })
 
       const data = await response.json()
@@ -323,7 +325,7 @@ export default function RecruiterRegisterPage() {
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       required
                       aria-required="true"
-                      minLength={8}
+                      minLength={12}
                       disabled={isLoading}
                     />
                   </div>
@@ -333,6 +335,8 @@ export default function RecruiterRegisterPage() {
                     onChange={value => setFormData(prev => ({ ...prev, country: value }))}
                     disabled={isLoading}
                   />
+
+                  <TurnstileWidget onToken={setTurnstileToken} />
 
                   <Button
                     type="submit"

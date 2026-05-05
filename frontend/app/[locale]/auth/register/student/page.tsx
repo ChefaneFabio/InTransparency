@@ -198,7 +198,7 @@ export default function StudentRegisterPage() {
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                   required
                   aria-required="true"
-                  minLength={8}
+                  minLength={12}
                   disabled={isLoading}
                 />
               </div>

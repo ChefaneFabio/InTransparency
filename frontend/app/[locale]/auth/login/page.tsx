@@ -127,7 +127,20 @@ export default function LoginPage() {
           setMfaUserId(userId)
           setMfaRequired(true)
           setTotpCode('')
-        } else if (result.error === 'CredentialsSignin') {
+        } else if (result.error.startsWith('ACCOUNT_LOCKED:')) {
+          // Per-email lockout fired: convert seconds → minutes (round up).
+          const sec = parseInt(result.error.split(':')[1], 10) || 0
+          const minutes = Math.max(1, Math.ceil(sec / 60))
+          setLoginError(t('login.accountLocked', { minutes }))
+        } else if (result.error === 'BOT_CHALLENGE_FAILED') {
+          setLoginError(t('login.botChallengeFailed'))
+        } else if (result.error === 'SERVICE_UNAVAILABLE') {
+          setLoginError(t('login.serviceUnavailable'))
+        } else if (
+          result.error === 'CredentialsSignin' ||
+          result.error === 'Invalid credentials' ||
+          result.error === 'Invalid MFA code'
+        ) {
           setLoginError(mfaRequired
             ? t('login.invalidMfaCode')
             : t('login.invalidCredentials'))

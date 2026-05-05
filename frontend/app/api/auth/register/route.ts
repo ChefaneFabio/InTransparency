@@ -5,6 +5,7 @@ import { z } from "zod"
 import { authLimiter, getClientIp } from "@/lib/rate-limit"
 import { auditFromRequest } from "@/lib/audit"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { checkPassword } from "@/lib/password-policy"
 
 // Validation schema. Country is optional; the User model defaults it to 'IT'
 // for backward compatibility, but the registration form passes the user's
@@ -17,7 +18,7 @@ import { verifyTurnstile } from "@/lib/turnstile"
 // emailVerified=false until the user clicks the verification link.
 const registerSchema = z.object({
   email: z.string().email("Invalid email address").max(255),
-  password: z.string().min(8, "Password must be at least 8 characters").max(128),
+  password: z.string().min(12, "Password must be at least 12 characters").max(128),
   firstName: z.string().min(1, "First name is required").max(100),
   lastName: z.string().min(1, "Last name is required").max(100),
   role: z.enum(["STUDENT", "RECRUITER", "UNIVERSITY", "TECHPARK", "PROFESSOR"]).optional(),
@@ -68,6 +69,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Bot challenge failed. Please refresh and try again." },
         { status: 403 }
+      )
+    }
+
+    // Password policy: local rules + HIBP breach check (fail-open on HIBP outage)
+    const passwordCheck = await checkPassword(validatedData.password)
+    if (!passwordCheck.ok) {
+      return NextResponse.json(
+        { error: passwordCheck.reason ?? 'Password does not meet policy.' },
+        { status: 400 }
       )
     }
 

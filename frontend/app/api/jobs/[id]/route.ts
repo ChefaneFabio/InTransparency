@@ -73,7 +73,15 @@ const updateJobSchema = z.object({
 
 /**
  * GET /api/jobs/[id]
- * Get a single job by ID
+ * Get a single job by ID.
+ *
+ * Access rules:
+ *   - Public viewers can read jobs that are status=ACTIVE AND isPublic=true.
+ *   - Owner (recruiterId) and admin can read any job (DRAFT, PAUSED, etc.).
+ *   - Applications list is owner/admin-only — never returned to public viewers
+ *     (even on a public job page) since applicant identities are PII.
+ *   - Recruiter email is stripped from the public view; only company-level
+ *     contact info (companyWebsite, applicationEmail) is appropriate publicly.
  */
 export async function GET(
   req: NextRequest,
@@ -81,8 +89,8 @@ export async function GET(
 ) {
   try {
     const { id: jobId } = await params
+    const session = await getServerSession(authOptions)
 
-    // Get job
     const job = await prisma.job.findUnique({
       where: { id: jobId },
       include: {
@@ -110,36 +118,57 @@ export async function GET(
               }
             }
           },
-          orderBy: {
-            createdAt: 'desc'
-          }
+          orderBy: { createdAt: 'desc' }
         },
-        _count: {
-          select: {
-            applications: true
-          }
-        }
+        _count: { select: { applications: true } }
       }
     })
 
     if (!job) {
-      return NextResponse.json(
-        { error: 'Job not found' },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: 'Job not found' }, { status: 404 })
     }
 
-    // Increment view count
-    await prisma.job.update({
-      where: { id: jobId },
-      data: { views: { increment: 1 } }
-    })
+    const isOwner = !!session?.user?.id && job.recruiterId === session.user.id
+    const isAdmin = session?.user?.role === 'ADMIN'
+    const isPubliclyVisible = job.status === 'ACTIVE' && job.isPublic === true
 
-    return NextResponse.json({ job })
+    // Block enumeration of unpublished/closed jobs by non-owners.
+    if (!isPubliclyVisible && !isOwner && !isAdmin) {
+      return NextResponse.json({ error: 'Job not found' }, { status: 404 })
+    }
+
+    // Strip PII from the public view.
+    const { applications, recruiter, ...rest } = job
+    const safeJob = isOwner || isAdmin
+      ? job
+      : {
+          ...rest,
+          recruiter: recruiter
+            ? {
+                id: recruiter.id,
+                firstName: recruiter.firstName,
+                lastName: recruiter.lastName,
+                company: recruiter.company,
+                photo: recruiter.photo,
+                // email intentionally omitted for non-owners
+              }
+            : null,
+          // applications list omitted entirely
+        }
+
+    // Increment view count only on public reads (avoid inflating on owner edits).
+    if (!isOwner) {
+      await prisma.job.update({
+        where: { id: jobId },
+        data: { views: { increment: 1 } }
+      })
+    }
+
+    return NextResponse.json({ job: safeJob })
   } catch (error: any) {
     console.error('Get job error:', error)
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch job' },
+      { error: 'Failed to fetch job' },
       { status: 500 }
     )
   }

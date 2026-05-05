@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
+import prisma from '@/lib/prisma'
 import { generateDecisionPack } from '@/lib/decision-pack'
 import React from 'react'
 import { renderToBuffer, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
@@ -261,14 +262,57 @@ export async function GET(
 ) {
   try {
     const session = await getServerSession(authOptions)
-    const user = session?.user as { id?: string; role?: string } | undefined
-    if (!user?.id || user.role !== 'RECRUITER') {
+    const user = session?.user as { id?: string; role?: string; subscriptionTier?: string } | undefined
+    if (!user?.id || (user.role !== 'RECRUITER' && user.role !== 'ADMIN')) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
     const { candidateId } = await params
     const url = new URL(request.url)
     const jobId = url.searchParams.get('jobId') || undefined
+
+    // Same legitimate-business-need gate as the JSON endpoint:
+    // public profile, prior contact, paid tier, or admin.
+    if (user.role !== 'ADMIN') {
+      const candidate = await prisma.user.findUnique({
+        where: { id: candidateId },
+        select: { profilePublic: true },
+      })
+      if (!candidate) {
+        return NextResponse.json({ error: 'Candidate not found' }, { status: 404 })
+      }
+      if (!candidate.profilePublic) {
+        const isPaid = user.subscriptionTier && user.subscriptionTier !== 'FREE'
+        let hasContact = false
+        if (!isPaid) {
+          const [msg, app] = await Promise.all([
+            prisma.message.findFirst({
+              where: {
+                OR: [
+                  { senderId: user.id, recipientId: candidateId },
+                  { senderId: candidateId, recipientId: user.id },
+                ],
+              },
+              select: { id: true },
+            }),
+            prisma.application.findFirst({
+              where: {
+                applicantId: candidateId,
+                job: { recruiterId: user.id },
+              },
+              select: { id: true },
+            }),
+          ])
+          hasContact = Boolean(msg || app)
+        }
+        if (!isPaid && !hasContact) {
+          return NextResponse.json(
+            { error: 'Forbidden', code: 'NO_BUSINESS_RELATIONSHIP' },
+            { status: 403 }
+          )
+        }
+      }
+    }
 
     const pack = await generateDecisionPack(user.id, candidateId, jobId)
 

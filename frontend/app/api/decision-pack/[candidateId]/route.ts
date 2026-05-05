@@ -41,11 +41,63 @@ export async function GET(
         location: true,
         linkedinUrl: true,
         githubUrl: true,
+        profilePublic: true,
       },
     })
 
     if (!candidate) {
       return NextResponse.json({ error: 'Candidate not found' }, { status: 404 })
+    }
+
+    // Legitimate-business-need gate. A recruiter may pull a decision pack only
+    // if at least one of these is true:
+    //   (1) ADMIN — bypass.
+    //   (2) Candidate has profilePublic=true — they have opted into discovery.
+    //   (3) Recruiter has prior contact with this candidate — message in either
+    //       direction, OR an application from this candidate to one of the
+    //       recruiter's jobs.
+    //   (4) Recruiter is on a paid tier (subscriptionTier !== FREE) — they
+    //       have purchased access to the talent pool.
+    // This prevents enumeration of private candidate profiles by any logged-in
+    // recruiter and keeps the email field gated on a real business reason.
+    if (session.user.role !== 'ADMIN' && !candidate.profilePublic) {
+      const recruiterTier = (session.user as { subscriptionTier?: string }).subscriptionTier
+      const isPaid = recruiterTier && recruiterTier !== 'FREE'
+
+      let hasContact = false
+      if (!isPaid) {
+        const [msg, app] = await Promise.all([
+          prisma.message.findFirst({
+            where: {
+              OR: [
+                { senderId: session.user.id, recipientId: candidateId },
+                { senderId: candidateId, recipientId: session.user.id },
+              ],
+            },
+            select: { id: true },
+          }),
+          prisma.application.findFirst({
+            where: {
+              applicantId: candidateId,
+              job: { recruiterId: session.user.id },
+            },
+            select: { id: true },
+          }),
+        ])
+        hasContact = Boolean(msg || app)
+      }
+
+      if (!isPaid && !hasContact) {
+        return NextResponse.json(
+          {
+            error: 'Forbidden',
+            code: 'NO_BUSINESS_RELATIONSHIP',
+            message:
+              'This candidate has not made their profile public. Reach out via a message or application before requesting a decision pack, or upgrade to access the full talent pool.',
+          },
+          { status: 403 }
+        )
+      }
     }
 
     // Fetch projects

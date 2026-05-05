@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Building2, Loader2, CheckCircle } from 'lucide-react'
+import { TurnstileWidget } from '@/components/security/TurnstileWidget'
 
 export default function TechParkRegisterPage() {
   const t = useTranslations('auth')
@@ -28,6 +29,7 @@ export default function TechParkRegisterPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,7 +40,7 @@ export default function TechParkRegisterPage() {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, locale })
+        body: JSON.stringify({ ...formData, locale, turnstileToken }),
       })
 
       const data = await response.json()
@@ -226,10 +228,12 @@ export default function TechParkRegisterPage() {
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       required
                       aria-required="true"
-                      minLength={8}
+                      minLength={12}
                       disabled={isLoading}
                     />
                   </div>
+
+                  <TurnstileWidget onToken={setTurnstileToken} />
 
                   <Button
                     type="submit"

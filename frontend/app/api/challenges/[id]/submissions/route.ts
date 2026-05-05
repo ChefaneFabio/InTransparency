@@ -21,19 +21,36 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
 
     const challenge = await prisma.companyChallenge.findUnique({
       where: { id },
-      select: { recruiterId: true }
+      select: {
+        recruiterId: true,
+        status: true,
+        isPublic: true,
+        targetUniversities: true,
+      }
     })
 
     if (!challenge) {
       return NextResponse.json({ error: 'Challenge not found' }, { status: 404 })
     }
 
-    // Only owner, university, or admin can view all submissions
+    // Access tiers:
+    //   - Owner (recruiter who created it) — always.
+    //   - Admin — always.
+    //   - University user — only if challenge is published AND either targets
+    //     all universities (empty list) or explicitly targets theirs.
     const isOwner = challenge.recruiterId === session.user.id
-    const isUniversity = session.user.role === 'UNIVERSITY'
     const isAdmin = session.user.role === 'ADMIN'
+    const isUniversity = session.user.role === 'UNIVERSITY'
+    const myUniversity = (session.user as { university?: string }).university
 
-    if (!isOwner && !isUniversity && !isAdmin) {
+    const universityHasAccess =
+      isUniversity &&
+      challenge.isPublic &&
+      challenge.status !== 'DRAFT' &&
+      (challenge.targetUniversities.length === 0 ||
+        (myUniversity ? challenge.targetUniversities.includes(myUniversity) : false))
+
+    if (!isOwner && !isAdmin && !universityHasAccess) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
@@ -44,8 +61,8 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
     if (status) where.status = status
 
     // For universities, only show submissions from their students
-    if (isUniversity && session.user.university) {
-      where.universityName = session.user.university
+    if (isUniversity && myUniversity) {
+      where.universityName = myUniversity
     }
 
     const submissions = await prisma.challengeSubmission.findMany({

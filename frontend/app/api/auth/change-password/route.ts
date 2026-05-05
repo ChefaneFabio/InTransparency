@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
+import { checkPassword } from '@/lib/password-policy'
 
 /**
  * POST /api/auth/change-password
@@ -33,8 +34,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Current and new password are required' }, { status: 400 })
     }
 
-    if (newPassword.length < 8) {
-      return NextResponse.json({ error: 'New password must be at least 8 characters' }, { status: 400 })
+    // Password policy: min 12 chars + breach check via HIBP (fail-open on outage)
+    const policy = await checkPassword(newPassword)
+    if (!policy.ok) {
+      return NextResponse.json({ error: policy.reason ?? 'Password does not meet policy.' }, { status: 400 })
     }
 
     // Fetch user with password hash

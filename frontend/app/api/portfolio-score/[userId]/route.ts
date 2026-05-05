@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { computePortfolioScore } from '@/lib/portfolio-scoring'
 
 /**
  * GET /api/portfolio-score/[userId]
- * Public endpoint — returns trust score for a student.
- * Uses PortfolioScore cache with 24h TTL.
+ * Returns trust score for a student.
+ *
+ * Access rules — score is profile-derived data and follows the same
+ * visibility rules as the profile itself:
+ *   - profilePublic=true → anyone can read.
+ *   - profilePublic=false → only the owner or an admin can read.
+ *
+ * Returns 204 (No Content) on access denial to avoid leaking the difference
+ * between "user does not exist" and "user has private profile".
  */
 export async function GET(
   request: NextRequest,
@@ -14,10 +23,21 @@ export async function GET(
   try {
     const { userId } = await params
 
-    // Verify user exists
-    const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true } })
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, profilePublic: true },
+    })
     if (!user) {
       return new NextResponse(null, { status: 204 })
+    }
+
+    if (!user.profilePublic) {
+      const session = await getServerSession(authOptions)
+      const isOwner = session?.user?.id === userId
+      const isAdmin = session?.user?.role === 'ADMIN'
+      if (!isOwner && !isAdmin) {
+        return new NextResponse(null, { status: 204 })
+      }
     }
 
     // Check cache — wrapped in try/catch in case table doesn't exist yet

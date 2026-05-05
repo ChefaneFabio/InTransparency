@@ -3,6 +3,8 @@ import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
+import { verifyTurnstile } from '@/lib/turnstile'
+import { checkPassword } from '@/lib/password-policy'
 
 /**
  * POST /api/auth/register/academic-partner
@@ -27,12 +29,15 @@ const registerSchema = z.object({
   firstName: z.string().min(1, 'First name is required').max(100),
   lastName: z.string().min(1, 'Last name is required').max(100),
   email: z.string().email('Invalid email address').max(255),
-  password: z.string().min(8, 'Password must be at least 8 characters').max(128),
+  password: z.string().min(12, 'Password must be at least 12 characters').max(128),
 
   // Institution fields
   institutionName: z.string().min(2, 'Institution name is required').max(200),
   institutionType: z.enum(['UNIVERSITY_PUBLIC', 'UNIVERSITY_PRIVATE', 'ITS', 'SCHOOL']),
   country: z.string().min(2).max(2).default('IT'),
+  // Bot protection — token from Cloudflare Turnstile widget
+  turnstileToken: z.string().optional(),
+  locale: z.enum(['en', 'it']).optional(),
 })
 
 function slugify(input: string): string {
@@ -69,6 +74,24 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json()
     const data = registerSchema.parse(body)
+
+    const turnstile = await verifyTurnstile(data.turnstileToken, ip)
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { error: 'Bot challenge failed. Please refresh and try again.' },
+        { status: 403 }
+      )
+    }
+
+    // Password policy: local rules + HIBP breach check (fail-open on HIBP outage)
+    const passwordCheck = await checkPassword(data.password)
+    if (!passwordCheck.ok) {
+      return NextResponse.json(
+        { error: passwordCheck.reason ?? 'Password does not meet policy.' },
+        { status: 400 }
+      )
+    }
+
     const email = data.email.toLowerCase()
 
     // Generic error for email collisions — prevents enumeration.

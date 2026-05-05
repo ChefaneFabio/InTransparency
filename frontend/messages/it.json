@@ -2092,6 +2092,9 @@
       "mfaHint": "Inserisci il codice a 6 cifre dalla tua app di autenticazione, o un codice di backup.",
       "verifyMfa": "Verifica",
       "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
+      "accountLocked": "Troppi tentativi falliti. Riprova fra {minutes} min.",
+      "botChallengeFailed": "Verifica anti-bot non superata. Aggiorna la pagina e riprova.",
+      "serviceUnavailable": "Accesso temporaneamente non disponibile. Riprova tra poco.",
       "existingAccountNotice": "Esiste già un account con questa email. Accedi qui sotto per continuare.",
       "roles": {
         "student": "Studente",
