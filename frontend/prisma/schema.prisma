@@ -182,6 +182,11 @@ model User {
   passwordHash String
   role         UserRole @default(STUDENT)
 
+  // Demo / showcase account. Filtered out of admin views (Activity, Users,
+  // metrics) by default so demo seeds (PoliMi/Cattolica showcases, test
+  // accounts) don't pollute real-customer dashboards. Toggleable per view.
+  isDemo       Boolean  @default(false)
+
   // Profile
   firstName String?
   lastName  String?

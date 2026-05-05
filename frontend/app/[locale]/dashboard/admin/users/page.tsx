@@ -34,6 +34,7 @@ type UserRow = {
   country: string
   subscriptionTier: string
   emailVerified: boolean
+  isDemo?: boolean
   profilePublic: boolean
   createdAt: string
   lastLoginAt: string | null
@@ -66,6 +67,7 @@ export default function AdminUsersPage() {
   const [search, setSearch] = useState('')
   const [roleFilter, setRoleFilter] = useState('all')
   const [verifiedFilter, setVerifiedFilter] = useState('all')
+  const [includeDemo, setIncludeDemo] = useState(false)
   const [sort, setSort] = useState<'createdAt' | 'lastLoginAt' | 'email'>('createdAt')
   const [dir, setDir] = useState<'asc' | 'desc'>('desc')
 
@@ -76,12 +78,13 @@ export default function AdminUsersPage() {
     if (search) p.set('search', search)
     if (roleFilter && roleFilter !== 'all') p.set('role', roleFilter)
     if (verifiedFilter && verifiedFilter !== 'all') p.set('verified', verifiedFilter)
+    if (includeDemo) p.set('includeDemo', 'true')
     p.set('sort', sort)
     p.set('dir', dir)
     p.set('page', String(page))
     p.set('limit', String(limit))
     return p.toString()
-  }, [search, roleFilter, verifiedFilter, sort, dir, page, limit])
+  }, [search, roleFilter, verifiedFilter, includeDemo, sort, dir, page, limit])
 
   useEffect(() => {
     if (status !== 'authenticated') return
@@ -233,7 +236,16 @@ export default function AdminUsersPage() {
               </Select>
             </div>
           </div>
-          <div className="flex items-center mt-3">
+          <div className="flex items-center mt-3 gap-3">
+            <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={includeDemo}
+                onChange={e => { setIncludeDemo(e.target.checked); setPage(1) }}
+                className="h-3.5 w-3.5"
+              />
+              Include demo / test accounts
+            </label>
             <span className="text-xs text-muted-foreground ml-auto">
               {total.toLocaleString()} users
             </span>
@@ -285,6 +297,11 @@ export default function AdminUsersPage() {
                     >
                       {u.email}
                     </Link>
+                    {u.isDemo && (
+                      <Badge variant="outline" className="ml-2 text-amber-700 border-amber-200 bg-amber-50 text-[10px]">
+                        demo
+                      </Badge>
+                    )}
                   </TableCell>
                   <TableCell className="text-sm">
                     {u.name ? (

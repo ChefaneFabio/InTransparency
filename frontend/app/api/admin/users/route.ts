@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
   const search = searchParams.get('search')?.trim() || ''
   const role = searchParams.get('role')?.trim() || ''
   const verifiedParam = searchParams.get('verified') || ''
+  const includeDemo = searchParams.get('includeDemo') === 'true'
   const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
   const limit = Math.min(200, Math.max(1, parseInt(searchParams.get('limit') || '50', 10)))
   const sort = searchParams.get('sort') || 'createdAt'
@@ -37,6 +38,9 @@ export async function GET(req: NextRequest) {
   if (role) where.role = role
   if (verifiedParam === 'true') where.emailVerified = true
   if (verifiedParam === 'false') where.emailVerified = false
+  // Demo users are filtered out by default — admin views show real-customer
+  // data only. Toggle ?includeDemo=true to inspect demo state.
+  if (!includeDemo) where.isDemo = false
 
   const orderBy: Record<string, 'asc' | 'desc'> =
     ['createdAt', 'lastLoginAt', 'email'].includes(sort)
@@ -62,6 +66,7 @@ export async function GET(req: NextRequest) {
         subscriptionTier: true,
         emailVerified: true,
         profilePublic: true,
+        isDemo: true,
         createdAt: true,
         lastLoginAt: true,
         _count: {
@@ -76,6 +81,7 @@ export async function GET(req: NextRequest) {
     prisma.user.count({ where }),
     prisma.user.groupBy({
       by: ['role'],
+      where: includeDemo ? {} : { isDemo: false },
       _count: { _all: true },
       orderBy: { _count: { role: 'desc' } },
     }),
@@ -93,6 +99,7 @@ export async function GET(req: NextRequest) {
       subscriptionTier: u.subscriptionTier,
       emailVerified: u.emailVerified,
       profilePublic: u.profilePublic,
+      isDemo: u.isDemo,
       createdAt: u.createdAt,
       lastLoginAt: u.lastLoginAt,
       projectsCount: u._count.projects,

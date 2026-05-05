@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
   const actorId = searchParams.get('actorId')?.trim() || ''
   const dateFrom = searchParams.get('dateFrom') || ''
   const dateTo = searchParams.get('dateTo') || ''
+  const includeDemo = searchParams.get('includeDemo') === 'true'
   const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10))
   const limit = Math.min(200, Math.max(1, parseInt(searchParams.get('limit') || '50', 10)))
   const skip = (page - 1) * limit
@@ -50,6 +51,23 @@ export async function GET(req: NextRequest) {
       range.lte = to
     }
     where.createdAt = range
+  }
+
+  // Demo filter. AuditLog has no FK to User (actorId is a plain string), so
+  // we resolve the demo-user id set up-front and exclude those actorIds.
+  // Null-actor events (system actions) are kept regardless.
+  if (!includeDemo) {
+    const demoUsers = await prisma.user.findMany({
+      where: { isDemo: true },
+      select: { id: true },
+    })
+    const demoIds = demoUsers.map(u => u.id)
+    if (demoIds.length > 0) {
+      where.OR = [
+        { actorId: null },
+        { actorId: { notIn: demoIds } },
+      ]
+    }
   }
 
   const [rows, total, actionFacets, roleFacets] = await Promise.all([

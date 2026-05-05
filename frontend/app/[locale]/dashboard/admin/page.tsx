@@ -82,6 +82,7 @@ export default function AdminDashboard() {
   const [roleFilter, setRoleFilter] = useState<string>('all')
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
+  const [includeDemo, setIncludeDemo] = useState(false)
 
   const totalPages = Math.max(1, Math.ceil(total / limit))
 
@@ -92,10 +93,11 @@ export default function AdminDashboard() {
     if (roleFilter && roleFilter !== 'all') p.set('role', roleFilter)
     if (dateFrom) p.set('dateFrom', dateFrom)
     if (dateTo) p.set('dateTo', dateTo)
+    if (includeDemo) p.set('includeDemo', 'true')
     p.set('page', String(page))
     p.set('limit', String(limit))
     return p.toString()
-  }, [emailFilter, actionFilter, roleFilter, dateFrom, dateTo, page, limit])
+  }, [emailFilter, actionFilter, roleFilter, dateFrom, dateTo, includeDemo, page, limit])
 
   useEffect(() => {
     if (status !== 'authenticated') return
@@ -127,7 +129,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (status !== 'authenticated') return
-    fetch('/api/admin/audit-logs/stats')
+    fetch(`/api/admin/audit-logs/stats${includeDemo ? '?includeDemo=true' : ''}`)
       .then(r => (r.ok ? r.json() : null))
       .then(d => d && setStats(d))
       .catch(() => {})
@@ -135,7 +137,7 @@ export default function AdminDashboard() {
       .then(r => (r.ok ? r.json() : null))
       .then(d => d && setTopQueries(d.top || []))
       .catch(() => {})
-  }, [status])
+  }, [status, includeDemo])
 
   if (status === 'loading') {
     return <div className="p-8 text-muted-foreground">Loading…</div>
@@ -274,7 +276,7 @@ export default function AdminDashboard() {
               />
             </div>
           </div>
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-2 mt-3 items-center">
             <Button variant="outline" size="sm" onClick={resetFilters}>
               Reset
             </Button>
@@ -287,6 +289,15 @@ export default function AdminDashboard() {
             >
               Export CSV
             </Button>
+            <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none ml-3">
+              <input
+                type="checkbox"
+                checked={includeDemo}
+                onChange={e => { setIncludeDemo(e.target.checked); setPage(1) }}
+                className="h-3.5 w-3.5"
+              />
+              Include demo accounts
+            </label>
             <span className="text-xs text-muted-foreground self-center ml-auto">
               {total.toLocaleString()} events
             </span>
