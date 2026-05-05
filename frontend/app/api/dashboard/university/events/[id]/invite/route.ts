@@ -20,6 +20,7 @@ import { createNotification } from '@/lib/notifications'
 const bodySchema = z.object({
   emails: z.array(z.string().email()).min(1).max(200),
   note: z.string().max(2000).optional(),
+  locale: z.enum(['en', 'it']).optional().default('it'),
 })
 
 export async function POST(
@@ -108,7 +109,8 @@ export async function POST(
         event.location ?? (event.isOnline ? 'Online' : ''),
         settings.name ?? 'InTransparency',
         body.note,
-        eventId
+        eventId,
+        body.locale
       )
     } catch (err) {
       failed++

@@ -1808,7 +1808,7 @@
         "1": "Portfolio verificato di cui i datori si fidano",
         "2": "Modello freemium"
       },
-      "passwordPlaceholder": "Almeno 8 caratteri",
+      "passwordPlaceholder": "Almeno 12 caratteri",
       "alreadyHaveAccount": "Hai già un account?",
       "signIn": "Accedi"
     },
@@ -1865,7 +1865,7 @@
         "2": "5 contatti gratis al mese · poi €89/mese"
       },
       "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
-      "passwordPlaceholder": "Almeno 8 caratteri",
+      "passwordPlaceholder": "Almeno 12 caratteri",
       "alreadyHaveAccount": "Hai già un account?",
       "signIn": "Accedi"
     },
@@ -1920,7 +1920,7 @@
         "2": "Tracciamento visibilità aziende",
         "3": "Modello freemium"
       },
-      "passwordPlaceholder": "Almeno 8 caratteri",
+      "passwordPlaceholder": "Almeno 12 caratteri",
       "alreadyHaveAccount": "Hai già un account?",
       "signIn": "Accedi"
     },
@@ -1933,9 +1933,9 @@
     "dontHaveAccount": "Non hai un account?",
     "alreadyHaveAccount": "Hai già un account?",
     "passwordsDontMatch": "Le password non corrispondono",
-    "passwordTooShort": "La password deve contenere almeno 8 caratteri",
+    "passwordTooShort": "La password deve contenere almeno 12 caratteri",
     "registrationFailed": "Registrazione fallita",
-    "passwordRequirements": "Minimo 8 caratteri",
+    "passwordRequirements": "Minimo 12 caratteri",
     "bySigningIn": "Effettuando l'accesso, accetti i nostri",
     "bySigningUp": "Creando un account, accetti i nostri",
     "terms": "Termini di Servizio",
@@ -2057,7 +2057,7 @@
       "approvalNotice": "Le registrazioni Tech Park sono soggette a verifica manuale. Ti contattiamo entro 2 giorni lavorativi per attivare l'account.",
       "submitButton": "Registra Tech Park",
       "submittingButton": "Creazione account...",
-      "passwordPlaceholder": "Min. 8 caratteri",
+      "passwordPlaceholder": "Min. 12 caratteri",
       "alreadyHaveAccount": "Hai gia un account?",
       "signIn": "Accedi"
     },
@@ -6790,7 +6790,7 @@
       "change": "Cambia Password",
       "changing": "Modifica in corso...",
       "passwordMismatch": "Le password non corrispondono",
-      "passwordTooShort": "La password deve essere di almeno 8 caratteri",
+      "passwordTooShort": "La password deve essere di almeno 12 caratteri",
       "passwordChanged": "Password cambiata",
       "passwordChangedDescription": "La tua password è stata aggiornata",
       "passwordChangeFailed": "Impossibile cambiare la password"

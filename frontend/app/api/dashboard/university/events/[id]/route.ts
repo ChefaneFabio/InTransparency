@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { sendEventCancellationEmail } from '@/lib/email'
+import { createNotification } from '@/lib/notifications'
 
 /**
  * GET /api/dashboard/university/events/[id]
@@ -81,7 +83,7 @@ export async function PUT(
     const {
       title, description, eventType, location, isOnline, meetingUrl,
       startDate, endDate, status, maxAttendees, maxRecruiters,
-      registrationDeadline, requiresApproval,
+      registrationDeadline, requiresApproval, cancellationReason,
     } = body
 
     const data: Record<string, any> = {}
@@ -103,6 +105,52 @@ export async function PUT(
       where: { id: eventId },
       data,
     })
+
+    // Status flipped to CANCELLED — notify everyone who was holding a spot.
+    // Cancel each affected RSVP so they don't show as expecting attendees.
+    if (status === 'CANCELLED' && existing.status !== 'CANCELLED') {
+      const affected = await prisma.eventRSVP.findMany({
+        where: {
+          eventId,
+          status: { in: ['PENDING', 'CONFIRMED', 'WAITLISTED'] },
+        },
+        include: {
+          user: { select: { id: true, email: true, firstName: true } },
+        },
+      })
+
+      const organizerName = settings.name ?? 'InTransparency'
+
+      await prisma.eventRSVP.updateMany({
+        where: { eventId, status: { in: ['PENDING', 'CONFIRMED', 'WAITLISTED'] } },
+        data: { status: 'CANCELLED' },
+      })
+
+      for (const rsvp of affected) {
+        if (!rsvp.user.email) continue
+        try {
+          await sendEventCancellationEmail(
+            rsvp.user.email,
+            event.title,
+            event.startDate,
+            organizerName,
+            typeof cancellationReason === 'string' ? cancellationReason : undefined,
+            'it'
+          )
+        } catch (err) {
+          console.error('[events/cancel] email failed for', rsvp.user.email, err)
+        }
+        await createNotification({
+          userId: rsvp.user.id,
+          type: 'EVENT_RSVP',
+          title: `Evento annullato: ${event.title}`,
+          body: typeof cancellationReason === 'string' && cancellationReason
+            ? cancellationReason
+            : `${organizerName} ha annullato l'evento.`,
+          link: `/events/${eventId}`,
+        })
+      }
+    }
 
     return NextResponse.json({ event })
   } catch (error) {

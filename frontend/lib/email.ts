@@ -628,10 +628,12 @@ export async function sendEventInviteEmail(
   location: string,
   organizerName: string,
   note: string | undefined,
-  eventId: string
+  eventId: string,
+  locale: 'en' | 'it' = 'it'
 ) {
-  const eventUrl = `${BASE_URL}/events/${eventId}`
-  const dateLabel = startDate.toLocaleDateString('it-IT', {
+  const eventUrl = `${BASE_URL}/${locale}/events/${eventId}`
+  const isIt = locale === 'it'
+  const dateLabel = startDate.toLocaleDateString(isIt ? 'it-IT' : 'en-GB', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -641,27 +643,88 @@ export async function sendEventInviteEmail(
     timeZone: 'Europe/Rome',
   })
 
-  const subject = `${organizerName} ti invita a "${eventTitle}"`
+  const subject = isIt
+    ? `${organizerName} ti invita a "${eventTitle}"`
+    : `${organizerName} invited you to "${eventTitle}"`
+
+  const greeting = isIt ? 'Buongiorno,' : 'Hi,'
+  const lede = isIt
+    ? `<strong>${escapeHtml(organizerName)}</strong> ti invita a partecipare a "<strong>${escapeHtml(eventTitle)}</strong>".`
+    : `<strong>${escapeHtml(organizerName)}</strong> is inviting you to "<strong>${escapeHtml(eventTitle)}</strong>".`
+  const whenLabel = isIt ? 'Quando' : 'When'
+  const whereLabel = isIt ? 'Dove' : 'Where'
+  const ctaLabel = isIt ? 'Vedi evento e conferma' : 'View event & RSVP'
+  const fallback = isIt
+    ? 'Se il pulsante non funziona, copia e incolla questo link:'
+    : "If the button doesn't work, copy and paste this link:"
 
   const html = emailWrapper(`
     <h2 style="color: #0f172a; margin-bottom: 16px;">${escapeHtml(eventTitle)}</h2>
-    <p>Buongiorno,</p>
-    <p><strong>${escapeHtml(organizerName)}</strong> ti invita a partecipare a "<strong>${escapeHtml(eventTitle)}</strong>".</p>
+    <p>${greeting}</p>
+    <p>${lede}</p>
     <p style="margin: 12px 0;">
-      <strong>Quando:</strong> ${escapeHtml(dateLabel)}<br/>
-      ${location ? `<strong>Dove:</strong> ${escapeHtml(location)}<br/>` : ''}
+      <strong>${whenLabel}:</strong> ${escapeHtml(dateLabel)}<br/>
+      ${location ? `<strong>${whereLabel}:</strong> ${escapeHtml(location)}<br/>` : ''}
     </p>
     ${note ? `<blockquote style="border-left: 3px solid #2563eb; margin: 16px 0; padding: 4px 12px; color: #475569;">${escapeHtml(note)}</blockquote>` : ''}
     <div style="text-align: center; margin: 24px 0;">
       <a href="${eventUrl}" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
-        Vedi evento e conferma
+        ${ctaLabel}
       </a>
     </div>
-    <p style="color: #64748b; font-size: 13px;">Se il pulsante non funziona, copia e incolla questo link:</p>
+    <p style="color: #64748b; font-size: 13px;">${fallback}</p>
     <p style="color: #64748b; font-size: 12px; word-break: break-all;">${eventUrl}</p>
   `)
 
-  const text = `${eventTitle}\n\n${organizerName} ti invita.\nQuando: ${dateLabel}\n${location ? `Dove: ${location}\n` : ''}${note ? `\n${note}\n` : ''}\nVedi evento: ${eventUrl}`
+  const text = `${eventTitle}\n\n${greeting}\n\n${isIt ? `${organizerName} ti invita.` : `${organizerName} is inviting you.`}\n${whenLabel}: ${dateLabel}\n${location ? `${whereLabel}: ${location}\n` : ''}${note ? `\n${note}\n` : ''}\n${eventUrl}`
+  await sendEmail(to, subject, html, text)
+}
+
+/**
+ * Notify confirmed/pending RSVPs that an event has been cancelled.
+ * Mirrors the invite email's bilingual handling.
+ */
+export async function sendEventCancellationEmail(
+  to: string,
+  eventTitle: string,
+  startDate: Date,
+  organizerName: string,
+  reason: string | undefined,
+  locale: 'en' | 'it' = 'it'
+) {
+  const isIt = locale === 'it'
+  const dateLabel = startDate.toLocaleDateString(isIt ? 'it-IT' : 'en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Rome',
+  })
+
+  const subject = isIt
+    ? `Annullato: "${eventTitle}"`
+    : `Cancelled: "${eventTitle}"`
+
+  const greeting = isIt ? 'Ciao,' : 'Hi,'
+  const lede = isIt
+    ? `Ti scriviamo per informarti che <strong>${escapeHtml(organizerName)}</strong> ha annullato l'evento "<strong>${escapeHtml(eventTitle)}</strong>" previsto per ${escapeHtml(dateLabel)}.`
+    : `We're writing to let you know that <strong>${escapeHtml(organizerName)}</strong> has cancelled "<strong>${escapeHtml(eventTitle)}</strong>", originally scheduled for ${escapeHtml(dateLabel)}.`
+  const reasonLabel = isIt ? 'Motivazione' : 'Reason'
+  const sorry = isIt
+    ? "Ci dispiace per l'inconveniente. La tua iscrizione è stata annullata automaticamente — non serve fare nulla."
+    : "We're sorry for the inconvenience. Your RSVP has been cancelled automatically — no action needed."
+
+  const html = emailWrapper(`
+    <h2 style="color: #b91c1c; margin-bottom: 16px;">${isIt ? 'Evento annullato' : 'Event cancelled'}</h2>
+    <p>${greeting}</p>
+    <p>${lede}</p>
+    ${reason ? `<p style="margin: 12px 0;"><strong>${reasonLabel}:</strong> ${escapeHtml(reason)}</p>` : ''}
+    <p style="color: #475569;">${sorry}</p>
+  `)
+
+  const text = `${isIt ? 'Evento annullato' : 'Event cancelled'}\n\n${greeting}\n\n${lede.replace(/<[^>]+>/g, '')}\n\n${reason ? `${reasonLabel}: ${reason}\n\n` : ''}${sorry}`
   await sendEmail(to, subject, html, text)
 }
 

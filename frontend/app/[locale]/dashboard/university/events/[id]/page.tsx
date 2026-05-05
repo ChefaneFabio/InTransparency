@@ -83,6 +83,7 @@ export default function EventDetailPage() {
   const [error, setError] = useState<string | null>(null)
   const [inviteEmails, setInviteEmails] = useState('')
   const [inviteNote, setInviteNote] = useState('')
+  const [inviteLocale, setInviteLocale] = useState<'en' | 'it'>('it')
   const [inviting, setInviting] = useState(false)
   const [inviteResult, setInviteResult] = useState<string | null>(null)
   const [updating, setUpdating] = useState(false)
@@ -111,12 +112,25 @@ export default function EventDetailPage() {
 
   async function setStatus(newStatus: string) {
     if (!event) return
+    let cancellationReason: string | undefined
+    if (newStatus === 'CANCELLED') {
+      const confirmedRsvps = event.rsvps.filter((r) =>
+        ['PENDING', 'CONFIRMED', 'WAITLISTED'].includes(r.status)
+      ).length
+      const reason = prompt(
+        isIt
+          ? `Annulla l'evento? ${confirmedRsvps} iscritti riceveranno una email di notifica. Inserisci una breve motivazione (opzionale):`
+          : `Cancel the event? ${confirmedRsvps} registered attendees will be notified by email. Enter a short reason (optional):`
+      )
+      if (reason === null) return
+      cancellationReason = reason || undefined
+    }
     setUpdating(true)
     try {
       const res = await fetch(`/api/dashboard/university/events/${event.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ status: newStatus, cancellationReason }),
       })
       if (res.ok) {
         await fetchEvent()
@@ -152,7 +166,7 @@ export default function EventDetailPage() {
       const res = await fetch(`/api/dashboard/university/events/${event.id}/invite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ emails, note: inviteNote || undefined }),
+        body: JSON.stringify({ emails, note: inviteNote || undefined, locale: inviteLocale }),
       })
       const data = await res.json()
       if (!res.ok) {
@@ -294,6 +308,23 @@ export default function EventDetailPage() {
             placeholder={isIt ? 'Nota personale (opzionale)' : 'Personal note (optional)'}
             rows={2}
           />
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground">{isIt ? 'Lingua email:' : 'Email language:'}</span>
+            <button
+              type="button"
+              onClick={() => setInviteLocale('it')}
+              className={`px-2 py-0.5 rounded ${inviteLocale === 'it' ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              Italiano
+            </button>
+            <button
+              type="button"
+              onClick={() => setInviteLocale('en')}
+              className={`px-2 py-0.5 rounded ${inviteLocale === 'en' ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              English
+            </button>
+          </div>
           <div className="flex items-center gap-3">
             <Button onClick={sendInvites} disabled={inviting}>
               {inviting ? (

@@ -31,7 +31,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { AdminSubNav } from '../_components/AdminSubNav'
-import { Loader2, Upload, AlertCircle, CheckCircle, GraduationCap, Building2, Send, Mail } from 'lucide-react'
+import { Loader2, Upload, AlertCircle, CheckCircle, GraduationCap, Building2, Send, Mail, Plus } from 'lucide-react'
 
 type Institution = {
   id: string
@@ -123,9 +123,12 @@ export default function ImportsPage() {
             companies land with an active access grant on the chosen institution.
           </p>
         </div>
-        <div className="flex items-center gap-2 text-sm">
-          <Switch checked={includeDemo} onCheckedChange={setIncludeDemo} />
-          <span className="text-muted-foreground">Include demo institutions</span>
+        <div className="flex items-center gap-3 text-sm">
+          <NewInstitutionButton onCreated={(inst) => setInstitutions((prev) => [inst, ...prev])} />
+          <div className="flex items-center gap-2">
+            <Switch checked={includeDemo} onCheckedChange={setIncludeDemo} />
+            <span className="text-muted-foreground">Include demo institutions</span>
+          </div>
         </div>
       </div>
 
@@ -630,6 +633,118 @@ function SendInvitesCard({ institutions }: { institutions: Institution[] }) {
             )}
           </div>
         )}
+      </CardContent>
+    </Card>
+  )
+}
+
+function NewInstitutionButton({ onCreated }: { onCreated: (inst: Institution) => void }) {
+  const [open, setOpen] = useState(false)
+  const [name, setName] = useState('')
+  const [type, setType] = useState<'UNIVERSITY_PUBLIC' | 'UNIVERSITY_PRIVATE' | 'ITS' | 'SCHOOL'>('ITS')
+  const [city, setCity] = useState('')
+  const [country, setCountry] = useState('IT')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault()
+    setError('')
+    if (!name.trim()) {
+      setError('Name is required')
+      return
+    }
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/admin/institutions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          type,
+          city: city.trim() || undefined,
+          country: country.toUpperCase(),
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error ?? 'Failed to create institution')
+        return
+      }
+      onCreated(data.institution)
+      setName('')
+      setCity('')
+      setOpen(false)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (!open) {
+    return (
+      <Button size="sm" variant="outline" onClick={() => setOpen(true)}>
+        <Plus className="h-4 w-4 mr-1" /> New institution
+      </Button>
+    )
+  }
+
+  return (
+    <Card className="absolute right-6 top-24 z-30 w-96 shadow-lg">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-base">New institution</CardTitle>
+        <CardDescription>Creates a real Institution row. Use only for confirmed prospects.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={submit} className="space-y-3">
+          {error && (
+            <div className="p-2 text-xs text-red-600 bg-red-50 rounded-md flex items-start gap-1.5">
+              <AlertCircle className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+              <span>{error}</span>
+            </div>
+          )}
+          <div className="space-y-1.5">
+            <Label htmlFor="instName">Name</Label>
+            <Input id="instName" value={name} onChange={(e) => setName(e.target.value)} placeholder="Fondazione ITS AMMI" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Type</Label>
+              <Select value={type} onValueChange={(v) => setType(v as typeof type)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ITS">ITS Academy</SelectItem>
+                  <SelectItem value="UNIVERSITY_PUBLIC">University (public)</SelectItem>
+                  <SelectItem value="UNIVERSITY_PRIVATE">University (private)</SelectItem>
+                  <SelectItem value="SCHOOL">Secondary school</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="instCountry">Country (ISO)</Label>
+              <Input
+                id="instCountry"
+                value={country}
+                onChange={(e) => setCountry(e.target.value.slice(0, 2).toUpperCase())}
+                maxLength={2}
+              />
+            </div>
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="instCity">City (optional)</Label>
+            <Input id="instCity" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Monza" />
+          </div>
+          <div className="flex justify-end gap-2 pt-1">
+            <Button type="button" variant="ghost" size="sm" onClick={() => setOpen(false)} disabled={submitting}>
+              Cancel
+            </Button>
+            <Button type="submit" size="sm" disabled={submitting}>
+              {submitting && <Loader2 className="h-4 w-4 mr-1 animate-spin" />}
+              Create
+            </Button>
+          </div>
+        </form>
       </CardContent>
     </Card>
   )

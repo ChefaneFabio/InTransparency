@@ -1870,7 +1870,7 @@
         "1": "Verified portfolio employers trust",
         "2": "Freemium model"
       },
-      "passwordPlaceholder": "At least 8 characters",
+      "passwordPlaceholder": "At least 12 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
     },
@@ -1927,7 +1927,7 @@
         "2": "5 free contacts/month, then €89/mo"
       },
       "noCreditCard": "No credit card required. Browse candidates immediately.",
-      "passwordPlaceholder": "At least 8 characters",
+      "passwordPlaceholder": "At least 12 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
     },
@@ -1982,7 +1982,7 @@
         "2": "Company visibility tracking",
         "3": "Freemium model"
       },
-      "passwordPlaceholder": "At least 8 characters",
+      "passwordPlaceholder": "At least 12 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
     },
@@ -2029,7 +2029,7 @@
       "approvalNotice": "Tech Park registrations go through manual verification. We'll reach out within 2 business days to activate your account.",
       "submitButton": "Register Tech Park",
       "submittingButton": "Creating account...",
-      "passwordPlaceholder": "Min. 8 characters",
+      "passwordPlaceholder": "Min. 12 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
     },
@@ -6957,7 +6957,7 @@
       "change": "Change Password",
       "changing": "Changing...",
       "passwordMismatch": "Passwords do not match",
-      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordTooShort": "Password must be at least 12 characters",
       "passwordChanged": "Password changed",
       "passwordChangedDescription": "Your password has been updated successfully",
       "passwordChangeFailed": "Failed to change password"
