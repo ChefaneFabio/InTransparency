@@ -14821,6 +14821,10 @@
       "endorsementsLabel": "{n, plural, one {# endorsement} other {# endorsement}}",
       "moreTechnologies": "+{n} altre",
       "playVideo": "Riproduci video",
+      "lockedTeaser": "Il progetto completo — descrizione, stack, voto e endorsement — è disponibile per gli studenti Premium.",
+      "lockedSkillsLabel": "skill rilevate",
+      "lockedEndorsementsLabel": "endorsement",
+      "lockedCta": "Sblocca con Premium",
       "links": {
         "code": "Codice",
         "live": "Live"

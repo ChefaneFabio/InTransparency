@@ -4239,6 +4239,11 @@ model Institution {
   // Sold as an optional institutional add-on ("Premium-for-all").
   sponsorsPremium   Boolean         @default(false)
 
+  // Demo / showcase institution. Filtered out of admin views by default so
+  // demo data (PoliMi/Cattolica seeds) doesn't visually mix with real
+  // paying customers. Toggle the filter off to inspect demo state.
+  isDemo            Boolean         @default(false)
+
   // Optional single point-of-contact / admin user (backward-compat with UniversitySettings.userId)
   primaryAdminId    String?
 

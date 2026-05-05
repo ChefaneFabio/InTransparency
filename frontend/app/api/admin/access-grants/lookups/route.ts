@@ -26,9 +26,13 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
+  const { searchParams } = new URL(_req.url)
+  const includeDemo = searchParams.get('includeDemo') === 'true'
+
   const [institutions, profiles, recruiterCompanies] = await Promise.all([
     prisma.institution.findMany({
-      select: { id: true, name: true, slug: true, type: true, country: true },
+      where: includeDemo ? {} : { isDemo: false },
+      select: { id: true, name: true, slug: true, type: true, country: true, isDemo: true },
       orderBy: { name: 'asc' },
     }),
     prisma.companyProfile.findMany({

@@ -1,13 +1,14 @@
 'use client'
 
 import { Link, usePathname } from '@/navigation'
-import { Activity, Users, MousePointer2, KeyRound } from 'lucide-react'
+import { Activity, Users, MousePointer2, KeyRound, UploadCloud } from 'lucide-react'
 
 const TABS = [
   { href: '/dashboard/admin', label: 'Activity', icon: Activity },
   { href: '/dashboard/admin/users', label: 'Users', icon: Users },
   { href: '/dashboard/admin/behavior', label: 'Behavior', icon: MousePointer2 },
   { href: '/dashboard/admin/access-grants', label: 'Access Grants', icon: KeyRound },
+  { href: '/dashboard/admin/imports', label: 'Imports', icon: UploadCloud },
 ] as const
 
 export function AdminSubNav() {
