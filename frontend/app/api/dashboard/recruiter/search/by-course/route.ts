@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { auditFromRequest } from '@/lib/audit'
+import { buildRecruiterSearchFilter } from '@/lib/access-grants'
 
 /**
  * GET /api/dashboard/recruiter/search/by-course
@@ -51,6 +52,18 @@ export async function GET(req: NextRequest) {
       courseWhere.university = { contains: institutionType, mode: 'insensitive' }
     }
 
+    // Admin-managed access grants overlay — restrict to allowed institutions
+    // when the recruiter's company has any active grants.
+    const accessFilter = await buildRecruiterSearchFilter(session.user.id)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const userWhere: any = {
+      role: 'STUDENT',
+      profilePublic: true,
+    }
+    if (accessFilter) {
+      userWhere.AND = [accessFilter]
+    }
+
     // Find courses matching filters, and include their projects + student users
     const courses = await prisma.course.findMany({
       where: courseWhere,
@@ -68,10 +81,7 @@ export async function GET(req: NextRequest) {
         projects: {
           where: {
             isPublic: true,
-            user: {
-              role: 'STUDENT',
-              profilePublic: true,
-            },
+            user: userWhere,
           },
           select: {
             id: true,

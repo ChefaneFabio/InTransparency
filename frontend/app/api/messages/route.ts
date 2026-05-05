@@ -7,6 +7,7 @@ import { createNotification } from '@/lib/notifications'
 import { auditFromRequest } from '@/lib/audit'
 import { verifyTurnstile } from '@/lib/turnstile'
 import { getClientIp } from '@/lib/rate-limit'
+import { canRecruiterAccessStudent } from '@/lib/access-grants'
 
 const sendMessageSchema = z.object({
   recipientId: z.string().optional().nullable(),
@@ -132,6 +133,23 @@ export async function POST(req: NextRequest) {
     // For recruiters, check contact limits based on new tier model
     const isRecruiter = session.user.role === 'RECRUITER'
     const recipientId = validatedData.recipientId
+
+    // Admin-managed access grant gate — applies to recruiters before any
+    // freemium quota check. If the recruiter's company is restricted to a
+    // set of institutions, they may only message students at those
+    // institutions (and only if the grant has allowContact=true).
+    if (isRecruiter && recipientId) {
+      const grantCheck = await canRecruiterAccessStudent(session.user.id, recipientId, 'contact')
+      if (!grantCheck.ok) {
+        return NextResponse.json(
+          {
+            error: 'Your company is not authorised to contact this student.',
+            code: grantCheck.reason ?? 'NOT_GRANTED',
+          },
+          { status: 403 }
+        )
+      }
+    }
 
     if (isRecruiter && recipientId) {
       const user = await prisma.user.findUnique({

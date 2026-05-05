@@ -6,6 +6,7 @@ import { buildExpandedSkillSet, buildStudentDisciplines, computeJobMatch } from 
 import { decisionLabel, type MatchFactor } from '@/lib/match-explanation'
 import { compileSkillQuery, extractPositiveTerms } from '@/lib/boolean-skill-match'
 import { auditFromRequest } from '@/lib/audit'
+import { buildRecruiterSearchFilter } from '@/lib/access-grants'
 
 /**
  * GET /api/dashboard/recruiter/search/students
@@ -96,6 +97,15 @@ export async function GET(req: NextRequest) {
     const where: any = {
       role: 'STUDENT',
       profilePublic: true,
+    }
+
+    // Admin-managed access grants. Returns null when the recruiter is
+    // unrestricted (default open). Non-null overlays an institution allow-list
+    // matched via either Affiliation rows or the legacy User.university string.
+    const accessFilter = await buildRecruiterSearchFilter(session.user.id)
+    if (accessFilter) {
+      if (!where.AND) where.AND = []
+      where.AND.push(accessFilter)
     }
 
     // Text search across name/email/bio

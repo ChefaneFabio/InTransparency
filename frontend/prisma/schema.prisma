@@ -4108,7 +4108,8 @@ model CompanyProfile {
   updatedAt DateTime @updatedAt
 
   // Relations
-  follows CompanyFollow[]
+  follows      CompanyFollow[]
+  accessGrants InstitutionAccessGrant[] @relation("CompanyAccessGrants")
 
   @@index([slug])
   @@index([verified])
@@ -4254,10 +4255,64 @@ model Institution {
   placementStages   PlacementStage[] @relation("InstitutionPlacementStages")
   placements        Placement[]      @relation("InstitutionPlacements")
   jobs              Job[]            @relation("InstitutionJobs")
+  accessGrants      InstitutionAccessGrant[] @relation("InstitutionAccessGrants")
 
   @@index([type])
   @@index([plan])
   @@index([stripeSubscriptionId])
+}
+
+// Admin-managed access control: explicitly grant a company permission to
+// browse / view / contact students of an institution. Acts as an allow-list
+// overlay on top of the default-open behavior — when a recruiter's company
+// has zero active grants, default behavior applies (they see all students);
+// once at least one grant exists, the recruiter is restricted to those
+// institutions only.
+//
+// Membership: a recruiter "belongs to" a company when their User.company
+// (case-insensitive, trimmed) matches companyNameKey. We store companyKey
+// as lowercased+trimmed so name-casing differences don't break the gate.
+//
+// Granularity: programs / cohortYears / scope flags are baked in but the
+// v1 admin UI defaults all of them to "everything" — extend the form to
+// surface them when prospects ask (PoliMi will likely want per-program).
+model InstitutionAccessGrant {
+  id String @id @default(cuid())
+
+  // Company side — by normalized name. Optional FK to CompanyProfile if the
+  // company already has a marketing page on the platform.
+  companyNameKey     String          // normalized: trim + lowercase
+  companyDisplayName String          // original casing for UI
+  companyProfileId   String?
+  companyProfile     CompanyProfile? @relation("CompanyAccessGrants", fields: [companyProfileId], references: [id], onDelete: SetNull)
+
+  // Institution side — the talent pool being opened up
+  institutionId String
+  institution   Institution @relation("InstitutionAccessGrants", fields: [institutionId], references: [id], onDelete: Cascade)
+
+  // Optional finer scoping. Empty arrays = no filter at this dimension.
+  programs    String[] @default([]) // e.g. ["MSc Computer Engineering"]
+  cohortYears Int[]    @default([]) // e.g. [2026, 2027] — graduating years
+
+  // Scope flags — what the grant unlocks. v1 defaults to everything.
+  allowSearch  Boolean @default(true)
+  allowProfile Boolean @default(true)
+  allowContact Boolean @default(true)
+
+  // Lifecycle / audit
+  grantedById String      // User.id of admin who granted (no FK to keep migration cheap)
+  grantedAt   DateTime    @default(now())
+  expiresAt   DateTime?
+  revokedAt   DateTime?
+  revokedById String?
+
+  notes String?
+
+  @@unique([companyNameKey, institutionId])
+  @@index([companyNameKey])
+  @@index([institutionId])
+  @@index([expiresAt])
+  @@index([revokedAt])
 }
 
 model InstitutionStaff {

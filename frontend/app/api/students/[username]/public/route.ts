@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma'
 import { auditFromRequest } from '@/lib/audit'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
+import { canRecruiterAccessStudent } from '@/lib/access-grants'
 
 export async function GET(
   request: NextRequest,
@@ -79,6 +80,23 @@ export async function GET(
       )
     }
 
+    // Admin-managed access grants — when a recruiter is restricted, they can
+    // only open profiles of students at granted institutions. Other roles
+    // (admin, university staff, public visitors, the student themselves) bypass.
+    const session = await getServerSession(authOptions).catch(() => null)
+    if (session?.user?.role === 'RECRUITER' && session.user.id !== user.id) {
+      const access = await canRecruiterAccessStudent(session.user.id, user.id, 'profile')
+      if (!access.ok) {
+        return NextResponse.json(
+          {
+            error: 'You do not have access to this profile.',
+            code: access.reason ?? 'NOT_GRANTED',
+          },
+          { status: 403 }
+        )
+      }
+    }
+
     // Calculate stats
     const projectsCount = user.projects.length
     const verifiedProjectsCount = user.projects.filter(
@@ -103,7 +121,6 @@ export async function GET(
     // Remove sensitive data
     const { email, ...publicUserData } = user
 
-    const session = await getServerSession(authOptions).catch(() => null)
     void auditFromRequest(request, {
       actorId: session?.user?.id ?? null,
       actorEmail: session?.user?.email ?? null,

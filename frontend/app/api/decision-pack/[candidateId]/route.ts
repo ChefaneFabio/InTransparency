@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { canRecruiterAccessStudent } from '@/lib/access-grants'
 
 /**
  * GET /api/decision-pack/[candidateId]
@@ -47,6 +48,24 @@ export async function GET(
 
     if (!candidate) {
       return NextResponse.json({ error: 'Candidate not found' }, { status: 404 })
+    }
+
+    // Admin-managed access grants — when present, they are authoritative.
+    // A recruiter restricted by an institution allow-list must pass the
+    // grant check before any other gate is consulted.
+    if (session.user.role === 'RECRUITER') {
+      const grantCheck = await canRecruiterAccessStudent(session.user.id, candidateId, 'profile')
+      if (!grantCheck.ok) {
+        return NextResponse.json(
+          {
+            error: 'Forbidden',
+            code: grantCheck.reason ?? 'NOT_GRANTED',
+            message:
+              "Your company is not authorised to access this institution's students. Contact the InTransparency team to request a grant.",
+          },
+          { status: 403 }
+        )
+      }
     }
 
     // Legitimate-business-need gate. A recruiter may pull a decision pack only

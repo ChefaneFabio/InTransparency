@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { canRecruiterAccessStudent } from '@/lib/access-grants'
 
 /**
  * GET /api/dashboard/recruiter/saved-candidates
@@ -50,7 +51,17 @@ export async function GET(req: NextRequest) {
       orderBy: { createdAt: 'desc' },
     })
 
-    const formatted = savedCandidates.map((sc) => ({
+    // Filter out candidates that the recruiter no longer has access to under
+    // the current admin-managed grants. (Saving a candidate does not grant
+    // access — if a grant changes, previously-saved profiles disappear.)
+    const accessChecks = await Promise.all(
+      savedCandidates.map(sc =>
+        canRecruiterAccessStudent(userId, sc.candidate.id, 'profile').then(r => r.ok)
+      )
+    )
+    const accessibleSaved = savedCandidates.filter((_, i) => accessChecks[i])
+
+    const formatted = accessibleSaved.map((sc) => ({
       id: sc.id,
       candidateId: sc.candidateId,
       folder: sc.folder,
@@ -118,6 +129,19 @@ export async function POST(req: NextRequest) {
         { error: 'Candidate not found' },
         { status: 404 }
       )
+    }
+
+    // Block saving candidates the recruiter has no access to under the
+    // current admin-managed grants. Prevents back-channel discovery via the
+    // save endpoint.
+    if (session.user.role === 'RECRUITER') {
+      const grantCheck = await canRecruiterAccessStudent(userId, candidateId, 'profile')
+      if (!grantCheck.ok) {
+        return NextResponse.json(
+          { error: 'Your company is not authorised to access this student.', code: grantCheck.reason ?? 'NOT_GRANTED' },
+          { status: 403 }
+        )
+      }
     }
 
     // Upsert to avoid duplicates

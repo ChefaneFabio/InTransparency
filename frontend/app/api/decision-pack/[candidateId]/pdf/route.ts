@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { generateDecisionPack } from '@/lib/decision-pack'
+import { canRecruiterAccessStudent } from '@/lib/access-grants'
 import React from 'react'
 import { renderToBuffer, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
 
@@ -270,6 +271,17 @@ export async function GET(
     const { candidateId } = await params
     const url = new URL(request.url)
     const jobId = url.searchParams.get('jobId') || undefined
+
+    // Admin-managed access grants — authoritative when present.
+    if (user.role === 'RECRUITER') {
+      const grantCheck = await canRecruiterAccessStudent(user.id, candidateId, 'profile')
+      if (!grantCheck.ok) {
+        return NextResponse.json(
+          { error: 'Forbidden', code: grantCheck.reason ?? 'NOT_GRANTED' },
+          { status: 403 }
+        )
+      }
+    }
 
     // Same legitimate-business-need gate as the JSON endpoint:
     // public profile, prior contact, paid tier, or admin.

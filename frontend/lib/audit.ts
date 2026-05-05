@@ -32,6 +32,8 @@ export type AuditAction =
   | 'MARK_EXCHANGE_COMPLETE'
   | 'FORCE_VERIFY_PROJECT'
   | 'CONVENTION_TRANSITION'
+  | 'ACCESS_GRANT_CREATED'
+  | 'ACCESS_GRANT_REVOKED'
   | 'OTHER'
 
 interface AuditParams {
