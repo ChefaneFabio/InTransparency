@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation'
 import { PublicPortfolio } from '@/components/portfolio/PublicPortfolio'
 import prisma from '@/lib/prisma'
 import { getTranslations } from 'next-intl/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
+import { shapeProjectForViewer } from '@/lib/project-visibility'
 
 interface PageProps {
   params: Promise<{
@@ -44,6 +47,8 @@ async function getPublicPortfolio(username: string) {
             createdAt: true,
             universityVerified: true,
             professor: true,
+            userId: true,
+            peerVisibility: true,
             endorsements: {
               select: {
                 id: true,
@@ -81,6 +86,21 @@ async function getPublicPortfolio(username: string) {
       }
     })
 
+    // Peer visibility gate. Stats above are computed off the raw projects so
+    // counts stay accurate; only the per-project content is shaped/locked
+    // for free student peers.
+    const session = await getServerSession(authOptions).catch(() => null)
+    const viewer = session?.user
+      ? {
+          id: (session.user as { id?: string }).id ?? null,
+          role: (session.user as { role?: string }).role ?? null,
+          subscriptionTier: (session.user as { subscriptionTier?: string }).subscriptionTier ?? null,
+        }
+      : null
+    const shapedProjects = user.projects.map(p =>
+      shapeProjectForViewer(p as any, viewer)
+    )
+
     return {
       id: user.id,
       username: user.username ?? '',
@@ -91,7 +111,7 @@ async function getPublicPortfolio(username: string) {
       university: user.university ?? '',
       degree: user.degree ?? '',
       graduationYear: parseInt(String(user.graduationYear || '0'), 10),
-      projects: user.projects,
+      projects: shapedProjects,
       stats: {
         projectsCount,
         verifiedProjectsCount,

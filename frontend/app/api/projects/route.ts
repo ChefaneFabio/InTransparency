@@ -7,6 +7,7 @@ import { normalizeGrade } from '@/lib/grades/ects-normalization'
 import { onProjectCreated } from '@/lib/cross-segment-connections'
 import { writeProjectDeltas } from '@/lib/skill-delta'
 import { auditFromRequest } from '@/lib/audit'
+import { shapeProjectForViewer } from '@/lib/project-visibility'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -296,9 +297,22 @@ export async function GET(request: NextRequest) {
       prisma.project.count({ where })
     ])
 
+    // Peer visibility gate. Free students browsing peers' PREMIUM_ONLY
+    // projects receive title-only locked cards. Owners + non-students +
+    // Premium peers see full cards.
+    const session = await getServerSession(authOptions)
+    const viewer = session?.user
+      ? {
+          id: (session.user as { id?: string }).id ?? null,
+          role: (session.user as { role?: string }).role ?? null,
+          subscriptionTier: (session.user as { subscriptionTier?: string }).subscriptionTier ?? null,
+        }
+      : null
+    const shaped = projects.map(p => shapeProjectForViewer(p as any, viewer))
+
     return NextResponse.json({
       success: true,
-      projects,
+      projects: shaped,
       total,
       limit,
       offset,

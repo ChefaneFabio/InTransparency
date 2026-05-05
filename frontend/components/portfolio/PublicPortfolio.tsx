@@ -15,7 +15,9 @@ import {
   Github,
   ExternalLink,
   GraduationCap,
+  Lock,
   Play,
+  Sparkles,
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { SKILL_CATEGORIES } from '@/lib/explore/data'
@@ -31,7 +33,7 @@ interface Endorsement {
 interface Project {
   id: string
   title: string
-  description: string
+  description?: string
   courseCode?: string | null
   courseName?: string | null
   category?: string | null
@@ -41,10 +43,17 @@ interface Project {
   githubUrl?: string | null
   liveUrl?: string | null
   grade?: string | null
-  createdAt?: string
+  createdAt?: string | Date
   universityVerified?: boolean
   professor?: string | null
   endorsements?: Endorsement[]
+  // Locked-card payload for free-peer view (PREMIUM_ONLY projects browsed
+  // by another non-Premium student). When true, render the upsell card
+  // instead of the full project content.
+  locked?: boolean
+  lockedReason?: string
+  skillsCount?: number
+  endorsementCount?: number
 }
 
 interface PublicPortfolioProps {
@@ -362,6 +371,13 @@ function ProjectCard({
   const videoSrc = hasVideo ? project.videos![0] : null
   const endorsements = project.endorsements || []
 
+  // Free peer (non-Premium student) viewing a PREMIUM_ONLY project — show
+  // a locked card with the upsell. The owner, recruiters, universities,
+  // and Premium peers receive the full payload from the API and skip this.
+  if (project.locked) {
+    return <LockedProjectCard project={project} t={t} />
+  }
+
   return (
     <Card className="hover:shadow-xl transition-all border-2 border-border hover:border-primary/30 overflow-hidden flex flex-col">
       {/* Video — poster + play button instead of inline controls */}
@@ -481,6 +497,77 @@ function ProjectCard({
               </a>
             </Button>
           )}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function LockedProjectCard({
+  project,
+  t,
+}: {
+  project: Project
+  t: (key: string, params?: Record<string, any>) => string
+}) {
+  const skillsCount = project.skillsCount ?? 0
+  const endorsementCount = project.endorsementCount ?? 0
+  return (
+    <Card className="border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-transparent flex flex-col">
+      <CardHeader>
+        <div className="flex items-start justify-between mb-2 gap-2">
+          <CardTitle className="text-lg line-clamp-2">{project.title}</CardTitle>
+          <Lock className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
+        </div>
+        {project.courseName && (
+          <div className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
+            <GraduationCap className="h-4 w-4 flex-shrink-0" />
+            <span>
+              {t('projects.courseLine', {
+                name: project.courseName,
+                code: project.courseCode || 'none',
+              })}
+            </span>
+          </div>
+        )}
+        <CardDescription className="line-clamp-3 italic text-muted-foreground/80">
+          {t('projects.lockedTeaser', {
+            defaultValue: 'Full project — including description, tech stack, grade and endorsements — is available to Premium students.',
+          })}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="flex-1 flex flex-col">
+        {project.universityVerified && (
+          <Badge
+            variant="outline"
+            className="border-emerald-500 text-emerald-700 bg-emerald-50/50 dark:bg-emerald-950/20 mb-3 self-start"
+          >
+            <CheckCircle className="h-3 w-3 mr-1" />
+            {t('projects.universityVerified')}
+          </Badge>
+        )}
+
+        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground mb-4">
+          <div className="rounded border bg-card/50 px-2 py-1.5">
+            <div className="font-mono text-base text-foreground">{skillsCount}</div>
+            <div>{t('projects.lockedSkillsLabel', { defaultValue: 'skills detected' })}</div>
+          </div>
+          <div className="rounded border bg-card/50 px-2 py-1.5">
+            <div className="font-mono text-base text-foreground">{endorsementCount}</div>
+            <div>{t('projects.lockedEndorsementsLabel', { defaultValue: 'endorsements' })}</div>
+          </div>
+        </div>
+
+        <div className="mt-auto pt-2 border-t">
+          <Link
+            href={'/dashboard/student/upgrade' as any}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            {t('projects.lockedCta', { defaultValue: 'Unlock with Premium' })}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
       </CardContent>
     </Card>

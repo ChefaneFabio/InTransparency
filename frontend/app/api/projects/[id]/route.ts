@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { normalizeGrade } from '@/lib/grades/ects-normalization'
+import { shapeProjectForViewer, decideProjectVisibility } from '@/lib/project-visibility'
 
 // GET /api/projects/[id] - Get a single project by ID
 export async function GET(
@@ -67,7 +68,21 @@ export async function GET(
       return NextResponse.json({ error: 'Project not found' }, { status: 404 })
     }
 
-    // Increment view count
+    // Peer visibility gate. Free students browsing a peer's PREMIUM_ONLY
+    // project receive only the locked-card payload (title + author + badges
+    // + counts). Owners, recruiters/universities/etc., and Premium peers
+    // see the full payload.
+    const viewer = session?.user
+      ? {
+          id: requestingUserId as string,
+          role: ((session.user as { role?: string }).role) ?? null,
+          subscriptionTier: ((session.user as { subscriptionTier?: string }).subscriptionTier) ?? null,
+        }
+      : null
+    const decision = decideProjectVisibility(viewer, project)
+    const responseProject = shapeProjectForViewer(project, viewer)
+
+    // Increment view count regardless of full/locked view.
     await prisma.project.update({
       where: { id },
       data: {
@@ -85,7 +100,8 @@ export async function GET(
           properties: {
             projectId: project.id,
             projectOwnerId: project.userId,
-            discipline: project.discipline
+            discipline: project.discipline,
+            view: decision.fullView ? 'full' : 'locked',
           }
         }
       })
@@ -93,7 +109,8 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      project
+      project: responseProject,
+      visibility: { fullView: decision.fullView, reason: decision.reason },
     })
 
   } catch (error) {
@@ -191,7 +208,11 @@ export async function PATCH(
         ...(body.competencies && { competencies: body.competencies }),
         ...(body.certifications && { certifications: body.certifications }),
         ...(body.featured !== undefined && { featured: body.featured }),
-        ...(body.isPublic !== undefined && { isPublic: body.isPublic })
+        ...(body.isPublic !== undefined && { isPublic: body.isPublic }),
+        ...(body.peerVisibility !== undefined &&
+          (body.peerVisibility === 'PUBLIC' || body.peerVisibility === 'PREMIUM_ONLY') && {
+            peerVisibility: body.peerVisibility,
+          })
       },
       include: {
         user: {

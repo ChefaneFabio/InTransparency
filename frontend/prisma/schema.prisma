@@ -725,6 +725,16 @@ model Project {
   views          Int     @default(0)
   recruiterViews Int     @default(0)
 
+  // Peer visibility — controls what OTHER STUDENTS see when they browse this
+  // project. Recruiters / universities / admin / the owner are unaffected.
+  //   PREMIUM_ONLY (default): free peers see only the title + author +
+  //     verification badge. Full description / tech / grade / endorsements
+  //     are gated behind STUDENT_PREMIUM.
+  //   PUBLIC: free peers see the same full view as recruiters. Some students
+  //     opt in for collaboration / reputation reasons.
+  // The owner can flip this per-project on the project edit page.
+  peerVisibility ProjectPeerVisibility @default(PREMIUM_ONLY)
+
   // AI Analysis (discipline-specific)
   aiAnalyzed       Boolean @default(false)
   // Number of times AI analysis has run on this project. Free students are
@@ -1787,6 +1797,13 @@ enum ProjectVerificationStatus {
   VERIFIED // Verified by university
   REJECTED // Rejected by university
   NEEDS_INFO // More information requested
+}
+
+// Per-project peer visibility — see Project.peerVisibility for semantics.
+// PREMIUM_ONLY is the default: makes peer discovery the Student Premium hook.
+enum ProjectPeerVisibility {
+  PREMIUM_ONLY
+  PUBLIC
 }
 
 // Company Challenge Model

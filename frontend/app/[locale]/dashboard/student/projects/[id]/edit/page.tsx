@@ -47,6 +47,7 @@ interface ProjectForm {
   grade: string
   professor: string
   isPublic: boolean
+  peerVisibility: 'PUBLIC' | 'PREMIUM_ONLY'
   imageUrl: string
 }
 
@@ -55,7 +56,7 @@ const EMPTY: ProjectForm = {
   skills: [], tools: [], technologies: [], competencies: [], certifications: [],
   githubUrl: '', liveUrl: '', duration: '', teamSize: '', role: '', client: '', outcome: '',
   courseName: '', courseCode: '', semester: '', academicYear: '', grade: '', professor: '',
-  isPublic: true, imageUrl: '',
+  isPublic: true, peerVisibility: 'PREMIUM_ONLY', imageUrl: '',
 }
 
 const getDisciplines = (isIt: boolean): Array<{ value: Discipline; label: string }> => [
@@ -178,6 +179,7 @@ export default function ProjectEditPage() {
           grade: project.grade || '',
           professor: project.professor || '',
           isPublic: project.isPublic ?? true,
+          peerVisibility: project.peerVisibility === 'PUBLIC' ? 'PUBLIC' : 'PREMIUM_ONLY',
           imageUrl: project.imageUrl || '',
         })
       } catch {
@@ -237,6 +239,7 @@ export default function ProjectEditPage() {
         grade: form.grade.trim() || null,
         professor: form.professor.trim() || null,
         isPublic: form.isPublic,
+        peerVisibility: form.peerVisibility,
         imageUrl: form.imageUrl || null,
       }
       const res = await fetch(`/api/projects/${projectId}`, {
@@ -524,6 +527,31 @@ export default function ProjectEditPage() {
             onCheckedChange={v => patch({ isPublic: v })}
           />
         </CardContent>
+        {form.isPublic && (
+          <CardContent className="border-t pt-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Globe className="h-5 w-5 text-primary" />
+              <div>
+                <div className="font-medium text-sm">
+                  {isIt ? 'Visibile agli altri studenti' : 'Visible to other students'}
+                </div>
+                <div className="text-xs text-muted-foreground max-w-md">
+                  {form.peerVisibility === 'PUBLIC'
+                    ? (isIt
+                        ? 'Tutti gli studenti possono vedere il progetto completo. Buono per collaborazioni e visibilità tra pari.'
+                        : 'Any student can see the full project. Good for collaboration and peer reputation.')
+                    : (isIt
+                        ? 'Gli studenti free vedono solo il titolo. Devono passare a Premium per vedere il progetto completo.'
+                        : 'Free students see only the title. They need Premium to view the full project.')}
+                </div>
+              </div>
+            </div>
+            <Switch
+              checked={form.peerVisibility === 'PUBLIC'}
+              onCheckedChange={v => patch({ peerVisibility: v ? 'PUBLIC' : 'PREMIUM_ONLY' })}
+            />
+          </CardContent>
+        )}
       </Card>
 
       {/* Sticky actions */}

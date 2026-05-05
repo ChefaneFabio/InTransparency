@@ -4,6 +4,7 @@ import { auditFromRequest } from '@/lib/audit'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { canRecruiterAccessStudent } from '@/lib/access-grants'
+import { shapeProjectForViewer } from '@/lib/project-visibility'
 
 export async function GET(
   request: NextRequest,
@@ -42,6 +43,7 @@ export async function GET(
             courseCode: true,
             courseName: true,
             category: true,
+            discipline: true,
             skills: true,
             technologies: true,
             videos: true,
@@ -50,7 +52,10 @@ export async function GET(
             grade: true,
             createdAt: true,
             universityVerified: true,
+            verificationStatus: true,
             professor: true,
+            userId: true,
+            peerVisibility: true,
             endorsements: {
               select: {
                 id: true,
@@ -118,8 +123,24 @@ export async function GET(
     })
     const skillsCount = allSkills.size
 
+    // Peer visibility gate. Free students browsing peers' PREMIUM_ONLY
+    // projects see only the locked-card payload. Stats above (counts +
+    // skill aggregation) are computed from the unlocked source so the
+    // profile always shows accurate totals — only the per-project content
+    // is hidden.
+    const viewer = session?.user
+      ? {
+          id: (session.user as { id?: string }).id ?? null,
+          role: (session.user as { role?: string }).role ?? null,
+          subscriptionTier: (session.user as { subscriptionTier?: string }).subscriptionTier ?? null,
+        }
+      : null
+    const shapedProjects = user.projects.map(p =>
+      shapeProjectForViewer(p as any, viewer)
+    )
+
     // Remove sensitive data
-    const { email, ...publicUserData } = user
+    const { email, projects: _rawProjects, ...publicUserData } = user
 
     void auditFromRequest(request, {
       actorId: session?.user?.id ?? null,
@@ -133,6 +154,7 @@ export async function GET(
 
     return NextResponse.json({
       ...publicUserData,
+      projects: shapedProjects,
       stats: {
         projectsCount,
         verifiedProjectsCount,
