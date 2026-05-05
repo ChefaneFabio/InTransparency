@@ -27,6 +27,14 @@
     {
       "path": "/api/cron/outreach-process",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/hours-reminder",
+      "schedule": "0 8 * * 1"
+    },
+    {
+      "path": "/api/health",
+      "schedule": "*/4 * * * *"
     }
   ]
 }

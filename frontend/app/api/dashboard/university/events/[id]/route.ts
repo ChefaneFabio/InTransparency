@@ -4,6 +4,46 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 
 /**
+ * GET /api/dashboard/university/events/[id]
+ * Full event detail + complete RSVP list, scoped to organizer.
+ */
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await getServerSession(authOptions)
+  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (session.user.role !== 'UNIVERSITY' && session.user.role !== 'ADMIN') {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  const { id: eventId } = await params
+
+  const settings = await prisma.universitySettings.findUnique({
+    where: { userId: session.user.id },
+    select: { id: true },
+  })
+  if (!settings) return NextResponse.json({ error: 'University settings not found' }, { status: 404 })
+
+  const event = await prisma.careerEvent.findFirst({
+    where: { id: eventId, organizerId: settings.id },
+    include: {
+      rsvps: {
+        orderBy: { createdAt: 'desc' },
+        include: {
+          user: {
+            select: { id: true, firstName: true, lastName: true, email: true, role: true, company: true },
+          },
+        },
+      },
+    },
+  })
+  if (!event) return NextResponse.json({ error: 'Event not found' }, { status: 404 })
+
+  return NextResponse.json({ event })
+}
+
+/**
  * PUT /api/dashboard/university/events/[id]
  * Update a career event (title, description, status, dates, etc.)
  */

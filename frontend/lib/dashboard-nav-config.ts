@@ -43,7 +43,7 @@ const student: NavConfig = {
       labelKey: 'discover',
       items: [
         { labelKey: 'opportunities',     href: '/dashboard/student/opportunities' },
-        { labelKey: 'discoverCompanies', href: '/discover' },
+        { labelKey: 'discoverCompanies', href: '/dashboard/student/companies' },
         { labelKey: 'selfDiscovery',     href: '/self-discovery' },
       ],
     },

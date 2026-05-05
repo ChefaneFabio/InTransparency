@@ -400,6 +400,13 @@ export default function UniversityAnalytics() {
 
         {/* ===================== PLACEMENT TAB ===================== */}
         <TabsContent value="placement" className="space-y-6">
+          <div className="flex items-center justify-end">
+            <Button asChild variant="outline" size="sm">
+              <a href="/api/dashboard/university/placements/export?format=csv" download>
+                {isIt ? 'Esporta CSV (MIUR)' : 'Export CSV (MIUR format)'}
+              </a>
+            </Button>
+          </div>
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>

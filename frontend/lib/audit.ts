@@ -34,6 +34,7 @@ export type AuditAction =
   | 'CONVENTION_TRANSITION'
   | 'ACCESS_GRANT_CREATED'
   | 'ACCESS_GRANT_REVOKED'
+  | 'EXPORT_PLACEMENT_DATA'
   | 'OTHER'
 
 interface AuditParams {

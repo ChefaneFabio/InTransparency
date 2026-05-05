@@ -21,6 +21,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
 
 interface EventData {
   id: string
@@ -242,7 +243,8 @@ export default function EventsPanel({ embedded = false }: { embedded?: boolean }
             {upcomingEvents.map((event) => {
               const status = statusConfig[event.status] || statusConfig.DRAFT
               return (
-                <Card key={event.id} className="hover:shadow-md transition-shadow">
+                <Link key={event.id} href={`/dashboard/university/events/${event.id}`} className="block">
+                <Card className="hover:shadow-md transition-shadow cursor-pointer">
                   <CardContent className="p-5">
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-4">
@@ -297,6 +299,7 @@ export default function EventsPanel({ embedded = false }: { embedded?: boolean }
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
               )
             })}
           </div>

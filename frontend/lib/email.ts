@@ -507,6 +507,164 @@ export async function sendAccountVerificationEmail(
   await sendEmail(to, subject, html, text)
 }
 
+/**
+ * Concierge-import claim email. The student has no idea they have an
+ * account yet — explain it briefly + give them the claim link. 30-day
+ * expiry matches the token (institutions sometimes import then sit on
+ * the data for weeks before sending invites).
+ */
+export async function sendAccountClaimEmail(
+  to: string,
+  rawToken: string,
+  firstName: string,
+  institutionName: string,
+  locale: 'en' | 'it' = 'it'
+) {
+  const claimUrl = `${BASE_URL}/${locale}/auth/claim?token=${rawToken}`
+  const isIt = locale === 'it'
+
+  const subject = isIt
+    ? `${escapeHtml(institutionName)} ti ha invitato su InTransparency`
+    : `${escapeHtml(institutionName)} invited you to InTransparency`
+
+  const heading = isIt ? 'Attiva il tuo profilo' : 'Activate your profile'
+  const greeting = isIt ? `Ciao ${escapeHtml(firstName)},` : `Hi ${escapeHtml(firstName)},`
+  const lede = isIt
+    ? `${escapeHtml(institutionName)} ha creato per te un profilo su InTransparency — la piattaforma dove puoi mostrare i tuoi progetti reali alle aziende e farti trovare per stage e opportunità di lavoro.`
+    : `${escapeHtml(institutionName)} created an account for you on InTransparency — the platform where you can showcase real projects to companies and get found for internships and jobs.`
+  const next = isIt
+    ? "Clicca il pulsante qui sotto per scegliere una password e iniziare:"
+    : 'Click the button below to set your password and get started:'
+  const ctaLabel = isIt ? 'Attiva profilo' : 'Activate profile'
+  const expiry = isIt ? 'Il link scade tra 30 giorni.' : 'This link expires in 30 days.'
+  const fallback = isIt
+    ? 'Se il pulsante non funziona, copia e incolla questo link nel browser:'
+    : "If the button doesn't work, copy and paste this link into your browser:"
+  const ignore = isIt
+    ? `Se non sei studente di ${escapeHtml(institutionName)}, puoi ignorare questa email.`
+    : `If you are not a student at ${escapeHtml(institutionName)}, you can safely ignore this email.`
+
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">${heading}</h2>
+    <p>${greeting}</p>
+    <p>${lede}</p>
+    <p>${next}</p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${claimUrl}" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        ${ctaLabel}
+      </a>
+    </div>
+    <p style="color: #64748b; font-size: 13px; text-align: center;">${expiry}</p>
+    <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 16px 0;" />
+    <p style="color: #64748b; font-size: 13px;">${fallback}</p>
+    <p style="color: #64748b; font-size: 12px; word-break: break-all;">${claimUrl}</p>
+    <p style="color: #999; font-size: 12px; margin-top: 16px;">${ignore}</p>
+  `)
+
+  const text = `${heading}\n\n${greeting}\n\n${lede}\n\n${next}\n${claimUrl}\n\n${expiry}\n\n${ignore}`
+  await sendEmail(to, subject, html, text)
+}
+
+/**
+ * Weekly nudge for students with an active placement who haven't logged
+ * hours in 7+ days. Fired by /api/cron/hours-reminder.
+ */
+export async function sendHoursReminderEmail(
+  to: string,
+  firstName: string,
+  companyName: string,
+  jobTitle: string,
+  daysSinceLastLog: number,
+  locale: 'en' | 'it' = 'it'
+) {
+  const logUrl = `${BASE_URL}/${locale}/dashboard/student/placements`
+  const isIt = locale === 'it'
+
+  const subject = isIt
+    ? `Promemoria: registra le ore di tirocinio in ${escapeHtml(companyName)}`
+    : `Reminder: log your placement hours at ${escapeHtml(companyName)}`
+
+  const heading = isIt ? 'Registra le tue ore' : 'Log your hours'
+  const greeting = isIt ? `Ciao ${escapeHtml(firstName)},` : `Hi ${escapeHtml(firstName)},`
+  const lede = isIt
+    ? `Sono passati ${daysSinceLastLog} giorni dall'ultima registrazione delle ore per il tirocinio come <strong>${escapeHtml(jobTitle)}</strong> presso <strong>${escapeHtml(companyName)}</strong>. Ti bastano due minuti per aggiornare il registro — il tuo tutor accademico e l'ufficio placement vedono i dati in tempo reale.`
+    : `It's been ${daysSinceLastLog} days since you last logged hours for your <strong>${escapeHtml(jobTitle)}</strong> placement at <strong>${escapeHtml(companyName)}</strong>. It takes two minutes — your academic tutor and placement office see the data live.`
+  const ctaLabel = isIt ? 'Registra ore' : 'Log hours'
+  const why = isIt
+    ? "Tenere il registro aggiornato evita problemi a fine tirocinio (validazione CFU, attestati, report MIUR)."
+    : 'Keeping the log up to date avoids end-of-placement headaches (credit validation, certificates, reporting).'
+  const unsub = isIt
+    ? 'Ricevi questa email perché hai un tirocinio attivo. I promemoria si fermeranno automaticamente quando registrerai nuove ore.'
+    : "You're receiving this because you have an active placement. Reminders stop automatically once you log new hours."
+
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">${heading}</h2>
+    <p>${greeting}</p>
+    <p>${lede}</p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${logUrl}" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        ${ctaLabel}
+      </a>
+    </div>
+    <p style="color: #475569; font-size: 14px;">${why}</p>
+    <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 16px 0;" />
+    <p style="color: #999; font-size: 12px;">${unsub}</p>
+  `)
+
+  const text = `${heading}\n\n${greeting}\n\n${lede.replace(/<[^>]+>/g, '')}\n\n${logUrl}\n\n${why}\n\n${unsub}`
+  await sendEmail(to, subject, html, text)
+}
+
+/**
+ * Career-day / workshop invite from the institution to a company recruiter
+ * (or external contact). Recipient may or may not have an account yet —
+ * the CTA links to the public event page, which routes them through
+ * sign-in if needed.
+ */
+export async function sendEventInviteEmail(
+  to: string,
+  eventTitle: string,
+  startDate: Date,
+  location: string,
+  organizerName: string,
+  note: string | undefined,
+  eventId: string
+) {
+  const eventUrl = `${BASE_URL}/events/${eventId}`
+  const dateLabel = startDate.toLocaleDateString('it-IT', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Rome',
+  })
+
+  const subject = `${organizerName} ti invita a "${eventTitle}"`
+
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">${escapeHtml(eventTitle)}</h2>
+    <p>Buongiorno,</p>
+    <p><strong>${escapeHtml(organizerName)}</strong> ti invita a partecipare a "<strong>${escapeHtml(eventTitle)}</strong>".</p>
+    <p style="margin: 12px 0;">
+      <strong>Quando:</strong> ${escapeHtml(dateLabel)}<br/>
+      ${location ? `<strong>Dove:</strong> ${escapeHtml(location)}<br/>` : ''}
+    </p>
+    ${note ? `<blockquote style="border-left: 3px solid #2563eb; margin: 16px 0; padding: 4px 12px; color: #475569;">${escapeHtml(note)}</blockquote>` : ''}
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${eventUrl}" style="display: inline-block; background: #2563eb; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Vedi evento e conferma
+      </a>
+    </div>
+    <p style="color: #64748b; font-size: 13px;">Se il pulsante non funziona, copia e incolla questo link:</p>
+    <p style="color: #64748b; font-size: 12px; word-break: break-all;">${eventUrl}</p>
+  `)
+
+  const text = `${eventTitle}\n\n${organizerName} ti invita.\nQuando: ${dateLabel}\n${location ? `Dove: ${location}\n` : ''}${note ? `\n${note}\n` : ''}\nVedi evento: ${eventUrl}`
+  await sendEmail(to, subject, html, text)
+}
+
 // --- Shared email wrapper ---
 
 function emailWrapper(content: string): string {
