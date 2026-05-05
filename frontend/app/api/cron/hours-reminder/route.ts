@@ -102,7 +102,7 @@ async function runReminders(req: NextRequest) {
           locale === 'it'
             ? `Sono passati ${daysSince} giorni dall'ultima registrazione per ${p.companyName}.`
             : `It's been ${daysSince} days since your last hours log for ${p.companyName}.`,
-        link: '/dashboard/student/placements',
+        link: '/dashboard/student/tirocinio',
         groupKey: `hours-reminder:${p.id}`,
       })
       sent++

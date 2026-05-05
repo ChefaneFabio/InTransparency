@@ -577,7 +577,7 @@ export async function sendHoursReminderEmail(
   daysSinceLastLog: number,
   locale: 'en' | 'it' = 'it'
 ) {
-  const logUrl = `${BASE_URL}/${locale}/dashboard/student/placements`
+  const logUrl = `${BASE_URL}/${locale}/dashboard/student/tirocinio`
   const isIt = locale === 'it'
 
   const subject = isIt

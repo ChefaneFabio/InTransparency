@@ -235,7 +235,9 @@ export default function EventsPage() {
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <div className="flex items-center gap-2 mb-1">
-                              <h3 className="font-semibold text-gray-900">{event.title}</h3>
+                              <Link href={`/events/${event.id}`} className="font-semibold text-gray-900 hover:underline">
+                                {event.title}
+                              </Link>
                               <Badge className={`text-xs ${EVENT_TYPE_COLORS[event.eventType] || 'bg-gray-100 text-gray-600'}`}>
                                 {formatEventType(event.eventType)}
                               </Badge>

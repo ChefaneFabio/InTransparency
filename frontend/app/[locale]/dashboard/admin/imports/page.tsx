@@ -31,7 +31,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { AdminSubNav } from '../_components/AdminSubNav'
-import { Loader2, Upload, AlertCircle, CheckCircle, GraduationCap, Building2 } from 'lucide-react'
+import { Loader2, Upload, AlertCircle, CheckCircle, GraduationCap, Building2, Send, Mail } from 'lucide-react'
 
 type Institution = {
   id: string
@@ -142,8 +142,9 @@ export default function ImportsPage() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="students" className="mt-4">
+          <TabsContent value="students" className="mt-4 space-y-4">
             <StudentImportCard institutions={institutions} />
+            <SendInvitesCard institutions={institutions} />
           </TabsContent>
           <TabsContent value="companies" className="mt-4">
             <CompanyImportCard institutions={institutions} />
@@ -504,6 +505,131 @@ function CompanyImportCard({ institutions }: { institutions: Institution[] }) {
         </div>
 
         {result && <ResultsPanel res={result} />}
+      </CardContent>
+    </Card>
+  )
+}
+
+function SendInvitesCard({ institutions }: { institutions: Institution[] }) {
+  const [institutionId, setInstitutionId] = useState('')
+  const [locale, setLocale] = useState<'en' | 'it'>('it')
+  const [onlyUnclaimed, setOnlyUnclaimed] = useState(true)
+  const [running, setRunning] = useState(false)
+  const [error, setError] = useState('')
+  const [result, setResult] = useState<{
+    institution: { id: string; name: string }
+    candidates: number
+    sent: number
+    failed: number
+    errors: Array<{ email: string; reason: string }>
+  } | null>(null)
+
+  async function send() {
+    setError('')
+    setResult(null)
+    if (!institutionId) {
+      setError('Pick an institution.')
+      return
+    }
+    if (!confirm('Send activation emails to all matching students? This is not reversible.')) return
+    setRunning(true)
+    try {
+      const res = await fetch('/api/admin/imports/send-invites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ institutionId, locale, onlyUnclaimed }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error ?? 'Send failed')
+        return
+      }
+      setResult(data)
+    } finally {
+      setRunning(false)
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base flex items-center gap-2">
+          <Mail className="h-4 w-4" /> Send claim invites
+        </CardTitle>
+        <CardDescription>
+          Issues a fresh 30-day claim token + sends an activation email to every active student
+          affiliated with the chosen institution. Re-running invalidates prior tokens (only the latest
+          link works).
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {error && (
+          <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+            <span>{error}</span>
+          </div>
+        )}
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label>Institution</Label>
+            <Select value={institutionId} onValueChange={setInstitutionId}>
+              <SelectTrigger>
+                <SelectValue placeholder="Pick an institution…" />
+              </SelectTrigger>
+              <SelectContent>
+                {institutions.map(i => (
+                  <SelectItem key={i.id} value={i.id}>
+                    {i.name} {i.isDemo && <span className="ml-2 text-xs text-muted-foreground">(demo)</span>}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Email language</Label>
+            <Select value={locale} onValueChange={(v) => setLocale(v as 'en' | 'it')}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="it">Italian</SelectItem>
+                <SelectItem value="en">English</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 text-sm">
+          <Switch checked={onlyUnclaimed} onCheckedChange={setOnlyUnclaimed} />
+          <span>Skip students who have already logged in (recommended)</span>
+        </div>
+
+        <Button onClick={send} disabled={running}>
+          {running ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <Send className="h-4 w-4 mr-1" />}
+          Send invites
+        </Button>
+
+        {result && (
+          <div className="space-y-2 pt-3 border-t">
+            <div className="flex items-center gap-3 flex-wrap">
+              <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
+                <CheckCircle className="h-3.5 w-3.5 mr-1" />
+                {result.sent} sent
+              </Badge>
+              <Badge variant="outline">{result.candidates} candidates</Badge>
+              {result.failed > 0 && <Badge variant="destructive">{result.failed} failed</Badge>}
+              <span className="text-xs text-muted-foreground">{result.institution.name}</span>
+            </div>
+            {result.errors.length > 0 && (
+              <div className="text-xs text-red-600 space-y-1">
+                {result.errors.map((e, i) => (
+                  <div key={i}><code>{e.email}</code> — {e.reason}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   )

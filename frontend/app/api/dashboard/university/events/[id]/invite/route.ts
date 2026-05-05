@@ -52,6 +52,12 @@ export async function POST(
     where: { id: eventId, organizerId: settings.id },
   })
   if (!event) return NextResponse.json({ error: 'Event not found' }, { status: 404 })
+  if (event.status !== 'PUBLISHED') {
+    return NextResponse.json(
+      { error: 'Publish the event before sending invites — recipients can only RSVP to a published event.' },
+      { status: 400 }
+    )
+  }
 
   // Dedup, normalize.
   const uniqueEmails = Array.from(new Set(body.emails.map(e => e.trim().toLowerCase())))
